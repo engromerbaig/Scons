@@ -1,0 +1,238 @@
+
+@import url('https://fonts.googleapis.com/css2?family=clash:wght@400;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap');
+
+/* Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/fonts/ClashDisplay/ClashDisplay-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap; /* Ensure that fallback fonts are used until the font is fully loaded */
+}
+
+
+@font-face {
+  font-family: 'Clash Display Variable';
+  src: url('/fonts/ClashDisplay/ClashDisplay-Variable.woff2') format('woff2');
+  font-weight: 100 900; /* Specify the range of supported weights */
+  font-style: normal;
+  font-display: swap; /* Ensure fallback fonts are used until the font is fully loaded */
+}
+
+
+
+
+
+
+/* tyfora Logo */
+@font-face {
+  font-family: 'Coolvetica';
+  src: url('/fonts/Coolvetica/Coolvetica-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap; /* Ensure that fallback fonts are used until the font is fully loaded */
+
+}
+
+
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+/* hide scroll bar */
+
+/* hide scroll bar */
+.scroll-container {
+    overflow-x: auto;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  
+  .scroll-container::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
+
+
+  .hide-scrollbar {
+    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+  }
+
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari */
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+
+  /* @layer utilities {
+    .border-dashed {
+      border-style: dashed;
+      border-width: 2px;
+      border-dash-length: 10px;
+      border-spacing: 20px;
+    }
+  } */
+
+
+/* Global Scrollbar Styles */
+
+/* WebKit (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 3px; /* Set scrollbar width */
+  height: 3px; /* Set scrollbar height for horizontal scrollbars */
+}
+
+::-webkit-scrollbar-track {
+  background: #000000; /* Black track color */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-neon) ; /* Use the Tailwind-generated CSS variable */
+  border-radius: 9999px; /* Fully round scrollbar edges at top and bottom */
+}
+/* For Firefox */
+* {  scrollbar-width: thin; /* Set a thin scrollbar width */
+
+  scrollbar-color: var(--color-neon) #000000; /* Neon scrollbar color and black track */
+}
+
+
+/* smooth scorlling */
+html {
+  scroll-behavior: smooth;
+}
+
+.scroll-element {
+  will-change: transform;
+}
+
+
+
+
+/* outlined text */
+.outlined-text {
+  -webkit-text-stroke: 3px var(--color-neon) !important;
+  color: #E0FEEF !important;
+  position: relative !important;
+  /* Increase z-index and create new stacking context */
+  z-index: 10 !important;
+  isolation: isolate !important;
+  /* Add will-change to create GPU layer */
+  will-change: transform;
+  /* Ensure text maintains its rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Force hardware acceleration */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+
+
+}
+
+.outlined-text-2 {
+  -webkit-text-stroke: 3px var(--color-neon) !important;
+  color: transparent !important;
+  position: relative !important;
+  /* Increase z-index and create new stacking context */
+  z-index: 10 !important;
+  isolation: isolate !important;
+  /* Add will-change to create GPU layer */
+  will-change: transform;
+  /* Ensure text maintains its rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Force hardware acceleration */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+
+
+}
+
+
+.outlined-text-3 {
+  -webkit-text-stroke: 2px #6D6E70 !important;
+  color: transparent !important;
+  position: relative !important;
+  /* Increase z-index and create new stacking context */
+  z-index: 10 !important;
+  isolation: isolate !important;
+  /* Add will-change to create GPU layer */
+  will-change: transform;
+  /* Ensure text maintains its rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Force hardware acceleration */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+
+
+}
+
+.outlined-text-shadow-wrapper {
+
+  display: inline-block;
+  filter: drop-shadow(0px 4px 0px rgba(20, 255, 138, 1));
+}
+
+
+/* hover-text */
+.smooth-hover {
+  transition: font-weight 0.3s ease;
+}
+
+.smooth-hover:hover {
+  font-weight: bold;
+}
+
+
+/* svg changer */
+.svg-neon {
+  filter: brightness(0) invert(76%) sepia(63%) saturate(1000%) hue-rotate(80deg) brightness(100%) contrast(101%);
+}
+
+/* Increase specificity for hover */
+.parent-hover:hover .svg-neon {
+  filter: brightness(0) invert(1);
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: var(--color-neon) !important; /* Change arrow color to white */
+}
+
+
+.swiper-pagination-bullet-active {
+  background: var(--color-neon) !important; /* Change active bullet color */
+
+}
+
+
+.swiper-pagination-bullet {
+  background: var(--color-neon) !important; /* Change active bullet color */
+
+}
+
+.business-formula-swiper .swiper-button-prev,
+.business-formula-swiper .swiper-button-next {
+  display: none !important;
+}
+
+.business-formula-swiper .swiper-pagination {
+  display: none !important;
+
+}
+
+/* tyfora */

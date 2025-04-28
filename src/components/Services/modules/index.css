@@ -1,0 +1,59 @@
+/* Custom class for hollow/stroked text */
+.outlined-text {
+    -webkit-text-stroke: 0.65px var(--color-neon) !important;
+    color: transparent !important;
+    position: relative !important;
+    /* Increase z-index and create new stacking context */
+    z-index: 10 !important;
+    isolation: isolate !important;
+    /* Add will-change to create GPU layer */
+    will-change: transform;
+    /* Ensure text maintains its rendering */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Force hardware acceleration */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+.line-34px {
+    width: 34px;
+    height: 2px;
+    background-color: var(--color-neon);
+}
+
+/* glow css */
+.glow-container {
+    position: relative;
+    overflow: hidden;
+    /* Create new stacking context */
+    isolation: isolate;
+}
+
+.glow-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background: linear-gradient(to top, rgba(100, 255, 55, 0.3), transparent);
+    opacity: 0;
+    transition: height 0.5s ease, opacity 0.5s ease;
+    pointer-events: none;
+    /* Lower z-index to ensure it stays below content */
+    z-index: 1;
+}
+
+.glow-container:hover::after {
+    height: 20%;
+    opacity: 1;
+}
+
+.glow-container-content {
+    position: relative;
+    /* Higher z-index than the glow */
+    z-index: 2;
+    /* Create new stacking context */
+    isolation: isolate;
+}

@@ -1,0 +1,63 @@
+.animated-background {
+  @apply relative overflow-hidden;
+  background-image: var(--bg-image, url('/cube.png')); /* Default to /cube.png */
+  background-size: var(--bg-size-mob, cover);
+}
+
+/* Bottom shadow - only applied when data-bottom-shadow is true */
+.animated-background[data-bottom-shadow="true"] {
+  box-shadow: 0px 4px 10px rgba(225, 225, 225, 0.8); /* Bottom shadow only */
+}
+
+/* Top shadow - only applied when data-top-shadow is true */
+.animated-background[data-top-shadow="true"] {
+  box-shadow: 0px -4px 10px rgba(225, 225, 225, 0.8); /* Top shadow only */
+}
+
+/* When both shadows are true */
+.animated-background[data-bottom-shadow="true"][data-top-shadow="true"] {
+  box-shadow: 
+    0px 4px 10px rgba(225, 225, 225, 0.8), /* Bottom shadow */
+    0px -4px 10px rgba(225, 225, 225, 0.8); /* Top shadow */
+}
+
+/* Medium screens and above */
+@media (min-width: 768px) {
+  .animated-background {
+    background-size: var(--bg-size, contain);
+    background-repeat: no-repeat;
+  }
+}
+
+/* Add blobs to the bottom-left and top-right corners */
+.animated-background::before,
+.animated-background::after {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background-image: url('/blob.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 1;
+  pointer-events: none; /* Ensure pseudo-elements do not block clicks */
+}
+
+/* Hide blobs if showBlob is false */
+.animated-background[data-show-blob="false"]::before,
+.animated-background[data-show-blob="false"]::after {
+  display: none;
+}
+
+/* Bottom-left blob */
+.animated-background::before {
+  bottom: 0;
+  left: -30px;
+}
+
+/* Top-right blob (mirrored) */
+.animated-background::after {
+  top: 0;
+  right: -30px;
+  transform: scaleX(-1);
+}

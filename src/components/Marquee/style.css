@@ -1,0 +1,65 @@
+/* Marquee wrapper */
+.ticker-wrap {
+  position: absolute; /* Changed to absolute positioning */
+  bottom: 0rem; /* Added spacing from bottom */
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  height: 5rem;
+  box-sizing: content-box;
+}
+
+/* Static ticker (initial state) */
+.ticker.static {
+  display: inline-flex;
+  width: 100%;
+  white-space: nowrap;
+  animation: none;
+  overflow: hidden;
+}
+
+/* Ticker item */
+.ticker__item {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 10rem;
+  flex-shrink: 0; /* Prevent items from shrinking */
+}
+
+
+@media (max-width: 768px) { /* Adjust the max-width value as per your breakpoint */
+  .ticker__item {
+    padding: 0 4rem;
+  }
+}
+
+/* Bullet icon styling */
+.bullet-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 2rem;
+  flex-shrink: 0; /* Prevent icon from shrinking */
+}
+
+/* Ticker animation */
+@keyframes ticker {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+/* Animated ticker */
+.ticker.animate {
+  display: inline-block;
+  white-space: nowrap;
+  animation: ticker 300s linear infinite;
+}
+
+/* Adjust the bottom spacing for Marquee */
+.hero-section .ticker-wrap {
+  margin-bottom: 2rem;
+}

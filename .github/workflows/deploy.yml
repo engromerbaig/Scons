@@ -1,0 +1,98 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches:
+      - staging
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up SSH
+      uses: webfactory/ssh-agent@v0.6.0
+      with:
+        ssh-private-key: ${{ secrets.DEPLOY_SSH_KEY }}
+
+    - name: Set git safe directory
+      run: |
+        ssh -o StrictHostKeyChecking=no root@38.75.137.11 << 'EOF'
+          git config --global --add safe.directory /var/www/html/brands/staging.tyfora.com
+        EOF
+
+    - name: Deploy to server
+      run: |
+        ssh -o StrictHostKeyChecking=no root@38.75.137.11 << 'EOF'
+          set -e
+
+          # Navigate to project directory
+          cd /var/www/html/brands/staging.tyfora.com
+
+          # Save the current state (last successful commit)
+          LAST_COMMIT=$(git rev-parse HEAD)
+          echo $LAST_COMMIT > /root/last_commit
+
+          # Try to pull latest changes from main
+          git checkout staging
+          git pull origin staging || {
+            echo "Deployment failed, rolling back...";
+            git reset --hard $(cat /root/last_commit);
+            exit 1;
+          }
+
+          # Backup the dist folder with timestamp
+          if [ -d "dist" ]; then
+            BACKUP_DIR="dist_backup_$(date +'%Y%m%d%H%M%S')"
+            mv dist "$BACKUP_DIR"
+            echo "Backup created: $BACKUP_DIR"
+          fi
+
+          # Install dependencies and rebuild the project
+          npm install
+          npm run build
+
+          # Change ownership after deployment
+          chown -R www-data:www-data /var/www/html/brands/staging.tyfora.com/dist
+
+          # Restart the PM2 process
+          pm2 restart staging_tyfora
+        EOF
+
+    - name: Send email notification on success
+      if: success()
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: smtp.yandex.com
+        server_port: 465
+        username: deployment-alerts@voxtrongroup.com
+        password: DevOps123$%67
+        subject: "Deployment Successful"
+        body: |
+          The deployment to the server has been successfully completed.
+          Site URL: "https://staging.tyfora.com"
+          Repository: ${{ github.repository }}
+          Branch: ${{ github.ref }}
+        to: "devops@voxtrongroup.com, muhammad.omer@voxtrongroup.com"
+        from: "deployment-alerts@voxtrongroup.com"
+
+    - name: Send email notification on failure
+      if: failure()
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: smtp.yandex.com
+        server_port: 465
+        username: deployment-alerts@voxtrongroup.com
+        password: DevOps123$%67
+        subject: "Deployment Failed - Rollback Executed"
+        body: |
+          The deployment to the server has failed and a rollback has been executed.
+          Please check the logs for more details.
+          Site URL: "https://staging.tyfora.com/"
+          Repository: ${{ github.repository }}
+          Branch: ${{ github.ref }}
+        to: "hamza.ali@voxtrongroup.com, muhammad.omer@voxtrongroup.com"
+        from: "deployment-alerts@voxtrongroup.com"
