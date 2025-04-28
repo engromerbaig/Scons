@@ -17,7 +17,7 @@ const slideContent = {
     "Empowering businesses with tailored, cutting-edge tech solutions that transform ideas into impactful realities.",
 };
 
-const Hero = () => {
+const HeroTyfora = () => {
   return (
     <div
       className="hero-section relative flex flex-col w-full min-h-screen bg-no-repeat bg-center bg-cover"
@@ -58,9 +58,45 @@ const Hero = () => {
         </div>
       </div>
 
-  
+      {/* Bottom Section with Description and Carousel Placeholder */}
+      <div className={`${theme.layoutPages.paddingHorizontal} w-full pb-6 grid grid-cols-1 md:grid-cols-2 gap-8`}>
+        {/* Left Side - Description */}
+        <div className="flex items-center">
+          <BodyText
+            text={slideContent.description}
+            size="text-30px"
+            className="max-w-md lg:text-start"
+          />
+        </div>
+        
+        {/* Right Side - Carousel Placeholder */}
+        <div className="flex items-center justify-center  ">
+          <div className="text-center">
+          <BodyText
+            text="Trusted by 10,000+ companies around the world"
+            size="text-30px"
+            color="text-black"
+            fontWeight="font-semibold"
+          />
+            <p className="text-lg font-medium mb-4"></p>
+            {/* <p className="text-sm text-gray-300">Future carousel component will be placed here</p> */}
+            <InfiniteCarousel
+          width="150px"
+          height="100px"
+            widthMob="150px"
+          heightMob="80px"
+          duration="20s"
+        >
+          {logoData.map((logoItem, index) => (
+            <div key={index} className="logo-item">
+              <img src={logoItem.image} alt={`Logo ${index + 1}`} className="w-32 md:w-96" />
+            </div>
+          ))}
+        </InfiniteCarousel>          </div>
+        </div>
+      </div>
     </div>
   );
 };
 
-export default Hero;
+export default HeroTyfora;
