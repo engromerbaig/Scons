@@ -3,14 +3,14 @@ import { motion } from "framer-motion";
 import Heading from "../Heading/Heading";
 import Container from "./modules/Container";
 import AnimatedBackground from "../../utilities/AnimatedBackground/AnimatedBackground";
-import Descriptor from "../Descriptor/Descriptor";
 import slideInContainerVariants from "../../utilities/Animations/slideInContainer";
 import { servicesHeading, descriptorText, services } from "./servicesData";
 import { theme } from '../../theme';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import ScrollToTopLink from '../../utilities/ScrollToTopLink'; // Import ScrollToTopLink
+import BodyText from '../BodyText/BodyText';
 
-const Services = () => {
+const ServicesOld = () => {
   const [animationStep, setAnimationStep] = useState(0); // Track the animation step for Heading and Descriptor
 
   // Handlers to move to the next animation step
@@ -41,7 +41,7 @@ const Services = () => {
           
           {/* Descriptor Animation */}
           {animationStep >= 1 && (
-            <Descriptor
+            <BodyText
               text={descriptorText}
               isAnimate={animationStep === 1} // Animate at step 1
               onAnimationComplete={handleDescriptorComplete} // Step done; no further steps needed
@@ -76,4 +76,4 @@ const Services = () => {
   );
 };
 
-export default Services;
+export default ServicesOld;

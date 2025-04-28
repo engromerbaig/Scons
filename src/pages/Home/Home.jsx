@@ -8,6 +8,7 @@ const Industries = lazy(() => import('../../components/Industries/Industries'));
 const GIFSection = lazy(() => import('../../components/GIFSection/GIFSection'));
 const Locations = lazy(() => import('../../components/Locations/Locations'));
 const BuisnessFormula = lazy(() => import('../../components/BuisnessFormula/BuisnessFormula'));
+import ServicesOld from '../../components/Services/ServicesOLD';
 
 
 
@@ -19,6 +20,7 @@ function Home() {
       <UniqueApproachOld />
       {/* testing only */}
       <Services />
+      <ServicesOld />
       {/* <BuisnessFormula /> */}
 
       <Industries />
