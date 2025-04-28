@@ -2,7 +2,7 @@ import React, { lazy } from 'react';
 
 // Lazy load components
 const Hero = lazy(() => import('../../components/Hero/Hero'));
-const UniqueApproach = lazy(() => import('../../components/UniqueApproach/UniqueApproach'));
+const UniqueApproachOld = lazy(() => import('../../components/UniqueApproach/UniqueApproachOld'));
 const Services = lazy(() => import('../../components/Services/Services'));
 const Industries = lazy(() => import('../../components/Industries/Industries'));
 const GIFSection = lazy(() => import('../../components/GIFSection/GIFSection'));
@@ -16,7 +16,7 @@ function Home() {
     <div className=''>
       {/* comment */}
       <Hero />
-      <UniqueApproach />
+      <UniqueApproachOld />
       {/* testing only */}
       <Services />
       {/* <BuisnessFormula /> */}
