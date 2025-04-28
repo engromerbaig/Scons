@@ -47,24 +47,24 @@ const LineIntersection = ({ stepIndex }) => {
       <div ref={containerRef} className="relative w-[400px] min-h-[400px]">
         {/* Three endpoints */}
         <motion.div
-          className="absolute w-4 h-4 bg-neon rounded-full right-0 top-0 translate-x-1/2 -translate-y-1/2 z-10"
+          className="absolute w-4 h-4 bg-blue rounded-full right-0 top-0 translate-x-1/2 -translate-y-1/2 z-10"
           animate={{ opacity: stepIndex === 0 ? 1 : 0.3 }} // Step 1: Top dot visible
           transition={{ duration: 0.3 }}
         ></motion.div>
         <motion.div
-          className="absolute w-4 h-4 bg-neon rounded-full right-0 top-1/2 translate-x-1/2 -translate-y-1/2 z-10"
+          className="absolute w-4 h-4 bg-blue rounded-full right-0 top-1/2 translate-x-1/2 -translate-y-1/2 z-10"
           animate={{ opacity: stepIndex === 1 ? 1 : 0.3 }} // Step 2: Middle dot visible
           transition={{ duration: 0.3 }}
         ></motion.div>
         <motion.div
-          className="absolute w-4 h-4 bg-neon rounded-full right-0 bottom-0 translate-x-1/2 translate-y-1/2 z-10"
+          className="absolute w-4 h-4 bg-blue rounded-full right-0 bottom-0 translate-x-1/2 translate-y-1/2 z-10"
           animate={{ opacity: stepIndex === 2 ? 1 : 0.3 }} // Step 3: Bottom dot visible
           transition={{ duration: 0.3 }}
         ></motion.div>
 
         {/* Top line */}
         <motion.div
-          className="absolute h-1 bg-neon z-0"
+          className="absolute h-1 bg-blue z-0"
           style={{
             position: "absolute",
             width: `${topLine.length}px`,
@@ -79,7 +79,7 @@ const LineIntersection = ({ stepIndex }) => {
 
         {/* Middle line */}
         <motion.div
-          className="absolute h-1 bg-neon z-0"
+          className="absolute h-1 bg-blue z-0"
           style={{
             position: "absolute",
             width: `${middleLine.length}px`,
@@ -94,7 +94,7 @@ const LineIntersection = ({ stepIndex }) => {
 
         {/* Bottom line */}
         <motion.div
-          className="absolute h-1 bg-neon z-0"
+          className="absolute h-1 bg-blue z-0"
           style={{
             position: "absolute",
             width: `${bottomLine.length}px`,

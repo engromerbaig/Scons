@@ -36,9 +36,9 @@ export default {
 
       },
       colors: {
-        neon: '#0b1a79',
-        neonLight: '#d6dbfb',
-        neonLightBg:'#d6dbfb',
+        blue: '#0b1a79',
+        blueLight: '#d6dbfb',
+        blueLightBg:'#d6dbfb',
         innerBg:"#E5FFF2",
         uniqueBg:'#D9FFEC',
 
@@ -129,7 +129,7 @@ export default {
           backgroundColor: theme('colors.whiteBg'), // Optional default background color
         },
         ':root': {
-          '--color-neon': theme('colors.neon'),
+          '--color-blue': theme('colors.blue'),
         },
       });
     },

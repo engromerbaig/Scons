@@ -64,7 +64,7 @@ const JobDetails = () => {
             </GreenBelt>
 
             {/* GreenBelt Section */}
-            {/* <div className="bg-neon py-10 w-full">
+            {/* <div className="bg-blue py-10 w-full">
                 <Heading
                     text={childJob.jobType}
                     color="text-black"
@@ -125,7 +125,7 @@ const JobDetails = () => {
 
             {/* Apply Now Button */}
             <ScrollToTopLink to="/careers/apply" className="mt-8 w-4/5 flex justify-start">
-                <button className=" font-bold text-neon border-neon border-2 px-6 py-2 rounded-md hover:bg-neon hover:text-black  transition-all duration-500 ease-in-out">
+                <button className=" font-bold text-blue border-blue border-2 px-6 py-2 rounded-md hover:bg-blue hover:text-black  transition-all duration-500 ease-in-out">
                     Apply Now
                 </button>
             </ScrollToTopLink>

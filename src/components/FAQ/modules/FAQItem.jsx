@@ -19,7 +19,7 @@ const FAQItem = ({ question, answer, isActive, onClick }) => {
                 <span 
                     className={`transition-transform duration-300 ${isActive ? 'rotate-180' : 'rotate-0'}`}
                 >
-                    <img src={caretDown} alt="Caret Icon" className="w-12 aspect-square svg-neon" />
+                    <img src={caretDown} alt="Caret Icon" className="w-12 aspect-square svg-blue" />
                 </span>
             </div>
 

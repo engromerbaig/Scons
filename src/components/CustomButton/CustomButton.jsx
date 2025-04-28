@@ -16,10 +16,10 @@ const CustomButton = ({
 }) => {
   const buttonContent = (
     <div
-      className={`relative ${width} z-20 text-center cursor-pointer ${padding} border-2 border-neon rounded-lg transition-all duration-200 group
+      className={`relative ${width} z-20 text-center cursor-pointer ${padding} border-2 border-blue rounded-lg transition-all duration-200 group
         ${isSelected
-          ? `bg-neon text-black font-bold` // Keep text bold when selected
-          : `bg-transparent ${textColor} hover:bg-neon hover:text-black hover:font-bold`
+          ? `bg-blue text-black font-bold` // Keep text bold when selected
+          : `bg-transparent ${textColor} hover:bg-blue hover:text-black hover:font-bold`
         } ${className}`} // Merge custom class names
       onClick={link ? null : () => onClick(option)}
     >

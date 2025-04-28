@@ -29,7 +29,7 @@ const ImageGrid = ({ data }) => {
                                 item.position === "left" ? "left-0" : "right-0"
                             } w-2/3 overflow-visible`}
                         >
-                            <Link to={item.link} className="block bg-neon py-4 px-2 md:px-0 md:py-8 w-full cursor-pointer">
+                            <Link to={item.link} className="block bg-blue py-4 px-2 md:px-0 md:py-8 w-full cursor-pointer">
                                 <Heading
                                     text={item.text}
                                     color="text-black"

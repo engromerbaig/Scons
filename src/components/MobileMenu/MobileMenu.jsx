@@ -82,7 +82,7 @@ const MobileMenu = ({ isOpen, onClose, onCloseComplete }) => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ delay: 0.2, duration: 0.3 }}
-              className={`absolute bg-neon -z-10 ${
+              className={`absolute bg-blue -z-10 ${
                 isMobile
                   ? 'w-screen h-2 top-1/2 left-1/2 -translate-x-1/2'
                   : 'inset-y-0 w-2'
@@ -95,7 +95,7 @@ const MobileMenu = ({ isOpen, onClose, onCloseComplete }) => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ delay: 0.2, duration: 0.3 }}
-              className={`bg-neon rounded-full pointer-events-auto ${
+              className={`bg-blue rounded-full pointer-events-auto ${
                 isMobile ? 'py-3 px-8 flex-row space-x-4' : 'py-12 px-6 flex-col space-y-8'
               } flex items-center justify-center`}
             >
@@ -130,7 +130,7 @@ const MobileMenu = ({ isOpen, onClose, onCloseComplete }) => {
               initial={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={handleClose}
-              className="absolute top-3 right-2 lg:top-6 lg:right-6 text-25px border-2  lg:border-4 font-extrabold border-neon text-neon rounded-full w-6 h-6 lg:w-8 lg:h-8 flex items-center justify-center"
+              className="absolute top-3 right-2 lg:top-6 lg:right-6 text-25px border-2  lg:border-4 font-extrabold border-blue text-blue rounded-full w-6 h-6 lg:w-8 lg:h-8 flex items-center justify-center"
             >
               ✕
             </motion.button>

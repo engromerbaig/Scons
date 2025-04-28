@@ -36,11 +36,11 @@ const FileUpload = ({
         <div className="flex flex-col w-full items-center gap-4">
             <div className="flex flex-col lg:flex-row w-full items-center justify-center gap-4">
                 {/* File Upload Box */}
-                <label className="flex flex-row lg:flex-col gap-4 lg:gap-0 items-center justify-center w-full lg:w-1/2 h-20 lg:h-40 border-2 border-neon rounded-lg relative transition px-4 cursor-pointer hover:bg-neon/20 ">
+                <label className="flex flex-row lg:flex-col gap-4 lg:gap-0 items-center justify-center w-full lg:w-1/2 h-20 lg:h-40 border-2 border-blue rounded-lg relative transition px-4 cursor-pointer hover:bg-blue/20 ">
                     {file ? (
                         <>
 <span
-    className="text-center px-4 font-clashvar text-neon w-full break-words overflow-hidden"
+    className="text-center px-4 font-clashvar text-blue w-full break-words overflow-hidden"
     style={{
         display: '-webkit-box',
         WebkitLineClamp: 2, // Allow up to 2 lines
@@ -104,7 +104,7 @@ const FileUpload = ({
                 <div className="text-bodyText font-bold text-xl mx-4">OR</div>
 
                 {/* URL Input Box */}
-                <div className="flex flex-col justify-start w-full lg:w-1/2 h-20 lg:h-40 border-2 border-neon rounded-lg p-4 transition">
+                <div className="flex flex-col justify-start w-full lg:w-1/2 h-20 lg:h-40 border-2 border-blue rounded-lg p-4 transition">
                     {inputType === "input" ? (
                         <input
                             type="text"

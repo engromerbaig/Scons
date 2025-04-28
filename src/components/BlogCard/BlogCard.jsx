@@ -49,7 +49,7 @@ const BlogCard = ({ blog }) => {
         <div className="mt-auto">
           <Link
             to={blogUrl}
-            className="text-35px text-neon uppercase font-semibold hover:underline inline-block"
+            className="text-35px text-blue uppercase font-semibold hover:underline inline-block"
             onClick={(e) => e.stopPropagation()} // Prevents card click from triggering navigation
           >
             Read More

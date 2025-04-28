@@ -43,7 +43,7 @@ const LHS = ({ containerVariants, textVariants, handleClose }) => (
         >
           <Link
             to={link.to}
-            className="text-xl lg:text-45px font-medium text-black font-clashvar hover:text-neon active:text-neon transition-colors duration-300"
+            className="text-xl lg:text-45px font-medium text-black font-clashvar hover:text-blue active:text-blue transition-colors duration-300"
             onClick={handleClose}
           >
             {link.label}

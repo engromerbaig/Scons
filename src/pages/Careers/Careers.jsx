@@ -28,7 +28,7 @@ const Careers = () => {
                         city={job.city}
                         employmentType={job.employmentType}
                         childItems={job.childItems}
-                        borderColor={index % 2 === 0 ? 'border-bodyText' : 'border-neon'} // Alternating border color
+                        borderColor={index % 2 === 0 ? 'border-bodyText' : 'border-blue'} // Alternating border color
                     />
                 ))}
             </div>

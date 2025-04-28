@@ -10,7 +10,7 @@ import BodyText from "../BodyText/BodyText";
 
 const BusinessFormulaMobile = () => {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-neonLight px-6 py-10">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-blueLight px-6 py-10">
       <Heading text="Formula For Business Success" spanText="Business Success" centered={true} />
       <BodyText
         text="Tyfora combines innovation, strategy, and flawless execution to deliver tech solutions that fuel growth and guarantee lasting success for your business."
@@ -30,7 +30,7 @@ const BusinessFormulaMobile = () => {
           {businessSteps.map((step, index) => (
             <SwiperSlide key={index}>
               <div className="flex flex-col items-center">
-                {/* <h2 className="text-250px outlined-text font-bold text-center font-poppins text-neon leading-none">
+                {/* <h2 className="text-250px outlined-text font-bold text-center font-poppins text-blue leading-none">
                   {step.number}
                 </h2> */}
 

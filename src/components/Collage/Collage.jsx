@@ -58,7 +58,7 @@ const Collage = () => {
               {/* Designation */}
               <Heading 
                 text={image.designation} 
-                color="text-neon" 
+                color="text-blue" 
                 fontWeight='font-medium' 
                 size="text-50px" 
                 centered={false} 

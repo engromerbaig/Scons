@@ -24,7 +24,7 @@ const HeroOld = () => {
           <motion.div>
             {/* Title Section */}
             <div className="relative w-full">
-              <Heading text={slideContent.title} size="text-50px" color="text-neon" />
+              <Heading text={slideContent.title} size="text-50px" color="text-blue" />
             </div>
 
             {/* Subtitle Section */}

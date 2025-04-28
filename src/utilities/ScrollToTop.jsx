@@ -29,7 +29,7 @@ const ScrollToTop = () => {
             {isVisible && (
                 <button
                     onClick={scrollToTop}
-                    className="fixed bottom-4 right-4 bg-neon opacity-50 text-black rounded-full p-2 md:p-3 2xl:p-4 shadow-md hover:shadow-lg transition-shadow"
+                    className="fixed bottom-4 right-4 bg-blue opacity-50 text-black rounded-full p-2 md:p-3 2xl:p-4 shadow-md hover:shadow-lg transition-shadow"
                 >
                     <MdOutlineKeyboardArrowUp className='text-[30px]' />
                 </button>

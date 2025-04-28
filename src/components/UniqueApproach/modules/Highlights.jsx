@@ -34,7 +34,7 @@ const Highlights = () => {
         <motion.div
           key={index}
           variants={itemVariants}
-          className="bg-neon/15 rounded-lg shadow-md flex flex-col items-center justify-start lg:justify-center py-4 lg:py-6 min-w-0" // Add padding and flex properties
+          className="bg-blue/15 rounded-lg shadow-md flex flex-col items-center justify-start lg:justify-center py-4 lg:py-6 min-w-0" // Add padding and flex properties
         >
           <StatisticItem title={stat.title} value={stat.value} icon={stat.icon} />
         </motion.div>

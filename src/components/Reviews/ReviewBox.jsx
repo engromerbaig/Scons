@@ -7,7 +7,7 @@ const ReviewBox = ({ logo, rating, review }) => {
   const formattedRating = rating.toFixed(1); // This will ensure 1 decimal place
 
   return (
-    <div className="flex flex-col items-center border-2 border-neon justify-between rounded-3xl p-4 min-h-60 flex-grow">
+    <div className="flex flex-col items-center border-2 border-blue justify-between rounded-3xl p-4 min-h-60 flex-grow">
       {/* Top bar */}
       <div className="flex flex-row justify-between w-full mb-4">
         {/* Left side: User Icon */}

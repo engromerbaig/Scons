@@ -59,7 +59,7 @@ const CollapsibleContainer = ({ heading, workLocation, city, employmentType, chi
                                 return (
                                     <div
                                         key={index}
-                                        className={`px-2 md:px-10 py-4 lg:py-6 flex items-center justify-between border-t-2 ${borderColor === 'border-neon' ? 'border-neon' : 'border-bodyText'}`}
+                                        className={`px-2 md:px-10 py-4 lg:py-6 flex items-center justify-between border-t-2 ${borderColor === 'border-blue' ? 'border-blue' : 'border-bodyText'}`}
                                     >
                                         <div className="flex flex-col">
                                             <div className="flex gap-x-1 lg:gap-x-4">
@@ -75,7 +75,7 @@ const CollapsibleContainer = ({ heading, workLocation, city, employmentType, chi
                                         </div>
                                         <Link
                                             to={buttonLink} // Use dynamically generated buttonLink
-                                            className="text-neon font-semibold text-10px md:text-25px border-b-2 border-neon"
+                                            className="text-blue font-semibold text-10px md:text-25px border-b-2 border-blue"
                                         >
                                             {item.buttonText}
                                         </Link>

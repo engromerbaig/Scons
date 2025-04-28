@@ -87,7 +87,7 @@ const LocationDesktop = () => {
 
   return (
     <AnimatedBackground noGrid={true} className={`w-full ${theme.layoutPages.paddingBottom}`}>
-      <div className="w-full bg-neon py-6">
+      <div className="w-full bg-blue py-6">
         <Heading
           text="Innovation Centers Across The Globe"
           spanText="Across The Globe"
@@ -104,14 +104,14 @@ const LocationDesktop = () => {
               {/* Line Container */}
               <div className="relative w-full flex justify-center mb-4">
                 <div
-                  className="vertical-line bg-neon w-1 origin-top"
+                  className="vertical-line bg-blue w-1 origin-top"
                   style={{
                     height: location.lineHeight === 'short' ? '60px' : '400px',
                     transform: 'scaleY(0)',
                   }}
                 />
                 <div
-                  className="end-circle w-4 h-4 bg-neon rounded-full absolute"
+                  className="end-circle w-4 h-4 bg-blue rounded-full absolute"
                   style={{
                     top: location.lineHeight === 'short' ? '60px' : '400px',
                     transform: 'translateY(-50%)',

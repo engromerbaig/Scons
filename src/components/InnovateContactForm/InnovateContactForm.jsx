@@ -56,7 +56,7 @@ const InnovateContactForm = ({ formData, setFormData, handleSubmit }) => {
     };
 
     const customInputStyles =
-        "m-1 p-2 lg:p-3 border-b text-bodyText placeholder-bodyText border-neon bg-transparent w-full focus:outline-none";
+        "m-1 p-2 lg:p-3 border-b text-bodyText placeholder-bodyText border-blue bg-transparent w-full focus:outline-none";
 
     return (
         <div className="flex flex-col gap-2 lg:gap-6 lg:px-10 items-start w-full">
@@ -117,10 +117,10 @@ const InnovateContactForm = ({ formData, setFormData, handleSubmit }) => {
             >
                 <div
                     className={`
-                        border-neon cursor-pointer font-bold text-bodyText border-2 px-6 lg:px-10 py-2  rounded-lg
+                        border-blue cursor-pointer font-bold text-bodyText border-2 px-6 lg:px-10 py-2  rounded-lg
                         ${isFormValid 
-                            ? 'bg-transparent hover:bg-neon' 
-                            : 'bg-neon opacity-50 cursor-not-allowed'
+                            ? 'bg-transparent hover:bg-blue' 
+                            : 'bg-blue opacity-50 cursor-not-allowed'
                         }
                     `}
                     onClick={handleFormSubmit}
