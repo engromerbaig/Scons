@@ -23,7 +23,7 @@ const Hero = () => {
       className="hero-section relative flex flex-col w-full min-h-screen bg-no-repeat bg-center bg-cover"
       style={{
         backgroundImage: `url(${waveImage})`,
-        backgroundPosition: "50% 60%", // Changed from "center center" to move it down
+        backgroundPosition: "50% 50%", // Changed from "center center" to move it down
         backgroundRepeat: "no-repeat",
         backgroundSize: "contain",
       }}

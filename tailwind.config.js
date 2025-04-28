@@ -37,8 +37,8 @@ export default {
       },
       colors: {
         neon: '#0b1a79',
-        neonLight: '#CAFFE4',
-        neonLightBg:'#E0FEEF',
+        neonLight: '#d6dbfb',
+        neonLightBg:'#d6dbfb',
         innerBg:"#E5FFF2",
         uniqueBg:'#D9FFEC',
 
