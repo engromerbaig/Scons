@@ -68,7 +68,7 @@ const JobDetails = () => {
                 <Heading
                     text={childJob.jobType}
                     color="text-black"
-                    font="font-clashvar"
+                    font="font-manrope"
                     size="text-50px"
                     centered={true}
                 />

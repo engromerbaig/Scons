@@ -25,7 +25,7 @@ const RHS = ({ containerVariants, textVariants, handleClose }) => (
           exit="exit"
           variants={textVariants}
           transition={{ duration: 0.3 }}
-          className={`font-clashvar ${theme.layoutPages.paddingMenu} text-xl md:text-50px text-grayBg`}
+          className={`font-manrope ${theme.layoutPages.paddingMenu} text-xl md:text-50px text-grayBg`}
         >
           Our Services
         </motion.h2>
@@ -44,7 +44,7 @@ const RHS = ({ containerVariants, textVariants, handleClose }) => (
             className={`${theme.layoutPages.paddingMenu}`}
           >
             <Link
-              className="text-base lg:text-45px font-medium text-black font-clashvar hover:text-blue transition-colors duration-300"
+              className="text-base lg:text-45px font-medium text-black font-manrope hover:text-blue transition-colors duration-300"
               to={`/service/${service.slug}`}
               onClick={handleClose}
             >

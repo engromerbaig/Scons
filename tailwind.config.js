@@ -24,8 +24,8 @@ export default {
     extend:
      {
       fontFamily: {
-        clash: ['Clash Display', 'sans-serif'],
-        clashvar: ['Clash Display Variable', 'sans-serif'],
+        clash: ['manrope Display', 'sans-serif'],
+        clashvar: ['manrope Display Variable', 'sans-serif'],
         oswald: ['Oswald', 'sans-serif'],
         poppins: ['Poppins', 'sans-serif'], // small typo fixed here (you had "san-serif")
         coolvetica: ['Coolvetica', 'Monument Extended', 'sans-serif'],
@@ -121,7 +121,7 @@ export default {
     function ({ addBase, theme }) {
       addBase({
         'html, body': {
-          fontFamily: theme('fontFamily.clash'), // Set default font family
+          fontFamily: theme('fontFamily.manrope'), // Set default font family
           color: theme('colors.black'),           // Set default text color
           backgroundColor: theme('colors.whiteBg'), // Optional default background color
         },

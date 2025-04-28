@@ -40,7 +40,7 @@ const FileUpload = ({
                     {file ? (
                         <>
 <span
-    className="text-center px-4 font-clashvar text-blue w-full break-words overflow-hidden"
+    className="text-center px-4 font-manrope text-blue w-full break-words overflow-hidden"
     style={{
         display: '-webkit-box',
         WebkitLineClamp: 2, // Allow up to 2 lines
@@ -64,7 +64,7 @@ const FileUpload = ({
                     ) : (
                         <>
                             <img src={fileIcon} className="w-10 lg:w-20" alt="File Icon" />
-                            <span className="font-clashvar text-sm lg:text-20px text-bodyText lg:mt-4">
+                            <span className="font-manrope text-sm lg:text-20px text-bodyText lg:mt-4">
                                 BROWSE | DROPBOX
                             </span>
                         </>

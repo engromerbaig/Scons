@@ -66,7 +66,7 @@ const VerticalAccordion = () => {
                                 <Heading
                                     text={item.title}
                                     color="text-white"
-                                    font="font-clashvar"
+                                    font="font-manrope"
                                     size="text-50px"
                                     centered={true}
                                 />
