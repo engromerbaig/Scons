@@ -24,20 +24,17 @@ export default {
     extend:
      {
       fontFamily: {
-        // 'clash': ['clash', 'sans-serif'],
-        'clash': ['Clash Display', 'sans-serif'],
-
-        // 'clashvar': ['clashvar Extended', 'sans-serif'],
-        'clashvar': ['Clash Display Variable', 'sans-serif'],
-
-        'oswald': ['Oswald', 'sans-serif'],
-        'poppins':['Poppins','san-serif'],
-        'coolvetica':['Coolvetica','Monument Extended', 'san-serif']
-
+        clash: ['Clash Display', 'sans-serif'],
+        clashvar: ['Clash Display Variable', 'sans-serif'],
+        oswald: ['Oswald', 'sans-serif'],
+        poppins: ['Poppins', 'sans-serif'], // small typo fixed here (you had "san-serif")
+        coolvetica: ['Coolvetica', 'Monument Extended', 'sans-serif'],
+        manrope: ['Manrope', 'sans-serif'], // ✅ Added Manrope properly
       },
+      
       colors: {
         blue: '#0b1a79',
-        blueLight: '#d6dbfb',
+      blueLight: '#d6dbfb',
         blueLightBg:'#d6dbfb',
         innerBg:"#E5FFF2",
         uniqueBg:'#D9FFEC',
