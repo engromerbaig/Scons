@@ -26,15 +26,16 @@ const ServicesOld = () => {
   });
 
   return (
-    <AnimatedBackground bgSizeMob="contain">
-      <div className={`pt-10 pb-20 md:pb-40 ${theme.layoutPages.paddingHorizontal}`}>
+      <div className={` ${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} bg-black/80 flex flex-col items-center min-h-screen`}>
         <div className={`flex flex-col md:flex-row min-h-[320px] overflow-hidden justify-between items-start gap-4  ${theme.layoutPages.paddingVertical}`}>
-          
+             
           {/* Heading Animation */}
           <Heading
             text={servicesHeading.text}
             spanText={servicesHeading.spanText}
             centered={false}
+            color='text-white'
+            spanColor='text-white'
             isAnimate={animationStep === 0} // Animate at step 0
             onAnimationComplete={handleHeadingComplete} // Trigger Descriptor animation
           />
@@ -43,6 +44,7 @@ const ServicesOld = () => {
           {animationStep >= 1 && (
             <BodyText
               text={descriptorText}
+              color='text-white'
               isAnimate={animationStep === 1} // Animate at step 1
               onAnimationComplete={handleDescriptorComplete} // Step done; no further steps needed
             />
@@ -72,7 +74,6 @@ const ServicesOld = () => {
           ))}
         </motion.div>
       </div>
-    </AnimatedBackground>
   );
 };
 

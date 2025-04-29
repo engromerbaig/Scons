@@ -6,7 +6,7 @@ import useTypingAnimation from '../../utilities/Animations/useTypingAnimation';
 const BodyText = ({
   text ='',
   color = 'text-black',
-  size = 'text-35px',
+  size = 'text-25px',
   lineHeight = 'leading-normal',
   fontFamily = 'font-manrope',
   fontWeight = 'font-normal',

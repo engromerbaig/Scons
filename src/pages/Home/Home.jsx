@@ -21,7 +21,7 @@ function Home() {
       <SuccessStories />
       <UniqueApproachOld />
       {/* testing only */}
-      <Services />
+      {/* <Services /> */}
       <ServicesOld />
       {/* <BuisnessFormula /> */}
 
