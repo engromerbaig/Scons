@@ -7,23 +7,23 @@ import Highlights from "./modules/Highlights";
 const UniqueApproachOld = () => {
   return (
     <div
-      className={`flex flex-col justify-center overflow-hidden bg-black ${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical}`}
+      className={`flex flex-col justify-center overflow-hidden bg-white ${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical}`}
     >
       <div className="relative w-full">
         <Heading
           text="Our Unique Approach"
-          color="text-white"
-          spanColor="text-neon"
+          color="text-black"
+          spanColor="text-black"
           spanText="Approach"
-          centered={true}
+          centered={false}
         />
       </div>
 
       <div className="relative w-full">
         <BodyText
           text="At Tyfora, innovation meets precision. Our client-centric approach ensures we understand your vision, ideate effectively, and deliver solutions that exceed expectations. From concept to deployment, we bring expertise and passion to every project."
-          color="text-white"
-          centered={true}
+          color="text-black"
+          centered={false}
         />
       </div>
 

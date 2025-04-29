@@ -18,9 +18,10 @@ function Home() {
     <div className=''>
       {/* comment */}
       <Hero />
-      <UniqueApproachOld />
 
       <SuccessStories />
+      <UniqueApproachOld />
+
       {/* testing only */}
       {/* <Services /> */}
       <ServicesOld />
