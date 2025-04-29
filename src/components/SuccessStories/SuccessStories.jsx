@@ -5,7 +5,6 @@ import { theme } from "../../theme";
 import SuccessCard from "../SuccessCard/SuccessCard";
 import { successStoriesData } from "./successStoriesData";
 
-
 const SuccessStories = () => {
   return (
     <div
@@ -18,8 +17,13 @@ const SuccessStories = () => {
 
       {/* Cards container: 2 cards per row */}
       <div className="flex flex-wrap justify-between w-full max-w-6xl">
-        {successStoriesData.map(({ id, image, logo, heading, bodyText }) => (
-          <div key={id} className="w-full md:w-[48%] mb-8">
+        {successStoriesData.map(({ id, image, logo, heading, bodyText }, index) => (
+          <div
+            key={id}
+            className={`w-full md:w-[48%] mb-8 ${
+              index % 2 === 1 ? "mt-40" : "" /* Add margin-top to right cards */
+            }`}
+          >
             <SuccessCard
               image={image}
               logo={logo}
