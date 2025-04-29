@@ -43,7 +43,7 @@ const Carousel = ({ items, itemType, bulletColor }) => {
               <img
                 src={item.image}
                 alt={`carousel-item-${index}`}
-                className="max-h-8 w-auto object-contain"
+                className="max-h-6 w-24 object-contain svg-black"
               />
             ) : (
               <div className="flex items-center">

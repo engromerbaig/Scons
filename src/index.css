@@ -231,6 +231,9 @@ html {
   filter: brightness(0) saturate(100%) invert(100%);
 }
 
+.svg-black {
+  filter: brightness(0) saturate(100%) invert(0%);
+}
 
 /* Increase specificity for hover */
 .parent-hover:hover .svg-neon {
