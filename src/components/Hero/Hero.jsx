@@ -109,6 +109,14 @@ const Hero = () => {
           </div>
 
         </div>
+        <div className="absolute bottom-4 left-20 z-20">
+  <div className="flex items-center space-x-2">
+    <span className="w-2 h-2 bg-neon rounded-full" />
+    <p className="text-white text-sm font-medium text-left">Clients served by Econs family</p>
+  </div>
+</div>
+
+
       </div>
 
       {/* Carousel Section (10vh) */}
