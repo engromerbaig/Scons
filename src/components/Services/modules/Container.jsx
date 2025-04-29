@@ -116,6 +116,7 @@ const Container = ({ heading, number, services, iconRows, link }) => {
                         text={heading}
                         centered={false}
                         size="text-40px"
+                        color='text-white'
                         className="pt-4 pb-10 container-content"
                     />
                     <ScrollToTopLink to={`/service/${link}`} className="cursor-default">
@@ -143,6 +144,8 @@ const Container = ({ heading, number, services, iconRows, link }) => {
                             <Heading
                                 text="VIEW DETAILS"
                                 size="text-10px"
+                                color='text-white'
+
                                 isAnimate={false}
                             />
                         </div>
@@ -151,7 +154,7 @@ const Container = ({ heading, number, services, iconRows, link }) => {
                 <div className="grid grid-cols-1 md:grid-cols-12">
                     <div className="col-span-1 md:col-span-9 md:grid md:grid-cols-9">
                         <div className="md:col-span-3 flex items-center justify-start mb-4 md:mb-0">
-                            <div className="text-neon text-200px font-manrope outlined-text">
+                            <div className="text-neon text-200px font-black font-poppins outlined-text-2">
                                 {number}
                             </div>
                         </div>
@@ -162,6 +165,8 @@ const Container = ({ heading, number, services, iconRows, link }) => {
                                     <BodyText
                                         text={service}
                                         centered={false}
+                                        color='text-white'
+
                                     />
                                 </div>
                             ))}

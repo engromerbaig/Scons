@@ -128,7 +128,7 @@ html {
 
 /* outlined text */
 .outlined-text {
-  -webkit-text-stroke: 3px var(--color-neon) !important;
+  -webkit-text-stroke: 2px var(--color-neon) !important;
   color: #E0FEEF !important;
   position: relative !important;
   /* Increase z-index and create new stacking context */
