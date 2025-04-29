@@ -46,7 +46,7 @@ const StatisticItem = ({ title, icon, value }) => {
       <div className='outlined-text-shadow-wrapper'>
 
       <motion.p
-        className="text-120px outlined-text font-bold outlined-text-shadow font-poppins text-neon"
+        className="text-120px outlined-text-card font-bold outlined-text-shadow font-poppins "
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 2 }}
@@ -56,12 +56,12 @@ const StatisticItem = ({ title, icon, value }) => {
       </motion.p>
       </div>
     
-      <img src={icon} alt="Icon" className="w-14 lg:w-20 aspect-square" />
+      <img src={icon} alt="Icon" className="w-14 lg:w-20 aspect-square svg-white" />
       <BodyText
         text={title}
-        size="text-32px"
+        size="text-30px"
         className="text-center" // Center-align the text
-        color='text-black'
+        color='text-white'
       />
     </div>
   );

@@ -146,6 +146,26 @@ html {
 
 }
 
+
+.outlined-text-card {
+  -webkit-text-stroke: 4px #fff !important;
+  color: transparent !important;
+  position: relative !important;
+  /* Increase z-index and create new stacking context */
+  z-index: 10 !important;
+  isolation: isolate !important;
+  /* Add will-change to create GPU layer */
+  will-change: transform;
+  /* Ensure text maintains its rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Force hardware acceleration */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+
+
+}
+
 .outlined-text-2 {
   -webkit-text-stroke: 3px var(--color-neon) !important;
   color: transparent !important;
@@ -184,12 +204,12 @@ html {
 
 
 }
-
+/* 
 .outlined-text-shadow-wrapper {
 
   display: inline-block;
-  filter: drop-shadow(0px 4px 0px rgba(20, 255, 138, 1));
-}
+  filter: drop-shadow(0px 4px 0px rgba(255, 255, 255, 1));
+} */
 
 
 /* hover-text */
@@ -205,6 +225,10 @@ html {
 /* svg changer */
 .svg-neon {
   filter: brightness(0) saturate(100%) invert(52%) sepia(90%) saturate(620%) hue-rotate(75deg) brightness(95%) contrast(110%);
+}
+
+.svg-white {
+  filter: brightness(0) saturate(100%) invert(100%);
 }
 
 
