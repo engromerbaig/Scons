@@ -4,6 +4,8 @@ import Heading from "../Heading/Heading";
 import BodyText from "../BodyText/BodyText";
 import { theme } from "../../theme";
 import videoBg from "../../assets/videos/1.mp4";
+import logoData from "./modules/logoData";
+import Carousel from "../Carousel/Carousel";
 
 import './index.css';
 
@@ -66,8 +68,10 @@ const Hero = () => {
 
       {/* Carousel Placeholder (10vh) */}
       <div className="w-full h-[10vh] flex items-center justify-center bg-gray-100">
-        <p className="text-gray-600 text-lg">Carousel Placeholder</p>
-      </div>
+      <Carousel
+    items={logoData}
+    itemType="image"
+  />      </div>
     </div>
   );
 };
