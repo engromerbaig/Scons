@@ -16,12 +16,12 @@ const SuccessStories = () => {
       </div>
 
       {/* Cards container: 2 cards per row */}
-      <div className="flex flex-wrap justify-between w-full max-w-6xl">
+      <div className="flex flex-wrap justify-between w-full ">
         {successStoriesData.map(({ id, image, logo, heading, bodyText }, index) => (
           <div
             key={id}
             className={`w-full md:w-[48%] mb-8 ${
-              index % 2 === 1 ? "mt-40" : "" /* Add margin-top to right cards */
+              index % 2 === 1 ? "lg:mt-40" : "" /* Add margin-top to right cards */
             }`}
           >
             <SuccessCard
