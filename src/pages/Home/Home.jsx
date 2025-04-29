@@ -9,6 +9,7 @@ const GIFSection = lazy(() => import('../../components/GIFSection/GIFSection'));
 const Locations = lazy(() => import('../../components/Locations/Locations'));
 const BuisnessFormula = lazy(() => import('../../components/BuisnessFormula/BuisnessFormula'));
 import ServicesOld from '../../components/Services/ServicesOLD';
+import SuccessStories from '../../components/SuccessStories/SuccessStories';
 
 
 
@@ -17,6 +18,7 @@ function Home() {
     <div className=''>
       {/* comment */}
       <Hero />
+      <SuccessStories />
       <UniqueApproachOld />
       {/* testing only */}
       <Services />
