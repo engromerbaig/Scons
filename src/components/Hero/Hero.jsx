@@ -37,7 +37,7 @@ const Hero = () => {
                 <Heading
                   text="We are a Custom Software Development Company"
                   spanText="Software Development Company"
-                  spanColor="text-green-400"
+                  spanColor="text-neon"
                   fontWeight="font-black"
                   spanFontWeight="font-black"
                   size="text-90px"
@@ -58,7 +58,7 @@ const Hero = () => {
 
           {/* Green Circle */}
           <div className="absolute bottom-10 right-40">
-            <div className="w-40 h-40 bg-green-400 rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:bg-green-500 transition">
+            <div className="w-40 h-40 bg-neon rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:bg-green-500 transition">
               <span className="text-white font-bold">Let's Discuss</span>
             </div>
           </div>
@@ -67,7 +67,7 @@ const Hero = () => {
       </div>
 
       {/* Carousel Placeholder (10vh) */}
-      <div className="w-full h-[10vh] flex items-center justify-center bg-gray-100">
+      <div className="w-full h-[10vh] flex items-center justify-center ">
       <Carousel
     items={logoData}
     itemType="image"

@@ -110,7 +110,7 @@ const Container = ({ heading, number, services, iconRows, link }) => {
             onMouseLeave={handleMouseLeave}
             onMouseMove={handleMouseMove}
         >
-            <div className="glow-container grid text-white py-10 mx-0 border-b-2 border-blue">
+            <div className="glow-container grid text-white py-10 mx-0 border-b-2 border-neon">
                 <div className="flex justify-between items-center py-10">
                     <Heading
                         text={heading}
@@ -124,7 +124,7 @@ const Container = ({ heading, number, services, iconRows, link }) => {
                                 view-details-circle md:backdrop-blur-[2px]
                                 ml-auto w-20 h-20 flex
                                 glow-container items-center justify-center
-                                border-2 border-blue rounded-full cursor-none
+                                border-2 border-neon rounded-full cursor-none
                                 ${!isMobile ? 'absolute' : 'relative'}
                                 ${!isMobile && !isHovering ? 'opacity-0' : 'opacity-100'} // Hide when not hovering
                                 transition-opacity duration-300 ease-in-out
@@ -151,7 +151,7 @@ const Container = ({ heading, number, services, iconRows, link }) => {
                 <div className="grid grid-cols-1 md:grid-cols-12">
                     <div className="col-span-1 md:col-span-9 md:grid md:grid-cols-9">
                         <div className="md:col-span-3 flex items-center justify-start mb-4 md:mb-0">
-                            <div className="text-blue text-200px font-manrope outlined-text">
+                            <div className="text-neon text-200px font-manrope outlined-text">
                                 {number}
                             </div>
                         </div>

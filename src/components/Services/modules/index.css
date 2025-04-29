@@ -1,6 +1,6 @@
 /* Custom class for hollow/stroked text */
 .outlined-text {
-    -webkit-text-stroke: 0.65px var(--color-blue) !important;
+    -webkit-text-stroke: 0.65px var(--color-neon) !important;
     color: transparent !important;
     position: relative !important;
     /* Increase z-index and create new stacking context */
@@ -19,7 +19,7 @@
 .line-34px {
     width: 34px;
     height: 2px;
-    background-color: var(--color-blue);
+    background-color: var(--color-neon);
 }
 
 /* glow css */

@@ -2,7 +2,7 @@ import React from 'react';
 import './Loader.css'
 
 const Loader = () => {
-  return     <div className="loader-container bg-blueLightBg">
+  return     <div className="loader-container bg-neonLightBg">
   <div className="loader"></div>
 </div>
 };

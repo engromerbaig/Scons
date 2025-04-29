@@ -11,7 +11,7 @@ const InnerHero = ({
   headingSize = "text-70px lg:text-90px",
   headingSize2 = "text-50px lg:text-60px",
   headingColor = "text-black",
-  headingspanColor = "text-blue",
+  headingspanColor = "text-neon",
   headingText2 = "",
   spanText2 = "",
   bodyText,
@@ -51,12 +51,12 @@ const InnerHero = ({
 
         {headingText2 && (
           <div className={`w-full flex ${isCareer ? "justify-start" : "justify-center"}`}>
-            <div className="border-4 rounded-full border-blue px-6 py-2 inline-block">
+            <div className="border-4 rounded-full border-neon px-6 py-2 inline-block">
               <Heading
                 text={headingText2}
                 spanText={spanText2}
                 color="text-black"
-                spanColor="text-blue"
+                spanColor="text-neon"
                 size={headingSize2}
                 fontWeight="font-medium"
                 centeredHeading2={!isCareer && centeredHeading2}

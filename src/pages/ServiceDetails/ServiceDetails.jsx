@@ -41,7 +41,7 @@ const ServiceDetails = () => {
             />
 
             {/* Tagline Section */}
-            {/* <div className={`bg-blue ${theme.layoutPages.paddingHorizontal} rounded-b-2xl py-4 md:py-8 mt-4 md:mt-8 mx-4 md:mx-8 lg:mx-12`}>
+            {/* <div className={`bg-neon ${theme.layoutPages.paddingHorizontal} rounded-b-2xl py-4 md:py-8 mt-4 md:mt-8 mx-4 md:mx-8 lg:mx-12`}>
                 <Heading
                     text={service.tagline} // "Beyond Development, We Build Journeys"
                     color="text-black"
@@ -96,7 +96,7 @@ const ServiceDetails = () => {
 
             {/* Call-to-Action Section */}
             {/* <div
-                className={`bg-blue ${theme.layoutPages.paddingHorizontal} z-40 relative flex flex-col justify-center items-center gap-6 py-6 md:py-14`}
+                className={`bg-neon ${theme.layoutPages.paddingHorizontal} z-40 relative flex flex-col justify-center items-center gap-6 py-6 md:py-14`}
             >
                 <Heading
                     text="Let’s make great things happen together." // "How about we discuss things over a virtual coffee?"

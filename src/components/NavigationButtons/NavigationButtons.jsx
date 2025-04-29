@@ -17,7 +17,7 @@ const NavigationButtons = ({
             {showBack && (
                 <button
                     onClick={handleBack}
-                    className={`text-blue text-lg font-medium transition uppercase  ${
+                    className={`text-neon text-lg font-medium transition uppercase  ${
                         opaqueBack ? 'opacity-50' : 'opacity-100'
                     }`}
                 >
@@ -33,7 +33,7 @@ const NavigationButtons = ({
                     className={`text-lg font-medium transition uppercase ${
                         disableNext 
                             ? 'text-gray-500 cursor-not-allowed'
-                            : 'text-blue cursor-pointer'
+                            : 'text-neon cursor-pointer'
                     }`}
                 >
                     {isLastStep ? 'APPLY' : 'Next'}

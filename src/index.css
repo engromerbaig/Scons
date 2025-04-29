@@ -104,13 +104,13 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--color-blue) ; /* Use the Tailwind-generated CSS variable */
+  background-color: var(--color-neon) ; /* Use the Tailwind-generated CSS variable */
   border-radius: 9999px; /* Fully round scrollbar edges at top and bottom */
 }
 /* For Firefox */
 * {  scrollbar-width: thin; /* Set a thin scrollbar width */
 
-  scrollbar-color: var(--color-blue) #000000; /* blue scrollbar color and black track */
+  scrollbar-color: var(--color-neon) #000000; /* neon scrollbar color and black track */
 }
 
 
@@ -128,7 +128,7 @@ html {
 
 /* outlined text */
 .outlined-text {
-  -webkit-text-stroke: 3px var(--color-blue) !important;
+  -webkit-text-stroke: 3px var(--color-neon) !important;
   color: #E0FEEF !important;
   position: relative !important;
   /* Increase z-index and create new stacking context */
@@ -147,7 +147,7 @@ html {
 }
 
 .outlined-text-2 {
-  -webkit-text-stroke: 3px var(--color-blue) !important;
+  -webkit-text-stroke: 3px var(--color-neon) !important;
   color: transparent !important;
   position: relative !important;
   /* Increase z-index and create new stacking context */
@@ -203,29 +203,29 @@ html {
 
 
 /* svg changer */
-.svg-blue {
+.svg-neon {
   filter: brightness(0) invert(20%) sepia(40%) saturate(600%) hue-rotate(180deg) brightness(100%) contrast(110%);
 }
 
 /* Increase specificity for hover */
-.parent-hover:hover .svg-blue {
+.parent-hover:hover .svg-neon {
   filter: brightness(0) invert(1);
 }
 
 .swiper-button-next,
 .swiper-button-prev {
-  color: var(--color-blue) !important; /* Change arrow color to white */
+  color: var(--color-neon) !important; /* Change arrow color to white */
 }
 
 
 .swiper-pagination-bullet-active {
-  background: var(--color-blue) !important; /* Change active bullet color */
+  background: var(--color-neon) !important; /* Change active bullet color */
 
 }
 
 
 .swiper-pagination-bullet {
-  background: var(--color-blue) !important; /* Change active bullet color */
+  background: var(--color-neon) !important; /* Change active bullet color */
 
 }
 

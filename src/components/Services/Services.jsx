@@ -37,7 +37,7 @@ const Services = () => {
               <motion.div
                 key={index}
                 className={`cursor-pointer transition-all duration-300 ${
-                  selectedService.heading === service.heading ? 'font-bold text-black caret-blue' : 'text-black/20'
+                  selectedService.heading === service.heading ? 'font-bold text-black caret-neon' : 'text-black/20'
                 }`}
                 onMouseEnter={() => setSelectedService(service)}
                 onClick={() => navigate(`/service/${service.slug}`)}

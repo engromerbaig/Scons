@@ -7,7 +7,7 @@ import ScrollToTopLink from "../../utilities/ScrollToTopLink";
 const Footer = () => {
     return (
         <div
-            className="relative w-full h-[80vh] bg-gradient-to-t from-blue to-transparent flex flex-col justify-center items-center"
+            className="relative w-full h-[80vh] bg-gradient-to-t from-neon to-transparent flex flex-col justify-center items-center"
         >
             <Heading
                 text="Innovating Beyond Boundaries,"

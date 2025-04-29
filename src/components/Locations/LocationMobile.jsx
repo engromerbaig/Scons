@@ -87,7 +87,7 @@ const LocationMobile = () => {
 
   return (
     <AnimatedBackground noGrid={true} className="w-full overflow-hidden hide-scrollbar" style={{ overflow: 'hidden' }}>
-      <div className="w-full bg-blue py-6">
+      <div className="w-full bg-neon py-6">
         <Heading
           text="Innovation Centers Across The Globe"
           spanText="Across The Globe"
@@ -115,7 +115,7 @@ const LocationMobile = () => {
         {/* Right-side Caret Indicator */}
         {showIndicator && (
           <div
-            className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-blue/50 text-black p-2 rounded-full shadow-lg cursor-pointer transition-opacity animate-pulse"
+            className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-neon/50 text-black p-2 rounded-full shadow-lg cursor-pointer transition-opacity animate-pulse"
             onClick={handleFastScroll}
           >
             <FaChevronRight size={16} />

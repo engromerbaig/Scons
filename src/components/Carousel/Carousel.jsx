@@ -11,7 +11,7 @@ const Carousel = ({ items, itemType, bulletColor }) => {
 
   useEffect(() => {
     const totalWidth = items.length * 25; // Each item takes 25% of width
-    const duration = items.length * 5; // 5 seconds per item for smooth scrolling
+    const duration = items.length * 10; // 5 seconds per item for smooth scrolling
 
     controls.start({
       x: -totalWidth + '%',

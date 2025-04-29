@@ -79,7 +79,7 @@ const BlogPagination = () => {
             }`}
             aria-label="Previous page"
           >
-            <FaChevronLeft className="text-blue text-35px" />
+            <FaChevronLeft className="text-neon text-35px" />
           </button>
 
           {[...Array(totalPages)].map((_, i) => {
@@ -96,7 +96,7 @@ const BlogPagination = () => {
                   onClick={() => goToPage(page)}
                   className={`px-3 py-1 rounded-md transition-colors ${
                     currentPage === page 
-                      ? "text-blue  text-35px font-bold" 
+                      ? "text-neon  text-35px font-bold" 
                       : "text-black text-35px font-semibold hover:bg-gray-100"
                   }`}
                 >
@@ -121,7 +121,7 @@ const BlogPagination = () => {
             }`}
             aria-label="Next page"
           >
-            <FaChevronRight className="text-blue text-35px" />
+            <FaChevronRight className="text-neon text-35px" />
           </button>
         </div>
       )}

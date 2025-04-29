@@ -5,7 +5,7 @@ const IconBox = ({ icon, name }) => {
 
     return (
         <div
-            className="flex flex-row parent-hover items-center justify-center hover:cursor-pointer p-3 bg-white border-blue border-[3px] rounded-full w-full hover:bg-blue transition-all duration-300 relative overflow-hidden hover:shadow-lg"
+            className="flex flex-row parent-hover items-center justify-center hover:cursor-pointer p-3 bg-white border-neon border-[3px] rounded-full w-full hover:bg-neon transition-all duration-300 relative overflow-hidden hover:shadow-lg"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
@@ -13,7 +13,7 @@ const IconBox = ({ icon, name }) => {
             <img
     src={icon}
     alt={name}
-    className="w-1/5 aspect-square svg-blue " // Apply global classes
+    className="w-1/5 aspect-square svg-neon " // Apply global classes
 />
 
             {/* Text with Slide Effect */}

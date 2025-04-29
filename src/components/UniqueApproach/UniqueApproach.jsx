@@ -75,7 +75,7 @@ const UniqueApproach = () => {
         <Heading
           text="Our innovative approach delivers unique, tailored solutions with excellence."
           spanText="tailored solutions with excellence."
-          spanColor="text-blue"
+          spanColor="text-neon"
           fontWeight="font-medium"
           spanFontWeight="font-semibold"
           breakSpan={true}
@@ -90,7 +90,7 @@ const UniqueApproach = () => {
             <div className="absolute top-0 h-[50vh] w-1 bg-gray-300 rounded overflow-hidden">
               <div
                 ref={progressRef}
-                className="bg-blue w-full"
+                className="bg-neon w-full"
                 style={{ height: "0%" }}
               ></div>
             </div>

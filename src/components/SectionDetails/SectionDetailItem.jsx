@@ -18,8 +18,8 @@ const SectionDetailItem = ({
       <div className="flex justify-between items-center cursor-pointer" onClick={onClick}>
         {/* Left icon and heading */}
         <div className="flex items-center gap-4">
-          <div className="bg-white border-2 lg:border-[3px] rounded-lg border-blue p-2 lg:p-4">
-            <img src={faqIcon} alt="Service Icon" className="w-12 aspect-square svg-blue" /> {/* Use dynamic icon */}
+          <div className="bg-white border-2 lg:border-[3px] rounded-lg border-neon p-2 lg:p-4">
+            <img src={faqIcon} alt="Service Icon" className="w-12 aspect-square svg-neon" /> {/* Use dynamic icon */}
           </div>
           <Heading text={serviceHeading} centered={false} size="text-50px" fontWeight='font-medium' />
         </div>

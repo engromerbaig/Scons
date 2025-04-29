@@ -89,7 +89,7 @@ const IconSectionMobile = ({ circularSection }) => {
                   x2="1"
                   y2="0"
                   className="animated-line"
-                  stroke="var(--color-blue)"
+                  stroke="var(--color-neon)"
                   strokeWidth="2"
                   strokeDasharray="10 10"
                 />
@@ -105,7 +105,7 @@ const IconSectionMobile = ({ circularSection }) => {
                   x2="100%"
                   y2="1"
                   className="animated-line"
-                  stroke="var(--color-blue)"
+                  stroke="var(--color-neon)"
                   strokeWidth="2"
                   strokeDasharray="10 10"
                 />
@@ -121,7 +121,7 @@ const IconSectionMobile = ({ circularSection }) => {
                   x2="100%"
                   y2="1"
                   className="animated-line"
-                  stroke="var(--color-blue)"
+                  stroke="var(--color-neon)"
                   strokeWidth="2"
                   strokeDasharray="10 10"
                 />
@@ -140,7 +140,7 @@ const IconSectionMobile = ({ circularSection }) => {
                 rx="25"
                 ry="25"
                 fill="none"
-                stroke="var(--color-blue)"
+                stroke="var(--color-neon)"
                 strokeWidth="2"
                 className="animated-square"
                 strokeDasharray="10 10"
@@ -149,7 +149,7 @@ const IconSectionMobile = ({ circularSection }) => {
             <img
               src={service.icon}
               alt={`${service.word} Icon`}
-              className="w-3/5 z-10 svg-blue"
+              className="w-3/5 z-10 svg-neon"
             />
           </div>
 

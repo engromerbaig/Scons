@@ -62,7 +62,7 @@ const IconSectionDesktop = ({ circularSection }) => {
             {/* Vertical Dashed Line */}
             <div className={`absolute bottom-full left-1/2 transform -translate-x-1/2 ${index === 1 ? 'h-screen' : 'h-[110%]'} overflow-hidden`}>
               <svg width="2" height="100%" className="overflow-hidden">
-                <line x1="1" y1="0" x2="1" y2="100%" className="animated-line" stroke="var(--color-blue)" strokeWidth="2" strokeDasharray="10 10" />
+                <line x1="1" y1="0" x2="1" y2="100%" className="animated-line" stroke="var(--color-neon)" strokeWidth="2" strokeDasharray="10 10" />
               </svg>
             </div>
 
@@ -74,13 +74,13 @@ const IconSectionDesktop = ({ circularSection }) => {
                   width="180" height="180" /* ✅ Adjusted square size */
                   rx="25" ry="25" /* ✅ Adjusted corner radius */
                   fill="none" 
-                  stroke="var(--color-blue)" 
+                  stroke="var(--color-neon)" 
                   strokeWidth="2" 
                   className="animated-square" 
                   strokeDasharray="10 10" 
                 />
               </svg>
-              <img src={service.icon} alt={`${service.word} Icon`} className="w-3/5 z-10 svg-blue" />
+              <img src={service.icon} alt={`${service.word} Icon`} className="w-3/5 z-10 svg-neon" />
             </div>
 
             {/* Title */}

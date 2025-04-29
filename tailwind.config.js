@@ -33,16 +33,18 @@ export default {
       },
       
       colors: {
-        blue: '#0b1a79',
-      blueLight: '#d6dbfb',
-        blueLightBg:'#d6dbfb',
+        // bxlue: '#0b1a79',
+        neon: '#28ed70',
+
+      neonLight: '#d6dbfb',
+        neonLightBg:'#d6dbfb',
         innerBg:"#E5FFF2",
         uniqueBg:'#D9FFEC',
 
         // green: '#06FF93',
-        // blue: '#37B2FF',
+        // neon: '#37B2FF',
         // purple: '#CC5EFF',
-        // seablue: '#00EBEB',
+        // seaneon: '#00EBEB',
         // grayBg: '#262626',
 
         grayBg: '#FFFFFF',
@@ -126,7 +128,7 @@ export default {
           backgroundColor: theme('colors.whiteBg'), // Optional default background color
         },
         ':root': {
-          '--color-blue': theme('colors.blue'),
+          '--color-neon': theme('colors.neon'),
         },
       });
     },

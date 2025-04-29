@@ -46,7 +46,7 @@ const StatisticItem = ({ title, icon, value }) => {
       <div className='outlined-text-shadow-wrapper'>
 
       <motion.p
-        className="text-120px outlined-text font-bold outlined-text-shadow font-poppins text-blue"
+        className="text-120px outlined-text font-bold outlined-text-shadow font-poppins text-neon"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 2 }}

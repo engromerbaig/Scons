@@ -40,7 +40,7 @@ const VerticalAccordion = () => {
 
     return (
         <div className="min-h-screen w-full overflow-hidden overflow-y-hidden">
-            <div className="h-[90vh] lg:h-[75vh] flex flex-col lg:flex-row text-white border-b-0 lg:border-b border-blue border-x-0">
+            <div className="h-[90vh] lg:h-[75vh] flex flex-col lg:flex-row text-white border-b-0 lg:border-b border-neon border-x-0">
                 {accordionData.map((item, index) => (
                     <motion.div
                         key={index}
@@ -50,7 +50,7 @@ const VerticalAccordion = () => {
                             opacity: openIndex === index ? 1 : 0.8,
                         }}
                         transition={{ duration: 0.5 }}
-                        className="relative cursor-pointer flex flex-col items-center justify-center border-x-0 border-b lg:border-b-0 lg:border-x border-blue overflow-hidden"
+                        className="relative cursor-pointer flex flex-col items-center justify-center border-x-0 border-b lg:border-b-0 lg:border-x border-neon overflow-hidden"
                     >
                         {openIndex === index ? (
                             <div

@@ -14,7 +14,7 @@ const LocationContent = ({ location }) => {
 
       {/* Address Section - Left-aligned on small screens, centered on lg */}
       <div className="flex items-start justify-center gap-2 lg:gap-3 w-full">
-        <FaMapMarkerAlt className="text-30px text-blue flex-shrink-0" />
+        <FaMapMarkerAlt className="text-30px text-neon flex-shrink-0" />
         <a
           href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location.content.address)}`}
           target="_blank"
@@ -28,7 +28,7 @@ const LocationContent = ({ location }) => {
       {/* Phone Section - Left-aligned on small screens, centered on lg */}
       {location.content.phone && (
         <div className="flex items-start justify-center gap-2 lg:gap-3 w-full">
-          <FaPhoneAlt className="text-30px text-blue flex-shrink-0" />
+          <FaPhoneAlt className="text-30px text-neon flex-shrink-0" />
           <a
             href={`tel:${location.content.phone.replace(/\s+/g, '')}`} // Remove spaces for compatibility
             className="text-30px text-black no-underline hover:font-bold transition-all duration-200"

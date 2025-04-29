@@ -168,7 +168,7 @@ const BusinessFormulaDesktop = () => {
   return (
     <div
       ref={sectionRef}
-      className={`flex bg-blueLight h-screen flex-col items-center justify-center overflow-hidden ${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical}`}
+      className={`flex bg-neonLight h-screen flex-col items-center justify-center overflow-hidden ${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical}`}
       style={{
         position: "relative",
         zIndex: 10,
@@ -192,7 +192,7 @@ const BusinessFormulaDesktop = () => {
               initial="textEnter"
               animate="textVisible"
               exit="textExit"
-              className="text-250px outlined-text-2 font-bold flex justify-center text-center font-poppins text-blue leading-none"
+              className="text-250px outlined-text-2 font-bold flex justify-center text-center font-poppins text-neon leading-none"
               style={{ display: "flex", alignItems: "center", minHeight: "250px" }}
             >
               <TypedText text={step.number} className="min-h-[250px] flex items-center" isNumber={true} />

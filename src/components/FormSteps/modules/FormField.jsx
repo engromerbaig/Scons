@@ -6,7 +6,7 @@ const defaultInputStyles =
 const defaultSelectStyles =
     "m-1 p-2 md:p-3 border-b text-bodyText placeholder-bodyText border-bodyText bg-transparent w-full focus:outline-none appearance-none";
 
-// m-1 p-2 lg:p-3 border-b text-white placeholder-white border-blue bg-transparent w-full focus:outline-none"
+// m-1 p-2 lg:p-3 border-b text-white placeholder-white border-neon bg-transparent w-full focus:outline-none"
 const errorStyles = "text-red-500 text-sm mt-1";
 
 const FormField = ({ 
