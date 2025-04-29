@@ -57,8 +57,8 @@ const Hero = () => {
           </div>
 
           {/* Green Circle */}
-          <div className="absolute bottom-20 right-40">
-            <div className="w-32 h-32 bg-green-400 rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:bg-green-500 transition">
+          <div className="absolute bottom-10 right-40">
+            <div className="w-40 h-40 bg-green-400 rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:bg-green-500 transition">
               <span className="text-white font-bold">Let's Discuss</span>
             </div>
           </div>
