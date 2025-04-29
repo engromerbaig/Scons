@@ -204,8 +204,9 @@ html {
 
 /* svg changer */
 .svg-neon {
-  filter: brightness(0) invert(20%) sepia(40%) saturate(600%) hue-rotate(180deg) brightness(100%) contrast(110%);
+  filter: brightness(0) saturate(100%) invert(52%) sepia(90%) saturate(620%) hue-rotate(75deg) brightness(95%) contrast(110%);
 }
+
 
 /* Increase specificity for hover */
 .parent-hover:hover .svg-neon {
