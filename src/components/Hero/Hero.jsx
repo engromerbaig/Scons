@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import Heading from "../Heading/Heading";
 import BodyText from "../BodyText/BodyText";
@@ -10,6 +10,30 @@ import Carousel from "../Carousel/Carousel";
 import './index.css';
 
 const Hero = () => {
+  // State and ref for the interactive Discuss button
+  const [isHover, setIsHover] = useState(false);
+  const [offset, setOffset] = useState({ x: 0, y: 0 });
+  const btnRef = useRef(null);
+  const MAX_OFFSET = 40; // max movement in px for both axes
+
+  const handleMouseMove = (e) => {
+    if (!btnRef.current) return;
+    const rect = btnRef.current.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    let diffX = e.clientX - centerX;
+    let diffY = e.clientY - centerY;
+    // Clamp the movements
+    diffX = Math.max(-MAX_OFFSET, Math.min(MAX_OFFSET, diffX));
+    diffY = Math.max(-MAX_OFFSET, Math.min(MAX_OFFSET, diffY));
+    setOffset({ x: diffX, y: diffY });
+  };
+
+  const handleMouseLeave = () => {
+    setIsHover(false);
+    setOffset({ x: 0, y: 0 });
+  };
+
   return (
     <div className="w-full min-h-screen flex flex-col border-b-2 border-gray-200">
       {/* Hero Section (90vh) */}
@@ -49,29 +73,50 @@ const Hero = () => {
 
               <div>
                 <BodyText
-                  text="We are your trusted development partner with just one goal in focus — to build products that generate a lasting, profitable impact."
+                  text="We are your trusted development partner with just one goal in focus - to build products that generate a lasting, profitable impact."
                   centered={false}
                 />
               </div>
             </motion.div>
           </div>
 
-          {/* Green Circle */}
-          <div className="absolute bottom-10 right-40">
-            <div className="w-40 h-40 bg-neon rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:bg-white transition">
-              <span className="text-black font-black">Let's Discuss ↗</span>
+          {/* Interactive Neon Circle Button */}
+          <div className="absolute bottom-10 right-40 select-none">
+            <div
+              ref={btnRef}
+              className={`w-40 h-40 rounded-full flex items-center justify-center shadow-lg cursor-pointer transition-all duration-300 ${
+                isHover ? "bg-white" : "bg-neon"
+              }`}
+              style={{
+                transform: `
+                  scale(${isHover ? 0.9 : 1})
+                  translateX(${offset.x}px)
+                  translateY(${offset.y}px)
+                `,
+                transformOrigin: "center",
+              }}
+              onMouseEnter={() => setIsHover(true)}
+              onMouseMove={isHover ? handleMouseMove : undefined}
+              onMouseLeave={handleMouseLeave}
+            >
+              <div className="flex flex-col justify-center items-center p-4">
+              <p className="text-black font-black select-none text-3xl">↗</p>
+              <p className="text-black font-black select-none text-center">Let's Discuss Your Idea </p>
+
+              </div>
             </div>
           </div>
 
         </div>
       </div>
 
-      {/* Carousel Placeholder (10vh) */}
-      <div className="w-full h-[10vh] flex items-center justify-center ">
-      <Carousel
-    items={logoData}
-    itemType="image"
-  />      </div>
+      {/* Carousel Section (10vh) */}
+      <div className="w-full h-[10vh] flex items-center justify-center">
+        <Carousel
+          items={logoData}
+          itemType="image"
+        />
+      </div>
     </div>
   );
 };
