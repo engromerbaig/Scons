@@ -22,21 +22,21 @@ const SuccessCard = ({ image, logo, heading, bodyText, link }) => {
         if (rect.top < windowHeight && rect.bottom > 0) {
           // Calculate scroll progress within the viewport (0 to 1)
           const scrollProgress = (windowHeight - rect.top) / (windowHeight + rect.height);
-          // Base scale: 1 (normal) to 1.03 (subtle zoom)
-          let scale = 1 + 0.03 * scrollProgress;
+          // Base translation: 0px to -30px (more noticeable slide up)
+          let translateY = -30 * scrollProgress;
 
-          // Adjust scale based on scroll direction
+          // Adjust translation based on scroll direction
           if (isScrollingDown) {
-            // Zoom in when scrolling down
-            scale = Math.min(scale, 1.03); // Cap at 3% zoom
+            // Slide up when scrolling down
+            translateY = Math.max(translateY, -30); // Cap at -30px (up)
           } else {
-            // Zoom out when scrolling up
-            scale = Math.max(1, scale - 0.015); // Slightly reduce scale for smooth zoom out
+            // Slide down when scrolling up
+            translateY = Math.min(0, translateY + 15); // Cap at 0px (down), offset for smoothness
           }
 
           // Apply smooth transform
-          imageRef.current.style.transform = `scale(${scale})`;
-          imageRef.current.style.transition = 'transform 0.1s ease-out'; // Smooth transition
+          imageRef.current.style.transform = `translateY(${translateY}px)`;
+          imageRef.current.style.transition = 'transform 0.15s ease-out'; // Smooth transition
         }
       }
     };
@@ -53,7 +53,7 @@ const SuccessCard = ({ image, logo, heading, bodyText, link }) => {
             ref={imageRef}
             src={image}
             alt="success"
-            className="w-full h-full object-cover absolute top-0 left-0"
+            className="w-full h-[115%] object-cover absolute top-0 left-0"
           />
         </div>
         <img src={logo} className="w-1/4 mb-4" alt="success logo" />
