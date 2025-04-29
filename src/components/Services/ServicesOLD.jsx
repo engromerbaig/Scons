@@ -19,7 +19,7 @@ const ServicesOld = () => {
   });
 
   return (
-    <div className={` ${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} bg-black flex flex-col items-center min-h-screen`}>
+    <div className={` ${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} container-bg bg-black flex flex-col items-center min-h-screen`}>
       
       {/* Heading and Descriptor in one row with extreme left and right alignment */}
       <div className={`flex flex-row justify-between items-center w-full `}>

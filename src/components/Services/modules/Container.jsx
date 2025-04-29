@@ -106,7 +106,7 @@ const Container = ({ heading, number, services, iconRows, link }) => {
     return (
         <div
             ref={containerRef}
-            className="relative overflow-hidden cursor-none"
+            className="relative overflow-hidden cursor-none "
             onMouseEnter={() => setIsHovering(true)}
             onMouseLeave={handleMouseLeave}
             onMouseMove={handleMouseMove}

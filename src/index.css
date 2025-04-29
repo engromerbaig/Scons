@@ -265,3 +265,32 @@ html {
 }
 
 /* tyfora */
+
+
+.container-bg {
+  position: relative;
+  z-index: 1;
+}
+
+.container-bg::before,
+.container-bg::after {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 600px;
+  border-radius: 260%;
+  z-index: -1;
+  background: radial-gradient(circle, theme('colors.neon') 0%, transparent 80%);
+  opacity: 0.4;
+  filter: blur(90px);
+}
+
+.container-bg::before {
+  top: -80px;
+  left: -60px;
+}
+
+.container-bg::after {
+  bottom: -80px;
+  right: -60px;
+}
