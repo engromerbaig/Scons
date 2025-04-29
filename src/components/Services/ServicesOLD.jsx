@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from "framer-motion";
 import Heading from "../Heading/Heading";
 import Container from "./modules/Container";
@@ -6,74 +6,59 @@ import AnimatedBackground from "../../utilities/AnimatedBackground/AnimatedBackg
 import slideInContainerVariants from "../../utilities/Animations/slideInContainer";
 import { servicesHeading, descriptorText, services } from "./servicesData";
 import { theme } from '../../theme';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
-import ScrollToTopLink from '../../utilities/ScrollToTopLink'; // Import ScrollToTopLink
+import ScrollToTopLink from '../../utilities/ScrollToTopLink';
 import BodyText from '../BodyText/BodyText';
 
 const ServicesOld = () => {
-  const [animationStep, setAnimationStep] = useState(0); // Track the animation step for Heading and Descriptor
-
-  // Handlers to move to the next animation step
-  const handleHeadingComplete = () => setAnimationStep(1);
-  const handleDescriptorComplete = () => setAnimationStep(2);
-
   // Map services to include iconRows (based on your earlier setup for mobile and md+)
   const updatedServices = services.map((service) => {
     const iconRows = service.iconRows.map(row => ({
-      icons: row.icons, // Ensure this is an array of icon paths
+      icons: row.icons,
     }));
     return { ...service, iconRows };
   });
 
   return (
-      <div className={` ${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} bg-black/80 flex flex-col items-center min-h-screen`}>
-        <div className={`flex flex-col md:flex-row min-h-[320px] overflow-hidden justify-between items-start gap-4  ${theme.layoutPages.paddingVertical}`}>
-             
-          {/* Heading Animation */}
-          <Heading
-            text={servicesHeading.text}
-            spanText={servicesHeading.spanText}
-            centered={false}
-            color='text-white'
-            spanColor='text-white'
-            isAnimate={animationStep === 0} // Animate at step 0
-            onAnimationComplete={handleHeadingComplete} // Trigger Descriptor animation
-          />
-          
-          {/* Descriptor Animation */}
-          {animationStep >= 1 && (
-            <BodyText
-              text={descriptorText}
-              color='text-white'
-              isAnimate={animationStep === 1} // Animate at step 1
-              onAnimationComplete={handleDescriptorComplete} // Step done; no further steps needed
-            />
-          )}
-        </div>
-
-        {/* Slide-in Animation for Containers (independent of steps) */}
-        <motion.div
-          className="container-wrapper"
-          variants={slideInContainerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          {updatedServices.map((service, index) => (
-            <ScrollToTopLink key={index} to={`/service/${service.slug}`}>
-              {/* Wrapping the whole container in the clickable link */}
-              <div onClick={() => { /* You can also add custom logic here if needed */ }}>
-                <Container
-                  heading={service.heading}
-                  number={service.number}
-                  services={service.services}
-                  iconRows={service.iconRows} // Pass the icon rows for each service
-                  link={service.slug}
-                />
-              </div>
-            </ScrollToTopLink>
-          ))}
-        </motion.div>
+    <div className={` ${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} bg-black/80 flex flex-col items-center min-h-screen`}>
+      
+      {/* Heading and Descriptor in one row with extreme left and right alignment */}
+      <div className={`flex flex-row justify-between items-center w-full `}>
+        <Heading
+          text={servicesHeading.text}
+          spanText={servicesHeading.spanText}
+          centered={false}
+          color='text-white'
+          spanColor='text-white'
+        />
+        <BodyText
+          text={descriptorText}
+          color='text-white'
+          className="max-w-lg text-right"
+        />
       </div>
+
+      {/* Slide-in Animation for Containers */}
+      <motion.div
+        className="container-wrapper w-full"
+        variants={slideInContainerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        {updatedServices.map((service, index) => (
+          <ScrollToTopLink key={index} to={`/service/${service.slug}`}>
+            <div>
+              <Container
+                heading={service.heading}
+                number={service.number}
+                services={service.services}
+                iconRows={service.iconRows}
+                link={service.slug}
+              />
+            </div>
+          </ScrollToTopLink>
+        ))}
+      </motion.div>
+    </div>
   );
 };
 
