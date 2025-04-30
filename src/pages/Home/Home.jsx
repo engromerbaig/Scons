@@ -8,6 +8,10 @@ const Industries = lazy(() => import('../../components/Industries/Industries'));
 const GIFSection = lazy(() => import('../../components/GIFSection/GIFSection'));
 const Locations = lazy(() => import('../../components/Locations/Locations'));
 const BuisnessFormula = lazy(() => import('../../components/BuisnessFormula/BuisnessFormula'));
+
+
+import Technologies from '../../components/Technologies/Technologies';
+
 import ServicesOld from '../../components/Services/ServicesOLD';
 import SuccessStories from '../../components/SuccessStories/SuccessStories';
 
@@ -28,6 +32,7 @@ function Home() {
       {/* <BuisnessFormula /> */}
 
       <Industries />
+      <Technologies />
       <GIFSection />
       <Locations />
     </div>
