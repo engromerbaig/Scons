@@ -2,7 +2,7 @@ import Marquee from "react-fast-marquee";
 import Heading from "../Heading/Heading";
 
 const InfiniteMarquee = ({ items }) => (
-  <Marquee gradient={false} speed={50} pauseOnHover={true}>
+  <Marquee gradient={false} speed={100} pauseOnHover={false}>
     {items.map((topic, idx) => (
       <span key={topic + idx} className="flex items-center">
         <Heading
@@ -14,9 +14,8 @@ const InfiniteMarquee = ({ items }) => (
           className="whitespace-nowrap"
         />
         {/* Add bullet unless last item */}
-        {idx !== items.length - 1 && (
           <span className="mx-8 font-black text-50px text-black select-none">•</span>
-        )}
+     
       </span>
     ))}
   </Marquee>
