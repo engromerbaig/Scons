@@ -19,8 +19,9 @@ const Technologies = () => {
         </div>
 
         {/* Nested Tabs below the text */}
-        <NestedTabs />
-      </div>
+        <div className="w-full transition-all duration-300 ease-in-out" style={{ minHeight: "500px" }}>
+    <NestedTabs />
+  </div>      </div>
     </div>
   );
 };
