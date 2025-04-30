@@ -32,29 +32,23 @@ const NestedTabs = () => {
           <div key={platform} className="mb-6">
             <h3 className="text-xl font-bold mb-4">{platform}</h3>
             <div className="grid grid-cols-3 gap-4">
-              {technologiesData[activeCategory][platform].map(({ name, icon }) => {
-                const IconComponent = icon;
+            {technologiesData[activeCategory][platform].map(({ name, icon }) => (
+  <button
+    key={name}
+    type="button"
+    className="flex items-center space-x-3 bg-gray-100 rounded-full px-4 py-2 transition-colors group hover:bg-black hover:text-white focus:bg-black focus:text-white"
+  >
+    <span className="w-6 h-6 flex-shrink-0 flex items-center justify-center">
+      <img
+        src={icon}
+        alt={name}
+        className="w-full h-full object-contain svg-black group-hover:svg-white"
+      />
+    </span>
+    <span className="font-medium">{name}</span>
+  </button>
+))}
 
-                return (
-                  <div
-                    key={name}
-                    className="flex items-center space-x-3 bg-gray-100 rounded-full px-4 py-2"
-                  >
-                    <span className="w-6 h-6 flex-shrink-0">
-                      {typeof IconComponent === "string" ? (
-                        <img
-                          src={IconComponent}
-                          alt={name}
-                          className="w-full h-full object-contain"
-                        />
-                      ) : (
-                        <IconComponent className="w-full h-full" aria-label={name} />
-                      )}
-                    </span>
-                    <span className="font-medium">{name}</span>
-                  </div>
-                );
-              })}
             </div>
           </div>
         ))}
