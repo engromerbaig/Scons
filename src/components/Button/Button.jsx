@@ -33,7 +33,8 @@ const Button = ({
         <p
           className={`${fontSize} ${fontWeight} transition-transform duration-300 whitespace-nowrap`}
           style={{
-            transform: isHovered ? "translateY(0)" : "translateY(-100%)",
+            // Slide in from further up (-150%)
+            transform: isHovered ? "translateY(0)" : "translateY(-200%)",
             color: isHovered ? "white" : "black",
           }}
         >
@@ -42,7 +43,8 @@ const Button = ({
         <p
           className={`${fontSize} ${fontWeight} absolute top-0 left-0 transition-transform duration-300 whitespace-nowrap`}
           style={{
-            transform: isHovered ? "translateY(100%)" : "translateY(0)",
+            // Slide out further down (150%)
+            transform: isHovered ? "translateY(200%)" : "translateY(0)",
             color: "black",
           }}
         >
