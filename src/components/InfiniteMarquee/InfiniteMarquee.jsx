@@ -33,7 +33,7 @@ const InfiniteMarquee = ({
                 className="whitespace-nowrap"
               />
               {showBullets && (
-                <span className="mx-8 font-black text-50px text-black select-none">
+                <span className="mx-8 font-black text-50px text-neon select-none">
                   •
                 </span>
               )}

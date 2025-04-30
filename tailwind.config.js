@@ -47,7 +47,7 @@ export default {
         // seaneon: '#00EBEB',
         // grayBg: '#262626',
 
-        grayBg: '#FFFFFF',
+        grayBg: '#F3F4F6',
         // whiteBg: '#1D1D1D',
         whiteBg: '#FFFFFF',
 
