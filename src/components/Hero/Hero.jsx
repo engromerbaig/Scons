@@ -7,6 +7,8 @@ import videoBg from "../../assets/videos/1.mp4";
 import logoData from "./modules/logoData";
 import Carousel from "../Carousel/Carousel";
 
+import InfiniteMarquee from "../UniqueApproach/InfiniteMarquee";
+
 import './index.css';
 
 const Hero = () => {
@@ -121,9 +123,19 @@ const Hero = () => {
 
       {/* Carousel Section (10vh) */}
       <div className="w-full h-[10vh] flex items-center justify-center">
-        <Carousel
+        <InfiniteMarquee
           items={logoData}
-          itemType="image"
+          speed={50}
+          showBullets={false}
+          pauseOnHover={true}
+          renderItem={(item, idx) => (
+            <img
+              src={logoData[idx].image}
+              alt={item.alt || `logo-${idx}`}
+              className="h-[4vh] object-contain mx-6"
+              loading="lazy"
+            />
+          )}
         />
       </div>
     </div>
