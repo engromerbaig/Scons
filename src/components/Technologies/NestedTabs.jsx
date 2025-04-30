@@ -36,7 +36,7 @@ const NestedTabs = () => {
       <div
         role="tablist"
         aria-orientation="vertical"
-        className="flex flex-col w-48 border-r border-gray-200"
+        className="flex flex-col w-60 border-r border-gray-200"
         onKeyDown={onKeyDown}
       >
         {categories.map((cat, index) => {
