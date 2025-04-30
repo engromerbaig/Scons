@@ -7,7 +7,7 @@ import videoBg from "../../assets/videos/1.mp4";
 import logoData from "./modules/logoData";
 import Carousel from "../Carousel/Carousel";
 
-import InfiniteMarquee from "../UniqueApproach/InfiniteMarquee";
+import InfiniteMarquee from "../InfiniteMarquee/InfiniteMarquee";
 
 import './index.css';
 

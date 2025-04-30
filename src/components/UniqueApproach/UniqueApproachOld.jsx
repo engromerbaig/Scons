@@ -1,4 +1,4 @@
-import InfiniteMarquee from "./InfiniteMarquee";
+import InfiniteMarquee from "../InfiniteMarquee/InfiniteMarquee";
 
 import Heading from "../Heading/Heading";
 import BodyText from "../BodyText/BodyText";
@@ -46,7 +46,7 @@ const UniqueApproach = () => {
       </div>
 
       <div className="mt-4">
-        <InfiniteMarquee items={itTopics} />
+        <InfiniteMarquee speed={140} items={itTopics} />
       </div>
     </div>
   );

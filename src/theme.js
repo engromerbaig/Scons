@@ -13,7 +13,7 @@ export const theme = {
       paddingBottom: 'pb-12 md:pb-20 lg:pb-24',
       conatinerVerticalGap:'space-y-6 lg:space-y-12',
 
-      paddingVerticalTop: 'pt-16 md:pt-20 lg:pt-24',
+      paddingVerticalTop: 'pt-8 md:pt-10 lg:pt-12',
     },
   };
   
