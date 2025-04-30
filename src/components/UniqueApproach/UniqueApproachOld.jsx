@@ -73,7 +73,8 @@ const UniqueApproachOld = () => {
                 text={topic}
                 color="text-black"
                 spanColor="text-black"
-                fontWeight="font-semibold"
+                fontWeight="font-medium"
+                size="text-60px"
                 />
               </div>
             </SplideSlide>
