@@ -44,7 +44,7 @@ const StatisticItem = ({ title, icon, value }) => {
 
   return (
     <div ref={ref} className="flex flex-col  items-start justify-center space-y-0">
-      <div className='outlined-text-shadow-wrapper'>
+
 
       <motion.p
         className="text-90px font-manrope font-semibold   "
@@ -55,7 +55,6 @@ const StatisticItem = ({ title, icon, value }) => {
         {typeof displayValue === 'number' ? displayValue.toLocaleString() : displayValue}
         {!isOneKPlus && hasPlusSign && displayValue === numericValue && '+'}
       </motion.p>
-      </div>
     
       <BodyText
         text={title}
