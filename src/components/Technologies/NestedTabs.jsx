@@ -36,7 +36,7 @@ const NestedTabs = () => {
       <div
         role="tablist"
         aria-orientation="vertical"
-        className="flex flex-col w-60 border-r border-gray-200"
+        className="flex flex-col w-52 py-4 border-r border-gray-200"
         onKeyDown={onKeyDown}
       >
         {categories.map((cat, index) => {
@@ -54,10 +54,10 @@ const NestedTabs = () => {
               tabIndex={isActive ? 0 : -1}
               ref={(el) => (tabsRef.current[index] = el)}
               onClick={() => setActiveCategory(cat)}
-              className={`text-left px-4 py-3 m-2 rounded-full transition-colors  ${
+              className={`text-left px-4 py-4 m-2 rounded-full transition-colors  ${
                 isActive
-                  ? "bg-neon/50 text-black font-black"
-                  : "text-black "
+                ? "tab-active-gradient text-black font-black rounded-r-full"
+                : "text-black "
               }`}
             >
               {cat}

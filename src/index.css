@@ -308,3 +308,13 @@ html {
   animation: marquee 40s linear infinite;
   width: max-content;
 }
+
+
+
+.tab-active-gradient {
+  background: linear-gradient(90deg, #d1fae726 0%, #28ed705e 100%);
+  /* #d1fae726 = ~15% opacity */
+  /* #28ed704d = ~30% opacity */
+  box-shadow: 0 2px 16px 0 rgba(40, 237, 112, 0.1); /* slightly stronger glow */
+  transition: background 0.3s, box-shadow 0.3s;
+}
