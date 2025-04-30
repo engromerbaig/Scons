@@ -1,4 +1,4 @@
-export const dummyData = {
+export const technologiesData = {
   "Mobile Apps": {
     iOS: [
       { name: "Swift", icon: "🦅" },

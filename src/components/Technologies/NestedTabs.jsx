@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
-import { dummyData } from "./dummyData";
+import { technologiesData } from "./technologiesData";
 
 const NestedTabs = () => {
-  const categories = Object.keys(dummyData);
+  const categories = Object.keys(technologiesData);
   const [activeCategory, setActiveCategory] = useState(categories[0]);
 
-  const platforms = Object.keys(dummyData[activeCategory]);
+  const platforms = Object.keys(technologiesData[activeCategory]);
 
   return (
     <div className="flex w-full max-w-6xl mx-auto border-t border-gray-200 ">
@@ -33,7 +33,7 @@ const NestedTabs = () => {
           <div key={platform} className="mb-6">
             <h3 className="text-xl font-bold mb-4">{platform}</h3>
             <div className="grid grid-cols-3 gap-4">
-              {dummyData[activeCategory][platform].map(({ name, icon }) => (
+              {technologiesData[activeCategory][platform].map(({ name, icon }) => (
                 <div
                   key={name}
                   className="flex items-center space-x-3 bg-gray-100 rounded-full px-4 py-2"
