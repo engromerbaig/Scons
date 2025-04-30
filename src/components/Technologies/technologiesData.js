@@ -1,94 +1,124 @@
+import icons from "../Services/modules/icons";
+
 export const technologiesData = {
   "Mobile Apps": {
     iOS: [
-      { name: "Swift", icon: "🦅" },
-      { name: "UI Kit", icon: "🎨" },
-      { name: "RxSwift", icon: "⚡" },
-      { name: "Combine", icon: "🔗" },
-      { name: "MVVM", icon: "🏗️" },
-      { name: "Alamofire", icon: "🌐" },
-      { name: "Core Data", icon: "💾" },
+      { name: "Swift", icon: icons.mobile.SwiftIOS },
+      { name: "UI Kit", icon: icons.mobile.UIKit },
+      { name: "Core Data", icon: icons.mobile.CoreData },
     ],
     Android: [
-      { name: "Kotlin", icon: "🅺" },
-      { name: "MVVM", icon: "🏗️" },
-      { name: "RxJava", icon: "☕" },
-      { name: "Java", icon: "☕" },
-      { name: "Retrofit", icon: "🔄" },
-      { name: "Jetpack", icon: "🚀" },
+      { name: "Java", icon: icons.mobile.Java },
+      { name: "Kotlin", icon: icons.mobile.Kotlin },
+      { name: "Retrofit", icon: icons.mobile.Retrofit },
     ],
-
     Hybrid: [
-      { name: "Kotlin", icon: "🅺" },
-      { name: "MVVM", icon: "🏗️" },
-      { name: "RxJava", icon: "☕" },
-      { name: "Java", icon: "☕" },
-      { name: "Retrofit", icon: "🔄" },
-      { name: "Jetpack", icon: "🚀" },
+      { name: "React Native", icon: icons.mobile.ReactNative },
+      { name: "Flutter", icon: icons.mobile.FlutterHybrid },
     ],
   },
+
   "Web Platforms": {
     Frontend: [
-      { name: "React", icon: "⚛️" },
-      { name: "Vue", icon: "🖖" },
-      { name: "Angular", icon: "🅰️" },
+      { name: "Angular", icon: icons.web.AngularFrontend },
+      { name: "CSS", icon: icons.web.CSSFrontend },
+      { name: "HTML5", icon: icons.web.Html5Frontend },
+      { name: "Next.js", icon: icons.web.NextFrontend },
+      { name: "React", icon: icons.web.ReactFrontend },
     ],
     Backend: [
-      { name: "Node.js", icon: "🟢" },
-      { name: "Django", icon: "🐍" },
-      { name: "Ruby on Rails", icon: "💎" },
+      { name: "Java", icon: icons.web.JavaBackend },
+      { name: "JavaScript", icon: icons.web.JSBackend },
+      { name: "Laravel", icon: icons.web.LaravelBackend },
+      { name: "Backend2", icon: icons.web.Backend2 },
+      { name: "Backend3", icon: icons.web.Backend3 },
+    ],
+    CMS: [
+      { name: "Shopify", icon: icons.web.Shopify },
+      { name: "WordPress", icon: icons.web.Wordpress },
+      { name: "Magneto", icon: icons.web.Magneto },
     ],
   },
 
-  "Hybrid Platforms": {
-    Frontend: [
-      { name: "React", icon: "⚛️" },
-      { name: "Vue", icon: "🖖" },
-      { name: "Angular", icon: "🅰️" },
+  "UI Platforms": {
+    DesignTools: [
+      { name: "Figma", icon: icons.uiux.figmaUI },
+      { name: "Adobe XD", icon: icons.uiux.xdUI },
+      { name: "Sketch", icon: icons.uiux.sketchUI },
     ],
-    Backend: [
-      { name: "Node.js", icon: "🟢" },
-      { name: "Django", icon: "🐍" },
-      { name: "Ruby on Rails", icon: "💎" },
+    ERP: [
+      { name: "ERP 1", icon: icons.uiux.erp1 },
+      { name: "ERP 2", icon: icons.uiux.erp2 },
+      { name: "ERP 3", icon: icons.uiux.erp3 },
+      { name: "ERP 4", icon: icons.uiux.erp4 },
+      { name: "ERP 5", icon: icons.uiux.erp5 },
     ],
   },
 
-
-
-  "CRM Platforms": {
-    True: [
-      { name: "React", icon: "⚛️" },
-      { name: "Vue", icon: "🖖" },
-      { name: "Angular", icon: "🅰️" },
+  "Blockchain Platforms": {
+    SmartContracts: [
+      { name: "Smart 1", icon: icons.blockchain.smart1 },
+      { name: "Smart 2", icon: icons.blockchain.smart2 },
+      { name: "Smart 3", icon: icons.blockchain.smart3 },
     ],
-    Backend: [
-      { name: "Node.js", icon: "🟢" },
-      { name: "Django", icon: "🐍" },
-      { name: "Ruby on Rails", icon: "💎" },
+    DApps: [
+      { name: "DApp 1", icon: icons.blockchain.dapp1 },
+      { name: "DApp 2", icon: icons.blockchain.dapp2 },
+      { name: "DApp 3", icon: icons.blockchain.dapp3 },
     ],
-    aa: [
-      { name: "React", icon: "⚛️" },
-      { name: "Vue", icon: "🖖" },
-      { name: "Angular", icon: "🅰️" },
+    Integrations: [
+      { name: "Integration 1", icon: icons.blockchain.integ1 },
+      { name: "Integration 2", icon: icons.blockchain.integ2 },
+      { name: "Integration 3", icon: icons.blockchain.integ3 },
+      { name: "Integration 4", icon: icons.blockchain.integ4 },
     ],
-    Bacaxcxkend: [
-      { name: "Node.js", icon: "🟢" },
-      { name: "Django", icon: "🐍" },
-      { name: "Ruby on Rails", icon: "💎" },
-    ],
-    xx: [
-      { name: "React", icon: "⚛️" },
-      { name: "Vue", icon: "🖖" },
-      { name: "Angular", icon: "🅰️" },
-    ],
-    Backexcxcnd: [
-      { name: "Node.js", icon: "🟢" },
-      { name: "Django", icon: "🐍" },
-      { name: "Ruby on Rails", icon: "💎" },
-    ],
-
-
-
   },
-  // Add more categories and platforms as needed
+
+  "Cloud Platforms": {
+    CloudServices: [
+      { name: "Cloud 1", icon: icons.devops.cloud1 },
+      { name: "Cloud 2", icon: icons.devops.cloud2 },
+      { name: "Cloud 3", icon: icons.devops.cloud3 },
+      { name: "Cloud 4", icon: icons.devops.cloud4 },
+      { name: "Cloud 5", icon: icons.devops.cloud5 },
+    ],
+    NetworkServices: [
+      { name: "Network 1", icon: icons.devops.network1 },
+      { name: "Network 2", icon: icons.devops.network2 },
+      { name: "Network 3", icon: icons.devops.network3 },
+      { name: "Network 4", icon: icons.devops.network4 },
+      { name: "Network 5", icon: icons.devops.network5 },
+    ],
+    DataServices: [
+      { name: "Data 1", icon: icons.devops.data1 },
+      { name: "Data 2", icon: icons.devops.data2 },
+      { name: "Data 3", icon: icons.devops.data3 },
+      { name: "Data 4", icon: icons.devops.data4 },
+      { name: "Data 5", icon: icons.devops.data5 },
+    ],
+  },
+
+  "AI Platforms": {
+    AIFrameworks: [
+      { name: "AI 1", icon: icons.aiml.ai1 },
+      { name: "AI 2", icon: icons.aiml.ai2 },
+      { name: "AI 3", icon: icons.aiml.ai3 },
+      { name: "AI 4", icon: icons.aiml.ai4 },
+      { name: "AI 5", icon: icons.aiml.ai5 },
+    ],
+    MLFrameworks: [
+      { name: "ML 1", icon: icons.aiml.ml1 },
+      { name: "ML 2", icon: icons.aiml.ml2 },
+      { name: "ML 3", icon: icons.aiml.ml3 },
+      { name: "ML 4", icon: icons.aiml.ml4 },
+      { name: "ML 5", icon: icons.aiml.ml5 },
+    ],
+    BusinessProcesses: [
+      { name: "BP 1", icon: icons.aiml.bp1 },
+      { name: "BP 2", icon: icons.aiml.bp2 },
+      { name: "BP 3", icon: icons.aiml.bp3 },
+      { name: "BP 4", icon: icons.aiml.bp4 },
+      { name: "BP 5", icon: icons.aiml.bp5 },
+    ],
+  },
 };
