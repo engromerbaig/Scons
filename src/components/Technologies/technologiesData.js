@@ -40,7 +40,7 @@ export const technologiesData = {
     ],
   },
 
-  "UI Platforms": {
+  "UI/UX": {
     DesignTools: [
       { name: "Figma", icon: icons.uiux.figmaUI },
       { name: "Adobe XD", icon: icons.uiux.xdUI },
@@ -55,7 +55,7 @@ export const technologiesData = {
     ],
   },
 
-  "Blockchain Platforms": {
+  "Blockchain": {
     SmartContracts: [
       { name: "Smart 1", icon: icons.blockchain.smart1 },
       { name: "Smart 2", icon: icons.blockchain.smart2 },
@@ -74,7 +74,7 @@ export const technologiesData = {
     ],
   },
 
-  "Cloud Platforms": {
+  "Cloud & DevOps": {
     CloudServices: [
       { name: "Cloud 1", icon: icons.devops.cloud1 },
       { name: "Cloud 2", icon: icons.devops.cloud2 },
@@ -98,7 +98,7 @@ export const technologiesData = {
     ],
   },
 
-  "AI Platforms": {
+  "AI & ML": {
     AIFrameworks: [
       { name: "AI 1", icon: icons.aiml.ai1 },
       { name: "AI 2", icon: icons.aiml.ai2 },
