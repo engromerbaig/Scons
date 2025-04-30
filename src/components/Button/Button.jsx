@@ -3,14 +3,14 @@ import React, { useState } from "react";
 const Button = ({
   name,
   icon,
-  width = "w-6", // Default width
+  width = "w-5", // Default icon width
   className = "", // Extra classes
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
     <div
-      className={`flex flex-row items-center justify-start hover:cursor-pointer p-3 bg-grayBg rounded-full w-full hover:bg-black transition-all duration-300 relative overflow-hidden hover:shadow-lg ${className}`}
+      className={`inline-flex flex-row items-center justify-start cursor-pointer p-3 bg-grayBg rounded-full hover:bg-black transition-all duration-300 relative overflow-hidden hover:shadow-lg ${className}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -18,11 +18,11 @@ const Button = ({
       <img
         src={icon}
         alt={name}
-        className={`${width} aspect-square`}
+        className={`${width} aspect-square flex-shrink-0`}
         style={{
           filter: isHovered
             ? "brightness(0) invert(1)" // White on hover
-            : "brightness(0) saturate(100%)", // Black initially (from green)
+            : "brightness(0) saturate(100%)", // Black initially
         }}
       />
 

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { technologiesData } from "./technologiesData";
 import Button from "../Button/Button";
+import Heading from "../Heading/Heading";
 
 const NestedTabs = () => {
   const categories = Object.keys(technologiesData);
@@ -30,8 +31,14 @@ const NestedTabs = () => {
       <div className="flex-1 p-6">
         {platforms.map((platform) => (
           <div key={platform} className="mb-6">
-            <h3 className="text-xl font-bold mb-4">{platform}</h3>
-            <div className="grid grid-cols-3 gap-4">
+            <Heading
+              text={platform}
+              fontWeight="font-black"
+              size="text-30px"
+              className="mb-4"
+                centered={false}
+                />
+            <div className="grid grid-cols-3 max-w-xl gap-4">
               {technologiesData[activeCategory][platform].map((tech) => (
                 // Use the imported Button component
                 <Button key={tech.name} name={tech.name} icon={tech.icon} />
