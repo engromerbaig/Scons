@@ -4,6 +4,8 @@ const Button = ({
   name,
   icon,
   width = "w-5", // Default icon width
+  fontWeight = "font-medium", // Default font weight
+  fontSize = "text-20px", // Default font size
   className = "", // Extra classes
 }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -29,7 +31,7 @@ const Button = ({
       {/* Text with Slide Effect */}
       <div className="ml-1 lg:ml-4 relative overflow-hidden">
         <p
-          className="text-sm lg:text-25px font-bold transition-transform duration-300 whitespace-nowrap"
+          className={`${fontSize} ${fontWeight} transition-transform duration-300 whitespace-nowrap`}
           style={{
             transform: isHovered ? "translateY(0)" : "translateY(-100%)",
             color: isHovered ? "white" : "black",
@@ -38,7 +40,7 @@ const Button = ({
           {name}
         </p>
         <p
-          className="text-sm lg:text-25px font-bold absolute top-0 left-0 transition-transform duration-300 whitespace-nowrap"
+          className={`${fontSize} ${fontWeight} absolute top-0 left-0 transition-transform duration-300 whitespace-nowrap`}
           style={{
             transform: isHovered ? "translateY(100%)" : "translateY(0)",
             color: "black",
