@@ -30,7 +30,7 @@ export const technologiesData = {
       { name: "Java", icon: icons.web.JavaBackend },
       { name: "JavaScript", icon: icons.web.JSBackend },
       { name: "Laravel", icon: icons.web.LaravelBackend },
-      { name: "Backend2", icon: icons.web.Backend2 },
+      { name: "Python", icon: icons.web.Backend2 },
       { name: "Backend3", icon: icons.web.Backend3 },
     ],
     CMS: [
@@ -41,13 +41,13 @@ export const technologiesData = {
   },
 
   "UI/UX": {
-    DesignTools: [
+    Tools: [
       { name: "Figma", icon: icons.uiux.figmaUI },
       { name: "Adobe XD", icon: icons.uiux.xdUI },
       { name: "Sketch", icon: icons.uiux.sketchUI },
     ],
     ERP: [
-      { name: "ERP 1", icon: icons.uiux.erp1 },
+      { name: "SAP", icon: icons.uiux.erp1 },
       { name: "ERP 2", icon: icons.uiux.erp2 },
       { name: "ERP 3", icon: icons.uiux.erp3 },
       { name: "ERP 4", icon: icons.uiux.erp4 },
@@ -75,21 +75,21 @@ export const technologiesData = {
   },
 
   "Cloud & DevOps": {
-    CloudServices: [
+    Cloud: [
       { name: "Cloud 1", icon: icons.devops.cloud1 },
       { name: "Cloud 2", icon: icons.devops.cloud2 },
       { name: "Cloud 3", icon: icons.devops.cloud3 },
       { name: "Cloud 4", icon: icons.devops.cloud4 },
       { name: "Cloud 5", icon: icons.devops.cloud5 },
     ],
-    NetworkServices: [
+    Network: [
       { name: "Network 1", icon: icons.devops.network1 },
       { name: "Network 2", icon: icons.devops.network2 },
       { name: "Network 3", icon: icons.devops.network3 },
       { name: "Network 4", icon: icons.devops.network4 },
       { name: "Network 5", icon: icons.devops.network5 },
     ],
-    DataServices: [
+    DataBase: [
       { name: "Data 1", icon: icons.devops.data1 },
       { name: "Data 2", icon: icons.devops.data2 },
       { name: "Data 3", icon: icons.devops.data3 },
@@ -99,21 +99,21 @@ export const technologiesData = {
   },
 
   "AI & ML": {
-    AIFrameworks: [
+    AI: [
       { name: "AI 1", icon: icons.aiml.ai1 },
-      { name: "AI 2", icon: icons.aiml.ai2 },
-      { name: "AI 3", icon: icons.aiml.ai3 },
-      { name: "AI 4", icon: icons.aiml.ai4 },
-      { name: "AI 5", icon: icons.aiml.ai5 },
+      { name: "Rails", icon: icons.aiml.ai2 },
+      { name: "Java", icon: icons.aiml.ai3 },
+      { name: "C++", icon: icons.aiml.ai4 },
+      { name: "Julia", icon: icons.aiml.ai5 },
     ],
-    MLFrameworks: [
-      { name: "ML 1", icon: icons.aiml.ml1 },
+    ML: [
+      { name: "Tensor Flow", icon: icons.aiml.ml1 },
       { name: "ML 2", icon: icons.aiml.ml2 },
-      { name: "ML 3", icon: icons.aiml.ml3 },
-      { name: "ML 4", icon: icons.aiml.ml4 },
+      { name: "Keras", icon: icons.aiml.ml3 },
+      { name: "Scikit-learn", icon: icons.aiml.ml4 },
       { name: "ML 5", icon: icons.aiml.ml5 },
     ],
-    BusinessProcesses: [
+    Processes: [
       { name: "BP 1", icon: icons.aiml.bp1 },
       { name: "BP 2", icon: icons.aiml.bp2 },
       { name: "BP 3", icon: icons.aiml.bp3 },
