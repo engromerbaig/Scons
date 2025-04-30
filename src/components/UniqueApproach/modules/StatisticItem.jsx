@@ -43,11 +43,11 @@ const StatisticItem = ({ title, icon, value }) => {
   }, [inView, numericValue, isOneKPlus]);
 
   return (
-    <div ref={ref} className="flex flex-col  items-center justify-center space-y-2">
+    <div ref={ref} className="flex flex-col  items-start justify-center space-y-0">
       <div className='outlined-text-shadow-wrapper'>
 
       <motion.p
-        className="text-120px outlined-text-card font-bold outlined-text-shadow font-poppins "
+        className="text-90px font-manrope font-semibold   "
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 2 }}
@@ -57,12 +57,12 @@ const StatisticItem = ({ title, icon, value }) => {
       </motion.p>
       </div>
     
-      <img src={icon} alt="Icon" className="w-14 lg:w-20 aspect-square svg-white" />
       <BodyText
         text={title}
         size="text-30px"
         className="text-center" // Center-align the text
-        color='text-white'
+        color='text-black'
+        fontWeight='font-medium'
       />
     </div>
   );
