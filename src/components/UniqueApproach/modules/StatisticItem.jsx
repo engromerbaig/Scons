@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import BodyText from '../../BodyText/BodyText';
+import Heading from '../../Heading/Heading';
 
 const StatisticItem = ({ title, icon, value }) => {
   // Check if value is specifically "1k+" for special handling
