@@ -21,15 +21,17 @@ const TestimonialBox = ({
     const ctx = gsap.context(() => {
       gsap.fromTo(
         element,
-        { scale: 0.9 },
+        { scale: 0.85 },
         {
           scale: 1.05,
-          ease: "none",
+          ease: "none", // No easing for scrub animations
           scrollTrigger: {
             trigger: element,
-            start: "top 60%",    // when top of element hits 80% viewport height
-            end: "bottom 30%",   // until bottom hits 20% viewport height
-            scrub: true,        // smooth scrubbing linked to scroll position
+            start: "top 90%",
+            end: "center 50%",
+            scrub: 0.5, // Smaller scrub value for smoother, more responsive animation
+            fastScrollEnd: true, // Improves smoothness on fast scrolls
+            invalidateOnRefresh: true, // Recalculate positions on resize
           },
         }
       );
