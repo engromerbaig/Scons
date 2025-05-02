@@ -9,7 +9,7 @@ const TestimonialBox = ({
   clientImg,
   quoteImg,
 }) => (
-  <div className="bg-[#181818] rounded-xl shadow-lg p-8 flex flex-col gap-4 w-full max-w-xl mx-auto">
+  <div className="border-[#181818] border-2 rounded-xl shadow-lg p-8 flex flex-col gap-4 w-full max-w-xl mx-auto">
     {/* Quote Icon */}
     <div className="flex items-center">
       <img src={quoteImg} alt="Quote" className="w-8 h-8 mr-2" />
