@@ -14,6 +14,7 @@ import Technologies from '../../components/Technologies/Technologies';
 
 import ServicesOld from '../../components/Services/ServicesOLD';
 import SuccessStories from '../../components/SuccessStories/SuccessStories';
+import Reviews from '../../components/Reviews/Reviews';
 
 
 
