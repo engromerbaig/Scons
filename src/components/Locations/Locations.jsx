@@ -1,16 +1,28 @@
-import React from 'react';
-import { useMediaQuery } from 'react-responsive';
-import LocationDesktop from './LocationDesktop';
-import LocationMobile from './LocationMobile';
+import React from "react";
+import Heading from "../Heading/Heading";
+import VerticalAccordion from "./modules/VerticalAccordion";
+import AnimatedBackground from "../../utilities/AnimatedBackground/AnimatedBackground";
+import { theme } from "../../theme";
 
 const Locations = () => {
-  const isMobile = useMediaQuery({ query: '(max-width: 1023px)' }); // Adjust breakpoint as needed
+    return (
+        <div className={`w-full  h-full   `}>
+            {/* First row - Title section */}
+            <div className={`bg-neon ${theme.layoutPages.paddingHorizontal} py-10`}>
+                <Heading
+                    text="Innovation Centers Across The Globe"
+                    color="text-black"
+                    size="text-50px"
+                    centered={true}
+                />
+            </div>
 
-  if (isMobile) {
-    return <LocationMobile />;
-  }
+<VerticalAccordion />
 
-  return <LocationDesktop />;
+
+            {/* Second row - Vertical Accordion */}
+        </div>
+    );
 };
 
 export default Locations;

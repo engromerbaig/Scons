@@ -40,7 +40,7 @@ const VerticalAccordion = () => {
 
     return (
         <div className="min-h-screen w-full overflow-hidden overflow-y-hidden">
-            <div className="h-[90vh] lg:h-[75vh] flex flex-col lg:flex-row text-white border-b-0 lg:border-b border-neon border-x-0">
+            <div className="h-[90vh] lg:h-[75vh] flex flex-col lg:flex-row text-black border-b-0 lg:border-b border-neon border-x-0">
                 {accordionData.map((item, index) => (
                     <motion.div
                         key={index}
@@ -65,7 +65,7 @@ const VerticalAccordion = () => {
                                 />
                                 <Heading
                                     text={item.title}
-                                    color="text-white"
+                                    color="text-black"
                                     font="font-manrope"
                                     size="text-50px"
                                     centered={true}

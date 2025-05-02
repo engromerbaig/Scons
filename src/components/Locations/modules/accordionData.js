@@ -8,19 +8,19 @@ import houstonImage from '../../../assets/icons/locations/Houston.webp';
 
 const accordionData = [
 
-    {
-        title: "HOUSTON",
-        country: "USA",
-        lineHeight: "long",
+    // {
+    //     title: "HOUSTON",
+    //     country: "USA",
+    //     lineHeight: "long",
 
 
-        content: {
-            address: "11211 Suite #510 Katy freeway, Houston, TX, 77079",
-            phone: "+61 123 4567 890",
+    //     content: {
+    //         address: "11211 Suite #510 Katy freeway, Houston, TX, 77079",
+    //         phone: "+61 123 4567 890",
 
-            image: houstonImage,
-        },
-    },
+    //         image: houstonImage,
+    //     },
+    // },
 
 
     {
