@@ -49,7 +49,7 @@ export const technologiesData = {
     ERP: [
       { name: "SAP", icon: icons.uiux.erp1 },
       { name: "ERP 2", icon: icons.uiux.erp2 },
-      { name: "ERP 3", icon: icons.uiux.erp3 },
+      { name: "Oracle", icon: icons.uiux.erp3 },
       { name: "ERP 4", icon: icons.uiux.erp4 },
       { name: "ERP 5", icon: icons.uiux.erp5 },
     ],
@@ -62,8 +62,8 @@ export const technologiesData = {
       { name: "Smart 3", icon: icons.blockchain.smart3 },
     ],
     DApps: [
-      { name: "DApp 1", icon: icons.blockchain.dapp1 },
-      { name: "DApp 2", icon: icons.blockchain.dapp2 },
+      { name: "Polygon", icon: icons.blockchain.dapp1 },
+      { name: "CUBE", icon: icons.blockchain.dapp2 },
       { name: "DApp 3", icon: icons.blockchain.dapp3 },
     ],
     Integrations: [
