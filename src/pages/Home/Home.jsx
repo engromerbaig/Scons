@@ -30,9 +30,9 @@ function Home() {
       {/* <Services /> */}
       <ServicesOld />
       {/* <BuisnessFormula /> */}
+      <Technologies />
 
       <Industries />
-      <Technologies />
       <GIFSection />
       <Locations />
     </div>
