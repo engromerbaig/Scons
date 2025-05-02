@@ -1,9 +1,9 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
-const INITIAL_WIDTH = "80%";
+const INITIAL_WIDTH = "85%";  // Less dramatic width change
 const FINAL_WIDTH = "100%";
-const INITIAL_SCALE = 0.92;
+const INITIAL_SCALE = 0.95;   // Less dramatic scale change
 const FINAL_SCALE = 1;
 
 const TestimonialBox = ({
@@ -17,8 +17,12 @@ const TestimonialBox = ({
 }) => {
   const ref = useRef(null);
 
-  // Only trigger when the top of the box enters/leaves the viewport
-  const inView = useInView(ref, { margin: "-20% 0px -60% 0px", once: false });
+  // More gradual threshold for smoother transitions
+  const inView = useInView(ref, { 
+    margin: "-10% 0px -40% 0px", 
+    once: false,
+    amount: 0.3  // Triggers earlier for smoother transition
+  });
 
   return (
     <motion.div
@@ -26,15 +30,22 @@ const TestimonialBox = ({
       initial={{
         scale: INITIAL_SCALE,
         width: INITIAL_WIDTH,
-        opacity: 0.7,
+        opacity: 0.8,  // Higher starting opacity
       }}
       animate={{
         scale: inView ? FINAL_SCALE : INITIAL_SCALE,
         width: inView ? FINAL_WIDTH : INITIAL_WIDTH,
-        opacity: inView ? 1 : 0.7,
-        transition: { type: "spring", stiffness: 120, damping: 20 }
+        opacity: inView ? 1 : 0.8,
+        // Smoother transition with lower stiffness and higher damping
+        transition: { 
+          type: "spring", 
+          stiffness: 70,  // Lower stiffness for smoother motion
+          damping: 25,    // Higher damping to reduce oscillation
+          mass: 1.2,      // Slightly higher mass for more inertia
+          duration: 0.8   // Ensure minimum duration
+        }
       }}
-      className="border-[#181818] border-2 rounded-xl shadow-lg p-8 flex flex-col gap-4 w-full max-w-xl mx-auto bg-[#181818]"
+      className="border-[#181818] border-2 rounded-xl shadow-lg p-8 flex flex-col gap-4 w-full max-w-3xl mx-auto bg-[#181818]"
       style={{ willChange: "transform, width, opacity" }}
     >
       {/* Quote Icon */}
@@ -47,7 +58,7 @@ const TestimonialBox = ({
         <img
           src={clientImg}
           alt={name}
-          className="w-12 h-12 rounded-full border-2 border-green-400 mr-4"
+          className="w-12 h-12 rounded-full border-2 border-neon mr-4"
         />
         <div>
           <div className="font-semibold text-white">{name}</div>
@@ -55,7 +66,7 @@ const TestimonialBox = ({
           {/* Star Rating */}
           <div className="flex mt-1">
             {Array.from({ length: 5 }).map((_, i) => (
-              <span key={i} className={i < rating ? "text-green-400" : "text-gray-600"}>★</span>
+              <span key={i} className={i < rating ? "text-neon" : "text-gray-600"}>★</span>
             ))}
           </div>
         </div>
