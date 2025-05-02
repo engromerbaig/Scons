@@ -293,9 +293,8 @@ image: mobileAppImage,
     
         ],
         icons: [
-          icons.web.AngularFrontend, 
-          icons.web.CSSFrontend, 
-          icons.web.Html5Frontend, 
+          icons.web.JSFrontend, 
+          icons.web.TSFrontend, 
           icons.web.ReactFrontend, 
           icons.web.NextFrontend,
           icons.web.VueFrontend,
@@ -338,7 +337,7 @@ image: mobileAppImage,
       
         ],
 
-        icons: [icons.web.Wordpress, icons.web.Shopify, icons.web.Magneto], // Icons for CMS
+        icons: [icons.web.Wordpress, icons.web.Shopify, icons.web.Magneto, icons.web.Webflow], // Icons for CMS
       },
 
     ], // Each service has its own array of icons

@@ -68,6 +68,10 @@ import htmlFrontend from '../../../assets/icons/services/Web Platforms/frontend/
 import nextFrontend from '../../../assets/icons/services/Web Platforms/frontend/next.svg';
 import reactFrontend from '../../../assets/icons/services/Web Platforms/frontend/react.svg';
 import vueFrontend from '../../../assets/icons/services/Web Platforms/frontend/vue.svg';
+import jsFrontend from '../../../assets/icons/services/Web Platforms/frontend/js.svg';
+import tsFrontend from '../../../assets/icons/services/Web Platforms/frontend/ts.svg';
+import twFrontend from '../../../assets/icons/services/Web Platforms/frontend/tw.svg';
+import svelteFrontend from '../../../assets/icons/services/Web Platforms/frontend/svelte.svg';
 
 
 //backend
@@ -77,11 +81,13 @@ import backend3Backend from '../../../assets/icons/services/Web Platforms/backen
 import javaBackend from '../../../assets/icons/services/Web Platforms/backend/java.svg';
 import jsBackend from '../../../assets/icons/services/Web Platforms/backend/js.svg';
 import laravelBackend from '../../../assets/icons/services/Web Platforms/backend/laravel.svg';
+import dotNetBackend from '../../../assets/icons/services/Web Platforms/backend/net.svg';
 
 //cms
 import wpCMS from '../../../assets/icons/services/Web Platforms/cms/wp.svg';
 import shopifyCMS from '../../../assets/icons/services/Web Platforms/cms/shopify.svg';
 import magnetoCMS from '../../../assets/icons/services/Web Platforms/cms/magneto.svg';
+import webflowCMS from '../../../assets/icons/services/Web Platforms/cms/webflow.svg';
 
 
 
@@ -286,6 +292,11 @@ consultationFAQ5: consultationFAQ5,
       NextFrontend: nextFrontend,
       ReactFrontend: reactFrontend,
       VueFrontend: vueFrontend,
+      JSFrontend: jsFrontend,
+      TSFrontend: tsFrontend,
+      TWFrontend: twFrontend,
+      SvelteFrontend: svelteFrontend,
+      
 
       // backend
       Backend2: backend2Backend,
@@ -293,11 +304,13 @@ consultationFAQ5: consultationFAQ5,
       JavaBackend: javaBackend,
       JSBackend: jsBackend,
       LaravelBackend: laravelBackend,
+      DotNetBackend: dotNetBackend,
 
       //CMS
       Shopify: shopifyCMS,
       Wordpress: wpCMS,
       Magneto: magnetoCMS,
+      Webflow: webflowCMS, // Added Webflow CMS icon
 
 
       // to be deleted

@@ -20,25 +20,32 @@ export const technologiesData = {
 
   "Web Platforms": {
     Frontend: [
-      { name: "Angular", icon: icons.web.AngularFrontend },
-      { name: "CSS", icon: icons.web.CSSFrontend },
+      { name: "JavaScript", icon: icons.web.JSFrontend },
+      { name: "TypeScript", icon: icons.web.TSFrontend },
+      { name: "Tailwind CSS", icon: icons.web.TWFrontend },
+      { name: "CSS3", icon: icons.web.CSSFrontend },
       { name: "HTML5", icon: icons.web.Html5Frontend },
       { name: "Next.js", icon: icons.web.NextFrontend },
-      { name: "React", icon: icons.web.ReactFrontend },
-      { name: "Vue", icon: icons.web.VueFrontend },
+      { name: "React.js", icon: icons.web.ReactFrontend },
+      { name: "Vue.js", icon: icons.web.VueFrontend },
+      { name: "Svelte", icon: icons.web.SvelteFrontend },
+      {name:"Angular", icon: icons.web.AngularFrontend},
+   
 
     ],
     Backend: [
       { name: "Java", icon: icons.web.JavaBackend },
-      { name: "JavaScript", icon: icons.web.JSBackend },
+      { name: "Node.js", icon: icons.web.JSBackend },
       { name: "Laravel", icon: icons.web.LaravelBackend },
       { name: "Python", icon: icons.web.Backend2 },
       { name: "Php", icon: icons.web.Backend3 },
+      { name: ".NET", icon: icons.web.DotNetBackend },
     ],
     CMS: [
       { name: "Shopify", icon: icons.web.Shopify },
       { name: "WordPress", icon: icons.web.Wordpress },
       { name: "Magneto", icon: icons.web.Magneto },
+      {name:"Webflow", icon: icons.web.Webflow},
     ],
   },
 
@@ -59,68 +66,71 @@ export const technologiesData = {
 
   "Blockchain": {
     SmartContracts: [
-      { name: "Smart 1", icon: icons.blockchain.smart1 },
-      { name: "Smart 2", icon: icons.blockchain.smart2 },
-      { name: "Smart 3", icon: icons.blockchain.smart3 },
+      { name: "Solana", icon: icons.blockchain.smart1 },
+      { name: "Bitcoin", icon: icons.blockchain.smart2 },
+      { name: "BNB Chain", icon: icons.blockchain.smart3 },
     ],
     DApps: [
       { name: "Polygon", icon: icons.blockchain.dapp1 },
-      { name: "CUBE", icon: icons.blockchain.dapp2 },
+      { name: "Cube", icon: icons.blockchain.dapp2 },
       { name: "Uniswap", icon: icons.blockchain.dapp3 },
     ],
     Integrations: [
-      { name: "Integration 1", icon: icons.blockchain.integ1 },
-      { name: "Integration 2", icon: icons.blockchain.integ2 },
-      { name: "Integration 3", icon: icons.blockchain.integ3 },
-      { name: "Integration 4", icon: icons.blockchain.integ4 },
+      { name: "MetaMask", icon: icons.blockchain.integ1 },
+      { name: "Polkadot", icon: icons.blockchain.integ2 },
+      { name: "Ethereum", icon: icons.blockchain.integ3 },
+      { name: "Anchor", icon: icons.blockchain.integ4 },
     ],
   },
 
   "Cloud & DevOps": {
     Cloud: [
-      { name: "Cloud 1", icon: icons.devops.cloud1 },
-      { name: "Cloud 2", icon: icons.devops.cloud2 },
-      { name: "Cloud 3", icon: icons.devops.cloud3 },
-      { name: "Cloud 4", icon: icons.devops.cloud4 },
-      { name: "Cloud 5", icon: icons.devops.cloud5 },
+      { name: "AWS", icon: icons.devops.cloud1 },
+      { name: "Azure", icon: icons.devops.cloud2 },
+      { name: "Google Cloud", icon: icons.devops.cloud3 },
+      { name: "IBM Cloud", icon: icons.devops.cloud4 },
+      { name: "Oracle Cloud", icon: icons.devops.cloud5 },
     ],
     Network: [
-      { name: "Network 1", icon: icons.devops.network1 },
-      { name: "Network 2", icon: icons.devops.network2 },
-      { name: "Network 3", icon: icons.devops.network3 },
-      { name: "Network 4", icon: icons.devops.network4 },
-      { name: "Network 5", icon: icons.devops.network5 },
+      { name: "Cisco", icon: icons.devops.network1 },
+      { name: "Juniper", icon: icons.devops.network2 },
+      { name: "Arista", icon: icons.devops.network3 },
+      { name: "GitHub", icon: icons.devops.network4 },
+      { name: "OpenSSL", icon: icons.devops.network5 },
     ],
+    
     DataBase: [
-      { name: "Data 1", icon: icons.devops.data1 },
-      { name: "Data 2", icon: icons.devops.data2 },
-      { name: "Data 3", icon: icons.devops.data3 },
-      { name: "Data 4", icon: icons.devops.data4 },
-      { name: "Data 5", icon: icons.devops.data5 },
+      { name: "Amazon S3", icon: icons.devops.data1 },
+      { name: "Oracle", icon: icons.devops.data2 },
+      { name: "MongoDB", icon: icons.devops.data3 },
+      { name: "Cassandra", icon: icons.devops.data4 },
+      { name: "Firebase", icon: icons.devops.data5 },
     ],
+    
   },
 
   "AI & ML": {
     AI: [
-      { name: "AI 1", icon: icons.aiml.ai1 },
+      { name: "Python", icon: icons.aiml.ai1 },
       { name: "Rails", icon: icons.aiml.ai2 },
       { name: "Java", icon: icons.aiml.ai3 },
       { name: "C++", icon: icons.aiml.ai4 },
       { name: "Julia", icon: icons.aiml.ai5 },
     ],
     ML: [
-      { name: "Tensor Flow", icon: icons.aiml.ml1 },
-      { name: "ML 2", icon: icons.aiml.ml2 },
+      { name: "TensorFlow", icon: icons.aiml.ml1 },      // TensorFlow
+      { name: "PyTorch", icon: icons.aiml.ml2 }, // ML 2 (PyTorch logo)
       { name: "Keras", icon: icons.aiml.ml3 },
-      { name: "Scikit-learn", icon: icons.aiml.ml4 },
-      { name: "ML 5", icon: icons.aiml.ml5 },
+      { name: "SKL", icon: icons.aiml.ml4 },     // Scikit-learn
+      { name: "Spark", icon: icons.aiml.ml5 },
     ],
     Processes: [
-      { name: "BP 1", icon: icons.aiml.bp1 },
-      { name: "BP 2", icon: icons.aiml.bp2 },
-      { name: "BP 3", icon: icons.aiml.bp3 },
-      { name: "BP 4", icon: icons.aiml.bp4 },
-      { name: "BP 5", icon: icons.aiml.bp5 },
+      { name: "PubNub", icon: icons.aiml.bp1 },
+      { name: "Airflow", icon: icons.aiml.bp2 },
+      { name: "Bizagi", icon: icons.aiml.bp3 },
+      { name: "Wrike", icon: icons.aiml.bp4 },
+      { name: "Asana", icon: icons.aiml.bp5 },
     ],
+    
   },
 };
