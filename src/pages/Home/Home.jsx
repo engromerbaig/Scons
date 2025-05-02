@@ -15,6 +15,7 @@ import Technologies from '../../components/Technologies/Technologies';
 import ServicesOld from '../../components/Services/ServicesOLD';
 import SuccessStories from '../../components/SuccessStories/SuccessStories';
 import Reviews from '../../components/Reviews/Reviews';
+import Testimonials from '../../components/Testimonials/Testimonials';
 
 
 
@@ -36,6 +37,7 @@ function Home() {
       <Industries />
       <GIFSection />
       <Locations />
+      <Testimonials />
     </div>
   );
 }
