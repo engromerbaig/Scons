@@ -3,8 +3,8 @@ const placeholderQuote = "https://cdn-icons-png.flaticon.com/512/25/25426.png";
 
 const testimonials = [
   {
-    quote: "Outstanding service and top-notch expertise. Our project was delivered ahead of schedule!",
-    name: "Jackie Dallas",
+    quote: "Outstanding service and top-notch expertise. Our project was delivered ahead of schedule! lorem ipsum dolor sit amet, consectetur adipiscing elit. Outstanding service and top-notch expertise. Our project was delivered ahead of schedule! lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    name: "Jackie Dallxas",
     position: "Director",
     company: "Hotset",
     rating: 5,
