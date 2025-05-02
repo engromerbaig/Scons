@@ -33,7 +33,7 @@ export const technologiesData = {
       { name: "JavaScript", icon: icons.web.JSBackend },
       { name: "Laravel", icon: icons.web.LaravelBackend },
       { name: "Python", icon: icons.web.Backend2 },
-      { name: "Backend3", icon: icons.web.Backend3 },
+      { name: "Php", icon: icons.web.Backend3 },
     ],
     CMS: [
       { name: "Shopify", icon: icons.web.Shopify },
@@ -50,10 +50,10 @@ export const technologiesData = {
     ],
     ERP: [
       { name: "SAP", icon: icons.uiux.erp1 },
-      { name: "ERP 2", icon: icons.uiux.erp2 },
+      { name: "Dynamics 365", icon: icons.uiux.erp2 },
       { name: "Oracle", icon: icons.uiux.erp3 },
-      { name: "ERP 4", icon: icons.uiux.erp4 },
-      { name: "ERP 5", icon: icons.uiux.erp5 },
+      { name: "Intacct", icon: icons.uiux.erp4 },
+      { name: "Infor", icon: icons.uiux.erp5 },
     ],
   },
 
@@ -66,7 +66,7 @@ export const technologiesData = {
     DApps: [
       { name: "Polygon", icon: icons.blockchain.dapp1 },
       { name: "CUBE", icon: icons.blockchain.dapp2 },
-      { name: "DApp 3", icon: icons.blockchain.dapp3 },
+      { name: "Uniswap", icon: icons.blockchain.dapp3 },
     ],
     Integrations: [
       { name: "Integration 1", icon: icons.blockchain.integ1 },

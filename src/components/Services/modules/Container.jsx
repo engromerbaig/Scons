@@ -90,14 +90,14 @@ const Container = ({ heading, number, services, iconRows, link }) => {
     };
 
     const IconRow = ({ icons, rowIndex }) => (
-        <div className="grid grid-cols-5 gap-2 py-2">
+        <div className="grid grid-cols-5 items-center justify-center gap-2 py-2">
             {icons.map((icon, index) => (
                 <img
                     key={`icon-row${rowIndex}-${index}`}
                     src={icon}
                     alt={`icon-row${rowIndex}-${index}`}
                     loading="lazy"
-                    className='svg-neon'
+                    className='svg-neon '
                 />
             ))}
         </div>
