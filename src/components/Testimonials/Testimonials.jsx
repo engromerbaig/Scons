@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import Heading from "../Heading/Heading";
 import BodyText from "../BodyText/BodyText";
 import { theme } from "../../theme";
@@ -6,6 +6,8 @@ import TestimonialBox from "./TestimonialBox";
 import testimonials from "./testimonialsData";
 
 const Testimonials = () => {
+  const [activeIndex, setActiveIndex] = useState(-1);
+
   return (
     <div className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} bg-black flex flex-col items-center min-h-screen`}>
       <div className="flex flex-col justify-center items-start w-full mb-8">
@@ -16,10 +18,15 @@ const Testimonials = () => {
           color="text-white"
         />
       </div>
-      {/* Testimonials Section */}
       <div className="w-full flex flex-col gap-8 items-center transition-all duration-300 ease-in-out" style={{ minHeight: "500px" }}>
         {testimonials.map((t, i) => (
-          <TestimonialBox key={i} {...t} />
+          <TestimonialBox
+            key={i}
+            {...t}
+            index={i}
+            activeIndex={activeIndex}
+            setActiveIndex={setActiveIndex}
+          />
         ))}
       </div>
     </div>
