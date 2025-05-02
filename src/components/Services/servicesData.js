@@ -297,7 +297,9 @@ image: mobileAppImage,
           icons.web.CSSFrontend, 
           icons.web.Html5Frontend, 
           icons.web.ReactFrontend, 
-          icons.web.NextFrontend
+          icons.web.NextFrontend,
+          icons.web.VueFrontend,
+
       ], // Icons for Frontend
        // Icons for Frontend
       },

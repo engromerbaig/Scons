@@ -12,11 +12,14 @@ import BodyText from '../BodyText/BodyText';
 const ServicesOld = () => {
   // Map services to include iconRows (based on your earlier setup for mobile and md+)
   const updatedServices = services.map((service) => {
+    // For each iconRow, limit icons to first 5
     const iconRows = service.iconRows.map(row => ({
-      icons: row.icons,
+      // Limit to first 5 icons only
+      icons: row.icons.slice(0, 5), // <-- Only the first 5 icons are included here
     }));
     return { ...service, iconRows };
   });
+
 
   return (
     <div className={` ${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} container-bg bg-black flex flex-col items-center min-h-screen`}>

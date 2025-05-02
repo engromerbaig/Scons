@@ -25,6 +25,8 @@ export const technologiesData = {
       { name: "HTML5", icon: icons.web.Html5Frontend },
       { name: "Next.js", icon: icons.web.NextFrontend },
       { name: "React", icon: icons.web.ReactFrontend },
+      { name: "Vue", icon: icons.web.VueFrontend },
+
     ],
     Backend: [
       { name: "Java", icon: icons.web.JavaBackend },

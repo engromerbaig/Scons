@@ -67,6 +67,7 @@ import cssFrontend from '../../../assets/icons/services/Web Platforms/frontend/c
 import htmlFrontend from '../../../assets/icons/services/Web Platforms/frontend/html.svg';
 import nextFrontend from '../../../assets/icons/services/Web Platforms/frontend/next.svg';
 import reactFrontend from '../../../assets/icons/services/Web Platforms/frontend/react.svg';
+import vueFrontend from '../../../assets/icons/services/Web Platforms/frontend/vue.svg';
 
 
 //backend
@@ -284,6 +285,7 @@ consultationFAQ5: consultationFAQ5,
       Html5Frontend: htmlFrontend,
       NextFrontend: nextFrontend,
       ReactFrontend: reactFrontend,
+      VueFrontend: vueFrontend,
 
       // backend
       Backend2: backend2Backend,
