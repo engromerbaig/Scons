@@ -13,25 +13,22 @@ import { theme } from "../../theme";
 const Footer = () => {
   return (
     <footer className={`w-full bg-black text-white ${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical}`}>
+      
       {/* ROW 1: Logo + Contact | Pages | Services */}
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 border-b border-gray-800 pb-10 text-left">
+        
         {/* LOGO + CONTACT */}
         <div>
           <ScrollToTopLink to="/" className="cursor-pointer block mb-6">
             <img src="/logo.svg" alt="Logo" className="lg:w-36 w-28 aspect-rectangle svg-white" />
           </ScrollToTopLink>
-          <Heading
-            text={
-              <span className="flex items-center text-grayBg">
-                <span className="inline-block w-2 h-2 bg-neon rounded-full mr-2 text-neon" />
-                Contact
-              </span>
-            }
-            size="text-base"
-            color="text-grayBg"
-            className="mb-3"
-          />
-          <ul className="space-y-2 ">
+
+          <div className="flex items-center mb-3">
+            <span className="inline-block w-2 h-2 bg-neon rounded-full mr-2" />
+            <Heading text="Contact" size="text-base" color="text-grayText" />
+          </div>
+
+          <ul className="space-y-2">
             {contactDetails.map((item) => (
               <li key={item.type}>
                 <a
@@ -40,7 +37,7 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <BodyText text={item.detail} size="text-base" color="text-white" className="text-start" />
+                  <BodyText text={item.detail} size="text-30px" color="text-white" className="text-start " />
                 </a>
               </li>
             ))}
@@ -49,17 +46,11 @@ const Footer = () => {
 
         {/* PAGES */}
         <div>
-          <Heading
-            text={
-              <span className="flex items-center text-grayBg">
-                <span className="inline-block w-2 h-2 bg-neon rounded-full mr-2 text-neon" />
-                Resources
-              </span>
-            }
-            size="text-base"
-            color="text-grayBg"
-            className="mb-3"
-          />
+          <div className="flex items-center mb-3">
+            <span className="inline-block w-2 h-2 bg-neon rounded-full mr-2" />
+            <Heading text="Resources" size="text-base" color="text-grayText" />
+          </div>
+
           <ul className="space-y-2">
             {navLinks.map((link) => (
               <li key={link.label}>
@@ -73,17 +64,11 @@ const Footer = () => {
 
         {/* SERVICES */}
         <div>
-          <Heading
-            text={
-              <span className="flex items-center text-grayBg">
-                <span className="inline-block w-2 h-2 bg-neon rounded-full mr-2 text-neon" />
-                Services
-              </span>
-            }
-            size="text-base"
-            color="text-grayBg"
-            className="mb-3"
-          />
+          <div className="flex items-center mb-3">
+            <span className="inline-block w-2 h-2 bg-neon rounded-full mr-2" />
+            <Heading text="Services" size="text-base" color="text-grayText" />
+          </div>
+
           <ul className="space-y-2">
             {services.map((service) => (
               <li key={service.slug}>
@@ -100,17 +85,10 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 border-b border-gray-800 py-10 text-left">
         {[0, 1].map((idx) => (
           <div key={idx}>
-            <Heading
-              text={
-                <span className="flex items-center text-grayBg">
-                  <span className="inline-block w-2 h-2 bg-neon rounded-full mr-2 text-neon" />
-                  {accordionData[idx].title}
-                </span>
-              }
-              size="text-base"
-              color="text-grayBg"
-              className="mb-3"
-            />
+            <div className="flex items-center mb-3">
+              <span className="inline-block w-2 h-2 bg-neon rounded-full mr-2" />
+              <Heading text={accordionData[idx].title} size="text-base" color="text-grayText" />
+            </div>
             <BodyText text={accordionData[idx].content.address} size="text-base" color="text-white" className="mb-1 text-start" />
             <BodyText text={accordionData[idx].content.phone} size="text-base" color="text-white" className="text-start" />
           </div>
@@ -118,17 +96,11 @@ const Footer = () => {
 
         {/* SOCIALS */}
         <div>
-          <Heading
-            text={
-              <span className="flex items-center text-grayBg">
-                <span className="inline-block w-2 h-2 bg-neon rounded-full mr-2 text-neon" />
-                Social
-              </span>
-            }
-            size="text-base"
-            color="text-grayBg"
-            className="mb-3"
-          />
+          <div className="flex items-center mb-3">
+            <span className="inline-block w-2 h-2 bg-neon rounded-full mr-2" />
+            <Heading text="Social" size="text-base" color="text-grayText" />
+          </div>
+
           <div className="flex space-x-4">
             {socialsData.map((item, idx) => (
               <a
