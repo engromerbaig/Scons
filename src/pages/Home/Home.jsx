@@ -40,6 +40,8 @@ function Home() {
       <Locations />
       <StartProjectBelt />
       <Testimonials />
+      <StartProjectBelt />
+
     </div>
   );
 }
