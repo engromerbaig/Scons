@@ -2,40 +2,46 @@ import React, { useState } from "react";
 
 const Button = ({
   name,
-  icon,
-  width = "w-5", // Default icon width
-  fontWeight = "font-medium", // Default font weight
-  fontSize = "text-20px", // Default font size
-  className = "", // Extra classes
+  icon = null,
+  width = "w-5",
+  fontWeight = "font-medium",
+  fontSize = "text-20px",
+  className = "",
+  bgColor = "bg-grayBg",
+  textColor = "black",
+  hoverTextColor = "white",
+  hoverBgColor = "bg-black",
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
     <div
-      className={`inline-flex flex-row items-center justify-start cursor-pointer p-3 bg-grayBg rounded-full hover:bg-black transition-all duration-300 relative overflow-hidden hover:shadow-lg ${className}`}
+      className={`inline-flex flex-row items-center justify-start cursor-pointer p-3 ${bgColor} rounded-full ${hoverBgColor ? "hover:" + hoverBgColor : ""
+        } transition-all duration-300 relative overflow-hidden hover:shadow-lg ${className}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Icon */}
-      <img
-        src={icon}
-        alt={name}
-        className={`${width} aspect-square flex-shrink-0`}
-        style={{
-          filter: isHovered
-            ? "brightness(0) invert(1)" // White on hover
-            : "brightness(0) saturate(100%)", // Black initially
-        }}
-      />
+      {/* Conditionally Render Icon */}
+      {icon && (
+        <img
+          src={icon}
+          alt={name}
+          className={`${width} aspect-square flex-shrink-0`}
+          style={{
+            filter: isHovered
+              ? "brightness(0) invert(1)"
+              : "brightness(0) saturate(100%)",
+          }}
+        />
+      )}
 
-      {/* Text with Slide Effect */}
-      <div className="ml-1 lg:ml-4 relative overflow-hidden">
+      {/* Text */}
+      <div className={`${icon ? "ml-1 lg:ml-4" : ""} relative overflow-hidden`}>
         <p
           className={`${fontSize} ${fontWeight} transition-transform duration-300 whitespace-nowrap`}
           style={{
-            // Slide in from further up (-150%)
             transform: isHovered ? "translateY(0)" : "translateY(-200%)",
-            color: isHovered ? "white" : "black",
+            color: isHovered ? hoverTextColor : textColor,
           }}
         >
           {name}
@@ -43,9 +49,8 @@ const Button = ({
         <p
           className={`${fontSize} ${fontWeight} absolute top-0 left-0 transition-transform duration-300 whitespace-nowrap`}
           style={{
-            // Slide out further down (150%)
             transform: isHovered ? "translateY(200%)" : "translateY(0)",
-            color: "black",
+            color: textColor,
           }}
         >
           {name}
