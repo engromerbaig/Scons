@@ -318,3 +318,13 @@ html {
   box-shadow: 0 2px 16px 0 rgba(40, 237, 112, 0.1); /* slightly stronger glow */
   transition: background 0.3s, box-shadow 0.3s;
 }
+
+
+
+/* hover */
+.neon-hover {
+  transition: color 0.2s;
+}
+.neon-hover:hover {
+  color: var(--color-neon) !important; /* Replace with your neon color variable if using CSS vars */
+}
