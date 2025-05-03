@@ -37,7 +37,7 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <BodyText text={item.detail} size="text-30px" color="text-white" className="text-start " />
+                  <BodyText text={item.detail} size="text-30px" color="text-white" className="text-start neon-hover" />
                 </a>
               </li>
             ))}
@@ -55,7 +55,7 @@ const Footer = () => {
             {navLinks.map((link) => (
               <li key={link.label}>
                 <Link to={link.to} className="neon-hover">
-                  <BodyText text={link.label} size="text-base" color="text-white" className="text-start" />
+                  <BodyText text={link.label} size="text-base" color="text-white" className="text-start neon-hover" />
                 </Link>
               </li>
             ))}
@@ -73,7 +73,7 @@ const Footer = () => {
             {services.map((service) => (
               <li key={service.slug}>
                 <Link to={`/service/${service.slug}`} className="neon-hover">
-                  <BodyText text={service.heading} size="text-base" color="text-white" className="text-start"/>
+                  <BodyText text={service.heading} size="text-base" color="text-white" className="text-start neon-hover" />
                 </Link>
               </li>
             ))}
@@ -89,8 +89,8 @@ const Footer = () => {
               <span className="inline-block w-2 h-2 bg-neon rounded-full mr-2" />
               <Heading text={accordionData[idx].title} size="text-base" color="text-grayText" />
             </div>
-            <BodyText text={accordionData[idx].content.address} size="text-base" color="text-white" className="mb-1 text-start" />
-            <BodyText text={accordionData[idx].content.phone} size="text-base" color="text-white" className="text-start" />
+            <BodyText text={accordionData[idx].content.address} size="text-base" color="text-white" className="mb-1 text-start neon-hover" />
+            <BodyText text={accordionData[idx].content.phone} size="text-base" color="text-white" className="text-start neon-hover" />
           </div>
         ))}
 
@@ -108,9 +108,9 @@ const Footer = () => {
                 href={item.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="svg-white hover:svg-neon transition-colors duration-200"
+                className="transition-colors duration-200 hover:svg-neon"
               >
-                <img src={item.icon} alt="social" className="w-6 h-6" />
+                <img src={item.icon} alt="social" className="w-6 h-6 svg-white" />
               </a>
             ))}
           </div>
