@@ -1,9 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-// box
-
+import { FaQuoteLeft } from "react-icons/fa";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,7 +12,6 @@ const TestimonialBox = ({
   company,
   rating,
   clientImg,
-  quoteImg,
 }) => {
   const ref = useRef(null);
 
@@ -27,14 +24,14 @@ const TestimonialBox = ({
         { scale: 0.88 },
         {
           scale: 1.05,
-          ease: "none", // No easing for scrub animations
+          ease: "none",
           scrollTrigger: {
             trigger: element,
             start: "top 70%",
             end: "center 50%",
-            scrub: 0.4, // Smaller scrub value for smoother, more responsive animation
-            fastScrollEnd: true, // Improves smoothness on fast scrolls
-            invalidateOnRefresh: true, // Recalculate positions on resize
+            scrub: 0.4,
+            fastScrollEnd: true,
+            invalidateOnRefresh: true,
           },
         }
       );
@@ -46,16 +43,19 @@ const TestimonialBox = ({
   return (
     <div
       ref={ref}
-      className="border-[#181818] border-2 rounded-xl shadow-lg p-8 flex flex-col gap-4 w-full max-w-3xl mx-auto bg-[#181818]"
+      className="relative border-[#181818] border-2 rounded-xl shadow-lg p-8 flex flex-col gap-4 w-full max-w-3xl mx-auto bg-[#181818] overflow-hidden"
       style={{ willChange: "transform" }}
     >
-      {/* Quote Icon */}
-      <div className="flex items-center">
-        <img src={quoteImg} alt="Quote" className="w-8 h-8 mr-2" />
-        <span className="text-white text-lg italic">{quote}</span>
+      {/* Background Quote Icon */}
+      <FaQuoteLeft className="absolute text-30px text-neon opacity-10 top-4 left-4 z-0" />
+
+      {/* Quote Text */}
+      <div className="relative z-10">
+        <p className="text-white text-lg italic">{quote}</p>
       </div>
+
       {/* Client Info */}
-      <div className="flex items-center mt-4">
+      <div className="flex items-center mt-4 relative z-10">
         <img
           src={clientImg}
           alt={name}
