@@ -1,61 +1,46 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
-// NEW: Contact details
 import { contactDetails } from "../MobileMenu/modules/contactDetails";
-
-// NEW: Navigation links
 import { navLinks } from "../Navbar/navLinks";
-
-// NEW: Services list
-
 import { services } from "../Services/servicesData";
-
-
-// NEW: Branch locations
 import accordionData from "../Locations/modules/accordionData";
-
-// NEW: Social icons (SVGs)
 import { socialsData } from "../MobileMenu/modules/socialsData";
-
-// NEW: Heading and BodyText components
 import Heading from "../Heading/Heading";
 import BodyText from "../BodyText/BodyText";
-
-// NEW: ScrollToTopLink for logo
 import ScrollToTopLink from "../../utilities/ScrollToTopLink";
-
-// Theme (for padding etc)
 import { theme } from "../../theme";
 
 const Footer = () => {
   return (
     <footer className={`w-full bg-black text-white ${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical}`}>
       {/* ROW 1: Logo + Contact | Pages | Services */}
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 border-b border-gray-800 pb-10">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 border-b border-gray-800 pb-10 text-left">
         {/* LOGO + CONTACT */}
         <div>
           <ScrollToTopLink to="/" className="cursor-pointer block mb-6">
             <img src="/logo.svg" alt="Logo" className="lg:w-36 w-28 aspect-rectangle svg-white" />
           </ScrollToTopLink>
           <Heading
-            text={<span className="flex items-center"><span className="inline-block w-2 h-2 bg-neon rounded-full mr-2" />Contact</span>}
+            text={
+              <span className="flex items-center text-grayBg">
+                <span className="inline-block w-2 h-2 bg-neon rounded-full mr-2 text-neon" />
+                Contact
+              </span>
+            }
             size="text-base"
-            color="text-white"
+            color="text-grayBg"
             className="mb-3"
           />
-          <ul className="space-y-2">
+          <ul className="space-y-2 ">
             {contactDetails.map((item) => (
-              <li key={item.type} className="flex items-center">
-                <img src={item.icon} alt={item.type} className="w-5 h-5 mr-2" />
+              <li key={item.type}>
                 <a
                   href={item.link}
-                  className="neon-hover text-white"
+                  className="neon-hover"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <BodyText text={item.detail} size="text-base"             color="text-white"
- />
+                  <BodyText text={item.detail} size="text-base" color="text-white" className="text-start" />
                 </a>
               </li>
             ))}
@@ -65,17 +50,21 @@ const Footer = () => {
         {/* PAGES */}
         <div>
           <Heading
-            text={<span className="flex items-center"><span className="inline-block w-2 h-2 bg-neon rounded-full mr-2" />Pages</span>}
+            text={
+              <span className="flex items-center text-grayBg">
+                <span className="inline-block w-2 h-2 bg-neon rounded-full mr-2 text-neon" />
+                Resources
+              </span>
+            }
             size="text-base"
-            color="text-white"
+            color="text-grayBg"
             className="mb-3"
           />
           <ul className="space-y-2">
             {navLinks.map((link) => (
               <li key={link.label}>
-                <Link to={link.to} className="neon-hover text-white">
-                  <BodyText text={link.label} size="text-base "              color="text-white"
-                  />
+                <Link to={link.to} className="neon-hover">
+                  <BodyText text={link.label} size="text-base" color="text-white" className="text-start" />
                 </Link>
               </li>
             ))}
@@ -85,20 +74,21 @@ const Footer = () => {
         {/* SERVICES */}
         <div>
           <Heading
-            text={<span className="flex items-center"><span className="inline-block w-2 h-2 bg-neon rounded-full mr-2" />Services</span>}
+            text={
+              <span className="flex items-center text-grayBg">
+                <span className="inline-block w-2 h-2 bg-neon rounded-full mr-2 text-neon" />
+                Services
+              </span>
+            }
             size="text-base"
-            color="text-white"
+            color="text-grayBg"
             className="mb-3"
           />
           <ul className="space-y-2">
             {services.map((service) => (
               <li key={service.slug}>
-                <Link
-                  to={`/service/${service.slug}`}
-                  className="neon-hover text-white"
-                >
-                  <BodyText text={service.heading} size="text-base"             color="text-white"
- />
+                <Link to={`/service/${service.slug}`} className="neon-hover">
+                  <BodyText text={service.heading} size="text-base" color="text-white" className="text-start"/>
                 </Link>
               </li>
             ))}
@@ -107,39 +97,36 @@ const Footer = () => {
       </div>
 
       {/* ROW 2: Branches | Socials */}
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 border-b border-gray-800 py-10">
-        {/* BRANCH 1: GLASGOW */}
-        <div>
-          <Heading
-            text={<span className="flex items-center"><span className="inline-block w-2 h-2 bg-neon rounded-full mr-2" />{accordionData[0].title}</span>}
-            size="text-base"
-            color="text-white"
-            className="mb-3"
-          />
-          <BodyText text={accordionData[0].content.address} size="text-base"              color="text-white"
- className="mb-1" />
-          <BodyText text={accordionData[0].content.phone} size="text-base"             color="text-white"
-  />
-        </div>
-        {/* BRANCH 2: KARACHI */}
-        <div>
-          <Heading
-            text={<span className="flex items-center"><span className="inline-block w-2 h-2 bg-neon rounded-full mr-2" />{accordionData[1].title}</span>}
-            size="text-base"
-            color="text-white"
-            className="mb-3"
-          />
-          <BodyText text={accordionData[1].content.address} size="text-base"              color="text-white"
- className="mb-1" />
-          <BodyText text={accordionData[1].content.phone} size="text-base"             color="text-white"
-  />
-        </div>
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 border-b border-gray-800 py-10 text-left">
+        {[0, 1].map((idx) => (
+          <div key={idx}>
+            <Heading
+              text={
+                <span className="flex items-center text-grayBg">
+                  <span className="inline-block w-2 h-2 bg-neon rounded-full mr-2 text-neon" />
+                  {accordionData[idx].title}
+                </span>
+              }
+              size="text-base"
+              color="text-grayBg"
+              className="mb-3"
+            />
+            <BodyText text={accordionData[idx].content.address} size="text-base" color="text-white" className="mb-1 text-start" />
+            <BodyText text={accordionData[idx].content.phone} size="text-base" color="text-white" className="text-start" />
+          </div>
+        ))}
+
         {/* SOCIALS */}
         <div>
           <Heading
-            text={<span className="flex items-center"><span className="inline-block w-2 h-2 bg-neon rounded-full mr-2" />Social</span>}
+            text={
+              <span className="flex items-center text-grayBg">
+                <span className="inline-block w-2 h-2 bg-neon rounded-full mr-2 text-neon" />
+                Social
+              </span>
+            }
             size="text-base"
-            color="text-white"
+            color="text-grayBg"
             className="mb-3"
           />
           <div className="flex space-x-4">
@@ -149,7 +136,7 @@ const Footer = () => {
                 href={item.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="neon-hover"
+                className="svg-white hover:svg-neon transition-colors duration-200"
               >
                 <img src={item.icon} alt="social" className="w-6 h-6" />
               </a>
@@ -158,8 +145,8 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* ROW 3: Copyright | Legal */}
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center pt-6 text-gray-400 text-sm">
+      {/* ROW 3: Copyright */}
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center pt-6 text-gray-400 text-sm text-left">
         <div>
           &copy; {new Date().getFullYear()} <span className="uppercase font-bold text-white">tyfora.</span> All Rights Reserved
         </div>
