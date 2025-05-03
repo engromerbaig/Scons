@@ -5,7 +5,7 @@ import houstonImage from '../../../assets/icons/locations/Houston.webp';
 
 const accordionData = [
     {
-        title: "GLASGOW",
+        title: "Glasgow",
         country: "UK",
         lineHeight: "long",
         content: {
@@ -16,7 +16,7 @@ const accordionData = [
     },
    
     {
-        title: "KARACHI",
+        title: "Karachi",
         country: "Pakistan",
         lineHeight: "long",
         content: {

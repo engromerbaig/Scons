@@ -25,7 +25,7 @@ const Footer = () => {
 
           <div className="flex items-center mb-3">
             <span className="inline-block w-2 h-2 bg-neon rounded-full mr-2" />
-            <Heading text="Contact" size="text-base" color="text-grayText" />
+            <Heading text="Contact" size="text-sm" color="text-grayText" />
           </div>
 
           <ul className="space-y-2">
@@ -48,14 +48,14 @@ const Footer = () => {
         <div>
           <div className="flex items-center mb-3">
             <span className="inline-block w-2 h-2 bg-neon rounded-full mr-2" />
-            <Heading text="Resources" size="text-base" color="text-grayText" />
+            <Heading text="Resources" size="text-sm" color="text-grayText" />
           </div>
 
           <ul className="space-y-2">
             {navLinks.map((link) => (
               <li key={link.label}>
                 <Link to={link.to} className="neon-hover">
-                  <BodyText text={link.label} size="text-base" color="text-white" className="text-start neon-hover" />
+                  <BodyText text={link.label} size="text-30px" color="text-white" className="text-start neon-hover" />
                 </Link>
               </li>
             ))}
@@ -66,14 +66,14 @@ const Footer = () => {
         <div>
           <div className="flex items-center mb-3">
             <span className="inline-block w-2 h-2 bg-neon rounded-full mr-2" />
-            <Heading text="Services" size="text-base" color="text-grayText" />
+            <Heading text="Services" size="text-sm" color="text-grayText" />
           </div>
 
           <ul className="space-y-2">
             {services.map((service) => (
               <li key={service.slug}>
                 <Link to={`/service/${service.slug}`} className="neon-hover">
-                  <BodyText text={service.heading} size="text-base" color="text-white" className="text-start neon-hover" />
+                  <BodyText text={service.heading} size="text-30px" color="text-white" className="text-start neon-hover" />
                 </Link>
               </li>
             ))}
@@ -87,10 +87,10 @@ const Footer = () => {
           <div key={idx}>
             <div className="flex items-center mb-3">
               <span className="inline-block w-2 h-2 bg-neon rounded-full mr-2" />
-              <Heading text={accordionData[idx].title} size="text-base" color="text-grayText" />
+              <Heading text={accordionData[idx].title} size="text-30px" color="text-white  " />
             </div>
-            <BodyText text={accordionData[idx].content.address} size="text-base" color="text-white" className="mb-1 text-start neon-hover" />
-            <BodyText text={accordionData[idx].content.phone} size="text-base" color="text-white" className="text-start neon-hover" />
+            <BodyText text={accordionData[idx].content.address} size="text-sm" color="text-grayText" className="mb-1 text-start neon-hover" />
+            <BodyText text={accordionData[idx].content.phone} size="text-sm" color="text-grayText" className="text-start neon-hover" />
           </div>
         ))}
 
@@ -118,9 +118,9 @@ const Footer = () => {
       </div>
 
       {/* ROW 3: Copyright */}
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center pt-6 text-gray-400 text-sm text-left">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center pt-6 text-grayText text-sm text-left">
         <div>
-          &copy; {new Date().getFullYear()} <span className="uppercase font-bold text-white">tyfora.</span> All Rights Reserved
+          &copy; {new Date().getFullYear()} <span className="  text-grayText">Scons.</span> All Rights Reserved
         </div>
         <div className="flex space-x-4 mt-2 md:mt-0">
           <Link to="/privacy-policy" className="neon-hover">Privacy Policy</Link>
