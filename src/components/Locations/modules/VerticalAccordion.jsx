@@ -71,10 +71,15 @@ const VerticalAccordion = () => {
                                     centered={true}
                                 />
                                 <BodyText text={item.content.address} size="text-25px" />
-                                <BodyText text={item.content.phone} size="text-25px" />
+                                <a 
+    href={`tel:${item.content.phone.replace(/\s+/g, '')}`} 
+    className="text-25px transition font-normal hover:font-bold focus:font-bold"
+>
+    {item.content.phone}
+</a>
                             </div>
                         ) : (
-                            <span className="absolute font-uppercase bottom-2 right-1 flex flex-col uppercase text-60px lg:[writing-mode:vertical-rl] [writing-mode:horizontal-tb] lg:rotate-180">
+                            <span className="absolute font-uppercase bottom-2 right-1 flex flex-col uppercase text-50px lg:[writing-mode:vertical-rl] [writing-mode:horizontal-tb] lg:rotate-180">
                                 <Heading text={item.country} isAnimate={false} />
                             </span>
                         )}
