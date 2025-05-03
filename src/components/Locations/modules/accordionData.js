@@ -1,6 +1,6 @@
-import karachiImage from '../../../assets/icons/locations/Karachi.webp';
+import karachiImage from '../../../assets/icons/locations/Karachi.svg';
 import dubaiImage from '../../../assets/icons/locations/Dubai.webp';
-import sydneyImage from '../../../assets/icons/locations/Sydney.webp';
+import sydneyImage from '../../../assets/icons/locations/Sydney.svg';
 import houstonImage from '../../../assets/icons/locations/Houston.webp';
 
 

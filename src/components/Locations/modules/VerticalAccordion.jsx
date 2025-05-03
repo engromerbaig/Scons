@@ -39,7 +39,7 @@ const VerticalAccordion = () => {
     }, [openIndex]);
 
     return (
-        <div className="min-h-screen w-full overflow-hidden overflow-y-hidden">
+        <div className=" w-full overflow-hidden overflow-y-hidden">
             <div className="h-[90vh] lg:h-[75vh] flex flex-col lg:flex-row text-black border-b-0 lg:border-b border-neon border-x-0">
                 {accordionData.map((item, index) => (
                     <motion.div
@@ -55,12 +55,12 @@ const VerticalAccordion = () => {
                         {openIndex === index ? (
                             <div
                                 ref={(el) => (contentRef.current[index] = el)}
-                                className="w-full max-w-xl p-4 lg:p-20 overflow-y-auto flex flex-col items-center"
+                                className="w-full max-w-xl p-4 lg:p-10 overflow-y-auto flex flex-col items-center"
                             >
                                 <img
                                     src={item.content.image}
                                     alt={item.title}
-                                    className="w-3/4 lg:w-full h-auto object-contain mb-4 mx-auto"
+                                    className="w-3/4 lg:w-full h-auto object-contain mb-4 mx-auto svg-neon"
                                     loading="eager"
                                 />
                                 <Heading
