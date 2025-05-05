@@ -4,6 +4,7 @@ import BodyText from "../BodyText/BodyText";
 import { theme } from "../../theme";
 import SuccessCard from "../SuccessCard/SuccessCard";
 import { successStoriesData } from "./successStoriesData";
+import AnimatedArrow from "../AnimatedArrow/AnimatedArrow";
 
 const SuccessStories = () => {
   return (
@@ -12,7 +13,9 @@ const SuccessStories = () => {
     >
       <div className="flex flex-row justify-between items-center w-full mb-8">
         <Heading text="Our Success Stories" className="text-left" />
-        <BodyText text="More Case Studies →" className="text-right cursor-pointer" />
+        <AnimatedArrow
+          text="More Case Studies"
+        />
       </div>
 
       {/* Cards container: 2 cards per row */}
