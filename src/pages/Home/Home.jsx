@@ -36,11 +36,10 @@ function Home() {
       <Technologies />
 
       <Industries />
-      <GIFSection />
       <Locations />
       <StartProjectBelt />
       <Testimonials />
-      <StartProjectBelt />
+      <GIFSection />
 
     </div>
   );
