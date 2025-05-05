@@ -17,6 +17,8 @@ const ServiceDetails = lazy(() => import('./pages/ServiceDetails/ServiceDetails'
 const TermsAndConditions = lazy(() => import('./pages/TermsAndConditions/TermsAndConditions'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy/PrivacyPolicy'));
 
+import FooterWrapper from './components/Footer/FooterWrapper';
+
 // Blogs
  const Blogs = lazy(() => import('./pages/Blogs/Blogs'));
  const BlogDetails = lazy(() => import('./pages/BlogDetails/BlogDetails'));
@@ -56,7 +58,7 @@ function AppContent() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
-      {shouldShowFooter && <Footer />}
+      {shouldShowFooter && <FooterWrapper />}
       <ScrollToTop />
     </div>
   );

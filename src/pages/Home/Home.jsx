@@ -39,7 +39,6 @@ function Home() {
       <Locations />
       <StartProjectBelt />
       <Testimonials />
-      <GIFSection />
 
     </div>
   );
