@@ -131,7 +131,7 @@ const Hero = () => {
             <img
               src={logoData[idx].image}
               alt={item.alt || `logo-${idx}`}
-              className="h-[4vh] object-contain mx-6"
+              className="h-[6vh]  object-contain mx-8"
               loading="lazy"
             />
           )}
