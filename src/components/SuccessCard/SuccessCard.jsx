@@ -23,16 +23,14 @@ const SuccessCard = ({ image, logo, heading, bodyText, link }) => {
           // Calculate scroll progress within the viewport (0 to 1)
           const scrollProgress = (windowHeight - rect.top) / (windowHeight + rect.height);
           // Base translation: 0px to -30px (more noticeable slide up)
-          let translateY = -30 * scrollProgress;
+          let translateY = -100 * scrollProgress;
 
-          // Adjust translation based on scroll direction
           if (isScrollingDown) {
-            // Slide up when scrolling down
-            translateY = Math.max(translateY, -30); // Cap at -30px (up)
+            translateY = Math.max(translateY, -100); // Cap at -60px (up)
           } else {
-            // Slide down when scrolling up
-            translateY = Math.min(0, translateY + 15); // Cap at 0px (down), offset for smoothness
+            translateY = Math.min(0, translateY + 30); // Cap at 0px (down), smoother slide
           }
+          
 
           // Apply smooth transform
           imageRef.current.style.transform = `translateY(${translateY}px)`;
