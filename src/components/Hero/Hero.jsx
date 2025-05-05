@@ -126,7 +126,6 @@ const Hero = () => {
           items={logoData}
           speed={50}
           showBullets={false}
-          pauseOnHover={true}
           renderItem={(item, idx) => (
             <img
               src={logoData[idx].image}
