@@ -31,7 +31,7 @@ const ChatModal = ({ isOpen, onClose }) => {
     }
   };
 
-  const inputStyles = "m-1 p-2 lg:p-3 border-b text-bodyText placeholder-bodyText border-neon bg-transparent w-full focus:outline-none";
+  const inputStyles = "m-1 p-2 lg:p-3 rounded-full text-bodyText placeholder-bodyText border-neon bg-charcoal w-full focus:outline-none";
 
   return (
     <div

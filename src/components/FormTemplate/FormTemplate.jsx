@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import FormField from '../FormSteps/modules/FormField';
+import Button from '../Button/Button';
 
 const FormTemplate = ({ handleFormSubmit, inputStyles, initialFormData = {} }) => {
   const [formData, setFormData] = useState({
@@ -25,8 +26,8 @@ const FormTemplate = ({ handleFormSubmit, inputStyles, initialFormData = {} }) =
   };
 
   return (
-    <div className="flex flex-col gap-2 lg:gap-6">
-      <div className="flex flex-col lg:flex-row gap-2 lg:gap-10">
+    <div className="flex flex-col gap-2 lg:gap-4">
+      <div className="flex flex-col lg:flex-row gap-2 lg:gap-2">
         <FormField
           name="firstName"
           type="text"
@@ -45,7 +46,7 @@ const FormTemplate = ({ handleFormSubmit, inputStyles, initialFormData = {} }) =
         />
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-2 lg:gap-10">
+      <div className="flex flex-col lg:flex-row gap-2 lg:gap-2">
         <FormField
           name="email"
           type="email"
@@ -71,14 +72,14 @@ const FormTemplate = ({ handleFormSubmit, inputStyles, initialFormData = {} }) =
         value={formData.description}
         onChange={(e) => setFormData({ ...formData, description: e.target.value })}
         inputStyles={inputStyles}
-        rows={4}
+        rows={1}
       />
 
       <div className="flex justify-center mt-4">
         <div
           onClick={onSubmit}
           className={`
-            cursor-pointer font-bold border-2 border-neon px-6 py-2 rounded-lg
+            cursor-pointer font-bold border-2 border-neon px-6 py-2 rounded-full w-full text-center
             ${isFormValid ? 'bg-transparent hover:bg-neon' : 'bg-neon opacity-50 cursor-not-allowed'}
           `}
         >
