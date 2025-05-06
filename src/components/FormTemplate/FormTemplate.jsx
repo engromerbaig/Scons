@@ -51,6 +51,7 @@ const FormTemplate = ({ handleFormSubmit, inputStyles, initialFormData = {}, hid
             setErrors({ ...errors, name: false });
           }}
           inputStyles={inputStyles}
+          hideErrorMessages={hideErrorMessages}
         />
         {!hideErrorMessages && errors.name && (
           <p className="text-red-500 text-sm mt-1">Please enter your name</p>
@@ -69,6 +70,7 @@ const FormTemplate = ({ handleFormSubmit, inputStyles, initialFormData = {}, hid
               setErrors({ ...errors, email: false });
             }}
             inputStyles={inputStyles}
+            hideErrorMessages={hideErrorMessages}
           />
           {!hideErrorMessages && errors.email && (
             <p className="text-red-500 text-sm mt-1">Please enter your email</p>
@@ -85,6 +87,7 @@ const FormTemplate = ({ handleFormSubmit, inputStyles, initialFormData = {}, hid
               setErrors({ ...errors, phone: false });
             }}
             inputStyles={inputStyles}
+            hideErrorMessages={hideErrorMessages}
           />
           {!hideErrorMessages && errors.phone && (
             <p className="text-red-500 text-sm mt-1">Please enter your phone number</p>
@@ -97,13 +100,14 @@ const FormTemplate = ({ handleFormSubmit, inputStyles, initialFormData = {}, hid
           name="description"
           type="textarea"
           placeholder="What would you like to discuss?"
+          rows={1}
           value={formData.description}
           onChange={(e) => {
             setFormData({ ...formData, description: e.target.value });
             setErrors({ ...errors, description: false });
           }}
           inputStyles={inputStyles}
-          rows={1}
+          hideErrorMessages={hideErrorMessages}
         />
         {!hideErrorMessages && errors.description && (
           <p className="text-red-500 text-sm mt-1">Please enter a description</p>
@@ -118,7 +122,7 @@ const FormTemplate = ({ handleFormSubmit, inputStyles, initialFormData = {}, hid
           textColor="text-neon"
           hoverBgColor={isFormValid ? "bg-neon" : "bg-neon"}
           hoverTextColor="text-black"
-          fontSize="text-20px"
+          fontSize="text-sm"
           fontWeight="font-bold"
           textAlign="justify-center"
           onClick={onSubmit}
