@@ -19,7 +19,7 @@ const AnimatedBackground = forwardRef(
     ref
   ) => {
     const backgroundImage = isInner ? '/inner-hero.png' : '/cube.png';
-    const computedBgColor = bgColor || (isInner ? 'bg-innerBg' : 'bg-whiteBg');
+    const computedBgColor = bgColor || (isInner ? 'bg-white' : 'bg-whiteBg');
 
     return (
       <div

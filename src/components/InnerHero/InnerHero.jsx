@@ -11,7 +11,7 @@ const InnerHero = ({
   headingSize = "text-70px lg:text-90px",
   headingSize2 = "text-50px lg:text-60px",
   headingColor = "text-black",
-  headingspanColor = "text-neon",
+  headingspanColor = "text-black",
   headingText2 = "",
   spanText2 = "",
   bodyText,
