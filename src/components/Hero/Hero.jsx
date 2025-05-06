@@ -84,16 +84,17 @@ const Hero = () => {
           <div className="absolute bottom-10 right-40 select-none">
             <div
               ref={btnRef}
-              className={`w-40 h-40 rounded-full flex items-center justify-center shadow-lg cursor-pointer transition-all duration-300 ${
+              className={`w-40 h-40 rounded-full flex items-center justify-center shadow-lg cursor-pointer transition-all duration-500 ease-in-out ${
                 isHover ? "bg-white" : "bg-neon"
               }`}
               style={{
                 transform: `
-                  scale(${isHover ? 0.9 : 1})
+                  scale(${isHover ? 0.7 : 1})
                   translateX(${offset.x}px)
                   translateY(${offset.y}px)
                 `,
                 transformOrigin: "center",
+                transitionProperty: "background-color, transform, box-shadow",
               }}
               onMouseEnter={() => setIsHover(true)}
               onMouseMove={isHover ? handleMouseMove : undefined}
