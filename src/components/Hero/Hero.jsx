@@ -5,17 +5,16 @@ import BodyText from "../BodyText/BodyText";
 import { theme } from "../../theme";
 import videoBg from "../../assets/videos/1.mp4";
 import logoData from "./modules/logoData";
-
 import InfiniteMarquee from "../InfiniteMarquee/InfiniteMarquee";
-
+import ChatModal from "../ChatModal/ChatModal";
 import './index.css';
 
 const Hero = () => {
-  // State and ref for the interactive Discuss button
+  const [isModalOpen, setModalOpen] = useState(false);
   const [isHover, setIsHover] = useState(false);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
   const btnRef = useRef(null);
-  const MAX_OFFSET = 40; // max movement in px for both axes
+  const MAX_OFFSET = 30;
 
   const handleMouseMove = (e) => {
     if (!btnRef.current) return;
@@ -24,7 +23,6 @@ const Hero = () => {
     const centerY = rect.top + rect.height / 2;
     let diffX = e.clientX - centerX;
     let diffY = e.clientY - centerY;
-    // Clamp the movements
     diffX = Math.max(-MAX_OFFSET, Math.min(MAX_OFFSET, diffX));
     diffY = Math.max(-MAX_OFFSET, Math.min(MAX_OFFSET, diffY));
     setOffset({ x: diffX, y: diffY });
@@ -100,24 +98,22 @@ const Hero = () => {
               onMouseEnter={() => setIsHover(true)}
               onMouseMove={isHover ? handleMouseMove : undefined}
               onMouseLeave={handleMouseLeave}
+              onClick={() => setModalOpen(true)}
             >
               <div className="flex flex-col justify-center items-center p-4">
-              <p className="text-black font-black select-none text-3xl">↗</p>
-              <p className="text-black font-black select-none text-center">Let's Discuss Your Idea </p>
-
+                <p className="text-black font-black select-none text-3xl">↗</p>
+                <p className="text-black font-black select-none text-center">Let's Discuss Your Idea</p>
               </div>
             </div>
           </div>
-
         </div>
+
         <div className="absolute bottom-4 left-20 z-20">
-  <div className="flex items-center space-x-2">
-    <span className="w-2 h-2 bg-neon rounded-full" />
-    <p className="text-white text-sm font-medium text-left">Clients served by Econs family</p>
-  </div>
-</div>
-
-
+          <div className="flex items-center space-x-2">
+            <span className="w-2 h-2 bg-neon rounded-full" />
+            <p className="text-white text-sm font-medium text-left">Clients served by Econs family</p>
+          </div>
+        </div>
       </div>
 
       {/* Carousel Section (10vh) */}
@@ -130,12 +126,15 @@ const Hero = () => {
             <img
               src={logoData[idx].image}
               alt={item.alt || `logo-${idx}`}
-              className="h-[8vh]  object-contain mx-10"
+              className="h-[8vh] object-contain mx-10"
               loading="lazy"
             />
           )}
         />
       </div>
+
+      {/* Chat Modal */}
+      <ChatModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} />
     </div>
   );
 };
