@@ -15,7 +15,7 @@ const InnerHero = ({
   headingText2 = "",
   spanText2 = "",
   bodyText,
-  bodySize = "text-35px",
+  bodySize = "text-30px",
   gap = "gap-0",
   bottomShadow = true,
   isCareer = false,
@@ -64,7 +64,7 @@ const InnerHero = ({
           text={bodyText}
           size={bodySize}
           centered={false} // Force left alignment
-          className="mt-2 text-left"
+          className="mt-2 text-left xl:pr-60 leading-tight"
         />
       </div>
 

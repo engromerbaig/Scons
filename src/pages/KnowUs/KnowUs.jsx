@@ -17,7 +17,7 @@ const KnowUs = () => {
        <InnerHero
                 headingText="About Scons"
                 spanText="Scons"
-                bodyText="Scons is a dynamic tech powerhouse, delivering innovative software solutions worldwide. With cutting-edge expertise and a visionary team, we transform businesses, fostering growth and technological excellence."
+                bodyText="Scons is a dynamic tech powerhouse, delivering innovative software solutions worldwide."
             />
 
         <div className="py-20 ">
