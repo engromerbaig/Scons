@@ -18,10 +18,6 @@ const InnerHero = ({
   bodySize = "text-35px",
   gap = "gap-0",
   bottomShadow = true,
-  centeredHeading1 = true,
-  centeredHeading2 = true,
-  centeredbodyText = true,
-  breakSpan1 = false,
   isCareer = false,
   image = null,
 }) => {
@@ -29,14 +25,12 @@ const InnerHero = ({
     <AnimatedBackground
       isInner={true}
       bottomShadow={bottomShadow}
-      className={`flex flex-col w-full items-center justify-center ${gap} ${height} ${
-        theme.layoutPages.paddingHorizontal
-      } ${isCareer ? "lg:flex-row" : ""}`}
+      className={`flex flex-col w-full items-start justify-center ${gap} ${height} ${theme.layoutPages.paddingHorizontal} ${
+        isCareer ? "lg:flex-row" : ""
+      }`}
     >
       <div
-        className={`flex flex-col ${gap} ${
-          isCareer ? "lg:w-[60%] w-full items-start" : "w-full items-center"
-        }`}
+        className={`flex flex-col ${gap} ${isCareer ? "lg:w-[60%] w-full" : "w-full"}`}
       >
         <Heading
           text={headingText}
@@ -44,13 +38,13 @@ const InnerHero = ({
           spanText={spanText}
           color={headingColor}
           spanColor={headingspanColor}
-          breakSpan={breakSpan1}
-          centeredHeading1={!isCareer && centeredHeading1}
-          className={`leading-tight ${isCareer ? "text-start" : "text-center"}`}
+          breakSpan={false}
+          centered={false} // Force left alignment
+          className="leading-tight text-left"
         />
 
         {headingText2 && (
-          <div className={`w-full flex ${isCareer ? "justify-start" : "justify-center"}`}>
+          <div className="w-full flex justify-start mt-4">
             <div className="border-4 rounded-full border-neon px-6 py-2 inline-block">
               <Heading
                 text={headingText2}
@@ -59,8 +53,8 @@ const InnerHero = ({
                 spanColor="text-neon"
                 size={headingSize2}
                 fontWeight="font-medium"
-                centeredHeading2={!isCareer && centeredHeading2}
-                className="tracking-widest"
+                centered={false} // Force left alignment
+                className="tracking-widest text-left"
               />
             </div>
           </div>
@@ -69,12 +63,13 @@ const InnerHero = ({
         <BodyText
           text={bodyText}
           size={bodySize}
-          centeredbodyText={!isCareer && centeredbodyText}
+          centered={false} // Force left alignment
+          className="mt-2 text-left"
         />
       </div>
 
       {isCareer && image && (
-        <div className={`${isCareer ? "lg:w-[40%] w-full" : ""} flex justify-center`}>
+        <div className="lg:w-[40%] w-full flex justify-center mt-8 lg:mt-0">
           <img src={image} alt="Career" className="w-3/4 h-auto" />
         </div>
       )}

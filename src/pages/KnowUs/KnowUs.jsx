@@ -15,9 +15,9 @@ const KnowUs = () => {
         <>
        {/* Inner Hero Section */}
        <InnerHero
-                headingText="About Tyfora"
-                spanText="Tyfora"
-                bodyText="Tyfora is a dynamic tech powerhouse, delivering innovative software solutions worldwide. With cutting-edge expertise and a visionary team, we transform businesses, fostering growth and technological excellence."
+                headingText="About Scons"
+                spanText="Scons"
+                bodyText="Scons is a dynamic tech powerhouse, delivering innovative software solutions worldwide. With cutting-edge expertise and a visionary team, we transform businesses, fostering growth and technological excellence."
             />
 
         <div className="py-20 ">
