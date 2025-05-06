@@ -31,7 +31,7 @@ const ChatModal = ({ isOpen, onClose }) => {
     }
   };
 
-  const inputStyles = "m-1 py-2 px-4 rounded-full text-bodyText placeholder-bodyText border-neon bg-charcoal w-full focus:outline-none";
+  const inputStyles = "m-1 py-2 px-6 text-sm rounded-full text-bodyText placeholder-bodyText border-neon bg-charcoal w-full focus:outline-none";
 
   return (
     <div
@@ -40,7 +40,7 @@ const ChatModal = ({ isOpen, onClose }) => {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className={`bg-black py-20 px-10 w-[500px] h-screen shadow-xl relative transform transition-transform duration-500 ease-in-out z-110
+        className={`bg-black py-12 px-8 w-[500px] h-screen shadow-xl relative transform transition-transform duration-500 ease-in-out z-110
           ${isOpen ? 'translate-x-0' : 'translate-x-full'}
         `}
       >
@@ -51,7 +51,10 @@ const ChatModal = ({ isOpen, onClose }) => {
           ×
         </button>
 
-        <Heading
+
+      <div className="flex flex-col gap-6">
+
+      <Heading
           text="Coffee Break? Let's Talk"
           spanText="Let's Talk"
           spanColor="text-neon"
@@ -65,13 +68,20 @@ const ChatModal = ({ isOpen, onClose }) => {
           centered={false}
           color="text-grayText"
           size="text-20px"
-          className="pb-10"
         />
-
-        <FormTemplate
+    <FormTemplate
           handleFormSubmit={handleFormSubmit}
           inputStyles={inputStyles}
+          hideErrorMessages={true}
         />
+  
+
+
+      </div>
+
+  
+
+     
       </div>
     </div>
   );
