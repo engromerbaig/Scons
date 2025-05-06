@@ -1,11 +1,10 @@
 // components/HeroButton/HeroButton.jsx
 import React from 'react';
-import { Link } from 'react-router-dom';
 
-const HeroButton = () => {
+const HeroButton = ({ onClick }) => {
   return (
-    <Link
-      to="#"
+    <button
+      onClick={onClick}
       className="
         fixed left-0 top-1/2 -translate-y-1/2
         z-50
@@ -22,10 +21,10 @@ const HeroButton = () => {
       "
       aria-label="Chat Now"
     >
-      <span className='rotate-180'>
+      <span className="rotate-180">
         Chat Now
       </span>
-    </Link>
+    </button>
   );
 };
 

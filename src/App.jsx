@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation, useParams, Link } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import FooterWrapper from './components/Footer/FooterWrapper';
@@ -21,6 +21,7 @@ const Blogs = lazy(() => import('./pages/Blogs/Blogs'));
 const BlogDetails = lazy(() => import('./pages/BlogDetails/BlogDetails'));
 
 import HeroButton from './components/HeroButton/HeroButton';
+import ChatModal from './components/ChatModal/ChatModal';
 
 // Wrapper for ServiceDetails to force remount on param change
 function ServiceDetailsWrapper() {
@@ -33,11 +34,15 @@ function AppContent() {
   const hideFooterRoutes = ['/careers/apply', '/lets-innovate'];
   const shouldShowFooter = !hideFooterRoutes.includes(location.pathname);
 
+  const [isModalOpen, setModalOpen] = useState(false);
+
+
   return (
     <div className="App overflow-hidden">
       <Navbar />
       {/* Chat Now Button */}
-      <HeroButton />
+      <HeroButton onClick={() => setModalOpen(true)} />
+      <ChatModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} />
       {/* Main Routes */}
       <Suspense fallback={<Loader />}>
         <Routes>
