@@ -7,32 +7,18 @@ const AnimatedBackground = forwardRef(
       children,
       className = '',
       active = false,
-      isInner = false,
-      bgColor,
-      bgSize = 'cover',
-      bgSizeMob = 'cover',
-      noGrid = false,
-      showBlob = true,
+      bgColor = 'bg-whiteBg',
       topShadow = false,
-      bottomShadow = true, // New prop with default true
+      bottomShadow = true,
     },
     ref
   ) => {
-    const backgroundImage = isInner ? '/inner-hero.png' : '/cube.png';
-    const computedBgColor = bgColor || (isInner ? 'bg-white' : 'bg-whiteBg');
-
     return (
       <div
         ref={ref}
-        className={`${!noGrid ? 'animated-background' : ''} ${computedBgColor} ${active ? 'active' : ''} ${className}`}
-        data-show-blob={showBlob}
+        className={`animated-background ${bgColor} ${active ? 'active' : ''} ${className}`}
         data-top-shadow={topShadow}
-        data-bottom-shadow={bottomShadow} // Pass bottom shadow prop
-        style={{
-          '--bg-image': `url(${backgroundImage})`,
-          '--bg-size': bgSize,
-          '--bg-size-mob': bgSizeMob,
-        }}
+        data-bottom-shadow={bottomShadow}
       >
         {children}
       </div>
@@ -40,6 +26,6 @@ const AnimatedBackground = forwardRef(
   }
 );
 
-AnimatedBackground.displayName = 'AnimatedBackground'; // For better debugging
+AnimatedBackground.displayName = 'AnimatedBackground';
 
 export default AnimatedBackground;

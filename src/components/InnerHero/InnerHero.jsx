@@ -16,7 +16,7 @@ const InnerHero = ({
   spanText2 = "",
   bodyText,
   bodySize = "text-35px",
-  gap = "gap-4",
+  gap = "gap-0",
   bottomShadow = true,
   centeredHeading1 = true,
   centeredHeading2 = true,
