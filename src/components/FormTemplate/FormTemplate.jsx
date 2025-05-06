@@ -118,7 +118,7 @@ const FormTemplate = ({ handleFormSubmit, inputStyles, initialFormData = {}, hid
         <Button
           name="Submit"
           className="w-full py-2"
-          bgColor={isFormValid ? "bg-transparent" : "bg-neon"}
+          bgColor={isFormValid ? "bg-neon" : "bg-neon/90"}
           textColor="text-neon"
           hoverBgColor={isFormValid ? "bg-neon" : "bg-neon"}
           hoverTextColor="text-black"

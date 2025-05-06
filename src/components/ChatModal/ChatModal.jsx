@@ -59,7 +59,7 @@ const ChatModal = ({ isOpen, onClose }) => {
           spanText="Let's Talk"
           spanColor="text-neon"
           color="text-white"
-          size="text-40px"
+          size="text-50px"
           centered={false}
         />
 
