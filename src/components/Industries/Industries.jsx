@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Heading from "../Heading/Heading";
 import industries from "./industriesData";
 import { theme } from "../../theme";
@@ -6,6 +6,7 @@ import IndustryCard from "./modules/IndustryCard";
 
 const Industries = () => {
   const scrollRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(null);
 
   // Drag-to-scroll logic
   let isDown = false;
@@ -32,7 +33,7 @@ const Industries = () => {
     if (!isDown) return;
     e.preventDefault();
     const x = e.pageX - scrollRef.current.offsetLeft;
-    const walk = (x - startX) * 1.5; //scroll-fast
+    const walk = (x - startX) * 1.5;
     scrollRef.current.scrollLeft = scrollLeft - walk;
   };
 
@@ -60,7 +61,13 @@ const Industries = () => {
         onMouseMove={onMouseMove}
       >
         {industries.map((industry, idx) => (
-          <IndustryCard key={idx} industry={industry} />
+          <IndustryCard
+            key={idx}
+            industry={industry}
+            active={activeIndex === idx}
+            onHover={() => setActiveIndex(idx)}
+            onLeave={() => setActiveIndex(null)}
+          />
         ))}
       </div>
     </div>

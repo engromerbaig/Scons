@@ -1,34 +1,54 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import gsap from "gsap";
 import BodyText from "../../BodyText/BodyText";
 
-const CARD_HEIGHT = 320;
-const CARD_WIDTH = 260;
+const CARD_HEIGHT = 280;
+const CARD_WIDTH = 240;
 
-const IndustryCard = ({ industry }) => {
+const IndustryCard = ({ industry, active, onHover, onLeave }) => {
   const overlayRef = useRef(null);
   const detailsRef = useRef(null);
+  const titleBottomRef = useRef(null);
+  const titleTopRef = useRef(null);
 
-  const handleMouseEnter = () => {
-    if (window.innerWidth >= 768) {
-      gsap.to(overlayRef.current, { background: "rgba(0,0,0,0.85)", duration: 0.3 });
-      gsap.to(detailsRef.current, { y: 0, opacity: 1, duration: 0.4 });
-    }
-  };
-
-  const handleMouseLeave = () => {
-    if (window.innerWidth >= 768) {
-      gsap.to(overlayRef.current, { background: "rgba(0,0,0,0.4)", duration: 0.3 });
-      gsap.to(detailsRef.current, { y: "-100%", opacity: 0, duration: 0.3 });
-    }
-  };
-
-  // On mobile, overlay is always dark and details always visible
+  // Mobile always shows details
   const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+
+  useEffect(() => {
+    if (isMobile) return;
+    // Animate overlay
+    gsap.to(overlayRef.current, {
+      background: active ? "rgba(0,0,0,0.85)" : "rgba(0,0,0,0.4)",
+      duration: 0.18,
+      ease: "power2.out"
+    });
+    // Animate details
+    gsap.to(detailsRef.current, {
+      y: active ? 0 : -30,
+      opacity: active ? 1 : 0,
+      duration: 0.18,
+      ease: "power2.out",
+      pointerEvents: active ? "auto" : "none"
+    });
+    // Animate bottom title out
+    gsap.to(titleBottomRef.current, {
+      y: active ? 40 : 0,
+      opacity: active ? 0 : 1,
+      duration: 0.18,
+      ease: "power2.out"
+    });
+    // Animate top title in
+    gsap.to(titleTopRef.current, {
+      y: active ? 0 : -30,
+      opacity: active ? 1 : 0,
+      duration: 0.18,
+      ease: "power2.out"
+    });
+  }, [active, isMobile]);
 
   return (
     <div
-      className="relative rounded-2xl shadow-lg overflow-hidden flex-shrink-0 mx-2 cursor-pointer group"
+      className="relative rounded-2xl overflow-hidden flex-shrink-0 mx-2 cursor-pointer group"
       style={{
         width: CARD_WIDTH,
         height: CARD_HEIGHT,
@@ -36,45 +56,72 @@ const IndustryCard = ({ industry }) => {
         backgroundSize: "cover",
         backgroundPosition: "center"
       }}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      onMouseEnter={() => !isMobile && onHover()}
+      onMouseLeave={() => !isMobile && onLeave()}
+      onTouchStart={() => isMobile && onHover()}
+      onTouchEnd={() => isMobile && onLeave()}
     >
       {/* Overlay */}
       <div
         ref={overlayRef}
-        className="absolute inset-0 transition-all duration-300"
+        className="absolute inset-0 transition-all duration-200"
         style={{
           background: isMobile ? "rgba(0,0,0,0.85)" : "rgba(0,0,0,0.4)",
           zIndex: 1
         }}
       />
 
-      {/* Title at bottom */}
-      <div className="absolute bottom-0 left-0 w-full z-10 p-4 flex items-end" style={{minHeight: 80}}>
+      {/* Bottom Title */}
+      <div
+        ref={titleBottomRef}
+        className="absolute bottom-0 left-0 w-full z-10 p-4 flex items-end"
+        style={{ minHeight: 80 }}
+      >
         <BodyText
           text={industry.name}
           size="text-2xl"
           color="text-white"
           fontWeight="font-bold"
-          className="drop-shadow-lg"
+          className="drop-shadow-lg text-left"
+          centered={false}
+        />
+      </div>
+
+      {/* Top Title (slides in above description) */}
+      <div
+        ref={titleTopRef}
+        className="absolute top-6 left-0 w-full z-20 flex items-start px-6"
+        style={{
+          opacity: 0,
+          y: -50
+        }}
+      >
+        <BodyText
+          text={industry.name}
+          size="text-2xl"
+          color="text-white"
+          fontWeight="font-bold"
+          className="drop-shadow-lg text-left"
+          centered={false}
         />
       </div>
 
       {/* Details slide from top */}
       <div
         ref={detailsRef}
-        className="absolute top-0 left-0 w-full h-full flex items-center justify-center px-6 text-white text-center z-20 pointer-events-none"
+        className="absolute top-16 left-0 w-full h-auto flex items-start justify-start px-6 text-white text-left z-20 pointer-events-none"
         style={{
-          background: "transparent",
-          transform: isMobile ? "translateY(0%)" : "translateY(-100%)",
           opacity: isMobile ? 1 : 0,
-          transition: "all 0.4s cubic-bezier(.4,0,.2,1)"
+          y: isMobile ? 0 : -30,
+          transition: "all 0.18s cubic-bezier(.4,0,.2,1)"
         }}
       >
         <BodyText
           text={industry.details}
-          size="text-base"
+          size="text-sm"
           color="text-white"
+          className="text-left"
+          centered={false}
         />
       </div>
     </div>
