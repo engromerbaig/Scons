@@ -1,33 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import FormField from '../FormSteps/modules/FormField';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import { apiUrl } from '../../utilities/apiUrl';
+import FormTemplate from '../FormTemplate/FormTemplate';
+import Heading from '../Heading/Heading';
+import BodyText from '../BodyText/BodyText';
 
 const ChatModal = ({ isOpen, onClose }) => {
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    description: '',
-  });
-
-  const [isFormValid, setIsFormValid] = useState(false);
-
-  useEffect(() => {
-    const { firstName, lastName, email, phone, description } = formData;
-    const isAllFieldsFilled = firstName && lastName && email && phone && description;
-    setIsFormValid(!!isAllFieldsFilled);
-  }, [formData]);
-
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : '';
     return () => (document.body.style.overflow = '');
   }, [isOpen]);
 
-  const handleFormSubmit = async () => {
-    if (!isFormValid) return;
-
+  const handleFormSubmit = async (formData) => {
     const payload = {
       name: `${formData.firstName} ${formData.lastName}`,
       email: formData.email,
@@ -56,80 +40,46 @@ const ChatModal = ({ isOpen, onClose }) => {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className={`bg-white dark:bg-[#111] w-xl h-screen shadow-xl relative transform transition-transform duration-500 ease-in-out z-110
+        className={`bg-black py-20 px-10 w-[500px] h-screen shadow-xl relative transform transition-transform duration-500 ease-in-out z-110
           ${isOpen ? 'translate-x-0' : 'translate-x-full'}
         `}
       >
-        <button
+       <button
           onClick={onClose}
-          className="absolute top-2 right-2 text-3xl text-gray-400 hover:text-white z-120"
+          className="absolute top-6 right-6 text-50px text-black bg-white hover:bg-white rounded-full w-8 h-8 flex items-center justify-center z-120"
         >
           ×
         </button>
 
-        <h2 className="text-xl font-bold mb-4 text-neon">Let's Talk</h2>
 
-        <div className="flex flex-col gap-2 lg:gap-6">
-          <div className="flex flex-col lg:flex-row gap-2 lg:gap-10">
-            <FormField
-              name="firstName"
-              type="text"
-              placeholder="First Name"
-              value={formData.firstName}
-              onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-              inputStyles={inputStyles}
-            />
-            <FormField
-              name="lastName"
-              type="text"
-              placeholder="Last Name"
-              value={formData.lastName}
-              onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-              inputStyles={inputStyles}
-            />
-          </div>
+        <Heading
+        text="Coffee Break? Let's Talk"
+        spanText="Let's Talk"
+        spanColor="text-neon"
+        color="text-white"
+        size='text-40px'
+        centered={false}
+        
 
-          <div className="flex flex-col lg:flex-row gap-2 lg:gap-10">
-            <FormField
-              name="email"
-              type="email"
-              placeholder="Email"
-              value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              inputStyles={inputStyles}
-            />
-            <FormField
-              name="phone"
-              type="text"
-              placeholder="Phone Number"
-              value={formData.phone}
-              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-              inputStyles={inputStyles}
-            />
-          </div>
+        />
 
-          <FormField
-            name="description"
-            type="textarea"
-            placeholder="What would you like to discuss?"
-            value={formData.description}
-            onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-            inputStyles={inputStyles}
-            rows={4}
-          />
 
-          <div className="flex justify-center mt-4">
-            <div
-              onClick={handleFormSubmit}
-              className={`
-                cursor-pointer font-bold border-2 border-neon px-6 py-2 rounded-lg
-                ${isFormValid ? 'bg-transparent hover:bg-neon' : 'bg-neon opacity-50 cursor-not-allowed'}
-              `}
-            >
-              Submit
-            </div>
-          </div>
-        </div>
+
+        <BodyText
+        text="We are here to help you with your project. Fill out the form below and we will get back to you as soon as possible."
+        centered={false}
+        color="text-grayText"
+        size='text-20px'
+        className='pb-10'
+        />
+
+
+
+
+        <FormTemplate
+          handleFormSubmit={handleFormSubmit}
+          inputStyles={inputStyles}
+        />
       </div>
     </div>
   );
