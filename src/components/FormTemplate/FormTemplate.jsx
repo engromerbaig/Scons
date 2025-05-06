@@ -4,8 +4,7 @@ import Button from '../Button/Button';
 
 const FormTemplate = ({ handleFormSubmit, inputStyles, initialFormData = {} }) => {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
+    name: '',
     email: '',
     phone: '',
     description: '',
@@ -15,8 +14,8 @@ const FormTemplate = ({ handleFormSubmit, inputStyles, initialFormData = {} }) =
   const [isFormValid, setIsFormValid] = useState(false);
 
   useEffect(() => {
-    const { firstName, lastName, email, phone, description } = formData;
-    const isAllFieldsFilled = firstName && lastName && email && phone && description;
+    const { name, email, phone, description } = formData;
+    const isAllFieldsFilled = name && email && phone && description;
     setIsFormValid(!!isAllFieldsFilled);
   }, [formData]);
 
@@ -27,24 +26,14 @@ const FormTemplate = ({ handleFormSubmit, inputStyles, initialFormData = {} }) =
 
   return (
     <div className="flex flex-col gap-2 lg:gap-4">
-      <div className="flex flex-col lg:flex-row gap-2 lg:gap-2">
-        <FormField
-          name="firstName"
-          type="text"
-          placeholder="First Name"
-          value={formData.firstName}
-          onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-          inputStyles={inputStyles}
-        />
-        <FormField
-          name="lastName"
-          type="text"
-          placeholder="Last Name"
-          value={formData.lastName}
-          onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-          inputStyles={inputStyles}
-        />
-      </div>
+      <FormField
+        name="name"
+        type="text"
+        placeholder="Full Name"
+        value={formData.name}
+        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+        inputStyles={inputStyles}
+      />
 
       <div className="flex flex-col lg:flex-row gap-2 lg:gap-2">
         <FormField
@@ -76,15 +65,19 @@ const FormTemplate = ({ handleFormSubmit, inputStyles, initialFormData = {} }) =
       />
 
       <div className="flex justify-center mt-4">
-        <div
+        <Button
+          name="Submit"
+          className="w-full py-2"
+          bgColor={isFormValid ? "bg-transparent" : "bg-neon"}
+          textColor="text-neon"
+          hoverBgColor={isFormValid ? "bg-neon" : "bg-neon"}
+          hoverTextColor="text-black"
+          fontSize="text-20px"
+          fontWeight="font-bold"
+          textAlign='justify-center'
           onClick={onSubmit}
-          className={`
-            cursor-pointer font-bold border-2 border-neon px-6 py-2 rounded-full w-full text-center
-            ${isFormValid ? 'bg-transparent hover:bg-neon' : 'bg-neon opacity-50 cursor-not-allowed'}
-          `}
-        >
-          Submit
-        </div>
+          disabled={!isFormValid}
+        />
       </div>
     </div>
   );

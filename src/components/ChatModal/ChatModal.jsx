@@ -13,7 +13,7 @@ const ChatModal = ({ isOpen, onClose }) => {
 
   const handleFormSubmit = async (formData) => {
     const payload = {
-      name: `${formData.firstName} ${formData.lastName}`,
+      name: formData.name,
       email: formData.email,
       phonenumber: formData.phone,
       description: formData.description,
@@ -31,7 +31,7 @@ const ChatModal = ({ isOpen, onClose }) => {
     }
   };
 
-  const inputStyles = "m-1 p-2 lg:p-3 rounded-full text-bodyText placeholder-bodyText border-neon bg-charcoal w-full focus:outline-none";
+  const inputStyles = "m-1 py-2 px-4 rounded-full text-bodyText placeholder-bodyText border-neon bg-charcoal w-full focus:outline-none";
 
   return (
     <div
@@ -44,37 +44,29 @@ const ChatModal = ({ isOpen, onClose }) => {
           ${isOpen ? 'translate-x-0' : 'translate-x-full'}
         `}
       >
-       <button
+        <button
           onClick={onClose}
           className="absolute top-6 right-6 text-50px text-black bg-white hover:bg-white rounded-full w-8 h-8 flex items-center justify-center z-120"
         >
           ×
         </button>
 
-
         <Heading
-        text="Coffee Break? Let's Talk"
-        spanText="Let's Talk"
-        spanColor="text-neon"
-        color="text-white"
-        size='text-40px'
-        centered={false}
-        
-
+          text="Coffee Break? Let's Talk"
+          spanText="Let's Talk"
+          spanColor="text-neon"
+          color="text-white"
+          size="text-40px"
+          centered={false}
         />
-
-
 
         <BodyText
-        text="We are here to help you with your project. Fill out the form below and we will get back to you as soon as possible."
-        centered={false}
-        color="text-grayText"
-        size='text-20px'
-        className='pb-10'
+          text="We are here to help you with your project. Fill out the form below and we will get back to you as soon as possible."
+          centered={false}
+          color="text-grayText"
+          size="text-20px"
+          className="pb-10"
         />
-
-
-
 
         <FormTemplate
           handleFormSubmit={handleFormSubmit}

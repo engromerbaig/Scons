@@ -11,12 +11,13 @@ const Button = ({
   textColor = "black",
   hoverTextColor = "white",
   hoverBgColor = "bg-black",
+  textAlign="justify-start",
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
     <div
-      className={`inline-flex flex-row items-center justify-start cursor-pointer p-3 ${bgColor} rounded-full ${hoverBgColor ? "hover:" + hoverBgColor : ""
+      className={`inline-flex flex-row items-center ${textAlign} cursor-pointer p-3 ${bgColor} rounded-full ${hoverBgColor ? "hover:" + hoverBgColor : ""
         } transition-all duration-300 relative overflow-hidden hover:shadow-lg ${className}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
