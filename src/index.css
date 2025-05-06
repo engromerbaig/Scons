@@ -329,3 +329,12 @@ html {
   color: var(--color-neon) !important; /* Replace with your neon color variable if using CSS vars */
   cursor: pointer;
 }
+
+/* hide scroll */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
