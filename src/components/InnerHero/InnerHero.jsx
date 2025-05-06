@@ -6,23 +6,23 @@ import AnimatedBackground from "../../utilities/AnimatedBackground/AnimatedBackg
 
 // Helper to map position keywords to Tailwind classes
 const positionClassMap = {
-  "top-left": "absolute top-6 left-[-20px]",
+  "top-left": "absolute top-2 left-[-10px] md:top-6 md:left-[-20px]",
   "top-right": "absolute top-0 right-0",
   "bottom-left": "absolute bottom-0 left-0",
-  "bottom-right": "absolute bottom-20 right-[-60px]",
-  "logo": "absolute bottom-4 right-80",
+  "bottom-right": "absolute bottom-4 right-[-20px] md:bottom-20 md:right-[-60px]",
+  "logo": "absolute bottom-2 right-4 md:bottom-4 md:right-80",
 };
 
 const InnerHero = ({
   height = "min-h-screen",
   headingText,
   spanText,
-  headingSize = "text-70px lg:text-90px",
+  headingSize = "text-90px",
   headingColor = "text-black",
   headingspanColor = "text-black",
   headingText2 = "",
   spanText2 = "",
-  headingSize2 = "text-50px lg:text-60px",
+  headingSize2 = "text-60px",
   bodyText,
   bodySize = "text-30px",
   bottomShadow = true,
@@ -35,15 +35,19 @@ const InnerHero = ({
       className={`relative flex flex-col w-full items-start justify-center ${height} ${theme.layoutPages.paddingHorizontal}`}
     >
       {/* Render all images if provided */}
-      {images.map((img, idx) => (
-        <img
-          key={idx}
-          src={img.src}
-          alt={img.alt || `Decorative image`}
-          className={`z-10 ${positionClassMap[img.position] || ""} ${img.className || ""}`}
-          style={img.style}
-        />
-      ))}
+      {images.map((img, idx) => {
+        const isBottomRight = img.position === "bottom-right";
+        const responsiveClass = isBottomRight ? "hidden xl:block" : "";
+        return (
+          <img
+            key={idx}
+            src={img.src}
+            alt={img.alt || `Decorative image`}
+            className={`z-10 ${positionClassMap[img.position] || ""} ${responsiveClass} ${img.className || ""}`}
+            style={img.style}
+          />
+        );
+      })}
 
       <div className="flex flex-col w-full">
         <Heading

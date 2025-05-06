@@ -26,7 +26,7 @@ const KnowUs = () => {
   bodyText="Scons is a dynamic tech powerhouse, delivering innovative software solutions worldwide."
   images={[
     { src: ballImage, position: "top-left", alt: "Hand illustration", className: "w-28 h-28" },
-    { src: handImage, position: "bottom-right", alt: "Ball illustration", className: "w-96" },
+    { src: handImage, position: "bottom-right", alt: "Ball illustration", className: "w-[500px]" },
     { src: logoImage, position: "logo", alt: "Scons Logo", className: "w-32 h-16" }
   ]}
 />
