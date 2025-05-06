@@ -4,34 +4,48 @@ import BodyText from "../BodyText/BodyText";
 import { theme } from "../../theme";
 import AnimatedBackground from "../../utilities/AnimatedBackground/AnimatedBackground";
 
+// Helper to map position keywords to Tailwind classes
+const positionClassMap = {
+  "top-left": "absolute top-0 left-0",
+  "top-right": "absolute top-0 right-0",
+  "bottom-left": "absolute bottom-0 left-0",
+  "bottom-right": "absolute bottom-0 right-0",
+  "logo": "absolute bottom-4 right-4",
+};
+
 const InnerHero = ({
   height = "min-h-screen",
   headingText,
   spanText,
   headingSize = "text-70px lg:text-90px",
-  headingSize2 = "text-50px lg:text-60px",
   headingColor = "text-black",
   headingspanColor = "text-black",
   headingText2 = "",
   spanText2 = "",
+  headingSize2 = "text-50px lg:text-60px",
   bodyText,
   bodySize = "text-30px",
-  gap = "gap-0",
   bottomShadow = true,
-  isCareer = false,
-  image = null,
+  contentPadding = "pr-0 xl:pr-60",
+  images = [], // Array of {src, alt, position, className, style}
 }) => {
   return (
     <AnimatedBackground
-      isInner={true}
       bottomShadow={bottomShadow}
-      className={`flex flex-col w-full items-start justify-center ${gap} ${height} ${theme.layoutPages.paddingHorizontal} ${
-        isCareer ? "lg:flex-row" : ""
-      }`}
+      className={`relative flex flex-col w-full items-start justify-center ${height} ${theme.layoutPages.paddingHorizontal}`}
     >
-      <div
-        className={`flex flex-col ${gap} ${isCareer ? "lg:w-[60%] w-full" : "w-full"}`}
-      >
+      {/* Render all images if provided */}
+      {images.map((img, idx) => (
+        <img
+          key={idx}
+          src={img.src}
+          alt={img.alt || `Decorative image`}
+          className={`z-10 ${positionClassMap[img.position] || ""} ${img.className || ""}`}
+          style={img.style}
+        />
+      ))}
+
+      <div className="flex flex-col w-full">
         <Heading
           text={headingText}
           size={headingSize}
@@ -39,8 +53,8 @@ const InnerHero = ({
           color={headingColor}
           spanColor={headingspanColor}
           breakSpan={false}
-          centered={false} // Force left alignment
-          className="leading-tight text-left"
+          centered={false}
+          className={`leading-tight text-left ${contentPadding}`}
         />
 
         {headingText2 && (
@@ -53,8 +67,8 @@ const InnerHero = ({
                 spanColor="text-neon"
                 size={headingSize2}
                 fontWeight="font-medium"
-                centered={false} // Force left alignment
-                className="tracking-widest text-left"
+                centered={false}
+                className={`tracking-widest text-left ${contentPadding}`}
               />
             </div>
           </div>
@@ -63,16 +77,10 @@ const InnerHero = ({
         <BodyText
           text={bodyText}
           size={bodySize}
-          centered={false} // Force left alignment
-          className="mt-2 text-left xl:pr-60 leading-tight"
+          centered={false}
+          className={`mt-2 text-left leading-tight ${contentPadding}`}
         />
       </div>
-
-      {isCareer && image && (
-        <div className="lg:w-[40%] w-full flex justify-center mt-8 lg:mt-0">
-          <img src={image} alt="Career" className="w-3/4 h-auto" />
-        </div>
-      )}
     </AnimatedBackground>
   );
 };

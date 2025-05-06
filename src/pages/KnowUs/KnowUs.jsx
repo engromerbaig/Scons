@@ -8,6 +8,12 @@ import AnimatedBackground from "../../utilities/AnimatedBackground/AnimatedBackg
 import { visionData } from "./visionData";
 import GreenBelt from "../../components/GreenBelt/GreenBelt";
 
+
+import handImage from "../../assets/images/about/hand.webp"
+import ballImage from "../../assets/images/about/ball.webp"
+import logoImage from "../../assets/images/about/logo.svg"
+
+
 const KnowUs = () => {
    
 
@@ -15,10 +21,15 @@ const KnowUs = () => {
         <>
        {/* Inner Hero Section */}
        <InnerHero
-                headingText="About Scons"
-                spanText="Scons"
-                bodyText="Scons is a dynamic tech powerhouse, delivering innovative software solutions worldwide."
-            />
+  headingText="About Scons"
+  spanText="Scons"
+  bodyText="Scons is a dynamic tech powerhouse, delivering innovative software solutions worldwide."
+  images={[
+    { src: ballImage, position: "top-left", alt: "Hand illustration", className: "w-28 h-28" },
+    { src: handImage, position: "bottom-right", alt: "Ball illustration", className: "w-80" },
+    { src: logoImage, position: "logo", alt: "Scons Logo", className: "w-16 h-16" }
+  ]}
+/>
 
         <div className="py-20 ">
             {visionData.map((item, index) => (
