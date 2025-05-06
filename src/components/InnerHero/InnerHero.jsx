@@ -6,11 +6,11 @@ import AnimatedBackground from "../../utilities/AnimatedBackground/AnimatedBackg
 
 // Helper to map position keywords to Tailwind classes
 const positionClassMap = {
-  "top-left": "absolute top-0 left-0",
+  "top-left": "absolute top-6 left-4",
   "top-right": "absolute top-0 right-0",
   "bottom-left": "absolute bottom-0 left-0",
-  "bottom-right": "absolute bottom-0 right-0",
-  "logo": "absolute bottom-4 right-4",
+  "bottom-right": "absolute bottom-20 right-[-60px]",
+  "logo": "absolute bottom-4 right-80",
 };
 
 const InnerHero = ({
