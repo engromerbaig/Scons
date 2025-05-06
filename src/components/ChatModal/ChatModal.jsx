@@ -20,6 +20,11 @@ const ChatModal = ({ isOpen, onClose }) => {
     setIsFormValid(!!isAllFieldsFilled);
   }, [formData]);
 
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+    return () => (document.body.style.overflow = '');
+  }, [isOpen]);
+
   const handleFormSubmit = async () => {
     if (!isFormValid) return;
 
@@ -36,7 +41,7 @@ const ChatModal = ({ isOpen, onClose }) => {
       const response = await axios.post(`${apiUrl}/api/leads`, payload);
       const leadId = response.data.lead_id;
       console.log("CRM Lead Created:", leadId);
-      onClose(); // close modal on success
+      onClose();
     } catch (error) {
       console.error('Error submitting to CRM:', error.response || error.message);
     }
@@ -44,19 +49,27 @@ const ChatModal = ({ isOpen, onClose }) => {
 
   const inputStyles = "m-1 p-2 lg:p-3 border-b text-bodyText placeholder-bodyText border-neon bg-transparent w-full focus:outline-none";
 
-  if (!isOpen) return null;
-
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center">
-      <div className="bg-white dark:bg-[#111] rounded-lg w-full max-w-xl p-6 relative shadow-xl z-50">
-        {/* Close Button */}
-        <button onClick={onClose} className="absolute top-2 right-2 text-3xl text-gray-400 hover:text-white">&times;</button>
+    <div
+      className={`fixed inset-0 z-[20000] flex items-center justify-end bg-black bg-opacity-50 transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+      onClick={onClose}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className={`bg-white dark:bg-[#111] w-xl h-screen shadow-xl relative transform transition-transform duration-500 ease-in-out z-110
+          ${isOpen ? 'translate-x-0' : 'translate-x-full'}
+        `}
+      >
+        <button
+          onClick={onClose}
+          className="absolute top-2 right-2 text-3xl text-gray-400 hover:text-white z-120"
+        >
+          ×
+        </button>
 
         <h2 className="text-xl font-bold mb-4 text-neon">Let's Talk</h2>
 
-        {/* Form Start */}
         <div className="flex flex-col gap-2 lg:gap-6">
-          {/* Row 1 */}
           <div className="flex flex-col lg:flex-row gap-2 lg:gap-10">
             <FormField
               name="firstName"
@@ -76,7 +89,6 @@ const ChatModal = ({ isOpen, onClose }) => {
             />
           </div>
 
-          {/* Row 2 */}
           <div className="flex flex-col lg:flex-row gap-2 lg:gap-10">
             <FormField
               name="email"
@@ -96,7 +108,6 @@ const ChatModal = ({ isOpen, onClose }) => {
             />
           </div>
 
-          {/* Row 3 */}
           <FormField
             name="description"
             type="textarea"
@@ -107,7 +118,6 @@ const ChatModal = ({ isOpen, onClose }) => {
             rows={4}
           />
 
-          {/* Submit Button */}
           <div className="flex justify-center mt-4">
             <div
               onClick={handleFormSubmit}
