@@ -1,8 +1,21 @@
 // Import the icon(s) for each industry
 
 
-import industryImage from "../../assets/images/industries/1.webp"
 // new
+import ecommerceImage from "../../assets/images/industries/ecommerce.webp";
+import educationImage from "../../assets/images/industries/education.webp";
+import financeImage from "../../assets/images/industries/finance.webp";
+import fintechImage from "../../assets/images/industries/fintech.webp";
+import hospitalImage from "../../assets/images/industries/hospital.webp";
+import hotelImage from "../../assets/images/industries/hotel.webp";
+import ondemandImage from "../../assets/images/industries/ondemand.webp";
+import realImage from "../../assets/images/industries/real.webp";
+import techImage from "../../assets/images/industries/tech.webp";
+import travelImage from "../../assets/images/industries/travel.webp";
+
+
+
+
 
 
 import eCommerceIcon from '../../assets/icons/industries/Ecommerce.svg';
@@ -28,55 +41,55 @@ const industries = [
     {
         name: "Finance",
         icon: financeIcon,
-        image: industryImage,
+        image: financeImage,
         details: "Finance is all about getting the right alerts at the right time in addition to the best levels of encryption and a no-compromise approach. We understand that."
     },
     {
         name: "Health Care",
         icon: healthCareIcon,
-        image: industryImage,
+        image: hospitalImage,
 
         details: "From universal patient directories to automated hospital management systems, we do everything when it comes to healthcare software solutions."
     },
     {
         name: "Ecommerce",
         icon: eCommerceIcon,
-        image: industryImage,
+        image: ecommerceImage,
 
         details: "From custom payment gateways to automated traffic load scaling, our e-commerce software solutions are all about functionality."
     },
     {
         name: "Education",
         icon: educationIcon,
-                image: industryImage,
+                image: educationImage,
 
         details: "Unleash the power of custom curriculums and the best-in-class attendance system and more with our edu-software solutions."
     },
     {
         name: "On Demand",
         icon: onDemandIcon,
-                image: industryImage,
+                image: ondemandImage,
 
         details: "Want to be the next DoorDash of medicinal equipment supplies or be the on-demand educational content supplier? We got you covered."
     },
     {
         name: "Travel",
         icon: travelIcon,
-                image: industryImage,
+                image: travelImage,
 
         details: "Whether it is automated flight booking or automated travel planning with variable condition settings, we do it all with our travel software solutions."
     },
     {
         name: "Real Estate",
         icon: realEstateIcon,
-                image: industryImage,
+                image: realImage,
 
         details: "Do you want to automate the rent collection process for your tenants or get custom alerts for new prospective property listings? Our real-estate software Solutions are here for you."
     },
     {
         name: "Hospitality",
         icon: hotelIcon,
-                image: industryImage,
+                image: hotelImage,
 
         details: "Managing multiple restaurants and hotels can be challenging. Our hospitality enterprise software solutions ensure real-time establishment management."
     },
@@ -85,7 +98,7 @@ const industries = [
     {
         name: "Technology",
         icon: techIcon,
-                image: industryImage,
+                image: techImage,
 
         details: "Stay ahead in a fast-evolving digital world with our innovative technology solutions, offering seamless integration, enhanced security, and cutting-edge performance."
 
@@ -95,7 +108,7 @@ const industries = [
     {
         name: "Fintech",
         icon: fintechIcon,
-                image: industryImage,
+                image: financeImage,
 
         details: "Transform financial services with our fintech solutions, designed to optimize transactions, improve security, and drive innovation in payments, banking, and investments."
 

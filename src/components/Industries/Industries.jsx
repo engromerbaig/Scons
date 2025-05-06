@@ -39,7 +39,7 @@ const Industries = () => {
 
   return (
     <div
-      className={`min-h-screen bg-black text-white ${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} flex flex-col items-center`}
+      className={`min-h-screen bg-white text-black ${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} flex flex-col items-center`}
     >
       <div className="flex flex-col md:flex-row justify-between items-start w-full py-20">
         <Heading
@@ -47,7 +47,7 @@ const Industries = () => {
           centered={false}
           breakSpan={true}
           isAnimate={false}
-          color="text-white"
+          color="text-black"
           className="md:pr-20"
         />
       </div>
