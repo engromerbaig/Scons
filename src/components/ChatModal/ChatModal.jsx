@@ -55,8 +55,8 @@ const ChatModal = ({ isOpen, onClose }) => {
       <div className="flex flex-col gap-6">
 
       <Heading
-          text="Coffee Break? Let's Talk"
-          spanText="Let's Talk"
+          text="Coffee Break?"
+          spanText="Break?"
           spanColor="text-neon"
           color="text-white"
           size="text-50px"
@@ -64,9 +64,9 @@ const ChatModal = ({ isOpen, onClose }) => {
         />
 
         <BodyText
-          text="We are here to help you with your project. Fill out the form below and we will get back to you as soon as possible."
+          text="Let's chat! We are here to help you with your project. Fill out the form below and we will get back to you as soon as possible."
           centered={false}
-          color="text-grayText"
+          color="text-white"
           size="text-20px"
         />
     <FormTemplate
