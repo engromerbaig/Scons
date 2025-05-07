@@ -5,7 +5,16 @@ import { theme } from "../../theme";
 
 const Vision = ({ heading, span, body, imageSrc }) => (
   <section className={`bg-black ${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical}`}>
+    <Heading
+      text="What We Stand For"
+      spanText="Stand"
+      spanColor="text-neon"
+      color="text-white"
+      centered={false}
+      className="pb-20"
+      />
     <div className="text-white grid grid-cols-1 md:grid-cols-12 gap-8 items-center px-4 md:px-16">
+        
       {/* Image (optional) */}
       {imageSrc && (
         <div className="md:col-span-6 flex justify-center mb-6 md:mb-0">
