@@ -2,91 +2,64 @@ import React from "react";
 import Heading from "../Heading/Heading";
 import BodyText from "../BodyText/BodyText";
 import { theme } from "../../theme";
-import AnimatedBackground from "../../utilities/AnimatedBackground/AnimatedBackground";
-
-// Helper to map position keywords to Tailwind classes
-const positionClassMap = {
-  "top-left": "absolute top-2 left-[-10px] md:top-6 md:left-[-20px]",
-  "top-right": "absolute top-0 right-0",
-  "bottom-left": "absolute bottom-0 left-0",
-  "bottom-right": "absolute bottom-4 right-[-20px] md:bottom-20 md:right-[-60px]",
-  "logo": "absolute bottom-2 right-4 md:bottom-4 md:right-80",
-};
 
 const InnerHero = ({
-  height = "min-h-screen",
+  logoImage,
+  illustrationImage,
   headingText,
   spanText,
-  headingSize = "text-90px",
-  headingColor = "text-black",
-  headingspanColor = "text-black",
-  headingText2 = "",
-  spanText2 = "",
-  headingSize2 = "text-60px",
   bodyText,
-  bodySize = "text-30px",
-  bottomShadow = true,
-  contentPadding = "pr-0 xl:pr-60",
-  images = [], // Array of {src, alt, position, className, style}
-}) => {
-  return (
-    <AnimatedBackground
-      bottomShadow={bottomShadow}
-      className={`relative flex flex-col w-full items-start justify-center ${height} ${theme.layoutPages.paddingHorizontal}`}
-    >
-      {/* Render all images if provided */}
-      {images.map((img, idx) => {
-        const isBottomRight = img.position === "bottom-right";
-        const responsiveClass = isBottomRight ? "hidden xl:block" : "";
-        return (
-          <img
-            key={idx}
-            src={img.src}
-            alt={img.alt || `Decorative image`}
-            className={`z-10 ${positionClassMap[img.position] || ""} ${responsiveClass} ${img.className || ""}`}
-            style={img.style}
-          />
-        );
-      })}
-
-      <div className="flex flex-col w-full">
+  height = "h-screen", // Default full viewport height
+  headingSize = "text-6xl md:text-7xl",
+  bodySize = "text-xl md:text-2xl",
+}) => (
+  <section
+  className={`
+    relative w-full flex items-center justify-center
+    ${height} 
+    ${theme.layoutPages.paddingHorizontal}
+  `}
+  style={{
+    background: "linear-gradient(to bottom, #B8C3C4 0%, #B8C3C4 80%, #ECE9DF 90%)"
+    // Replace #1e3a8a and #f5f5dc with your actual heroBlue and beige hex codes
+  }}
+>
+    <div className="w-full max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center justify-between gap-12 md:gap-0">
+      {/* Left Side: Logo, Heading, Body */}
+      <div className="flex flex-col items-start justify-center flex-1 gap-6">
+        {logoImage && (
+          <img src={logoImage} alt="Logo" className="w-32 h-16 mb-4 object-contain" />
+        )}
         <Heading
           text={headingText}
-          size={headingSize}
           spanText={spanText}
-          color={headingColor}
-          spanColor={headingspanColor}
-          breakSpan={false}
+          size={headingSize}
+          color="text-black"
+          spanColor="text-black"
           centered={false}
-          className={`leading-tight text-left ${contentPadding}`}
+          className="font-bold leading-tight"
         />
-
-        {headingText2 && (
-          <div className="w-full flex justify-start mt-4">
-            <div className="border-4 rounded-full border-neon px-6 py-2 inline-block">
-              <Heading
-                text={headingText2}
-                spanText={spanText2}
-                color="text-black"
-                spanColor="text-neon"
-                size={headingSize2}
-                fontWeight="font-medium"
-                centered={false}
-                className={`tracking-widest text-left ${contentPadding}`}
-              />
-            </div>
-          </div>
-        )}
-
         <BodyText
           text={bodyText}
           size={bodySize}
+          color="text-black"
           centered={false}
-          className={`mt-2 text-left leading-tight ${contentPadding}`}
+          className="mt-2"
         />
       </div>
-    </AnimatedBackground>
-  );
-};
+
+      {/* Right Side: Illustration */}
+      <div className="flex-1 flex items-center justify-center">
+        {illustrationImage && (
+          <img
+            src={illustrationImage}
+            alt="Hero Illustration"
+            className="w-full max-w-lg object-contain"
+          />
+        )}
+      </div>
+    </div>
+  </section>
+);
 
 export default InnerHero;
