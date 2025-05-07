@@ -27,11 +27,12 @@ const Vision = () => {
       </div>
 
       {/* Collage Grid */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 w-full gap-2">
+      <div className="grid grid-cols-2 lg:grid-cols-4 w-full gap-0">
         {visionMissionData.map((item, index) => (
           <div 
             key={index}
-            className="relative w-full h-full cursor-pointer group overflow-hidden"
+            className="relative w-full h-72 md:h-96 xl:h-[600px] cursor-pointer group overflow-hidden"
+            // ^^^ height set here
           >
             {/* Image */}
             <img 
@@ -63,6 +64,7 @@ const Vision = () => {
                 size="text-sm"
                 centered={false}
                 isAnimate={false}
+                className='pb-6 xl:pb-40'
               />
             </div>
           </div>
