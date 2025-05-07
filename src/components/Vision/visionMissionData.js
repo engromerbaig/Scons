@@ -24,4 +24,16 @@ export const visionMissionData = [
     body: "We operate with honesty and openness, fostering trust and long-term relationships with clients and team members.",
     imageSrc: transparencyImg,
   },
+
+  {
+    heading: "Transparency2",
+    body: "We operate with honesty and openness, fostering trust and long-term relationships with clients and team members.",
+    imageSrc: transparencyImg,
+  },
+  {
+    heading: "Customer Care",
+    body: "We prioritize our clients' needs, ensuring every solution we create delivers exceptional value and user experience.",
+    imageSrc: customerImg,
+  },
+
 ];
