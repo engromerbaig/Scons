@@ -7,7 +7,7 @@ const AnimatedBackground = forwardRef(
       children,
       className = '',
       active = false,
-      bgColor = 'bg-offWhite',
+      bgColor = 'bg-white',
       topShadow = false,
       bottomShadow = true,
     },
