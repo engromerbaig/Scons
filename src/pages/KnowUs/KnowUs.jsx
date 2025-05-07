@@ -17,6 +17,8 @@ import officeImage from "../../assets/images/about/office.webp"
 import { theme } from "../../theme";
 import Highlights from "../../components/UniqueApproach/modules/Highlights";
 
+import HeadingWithText from "../../utilities/HeadingWithText";
+
 
 const KnowUs = () => {
    
@@ -43,18 +45,11 @@ const KnowUs = () => {
   </div>
 
   {/* Text container - left aligned */}
-  <div className="flex flex-col items-start gap-y-4">
-    <Heading
-      text="Building software for global leaders"
-      className="text-start"
-    />
-    <BodyText
-      text="At Scons, we envision a world where technology seamlessly integrates into every aspect of life, empowering individuals and businesses to achieve their fullest potential. We strive to be at the forefront of innovation, creating solutions that not only meet the needs of today but also anticipate the challenges of tomorrow."
-      size="text-30px"
-      color="text-black"
-      className="text-start"
-      fontWeight="font-normal"
-    />
+  <div className="flex flex-col items-start gap-y-6 pt-10">
+  <HeadingWithText
+  heading="Building software for global leaders"
+  body="At Scons, we envision a world where technology seamlessly integrates into every aspect of life, empowering individuals and businesses to achieve their fullest potential. We strive to be at the forefront of innovation, creating solutions that not only meet the needs of today but also anticipate the challenges of tomorrow."
+/>
 
     <Highlights />
   </div>
