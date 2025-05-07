@@ -24,6 +24,7 @@ import MessageBox from "../../components/MessageBox/MessageBox";
 import Industries from "../../components/Industries/Industries";
 import Locations from "../../components/Locations/Locations";
 import Testimonials from "../../components/Testimonials/Testimonials";
+import Technologies from "../../components/Technologies/Technologies";
 
 
 const KnowUs = () => {
@@ -70,6 +71,7 @@ const KnowUs = () => {
   />
 
   <Industries />
+  <Technologies />
 
 <Vision />
 
