@@ -15,7 +15,7 @@ import ballImage from "../../assets/images/about/ball.webp"
 import logoImage from "../../assets/images/about/logo.svg"
 import officeImage from "../../assets/images/about/office.webp"
 
-import heroImage from "../../assets/images/about/office.webp"
+import heroImage from "../../assets/images/about/about.png"
 
 import StartProjectBelt from "../../components/StartProjectBelt/StartProjectBelt";
 

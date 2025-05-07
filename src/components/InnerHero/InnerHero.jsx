@@ -29,7 +29,7 @@ const InnerHero = ({
       {/* Left Side: Logo, Heading, Body */}
       <div className="flex flex-col items-start justify-center flex-1 gap-2">
         {logoImage && (
-          <img src={logoImage} alt="Logo" className="w-32 h-16 mb-0 object-contain" />
+          <img src={logoImage} alt="Logo" className="w-40 h-16 mb-0 object-contain" />
         )}
         <Heading
           text={headingText}
