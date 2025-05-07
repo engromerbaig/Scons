@@ -10,25 +10,26 @@ const InnerHero = ({
   spanText,
   bodyText,
   height = "h-screen", // Default full viewport height
-  headingSize = "text-6xl md:text-7xl",
-  bodySize = "text-xl md:text-2xl",
+  headingSize = "text-90px",
+  bodySize = "text-30px",
 }) => (
   <section
   className={`
     relative w-full flex items-center justify-center
     ${height} 
     ${theme.layoutPages.paddingHorizontal}
+    ${theme.layoutPages.paddingVertical}
   `}
   style={{
     background: "linear-gradient(to bottom, #B8C3C4 0%, #B8C3C4 80%, #ECE9DF 90%)"
     // Replace #1e3a8a and #f5f5dc with your actual heroBlue and beige hex codes
   }}
 >
-    <div className="w-full max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center justify-between gap-12 md:gap-0">
+    <div className="w-full flex flex-col-reverse md:flex-row items-center justify-between gap-4 md:gap-0">
       {/* Left Side: Logo, Heading, Body */}
-      <div className="flex flex-col items-start justify-center flex-1 gap-6">
+      <div className="flex flex-col items-start justify-center flex-1 gap-2">
         {logoImage && (
-          <img src={logoImage} alt="Logo" className="w-32 h-16 mb-4 object-contain" />
+          <img src={logoImage} alt="Logo" className="w-32 h-16 mb-0 object-contain" />
         )}
         <Heading
           text={headingText}
@@ -36,15 +37,17 @@ const InnerHero = ({
           size={headingSize}
           color="text-black"
           spanColor="text-black"
+          fontWeight="font-black"
+          spanFontWeight="font-black"
           centered={false}
-          className="font-bold leading-tight"
+          className=" leading-none"
         />
         <BodyText
           text={bodyText}
           size={bodySize}
           color="text-black"
           centered={false}
-          className="mt-2"
+          className="mt-2 leading-none"
         />
       </div>
 
