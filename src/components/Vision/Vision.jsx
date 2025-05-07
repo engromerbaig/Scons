@@ -1,33 +1,75 @@
-import React from "react";
-import Heading from "../Heading/Heading";
-import BodyText from "../BodyText/BodyText";
-import { theme } from "../../theme";
+import { useState, useEffect } from 'react';
+import { visionMissionData } from './visionMissionData';
+import Heading from '../Heading/Heading';
+import BodyText from '../BodyText/BodyText';
+import { theme } from '../../theme';
 
-const Vision = ({ heading, span, body, imageSrc }) => (
-  <section className={`bg-black ${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical}`}>
-    <Heading
-      text="What We Stand For"
-      spanText="Stand"
-      spanColor="text-neon"
-      color="text-white"
-      centered={false}
-      className="pb-20"
-      />
-    <div className="text-white grid grid-cols-1 md:grid-cols-12 gap-8 items-center px-4 md:px-16">
-        
-      {/* Image (optional) */}
-      {imageSrc && (
-        <div className="md:col-span-6 flex justify-center mb-6 md:mb-0">
-          <img src={imageSrc} className="w-full max-w-md" alt="" />
-        </div>
-      )}
-      {/* Text */}
-      <div className={`md:col-span-6`}>
-        <Heading text={heading} spanText={span} className="pb-2" spanColor="text-white" color="text-white" />
-        <BodyText text={body} className="leading-loose" color="text-white" />
+const Vision = () => {
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  useEffect(() => {
+    document.body.style.overflow = selectedImage !== null ? 'hidden' : 'unset';
+  }, [selectedImage]);
+
+  return (
+    <div className={`min-h-screen flex flex-col items-center justify-start bg-black text-white ${theme.layoutPages.paddingHorizontal} py-16`}>
+      
+      {/* Main Heading */}
+      <div className="mb-12 text-center">
+        <Heading
+          text="Our Vision & Goals"
+          color="text-white"
+          size="text-5xl"
+          centered
+          fontWeight="font-bold"
+          isAnimate={false}
+        />
+      </div>
+
+      {/* Collage Grid */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 w-full gap-2">
+        {visionMissionData.map((item, index) => (
+          <div 
+            key={index}
+            className="relative w-full h-full cursor-pointer group overflow-hidden"
+          >
+            {/* Image */}
+            <img 
+              src={item.imageSrc}
+              alt={item.heading}
+              className="w-full h-full object-cover"
+            />
+
+            {/* Overlay that slides from left */}
+            <div className="absolute inset-0 bg-black -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-in-out opacity-70" />
+
+            {/* Text content: vertical and animated */}
+            <div className="absolute bottom-4 left-2 flex flex-col lg:[writing-mode:vertical-rl] [writing-mode:horizontal-tb] lg:rotate-180 translate-y-full group-hover:translate-y-0 transition-all duration-500 ease-out delay-300 opacity-0 group-hover:opacity-100">
+              
+              {/* Always visible heading */}
+              <Heading
+                text={item.heading}
+                color="text-neon"
+                size="text-40px"
+                centered={false}
+                fontWeight="font-semibold"
+                isAnimate={false}
+              />
+
+              {/* Sliding body text */}
+              <BodyText
+                text={item.body}
+                color="text-white"
+                size="text-sm"
+                centered={false}
+                isAnimate={false}
+              />
+            </div>
+          </div>
+        ))}
       </div>
     </div>
-  </section>
-);
+  );
+};
 
 export default Vision;

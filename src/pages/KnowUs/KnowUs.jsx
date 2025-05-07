@@ -69,9 +69,7 @@ const KnowUs = () => {
 
   <Industries />
 
-  {visionMissionData.map((item, idx) => (
-  <Vision key={idx} {...item} />
-))}
+<Vision />
 
 
 <GreenBelt>
