@@ -14,6 +14,9 @@ import handImage from "../../assets/images/about/hand.webp"
 import ballImage from "../../assets/images/about/ball.webp"
 import logoImage from "../../assets/images/about/logo.svg"
 import officeImage from "../../assets/images/about/office.webp"
+import StartProjectBelt from "../../components/StartProjectBelt/StartProjectBelt";
+
+import ceoImage from "../../assets/images/about/ceo.jpeg"
 
 import { theme } from "../../theme";
 import Highlights from "../../components/UniqueApproach/modules/Highlights";
@@ -65,9 +68,9 @@ const KnowUs = () => {
 <MessageBox
     
     Message="We are a team of passionate individuals who believe in the power of technology to transform lives. Our mission is to create innovative solutions that make a difference."
-    Name="John Doe"
-    Designation="CEO, Scons"
-    ProfileDisplay={officeImage}
+    Name="Seth Faraz"
+    Designation="CEO, Scons Tech"
+    ProfileDisplay={ceoImage}
   />
 
   <Industries />
@@ -77,6 +80,7 @@ const KnowUs = () => {
 
 
 <Locations />
+<StartProjectBelt />
 
 <Testimonials />
 
