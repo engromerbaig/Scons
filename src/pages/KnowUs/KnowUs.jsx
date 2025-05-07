@@ -22,6 +22,8 @@ import HeadingWithText from "../../utilities/HeadingWithText";
 import MessageBox from "../../components/MessageBox/MessageBox";
 
 import Industries from "../../components/Industries/Industries";
+import Locations from "../../components/Locations/Locations";
+import Testimonials from "../../components/Testimonials/Testimonials";
 
 
 const KnowUs = () => {
@@ -72,17 +74,10 @@ const KnowUs = () => {
 <Vision />
 
 
-<GreenBelt>
-<Heading
-                    text="Leadership"
-                    size="text-70px"
-                    fontWeight="font-semibold"
-                />
+<Locations />
 
+<Testimonials />
 
-</GreenBelt>
-
-<Collage />
 
 
         </>
