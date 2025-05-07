@@ -12,7 +12,7 @@ const Vision = () => {
   }, [selectedImage]);
 
   return (
-    <div className={`min-h-screen flex flex-col items-center justify-start bg-black text-white ${theme.layoutPages.paddingHorizontal} py-16`}>
+    <div className={`min-h-screen flex flex-col items-center justify-start bg-black text-white ${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical}`}>
       
       {/* Main Heading */}
       <div className="mb-12 text-center">
@@ -38,7 +38,7 @@ const Vision = () => {
             <img 
               src={item.imageSrc}
               alt={item.heading}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover "
             />
 
             {/* Overlay that slides from left */}
