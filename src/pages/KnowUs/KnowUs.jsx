@@ -18,6 +18,9 @@ import { theme } from "../../theme";
 import Highlights from "../../components/UniqueApproach/modules/Highlights";
 
 import HeadingWithText from "../../utilities/HeadingWithText";
+import MessageBox from "../../components/MessageBox/MessageBox";
+
+import Industries from "../../components/Industries/Industries";
 
 
 const KnowUs = () => {
@@ -54,6 +57,16 @@ const KnowUs = () => {
     <Highlights />
   </div>
 </div>
+
+<MessageBox
+    
+    Message="We are a team of passionate individuals who believe in the power of technology to transform lives. Our mission is to create innovative solutions that make a difference."
+    Name="John Doe"
+    Designation="CEO, Scons"
+    ProfileDisplay={officeImage}
+  />
+
+  <Industries />
 
  
 

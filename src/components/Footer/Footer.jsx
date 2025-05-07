@@ -12,7 +12,7 @@ import { theme } from "../../theme";
 
 const Footer = () => {
   return (
-    <footer className={`w-full bg-black text-white min-h-screen ${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVerticalTop}`}>
+    <footer className={`w-full bg-black text-white min-h-screen ${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical}`}>
       
       {/* ROW 1: Logo + Contact | Pages | Services */}
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 border-b border-gray-800 pb-10 text-left">
