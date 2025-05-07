@@ -1,6 +1,7 @@
 import Heading from "../../components/Heading/Heading";
 import BodyText from "../../components/BodyText/BodyText";
 import Vision from "../../components/Vision/Vision";
+import { visionMissionData } from "../../components/Vision/visionMissionData";
 
 import Collage from "../../components/Collage/Collage";
 import InnerHero from "../../components/InnerHero/InnerHero";
@@ -68,7 +69,9 @@ const KnowUs = () => {
 
   <Industries />
 
- 
+  {visionMissionData.map((item, idx) => (
+  <Vision key={idx} {...item} />
+))}
 
 
 <GreenBelt>
