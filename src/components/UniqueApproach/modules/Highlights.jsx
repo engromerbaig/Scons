@@ -28,7 +28,7 @@ const Highlights = () => {
       initial="hidden"
       animate="visible"
       transition={{ staggerChildren: 0.2 }} // Stagger each child item
-      className="grid grid-cols-2 lg:grid-cols-4 gap-y-0 gap-x-12 " // Add padding to the grid container
+      className="grid grid-cols-2 lg:grid-cols-4 gap-y-0 gap-x-6 " // Add padding to the grid container
     >
       {stats.map((stat, index) => (
         <motion.div

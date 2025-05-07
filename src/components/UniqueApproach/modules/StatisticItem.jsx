@@ -59,7 +59,7 @@ const StatisticItem = ({ title, icon, value }) => {
       <BodyText
         text={title}
         size="text-30px"
-        className="text-center" // Center-align the text
+        className="text-start" // Center-align the text
         color='text-black'
         fontWeight='font-medium'
       />

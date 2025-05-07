@@ -12,6 +12,10 @@ import GreenBelt from "../../components/GreenBelt/GreenBelt";
 import handImage from "../../assets/images/about/hand.webp"
 import ballImage from "../../assets/images/about/ball.webp"
 import logoImage from "../../assets/images/about/logo.svg"
+import officeImage from "../../assets/images/about/office.webp"
+
+import { theme } from "../../theme";
+import Highlights from "../../components/UniqueApproach/modules/Highlights";
 
 
 const KnowUs = () => {
@@ -31,21 +35,32 @@ const KnowUs = () => {
   ]}
 />
 
-        <div className="py-20 ">
-            {visionData.map((item, index) => (
-                <div key={index} >
-                    <Vision
-                        headingText={item.headingText}
-                        spanText={item.spanText}
-                        bodyText={item.bodyText}
-                        imageSrc={item.imageSrc}
-                        isImageLeft={index % 2 == 0}  // Alternate right for odd, left for even
-                    />
-                </div>
-            ))}
 
+<div className={`${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal} `}>
+  {/* Image container - centers image */}
+  <div className="flex justify-center mb-6">
+    <img src={officeImage} alt="Office" className="w-full rounded-3xl" />
+  </div>
 
+  {/* Text container - left aligned */}
+  <div className="flex flex-col items-start gap-y-4">
+    <Heading
+      text="Building software for global leaders"
+      className="text-start"
+    />
+    <BodyText
+      text="At Scons, we envision a world where technology seamlessly integrates into every aspect of life, empowering individuals and businesses to achieve their fullest potential. We strive to be at the forefront of innovation, creating solutions that not only meet the needs of today but also anticipate the challenges of tomorrow."
+      size="text-30px"
+      color="text-black"
+      className="text-start"
+      fontWeight="font-normal"
+    />
+
+    <Highlights />
+  </div>
 </div>
+
+ 
 
 
 <GreenBelt>
