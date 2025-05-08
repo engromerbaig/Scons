@@ -32,7 +32,7 @@ const FilterControls = ({
       {/* Dropdown Filters */}
       <div className="flex flex-wrap gap-4 items-center">
         <select
-          className="px-4 py-2 border rounded-md text-sm"
+          className="px-10 py-4  rounded-full bg-grayBg text-sm"
           value={selectedTechnology}
           onChange={(e) => handleTechnologyChange(e.target.value)}
         >
