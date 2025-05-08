@@ -3,7 +3,7 @@ import InnerHero from "../../components/InnerHero/InnerHero";
 import ImageGrid from "../../components/ImageGrid/ImageGrid";
 import porftolioImage1 from '../../assets/images/portfolio1.png';
 import porftolioImage2 from '../../assets/images/portfolio2.png';
-import SuccessStories from "../../components/SuccessStories/SuccessStories";
+import Projects from "../../components/SuccessStories/SuccessStories";
 
 const OurWork = () => {
     const data = [
@@ -22,7 +22,7 @@ const OurWork = () => {
                 spanText="Portfolio"
                 bodyText="A showcase of diverse projects that highlight our expertise in creating impactful, innovative tech solutions across industries."
             />
-      <SuccessStories />
+      <Projects />
 
 
         </div>

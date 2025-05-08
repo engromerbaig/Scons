@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Heading from "../Heading/Heading";
 import BodyText from "../BodyText/BodyText";
 
-const SuccessCard = ({ image, logo, heading, bodyText, link }) => {
+const ProjectCard = ({ image, logo, heading, bodyText, link }) => {
   const imageRef = useRef(null);
   const lastScrollY = useRef(window.scrollY);
 
@@ -68,4 +68,4 @@ const SuccessCard = ({ image, logo, heading, bodyText, link }) => {
   );
 };
 
-export default SuccessCard;
+export default ProjectCard;

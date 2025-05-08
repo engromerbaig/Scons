@@ -2,11 +2,11 @@ import React from "react";
 import Heading from "../Heading/Heading";
 import BodyText from "../BodyText/BodyText";
 import { theme } from "../../theme";
-import SuccessCard from "../SuccessCard/SuccessCard";
-import { successStoriesData } from "./successStoriesData";
+import ProjectCard from "../SuccessCard/SuccessCard";
+import { projectsData } from "./projectsData";
 import AnimatedArrow from "../AnimatedArrow/AnimatedArrow";
 
-const SuccessStories = () => {
+const Projects = () => {
   return (
     <div
       className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} flex flex-col items-center min-h-screen`}
@@ -20,14 +20,14 @@ const SuccessStories = () => {
 
       {/* Cards container: 2 cards per row */}
       <div className="flex flex-wrap justify-between w-full ">
-        {successStoriesData.map(({ id, image, logo, heading, bodyText }, index) => (
+        {projectsData.map(({ id, image, logo, heading, bodyText }, index) => (
           <div
             key={id}
             className={`w-full md:w-[48%] mb-8 ${
               index % 2 === 1 ? "lg:mt-40" : "" /* Add margin-top to right cards */
             }`}
           >
-            <SuccessCard
+            <ProjectCard
               image={image}
               logo={logo}
               heading={heading}
@@ -40,4 +40,4 @@ const SuccessStories = () => {
   );
 };
 
-export default SuccessStories;
+export default Projects;
