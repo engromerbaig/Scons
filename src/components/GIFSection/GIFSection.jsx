@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 const GIFSection = () => {
   return (
     <div 
-      className={`min-h-screen ${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} flex flex-col justify-center items-center`}
+      className={`min-h-screen border-t border-grayBg ${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} flex flex-col justify-center items-center`}
     >
       <div className="flex flex-col justify-center items-center">
      
