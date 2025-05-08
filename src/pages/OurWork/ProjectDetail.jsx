@@ -19,12 +19,13 @@ const ProjectDetail = () => {
 
   return (
     <div
-      className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} min-h-screen`}
+      className={` ${theme.layoutPages.paddingVertical} min-h-screen`}
     >
       <div className="flex flex-col gap-4">
+      <img src={project.logo} alt={`${project.heading} logo`} className="w-1/4 mb-4" />
+      <Heading text={project.heading} size="text-35px" fontWeight="font-semibold" centered={false} />
         <img src={project.coverImage} alt={project.heading} className="w-full h-[600px] object-cover rounded-3xl mb-4" />
-        <img src={project.logo} alt={`${project.heading} logo`} className="w-1/4 mb-4" />
-        <Heading text={project.heading} size="text-35px" fontWeight="font-semibold" centered={false} />
+
         <BodyText
           text={project.bodyText}
           size="text-25px"
@@ -33,7 +34,7 @@ const ProjectDetail = () => {
         />
         <Link
           to="/portfolio"
-          className="inline-block mt-6 px-4 py-2 bg-blue-500 text-white rounded-full"
+          className="inline-block mt-6 px-4 py-2 bg-blue-500 text-white w-48  rounded-full"
         >
           Back to Portfolio
         </Link>
