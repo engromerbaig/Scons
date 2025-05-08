@@ -17,8 +17,8 @@ const FilterControls = ({
   resetTech,
 }) => {
   return (
-    <div className="flex flex-col items-start gap-4 mt-8">
-      <div className="flex flex-wrap gap-4 items-start">
+    <div className="flex flex-col items-start w-full justify-center  gap-4 mt-8">
+      <div className="flex flex-wrap gap-4 items-center">
         <DropdownButton
           label="Services"
           options={uniqueServices}
@@ -42,7 +42,7 @@ const FilterControls = ({
           {sortOrder === "desc" ? "Oldest" : "Latest"}
         </button> */}
         <button
-          className="px-4 py-2 border rounded-md text-sm flex items-center gap-2 hover:bg-gray-100 transition-colors"
+          className=""
           onClick={resetFilters}
         >
           <FaUndo />

@@ -34,7 +34,7 @@ const DropdownButton = ({
       <label className="text-xs text-gray-600 mb-1">{label}</label>
       <button
         type="button"
-        className="px-8 py-4 rounded-full bg-gray-100 text-sm font-medium flex items-center justify-between cursor-pointer w-[220px] border border-gray-200 hover:border-gray-400 transition-colors relative"
+        className="px-8 py-4 rounded-full bg-gray-100 text-sm font-medium flex items-center justify-between cursor-pointer w-[260px] border border-gray-200 hover:border-gray-400 transition-colors relative"
         onClick={() => setIsOpen(!isOpen)}
         style={{ textAlign: "left" }}
       >
