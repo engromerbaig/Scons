@@ -57,7 +57,7 @@ const Navbar = () => {
       </div>
       <div className="flex items-center">
         <button type="button" onClick={toggleMobileMenu} className="relative">
-          <img src="/hamburger.svg" alt="Menu" className="w-6 aspect-square lg:w-8 z-[200]" />
+          <img src="/hamburger.svg" alt="Menu" className="w-6 aspect-square lg:w-8 z-[200] svg-white" />
         </button>
       </div>
       <MobileMenu
