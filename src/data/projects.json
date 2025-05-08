@@ -4,7 +4,7 @@
       "heading": "xSuccess Story One",
       "bodyText": "Lorem ipsum dolor sit amet...",
       "service": "Web Development",
-      "technologies": ["React", "Tailwind", "Node.js"],
+      "technologies": ["React", "Tailwind", "Node.js","Ruby on Rails"],
       "year": "2023"
 
     },
