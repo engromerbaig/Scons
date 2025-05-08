@@ -12,6 +12,7 @@ const Button = ({
   hoverTextColor = "white",
   hoverBgColor = "bg-black",
   textAlign="justify-start",
+  onClick,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -21,6 +22,7 @@ const Button = ({
         } transition-all duration-300 relative overflow-hidden hover:shadow-lg ${className}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={onClick}
     >
       {/* Conditionally Render Icon */}
       {icon && (
