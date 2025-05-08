@@ -28,33 +28,30 @@ const OurWork = () => {
   } = useProjectFilters(projects);
 
   const containerRef = useRef(null);
-  const showLessButtonRef = useRef(null);
+  const buttonContainerRef = useRef(null);
   const [lastAction, setLastAction] = useState(null); // Track last action ("loadMore" or "showLess")
 
-  // Handle scrolling based on action
+  // Handle scrolling to position buttons at the bottom of the viewport
   useEffect(() => {
-    if (projectsToShow > 4 || lastAction === "showLess") {
+    if ((projectsToShow > 4 || lastAction === "showLess") && buttonContainerRef.current) {
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-          if (lastAction === "showLess" && showLessButtonRef.current) {
-            // Scroll to the "Show Less" button
-            showLessButtonRef.current.scrollIntoView({
-              behavior: "smooth",
-              block: "end", // Center the button in the viewport
-            });
-          } else {
-            // Scroll to the container bottom for "Load More"
-            containerRef.current.scrollIntoView({
-              behavior: "smooth",
-              block: "end",
-            });
-          }
+          const buttonRect = buttonContainerRef.current.getBoundingClientRect();
+          const viewportHeight = window.innerHeight;
+          const scrollY = window.scrollY || window.pageYOffset;
+          const buttonBottom = buttonRect.top + buttonRect.height + scrollY;
+
+          // Scroll so the button container's bottom is at the viewport's bottom
+          window.scrollTo({
+            top: buttonBottom - viewportHeight + 20, // Small offset for padding
+            behavior: "smooth",
+          });
         });
       });
     }
   }, [projectsToShow, lastAction]);
 
-  // Debug button visibility
+  // Debug button visibility and scroll
   console.log("OurWork Debug:", {
     projectsToShow,
     totalProjects,
@@ -137,7 +134,10 @@ const OurWork = () => {
 
         {/* Load More/Show Less Controls */}
         {(showLoadMore || showShowLess) && (
-          <div className="flex flex-col md:flex-row gap-4 items-center justify-center pb-20">
+          <div
+            ref={buttonContainerRef}
+            className="flex flex-col md:flex-row gap-4 items-center justify-center pb-20"
+          >
             {showLoadMore && (
               <Button
                 name="Load More"
@@ -158,7 +158,6 @@ const OurWork = () => {
                 textColor="white"
                 className="px-4 py-2"
                 fontSize="text-sm"
-                ref={showLessButtonRef}
                 onClick={() => {
                   setLastAction("showLess");
                   handleShowLess();
