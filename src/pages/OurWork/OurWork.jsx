@@ -36,15 +36,16 @@ const OurWork = () => {
   }, [currentPage]);
 
   return (
-    <div className={`min-h-screen bg-white ${theme.layoutPages.paddingHorizontal}`}>
+    <div className={`min-h-screen  `}>
       <InnerHero
         headingText="Our Success Stories"
         spanText="Success Stories"
         bodyText="A showcase of diverse projects that highlight our expertise in creating impactful, innovative tech solutions across industries."
       />
 
-      {/* Filters Section */}
-      <div className="flex flex-col items-start gap-4 mt-8">
+
+<div className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} flex flex-col items-center`}>
+<div className="flex flex-col items-start gap-4 mt-8">
         {/* Service Tabs */}
         <div className="flex flex-wrap gap-4">
           {uniqueServices.map((service) => (
@@ -125,6 +126,9 @@ const OurWork = () => {
         </div>
       )}
     </div>
+</div>
+     
+ 
   );
 };
 
