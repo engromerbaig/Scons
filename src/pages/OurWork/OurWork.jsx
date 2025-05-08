@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { theme } from "../../theme";
-import ProjectCard from "../../components/ProjectCard/ProjectCard";
 import projects from "./projectDetails";
 import { useProjectFilters } from "../../hooks/useProjectFilters";
 import InnerHero from "../../components/InnerHero/InnerHero";
-import { FaUndo } from "react-icons/fa";
-import Button from "../../components/Button/Button";
+import FilterControls from "./FilterControls";
+import ProjectGrid from "./ProjectGrid";
+import LoadMoreControls from "./LoadMoreControls";
 
 const OurWork = () => {
   const {
@@ -73,117 +73,34 @@ const OurWork = () => {
         ref={containerRef}
         className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} flex flex-col items-center`}
       >
-        <div className="flex flex-col items-start gap-4 mt-8">
-          {/* Service Tabs */}
-          <div className="flex flex-wrap gap-4">
-            {uniqueServices.map((service) => (
-              <button
-                key={service}
-                className={`px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
-                  selectedService === service ? "bg-blue-500 text-white" : "bg-gray-200 text-gray-700"
-                }`}
-                onClick={() => handleServiceChange(service)}
-              >
-                {service}
-              </button>
-            ))}
-          </div>
+        <FilterControls
+          selectedService={selectedService}
+          selectedTechnology={selectedTechnology}
+          sortOrder={sortOrder}
+          uniqueServices={uniqueServices}
+          uniqueTechnologies={uniqueTechnologies}
+          handleServiceChange={handleServiceChange}
+          handleTechnologyChange={handleTechnologyChange}
+          setSortOrder={setSortOrder}
+          resetFilters={resetFilters}
+        />
 
-          {/* Dropdown Filters */}
-          <div className="flex flex-wrap gap-4 items-center">
-            <select
-              className="px-4 py-2 border rounded-md text-sm"
-              value={selectedTechnology}
-              onChange={(e) => handleTechnologyChange(e.target.value)}
-            >
-              {uniqueTechnologies.map((tech) => (
-                <option key={tech} value={tech}>
-                  {tech}
-                </option>
-              ))}
-            </select>
+        <ProjectGrid filteredProjects={filteredProjects} />
 
-            <button
-              className="px-4 py-2 border rounded-md text-sm flex items-center gap-2"
-              onClick={() => setSortOrder(sortOrder === "desc" ? "asc" : "desc")}
-            >
-              {sortOrder === "desc" ? "Oldest" : "Latest"}
-            </button>
-
-            <button
-              className="px-4 py-2 border rounded-md text-sm flex items-center gap-2 hover:bg-gray-100 transition-colors"
-              onClick={resetFilters}
-            >
-              <FaUndo />
-            </button>
-          </div>
-        </div>
-
-        {/* Cards container: 2 cards per row */}
-        <div className="flex flex-wrap justify-between w-full py-20">
-          {filteredProjects.map((project, index) => (
-            <div
-              key={project.id}
-              className={`w-full md:w-[48%] mb-8 ${index % 2 === 1 ? "lg:mt-32" : ""} transition-opacity duration-300 ease-in-out opacity-0 animate-fadeIn`}
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              <ProjectCard project={project} />
-            </div>
-          ))}
-        </div>
-
-        {/* Load More/Show Less Controls */}
-        {(showLoadMore || showShowLess) && (
-          <div
-            ref={buttonContainerRef}
-            className="flex flex-col md:flex-row gap-4 items-center justify-center pb-20"
-          >
-            {showLoadMore && (
-              <Button
-                name="Load More"
-                bgColor="bg-black"
-                textColor="white"
-                className="px-4 py-2"
-                fontSize="text-sm"
-                onClick={() => {
-                  setLastAction("loadMore");
-                  handleLoadMore();
-                }}
-              />
-            )}
-            {showShowLess && (
-              <Button
-                name="Show Less"
-                bgColor="bg-black"
-                textColor="white"
-                className="px-4 py-2"
-                fontSize="text-sm"
-                onClick={() => {
-                  setLastAction("showLess");
-                  handleShowLess();
-                }}
-              />
-            )}
-          </div>
-        )}
+        <LoadMoreControls
+          showLoadMore={showLoadMore}
+          showShowLess={showShowLess}
+          handleLoadMore={() => {
+            setLastAction("loadMore");
+            handleLoadMore();
+          }}
+          handleShowLess={() => {
+            setLastAction("showLess");
+            handleShowLess();
+          }}
+          buttonContainerRef={buttonContainerRef}
+        />
       </div>
-
-      {/* Inline CSS for fade-in animation */}
-      <style jsx>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .animate-fadeIn {
-          animation: fadeIn 0.3s ease-in-out forwards;
-        }
-      `}</style>
     </div>
   );
 };
