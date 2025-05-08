@@ -23,6 +23,8 @@ const BlogDetails = lazy(() => import('./pages/BlogDetails/BlogDetails'));
 import HeroButton from './components/HeroButton/HeroButton';
 import ChatModal from './components/ChatModal/ChatModal';
 
+import ProjectDetail from './pages/OurWork/ProjectDetail';
+
 // Wrapper for ServiceDetails to force remount on param change
 function ServiceDetailsWrapper() {
   const { serviceSlug } = useParams();
@@ -49,6 +51,7 @@ function AppContent() {
           <Route path="/" element={<Home />} />
           <Route path="/about-us" element={<KnowUs />} />
           <Route path="/portfolio" element={<OurWork />} />
+          <Route path="/portfolio/:slug" element={<ProjectDetail />} />
           <Route path="/careers" element={<Careers />} />
           <Route path="/careers/:heading/:jobType" element={<JobDetails />} />
           <Route path="/careers/apply" element={<Apply />} />
