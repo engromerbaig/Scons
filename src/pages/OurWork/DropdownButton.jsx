@@ -31,35 +31,36 @@ const DropdownButton = ({
 
   return (
     <div className="flex flex-col items-start relative" ref={dropdownRef}>
-      <label className="text-xs text-gray-600 mb-1">{label}</label>
       <button
         type="button"
-        className="px-8 py-4 rounded-full bg-gray-100 text-sm font-medium flex items-center justify-between cursor-pointer w-[260px] border border-gray-200 hover:border-gray-400 transition-colors relative"
+        className="px-8 py-2 rounded-full bg-gray-100 text-sm font-medium flex flex-col items-start justify-between cursor-pointer xl:w-[300px]    transition-colors relative"
         onClick={() => setIsOpen(!isOpen)}
         style={{ textAlign: "left" }}
       >
-        <span className="truncate">{selectedValue || `Select ${label}`}</span>
-        <span className="ml-2 flex items-center">
-          {isNestedCategory ? (
-            <FaUndo
-              className="text-gray-500 hover:text-gray-800"
-              size={16}
-              onClick={e => {
-                e.stopPropagation();
-                onReset();
-              }}
-              title="Reset"
-            />
-          ) : (
-            // Caret
-            <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
-              <path d="M6 8l4 4 4-4" stroke="#000" strokeWidth="2" fill="none" />
-            </svg>
-          )}
-        </span>
+        <span className="text-10px text-gray-500 mb-0">{label}</span>
+        <div className="w-full flex items-center justify-between">
+          <span className="truncate text-sm text-black font-normal">{selectedValue || `Select ${label}`}</span>
+          <span className="ml-2 flex items-center">
+            {isNestedCategory ? (
+              <FaUndo
+                className="text-gray-500 hover:text-gray-800"
+                size={18}
+                onClick={e => {
+                  e.stopPropagation();
+                  onReset();
+                }}
+                title="Reset"
+              />
+            ) : (
+              <svg width="22" height="22" viewBox="0 0 20 20" fill="none">
+                <path d="M6 8l4 4 4-4" stroke="#000" strokeWidth="2" fill="none" />
+              </svg>
+            )}
+          </span>
+        </div>
       </button>
       {isOpen && (
-        <ul className="absolute top-full left-0 mt-1 w-[220px] max-h-48 overflow-y-auto bg-white border border-gray-200 rounded-md shadow-lg z-10 custom-scrollbar">
+        <ul className="absolute top-full left-0 mt-1 w-[260px] max-h-48 overflow-y-auto bg-white border border-gray-200 rounded-md shadow-lg z-10 custom-scrollbar">
           {options.map((option) => (
             <li
               key={option}
