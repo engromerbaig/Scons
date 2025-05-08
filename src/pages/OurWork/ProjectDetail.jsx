@@ -38,8 +38,7 @@ const ProjectDetail = () => {
 
         </div>
       <div className="flex flex-col gap-4">
-      <Heading text={project.heading} size="text-35px" fontWeight="font-semibold" centered={false} />
-        <img src={project.coverImage} alt={project.heading} className="w-full h-[600px] object-cover rounded-3xl mb-4" />
+        <img src={project.coverImage} alt={project.heading} className="w-full h-[600px] object-cover py-10" />
 
         <BodyText
           text={project.bodyText}
