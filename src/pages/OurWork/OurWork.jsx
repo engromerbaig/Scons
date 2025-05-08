@@ -1,32 +1,131 @@
-import AnimatedBackground from "../../utilities/AnimatedBackground/AnimatedBackground";
+import React, { useEffect } from "react";
+import { theme } from "../../theme";
+import ProjectCard from "../../components/ProjectCard/ProjectCard";
+import projects from "./projectDetails";
+import { useProjectFilters } from "../../hooks/useProjectFilters";
+import Heading from "../../components/Heading/Heading";
+import AnimatedArrow from "../../components/AnimatedArrow/AnimatedArrow";
+import { FaUndo } from "react-icons/fa";
 import InnerHero from "../../components/InnerHero/InnerHero";
-import ImageGrid from "../../components/ImageGrid/ImageGrid";
-import porftolioImage1 from '../../assets/images/portfolio1.png';
-import porftolioImage2 from '../../assets/images/portfolio2.png';
-import Projects from "../../components/Projects/Projects";
 
 const OurWork = () => {
-    const data = [
-        { id: 1, text: "Health Mobile App", image: porftolioImage1, position: "left", link: "#" },
-        { id: 2, text: "Car Website", image: porftolioImage2, position: "right", link: "#" },
-        { id: 3, text: "Clothing Website", image: porftolioImage1, position: "left", link: "#" },
-        { id: 4, text: "Gaming Application", image: porftolioImage1, position: "right", link: "#" },
-        { id: 5, text: "E-Commerce ", image: porftolioImage2, position: "left", link: "#" },
-        { id: 6, text: "Travel Booking App", image: porftolioImage1, position: "right", link: "#" }
-    ];
+  const {
+    selectedService,
+    selectedTechnology,
+    sortOrder,
+    filteredProjects,
+    uniqueServices,
+    uniqueTechnologies,
+    handleServiceChange,
+    handleTechnologyChange,
+    setSortOrder,
+    resetFilters,
+    currentPage,
+    projectsPerPage,
+    totalProjects,
+    paginate,
+  } = useProjectFilters(projects);
 
-    return (
-        <div >
-            <InnerHero
-                headingText="Our Portfolio"
-                spanText="Portfolio"
-                bodyText="A showcase of diverse projects that highlight our expertise in creating impactful, innovative tech solutions across industries."
-            />
-      <Projects />
+  const totalPages = Math.ceil(totalProjects / projectsPerPage);
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [currentPage]);
 
+  return (
+    <div className={`min-h-screen bg-white ${theme.layoutPages.paddingHorizontal}`}>
+      <InnerHero
+        headingText="Our Success Stories"
+        spanText="Success Stories"
+        bodyText="A showcase of diverse projects that highlight our expertise in creating impactful, innovative tech solutions across industries."
+      />
+
+      {/* Filters Section */}
+      <div className="flex flex-col items-start gap-4 mt-8">
+        {/* Service Tabs */}
+        <div className="flex flex-wrap gap-4">
+          {uniqueServices.map((service) => (
+            <button
+              key={service}
+              className={`px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
+                selectedService === service ? "bg-blue-500 text-white" : "bg-gray-200 text-gray-700"
+              }`}
+              onClick={() => handleServiceChange(service)}
+            >
+              {service}
+            </button>
+          ))}
         </div>
-    );
+
+        {/* Dropdown Filters */}
+        <div className="flex flex-wrap gap-4 items-center">
+          <select
+            className="px-4 py-2 border rounded-md text-sm"
+            value={selectedTechnology}
+            onChange={(e) => handleTechnologyChange(e.target.value)}
+          >
+            {uniqueTechnologies.map((tech) => (
+              <option key={tech} value={tech}>
+                {tech}
+              </option>
+            ))}
+          </select>
+
+          <button
+            className="px-4 py-2 border rounded-md text-sm flex items-center gap-2"
+            onClick={() => setSortOrder(sortOrder === "desc" ? "asc" : "desc")}
+          >
+            {sortOrder === "desc" ? "Oldest" : "Latest"}
+          </button>
+
+          <button
+            className="px-4 py-2 border rounded-md text-sm flex items-center gap-2 hover:bg-gray-100 transition-colors"
+            onClick={resetFilters}
+          >
+            <FaUndo />
+          </button>
+        </div>
+      </div>
+
+      {/* Cards container: 2 cards per row */}
+      <div className="flex flex-wrap justify-between w-full py-20">
+        {filteredProjects.map((project, index) => (
+          <div
+            key={project.id}
+            className={`w-full md:w-[48%] mb-8 ${index % 2 === 1 ? "lg:mt-40" : ""}`}
+          >
+            <ProjectCard project={project} />
+          </div>
+        ))}
+      </div>
+
+      {/* Pagination Controls */}
+      {totalPages > 1 && (
+        <div className="flex justify-center gap-4 pb-20">
+          <button
+            onClick={() => paginate(currentPage - 1)}
+            disabled={currentPage === 1}
+            className="px-4 py-2 border rounded-md text-sm hover:bg-gray-100 transition-colors"
+          >
+            Previous
+          </button>
+          <span className="px-4 py-2 text-sm">
+            Page {currentPage} of {totalPages}
+          </span>
+          <button
+            onClick={() => paginate(currentPage + 1)}
+            disabled={currentPage === totalPages}
+            className="px-4 py-2 border rounded-md text-sm hover:bg-gray-100 transition-colors"
+          >
+            Next
+          </button>
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default OurWork;

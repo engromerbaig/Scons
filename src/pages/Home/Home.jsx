@@ -26,7 +26,7 @@ function Home() {
       {/* comment */}
       <Hero />
 
-      <Projects />
+      {/* <Projects /> */}
       <UniqueApproachOld />
 
       {/* testing only */}

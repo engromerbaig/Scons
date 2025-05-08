@@ -1,22 +1,31 @@
-// src/utils/importProjectImages.js
-
 function importProjectImages(projectId) {
   try {
-    // Use import.meta.glob to dynamically import all project images
     const images = import.meta.glob(
       "/src/assets/images/projects/**/*.{jpg,jpeg,png,webp}",
       { eager: true }
     );
 
-    // Filter images for the specific project ID
     const projectImages = Object.keys(images)
-      .filter((key) => key.includes(`/${projectId}/`)) // Match images in the project's folder
-      .map((key) => images[key].default); // Resolve the image paths
+      .filter((key) => key.includes(`/${projectId}/`))
+      .sort((a, b) => {
+        // Extract the image number (e.g., "1" from "1.jpg")
+        const numA = parseInt(a.match(/\/(\d+)\.\w+$/)[1], 10);
+        const numB = parseInt(b.match(/\/(\d+)\.\w+$/)[1], 10);
+        return numA - numB;
+      })
+      .map((key) => images[key].default);
 
-    return projectImages;
+    // Log for debugging
+    console.log(`Imported images for project ${projectId}:`, projectImages);
+
+    return {
+      logo: projectImages[0] || "", // Image 1 as logo
+      coverImage: projectImages[1] || "", // Image 2 as cover
+      additionalImages: projectImages.slice(2) // Images 3, 4, etc. for future use
+    };
   } catch (error) {
     console.error(`Error importing images for project ${projectId}:`, error);
-    return [];
+    return { logo: "", coverImage: "", additionalImages: [] };
   }
 }
 

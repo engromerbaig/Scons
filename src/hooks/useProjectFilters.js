@@ -1,4 +1,3 @@
-// useProjectFilters.js
 import { useState } from "react";
 
 export const useProjectFilters = (projects) => {
@@ -9,7 +8,7 @@ export const useProjectFilters = (projects) => {
   const projectsPerPage = 9;
 
   // Get unique services and technologies
-  const uniqueServices = ["All Services", ...new Set(projects.flatMap(p => p.services))];
+  const uniqueServices = ["All Services", ...new Set(projects.map(p => p.service))];
   const uniqueTechnologies = ["All Technologies", ...new Set(projects.flatMap(p => p.technologies))];
 
   // Handle service or technology change
@@ -26,14 +25,14 @@ export const useProjectFilters = (projects) => {
   // Filter logic
   const filteredProjects = projects
     .filter(p =>
-      (selectedService === "All Services" || p.services.includes(selectedService)) &&
+      (selectedService === "All Services" || p.service === selectedService) &&
       (selectedTechnology === "All Technologies" || p.technologies.includes(selectedTechnology))
     )
     .sort((a, b) => {
       if (sortOrder === "desc") {
-        return b.year !== a.year ? b.year - a.year : a.name.localeCompare(b.name);
+        return b.year !== a.year ? b.year - a.year : a.heading.localeCompare(b.heading);
       } else {
-        return a.year !== b.year ? a.year - b.year : a.name.localeCompare(b.name);
+        return a.year !== b.year ? a.year - b.year : a.heading.localeCompare(b.heading);
       }
     });
 

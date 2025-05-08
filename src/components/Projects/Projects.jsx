@@ -3,7 +3,7 @@ import Heading from "../Heading/Heading";
 import BodyText from "../BodyText/BodyText";
 import { theme } from "../../theme";
 import ProjectCard from "../ProjectCard/ProjectCard";
-import { projectsData } from "./projectsData";
+import projects from "../../pages/OurWork/projectDetails"
 import AnimatedArrow from "../AnimatedArrow/AnimatedArrow";
 
 const Projects = () => {
@@ -20,7 +20,7 @@ const Projects = () => {
 
       {/* Cards container: 2 cards per row */}
       <div className="flex flex-wrap justify-between w-full ">
-        {projectsData.map(({ id, image, logo, heading, bodyText }, index) => (
+        {projects.map(({ id, image, logo, heading, bodyText }, index) => (
           <div
             key={id}
             className={`w-full md:w-[48%] mb-8 ${
