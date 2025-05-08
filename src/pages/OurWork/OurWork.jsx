@@ -3,7 +3,7 @@ import InnerHero from "../../components/InnerHero/InnerHero";
 import ImageGrid from "../../components/ImageGrid/ImageGrid";
 import porftolioImage1 from '../../assets/images/portfolio1.png';
 import porftolioImage2 from '../../assets/images/portfolio2.png';
-import Projects from "../../components/SuccessStories/SuccessStories";
+import Projects from "../../components/Projects/Projects";
 
 const OurWork = () => {
     const data = [

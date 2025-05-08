@@ -2,7 +2,7 @@ import React from "react";
 import Heading from "../Heading/Heading";
 import BodyText from "../BodyText/BodyText";
 import { theme } from "../../theme";
-import ProjectCard from "../SuccessCard/SuccessCard";
+import ProjectCard from "../ProjectCard/ProjectCard";
 import { projectsData } from "./projectsData";
 import AnimatedArrow from "../AnimatedArrow/AnimatedArrow";
 

@@ -13,7 +13,7 @@ const BuisnessFormula = lazy(() => import('../../components/BuisnessFormula/Buis
 import Technologies from '../../components/Technologies/Technologies';
 
 import ServicesOld from '../../components/Services/ServicesOLD';
-import Projects from '../../components/SuccessStories/SuccessStories';
+import Projects from '../../components/Projects/Projects';
 import Reviews from '../../components/Reviews/Reviews';
 import Testimonials from '../../components/Testimonials/Testimonials';
 import StartProjectBelt from '../../components/StartProjectBelt/StartProjectBelt';
