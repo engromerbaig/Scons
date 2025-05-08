@@ -48,7 +48,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`${isSticky ? 'fixed top-0 bg-opacity-60 backdrop-blur-[2px]' : 'absolute bg-transparent'} ${theme.layoutPages.paddingHorizontal} pt-6 lg:pt-10 flex justify-between items-center w-full z-[101] transition-all duration-300`}
+      className={`${isSticky ? 'fixed top-0 bg-opacity-60 backdrop-blur-[2px]' : 'absolute bg-transparent'} ${theme.layoutPages.paddingHorizontal} pt-6 lg:pt-8 flex justify-between items-center w-full z-[101] transition-all duration-300`}
     >
       <div className="flex items-center">
         <ScrollToTopLink to="/" className="cursor-pointer">
