@@ -5,7 +5,7 @@ export const useProjectFilters = (projects) => {
   const [selectedTechnology, setSelectedTechnology] = useState("All Technologies");
   const [sortOrder, setSortOrder] = useState("desc");
   const [currentPage, setCurrentPage] = useState(1);
-  const projectsPerPage = 9;
+  const projectsPerPage = 4;
 
   // Get unique services and technologies
   const uniqueServices = ["All Services", ...new Set(projects.map(p => p.service))];
