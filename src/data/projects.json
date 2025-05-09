@@ -8,7 +8,8 @@
       "details": "Our client, a leading retailer, sought to revamp their online store. We delivered a high-performance, scalable web platform using the latest frameworks. The result was a 40% increase in user engagement and seamless integration with their backend systems.",
       "service": "Web Development",
       "technologies": ["React", "Tailwind", "Node.js", "Ruby on Rails"],
-      "year": "2023"
+      "year": "2023",
+      "clientDetails": "A huge investor based in Duisburg, Germany, operating since 1996 with a strong presence in multiple industries and a commitment to long-term growth."
     },
     {
       "id": 2,
@@ -19,7 +20,8 @@
       "details": "A fintech startup needed a secure and intuitive mobile app for its customers. We built a cross-platform application with robust authentication and real-time notifications. The app quickly gained traction, reaching over 100,000 downloads in six months.",
       "service": "App Development",
       "technologies": ["Flutter", "Firebase"],
-      "year": "2023"
+      "year": "2023",
+      "clientDetails": "A major financial investor headquartered in Duisburg, Germany, active since 1996 with extensive experience in fintech and mobile solutions."
     },
     {
       "id": 3,
@@ -30,7 +32,8 @@
       "details": "Our team collaborated with a healthcare provider to redesign their patient portal. Through user research and prototyping, we created a clean, accessible interface. Patient satisfaction scores improved significantly after launch.",
       "service": "UX/UI Design",
       "technologies": ["Figma", "Adobe XD"],
-      "year": "2023"
+      "year": "2023",
+      "clientDetails": "An established Duisburg-based investor since 1996, with diversified investments in healthcare and technology sectors."
     },
     {
       "id": 4,
@@ -41,7 +44,8 @@
       "details": "We developed a custom AI solution to automate data analysis for a logistics company. Using machine learning, the system reduced manual work by 70%. The client now makes faster, data-driven decisions with greater accuracy.",
       "service": "AI Development",
       "technologies": ["Python", "TensorFlow"],
-      "year": "2023"
+      "year": "2023",
+      "clientDetails": "A Duisburg-based investor since 1996, focusing on innovative AI and automation technologies globally."
     },
     {
       "id": 5,
@@ -51,8 +55,9 @@
       "bodyText": "Curabitur non nulla sit amet...",
       "details": "An education platform faced challenges with growing user numbers. We overhauled their backend, implementing microservices and database optimization. This enabled smooth performance even during peak usage periods.",
       "service": "Backend Development",
-      "technologies": ["Node.js", "Express", "MongoDB","Swift"],
-      "year": "2022"
+      "technologies": ["Node.js", "Express", "MongoDB", "Swift"],
+      "year": "2022",
+      "clientDetails": "A Duisburg-based investor since 1996, with a strong commitment to supporting educational technology advancements."
     },
     {
       "id": 6,
@@ -63,7 +68,8 @@
       "details": "A SaaS provider wanted a fresh look and faster load times. We rebuilt their frontend with React and Tailwind, focusing on responsive design. The new interface received positive feedback and increased customer retention.",
       "service": "Frontend Development",
       "technologies": ["React", "Figma", "WordPress"],
-      "year": "2025"
+      "year": "2025",
+      "clientDetails": "A Duisburg-based investor since 1996, with diverse investments in SaaS and digital transformation projects worldwide."
     },
     {
       "id": 7,
@@ -74,7 +80,8 @@
       "details": "An enterprise client needed reliable, automated deployments. Our DevOps team implemented CI/CD pipelines and container orchestration. This reduced deployment times from hours to minutes and improved system reliability.",
       "service": "DevOps",
       "technologies": ["Docker", "Kubernetes", "AWS"],
-      "year": "2021"
+      "year": "2021",
+      "clientDetails": "An experienced Duisburg-based investor since 1996, with a focus on cloud infrastructure and enterprise IT solutions."
     },
     {
       "id": 8,
@@ -85,7 +92,8 @@
       "details": "A major bank required a comprehensive security audit. We conducted penetration testing and implemented advanced monitoring tools. The institution now enjoys enhanced protection against cyber threats and regulatory compliance.",
       "service": "Cybersecurity",
       "technologies": ["Wireshark", "Nmap"],
-      "year": "2023"
+      "year": "2023",
+      "clientDetails": "A Duisburg-based investor since 1996, with significant investments in cybersecurity and financial services."
     }
   ]
   
