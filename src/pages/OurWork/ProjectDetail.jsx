@@ -89,7 +89,6 @@ const ProjectDetail = () => {
 <SplideCarousel
   images={project.additionalImages.slice(1, 4)} // [1, 2, 3]
   speed={1}
-  perPage={2}
   height="400px"
   gap="1rem"
   pauseOnHover={false}
@@ -99,7 +98,6 @@ const ProjectDetail = () => {
 <SplideCarousel
   images={project.additionalImages.slice(4, 7)} // [4, 5, 6]
   speed={-1}
-  perPage={2}
   height="400px"
   gap="1rem"
   pauseOnHover={false}
