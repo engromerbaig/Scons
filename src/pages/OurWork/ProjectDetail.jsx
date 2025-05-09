@@ -85,24 +85,26 @@ const ProjectDetail = () => {
       </div>
 
       {/* First Carousel: Left to Right (additionalImages[2] to [4]) */}
-    <SplideCarousel
-        images={project.additionalImages.slice(1, 4)} // Indices 2, 3, 4
-        speed={1}
-        perPage={2}
-        height="400px"
-        gap="1rem"
-        pauseOnHover={false}
-      />
+ {/* First Carousel: additionalImages[1], [2], [3] */}
+<SplideCarousel
+  images={project.additionalImages.slice(1, 4)} // [1, 2, 3]
+  speed={1}
+  perPage={2}
+  height="400px"
+  gap="1rem"
+  pauseOnHover={false}
+/>
 
-      {/* Second Carousel: Rightward (additionalImages[5] to [7]) */}
-      <SplideCarousel
-        images={project.additionalImages.slice(5, 8)} // Indices 5, 6, 7
-        speed={-1}
-        perPage={2}
-        height="400px"
-        gap="1rem"
-        pauseOnHover={false}
-      />
+{/* Second Carousel: additionalImages[4], [5], [6] */}
+<SplideCarousel
+  images={project.additionalImages.slice(4, 7)} // [4, 5, 6]
+  speed={-1}
+  perPage={2}
+  height="400px"
+  gap="1rem"
+  pauseOnHover={false}
+/>
+
 
       {/* Uncomment if you want the Back to Portfolio link */}
       {/* <Link
