@@ -8,7 +8,6 @@ import SplideCarousel from "../../components/SplideCarousel/SplideCarousel";
 import { technologiesData } from "../../components/Technologies/technologiesData";
 import Button from "../../components/Button/Button";
 import { IoIosCheckmarkCircle } from "react-icons/io";
-import CardScroller from "./CardScroller";
 import HorizontalScroller from "../../components/HorizontalScroller/HorizontalScroller";
 
 
@@ -151,7 +150,7 @@ const ProjectDetail = () => {
 </div>
 
 
-<HorizontalScroller/>
+{/* <HorizontalScroller/> */}
 
 </div>
 
