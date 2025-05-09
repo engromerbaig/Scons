@@ -104,6 +104,16 @@ const ProjectDetail = () => {
 />
 
 
+<div className={`flex flex-col ${theme.layoutPages.paddingHorizontal} py-10`}>
+<Heading
+text="Project Features" centered={false} lineHeight="leading-loose" />
+<BodyText text="We used the following technologies to build this project:" centered={false} />
+
+
+
+
+</div>
+
       {/* Uncomment if you want the Back to Portfolio link */}
       {/* <Link
         to="/portfolio"
