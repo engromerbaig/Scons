@@ -70,7 +70,7 @@ const ProjectDetail = () => {
           </div>
         </div>
 
-        <div className="flex-shrink-0">
+        <div className="flex-shrink-0 ">
           <img
             src={project.additionalImages[0]}
             alt="Project visual"
