@@ -28,9 +28,23 @@ const SplideCarousel = ({
     <div className={`py-10 ${className}`}>
       <style>
         {`
+          .splide__slide {
+            height: ${height};
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+          .splide__slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 1.5rem;
+            border: 4px solid black;
+          }
           @media (max-width: 640px) {
             .splide__slide {
               width: 100% !important;
+              height: ${height};
             }
             .splide__list {
               display: flex;
@@ -53,6 +67,7 @@ const SplideCarousel = ({
             pauseOnHover,
             autoStart: true,
           },
+          height, // Set Splide container height
           breakpoints: {
             640: {
               perPage: 1, // 1 image per page on mobile (below 640px)
@@ -70,11 +85,13 @@ const SplideCarousel = ({
       >
         {images.map((image, index) => (
           <SplideSlide key={index}>
-            <img
-              src={image}
-              alt={`Carousel image ${index + 1}`}
-              className={`w-full h-[${height}] object-cover rounded-3xl border-4 border-black`}
-            />
+            <div style={{ height, width: "100%" }}>
+              <img
+                src={image}
+                alt={`Carousel image ${index + 1}`}
+                className="w-full h-full object-cover"
+              />
+            </div>
           </SplideSlide>
         ))}
       </Splide>
