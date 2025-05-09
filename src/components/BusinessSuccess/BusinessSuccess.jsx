@@ -27,9 +27,7 @@ const BusinessSuccess = () => {
     };
 
     return (
-        <AnimatedBackground
-            bgSize="cover"
-            bgColor="bg-grayBg"
+        <div
             className={`grid min-h-screen ${theme.layoutPages.paddingHorizontal} $`}
         >
             {/* Layout for md and above */}
@@ -136,7 +134,7 @@ const BusinessSuccess = () => {
 
 
 
-        </AnimatedBackground>
+        </div>
     );
 };
 
