@@ -6,8 +6,7 @@ import Heading from "../../Heading/Heading";
 import BodyText from "../../BodyText/BodyText";
 
 const ContainerComponent = ({ logo, heading, number, text }) => (
-  <AnimatedBackground bgSize="cover">
-    <div className="glow-right-container flex-shrink-0 h-screen flex flex-col border-r border-neon p-10 scrollbar-hide scroll-container">
+    <div className="glow-right-container flex-shrink-0 h-screen flex flex-col border-r-2 bg-charcoal border-black p-10 scrollbar-hide scroll-container">
       
       {/* First Div - Icon Section (50% height) */}
       <div className="flex flex-col items-center justify-center h-1/2">
@@ -22,13 +21,12 @@ const ContainerComponent = ({ logo, heading, number, text }) => (
         <div className="w-full flex justify-between items-center mb-2">
           <Heading
           text={heading}
-          size="text-50px"
           centered={false}
+          color="text-white"
           />
 
         <Heading
           text={number}
-          size="text-50px"
           color="text-neon"
           centered={false}
           />
@@ -38,7 +36,7 @@ const ContainerComponent = ({ logo, heading, number, text }) => (
         {/* Paragraph Text */}
           <BodyText
           text={text}
-          size="text-25px"
+          color="text-white"
           centered={false}
           lineHeight="leading-loose"
           className="whitespace-normal break-words"
@@ -47,7 +45,6 @@ const ContainerComponent = ({ logo, heading, number, text }) => (
       </div>
 
     </div>
-  </AnimatedBackground>
 );
 
 export default ContainerComponent;

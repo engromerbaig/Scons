@@ -28,7 +28,7 @@ const BusinessSuccess = () => {
 
     return (
         <div
-            className={`grid min-h-screen ${theme.layoutPages.paddingHorizontal} $`}
+            className={`grid min-h-screen bg-black ${theme.layoutPages.paddingHorizontal} $`}
         >
             {/* Layout for md and above */}
             <div className="hidden md:grid md:grid-cols-12 min-h-screen pt-16 md:py-0">
@@ -37,12 +37,12 @@ const BusinessSuccess = () => {
                     <Heading
                         text="Formula For Business Success"
                         color="text-neon"
-                        size="text-50px"
                         centered={false}
                     />
                     <BodyText
                         text="Tyfora combines innovation, strategy, and flawless execution to deliver tech solutions that fuel growth and guarantee lasting success for your business."
                         centered={false}
+                        color="text-white"
                     />
                 </div>
 
