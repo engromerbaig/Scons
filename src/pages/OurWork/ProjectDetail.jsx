@@ -9,6 +9,8 @@ import { technologiesData } from "../../components/Technologies/technologiesData
 import Button from "../../components/Button/Button";
 import { IoIosCheckmarkCircle } from "react-icons/io";
 import CardScroller from "./CardScroller";
+import HorizontalScroller from "../../components/HorizontalScroller/HorizontalScroller";
+
 
 const ProjectDetail = () => {
   const { slug } = useParams();
@@ -130,7 +132,7 @@ const ProjectDetail = () => {
       />
 
 
-<div className={`flex flex-col gap-4 py-10 ${theme.layoutPages.paddingHorizontal}`}>
+<div className={`flex flex-col gap-4 ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal}`}>
 
   <Heading text="Deliverables & Outcomes" centered={false} lineHeight="leading-none" />
 
@@ -149,7 +151,7 @@ const ProjectDetail = () => {
 </div>
 
 
-<CardScroller/>
+<HorizontalScroller/>
 
 </div>
 

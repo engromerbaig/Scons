@@ -1,0 +1,29 @@
+
+  
+  #arrows {
+    height: 100vh;
+    overflow: hidden;
+    width: calc(100vw / 5);
+    position: relative;
+  }
+  
+  #arrows::before {
+    background-image: url('../../assets/icons/loop.png');
+    background-size: 100% auto;
+    animation: move 150s linear infinite;
+    content: '';
+    position: absolute;
+    width: 100%;
+    aspect-ratio: 516 / 88080;
+  }
+  
+  @keyframes move {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-50%);
+      /* when the item is half way to the top we go back to the beginning 
+      so it looks continuous */
+    }
+  }

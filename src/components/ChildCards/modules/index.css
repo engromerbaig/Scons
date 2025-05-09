@@ -1,0 +1,29 @@
+/* Custom class for right-side glow on hover */
+.glow-right-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.glow-right-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0; /* Start with no width */
+    height: 100%;
+    background: linear-gradient(to left, rgba(100, 255, 55, 0.3), transparent); /* Gradient glow effect */
+    opacity: 0; /* Initially hidden */
+    transition: width 0.5s ease, opacity 0.5s ease; /* Smooth transition for width and opacity */
+    pointer-events: none;
+    z-index: 0;
+}
+
+.glow-right-container:hover::after {
+    width: 20%; /* Expand to cover the right 20% on hover */
+    opacity: 1; /* Make the glow fully visible */
+}
+
+.glow-content {
+    position: relative;
+    z-index: 1; /* Keep content above the glow */
+}
