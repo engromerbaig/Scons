@@ -4,7 +4,9 @@ import { theme } from "../../theme";
 import projects from "./projectDetails";
 import Heading from "../../components/Heading/Heading";
 import BodyText from "../../components/BodyText/BodyText";
+
 import { Splide, SplideSlide } from "@splidejs/react-splide";
+import { AutoScroll } from "@splidejs/splide-extension-auto-scroll"; // Import AutoScroll extension
 import "@splidejs/react-splide/css"; // Import Splide CSS
 
 const ProjectDetail = () => {
@@ -50,7 +52,7 @@ const ProjectDetail = () => {
 
       {/* Full-width image without horizontal paddings */}
       <img
-        src={project.heroImage}
+        src={project.coverImage}
         alt={project.heading}
         className="w-full h-[600px] object-cover py-10"
       />
@@ -91,13 +93,16 @@ const ProjectDetail = () => {
       type: "loop", // Enables infinite loop
       perPage: 2, // Show two images at a time
       perMove: 1, // Move one image at a time
-      autoplay: true, // Auto-scroll
-      interval: 3000, // 3 seconds per slide
-      pauseOnHover: true,
-      arrows: true, // Show navigation arrows
-      pagination: true, // Show pagination dots
+      arrows: false, // Hide navigation arrows
+      pagination: false, // Hide pagination dots
       gap: "1rem", // Space between slides
+      autoScroll: {
+        speed: 1, // Continuous scroll speed (adjust as needed)
+        pauseOnHover: false, // Pause on hover
+        autoStart: true, // Start scrolling automatically
+      },
     }}
+    extensions={{ AutoScroll }} // Register the AutoScroll extension
     aria-label="Project Images Carousel"
   >
     {project.additionalImages.slice(1, 5).map((image, index) => (
