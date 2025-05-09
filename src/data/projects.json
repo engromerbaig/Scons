@@ -9,7 +9,13 @@
       "service": "Web Development",
       "technologies": ["React", "Tailwind", "Node.js", "Ruby on Rails"],
       "year": "2023",
-      "clientDetails": "A huge investor based in Duisburg, Germany, operating since 1996 with a strong presence in multiple industries and a commitment to long-term growth."
+      "clientDetails": "A huge investor based in Duisburg, Germany, operating since 1996 with a strong presence in multiple industries and a commitment to long-term growth.",
+      "deliverables": [
+        "High-performance frontend with React and Tailwind",
+        "Backend integration with Ruby on Rails",
+        "SEO optimization and analytics setup",
+        "Custom admin dashboard"
+      ]
     },
     {
       "id": 2,
@@ -21,7 +27,13 @@
       "service": "App Development",
       "technologies": ["Flutter", "Firebase"],
       "year": "2023",
-      "clientDetails": "A major financial investor headquartered in Duisburg, Germany, active since 1996 with extensive experience in fintech and mobile solutions."
+      "clientDetails": "A major financial investor headquartered in Duisburg, Germany, active since 1996 with extensive experience in fintech and mobile solutions.",
+      "deliverables": [
+        "Cross-platform mobile application using Flutter",
+        "Real-time push notifications",
+        "Firebase authentication and analytics",
+        "Secure payment gateway integration"
+      ]
     },
     {
       "id": 3,
@@ -33,7 +45,13 @@
       "service": "UX/UI Design",
       "technologies": ["Figma", "Adobe XD"],
       "year": "2023",
-      "clientDetails": "An established Duisburg-based investor since 1996, with diversified investments in healthcare and technology sectors."
+      "clientDetails": "An established Duisburg-based investor since 1996, with diversified investments in healthcare and technology sectors.",
+      "deliverables": [
+        "User research and stakeholder interviews",
+        "High-fidelity prototypes in Figma",
+        "Accessibility and usability testing",
+        "Implementation-ready design system"
+      ]
     },
     {
       "id": 4,
@@ -45,7 +63,13 @@
       "service": "AI Development",
       "technologies": ["Python", "TensorFlow"],
       "year": "2023",
-      "clientDetails": "A Duisburg-based investor since 1996, focusing on innovative AI and automation technologies globally."
+      "clientDetails": "A Duisburg-based investor since 1996, focusing on innovative AI and automation technologies globally.",
+      "deliverables": [
+        "Machine learning model for data analysis",
+        "Python-based backend automation scripts",
+        "Data visualization dashboard",
+        "Deployment on cloud with auto-scaling"
+      ]
     },
     {
       "id": 5,
@@ -57,7 +81,13 @@
       "service": "Backend Development",
       "technologies": ["Node.js", "Express", "MongoDB", "Swift"],
       "year": "2022",
-      "clientDetails": "A Duisburg-based investor since 1996, with a strong commitment to supporting educational technology advancements."
+      "clientDetails": "A Duisburg-based investor since 1996, with a strong commitment to supporting educational technology advancements.",
+      "deliverables": [
+        "Microservices architecture for scalability",
+        "Database performance tuning (MongoDB)",
+        "API rate limiting and caching",
+        "CI/CD pipelines for deployment"
+      ]
     },
     {
       "id": 6,
@@ -69,7 +99,13 @@
       "service": "Frontend Development",
       "technologies": ["React", "Figma", "WordPress"],
       "year": "2025",
-      "clientDetails": "A Duisburg-based investor since 1996, with diverse investments in SaaS and digital transformation projects worldwide."
+      "clientDetails": "A Duisburg-based investor since 1996, with diverse investments in SaaS and digital transformation projects worldwide.",
+      "deliverables": [
+        "Responsive frontend with React",
+        "Tailwind-based design system",
+        "Performance optimization (Lighthouse score >90)",
+        "Figma-to-code component conversion"
+      ]
     },
     {
       "id": 7,
@@ -81,7 +117,13 @@
       "service": "DevOps",
       "technologies": ["Docker", "Kubernetes", "AWS"],
       "year": "2021",
-      "clientDetails": "An experienced Duisburg-based investor since 1996, with a focus on cloud infrastructure and enterprise IT solutions."
+      "clientDetails": "An experienced Duisburg-based investor since 1996, with a focus on cloud infrastructure and enterprise IT solutions.",
+      "deliverables": [
+        "CI/CD pipeline using GitHub Actions",
+        "Docker containerization of applications",
+        "Kubernetes orchestration on AWS",
+        "Monitoring with Prometheus and Grafana"
+      ]
     },
     {
       "id": 8,
@@ -93,7 +135,13 @@
       "service": "Cybersecurity",
       "technologies": ["Wireshark", "Nmap"],
       "year": "2023",
-      "clientDetails": "A Duisburg-based investor since 1996, with significant investments in cybersecurity and financial services."
+      "clientDetails": "A Duisburg-based investor since 1996, with significant investments in cybersecurity and financial services.",
+      "deliverables": [
+        "Full-scale penetration testing report",
+        "Vulnerability scanning using Nmap",
+        "Traffic analysis via Wireshark",
+        "Implementation of intrusion detection system"
+      ]
     }
   ]
   

@@ -7,6 +7,7 @@ import BodyText from "../../components/BodyText/BodyText";
 import SplideCarousel from "../../components/SplideCarousel/SplideCarousel";
 import { technologiesData } from "../../components/Technologies/technologiesData";
 import Button from "../../components/Button/Button";
+import { IoIosCheckmarkCircle } from "react-icons/io";
 
 const ProjectDetail = () => {
   const { slug } = useParams();
@@ -123,9 +124,33 @@ const ProjectDetail = () => {
         speed={-1}
         height="400px"
         gap="1rem"
-        pauseOnHover={false}
+        pause
+        OnHover={false}
       />
-    </div>
+
+
+<div className={`flex flex-col gap-4 py-10 ${theme.layoutPages.paddingHorizontal}`}>
+
+  <Heading text="Deliverables & Outcomes" centered={false} lineHeight="leading-none" />
+
+  <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
+    {project.deliverables.map((item, index) => (
+      <div key={index} className="flex items-start gap-2">
+        <IoIosCheckmarkCircle className="text-neon mt-1 shrink-0" size={20} />
+        <BodyText
+          text={item}
+         centered={false}
+          />
+      </div>
+    ))}
+  </div>
+
+</div>
+
+
+</div>
+
+
   );
 };
 
