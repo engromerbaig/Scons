@@ -150,7 +150,7 @@ const ProjectDetail = () => {
 </div>
 
 
-{/* <HorizontalScroller/> */}
+<HorizontalScroller/>
 
 </div>
 
