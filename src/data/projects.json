@@ -2,16 +2,21 @@
     {
       "id": 1,
       "heading": "xSuccess Story One",
+      "headline": "Transforming E-Commerce with Modern Web Solutions",
+      "location": "San Francisco, USA",
       "bodyText": "Lorem ipsum dolor sit amet...",
+      "details": "Our client, a leading retailer, sought to revamp their online store. We delivered a high-performance, scalable web platform using the latest frameworks. The result was a 40% increase in user engagement and seamless integration with their backend systems.",
       "service": "Web Development",
-      "technologies": ["React", "Tailwind", "Node.js","Ruby on Rails"],
+      "technologies": ["React", "Tailwind", "Node.js", "Ruby on Rails"],
       "year": "2023"
-
     },
     {
       "id": 2,
       "heading": "Success Story Two",
+      "headline": "Revolutionizing Mobile Banking Experiences",
+      "location": "London, UK",
       "bodyText": "Ut enim ad minim veniam...",
+      "details": "A fintech startup needed a secure and intuitive mobile app for its customers. We built a cross-platform application with robust authentication and real-time notifications. The app quickly gained traction, reaching over 100,000 downloads in six months.",
       "service": "App Development",
       "technologies": ["Flutter", "Firebase"],
       "year": "2023"
@@ -19,56 +24,68 @@
     {
       "id": 3,
       "heading": "Success Story Three",
+      "headline": "Designing Intuitive Interfaces for Healthcare",
+      "location": "Berlin, Germany",
       "bodyText": "Duis aute irure dolor...",
+      "details": "Our team collaborated with a healthcare provider to redesign their patient portal. Through user research and prototyping, we created a clean, accessible interface. Patient satisfaction scores improved significantly after launch.",
       "service": "UX/UI Design",
       "technologies": ["Figma", "Adobe XD"],
-            "year": "2023"
-
+      "year": "2023"
     },
     {
       "id": 4,
       "heading": "Success Story Four",
+      "headline": "Empowering Businesses with AI Automation",
+      "location": "Bangalore, India",
       "bodyText": "Excepteur sint occaecat...",
+      "details": "We developed a custom AI solution to automate data analysis for a logistics company. Using machine learning, the system reduced manual work by 70%. The client now makes faster, data-driven decisions with greater accuracy.",
       "service": "AI Development",
       "technologies": ["Python", "TensorFlow"],
-            "year": "2023"
-
+      "year": "2023"
     },
     {
       "id": 5,
       "heading": "Success Story Five",
+      "headline": "Scaling Backend Infrastructure for E-Learning",
+      "location": "Toronto, Canada",
       "bodyText": "Curabitur non nulla sit amet...",
+      "details": "An education platform faced challenges with growing user numbers. We overhauled their backend, implementing microservices and database optimization. This enabled smooth performance even during peak usage periods.",
       "service": "Backend Development",
       "technologies": ["Node.js", "Express", "MongoDB"],
-            "year": "2022"
-
+      "year": "2022"
     },
     {
       "id": 6,
       "heading": "Success Story Six",
+      "headline": "Modernizing Frontend for a SaaS Company",
+      "location": "Sydney, Australia",
       "bodyText": "Vestibulum ac diam sit amet...",
+      "details": "A SaaS provider wanted a fresh look and faster load times. We rebuilt their frontend with React and Tailwind, focusing on responsive design. The new interface received positive feedback and increased customer retention.",
       "service": "Frontend Development",
       "technologies": ["React", "Bootstrap", "Tailwind"],
-            "year": "2025"
-
+      "year": "2025"
     },
     {
       "id": 7,
       "heading": "Success Story Seven",
+      "headline": "Streamlining Cloud Deployments for Enterprises",
+      "location": "Tokyo, Japan",
       "bodyText": "Mauris blandit aliquet elit...",
+      "details": "An enterprise client needed reliable, automated deployments. Our DevOps team implemented CI/CD pipelines and container orchestration. This reduced deployment times from hours to minutes and improved system reliability.",
       "service": "DevOps",
       "technologies": ["Docker", "Kubernetes", "AWS"],
-            "year": "2021"
-
+      "year": "2021"
     },
     {
       "id": 8,
       "heading": "Success Story Eight",
+      "headline": "Enhancing Security for Financial Institutions",
+      "location": "Dubai, UAE",
       "bodyText": "Pellentesque in ipsum id orci...",
+      "details": "A major bank required a comprehensive security audit. We conducted penetration testing and implemented advanced monitoring tools. The institution now enjoys enhanced protection against cyber threats and regulatory compliance.",
       "service": "Cybersecurity",
       "technologies": ["Wireshark", "Nmap"],
-            "year": "2023"
-
+      "year": "2023"
     }
   ]
   

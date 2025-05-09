@@ -25,7 +25,8 @@ const ProjectDetail = () => {
       <div className={` ${theme.layoutPages.paddingHorizontal} flex flex-col items-start justify-center gap-y-2`}>
       <img src={project.logo} alt={`${project.heading} logo`} className="w-1/5 " />
 
-        <Heading text={project.heading} className="text-left" />
+        <Heading text={project.heading} centered={false} className="text-left leading-tight" />
+        <Heading text={project.headline} centered={false} size="text-40px" fontWeight="font-medium" className="text-left leading-tight" />
 
         <div className="border-2 border-black rounded-full px-2 py-1">
         <BodyText
@@ -41,7 +42,7 @@ const ProjectDetail = () => {
 {/* the fullwidth image without horizontal paddings */}
         <img src={project.coverImage} alt={project.heading} className="w-full h-[600px] object-cover py-10" />
 
-        <div className={`flex flex-col xl:flex-row justify-between items-start gap-8 ${theme.layoutPages.paddingHorizontal}`}>
+        <div className={`flex flex-col xl:flex-row justify-between items-center gap-8 py-4 xl:py-10 ${theme.layoutPages.paddingHorizontal}`}>
   {/* Left Section (Text) */}
   <div className="flex flex-col items-start gap-4 flex-1">
     <Heading
@@ -51,20 +52,19 @@ const ProjectDetail = () => {
     />
 
     <BodyText
-      text={project.bodyText}
-      size="text-25px"
+      text={project.details}
+      centered={false}
+
     />
 
     <div className="flex flex-row items-center">
       <BodyText
         text="Location:"
-        size="text-25px"
         fontWeight="font-semibold"
         className="mr-2"
       />
       <BodyText
-        text="sdds"
-        size="text-25px"
+        text={project.location}
       />
     </div>
   </div>
