@@ -8,6 +8,7 @@ import SplideCarousel from "../../components/SplideCarousel/SplideCarousel";
 import { technologiesData } from "../../components/Technologies/technologiesData";
 import Button from "../../components/Button/Button";
 import { IoIosCheckmarkCircle } from "react-icons/io";
+import CardScroller from "./CardScroller";
 
 const ProjectDetail = () => {
   const { slug } = useParams();
@@ -147,6 +148,8 @@ const ProjectDetail = () => {
 
 </div>
 
+
+<CardScroller/>
 
 </div>
 
