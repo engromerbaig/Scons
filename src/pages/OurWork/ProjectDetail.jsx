@@ -1,13 +1,11 @@
+
 import React, { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { theme } from "../../theme";
 import projects from "./projectDetails";
 import Heading from "../../components/Heading/Heading";
 import BodyText from "../../components/BodyText/BodyText";
-
-import { Splide, SplideSlide } from "@splidejs/react-splide";
-import { AutoScroll } from "@splidejs/splide-extension-auto-scroll"; // Import AutoScroll extension
-import "@splidejs/react-splide/css"; // Import Splide CSS
+import SplideCarousel from "../../components/SplideCarousel/SplideCarousel";
 
 const ProjectDetail = () => {
   const { slug } = useParams();
@@ -86,36 +84,27 @@ const ProjectDetail = () => {
         </div>
       </div>
 
-      {/* Splide Carousel Section */}
-      <div className={`py-10`}>
-  <Splide
-    options={{
-      type: "loop", // Enables infinite loop
-      perPage: 2, // Show two images at a time
-      perMove: 1, // Move one image at a time
-      arrows: false, // Hide navigation arrows
-      pagination: false, // Hide pagination dots
-      gap: "1rem", // Space between slides
-      autoScroll: {
-        speed: 1, // Continuous scroll speed (adjust as needed)
-        pauseOnHover: false, // Pause on hover
-        autoStart: true, // Start scrolling automatically
-      },
-    }}
-    extensions={{ AutoScroll }} // Register the AutoScroll extension
-    aria-label="Project Images Carousel"
-  >
-    {project.additionalImages.slice(1, 5).map((image, index) => (
-      <SplideSlide key={index}>
-        <img
-          src={image}
-          alt={`Project image ${index + 2}`}
-          className="w-full h-[400px] object-cover rounded-3xl border-4 border-black"
-        />
-      </SplideSlide>
-    ))}
-  </Splide>
-</div>
+      {/* First Carousel: Left to Right (additionalImages[2] to [4]) */}
+    <SplideCarousel
+        images={project.additionalImages.slice(2, 5)} // Indices 2, 3, 4
+        direction="ltr"
+        speed={1}
+        perPage={2}
+        height="400px"
+        gap="1rem"
+        pauseOnHover={false}
+      />
+
+      {/* Second Carousel: Rightward (additionalImages[5] to [7]) */}
+      <SplideCarousel
+        images={project.additionalImages.slice(5, 8)} // Indices 5, 6, 7
+        direction="rtl"
+        speed={1}
+        perPage={2}
+        height="400px"
+        gap="1rem"
+        pauseOnHover={false}
+      />
 
       {/* Uncomment if you want the Back to Portfolio link */}
       {/* <Link
