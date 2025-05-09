@@ -26,7 +26,7 @@ export const technologiesData = {
       { name: "CSS3", icon: icons.web.CSSFrontend },
       { name: "HTML5", icon: icons.web.Html5Frontend },
       { name: "Next.js", icon: icons.web.NextFrontend },
-      { name: "React.js", icon: icons.web.ReactFrontend },
+      { name: "React", icon: icons.web.ReactFrontend },
       { name: "Vue.js", icon: icons.web.VueFrontend },
       { name: "Svelte", icon: icons.web.SvelteFrontend },
       {name:"Angular", icon: icons.web.AngularFrontend},

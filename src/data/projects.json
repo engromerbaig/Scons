@@ -51,7 +51,7 @@
       "bodyText": "Curabitur non nulla sit amet...",
       "details": "An education platform faced challenges with growing user numbers. We overhauled their backend, implementing microservices and database optimization. This enabled smooth performance even during peak usage periods.",
       "service": "Backend Development",
-      "technologies": ["Node.js", "Express", "MongoDB"],
+      "technologies": ["Node.js", "Express", "MongoDB","Swift"],
       "year": "2022"
     },
     {
@@ -62,7 +62,7 @@
       "bodyText": "Vestibulum ac diam sit amet...",
       "details": "A SaaS provider wanted a fresh look and faster load times. We rebuilt their frontend with React and Tailwind, focusing on responsive design. The new interface received positive feedback and increased customer retention.",
       "service": "Frontend Development",
-      "technologies": ["React", "Bootstrap", "Tailwind"],
+      "technologies": ["React", "Figma", "WordPress"],
       "year": "2025"
     },
     {

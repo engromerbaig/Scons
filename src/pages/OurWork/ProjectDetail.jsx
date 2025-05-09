@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { theme } from "../../theme";
@@ -6,6 +5,8 @@ import projects from "./projectDetails";
 import Heading from "../../components/Heading/Heading";
 import BodyText from "../../components/BodyText/BodyText";
 import SplideCarousel from "../../components/SplideCarousel/SplideCarousel";
+import { technologiesData } from "../../components/Technologies/technologiesData";
+import Button from "../../components/Button/Button";
 
 const ProjectDetail = () => {
   const { slug } = useParams();
@@ -14,6 +15,19 @@ const ProjectDetail = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  // Function to find technology icon
+  const findTechnologyIcon = (techName) => {
+    for (const category in technologiesData) {
+      for (const platform in technologiesData[category]) {
+        const tech = technologiesData[category][platform].find(
+          (t) => t.name.toLowerCase() === techName.toLowerCase()
+        );
+        if (tech) return tech.icon;
+      }
+    }
+    return null;
+  };
 
   if (!project) {
     return <div className="text-center py-20">Story not found</div>;
@@ -27,7 +41,7 @@ const ProjectDetail = () => {
         <img
           src={project.logo}
           alt={`${project.heading} logo`}
-          className="w-1/5 "
+          className="w-1/5"
         />
 
         <Heading
@@ -44,7 +58,11 @@ const ProjectDetail = () => {
         />
 
         <div className="border-2 border-black rounded-full px-2 py-1">
-          <BodyText text={project.service} size="text-xs" fontWeight="font-semibold" />
+          <BodyText
+            text={project.service}
+            size="text-xs"
+            fontWeight="font-semibold"
+          />
         </div>
       </div>
 
@@ -69,7 +87,11 @@ const ProjectDetail = () => {
           <BodyText text={project.details} centered={false} />
 
           <div className="flex flex-row items-center">
-            <BodyText text="Location:" fontWeight="font-semibold" className="mr-2" />
+            <BodyText
+              text="Location:"
+              fontWeight="font-semibold"
+              className="mr-2"
+            />
             <BodyText text={project.location} />
           </div>
         </div>
@@ -84,35 +106,53 @@ const ProjectDetail = () => {
         </div>
       </div>
 
-      {/* First Carousel: Left to Right (additionalImages[2] to [4]) */}
- {/* First Carousel: additionalImages[1], [2], [3] */}
-<SplideCarousel
-  images={project.additionalImages.slice(1, 4)} // [1, 2, 3]
-  speed={1}
-  height="400px"
-  gap="1rem"
-  pauseOnHover={false}
-/>
+      {/* First Carousel: additionalImages[1], [2], [3] */}
+      <SplideCarousel
+        images={project.additionalImages.slice(1, 4)}
+        speed={1}
+        height="400px"
+        gap="1rem"
+        pauseOnHover={false}
+      />
 
-{/* Second Carousel: additionalImages[4], [5], [6] */}
-<SplideCarousel
-  images={project.additionalImages.slice(4, 7)} // [4, 5, 6]
-  speed={-1}
-  height="400px"
-  gap="1rem"
-  pauseOnHover={false}
-/>
+      {/* Second Carousel: additionalImages[4], [5], [6] */}
+      <SplideCarousel
+        images={project.additionalImages.slice(4, 7)}
+        speed={-1}
+        height="400px"
+        gap="1rem"
+        pauseOnHover={false}
+      />
 
-
-<div className={`flex flex-col ${theme.layoutPages.paddingHorizontal} py-10`}>
-<Heading
-text="Project Features" centered={false} lineHeight="leading-loose" />
-<BodyText text="We used the following technologies to build this project:" centered={false} />
-
-
-
-
-</div>
+      {/* Project Features Section */}
+      <div
+        className={`flex flex-col ${theme.layoutPages.paddingHorizontal} py-10`}
+      >
+        <Heading
+          text="Project Features"
+          centered={false}
+          lineHeight="leading-loose"
+        />
+        <BodyText
+          text="We used the following technologies to build this project:"
+          centered={false}
+        />
+        <div className="grid grid-cols-3 max-w-xl gap-4 mt-4">
+          {project.technologies.map((tech, index) => {
+            const icon = findTechnologyIcon(tech);
+            return (
+              <Button
+              hoverBgColor="bg-neon"
+              hoverTextColor="text-black"
+              
+                key={index}
+                name={tech}
+                icon={icon}
+              />
+            );
+          })}
+        </div>
+      </div>
 
       {/* Uncomment if you want the Back to Portfolio link */}
       {/* <Link
