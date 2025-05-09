@@ -144,7 +144,7 @@ const ProjectDetail = () => {
               <Button
               hoverBgColor="bg-neon"
               hoverTextColor="text-black"
-              
+              noIconChange={true}
                 key={index}
                 name={tech}
                 icon={icon}

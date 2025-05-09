@@ -11,15 +11,17 @@ const Button = ({
   textColor = "black",
   hoverTextColor = "white",
   hoverBgColor = "bg-black",
-  textAlign="justify-start",
+  textAlign = "justify-start",
+  noIconChange = false, // Prop to control icon filter and apply svg-black
   onClick,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
     <div
-      className={`inline-flex flex-row items-center ${textAlign} cursor-pointer p-3 ${bgColor} rounded-full ${hoverBgColor ? "hover:" + hoverBgColor : ""
-        } transition-all duration-300 relative overflow-hidden hover:shadow-lg ${className}`}
+      className={`inline-flex flex-row items-center ${textAlign} cursor-pointer p-3 ${bgColor} rounded-full ${
+        hoverBgColor ? "hover:" + hoverBgColor : ""
+      } transition-all duration-300 relative overflow-hidden hover:shadow-lg ${className}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={onClick}
@@ -29,11 +31,16 @@ const Button = ({
         <img
           src={icon}
           alt={name}
-          className={`${width} aspect-square flex-shrink-0`}
+          className={`${width} aspect-square flex-shrink-0 ${
+            noIconChange ? "svg-black" : ""
+          }`}
           style={{
-            filter: isHovered
+            filter: noIconChange
+              ? "brightness(0) invert(0)"
+              : isHovered
               ? "brightness(0) invert(1)"
               : "brightness(0) saturate(100%)",
+            transition: noIconChange ? "none" : "filter 0.3s ease", // Disable transition when noIconChange is true
           }}
         />
       )}
