@@ -21,6 +21,7 @@ const ContainerComponent = ({ logo, heading, number, text }) => (
         <div className="w-full flex justify-between items-center mb-2">
           <Heading
           text={heading}
+          size="text-40px"
           centered={false}
           color="text-white"
           />
@@ -38,7 +39,7 @@ const ContainerComponent = ({ logo, heading, number, text }) => (
           text={text}
           color="text-white"
           centered={false}
-          lineHeight="leading-loose"
+          lineHeight="leading-tight"
           className="whitespace-normal break-words"
           />
         

@@ -15,7 +15,7 @@ const BusinessSuccess = () => {
         centered={false}
       />
       <BodyText
-        text="Tyfora delivers a clear roadmap combining strategic planning and precise execution to ensure your project milestones are met on time, driving success through innovative tech solutions."
+        text="Scons delivers a clear roadmap combining strategic planning and precise execution to ensure your project milestones are met on time, driving success through innovative tech solutions."
         centered={false}
         color="text-white"
       />
