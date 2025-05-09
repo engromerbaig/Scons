@@ -79,7 +79,7 @@ const ProjectDetail = () => {
         {/* Left Section (Text) */}
         <div className="flex flex-col items-start gap-4 flex-1">
           <Heading
-            text="About the Project"
+            text="About the Client"
             centered={false}
             lineHeight="leading-loose"
           />
@@ -104,7 +104,64 @@ const ProjectDetail = () => {
             className="w-[400px] rounded-md object-cover"
           />
         </div>
+
+
+
+
       </div>
+
+
+
+      <div
+        className={`flex flex-col xl:flex-row justify-between items-center gap-8 py-4 xl:py-10 ${theme.layoutPages.paddingHorizontal}`}
+      >
+        {/* Left Section (Text) */}
+        <div className="flex flex-col items-start gap-4 flex-1">
+          <Heading
+            text={project.headline}
+            centered={false}
+            lineHeight="leading-loose"
+          />
+
+          <BodyText text={project.details} centered={false} />
+
+     
+        </div>
+
+        {/* Techs */}
+
+        {/* vertically align it at bottom i.e. end*/}
+        <div
+        className={`flex flex-col `}
+      >
+    
+        <BodyText
+          text="Tech Used:"
+          centered={false}
+        />
+        
+      <div className="grid grid-cols-2 max-w-3xl gap-4 mt-4 ">
+  {project.technologies.map((tech, index) => {
+    const icon = findTechnologyIcon(tech);
+    return (
+      <Button
+        hoverBgColor="bg-neon"
+        hoverTextColor="text-black"
+        noIconChange={true}
+        key={index}
+        name={tech}
+        icon={icon}
+      />
+    );
+  })}
+</div>
+
+      </div>
+
+
+      </div>
+
+    
 
       {/* First Carousel: additionalImages[1], [2], [3] */}
       <SplideCarousel
@@ -114,6 +171,9 @@ const ProjectDetail = () => {
         gap="1rem"
         pauseOnHover={false}
       />
+
+
+      
 
       {/* Second Carousel: additionalImages[4], [5], [6] */}
       <SplideCarousel
@@ -125,34 +185,7 @@ const ProjectDetail = () => {
       />
 
       {/* Project Features Section */}
-      <div
-        className={`flex flex-col ${theme.layoutPages.paddingHorizontal} py-10`}
-      >
-        <Heading
-          text="Project Features"
-          centered={false}
-          lineHeight="leading-loose"
-        />
-        <BodyText
-          text="We used the following technologies to build this project:"
-          centered={false}
-        />
-        <div className="grid grid-cols-3 max-w-xl gap-4 mt-4">
-          {project.technologies.map((tech, index) => {
-            const icon = findTechnologyIcon(tech);
-            return (
-              <Button
-              hoverBgColor="bg-neon"
-              hoverTextColor="text-black"
-              noIconChange={true}
-                key={index}
-                name={tech}
-                icon={icon}
-              />
-            );
-          })}
-        </div>
-      </div>
+   
 
       {/* Uncomment if you want the Back to Portfolio link */}
       {/* <Link
