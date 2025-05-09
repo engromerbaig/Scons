@@ -1,4 +1,4 @@
-// Project: Splide Carousel Component
+
 import React from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { AutoScroll } from "@splidejs/splide-extension-auto-scroll";
@@ -16,24 +16,24 @@ const SplideCarousel = ({
 }) => {
   return (
     <div className={`py-10 ${className}`}>
-      <Splide
-        options={{
-          type: "loop", // Infinite loop
-          perPage, // Number of images to show
-          perMove: 1, // Move one image at a time
-          arrows: false, // Hide navigation arrows
-          pagination: false, // Hide pagination dots
-          gap, // Space between slides
-          direction, // Text direction (ltr or rtl)
-          autoScroll: {
-            speed: direction === "rtl" ? -speed : speed, // Reverse speed for right-to-left
-            pauseOnHover, // Pause on hover
-            autoStart: true, // Start scrolling automatically
-          },
-        }}
-        extensions={{ AutoScroll }} // Register AutoScroll extension
-        aria-label="Project Images Carousel"
-      >
+   <Splide
+  options={{
+    type: "loop",
+    perPage,
+    perMove: 1,
+    arrows: false,
+    pagination: false,
+    gap,
+    direction: "ltr", // Always ltr for consistency
+    autoScroll: {
+      speed, // Pass speed directly (positive = left, negative = right)
+      pauseOnHover,
+      autoStart: true,
+    },
+  }}
+  extensions={{ AutoScroll }}
+  aria-label="Project Images Carousel"
+>
         {images.map((image, index) => (
           <SplideSlide key={index}>
             <img

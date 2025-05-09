@@ -87,7 +87,6 @@ const ProjectDetail = () => {
       {/* First Carousel: Left to Right (additionalImages[2] to [4]) */}
     <SplideCarousel
         images={project.additionalImages.slice(2, 5)} // Indices 2, 3, 4
-        direction="ltr"
         speed={1}
         perPage={2}
         height="400px"
@@ -98,8 +97,7 @@ const ProjectDetail = () => {
       {/* Second Carousel: Rightward (additionalImages[5] to [7]) */}
       <SplideCarousel
         images={project.additionalImages.slice(5, 8)} // Indices 5, 6, 7
-        direction="rtl"
-        speed={1}
+        speed={-1}
         perPage={2}
         height="400px"
         gap="1rem"
