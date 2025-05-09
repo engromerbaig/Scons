@@ -37,22 +37,36 @@ const ProjectDetail = () => {
         </div>
 
         </div>
-      <div className="flex flex-col gap-4">
+
+{/* the fullwidth image without horizontal paddings */}
         <img src={project.coverImage} alt={project.heading} className="w-full h-[600px] object-cover py-10" />
+
+      <div className="flex flex-col xl:flex-row justify-center items-center gap-4">
+        <div className="flex flex-col items-start justify-center gap-y-2">
+        <Heading
+          text="About the Project"
+          centered={false}
+          lineHeight="leading-loose"
+        />
 
         <BodyText
           text={project.bodyText}
           size="text-25px"
-          centered={false}
-          lineHeight="leading-loose"
-        />
-        <Link
+          />
+          </div>
+     
+     <img src={project.coverImage} alt="" />
+      
+      </div>
+
+
+
+      <Link
           to="/portfolio"
           className="inline-block mt-6 px-4 py-2 bg-blue-500 text-white w-48  rounded-full"
         >
           Back to Portfolio
         </Link>
-      </div>
     </div>
   );
 };
