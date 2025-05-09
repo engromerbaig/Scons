@@ -46,7 +46,7 @@ const MobileScroller = () => {
         {containersData.map((containerData, index) => (
           <div
             key={index}
-            className="card-container md:w-[33.33vw] w-screen h-screen flex-shrink-0"
+            className="card-container  w-screen h-screen flex-shrink-0"
           >
             <ContainerComponent
               logo={containerData.logo}
