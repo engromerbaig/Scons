@@ -41,23 +41,44 @@ const ProjectDetail = () => {
 {/* the fullwidth image without horizontal paddings */}
         <img src={project.coverImage} alt={project.heading} className="w-full h-[600px] object-cover py-10" />
 
-      <div className="flex flex-col xl:flex-row justify-center items-center gap-4">
-        <div className="flex flex-col items-start justify-center gap-y-2">
-        <Heading
-          text="About the Project"
-          centered={false}
-          lineHeight="leading-loose"
-        />
+        <div className={`flex flex-col xl:flex-row justify-between items-start gap-8 ${theme.layoutPages.paddingHorizontal}`}>
+  {/* Left Section (Text) */}
+  <div className="flex flex-col items-start gap-4 flex-1">
+    <Heading
+      text="About the Project"
+      centered={false}
+      lineHeight="leading-loose"
+    />
 
-        <BodyText
-          text={project.bodyText}
-          size="text-25px"
-          />
-          </div>
-     
-     <img src={project.coverImage} alt="" />
-      
-      </div>
+    <BodyText
+      text={project.bodyText}
+      size="text-25px"
+    />
+
+    <div className="flex flex-row items-center">
+      <BodyText
+        text="Location:"
+        size="text-25px"
+        fontWeight="font-semibold"
+        className="mr-2"
+      />
+      <BodyText
+        text="sdds"
+        size="text-25px"
+      />
+    </div>
+  </div>
+
+  {/* Right Section (Image) */}
+  <div className="flex-shrink-0">
+    <img
+      src={project.additionalImages[0]}
+      alt="Project visual"
+      className="w-[400px] rounded-md  object-cover"
+    />
+  </div>
+</div>
+
 
 
 
