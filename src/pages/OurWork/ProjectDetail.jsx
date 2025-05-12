@@ -10,6 +10,7 @@ import Button from "../../components/Button/Button";
 import { IoIosCheckmarkCircle } from "react-icons/io";
 import HorizontalScroller from "../../components/HorizontalScroller/HorizontalScroller";
 import ImpactSection from "./ImpactSection";
+import Vision from "../../components/Vision/Vision";
 
 
 const ProjectDetail = () => {
@@ -162,6 +163,8 @@ const ProjectDetail = () => {
       introText={project.impactIntro}
         impacts={project.impacts}
       />
+
+      <Vision />
 
 </div>
 
