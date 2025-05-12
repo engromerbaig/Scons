@@ -43,7 +43,7 @@ const ProjectDetail = () => {
       <div className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} flex flex-col gap-y-4`}>
         <img src={project.logo} alt={`${project.heading} logo`} className="w-[15%]" />
 
-        <Heading text={project.heading} centered={false} className="text-left leading-none" color="text-white" />
+        <Heading text={project.heading} centered={false} className="text-left leading-none" color="text-neon" />
         <BodyText text={project.bodyText} centered={false} className="text-left" color="text-white" />
     
 
@@ -143,17 +143,18 @@ const ProjectDetail = () => {
       {/* Carousels */}
     
 
-<div className={`flex flex-col gap-4 bg-white ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal}`}>
+<div className={`flex flex-col gap-4 bg-charcoal ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal}`}>
 
-  <Heading text="Deliverables & Outcomes" centered={false} lineHeight="leading-none" />
+  <Heading text="Deliverables & Outcomes" centered={false} color="text-neon" lineHeight="leading-none" />
 
-  <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
+  <div className="grid grid-cols-1 gap-4 ">
     {project.deliverables.map((item, index) => (
       <div key={index} className="flex items-start gap-2">
         <IoIosCheckmarkCircle className="text-neon mt-1 shrink-0" size={20} />
         <BodyText
           text={item}
          centered={false}
+         color="text-white"
           />
       </div>
     ))}
