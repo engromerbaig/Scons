@@ -8,6 +8,10 @@ import aiImage from "../../assets/images/services/6.webp"
 import consultationImage from "../../assets/images/services/7.webp"
 
 
+import mobileApp2Image from "../../assets/images/services/mobile.webp"
+
+
+
 
 export const servicesHeading = {
   text: "Our Services",
@@ -23,7 +27,7 @@ export const services = [
   {
     heading: "Mobile App Development",
     spanText:"App Development",
-image: mobileAppImage,
+image: mobileApp2Image,
     // details hero page content
     heading2: "It Starts with a Vision in Mobile App Development",
     description: "Bringing Ideas to Life, One App at a Time",
