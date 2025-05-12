@@ -46,6 +46,7 @@ export const technologiesData = {
       { name: "WordPress", icon: icons.web.Wordpress },
       { name: "Magneto", icon: icons.web.Magneto },
       {name:"Webflow", icon: icons.web.Webflow},
+      {name:"Elementor", icon: icons.web.Elementor},
     ],
   },
 

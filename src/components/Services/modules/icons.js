@@ -88,7 +88,7 @@ import wpCMS from '../../../assets/icons/services/Web Platforms/cms/wp.svg';
 import shopifyCMS from '../../../assets/icons/services/Web Platforms/cms/shopify.svg';
 import magnetoCMS from '../../../assets/icons/services/Web Platforms/cms/magneto.svg';
 import webflowCMS from '../../../assets/icons/services/Web Platforms/cms/webflow.svg';
-
+import elementorCMS from '../../../assets/icons/services/Web Platforms/cms/elementor.svg';
 
 
 
@@ -310,7 +310,10 @@ consultationFAQ5: consultationFAQ5,
       Shopify: shopifyCMS,
       Wordpress: wpCMS,
       Magneto: magnetoCMS,
-      Webflow: webflowCMS, // Added Webflow CMS icon
+      Webflow: webflowCMS, 
+      Elementor: elementorCMS,
+      
+      // Added Webflow CMS icon
 
 
       // to be deleted
