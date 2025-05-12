@@ -158,9 +158,10 @@ const ProjectDetail = () => {
 {/* impact section */}
 
 <ImpactSection
-  heading={project.heading}
-  deliverables={project.deliverables}
-/>
+        heading={project.heading}
+      introText={project.impactIntro}
+        impacts={project.impacts}
+      />
 
 </div>
 
