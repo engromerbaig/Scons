@@ -42,6 +42,7 @@ const ProjectDetail = () => {
         <img src={project.logo} alt={`${project.heading} logo`} className="w-1/5" />
 
         <Heading text={project.heading} centered={false} className="text-left leading-none" />
+        <BodyText text={project.bodyText} centered={false} className="text-left" />
     
 
       <div className="border-2 border-black text-center rounded-full w-40 px-2 py-1">
