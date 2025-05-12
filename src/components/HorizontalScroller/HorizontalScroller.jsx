@@ -39,7 +39,7 @@ const useHorizontalScroll = (sliderRef, cardCount, isDesktop) => {
   }, [isDesktop, cardCount, sliderRef]);
 };
 
-const HorizontalScroller = () => {
+const HorizontalScroller = ({ heading, spanHeading, bodyText }) => {
   const isDesktop = useMediaQuery({ query: "(min-width: 768px)" });
   const sliderRef = useRef();
   const componentRef = useRef();
@@ -53,7 +53,7 @@ const HorizontalScroller = () => {
         // Desktop: Pinned horizontal scroll
         <div ref={sliderRef} className="flex h-screen">
           <div className="flex-shrink-0 w-screen">
-            <BusinessSuccess />
+            <BusinessSuccess heading={heading} spanHeading={spanHeading} bodyText={bodyText} />
           </div>
           {containersData.map((data, index) => (
             <div

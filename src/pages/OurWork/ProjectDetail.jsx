@@ -153,7 +153,12 @@ const ProjectDetail = () => {
 </div>
 
 
-<HorizontalScroller/>
+<HorizontalScroller
+heading={`How ${project.heading} came to life`}
+spanHeading={project.heading}
+bodyText="Scons brings projects to life with a clear and proven process—starting from strategic planning and architecture design, followed by precise development focused on performance and scalability. Each project is thoroughly tested and refined through client feedback to ensure a smooth, successful launch."
+
+/>
 
 
 {/* impact section */}

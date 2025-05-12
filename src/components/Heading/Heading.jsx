@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import useTypingAnimation from '../../utilities/Animations/useTypingAnimation.js';
 
 const Heading = ({
-  text,
+  text='',
   spanText = '',
   spanColor = 'text-black',
   spanSize = '', // New prop for span font size

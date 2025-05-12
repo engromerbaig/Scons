@@ -6,16 +6,18 @@ import './index.css';
 import { theme } from "../../theme";
 import timelineImage from "../../assets/icons/arrow.svg";
 
-const BusinessSuccess = () => {
+const BusinessSuccess = ({heading, spanHeading, bodyText}) => {
   const content = (
     <>
       <Heading
-        text="Project Overview and Timeline"
-        color="text-neon"
+        text={heading}
+        spanText={spanHeading}
+        color="text-white"
+        spanColor="text-neon"
         centered={false}
       />
       <BodyText
-        text="Scons delivers a clear roadmap combining strategic planning and precise execution to ensure your project milestones are met on time, driving success through innovative tech solutions."
+        text={bodyText}
         centered={false}
         color="text-white"
       />
@@ -26,7 +28,7 @@ const BusinessSuccess = () => {
     <div className={`grid  bg-black ${theme.layoutPages.paddingHorizontal}  `}>
       {/* Desktop Layout */}
       <div className="hidden md:grid md:grid-cols-12 min-h-screen ">
-        <div className="col-span-12 md:col-span-8 flex flex-col justify-center items-start">
+        <div className="col-span-12 md:col-span-8 md:pr-10 flex flex-col justify-center items-start">
           {content}
         </div>
         <div className="col-span-12 md:col-span-4 h-screen flex items-center justify-center">

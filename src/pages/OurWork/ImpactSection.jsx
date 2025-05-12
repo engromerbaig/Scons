@@ -27,7 +27,7 @@ const ImpactSection = ({ heading, introText, impacts }) => {
       {impacts.map((impact, index) => (
           <div
             key={index}
-            className="border-2 border-b-0 w-full xl:max-w-80 border-neon rounded-3xl p-4 xl:p-6 flex flex-col h-64 "
+            className="border-2 border-b-0 w-full xl:max-w-80 border-neon rounded-3xl p-4 xl:p-6 flex flex-col h-80 "
           >
             {/* Heading Container - Top 25% */}
             <div className="h-1/4">
@@ -44,7 +44,7 @@ const ImpactSection = ({ heading, introText, impacts }) => {
               <BodyText
                 text={impact.text}
                 centered={false}
-                className="text-sm"
+                className="text-base"
               />
             </div>
           </div>
