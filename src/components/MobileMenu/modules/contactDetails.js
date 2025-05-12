@@ -7,14 +7,14 @@ export const contactDetails = [
     {
       type: 'Email',
       icon: email, // Replace with the actual path to the email icon
-      detail: 'info@tyfora.com',
-      link: 'mailto:info@tyfora.com', // Mailto link for email
+      detail: 'info@scons.com',
+      link: 'mailto:info@scons.com', // Mailto link for email
     },
     {
       type: 'Phone',
       icon: phone, // Replace with the actual path to the phone icon
-      detail: '(936) 978-9238',
-      link: 'tel:(936) 978-9238', // Tel link for phone
+      detail: '(936) 978-9230',
+      link: 'tel:(936) 978-9230', // Tel link for phone
     },
   ];
   
