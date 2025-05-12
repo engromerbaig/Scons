@@ -3,9 +3,9 @@ import { gsap } from "gsap";
 import Heading from "../Heading/Heading";
 import BodyText from "../BodyText/BodyText";
 import InfiniteMarquee from "../InfiniteMarquee/InfiniteMarquee";
-import { theme } from "../../theme";
-import patternImage from "../../assets/icons/pattern.svg";
+import patternImage from "../../assets/icons/pattern.svg"; // default
 import "./index.css";
+import { theme } from "../../theme";
 
 const InnerHero = ({
   logoImage,
@@ -17,16 +17,20 @@ const InnerHero = ({
   headingSize = "text-70px",
   bodySize = "text-25px",
   headingColor = "text-white",
+  bodyTextColor = "text-white",
   showCarousel = true,
   carouselItems = [],
   showBottomShadow = false,
   logoIsWhite = false,
   children,
+  bgColor = "bg-black",
+  showPattern = true,
+  patternSrc = patternImage,
 }) => {
   const patternRef = useRef(null);
 
   useEffect(() => {
-    if (patternRef.current) {
+    if (showPattern && patternRef.current) {
       gsap.to(patternRef.current, {
         opacity: 0.2,
         duration: 10,
@@ -38,25 +42,28 @@ const InnerHero = ({
         },
       });
     }
-  }, []);
+  }, [showPattern]);
 
   return (
     <section
       className={`
-        relative flex items-center justify-center w-full bg-black z-10
-        ${height}
-        ${theme.layoutPages.paddingHorizontal}
+        relative flex items-center justify-center w-full z-10
         ${theme.layoutPages.paddingVertical}
+        ${theme.layoutPages.paddingHorizontal}
+        ${bgColor}
+        ${height}
         ${showBottomShadow ? "shadow-custom-bottom" : ""}
       `}
     >
-      {/* Pattern Image Overlay */}
-      <div
-        ref={patternRef}
-        aria-hidden
-        className="absolute bottom-0 left-0 w-full h-full bg-no-repeat bg-bottom bg-cover pointer-events-none z-0"
-        style={{ backgroundImage: `url(${patternImage})` }}
-      />
+      {/* Optional Pattern Image Overlay */}
+      {showPattern && (
+        <div
+          ref={patternRef}
+          aria-hidden
+          className="absolute bottom-0 left-0 w-full h-full bg-no-repeat bg-bottom bg-cover pointer-events-none z-0"
+          style={{ backgroundImage: `url(${patternSrc})` }}
+        />
+      )}
 
       {/* Main Content */}
       <div className="relative flex flex-col-reverse xl:flex-row items-center justify-between w-full gap-8 z-10 text-white">
@@ -83,11 +90,10 @@ const InnerHero = ({
           <BodyText
             text={bodyText}
             size={bodySize}
-            color="text-white"
+            color={bodyTextColor}
             centered={false}
             className="mt-2 leading-none"
           />
-          {/* Optional custom content like buttons */}
           {children && <div className="mt-4">{children}</div>}
         </div>
 
