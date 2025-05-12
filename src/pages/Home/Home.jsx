@@ -7,7 +7,6 @@ const Services = lazy(() => import('../../components/Services/Services'));
 const Industries = lazy(() => import('../../components/Industries/Industries'));
 const GIFSection = lazy(() => import('../../components/GIFSection/GIFSection'));
 const Locations = lazy(() => import('../../components/Locations/Locations'));
-const BuisnessFormula = lazy(() => import('../../components/BuisnessFormula/BuisnessFormula'));
 
 
 import Technologies from '../../components/Technologies/Technologies';
