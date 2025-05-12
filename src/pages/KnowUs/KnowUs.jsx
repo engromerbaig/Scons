@@ -33,6 +33,8 @@ import Locations from "../../components/Locations/Locations";
 import Testimonials from "../../components/Testimonials/Testimonials";
 import Technologies from "../../components/Technologies/Technologies";
 
+import knowUsMarqueeItems from "./knowUsMarquee";
+
 const KnowUs = () => {
   // Ref and state for intersection observer
   const officeImgRef = useRef(null);
@@ -77,6 +79,8 @@ const KnowUs = () => {
         headingText="About Scons & The Journey So Far"
         spanText="Scons"
         bodyText="Scons is a dynamic tech powerhouse, delivering innovative software solutions worldwide."
+
+        showCarousel={false}
       />
 
       <div

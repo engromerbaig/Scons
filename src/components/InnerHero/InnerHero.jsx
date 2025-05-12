@@ -16,15 +16,9 @@ const InnerHero = ({
   height = "h-screen",
   headingSize = "text-70px",
   bodySize = "text-25px",
+  showCarousel = true,
+  carouselItems = [],
 }) => {
-  const carouselItems = [
-    "Software Kings",
-    "Partnered-BY-Econs",
-    "Best-in-House",
-    "IIT-Devs",
-    "ETC",
-  ];
-
   return (
     <section
       className={`
@@ -43,18 +37,22 @@ const InnerHero = ({
       />
 
       {/* Main Content */}
-      <div className="relative flex flex-col-reverse md:flex-row items-center justify-between w-full gap-4 md:gap-0 z-10 text-white">
+      <div className="relative flex flex-col-reverse xl:flex-row items-center justify-between w-full gap-8 z-10 text-white">
         {/* Left Side: Logo, Heading, Body */}
-        <div className="flex flex-col items-start justify-center flex-1 gap-2">
+        <div className="flex flex-col items-start justify-center flex-1 gap-4 text-left">
           {logoImage && (
-            <img src={logoImage} alt="Logo" className="w-40 h-16 mb-0 object-contain" />
+            <img
+              src={logoImage}
+              alt="Logo"
+              className="w-40 h-16 mb-0 object-contain svg-white"
+            />
           )}
           <Heading
             text={headingText}
             spanText={spanText}
             size={headingSize}
             color="text-white"
-            spanColor="text-white"
+            spanColor="text-neon"
             fontWeight="font-black"
             spanFontWeight="font-black"
             centered={false}
@@ -69,8 +67,8 @@ const InnerHero = ({
           />
         </div>
 
-        {/* Right Side: Illustration */}
-        <div className="flex-1 flex items-center justify-center">
+        {/* Right Side: Illustration (visible only on xl and above) */}
+        <div className="hidden xl:flex flex-1 items-center justify-center">
           {illustrationImage && (
             <img
               src={illustrationImage}
@@ -81,11 +79,12 @@ const InnerHero = ({
         </div>
       </div>
 
-      {/* Text Carousel at Bottom */}
-      <div className="absolute bottom-0 left-0 w-full z-20">
-      <InfiniteMarquee speed={70} items={carouselItems} textColor="text-white" />
-
-      </div>
+      {/* Optional Carousel */}
+      {showCarousel && carouselItems.length > 0 && (
+        <div className="absolute bottom-0 left-0 w-full z-20">
+          <InfiniteMarquee speed={70} items={carouselItems} textColor="text-white" />
+        </div>
+      )}
     </section>
   );
 };
