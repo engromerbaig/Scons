@@ -41,7 +41,7 @@ const ProjectDetail = () => {
     <div className={`${theme.layoutPages.paddingVertical} min-h-screen`}>
       {/* Header Section */}
       <div className={`${theme.layoutPages.paddingHorizontal} flex flex-col gap-y-4`}>
-        <img src={project.logo} alt={`${project.heading} logo`} className="w-1/5" />
+        <img src={project.logo} alt={`${project.heading} logo`} className="w-[15%]" />
 
         <Heading text={project.heading} centered={false} className="text-left leading-none" />
         <BodyText text={project.bodyText} centered={false} className="text-left" />
