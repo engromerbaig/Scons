@@ -75,7 +75,6 @@ const KnowUs = () => {
       {/* Inner Hero Section */}
       <InnerHero
         logoImage={logoImage}
-        illustrationImage={heroImage}
         headingText="About Scons & The Journey So Far"
         spanText="Scons"
         bodyText="Scons is a dynamic tech powerhouse, delivering innovative software solutions worldwide."
