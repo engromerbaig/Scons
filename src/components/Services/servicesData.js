@@ -8,7 +8,7 @@ import aiImage from "../../assets/images/services/6.webp"
 import consultationImage from "../../assets/images/services/7.webp"
 
 
-import mobileApp2Image from "../../assets/images/services/mobile.webp"
+import mobileApp2Image from "../../assets/images/services/mobile.png"
 
 
 
