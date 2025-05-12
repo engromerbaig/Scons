@@ -11,6 +11,7 @@ import { IoIosCheckmarkCircle } from "react-icons/io";
 import HorizontalScroller from "../../components/HorizontalScroller/HorizontalScroller";
 import ImpactSection from "./ImpactSection";
 import Vision from "../../components/Vision/Vision";
+import InnerHero from "../../components/InnerHero/InnerHero";
 
 
 const ProjectDetail = () => {
@@ -39,15 +40,15 @@ const ProjectDetail = () => {
 
   return (
     <div className={`${theme.layoutPages.paddingVertical} bg-black min-h-screen`}>
-      {/* Header Section */}
-      <div className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingBottom} flex flex-col gap-y-4`}>
-        <img src={project.logo} alt={`${project.heading} logo`} className="w-[15%]" />
 
-        <Heading text={project.heading} centered={false} className="text-left leading-none" color="text-neon" />
-        <BodyText text={project.bodyText} centered={false} className="text-left" color="text-white" />
-    
-
-      <div className="border-2 border-white text-center rounded-full w-40 px-2 py-1">
+      <InnerHero
+        logoImage={project.logo}
+        headingText={project.heading}
+        bodyText={project.bodyText}
+        height="h-auto"
+        headingColor="text-neon"
+        >
+     <div className="border-2 border-white text-center rounded-full w-40 px-2 py-1">
           <BodyText
             text={project.service}
             size="text-xs"
@@ -55,7 +56,11 @@ const ProjectDetail = () => {
             color="text-white"
           />
         </div>
-      </div>
+
+
+        </InnerHero>
+      {/* Header Section */}
+     
 
       {/* Cover Image */}
       <img

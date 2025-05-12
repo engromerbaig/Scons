@@ -16,21 +16,25 @@ const InnerHero = ({
   height = "h-screen",
   headingSize = "text-70px",
   bodySize = "text-25px",
+  headingColor = "text-white",
   showCarousel = true,
   carouselItems = [],
+  showBottomShadow = false,
+  logoIsWhite = false,
+  children,
 }) => {
   const patternRef = useRef(null);
 
   useEffect(() => {
     if (patternRef.current) {
       gsap.to(patternRef.current, {
-        opacity: 0.4, // 50%
-        duration: 20, // Slow animation (5 seconds)
-        ease: "sine.inOut", // Smooth, subtle easing
-        yoyo: true, // Reverses animation
-        repeat: -1, // Repeats indefinitely
+        opacity: 0.2,
+        duration: 10,
+        ease: "sine.inOut",
+        yoyo: true,
+        repeat: -1,
         onStart: () => {
-          gsap.set(patternRef.current, { opacity: 0.2 }); // Start at 20%
+          gsap.set(patternRef.current, { opacity: 0.1 });
         },
       });
     }
@@ -43,33 +47,33 @@ const InnerHero = ({
         ${height}
         ${theme.layoutPages.paddingHorizontal}
         ${theme.layoutPages.paddingVertical}
-        shadow-custom-bottom
+        ${showBottomShadow ? "shadow-custom-bottom" : ""}
       `}
     >
       {/* Pattern Image Overlay */}
       <div
         ref={patternRef}
         aria-hidden
-        className="absolute bottom-0 left-0 w-full h-full bg-no-repeat bg-bottom bg-contain pointer-events-none z-0"
+        className="absolute bottom-0 left-0 w-full h-full bg-no-repeat bg-bottom bg-cover pointer-events-none z-0"
         style={{ backgroundImage: `url(${patternImage})` }}
       />
 
       {/* Main Content */}
       <div className="relative flex flex-col-reverse xl:flex-row items-center justify-between w-full gap-8 z-10 text-white">
-        {/* Left Side: Logo, Heading, Body */}
+        {/* Left Side */}
         <div className="flex flex-col items-start justify-center flex-1 gap-4 text-left">
           {logoImage && (
             <img
               src={logoImage}
               alt="Logo"
-              className="w-40 h-16 mb-0 object-contain svg-white"
+              className={`w-40 h-16 mb-0 object-contain ${logoIsWhite ? "svg-white" : ""}`}
             />
           )}
           <Heading
             text={headingText}
             spanText={spanText}
             size={headingSize}
-            color="text-white"
+            color={headingColor}
             spanColor="text-neon"
             fontWeight="font-black"
             spanFontWeight="font-black"
@@ -83,9 +87,11 @@ const InnerHero = ({
             centered={false}
             className="mt-2 leading-none"
           />
+          {/* Optional custom content like buttons */}
+          {children && <div className="mt-4">{children}</div>}
         </div>
 
-        {/* Right Side: Illustration (visible only on xl and above) */}
+        {/* Right Side: Illustration */}
         <div className="hidden xl:flex flex-1 items-center justify-center">
           {illustrationImage && (
             <img

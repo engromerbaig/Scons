@@ -37,7 +37,6 @@ const ServiceDetails = () => {
                 breakSpan1={true}
                 headingText2={service.description}
                 bodyText={service.helperText}
-                bodySize="text-35px"
             />
 
             {/* Tagline Section */}
