@@ -61,7 +61,7 @@ const ProjectDetail = () => {
       <img
         src={project.coverImage}
         alt={project.heading}
-        className="w-full h-[600px] object-cover "
+        className="w-full h-[700px] object-cover "
       />
 
       {/* About Client Section */}

@@ -301,7 +301,8 @@
         "service": "Web Development",
         "technologies": ["WordPress", "Figma", "Elementor"],
         "year": "2023",
-        "clientDetails": "A hygiene-focused company based in Sprendlingen, specializing in pest control solutions for industrial sectors.",
+      "clientDetails": "A German hygiene-focused company headquartered in Sprendlingen, specializing in advanced pest control solutions tailored for industrial and commercial sectors. With a strong foundation in the local market, the company is actively working to expand its presence across the European Union and into international markets, aiming to deliver high-quality, compliant, and sustainable hygiene services at scale.",
+
         "deliverables": [
           "Custom WordPress website",
           "Design prototyping in Figma",
