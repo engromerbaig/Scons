@@ -5,7 +5,7 @@ import { theme } from "../../theme";
 
 const ImpactSection = ({ heading, introText, impacts }) => {
   return (
-    <div className={`flex flex-col gap-6 ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal}`}>
+    <div className={`flex flex-col gap-6 bg-white ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal}`}>
       {/* Main Heading */}
       <Heading
         text={`The right solution for ${heading}`}

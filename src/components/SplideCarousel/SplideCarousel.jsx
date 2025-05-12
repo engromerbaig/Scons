@@ -25,7 +25,7 @@ const SplideCarousel = ({
   }, [perPage]);
 
   return (
-    <div className={`py-10 ${className}`}>
+    <div className={`pb-10 xl:pb-20 ${className}`}>
       <style>
         {`
           .splide__slide {
@@ -39,7 +39,7 @@ const SplideCarousel = ({
             height: 100%;
             object-fit: cover;
             border-radius: 1.5rem;
-            border: 4px solid black;
+            border: 4px solid #28ed70;
           }
           @media (max-width: 640px) {
             .splide__slide {

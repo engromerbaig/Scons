@@ -52,12 +52,12 @@ const Navbar = () => {
     >
       <div className="flex items-center">
         <ScrollToTopLink to="/" className="cursor-pointer">
-          <img src="/logo2.svg" alt="Logo" className="lg:w-28 w-20 aspect-rectangle" />
+          <img src="/logo.svg" alt="Logo" className="lg:w-28 w-20 aspect-rectangle" />
         </ScrollToTopLink>
       </div>
       <div className="flex items-center">
         <button type="button" onClick={toggleMobileMenu} className="relative">
-          <img src="/hamburger.svg" alt="Menu" className="w-6 aspect-square lg:w-6 z-[200] svg-black" />
+          <img src="/hamburger.svg" alt="Menu" className="w-6 aspect-square lg:w-6 z-[200] svg-white" />
         </button>
       </div>
       <MobileMenu

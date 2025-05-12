@@ -38,20 +38,21 @@ const ProjectDetail = () => {
   }
 
   return (
-    <div className={`${theme.layoutPages.paddingVertical} min-h-screen`}>
+    <div className={`${theme.layoutPages.paddingVertical} bg-black min-h-screen`}>
       {/* Header Section */}
-      <div className={`${theme.layoutPages.paddingHorizontal} flex flex-col gap-y-4`}>
+      <div className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} flex flex-col gap-y-4`}>
         <img src={project.logo} alt={`${project.heading} logo`} className="w-[15%]" />
 
-        <Heading text={project.heading} centered={false} className="text-left leading-none" />
-        <BodyText text={project.bodyText} centered={false} className="text-left" />
+        <Heading text={project.heading} centered={false} className="text-left leading-none" color="text-white" />
+        <BodyText text={project.bodyText} centered={false} className="text-left" color="text-white" />
     
 
-      <div className="border-2 border-black text-center rounded-full w-40 px-2 py-1">
+      <div className="border-2 border-white text-center rounded-full w-40 px-2 py-1">
           <BodyText
             text={project.service}
             size="text-xs"
             fontWeight="font-semibold"
+            color="text-white"
           />
         </div>
       </div>
@@ -60,39 +61,42 @@ const ProjectDetail = () => {
       <img
         src={project.coverImage}
         alt={project.heading}
-        className="w-full h-[600px] object-cover my-10"
+        className="w-full h-[600px] object-cover "
       />
 
       {/* About Client Section */}
       <div
-        className={`flex flex-col xl:flex-row justify-between gap-8 py-10 ${theme.layoutPages.paddingHorizontal}`}
-      >
-        <div className="flex flex-col gap-4 flex-1">
-          <Heading text="About the Client" centered={false} lineHeight="leading-none" size="text-60px" />
-          <BodyText text={project.clientDetails} centered={false} />
-          <div className="flex flex-row items-center">
-            <BodyText text="Location:" fontWeight="font-semibold" className="mr-2" />
-            <BodyText text={project.location} />
-          </div>
-        </div>
+  className={`flex flex-col xl:flex-row justify-between gap-8 ${theme.layoutPages.paddingVertical} bg-white ${theme.layoutPages.paddingHorizontal}`}
+>
+  <div className="flex flex-col gap-4 xl:w-1/2 w-full">
+    <Heading text="About the Client" spanText="Client" spanColor="text-neon" centered={false} lineHeight="leading-none" size="text-60px" />
+    <BodyText text={project.clientDetails} centered={false} />
+    <div className="flex flex-row items-center">
+      <BodyText text="Location:" fontWeight="font-semibold" className="mr-2" />
+      <BodyText text={project.location} />
+    </div>
+  </div>
 
-        <div className="flex items-center flex-shrink-0">
-        <img
-            src={project.additionalImages[0]}
-            alt="Project visual"
-            className="w-[500px] rounded-md object-cover"
-          />
-        </div>
-      </div>
+  <div className="flex items-center xl:w-1/2 w-full justify-center">
+    <img
+      src={project.additionalImages[0]}
+      alt="Project visual"
+      className="w-full max-w-[800px] rounded-md object-contain"
+    />
+  </div>
+</div>
+
+
+
 
       {/* Project Description & Technologies */}
       <div
-  className={`flex flex-col xl:flex-row justify-between items-end gap-8 py-10 ${theme.layoutPages.paddingHorizontal}`}
+  className={`flex flex-col xl:flex-row justify-between items-end gap-8 ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal}`}
 >
         {/* Left: Description */}
         <div className="flex flex-col gap-4 flex-1">
-          <Heading text={project.headline} centered={false} lineHeight="leading-none" size="text-60px" />
-          <BodyText text={project.details} centered={false} />
+          <Heading text={project.headline} centered={false} lineHeight="leading-none" color="text-neon" />
+          <BodyText text={project.details} centered={false} color="text-white" />
         </div>
 
         {/* Right: Tech Stack (bottom aligned) */}
@@ -116,8 +120,9 @@ const ProjectDetail = () => {
         </div>
       </div>
 
-      {/* Carousels */}
-      <SplideCarousel
+
+<div className={`${theme.layoutPages.paddingVertical} bg-black`}>
+<SplideCarousel
         images={project.additionalImages.slice(1, 4)}
         speed={1}
         height="400px"
@@ -134,7 +139,11 @@ const ProjectDetail = () => {
       />
 
 
-<div className={`flex flex-col gap-4 ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal}`}>
+</div>
+      {/* Carousels */}
+    
+
+<div className={`flex flex-col gap-4 bg-white ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal}`}>
 
   <Heading text="Deliverables & Outcomes" centered={false} lineHeight="leading-none" />
 
