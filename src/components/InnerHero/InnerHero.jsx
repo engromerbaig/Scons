@@ -2,6 +2,8 @@ import React from "react";
 import Heading from "../Heading/Heading";
 import BodyText from "../BodyText/BodyText";
 import { theme } from "../../theme";
+import patternImage from "../../assets/icons/pattern.svg";
+import "./index.css";
 
 const InnerHero = ({
   logoImage,
@@ -9,23 +11,27 @@ const InnerHero = ({
   headingText,
   spanText,
   bodyText,
-  height = "h-screen", // Default full viewport height
-  headingSize = "text-90px",
-  bodySize = "text-30px",
+  height = "h-screen",
+  headingSize = "text-70px",
+  bodySize = "text-25px",
 }) => (
   <section
-  className={`
-    relative w-full flex items-center justify-center
-    ${height} 
-    ${theme.layoutPages.paddingHorizontal}
-    ${theme.layoutPages.paddingVertical}
-  `}
-  style={{
-    background: "linear-gradient(to bottom, #B8C3C4 0%, #B8C3C4 80%, #ECE9DF 90%)"
-    // Replace #1e3a8a and #f5f5dc with your actual heroBlue and beige hex codes
-  }}
->
-    <div className="w-full flex flex-col-reverse md:flex-row items-center justify-between gap-4 md:gap-0">
+    className={`
+      relative flex items-center justify-center w-full bg-black z-10
+      ${height}
+      ${theme.layoutPages.paddingHorizontal}
+      ${theme.layoutPages.paddingVertical}
+      shadow-custom-bottom
+    `}
+  >
+    {/* Pattern Image Overlay */}
+    <div
+      aria-hidden
+      className="absolute bottom-0 left-0 w-full h-full bg-no-repeat bg-bottom bg-contain opacity-40 pointer-events-none z-0"
+      style={{ backgroundImage: `url(${patternImage})` }}
+    />
+
+    <div className="relative flex flex-col-reverse md:flex-row items-center justify-between w-full gap-4 md:gap-0 z-10 text-white">
       {/* Left Side: Logo, Heading, Body */}
       <div className="flex flex-col items-start justify-center flex-1 gap-2">
         {logoImage && (
@@ -35,17 +41,17 @@ const InnerHero = ({
           text={headingText}
           spanText={spanText}
           size={headingSize}
-          color="text-black"
-          spanColor="text-black"
+          color="text-white"
+          spanColor="text-white"
           fontWeight="font-black"
           spanFontWeight="font-black"
           centered={false}
-          className=" leading-none"
+          className="leading-none"
         />
         <BodyText
           text={bodyText}
           size={bodySize}
-          color="text-black"
+          color="text-white"
           centered={false}
           className="mt-2 leading-none"
         />
