@@ -153,6 +153,27 @@ const ProjectDetail = () => {
 
 <HorizontalScroller/>
 
+
+{/* impact section */}
+
+<div className={`flex flex-col gap-4  ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal}`}>
+
+  <Heading text={`Scons Impact on ${project.heading} `} spanText={`${project.heading}`} spanColor={`text-neon`} centered={false}  lineHeight="leading-none" />
+
+  <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
+    {project.deliverables.map((item, index) => (
+      <div key={index} className="flex items-start gap-2">
+        <IoIosCheckmarkCircle className="text-neon mt-1 shrink-0" size={20} />
+        <BodyText
+          text={item}
+         centered={false}
+          />
+      </div>
+    ))}
+  </div>
+
+</div>
+
 </div>
 
 
