@@ -93,32 +93,32 @@ const ProjectDetail = () => {
       <div
   className={`flex flex-col xl:flex-row justify-between items-end gap-8 ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal}`}
 >
-        {/* Left: Description */}
-        <div className="flex flex-col gap-4 flex-1">
-          <Heading text={project.headline} centered={false} lineHeight="leading-none" color="text-neon" />
-          <BodyText text={project.details} centered={false} color="text-white" />
-        </div>
+  {/* Left: Description */}
+  <div className="flex flex-col gap-4 xl:w-3/5 w-full">
+    <Heading text={project.headline} centered={false} lineHeight="leading-none" color="text-neon" />
+    <BodyText text={project.details} centered={false} color="text-white" />
+  </div>
 
-        {/* Right: Tech Stack (bottom aligned) */}
-        <div className="flex flex-col justify-start max-w-4xl items-start gap-2 xl:h-full">
-          <BodyText text="Tech Used:" color="text-grayText" centered={false} fontWeight="font-semibold" />
-          <div className="grid grid-cols-2 max-w-3xl gap-4 mt-2">
-            {project.technologies.map((tech, index) => {
-              const icon = findTechnologyIcon(tech);
-              return (
-                <Button
-                  key={index}
-                  name={tech}
-                  icon={icon}
-                  hoverBgColor="bg-neon"
-                  hoverTextColor="text-black"
-                  noIconChange={true}
-                />
-              );
-            })}
-          </div>
-        </div>
-      </div>
+  {/* Right: Tech Stack (bottom aligned) */}
+  <div className="flex flex-col justify-start items-start gap-2 xl:w-2/5 w-full">
+    <BodyText text="Tech Used:" color="text-grayText" centered={false} fontWeight="font-semibold" />
+    <div className="grid grid-cols-2 gap-2 mt-2">
+      {project.technologies.map((tech, index) => {
+        const icon = findTechnologyIcon(tech);
+        return (
+          <Button
+            key={index}
+            name={tech}
+            icon={icon}
+            hoverBgColor="bg-neon"
+            hoverTextColor="text-black"
+            noIconChange={true}
+          />
+        );
+      })}
+    </div>
+  </div>
+</div>
 
 
 <div className={`${theme.layoutPages.paddingVertical} bg-black`}>
