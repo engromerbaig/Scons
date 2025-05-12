@@ -68,7 +68,7 @@ const ProjectDetail = () => {
         className={`flex flex-col xl:flex-row justify-between gap-8 py-10 ${theme.layoutPages.paddingHorizontal}`}
       >
         <div className="flex flex-col gap-4 flex-1">
-          <Heading text="About the Client" centered={false} lineHeight="leading-none" />
+          <Heading text="About the Client" centered={false} lineHeight="leading-none" size="text-60px" />
           <BodyText text={project.clientDetails} centered={false} />
           <div className="flex flex-row items-center">
             <BodyText text="Location:" fontWeight="font-semibold" className="mr-2" />
@@ -76,8 +76,8 @@ const ProjectDetail = () => {
           </div>
         </div>
 
-        <div className="flex-shrink-0 ">
-          <img
+        <div className="flex items-center flex-shrink-0">
+        <img
             src={project.additionalImages[0]}
             alt="Project visual"
             className="w-[500px] rounded-md object-cover"
@@ -91,7 +91,7 @@ const ProjectDetail = () => {
 >
         {/* Left: Description */}
         <div className="flex flex-col gap-4 flex-1">
-          <Heading text={project.headline} centered={false} lineHeight="leading-none" />
+          <Heading text={project.headline} centered={false} lineHeight="leading-none" size="text-60px" />
           <BodyText text={project.details} centered={false} />
         </div>
 
