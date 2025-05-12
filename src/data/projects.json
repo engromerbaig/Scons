@@ -289,5 +289,41 @@
           "text": "Implemented intrusion detection for real-time threat monitoring."
         }
       ]
-    }
+    },
+
+    {
+        "id": 9,
+        "heading": "Matuszak Hygiene",
+        "headline": "Pest Management Website for Industrial Hygiene",
+        "location": "Sprendlingen, Germany",
+        "bodyText": "Pellentesque in ipsum id orci porta dapibus. Curabitur aliquet quam id dui posuere blandit. Nulla porttitor accumsan tincidunt.",
+        "details": "Matuszak Hygiene required a professional and responsive website to showcase their pest management services for industrial and production environments. We designed a user-friendly interface using Figma, developed the site in WordPress, and utilized Elementor for rapid deployment and design customization.",
+        "service": "Web Development",
+        "technologies": ["WordPress", "Figma", "Elementor"],
+        "year": "2023",
+        "clientDetails": "A hygiene-focused company based in Sprendlingen, specializing in pest control solutions for industrial sectors.",
+        "deliverables": [
+          "Custom WordPress website",
+          "Design prototyping in Figma",
+          "Responsive layout via Elementor",
+          "SEO-ready pages and contact form integration"
+        ],
+        "impactIntro": "The newly developed website significantly improved customer engagement and online presence.",
+        "impacts": [
+          {
+            "heading": "Enhanced Visibility",
+            "text": "Increased online traffic by 40% through a modern, mobile-optimized interface."
+          },
+          {
+            "heading": "Streamlined Communication",
+            "text": "Integrated contact forms and service listings led to more direct client inquiries."
+          },
+          {
+            "heading": "Improved Brand Image",
+            "text": "Professional design elevated trust and credibility among industrial clients."
+          }
+        ]
+      }
+      
+    
   ]

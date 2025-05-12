@@ -80,7 +80,7 @@ const ProjectDetail = () => {
           <img
             src={project.additionalImages[0]}
             alt="Project visual"
-            className="w-[400px] rounded-md object-cover"
+            className="w-[500px] rounded-md object-cover"
           />
         </div>
       </div>
