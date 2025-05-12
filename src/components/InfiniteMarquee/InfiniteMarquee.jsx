@@ -8,6 +8,9 @@ const InfiniteMarquee = ({
   speed = 100,
   pauseOnHover = false,
   showBullets = true,
+  textColor = "text-black",
+  
+  className = "",
 }) => {
   return (
     <Marquee gradient={false} speed={speed} pauseOnHover={pauseOnHover}>
@@ -26,7 +29,7 @@ const InfiniteMarquee = ({
             <>
               <Heading
                 text={item}
-                color="text-black"
+                color={textColor}
                 spanColor="text-black"
                 fontWeight="font-medium"
                 size="text-60px"

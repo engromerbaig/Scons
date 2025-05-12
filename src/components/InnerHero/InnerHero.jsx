@@ -5,6 +5,7 @@ import SplideTextCarousel from "../SplideCarousel/SplideTextCarousel";
 import { theme } from "../../theme";
 import patternImage from "../../assets/icons/pattern.svg";
 import "./index.css";
+import InfiniteMarquee from "../InfiniteMarquee/InfiniteMarquee";
 
 const InnerHero = ({
   logoImage,
@@ -82,12 +83,8 @@ const InnerHero = ({
 
       {/* Text Carousel at Bottom */}
       <div className="absolute bottom-0 left-0 w-full z-20">
-        <SplideTextCarousel
-          items={carouselItems}
-          speed={1}
-          showBullets={true}
-          height="80px"
-        />
+      <InfiniteMarquee speed={70} items={carouselItems} textColor="text-white" />
+
       </div>
     </section>
   );
