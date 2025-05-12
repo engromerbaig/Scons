@@ -56,7 +56,7 @@ const ProjectCard = ({ project }) => {
           centered={false}
           className="group-hover:underline"
         />
-        <BodyText text={project.bodyText} size="text-25px" centered={false} lineHeight="leading-loose" />
+        <BodyText text={project.headline} size="text-25px" centered={false} lineHeight="leading-loose" />
       </div>
     </Link>
   );
