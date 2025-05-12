@@ -64,8 +64,8 @@ const OurWork = () => {
   return (
     <div className={`min-h-screen`}>
       <InnerHero
-        headingText="Our Success Stories"
-        spanText="Success Stories"
+        headingText="Our Portfolio"
+        spanText="Portfolio"
         bodyText="A showcase of diverse projects that highlight our expertise in creating impactful, innovative tech solutions across industries."
       />
 
