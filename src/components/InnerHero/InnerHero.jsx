@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import { gsap } from "gsap";
 import Heading from "../Heading/Heading";
 import BodyText from "../BodyText/BodyText";
-import SplideTextCarousel from "../SplideCarousel/SplideTextCarousel";
+import InfiniteMarquee from "../InfiniteMarquee/InfiniteMarquee";
 import { theme } from "../../theme";
 import patternImage from "../../assets/icons/pattern.svg";
 import "./index.css";
-import InfiniteMarquee from "../InfiniteMarquee/InfiniteMarquee";
 
 const InnerHero = ({
   logoImage,
@@ -19,6 +19,23 @@ const InnerHero = ({
   showCarousel = true,
   carouselItems = [],
 }) => {
+  const patternRef = useRef(null);
+
+  useEffect(() => {
+    if (patternRef.current) {
+      gsap.to(patternRef.current, {
+        opacity: 0.4, // 50%
+        duration: 20, // Slow animation (5 seconds)
+        ease: "sine.inOut", // Smooth, subtle easing
+        yoyo: true, // Reverses animation
+        repeat: -1, // Repeats indefinitely
+        onStart: () => {
+          gsap.set(patternRef.current, { opacity: 0.2 }); // Start at 20%
+        },
+      });
+    }
+  }, []);
+
   return (
     <section
       className={`
@@ -31,8 +48,9 @@ const InnerHero = ({
     >
       {/* Pattern Image Overlay */}
       <div
+        ref={patternRef}
         aria-hidden
-        className="absolute bottom-0 left-0 w-full h-full bg-no-repeat bg-bottom bg-contain opacity-40 pointer-events-none z-0"
+        className="absolute bottom-0 left-0 w-full h-full bg-no-repeat bg-bottom bg-contain pointer-events-none z-0"
         style={{ backgroundImage: `url(${patternImage})` }}
       />
 
