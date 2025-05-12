@@ -12,7 +12,7 @@ const SplideTextCarousel = ({
   showBullets = true,
   height = "100px",
   gap = "2rem",
-  textSize = "text-70px",
+  textSize = "text-60px",
   className = "",
 }) => {
   useEffect(() => {
@@ -71,17 +71,19 @@ const SplideTextCarousel = ({
                   )}
                 </>
               ) : (
+
+                //correcly styled text
                 <>
                   <Heading
                     text={item}
-                    color="text-neon"
-                    spanColor="text-neon"
-                    fontWeight="font-black"
+                    color="text-white"
+                    spanColor="text-white"
+                    fontWeight="font-medium"
                     size={textSize}
                     className="whitespace-nowrap"
                   />
                   {showBullets && (
-                    <span className="mx-4 font-black text-4xl text-neon select-none">
+                    <span className="mx-8 font-black text-50px text-neon select-none">
                       •
                     </span>
                   )}
