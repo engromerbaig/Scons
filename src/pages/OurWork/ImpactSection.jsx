@@ -23,11 +23,11 @@ const ImpactSection = ({ heading, introText, impacts }) => {
       />
 
       {/* Impact Cards Grid */}
-      <div className="grid grid-cols-1 gap-6 xl:gap-10 xl:grid-cols-3  ">
-        {impacts.map((impact, index) => (
+      <div className="flex flex-col xl:flex-row xl:justify-between gap-6 ">
+      {impacts.map((impact, index) => (
           <div
             key={index}
-            className="border-2 border-b-0 border-neon rounded-3xl p-4 xl:p-6 flex flex-col h-64 "
+            className="border-2 border-b-0 w-full xl:max-w-80 border-neon rounded-3xl p-4 xl:p-6 flex flex-col h-64 "
           >
             {/* Heading Container - Top 25% */}
             <div className="h-1/4">
