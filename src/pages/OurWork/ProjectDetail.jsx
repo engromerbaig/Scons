@@ -40,7 +40,7 @@ const ProjectDetail = () => {
   return (
     <div className={`${theme.layoutPages.paddingVertical} bg-black min-h-screen`}>
       {/* Header Section */}
-      <div className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} flex flex-col gap-y-4`}>
+      <div className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingBottom} flex flex-col gap-y-4`}>
         <img src={project.logo} alt={`${project.heading} logo`} className="w-[15%]" />
 
         <Heading text={project.heading} centered={false} className="text-left leading-none" color="text-neon" />
@@ -121,7 +121,7 @@ const ProjectDetail = () => {
 </div>
 
 
-<div className={`${theme.layoutPages.paddingVertical} bg-black`}>
+<div className={`${theme.layoutPages.paddingVertical} `}>
 <SplideCarousel
         images={project.additionalImages.slice(1, 4)}
         speed={1}
@@ -143,7 +143,7 @@ const ProjectDetail = () => {
       {/* Carousels */}
     
 
-<div className={`flex flex-col gap-4 bg-black ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal}`}>
+<div className={`flex flex-col gap-4  ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal}`}>
 
   <Heading text="Deliverables & Outcomes" centered={false} color="text-neon" lineHeight="leading-none" />
 

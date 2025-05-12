@@ -39,7 +39,7 @@ const SplideCarousel = ({
             height: 100%;
             object-fit: cover;
             border-radius: 1.5rem;
-            border: 2px solid #28ed70;
+            border: 4px solid #26292D;
           }
           @media (max-width: 640px) {
             .splide__slide {
