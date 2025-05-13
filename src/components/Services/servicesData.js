@@ -1,14 +1,13 @@
 import icons from "./modules/icons";
-import mobileAppImage from "../../assets/images/services/1.webp"
-import webAppImage from "../../assets/images/services/2.webp"
-import uiuxImage from "../../assets/images/services/3.webp"
-import blockchainImage from "../../assets/images/services/4.webp"
-import cloudImage from "../../assets/images/services/5.webp"
+import mobileAppImage from "../../assets/images/services/1.svg"
+import webAppImage from "../../assets/images/services/2.svg"
+import uiuxImage from "../../assets/images/services/3.svg"
+import blockchainImage from "../../assets/images/services/4.svg"
+import cloudImage from "../../assets/images/services/5.svg"
 import aiImage from "../../assets/images/services/6.webp"
 import consultationImage from "../../assets/images/services/7.webp"
 
 
-import mobileApp2Image from "../../assets/images/services/mobile.png"
 
 
 
@@ -27,7 +26,7 @@ export const services = [
   {
     heading: "Mobile App Development",
     spanText:"Mobile",
-image: mobileApp2Image,
+image: mobileAppImage,
     // details hero page content
     heading2: "It Starts with a Vision in Mobile App Development",
     description: "Bringing Ideas to Life, One App at a Time",
