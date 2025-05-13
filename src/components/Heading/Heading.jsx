@@ -4,11 +4,11 @@ import { motion } from 'framer-motion';
 import useTypingAnimation from '../../utilities/Animations/useTypingAnimation.js';
 
 const Heading = ({
-  text='',
+  text = '',
   spanText = '',
   spanColor = 'text-black',
-  spanSize = '', // New prop for span font size
-  spanFontWeight = 'font-black', // New prop for span font weight
+  spanSize = '',
+  spanFontWeight = 'font-black',
   color = 'text-black',
   size = 'text-60px',
   centered = true,
@@ -20,7 +20,7 @@ const Heading = ({
   onAnimationComplete,
   className = '',
   breakSpan = false,
-  inActiveHeading = false, // New prop for inactive state
+  inActiveHeading = false,
 }) => {
   const parts = spanText ? text.split(spanText) : [text];
   const { controls, ref, characterVariants } = useTypingAnimation({
@@ -32,7 +32,7 @@ const Heading = ({
 
   // Split text into words while preserving spaces
   const splitIntoWords = (string) => {
-    return string.split(/(\s+)/).filter(word => word.length > 0);
+    return string.split(/(\s+)/).filter((word) => word.length > 0);
   };
 
   // Split words into characters for animation
@@ -46,11 +46,7 @@ const Heading = ({
   // Function to apply 20% opacity if inActiveHeading is true
   const getColorWithOpacity = (colorClass) => {
     if (!inActiveHeading) return colorClass;
-
-    // Extract the color from the class (e.g., 'text-black' -> 'black')
     const colorName = colorClass.replace('text-', '');
-
-    // Return the color with 20% opacity
     return `text-${colorName}/20`;
   };
 
@@ -62,17 +58,21 @@ const Heading = ({
         style={{
           wordBreak: 'normal',
           overflowWrap: 'break-word',
-          whiteSpace: 'pre-wrap'
+          whiteSpace: 'pre-wrap',
         }}
       >
         {parts[0]}
         {spanText && (
           <>
-            {!breakSpan && !parts[0].endsWith(' ') && ' '}
-            <span className={`${getColorWithOpacity(spanColor)} ${spanSize} ${spanFontWeight} ${breakSpan ? 'block mt-0' : 'inline'}`}>
+            {!breakSpan && parts[0] && !parts[0].endsWith(' ') && ' '}
+            <span
+              className={`${getColorWithOpacity(spanColor)} ${spanSize} ${spanFontWeight} ${
+                breakSpan ? 'block mt-0' : 'inline'
+              }`}
+            >
               {spanText}
             </span>
-            {!breakSpan && !parts[1]?.startsWith(' ') && ' '}
+            {!breakSpan && parts[1] && !parts[1].startsWith(' ') && ' '}
           </>
         )}
         {parts[1]}
@@ -88,15 +88,12 @@ const Heading = ({
       style={{
         wordBreak: 'normal',
         overflowWrap: 'break-word',
-        whiteSpace: 'pre-wrap'
+        whiteSpace: 'pre-wrap',
       }}
     >
       {/* First part */}
-      {splitIntoWords(parts[0]).map((word, wordIndex, wordArray) => (
-        <span
-          key={`word-1-${wordIndex}`}
-          style={{ display: 'inline-block' }}
-        >
+      {splitIntoWords(parts[0]).map((word, wordIndex) => (
+        <span key={`word-1-${wordIndex}`} style={{ display: 'inline-block' }}>
           {splitWordIntoChars(word).map((char, charIndex) => {
             const currentCharIndex = charCount++;
             return (
@@ -106,7 +103,7 @@ const Heading = ({
                 initial="hidden"
                 animate={controls}
                 variants={characterVariants}
-                style={{ display: 'relative' }}
+                style={{ display: 'inline-block' }}
                 onAnimationComplete={
                   currentCharIndex === totalLength - 1 && onAnimationComplete
                     ? onAnimationComplete
@@ -123,11 +120,13 @@ const Heading = ({
       {/* Span text */}
       {spanText && (
         <>
-          {!breakSpan && !parts[0].endsWith(' ') && (
-            <span style={{ display: 'relative' }}>{'\u00A0'}</span>
+          {!breakSpan && parts[0] && !parts[0].endsWith(' ') && (
+            <span style={{ display: 'inline-block' }}>{'\u00A0'}</span>
           )}
-          <span 
-            className={`${getColorWithOpacity(spanColor)} ${spanSize} ${spanFontWeight} ${breakSpan ? 'block mt-0' : 'inline-block'}`}
+          <span
+            className={`${getColorWithOpacity(spanColor)} ${spanSize} ${spanFontWeight} ${
+              breakSpan ? 'block mt-0' : 'inline-block'
+            }`}
           >
             {splitIntoWords(spanText).map((word, wordIndex) => (
               <span
@@ -157,7 +156,7 @@ const Heading = ({
               </span>
             ))}
           </span>
-          {!breakSpan && !parts[1]?.startsWith(' ') && (
+          {!breakSpan && parts[1] && !parts[1].startsWith(' ') && (
             <span style={{ display: 'inline-block' }}>{'\u00A0'}</span>
           )}
         </>
@@ -165,10 +164,7 @@ const Heading = ({
 
       {/* Second part */}
       {parts[1] && splitIntoWords(parts[1]).map((word, wordIndex) => (
-        <span
-          key={`word-2-${wordIndex}`}
-          style={{ display: 'inline-block' }}
-        >
+        <span key={`word-2-${wordIndex}`} style={{ display: 'inline-block' }}>
           {splitWordIntoChars(word).map((char, charIndex) => {
             const currentCharIndex = charCount++;
             return (
@@ -199,8 +195,8 @@ Heading.propTypes = {
   text: PropTypes.string.isRequired,
   spanText: PropTypes.string,
   spanColor: PropTypes.string,
-  spanSize: PropTypes.string, // New prop for span font size
-  spanFontWeight: PropTypes.string, // New prop for span font weight
+  spanSize: PropTypes.string,
+  spanFontWeight: PropTypes.string,
   color: PropTypes.string,
   size: PropTypes.string,
   centered: PropTypes.bool,
@@ -211,7 +207,7 @@ Heading.propTypes = {
   onAnimationComplete: PropTypes.func,
   className: PropTypes.string,
   breakSpan: PropTypes.bool,
-  inActiveHeading: PropTypes.bool, // New prop for inactive state
+  inActiveHeading: PropTypes.bool,
 };
 
 export default Heading;

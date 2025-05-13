@@ -1,72 +1,82 @@
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom'; // Import useLocation
 import MobileMenu from '../MobileMenu/MobileMenu';
 import { theme } from '../../theme';
 import ScrollToTopLink from '../../utilities/ScrollToTopLink';
 
 const Navbar = () => {
-  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [closing, setClosing] = useState(false);
-  const [isSticky, setIsSticky] = useState(false); // Track sticky state
-  const [lastScrollY, setLastScrollY] = useState(0); // Track last scroll position
+  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [closing, setClosing] = useState(false);
+  const [isSticky, setIsSticky] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const location = useLocation(); // Get current location
 
-  const toggleMobileMenu = (e) => {
-    e.preventDefault(); // Prevent default behavior of the button
-    e.stopPropagation(); // Prevent event bubbling
+  // Check if the current route is a service inner page
+  const isServicePage = location.pathname.startsWith('/service/');
 
-    if (isMobileMenuOpen) {
-      setClosing(true); // Trigger exit animations first
-    } else {
-      setMobileMenuOpen(true);
-    }
-  };
+  const toggleMobileMenu = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
 
-  const handleCloseComplete = () => {
-    setMobileMenuOpen(false); // Fully close the menu after animation
-    setClosing(false); // Reset closing state
-  };
+    if (isMobileMenuOpen) {
+      setClosing(true);
+    } else {
+      setMobileMenuOpen(true);
+    }
+  };
 
-  // Track scroll direction and make navbar sticky only when scrolling up
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
+  const handleCloseComplete = () => {
+    setMobileMenuOpen(false);
+    setClosing(false);
+  };
 
-      if (currentScrollY < lastScrollY && currentScrollY > 50) {
-        setIsSticky(true); // Make sticky when scrolling up and scrolled down enough
-        } else {
-        setIsSticky(false); // Non-sticky when scrolling down
-        }
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
 
-      setLastScrollY(currentScrollY);
-    };
+      if (currentScrollY < lastScrollY && currentScrollY > 50) {
+        setIsSticky(true);
+      } else {
+        setIsSticky(false);
+      }
 
-    window.addEventListener('scroll', handleScroll);
+      setLastScrollY(currentScrollY);
+    };
 
-    return () => {
-     window.removeEventListener('scroll', handleScroll);
-    };
-  }, [lastScrollY]);
+    window.addEventListener('scroll', handleScroll);
 
-  return (
-    <nav
-      className={`${isSticky ? 'fixed top-0 bg-opacity-60 backdrop-blur-[2px]' : 'absolute bg-transparent'} ${theme.layoutPages.paddingHorizontal} pt-6 lg:pt-8 flex justify-between items-center w-full z-[101] transition-all duration-300`}
-    >
-      <div className="flex items-center">
-        <ScrollToTopLink to="/" className="cursor-pointer">
-          <img src="/logo.svg" alt="Logo" className="lg:w-28 w-20 aspect-rectangle" />
-        </ScrollToTopLink>
-      </div>
-      <div className="flex items-center">
-        <button type="button" onClick={toggleMobileMenu} className="relative">
-          <img src="/hamburger.svg" alt="Menu" className="w-6 aspect-square lg:w-6 z-[200] svg-white" />
-        </button>
-      </div>
-      <MobileMenu
-        isOpen={isMobileMenuOpen && !closing}
-        onClose={() => setClosing(true)} // Start closing animation
-        onCloseComplete={handleCloseComplete} // Fully close after animation
-      />
-    </nav>
-  );
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [lastScrollY]);
+
+  return (
+    <nav
+      className={`${isSticky ? 'fixed top-0 bg-opacity-60 backdrop-blur-[2px]' : 'absolute bg-transparent'} ${
+        theme.layoutPages.paddingHorizontal
+      } pt-6 lg:pt-8 flex justify-between items-center w-full z-[101] transition-all duration-300`}
+    >
+      <div className="flex items-center">
+        <ScrollToTopLink to="/" className="cursor-pointer">
+          <img src="/logo3.png" alt="Logo" className="lg:w-32 w-20 aspect-rectangle" />
+        </ScrollToTopLink>
+      </div>
+      <div className="flex items-center">
+        <button type="button" onClick={toggleMobileMenu} className="relative">
+          <img
+            src="/hamburger.svg"
+            alt="Menu"
+            className={`w-6 aspect-square lg:w-6 z-[200] ${isServicePage ? 'svg-black' : 'svg-white'}`}
+          />
+        </button>
+      </div>
+      <MobileMenu
+        isOpen={isMobileMenuOpen && !closing}
+        onClose={() => setClosing(true)}
+        onCloseComplete={handleCloseComplete}
+      />
+    </nav>
+  );
 };
 
 export default Navbar;

@@ -32,12 +32,17 @@ const ServiceDetails = () => {
         <div>
             {/* Hero Section */}
             <InnerHero
-                headingText={service.heading2}
-                spanText={service.heading}
-                breakSpan1={true}
+                headingText={service.heading}
+                spanText={service.spanText}
                 headingText2={service.description}
                 bodyText={service.helperText}
                 illustrationImage={service.image}
+                bgColor='bg-white'
+                showPattern={false}
+                headingColor='text-black'
+                bodyTextColor='text-black'
+                headingSize='text-90px'
+
                
 
                 

@@ -26,7 +26,7 @@ export const descriptorText =
 export const services = [
   {
     heading: "Mobile App Development",
-    spanText:"App Development",
+    spanText:"Mobile",
 image: mobileApp2Image,
     // details hero page content
     heading2: "It Starts with a Vision in Mobile App Development",
