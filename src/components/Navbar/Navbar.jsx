@@ -66,7 +66,7 @@ const Navbar = () => {
           <img
             src="/hamburger.svg"
             alt="Menu"
-            className={`w-6 aspect-square lg:w-6 z-[200] ${isServicePage ? 'svg-black' : 'svg-white'}`}
+            className={`w-6 aspect-square lg:w-6 z-[200] ${isServicePage ? 'svg-black' : 'svg-black'}`}
           />
         </button>
       </div>

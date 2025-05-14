@@ -39,26 +39,28 @@ const ProjectDetail = () => {
   }
 
   return (
-    <div className={`${theme.layoutPages.paddingVertical} bg-black min-h-screen`}>
+    <div className={`${theme.layoutPages.paddingBottom}  min-h-screen`}>
 
       <InnerHero
         logoImage={project.logo}
         headingText={project.heading}
         bodyText={project.bodyText}
         height="h-auto"
-        headingColor="text-neon"
+        headingColor="text-black"
         >
-     <div className="border-2 border-white text-center rounded-full w-40 px-2 py-1">
+     <div className="border-2 border-black text-center rounded-full w-40 px-2 py-1">
           <BodyText
             text={project.service}
             size="text-xs"
             fontWeight="font-semibold"
-            color="text-white"
+            color="text-black"
           />
         </div>
 
 
         </InnerHero>
+
+
       {/* Header Section */}
      
 
@@ -66,12 +68,12 @@ const ProjectDetail = () => {
       <img
         src={project.coverImage}
         alt={project.heading}
-        className="w-full h-[700px] object-cover "
+        className="w-full h-[600px] object-cover "
       />
 
       {/* About Client Section */}
       <div
-  className={`flex flex-col xl:flex-row justify-between gap-8 ${theme.layoutPages.paddingVertical} bg-white ${theme.layoutPages.paddingHorizontal}`}
+  className={`flex flex-col xl:flex-row justify-between gap-8 ${theme.layoutPages.paddingVertical}  ${theme.layoutPages.paddingHorizontal}`}
 >
   <div className="flex flex-col gap-4 xl:w-1/2 w-full">
     <Heading text="About the Client" spanText="Client" spanColor="text-neon" centered={false} lineHeight="leading-none" size="text-60px" />
@@ -101,7 +103,7 @@ const ProjectDetail = () => {
   {/* Left: Description */}
   <div className="flex flex-col gap-4 xl:w-3/5 w-full">
     <Heading text={project.headline} centered={false} lineHeight="leading-none" color="text-neon" />
-    <BodyText text={project.details} centered={false} color="text-white" />
+    <BodyText text={project.details} centered={false} color="text-black" />
   </div>
 
   {/* Right: Tech Stack (bottom aligned) */}
@@ -159,7 +161,7 @@ const ProjectDetail = () => {
         <BodyText
           text={item}
          centered={false}
-         color="text-white"
+         color="text-black"
           />
       </div>
     ))}

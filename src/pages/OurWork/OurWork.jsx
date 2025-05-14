@@ -69,6 +69,7 @@ const OurWork = () => {
         spanText="Portfolio"
         bodyText="A showcase of diverse projects that highlight our expertise in creating impactful, innovative tech solutions across industries."
         illustrationImage={projectImage}
+        illustrationImageWidth="w-3/4"
       />
 
       <div
