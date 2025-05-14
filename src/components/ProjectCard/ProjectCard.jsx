@@ -41,7 +41,7 @@ const ProjectCard = ({ project }) => {
   return (
     <Link to={`/portfolio/${project.slug}`} className="group">
       <div className="flex flex-col items-start ">
-        <div className="relative w-full h-[500px] overflow-hidden rounded-3xl mb-4">
+        <div className="relative w-full h-[550px] overflow-hidden rounded-3xl mb-4">
           <img
             ref={imageRef}
             src={project.coverImage} // Image 2 as cover

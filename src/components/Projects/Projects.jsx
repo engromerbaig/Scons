@@ -1,9 +1,9 @@
 import React from "react";
 import Heading from "../Heading/Heading";
 import { theme } from "../../theme";
-import ProjectCard from "../ProjectCard/ProjectCard";
 import projects from "../../pages/OurWork/projectDetails";
 import AnimatedArrow from "../AnimatedArrow/AnimatedArrow";
+import ProjectGrid from "../../pages/OurWork/ProjectGrid";
 
 // Function to select 4 random unique projects
 const getRandomProjects = (projects, count = 4) => {
@@ -26,21 +26,14 @@ const Projects = () => {
       className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} flex flex-col items-center`}
     >
       <div className="flex flex-row justify-between items-center w-full mb-8">
-        <Heading text="A Portfolio of Our Success"  spanText="Success" spanColor="text-neon" className="text-left" />
+        <Heading text="A Portfolio of Our Success" spanText="Success" spanColor="text-neon" className="text-left" />
         <AnimatedArrow text="More Case Studies" to="/portfolio" />
       </div>
-
-      {/* Cards container: 2 cards per row */}
-      <div className="flex flex-wrap justify-between w-full">
-        {randomProjects.map((project, index) => (
-          <div
-            key={project.id}
-            className={`w-full md:w-[40%] mb-8 ${index % 2 === 1 ? "lg:mt-28" : ""}`}
-          >
-            <ProjectCard project={project} />
-          </div>
-        ))}
-      </div>
+      <ProjectGrid
+        filteredProjects={randomProjects}
+        enableAnimation={true}
+        containerClassName=""
+      />
     </div>
   );
 };
