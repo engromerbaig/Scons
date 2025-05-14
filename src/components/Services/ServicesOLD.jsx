@@ -25,7 +25,7 @@ const ServicesOld = () => {
     <div className={` ${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} container-bg bg-black flex flex-col items-center min-h-screen`}>
       
       {/* Heading and Descriptor in one row with extreme left and right alignment */}
-      <div className={`flex flex-row justify-between items-center w-full `}>
+      <div className={`flex flex-col justify-between items-start w-full `}>
         <Heading
           text={servicesHeading.text}
           spanText={servicesHeading.spanText}
@@ -36,7 +36,9 @@ const ServicesOld = () => {
         <BodyText
           text={descriptorText}
           color='text-white'
-          className="max-w-lg text-right"
+                    centered={false}
+
+          className="max-w-2xl "
         />
       </div>
 

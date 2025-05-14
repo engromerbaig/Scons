@@ -28,7 +28,7 @@ const Industries = () => {
           centered={false}
           isAnimate={false}
           color="text-black"
-          className="xl:pr-40"
+          className="max-w-4xl "
         />
       </div>
 
