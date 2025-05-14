@@ -7,12 +7,8 @@ import HorizontalListView from "../../utilities/HorizontalListView";
 const NestedTabs = () => {
   const categories = Object.keys(technologiesData);
   const [activeCategory, setActiveCategory] = useState(categories[0]);
-  const platforms = Object.keys(technologiesData[activeCategory]);
-
-  // Refs for tab buttons to manage focus on keyboard navigation
   const tabsRef = useRef([]);
 
-  // Keyboard navigation handler for tabs (ArrowLeft/Right for horizontal, ArrowUp/Down for vertical)
   const onKeyDown = (e, isHorizontal = false) => {
     const currentIndex = categories.indexOf(activeCategory);
     let newIndex = null;
@@ -41,7 +37,6 @@ const NestedTabs = () => {
     }
   };
 
-  // Tab button component for reuse in both layouts
   const renderTabButton = (cat, index, isHorizontal = false) => {
     const isActive = cat === activeCategory;
     const tabId = `tab-${cat.toLowerCase().replace(/\s+/g, "-")}`;
@@ -62,19 +57,19 @@ const NestedTabs = () => {
           isActive
             ? "tab-active-gradient text-black font-black"
             : "text-black hover:bg-gray-100"
-        } ${isHorizontal ? "min-w-[120px, 150px]" : ""}`}
+        } ${isHorizontal ? "min-w-[120px]" : ""}`}
       >
         {cat}
       </button>
     );
   };
 
-  // Content section (same for both layouts)
   const renderContent = () => {
     const panelId = `tabpanel-${activeCategory.toLowerCase().replace(/\s+/g, "-")}`;
+    const platforms = Object.keys(technologiesData[activeCategory]);
 
     return (
-      <div className="flex-1 p-6 xl:p-8">
+      <div className="flex-1 p-6 xl:p-8 w-full transition-opacity duration-300 ease-in-out">
         {platforms.map((platform) => (
           <div
             key={platform}
@@ -82,7 +77,7 @@ const NestedTabs = () => {
             role="tabpanel"
             aria-labelledby={`tab-${activeCategory.toLowerCase().replace(/\s+/g, "-")}`}
             tabIndex={0}
-            className="mb-6"
+            className="mb-10"
           >
             <Heading
               text={platform}
@@ -104,19 +99,14 @@ const NestedTabs = () => {
 
   return (
     <div className="flex w-full max-w-6xl mx-auto border-t border-gray-200 flex-col xl:flex-row">
-      {/* Horizontal List View for tabs (below xl) */}
-      <div className="xl:hidden w-full py-4 border-b xl:border-b-0 xl:border-r border-gray-200">
-        <HorizontalListView
-          perPage={3}
-          gap="0.5rem"
-          height="auto"
-          className="px-4"
-        >
+      {/* Horizontal List View for mobile */}
+      <div className="xl:hidden w-full py-4 border-b border-gray-200">
+        <HorizontalListView perPage={3} gap="0.5rem" height="auto" className="px-4">
           {categories.map((cat, index) => renderTabButton(cat, index, true))}
         </HorizontalListView>
       </div>
 
-      {/* Vertical tabs (xl and above) */}
+      {/* Vertical Tabs for xl and above */}
       <div
         role="tablist"
         aria-orientation="vertical"
