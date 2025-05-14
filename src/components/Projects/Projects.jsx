@@ -25,8 +25,8 @@ const Projects = () => {
     <div
       className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} flex flex-col items-center`}
     >
-      <div className="flex flex-row justify-between items-center w-full mb-8">
-        <Heading text="A Portfolio of Our Success" spanText="Success" spanColor="text-neon" className="text-left" />
+      <div className="flex flex-col xl:flex-row xl:justify-between justify-start item-start xl:items-center w-full mb-8">
+        <Heading text="A Portfolio of Our Success" spanText="Success" centered={false} spanColor="text-neon" className="text-left" />
         <AnimatedArrow text="More Case Studies" to="/portfolio" />
       </div>
       <ProjectGrid
