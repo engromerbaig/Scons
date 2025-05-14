@@ -82,10 +82,10 @@ const Footer = () => {
       </div>
 
       {/* ROW 2: Branches | Socials */}
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 border-b border-gray-800 py-10 text-left">
+      <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-12 border-b border-gray-800 py-10 text-left">
         {[0, 1].map((idx) => (
           <div key={idx}>
-            <div className="flex items-center mb-3">
+            <div className="flex  items-center mb-3">
               <span className="inline-block w-2 h-2 bg-neon rounded-full mr-2" />
               <Heading text={accordionData[idx].title} size="text-30px" color="text-white  " />
             </div>
