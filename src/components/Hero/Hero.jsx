@@ -100,7 +100,7 @@ const Hero = () => {
     <img
       src={rocketImage}
       alt="Rocket Background"
-      className="absolute hidden xl:block bottom-0 left-4 h-40 w-auto opacity-60 object-contain pointer-events-none z-10"
+      className="absolute hidden xl:block bottom-0 left-4 h-40 w-auto opacity-90 object-contain pointer-events-none z-10"
     />
   </div>
   {/* Right Half: SplideCarousel */}
