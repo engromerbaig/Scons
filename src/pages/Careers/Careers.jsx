@@ -6,6 +6,7 @@ import jobListings from '../../data/jobListings.json'; // Import JSON data
 import GreenBelt from '../../components/GreenBelt/GreenBelt';
 import Heading from '../../components/Heading/Heading';
 import { theme } from '../../theme';
+import careerImage from '../../assets/images/career.svg'; // Import your image
 
 
 const Careers = () => {
@@ -14,8 +15,10 @@ const Careers = () => {
             {/* Inner Hero Section */}
             <InnerHero
                 headingText="Begin Your Career With Us"
-                spanText="Career With Us"
-                bodyText="Join Tyfora and be part of a dynamic team transforming businesses worldwide. Innovate, grow, and excel with us."
+                spanText="Career"
+                bodyText="Join Scons and be part of a dynamic team transforming businesses worldwide. Innovate, grow, and excel with us."
+                illustrationImage={careerImage} // Use the imported image
+                illustrationImageWidth='w-3/4'
             />
 
             {/* Job Listings */}

@@ -102,13 +102,13 @@ const ProjectDetail = () => {
 >
   {/* Left: Description */}
   <div className="flex flex-col gap-4 xl:w-3/5 w-full">
-    <Heading text={project.headline} centered={false} lineHeight="leading-none" color="text-neon" />
+    <Heading text={project.headline} centered={false} lineHeight="leading-none" color="text-black" />
     <BodyText text={project.details} centered={false} color="text-black" />
   </div>
 
   {/* Right: Tech Stack (bottom aligned) */}
   <div className="flex flex-col justify-start items-start gap-2 xl:w-2/5 w-full">
-    <BodyText text="Tech Used:" color="text-grayText" centered={false} fontWeight="font-semibold" />
+    <BodyText text="Stack Used:" color="text-grayText" centered={false} fontWeight="font-bold" />
     <div className="grid grid-cols-2 gap-2 mt-2">
       {project.technologies.map((tech, index) => {
         const icon = findTechnologyIcon(tech);

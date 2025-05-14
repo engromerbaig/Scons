@@ -21,7 +21,7 @@ const InnerHero = ({
   illustrationImageWidth = "w-full max-w-lg",
   showCarousel = true,
   carouselItems = [],
-  showBottomShadow = false,
+  showBottomShadow = true,
   logoIsWhite = false,
   children,
   bgColor = "bg-white",
