@@ -2,8 +2,8 @@ import React, { useRef, useEffect } from "react";
 import gsap from "gsap";
 import BodyText from "../../BodyText/BodyText";
 
-const CARD_HEIGHT = 280;
-const CARD_WIDTH = 240;
+const CARD_HEIGHT = 340;
+const CARD_WIDTH = 300;
 
 const IndustryCard = ({ industry, active, onHover, onLeave }) => {
   const overlayRef = useRef(null);

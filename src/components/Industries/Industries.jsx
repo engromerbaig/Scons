@@ -1,65 +1,38 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import Heading from "../Heading/Heading";
+import BodyText from "../BodyText/BodyText";
+
 import industries from "./industriesData";
 import { theme } from "../../theme";
 import IndustryCard from "./modules/IndustryCard";
+import HorizontalListView from "../../utilities/HorizontalListView";
 
 const Industries = () => {
-  const scrollRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(null);
-
-  // Drag-to-scroll logic
-  let isDown = false;
-  let startX, scrollLeft;
-
-  const onMouseDown = (e) => {
-    isDown = true;
-    scrollRef.current.classList.add('cursor-grabbing');
-    startX = e.pageX - scrollRef.current.offsetLeft;
-    scrollLeft = scrollRef.current.scrollLeft;
-  };
-
-  const onMouseLeave = () => {
-    isDown = false;
-    scrollRef.current.classList.remove('cursor-grabbing');
-  };
-
-  const onMouseUp = () => {
-    isDown = false;
-    scrollRef.current.classList.remove('cursor-grabbing');
-  };
-
-  const onMouseMove = (e) => {
-    if (!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - scrollRef.current.offsetLeft;
-    const walk = (x - startX) * 1.5;
-    scrollRef.current.scrollLeft = scrollLeft - walk;
-  };
 
   return (
     <div
-      className={`min-h-screen bg-white text-black ${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} flex flex-col items-center`}
+      className={`min-h-screen bg-white text-black  ${theme.layoutPages.paddingVertical} flex flex-col items-center`}
     >
-      <div className="flex flex-col md:flex-row justify-between items-start w-full py-20">
+      <div className={`flex flex-col  justify-between items-start w-full py-20 ${theme.layoutPages.paddingHorizontal}`}>
         <Heading
           text="We Serve Diverse Industries And Markets"
           centered={false}
           breakSpan={true}
           isAnimate={false}
           color="text-black"
-          className="md:pr-20"
+        />
+
+           <BodyText
+          text="We have a proven track record of delivering innovative solutions across various sectors, including healthcare, finance, education, and more. Our expertise allows us to tailor our services to meet the unique needs of each industry."
+          centered={false}
+          isAnimate={false}
+          color="text-black"
+          className="xl:pr-40"
         />
       </div>
-      <div
-        ref={scrollRef}
-        className="w-full overflow-x-auto flex gap-6 pb-8 scrollbar-hide select-none cursor-grab"
-        style={{ WebkitOverflowScrolling: "touch" }}
-        onMouseDown={onMouseDown}
-        onMouseLeave={onMouseLeave}
-        onMouseUp={onMouseUp}
-        onMouseMove={onMouseMove}
-      >
+
+      <HorizontalListView perPage={4} >
         {industries.map((industry, idx) => (
           <IndustryCard
             key={idx}
@@ -69,7 +42,7 @@ const Industries = () => {
             onLeave={() => setActiveIndex(null)}
           />
         ))}
-      </div>
+      </HorizontalListView>
     </div>
   );
 };
