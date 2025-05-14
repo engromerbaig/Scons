@@ -92,46 +92,52 @@ const Hero = () => {
         </div>
 
         {/* Bottom Section (Absolutely Positioned) */}
-        <div className="absolute bottom-0 w-full h-[15vh] flex flex-col lg:flex-row items-center z-30">
-          {/* Left Half: BodyText */}
-          <div className=" w-full lg:w-1/2 h-full flex items-center pl-2 xl:pl-20">
-          
-          </div>
-          {/* Right Half: SplideCarousel */}
-          <div className="w-full lg:w-1/2  h-full flex flex-col gap-y-6">
-          <div className="flex items-center gap-2 pl-2">
-  {/* Neon bullet */}
-  <span className="w-2 h-2 rounded-full bg-neon " />
+       {/* Bottom Section (Absolutely Positioned) */}
+<div className="absolute bottom-0 w-full h-[15vh] flex flex-col lg:flex-row items-center z-30">
+  {/* Left Half: BodyText with Rocket Image */}
+  <div className="w-full lg:w-1/2 h-full flex items-center pl-2 xl:pl-20 relative">
+    {/* Rocket Image */}
+    <img
+      src={rocketImage}
+      alt="Rocket Background"
+      className="absolute hidden xl:block bottom-0 left-4 h-40 w-auto opacity-60 object-contain pointer-events-none z-10"
+    />
+  </div>
+  {/* Right Half: SplideCarousel */}
+  <div className="w-full lg:w-1/2 h-full flex flex-col gap-y-6">
+    <div className="flex items-center gap-2 pl-2">
+      {/* Neon bullet */}
+      <span className="w-2 h-2 rounded-full bg-neon" />
 
-  {/* Heading component */}
-  <Heading
-    text="Clients served by Econs Family."
-    spanText="Econs"
-    spanColor="text-neon"
-    color="text-black"
-    fontWeight="font-bold"
-    size="text-sm"
-    className="leading-none"
-    centered={false}
-  />
+      {/* Heading component */}
+      <Heading
+        text="Clients served by Econs Family."
+        spanText="Econs"
+        spanColor="text-neon"
+        color="text-black"
+        fontWeight="font-bold"
+        size="text-sm"
+        className="leading-none"
+        centered={false}
+      />
+    </div>
+
+    <SplideCarousel
+      images={logoImages}
+      direction="ltr"
+      speed={1}
+      perPage={4}
+      height="30px"
+      gap="1rem"
+      pauseOnHover={false}
+      className="w-full h-full"
+      haveBorder={false}
+      objectFit="contain"
+      imageRound="rounded-none"
+      mobilePerPage={2}
+    />
+  </div>
 </div>
-
-            <SplideCarousel
-              images={logoImages}
-              direction="ltr"
-              speed={1}
-              perPage={4}
-              height="30px"
-              gap="1rem"
-              pauseOnHover={false}
-              className="w-full h-full"
-              haveBorder={false}
-              objectFit="contain"
-              imageRound="rounded-none"
-              mobilePerPage={2}
-            />
-          </div>
-        </div>
       </div>
 
       {/* Chat Modal */}
