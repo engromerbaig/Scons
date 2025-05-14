@@ -7,7 +7,7 @@ const ProjectGrid = ({ filteredProjects }) => {
       {filteredProjects.map((project, index) => (
         <div
           key={project.id}
-          className={`w-full md:w-[48%] mb-8 ${index % 2 === 1 ? "lg:mt-32" : ""} transition-opacity duration-300 ease-in-out opacity-0 animate-fadeIn`}
+          className={`w-full md:w-[40%] mb-8 ${index % 2 === 1 ? "lg:mt-32" : ""} transition-opacity duration-300 ease-in-out opacity-0 animate-fadeIn`}
           style={{ animationDelay: `${index * 100}ms` }}
         >
           <ProjectCard project={project} />

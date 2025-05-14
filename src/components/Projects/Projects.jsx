@@ -35,7 +35,7 @@ const Projects = () => {
         {randomProjects.map((project, index) => (
           <div
             key={project.id}
-            className={`w-full md:w-[48%] mb-8 ${index % 2 === 1 ? "lg:mt-28" : ""}`}
+            className={`w-full md:w-[40%] mb-8 ${index % 2 === 1 ? "lg:mt-28" : ""}`}
           >
             <ProjectCard project={project} />
           </div>
