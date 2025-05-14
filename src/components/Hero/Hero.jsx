@@ -81,7 +81,9 @@ const Hero = () => {
                 />
               </div>
 
-              <Button
+
+              <div className="flex items-center gap-x-4 xl:gap-x-6 mt-4">
+<Button
                 name="Contact Us"
                 size="text-sm"
   textColor = "black"
@@ -90,6 +92,20 @@ const Hero = () => {
                 className="mt-4 px-6 py-2"
                 onClick={() => setModalOpen(true)}
               />
+
+              <Button
+                name="Our Projects"
+                size="text-sm"
+  textColor = "black"
+  fontWeight="font-black"
+                bgColor="bg-white"
+                hoverBgColor="bg-white"
+                hoverTextColor="black"
+                className="mt-4 px-4 py-2 border-b-4 border-neon rounded-none shadow-none"
+                onClick={() => setModalOpen(true)}
+              />
+              </div>  
+              
             </motion.div>
           </div>
 
