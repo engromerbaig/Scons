@@ -16,15 +16,16 @@ const InnerHero = ({
   height = "h-screen",
   headingSize = "text-70px",
   bodySize = "text-25px",
-  headingColor = "text-white",
-  bodyTextColor = "text-white",
+  headingColor = "text-black",
+  bodyTextColor = "text-black",
+  illustrationImageWidth = "w-full max-w-lg",
   showCarousel = true,
   carouselItems = [],
   showBottomShadow = false,
   logoIsWhite = false,
   children,
-  bgColor = "bg-black",
-  showPattern = true,
+  bgColor = "bg-white",
+  showPattern = false,
   patternSrc = patternImage,
 }) => {
   const patternRef = useRef(null);
@@ -103,7 +104,7 @@ const InnerHero = ({
             <img
               src={illustrationImage}
               alt="Hero Illustration"
-              className="w-full max-w-lg object-contain"
+              className={` ${illustrationImageWidth} object-contain`}
             />
           )}
         </div>

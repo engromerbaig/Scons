@@ -6,6 +6,7 @@ import InnerHero from "../../components/InnerHero/InnerHero";
 import FilterControls from "./FilterControls";
 import ProjectGrid from "./ProjectGrid";
 import LoadMoreControls from "./LoadMoreControls";
+import projectImage from "../../assets/images/project.svg";
 
 const OurWork = () => {
   const {
@@ -67,6 +68,7 @@ const OurWork = () => {
         headingText="Our Portfolio"
         spanText="Portfolio"
         bodyText="A showcase of diverse projects that highlight our expertise in creating impactful, innovative tech solutions across industries."
+        illustrationImage={projectImage}
       />
 
       <div
