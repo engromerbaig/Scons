@@ -22,11 +22,11 @@ const logoData = [
   { id: 6, image: logo6 },
   { id: 7, image: logo7 },
   { id: 8, image: logo8 },
-  { id: 9, image: logo9 },
-  { id: 10, image: logo10 },
-  { id: 11, image: logo11 },
-  { id: 12, image: logo12 },
-  { id: 13, image: logo13 },
+  // { id: 9, image: logo9 },
+  // { id: 10, image: logo10 },
+  // { id: 11, image: logo11 },
+  // { id: 12, image: logo12 },
+  // { id: 13, image: logo13 },
 ];
 
 export default logoData;
