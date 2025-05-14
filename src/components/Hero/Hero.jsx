@@ -103,7 +103,7 @@ const Hero = () => {
           </div>
           {/* Right Half: SplideCarousel */}
           <div className="w-full lg:w-1/2  h-full flex flex-col gap-y-6">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 pl-2">
   {/* Neon bullet */}
   <span className="w-2 h-2 rounded-full bg-neon " />
 
@@ -124,7 +124,7 @@ const Hero = () => {
               images={logoImages}
               direction="ltr"
               speed={1}
-              perPage={3}
+              perPage={4}
               height="30px"
               gap="1rem"
               pauseOnHover={false}
@@ -132,7 +132,7 @@ const Hero = () => {
               haveBorder={false}
               objectFit="contain"
               imageRound="rounded-none"
-              mobilePerPage={3}
+              mobilePerPage={2}
             />
           </div>
         </div>

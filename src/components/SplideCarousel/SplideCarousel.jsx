@@ -7,8 +7,8 @@ const SplideCarousel = ({
   images = [],
   direction = "ltr",
   speed = 1,
-  perPage = 2,               // Default for desktop
-  mobilePerPage = 1,         // Default for mobile
+  perPage = 2, // Default for desktop
+  mobilePerPage = 1, // Default for mobile
   height = "400px",
   gap = "1rem",
   pauseOnHover = false,
@@ -25,12 +25,13 @@ const SplideCarousel = ({
 
   useEffect(() => {
     const logOptions = () => {
-      console.log(`Viewport width: ${window.innerWidth}px`);
-      console.log(
-        `Active perPage: ${
-          window.innerWidth <= 640 ? mobilePerPage : perPage
-        }`
-      );
+      const width = window.innerWidth;
+      let activePerPage = perPage;
+      if (width <= 768) {
+        activePerPage = mobilePerPage;
+      }
+      console.log(`Viewport width: ${width}px`);
+      console.log(`Active perPage: ${activePerPage}`);
     };
     logOptions();
     window.addEventListener("resize", logOptions);
@@ -53,7 +54,7 @@ const SplideCarousel = ({
             object-fit: ${objectFit};
             ${haveBorder ? "border: 4px solid #26292D;" : ""}
           }
-          @media (max-width: 640px) {
+          @media (max-width: 768px) {
             .${uniqueId} .splide__slide {
               width: 100% !important;
               height: ${height};
@@ -65,7 +66,6 @@ const SplideCarousel = ({
           }
         `}
       </style>
-
       <Splide
         options={{
           type: "loop",
@@ -80,10 +80,12 @@ const SplideCarousel = ({
             pauseOnHover,
             autoStart: true,
           },
+          autoWidth: false,
           height,
           breakpoints: {
-            1024: { perPage },              // Tablet and below
-            640: { perPage: mobilePerPage } // Mobile
+            768: {
+              perPage: mobilePerPage,
+            },
           },
         }}
         extensions={{ AutoScroll }}
