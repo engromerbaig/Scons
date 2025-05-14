@@ -39,8 +39,8 @@ const ProjectCard = ({ project }) => {
   }, []);
 
   return (
-    <ScrollToTopLink to={`/portfolio/${project.slug}`} className="group">
-      <div className="flex flex-col items-start p-4">
+    <Link to={`/portfolio/${project.slug}`} className="group">
+      <div className="flex flex-col items-start ">
         <div className="relative w-full h-[600px] overflow-hidden rounded-3xl mb-4">
           <img
             ref={imageRef}
@@ -59,7 +59,7 @@ const ProjectCard = ({ project }) => {
         />
         <BodyText text={project.headline} size="text-25px" centered={false} lineHeight="leading-loose" />
       </div>
-    </ScrollToTopLink>
+    </Link>
   );
 };
 
