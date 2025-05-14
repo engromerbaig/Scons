@@ -4,7 +4,7 @@ import webAppImage from "../../assets/images/services/2.svg"
 import uiuxImage from "../../assets/images/services/3.svg"
 import blockchainImage from "../../assets/images/services/4.svg"
 import cloudImage from "../../assets/images/services/5.svg"
-import aiImage from "../../assets/images/services/6.webp"
+import aiImage from "../../assets/images/services/6.svg"
 import consultationImage from "../../assets/images/services/7.webp"
 
 
