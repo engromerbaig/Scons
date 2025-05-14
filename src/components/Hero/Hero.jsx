@@ -8,6 +8,8 @@ import logoData from "./modules/logoData";
 import InfiniteMarquee from "../InfiniteMarquee/InfiniteMarquee";
 import ChatModal from "../ChatModal/ChatModal";
 import './index.css';
+import GlobeImage from "../../assets/images/globe.svg";
+import Button from "../Button/Button";
 
 const Hero = () => {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -38,9 +40,18 @@ const Hero = () => {
       {/* Hero Section (90vh) */}
       <div className="relative w-full h-screen overflow-hidden">
         {/* Background Video */}
+        {/* Assuming video background is implemented here */}
+        
+        {/* Globe Image */}
+        <img
+          src={GlobeImage}
+          alt="Globe Background"
+          className="absolute top-0 right-[-20%] h-full w-auto opacity-15 object-right object-contain pointer-events-none z-10"
+        />
 
         {/* Overlay */}
-
+        {/* Add overlay if needed to ensure text readability */}
+        
         {/* Content */}
         <div
           className={`${theme.layoutPages.paddingHorizontal} w-full h-full flex items-center justify-center relative z-20`}
@@ -69,51 +80,39 @@ const Hero = () => {
                   color="text-black"
                 />
               </div>
+
+              <Button
+                name="Contact Us"
+                size="text-sm"
+  textColor = "black"
+  fontWeight="font-bold"
+                bgColor="bg-neon"
+                className="mt-4 px-6 py-2"
+                onClick={() => setModalOpen(true)}
+              />
             </motion.div>
           </div>
 
           {/* Interactive Neon Circle Button */}
-          <div className="absolute bottom-6 right-4 xl:bottom-10 xl:right-40 select-none">
-            <div
-              ref={btnRef}
-              className={`xl:w-40 xl:h-40 w-28 h-28 rounded-full flex items-center justify-center shadow-lg cursor-pointer transition-all duration-500 ease-in-out ${
-                isHover ? "bg-black" : "bg-charcoal"
-              }`}
-              style={{
-                transform: `
-                  scale(${isHover ? 0.7 : 1})
-                  translateX(${offset.x}px)
-                  translateY(${offset.y}px)
-                `,
-                transformOrigin: "center",
-                transitionProperty: "background-color, transform, box-shadow",
-              }}
-              onMouseEnter={() => setIsHover(true)}
-              onMouseMove={isHover ? handleMouseMove : undefined}
-              onMouseLeave={handleMouseLeave}
-              onClick={() => setModalOpen(true)}
-            >
-              <div className="flex flex-col justify-center items-center p-2 xl:p-4">
-                                <BodyText text="↗" size="text-25px" fontWeight="font-black" color="text-white" />
-
-                <BodyText text="Let's Discuss Your Idea" size="text-sm" fontWeight="font-black" color="text-white" className="leading-none" />
-                
-              </div>
-            </div>
-          </div>
+       
         </div>
 
         <div className="absolute bottom-4 left-2 xl:left-20 z-20">
           <div className="flex items-center space-x-2">
             <span className="w-2 h-2 bg-neon rounded-full" />
-            <BodyText text="Clients served by Econs family" size="text-sm" fontWeight="font-medium" color="text-black" className="leading-none" />
-          
+            <BodyText
+              text="Clients served by Econs family"
+              size="text-sm"
+              fontWeight="font-medium"
+              color="text-black"
+              className="leading-none"
+            />
           </div>
         </div>
       </div>
 
       {/* Carousel Section (10vh) */}
- 
+      {/* Add InfiniteMarquee or other carousel component here if needed */}
 
       {/* Chat Modal */}
       <ChatModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} />
