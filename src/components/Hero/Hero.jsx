@@ -12,6 +12,8 @@ import Button from "../Button/Button";
 import patternImage from "../../assets/images/cube.png";
 import SplideCarousel from "../SplideCarousel/SplideCarousel";
 
+import rocketImage from "../../assets/icons/rocket.svg"; // default
+
 const Hero = () => {
   const [isModalOpen, setModalOpen] = useState(false);
 
@@ -93,13 +95,7 @@ const Hero = () => {
         <div className="absolute bottom-0 w-full h-[15vh] flex flex-col lg:flex-row items-center z-30">
           {/* Left Half: BodyText */}
           <div className=" w-full lg:w-1/2 h-full flex items-center pl-2 xl:pl-20">
-            <BodyText
-              text="SOME OF OUR CLIENTS"
-              size="text-sm"
-              fontWeight="font-medium"
-              color="text-black"
-              className="leading-none"
-            />
+          
           </div>
           {/* Right Half: SplideCarousel */}
           <div className="w-full lg:w-1/2  h-full flex flex-col gap-y-6">
