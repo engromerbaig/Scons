@@ -81,10 +81,10 @@ const Hero = () => {
           </div>
 
           {/* Interactive Neon Circle Button */}
-          <div className="absolute bottom-10 right-40 select-none">
+          <div className="absolute bottom-6 right-4 xl:bottom-10 xl:right-40 select-none">
             <div
               ref={btnRef}
-              className={`w-40 h-40 rounded-full flex items-center justify-center shadow-lg cursor-pointer transition-all duration-500 ease-in-out ${
+              className={`xl:w-40 xl:h-40 w-28 h-28 rounded-full flex items-center justify-center shadow-lg cursor-pointer transition-all duration-500 ease-in-out ${
                 isHover ? "bg-white" : "bg-neon"
               }`}
               style={{
@@ -101,18 +101,21 @@ const Hero = () => {
               onMouseLeave={handleMouseLeave}
               onClick={() => setModalOpen(true)}
             >
-              <div className="flex flex-col justify-center items-center p-4">
-                <p className="text-black font-black select-none text-3xl">↗</p>
-                <p className="text-black font-black select-none text-center">Let's Discuss Your Idea</p>
+              <div className="flex flex-col justify-center items-center p-2 xl:p-4">
+                                <BodyText text="↗" size="text-25px" fontWeight="font-black" color="text-black" />
+
+                <BodyText text="Let's Discuss Your Idea" size="text-sm" fontWeight="font-black" color="text-black" className="leading-none" />
+                
               </div>
             </div>
           </div>
         </div>
 
-        <div className="absolute bottom-4 left-20 z-20">
+        <div className="absolute bottom-4 left-2 xl:left-20 z-20">
           <div className="flex items-center space-x-2">
             <span className="w-2 h-2 bg-neon rounded-full" />
-            <p className="text-white text-sm font-medium text-left">Clients served by Econs family</p>
+            <BodyText text="Clients served by Econs family" size="text-sm" fontWeight="font-medium" color="text-white" className="leading-none" />
+          
           </div>
         </div>
       </div>
