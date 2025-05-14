@@ -15,6 +15,7 @@ const SplideCarousel = ({
   haveBorder = true, // Default: show border
   objectFit = "cover",
   imageRound="rounded-3xl", // Default: object-fit cover
+  imageSize = "w-full h-full", // Default: full width and height
 }) => {
   // Debug: Log perPage and viewport width
   useEffect(() => {
@@ -91,7 +92,7 @@ const SplideCarousel = ({
               <img
                 src={image}
                 alt={`Carousel image ${index + 1}`}
-                className={`w-full h-full ${imageRound}`}
+                className={`${imageSize} ${imageRound}`}
                 style={{ objectFit }}
               />
             </div>
