@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Heading from "../Heading/Heading";
+import AnimatedHeading from "./AnimatedHeading";
 import BodyText from "../BodyText/BodyText";
 import { theme } from "../../theme";
 import logoData from "./modules/logoData";
@@ -18,7 +19,7 @@ const Hero = () => {
   const logoImages = logoData.map((logoItem) => logoItem.image);
 
   return (
-    <div className="w-full min-h-screen flex flex-col shadow-custom-bottom  bg-white relative">
+    <div className="w-full min-h-screen flex flex-col shadow-custom-bottom bg-white relative">
       {/* Hero Section (100vh) */}
       <div 
         className="relative w-full h-screen overflow-hidden bg-repeat"
@@ -42,14 +43,12 @@ const Hero = () => {
           <div className="w-full max-w-4xl text-left">
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
               <div className="mb-4">
-                <Heading
-                  text="We are a Custom Software Development Company"
-                  spanText="Software Development Company"
-                  spanColor="text-neon"
-                  fontWeight="font-black"
-                  spanFontWeight="font-black"
-                  size="text-90px"
+                <AnimatedHeading
+                  prefixText="We are a"
+                  animatedWords={["Software", "App", "IT", "Web", "AI"]}
+                  suffixText="Development Company"
                   color="text-black"
+                  fontWeight="font-black"
                   className="leading-none"
                   centered={false}
                 />
@@ -91,7 +90,7 @@ const Hero = () => {
         </div>
 
         {/* Bottom Section (Absolutely Positioned) */}
-        <div className="absolute bottom-0 w-full h-[15vh] flex items-center  z-30">
+        <div className="absolute bottom-0 w-full h-[15vh] flex items-center z-30">
           {/* Left Half: BodyText */}
           <div className="w-1/2 h-full flex items-center pl-2 xl:pl-20">
             <BodyText
@@ -104,18 +103,16 @@ const Hero = () => {
           </div>
           {/* Right Half: SplideCarousel */}
           <div className="w-1/2 h-full flex flex-col gap-y-6">
-
             <Heading
-              text="Clients served by Econs family"
-              spanText="Econs family"
+              text="Clients served by Econs Family."
+              spanText="Econs"
               spanColor="text-neon"
-              size="text-sm"
-              fontWeight="font-bold"
               color="text-black"
-              centered={false}
+              fontWeight="font-bold"
+              size="text-sm"
               className="leading-none"
-              />
-           
+              centered={false}
+            />
             <SplideCarousel
               images={logoImages}
               direction="ltr"
