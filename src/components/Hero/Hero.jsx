@@ -90,9 +90,9 @@ const Hero = () => {
         </div>
 
         {/* Bottom Section (Absolutely Positioned) */}
-        <div className="absolute bottom-0 w-full h-[15vh] flex items-center z-30">
+        <div className="absolute bottom-0 w-full h-[15vh] flex flex-col lg:flex-row items-center z-30">
           {/* Left Half: BodyText */}
-          <div className="w-1/2 h-full flex items-center pl-2 xl:pl-20">
+          <div className=" w-full lg:w-1/2 h-full flex items-center pl-2 xl:pl-20">
             <BodyText
               text="SOME OF OUR CLIENTS"
               size="text-sm"
@@ -102,7 +102,7 @@ const Hero = () => {
             />
           </div>
           {/* Right Half: SplideCarousel */}
-          <div className="w-1/2 h-full flex flex-col gap-y-6">
+          <div className="w-full lg:w-1/2  h-full flex flex-col gap-y-6">
           <div className="flex items-center gap-2">
   {/* Neon bullet */}
   <span className="w-2 h-2 rounded-full bg-neon " />
@@ -125,13 +125,14 @@ const Hero = () => {
               direction="ltr"
               speed={1}
               perPage={3}
-              height="40px"
+              height="30px"
               gap="1rem"
               pauseOnHover={false}
               className="w-full h-full"
               haveBorder={false}
               objectFit="contain"
               imageRound="rounded-none"
+              mobilePerPage={3}
             />
           </div>
         </div>

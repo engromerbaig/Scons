@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 
@@ -7,8 +7,12 @@ const HorizontalListView = ({
   gap = "0.5rem",
   className = "",
   perPage = 3,
-  mobilePerPage = 2, // Re-added for compatibility with NestedTabs
+  mobilePerPage = 2,
+  uniqueId, // Optional unique ID for scoping styles
 }) => {
+  // Generate a random ID if not provided
+  const carouselId = useMemo(() => uniqueId || `horizontal-carousel-${Math.random().toString(36).substring(2, 10)}`, [uniqueId]);
+
   useEffect(() => {
     const logOptions = () => {
       console.log(`HorizontalListView perPage: ${perPage}, mobilePerPage: ${mobilePerPage}`);
@@ -20,26 +24,26 @@ const HorizontalListView = ({
   }, [perPage, mobilePerPage]);
 
   return (
-    <div className={`w-full ${className}`}>
+    <div className={`w-full ${carouselId} ${className}`}>
       <style>
         {`
-          .splide__track {
-            overflow: hidden; /* Required for scrolling */
+          .${carouselId} .splide__track {
+            overflow: hidden;
           }
-          .splide__list {
+          .${carouselId} .splide__list {
             display: flex;
             flex-wrap: nowrap;
-            width: 100%; /* Ensure list fills track */
+            width: 100%;
           }
-          .splide__slide {
-            width: auto; /* Respect autoWidth */
-            flex-shrink: 0; /* Prevent shrinking */
+          .${carouselId} .splide__slide {
+            width: auto;
+            flex-shrink: 0;
             display: flex;
             align-items: center;
             justify-content: center;
           }
-          .splide__slide > * {
-            min-width: 120px; /* Match NestedTabs button min-width */
+          .${carouselId} .splide__slide > * {
+            min-width: 120px;
             width: 100%;
           }
         `}
@@ -47,14 +51,14 @@ const HorizontalListView = ({
       <Splide
         options={{
           type: "slide",
-          autoWidth: true, // Keep dynamic width per slide
+          autoWidth: true,
           gap,
           pagination: false,
           arrows: false,
-          drag: true, // Changed from "free" to true for standard drag behavior
-          snap: true, // Re-enable snap for better UX (smooth stopping points)
-          wheel: false, // Keep wheel disabled to avoid vertical scroll issues
-          perPage, // Added for compatibility
+          drag: true,
+          snap: true,
+          wheel: false,
+          perPage,
           perMove: 1,
           breakpoints: {
             1024: {
@@ -73,9 +77,7 @@ const HorizontalListView = ({
         className="w-full"
       >
         {React.Children.map(children, (child, idx) => (
-          <SplideSlide key={idx}>
-            {child}
-          </SplideSlide>
+          <SplideSlide key={idx}>{child}</SplideSlide>
         ))}
       </Splide>
     </div>

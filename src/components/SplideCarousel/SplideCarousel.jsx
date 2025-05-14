@@ -1,61 +1,71 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { AutoScroll } from "@splidejs/splide-extension-auto-scroll";
 import "@splidejs/react-splide/css";
 
 const SplideCarousel = ({
   images = [],
-  direction = "ltr", // Default: left to right
-  speed = 1, // Default scroll speed
-  perPage = 2, // Default: show 2 images at a time
-  height = "400px", // Default image height
-  gap = "1rem", // Default gap between slides
-  pauseOnHover = false, // Default: no pause on hover
-  className = "", // Additional wrapper classes
-  haveBorder = true, // Default: show border
+  direction = "ltr",
+  speed = 1,
+  perPage = 2,               // Default for desktop
+  mobilePerPage = 1,         // Default for mobile
+  height = "400px",
+  gap = "1rem",
+  pauseOnHover = false,
+  className = "",
+  haveBorder = true,
   objectFit = "cover",
-  imageRound="rounded-3xl", // Default: object-fit cover
-  imageSize = "w-full h-full", // Default: full width and height
+  imageRound = "rounded-3xl",
+  imageSize = "w-full h-full",
 }) => {
-  // Debug: Log perPage and viewport width
+  const uniqueId = useMemo(
+    () => `splide-carousel-${Math.random().toString(36).substring(2, 9)}`,
+    []
+  );
+
   useEffect(() => {
     const logOptions = () => {
-      console.log(`SplideCarousel perPage: ${perPage}`);
       console.log(`Viewport width: ${window.innerWidth}px`);
+      console.log(
+        `Active perPage: ${
+          window.innerWidth <= 640 ? mobilePerPage : perPage
+        }`
+      );
     };
     logOptions();
     window.addEventListener("resize", logOptions);
     return () => window.removeEventListener("resize", logOptions);
-  }, [perPage]);
+  }, [perPage, mobilePerPage]);
 
   return (
-    <div className={`pb-10 xl:pb-20 ${className}`}>
+    <div className={`pb-10 xl:pb-20 ${className} ${uniqueId}`}>
       <style>
         {`
-          .splide__slide {
+          .${uniqueId} .splide__slide {
             height: ${height};
             display: flex;
             align-items: center;
             justify-content: center;
           }
-          .splide__slide img {
+          .${uniqueId} .splide__slide img {
             width: 100%;
             height: 100%;
             object-fit: ${objectFit};
-            ${haveBorder ? 'border: 4px solid #26292D;' : ''}
+            ${haveBorder ? "border: 4px solid #26292D;" : ""}
           }
           @media (max-width: 640px) {
-            .splide__slide {
+            .${uniqueId} .splide__slide {
               width: 100% !important;
               height: ${height};
             }
-            .splide__list {
+            .${uniqueId} .splide__list {
               display: flex;
               flex-wrap: nowrap;
             }
           }
         `}
       </style>
+
       <Splide
         options={{
           type: "loop",
@@ -64,23 +74,16 @@ const SplideCarousel = ({
           arrows: false,
           pagination: false,
           gap,
-          direction: "ltr", // Always ltr for consistency
+          direction,
           autoScroll: {
-            speed, // Pass speed directly (positive = left, negative = right)
+            speed,
             pauseOnHover,
             autoStart: true,
           },
-          height, // Set Splide container height
+          height,
           breakpoints: {
-            640: {
-              perPage: 1, // 1 image per page on mobile (below 640px)
-            },
-            768: {
-              perPage: 1, // Ensure 1 image for slightly larger mobile screens
-            },
-            1024: {
-              perPage: 2, // Explicitly set 2 for larger screens
-            },
+            1024: { perPage },              // Tablet and below
+            640: { perPage: mobilePerPage } // Mobile
           },
         }}
         extensions={{ AutoScroll }}
