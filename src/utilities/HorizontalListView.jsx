@@ -1,95 +1,79 @@
 import React, { useEffect } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
-import { AutoScroll } from "@splidejs/splide-extension-auto-scroll";
 import "@splidejs/react-splide/css";
 
 const HorizontalListView = ({
   children,
+  gap = "0.5rem",
   className = "",
-  autoPlay = false,
-  loop = false,
-  perPage = 3, // Default: show 3 items at a time
-  gap = "1.5rem", // Default gap between slides
-  height = "auto", // Default height (auto for flexible content)
-  pauseOnHover = false, // Default: no pause on hover
+  perPage = 3,
+  mobilePerPage = 2, // Re-added for compatibility with NestedTabs
 }) => {
-  // Debug: Log Splide options
   useEffect(() => {
     const logOptions = () => {
-      console.log(`HorizontalListView perPage: ${perPage}`);
+      console.log(`HorizontalListView perPage: ${perPage}, mobilePerPage: ${mobilePerPage}`);
       console.log(`Viewport width: ${window.innerWidth}px`);
-      console.log(`autoPlay: ${autoPlay}, loop: ${loop}`);
     };
     logOptions();
     window.addEventListener("resize", logOptions);
     return () => window.removeEventListener("resize", logOptions);
-  }, [perPage, autoPlay, loop]);
-
-  // Convert children to an array and ensure each has a unique key
-  const slides = React.Children.toArray(children);
+  }, [perPage, mobilePerPage]);
 
   return (
-    <div className={`w-full pb-8 ${className}`}>
+    <div className={`w-full ${className}`}>
       <style>
         {`
           .splide__track {
-            overflow: hidden;
-          }
-          .splide__slide {
-            height: ${height};
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            overflow: hidden; /* Required for scrolling */
           }
           .splide__list {
             display: flex;
             flex-wrap: nowrap;
+            width: 100%; /* Ensure list fills track */
+          }
+          .splide__slide {
+            width: auto; /* Respect autoWidth */
+            flex-shrink: 0; /* Prevent shrinking */
+            display: flex;
+            align-items: center;
+            justify-content: center;
           }
           .splide__slide > * {
+            min-width: 120px; /* Match NestedTabs button min-width */
             width: 100%;
-            height: 100%;
-          }
-          @media (max-width: 640px) {
-            .splide__slide {
-              width: 100% !important;
-            }
           }
         `}
       </style>
       <Splide
         options={{
-          type: loop ? "loop" : "slide", // 'loop' or 'slide' based on prop
-          perPage,
-          perMove: 1,
+          type: "slide",
+          autoWidth: true, // Keep dynamic width per slide
           gap,
-          height,
-          arrows: false, // No arrows by default
-          pagination: false, // No pagination dots
-          drag: true, // Enable drag-to-scroll
-          autoScroll: autoPlay
-            ? {
-                speed: 1, // Positive for left-to-right
-                pauseOnHover,
-                autoStart: true,
-              }
-            : undefined, // Only enable autoScroll if autoPlay is true
+          pagination: false,
+          arrows: false,
+          drag: true, // Changed from "free" to true for standard drag behavior
+          snap: true, // Re-enable snap for better UX (smooth stopping points)
+          wheel: false, // Keep wheel disabled to avoid vertical scroll issues
+          perPage, // Added for compatibility
+          perMove: 1,
           breakpoints: {
-            640: {
-              perPage: 2, // 1 item on mobile
+            1024: {
+              perPage: mobilePerPage,
+              autoWidth: true,
             },
             768: {
-              perPage: Math.min(2, perPage), // Up to 2 items on tablets
+              perPage: Math.min(mobilePerPage, perPage),
             },
-            1024: {
-              perPage, // Use prop-defined perPage on desktop
+            640: {
+              perPage: 1,
             },
           },
         }}
-        extensions={autoPlay ? { AutoScroll } : undefined} // Only load AutoScroll if autoPlay is enabled
         aria-label="Horizontal List View"
+        className="w-full"
       >
-        {slides.map((child, index) => (
-          <SplideSlide key={index}>
+        {React.Children.map(children, (child, idx) => (
+          <SplideSlide key={idx}>
             {child}
           </SplideSlide>
         ))}

@@ -32,7 +32,7 @@ const Industries = () => {
         />
       </div>
 
-      <HorizontalListView perPage={4} >
+      <HorizontalListView perPage={4} mobilePerPage={1} >
         {industries.map((industry, idx) => (
           <IndustryCard
             key={idx}
