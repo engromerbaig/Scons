@@ -42,6 +42,7 @@ const ServiceDetails = () => {
                 headingColor='text-black'
                 bodyTextColor='text-black'
                 headingSize='text-90px'
+                showBottomShadow={false}
 
                
 

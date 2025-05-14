@@ -58,7 +58,7 @@ const Navbar = () => {
     >
       <div className="flex items-center">
         <ScrollToTopLink to="/" className="cursor-pointer">
-          <img src="/logo3.png" alt="Logo" className="lg:w-32 w-20 aspect-rectangle" />
+          <img src="/logo2.svg" alt="Logo" className="lg:w-28 w-20 aspect-rectangle" />
         </ScrollToTopLink>
       </div>
       <div className="flex items-center">

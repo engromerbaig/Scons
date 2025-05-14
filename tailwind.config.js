@@ -39,7 +39,7 @@ export default {
         offWhite:'#F5F5F5',
         beige:"#ECE9DF",
         heroBlue:'#B8C3C4',
-      neonLight: '#d6dbfb',
+      neonLight: '#94F6B8',
         neonLightBg:'#d6dbfb',
         innerBg:"#E5FFF2",
         uniqueBg:'#D9FFEC',
