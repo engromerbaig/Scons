@@ -10,6 +10,7 @@ import ChatModal from "../ChatModal/ChatModal";
 import './index.css';
 import GlobeImage from "../../assets/images/globe.svg";
 import Button from "../Button/Button";
+import patternImage from "../../assets/images/cube.png";
 
 const Hero = () => {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -36,12 +37,12 @@ const Hero = () => {
   };
 
   return (
-    <div className="w-full min-h-screen flex flex-col border-b-2 border-gray-200">
+    <div className="w-full min-h-screen flex flex-col shadow-custom-bottom">
       {/* Hero Section (90vh) */}
-      <div className="relative w-full h-screen overflow-hidden">
-        {/* Background Video */}
-        {/* Assuming video background is implemented here */}
-        
+      <div 
+        className="relative w-full h-screen overflow-hidden bg-cover bg-center bg-repeat"
+        style={{ backgroundImage: `url(${patternImage})` }}
+      >
         {/* Globe Image */}
         <img
           src={GlobeImage}
@@ -81,36 +82,31 @@ const Hero = () => {
                 />
               </div>
 
-
               <div className="flex items-center gap-x-4 xl:gap-x-6 mt-4">
-<Button
-                name="Contact Us"
-                size="text-sm"
-  textColor = "black"
-  fontWeight="font-bold"
-                bgColor="bg-neon"
-                className="mt-4 px-6 py-2"
-                onClick={() => setModalOpen(true)}
-              />
+                <Button
+                  name="Contact Us"
+                  size="text-sm"
+                  textColor="black"
+                  fontWeight="font-bold"
+                  bgColor="bg-neon"
+                  className="mt-4 px-6 py-2"
+                  onClick={() => setModalOpen(true)}
+                />
 
-              <Button
-                name="Our Projects"
-                size="text-sm"
-  textColor = "black"
-  fontWeight="font-black"
-                bgColor="bg-white"
-                hoverBgColor="bg-white"
-                hoverTextColor="black"
-                className="mt-4 px-4 py-2 border-b-4 border-neon rounded-none shadow-none"
-                onClick={() => setModalOpen(true)}
-              />
+                <Button
+                  name="Our Projects"
+                  size="text-sm"
+                  textColor="black"
+                  fontWeight="font-black"
+                  bgColor="bg-white"
+                  hoverBgColor="bg-white"
+                  hoverTextColor="black"
+                  className="mt-4 px-4 py-2 border-b-4 border-neon rounded-none shadow-none"
+                  onClick={() => setModalOpen(true)}
+                />
               </div>  
-              
             </motion.div>
           </div>
-
-          {/* Interactive Neon Circle Button */}
-       
         </div>
 
         <div className="absolute bottom-4 left-2 xl:left-20 z-20">
