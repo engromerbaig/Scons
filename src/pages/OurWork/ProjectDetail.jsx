@@ -47,6 +47,7 @@ const ProjectDetail = () => {
         bodyText={project.bodyText}
         height="h-auto"
         headingColor="text-black"
+        showBottomShadow={false}
         >
      <div className="border-2 border-black text-center rounded-full w-40 px-2 py-1">
           <BodyText

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import ScrollToTopLink from "../../utilities/ScrollToTopLink";
 import Heading from "../Heading/Heading";
 import BodyText from "../BodyText/BodyText";
 
@@ -38,7 +39,7 @@ const ProjectCard = ({ project }) => {
   }, []);
 
   return (
-    <Link to={`/portfolio/${project.slug}`} className="group">
+    <ScrollToTopLink to={`/portfolio/${project.slug}`} className="group">
       <div className="flex flex-col items-start p-4">
         <div className="relative w-full h-[600px] overflow-hidden rounded-3xl mb-4">
           <img
@@ -58,7 +59,7 @@ const ProjectCard = ({ project }) => {
         />
         <BodyText text={project.headline} size="text-25px" centered={false} lineHeight="leading-loose" />
       </div>
-    </Link>
+    </ScrollToTopLink>
   );
 };
 
