@@ -36,18 +36,10 @@ const Hero = () => {
   return (
     <div className="w-full min-h-screen flex flex-col border-b-2 border-gray-200">
       {/* Hero Section (90vh) */}
-      <div className="relative w-full h-[90vh] overflow-hidden">
+      <div className="relative w-full h-screen overflow-hidden">
         {/* Background Video */}
-        <video
-          className="absolute top-0 left-0 w-full h-full object-cover z-0"
-          src={videoBg}
-          autoPlay
-          muted
-          loop
-          playsInline
-        />
+
         {/* Overlay */}
-        <div className="absolute top-0 left-0 w-full h-full bg-black/50 z-10" />
 
         {/* Content */}
         <div
@@ -64,7 +56,7 @@ const Hero = () => {
                   fontWeight="font-black"
                   spanFontWeight="font-black"
                   size="text-90px"
-                  color="text-white"
+                  color="text-black"
                   className="leading-none"
                   centered={false}
                 />
@@ -74,7 +66,7 @@ const Hero = () => {
                 <BodyText
                   text="We are your trusted development partner with just one goal in focus - to build products that generate a lasting, profitable impact."
                   centered={false}
-                  color="text-white"
+                  color="text-black"
                 />
               </div>
             </motion.div>
@@ -85,7 +77,7 @@ const Hero = () => {
             <div
               ref={btnRef}
               className={`xl:w-40 xl:h-40 w-28 h-28 rounded-full flex items-center justify-center shadow-lg cursor-pointer transition-all duration-500 ease-in-out ${
-                isHover ? "bg-white" : "bg-neon"
+                isHover ? "bg-black" : "bg-charcoal"
               }`}
               style={{
                 transform: `
@@ -102,9 +94,9 @@ const Hero = () => {
               onClick={() => setModalOpen(true)}
             >
               <div className="flex flex-col justify-center items-center p-2 xl:p-4">
-                                <BodyText text="↗" size="text-25px" fontWeight="font-black" color="text-black" />
+                                <BodyText text="↗" size="text-25px" fontWeight="font-black" color="text-white" />
 
-                <BodyText text="Let's Discuss Your Idea" size="text-sm" fontWeight="font-black" color="text-black" className="leading-none" />
+                <BodyText text="Let's Discuss Your Idea" size="text-sm" fontWeight="font-black" color="text-white" className="leading-none" />
                 
               </div>
             </div>
@@ -114,28 +106,14 @@ const Hero = () => {
         <div className="absolute bottom-4 left-2 xl:left-20 z-20">
           <div className="flex items-center space-x-2">
             <span className="w-2 h-2 bg-neon rounded-full" />
-            <BodyText text="Clients served by Econs family" size="text-sm" fontWeight="font-medium" color="text-white" className="leading-none" />
+            <BodyText text="Clients served by Econs family" size="text-sm" fontWeight="font-medium" color="text-black" className="leading-none" />
           
           </div>
         </div>
       </div>
 
       {/* Carousel Section (10vh) */}
-      <div className="w-full h-[10vh] flex items-center justify-center">
-        <InfiniteMarquee
-          items={logoData}
-          speed={50}
-          showBullets={false}
-          renderItem={(item, idx) => (
-            <img
-              src={logoData[idx].image}
-              alt={item.alt || `logo-${idx}`}
-              className="h-[8vh] object-contain mx-10"
-              loading="lazy"
-            />
-          )}
-        />
-      </div>
+ 
 
       {/* Chat Modal */}
       <ChatModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} />
