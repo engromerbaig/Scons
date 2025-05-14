@@ -12,6 +12,9 @@ const SplideCarousel = ({
   gap = "1rem", // Default gap between slides
   pauseOnHover = false, // Default: no pause on hover
   className = "", // Additional wrapper classes
+  haveBorder = true, // Default: show border
+  objectFit = "cover",
+  imageRound="rounded-3xl", // Default: object-fit cover
 }) => {
   // Debug: Log perPage and viewport width
   useEffect(() => {
@@ -37,9 +40,8 @@ const SplideCarousel = ({
           .splide__slide img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            border-radius: 1.5rem;
-            border: 4px solid #26292D;
+            object-fit: ${objectFit};
+            ${haveBorder ? 'border: 4px solid #26292D;' : ''}
           }
           @media (max-width: 640px) {
             .splide__slide {
@@ -89,7 +91,8 @@ const SplideCarousel = ({
               <img
                 src={image}
                 alt={`Carousel image ${index + 1}`}
-                className="w-full h-full object-cover"
+                className={`w-full h-full ${imageRound}`}
+                style={{ objectFit }}
               />
             </div>
           </SplideSlide>

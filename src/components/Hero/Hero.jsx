@@ -1,47 +1,31 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Heading from "../Heading/Heading";
 import BodyText from "../BodyText/BodyText";
 import { theme } from "../../theme";
-import videoBg from "../../assets/videos/1.mp4";
 import logoData from "./modules/logoData";
-import InfiniteMarquee from "../InfiniteMarquee/InfiniteMarquee";
 import ChatModal from "../ChatModal/ChatModal";
 import './index.css';
 import GlobeImage from "../../assets/images/globe.svg";
 import Button from "../Button/Button";
 import patternImage from "../../assets/images/cube.png";
+import SplideCarousel from "../SplideCarousel/SplideCarousel";
 
 const Hero = () => {
   const [isModalOpen, setModalOpen] = useState(false);
-  const [isHover, setIsHover] = useState(false);
-  const [offset, setOffset] = useState({ x: 0, y: 0 });
-  const btnRef = useRef(null);
-  const MAX_OFFSET = 30;
 
-  const handleMouseMove = (e) => {
-    if (!btnRef.current) return;
-    const rect = btnRef.current.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    let diffX = e.clientX - centerX;
-    let diffY = e.clientY - centerY;
-    diffX = Math.max(-MAX_OFFSET, Math.min(MAX_OFFSET, diffX));
-    diffY = Math.max(-MAX_OFFSET, Math.min(MAX_OFFSET, diffY));
-    setOffset({ x: diffX, y: diffY });
-  };
-
-  const handleMouseLeave = () => {
-    setIsHover(false);
-    setOffset({ x: 0, y: 0 });
-  };
+  // Extract image URLs from logoData
+  const logoImages = logoData.map((logoItem) => logoItem.image);
 
   return (
-    <div className="w-full min-h-screen flex flex-col shadow-custom-bottom">
-      {/* Hero Section (90vh) */}
+    <div className="w-full min-h-screen flex flex-col shadow-custom-bottom  bg-white relative">
+      {/* Hero Section (100vh) */}
       <div 
-        className="relative w-full h-screen overflow-hidden bg-cover bg-center bg-repeat"
-        style={{ backgroundImage: `url(${patternImage})` }}
+        className="relative w-full h-screen overflow-hidden bg-repeat"
+        style={{ 
+          backgroundImage: `url(${patternImage})`,
+          backgroundSize: '100px 100px' // Adjust size to ensure seamless repeating
+        }}
       >
         {/* Globe Image */}
         <img
@@ -50,9 +34,6 @@ const Hero = () => {
           className="absolute top-0 right-[-20%] h-full w-auto opacity-15 object-right object-contain pointer-events-none z-10"
         />
 
-        {/* Overlay */}
-        {/* Add overlay if needed to ensure text readability */}
-        
         {/* Content */}
         <div
           className={`${theme.layoutPages.paddingHorizontal} w-full h-full flex items-center justify-center relative z-20`}
@@ -109,22 +90,44 @@ const Hero = () => {
           </div>
         </div>
 
-        <div className="absolute bottom-4 left-2 xl:left-20 z-20">
-          <div className="flex items-center space-x-2">
-            <span className="w-2 h-2 bg-neon rounded-full" />
+        {/* Bottom Section (Absolutely Positioned) */}
+        <div className="absolute bottom-0 w-full h-[15vh] flex items-center  z-30">
+          {/* Left Half: BodyText */}
+          <div className="w-1/2 h-full flex items-center pl-2 xl:pl-20">
             <BodyText
-              text="Clients served by Econs family"
+              text="SOME OF OUR CLIENTS"
               size="text-sm"
               fontWeight="font-medium"
               color="text-black"
               className="leading-none"
             />
           </div>
+          {/* Right Half: SplideCarousel */}
+          <div className="w-1/2 h-full flex flex-col gap-y-6">
+            <BodyText
+              text="Clients served by Econs family"
+              size="text-sm"
+              fontWeight="font-medium"
+              color="text-black"
+              centered={false}
+              className="leading-none"
+            />
+            <SplideCarousel
+              images={logoImages}
+              direction="ltr"
+              speed={1}
+              perPage={3}
+              height="40px"
+              gap="1rem"
+              pauseOnHover={false}
+              className="w-full h-full"
+              haveBorder={false}
+              objectFit="contain"
+              imageRound="rounded-none"
+            />
+          </div>
         </div>
       </div>
-
-      {/* Carousel Section (10vh) */}
-      {/* Add InfiniteMarquee or other carousel component here if needed */}
 
       {/* Chat Modal */}
       <ChatModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} />
