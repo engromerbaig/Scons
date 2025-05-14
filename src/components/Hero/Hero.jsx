@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import Heading from "../Heading/Heading";
 import AnimatedHeading from "./AnimatedHeading";
@@ -11,14 +11,52 @@ import GlobeImage from "../../assets/images/globe.svg";
 import Button from "../Button/Button";
 import patternImage from "../../assets/images/cube.png";
 import SplideCarousel from "../SplideCarousel/SplideCarousel";
+import rocketImage from "../../assets/icons/rocket.svg";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import rocketImage from "../../assets/icons/rocket.svg"; // default
+// Register ScrollTrigger plugin
+gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
   const [isModalOpen, setModalOpen] = useState(false);
+  const rocketRef = useRef(null); // Reference to the rocket image
 
   // Extract image URLs from logoData
   const logoImages = logoData.map((logoItem) => logoItem.image);
+
+  useEffect(() => {
+    const rocket = rocketRef.current;
+
+    if (rocket) {
+      gsap.fromTo(
+        rocket,
+        {
+          x: 0,
+          y: 0,
+          opacity: 0.9,
+        },
+        {
+          x: 300, // Move 200px to the right
+          y: -150, // Move 100px upwards
+          opacity: 0, // Fade out completely
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: rocket,
+            start: "top bottom", // Start animation when rocket enters viewport
+            end: "bottom top", // End when rocket leaves viewport
+            scrub: 1, // Smoothly tie animation Greer to scroll
+            markers: false, // Set to true for debugging
+          },
+        }
+      );
+    }
+
+    // Cleanup ScrollTrigger on component unmount
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, []);
 
   return (
     <div className="w-full min-h-screen flex flex-col shadow-custom-bottom bg-white relative">
@@ -92,52 +130,52 @@ const Hero = () => {
         </div>
 
         {/* Bottom Section (Absolutely Positioned) */}
-       {/* Bottom Section (Absolutely Positioned) */}
-<div className="absolute bottom-0 w-full h-[15vh] flex flex-col lg:flex-row items-center z-30">
-  {/* Left Half: BodyText with Rocket Image */}
-  <div className="w-full lg:w-1/2 h-full flex items-center pl-2 xl:pl-20 relative">
-    {/* Rocket Image */}
-    <img
-      src={rocketImage}
-      alt="Rocket Background"
-      className="absolute hidden xl:block bottom-0 left-4 h-40 w-auto opacity-90 object-contain pointer-events-none z-10"
-    />
-  </div>
-  {/* Right Half: SplideCarousel */}
-  <div className="w-full lg:w-1/2 h-full flex flex-col gap-y-6">
-    <div className="flex items-center gap-2 pl-2">
-      {/* Neon bullet */}
-      <span className="w-2 h-2 rounded-full bg-neon" />
+        <div className="absolute bottom-0 w-full h-[15vh] flex flex-col lg:flex-row items-center z-30">
+          {/* Left Half: BodyText with Rocket Image */}
+          <div className="w-full lg:w-1/2 h-full flex items-center pl-2 xl:pl-20 relative">
+            {/* Rocket Image */}
+            <img
+              ref={rocketRef}
+              src={rocketImage}
+              alt="Rocket Background"
+              className="absolute hidden xl:block top-[-20%] left-4 h-40 w-auto opacity-90 object-contain pointer-events-none z-10"
+            />
+          </div>
+          {/* Right Half: SplideCarousel */}
+          <div className="w-full lg:w-1/2 h-full flex flex-col gap-y-6">
+            <div className="flex items-center gap-2 pl-2">
+              {/* Neon bullet */}
+              <span className="w-2 h-2 rounded-full bg-neon" />
 
-      {/* Heading component */}
-      <Heading
-        text="Clients served by Econs Family."
-        spanText="Econs"
-        spanColor="text-neon"
-        color="text-black"
-        fontWeight="font-bold"
-        size="text-sm"
-        className="leading-none"
-        centered={false}
-      />
-    </div>
+              {/* Heading component */}
+              <Heading
+                text="Clients served by Econs Family."
+                spanText="Econs"
+                spanColor="text-neon"
+                color="text-black"
+                fontWeight="font-bold"
+                size="text-sm"
+                className="leading-none"
+                centered={false}
+              />
+            </div>
 
-    <SplideCarousel
-      images={logoImages}
-      direction="ltr"
-      speed={1}
-      perPage={4}
-      height="30px"
-      gap="1rem"
-      pauseOnHover={false}
-      className="w-full h-full"
-      haveBorder={false}
-      objectFit="contain"
-      imageRound="rounded-none"
-      mobilePerPage={2}
-    />
-  </div>
-</div>
+            <SplideCarousel
+              images={logoImages}
+              direction="ltr"
+              speed={1}
+              perPage={4}
+              height="30px"
+              gap="1rem"
+              pauseOnHover={false}
+              className="w-full h-full"
+              haveBorder={false}
+              objectFit="contain"
+              imageRound="rounded-none"
+              mobilePerPage={2}
+            />
+          </div>
+        </div>
       </div>
 
       {/* Chat Modal */}
