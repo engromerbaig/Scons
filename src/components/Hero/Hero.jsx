@@ -103,16 +103,23 @@ const Hero = () => {
           </div>
           {/* Right Half: SplideCarousel */}
           <div className="w-1/2 h-full flex flex-col gap-y-6">
-            <Heading
-              text="Clients served by Econs Family."
-              spanText="Econs"
-              spanColor="text-neon"
-              color="text-black"
-              fontWeight="font-bold"
-              size="text-sm"
-              className="leading-none"
-              centered={false}
-            />
+          <div className="flex items-center gap-2">
+  {/* Neon bullet */}
+  <span className="w-2 h-2 rounded-full bg-neon " />
+
+  {/* Heading component */}
+  <Heading
+    text="Clients served by Econs Family."
+    spanText="Econs"
+    spanColor="text-neon"
+    color="text-black"
+    fontWeight="font-bold"
+    size="text-sm"
+    className="leading-none"
+    centered={false}
+  />
+</div>
+
             <SplideCarousel
               images={logoImages}
               direction="ltr"
