@@ -98,8 +98,8 @@ const Hero = () => {
                   size="text-sm"
                   textColor="black"
                   fontWeight="font-black"
-                  bgColor="bg-white"
-                  hoverBgColor="bg-white"
+                  bgColor="bg-transparent"
+                  hoverBgColor="bg-transparent"
                   hoverTextColor="black"
                   className="mt-4 px-4 py-2 border-b-4 border-neon rounded-none shadow-none"
                   onClick={() => setModalOpen(true)}
