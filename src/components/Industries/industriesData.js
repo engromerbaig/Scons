@@ -40,12 +40,14 @@ import techIcon from '../../assets/icons/industries/Technology.svg';
 const industries = [
     {
         name: "Finance",
+      number: "01",
         icon: financeIcon,
         image: financeImage,
         details: "Finance is all about getting the right alerts at the right time in addition to the best levels of encryption and a no-compromise approach. We understand that."
     },
     {
         name: "Health Care",
+        number: "02",
         icon: healthCareIcon,
         image: hospitalImage,
 
@@ -53,6 +55,8 @@ const industries = [
     },
     {
         name: "Ecommerce",
+        number: "03",
+
         icon: eCommerceIcon,
         image: ecommerceImage,
 
@@ -60,6 +64,7 @@ const industries = [
     },
     {
         name: "Education",
+        number: "04",
         icon: educationIcon,
                 image: educationImage,
 
@@ -67,6 +72,7 @@ const industries = [
     },
     {
         name: "On Demand",
+        number: "05",
         icon: onDemandIcon,
                 image: ondemandImage,
 
@@ -74,6 +80,7 @@ const industries = [
     },
     {
         name: "Travel",
+        number: "06",
         icon: travelIcon,
                 image: travelImage,
 
@@ -81,6 +88,7 @@ const industries = [
     },
     {
         name: "Real Estate",
+        number: "07",
         icon: realEstateIcon,
                 image: realImage,
 
@@ -88,6 +96,7 @@ const industries = [
     },
     {
         name: "Hospitality",
+        number: "08",
         icon: hotelIcon,
                 image: hotelImage,
 
@@ -97,6 +106,7 @@ const industries = [
     // new
     {
         name: "Technology",
+        number: "09",
         icon: techIcon,
                 image: techImage,
 
@@ -107,6 +117,7 @@ const industries = [
     // new
     {
         name: "Fintech",
+        number: "10",
         icon: fintechIcon,
                 image: financeImage,
 

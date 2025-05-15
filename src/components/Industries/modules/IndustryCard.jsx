@@ -3,40 +3,34 @@ import gsap from "gsap";
 import BodyText from "../../BodyText/BodyText";
 import Heading from "../../Heading/Heading";
 
-const IndustryCard = ({ industry, active, onHover, onLeave, CARD_HEIGHT = 340, CARD_WIDTH = 300 }) => {
+const IndustryCard = ({ industry, active, onHover, onLeave, CARD_HEIGHT = 400, CARD_WIDTH = 350 }) => {
   const overlayRef = useRef(null);
-  const detailsRef = useRef(null);
+  const detailsContainerRef = useRef(null); // New ref for the container
   const titleBottomRef = useRef(null);
-  const titleTopRef = useRef(null);
 
   useEffect(() => {
     // Animate overlay
     gsap.to(overlayRef.current, {
       background: active ? "rgba(0,0,0,0.85)" : "rgba(0,0,0,0.65)",
       duration: 0.3,
-      ease: "power3.out"
-    });
-    // Animate details
-    gsap.to(detailsRef.current, {
-      y: active ? 0 : -30,
-      opacity: active ? 1 : 0,
-      duration: 0.3,
       ease: "power3.out",
-      pointerEvents: active ? "auto" : "none"
     });
+
     // Animate bottom title out
     gsap.to(titleBottomRef.current, {
       y: active ? 40 : 0,
       opacity: active ? 0 : 1,
       duration: 0.3,
-      ease: "power3.out"
+      ease: "power3.out",
     });
-    // Animate top title in
-    gsap.to(titleTopRef.current, {
-      y: active ? 0 : -30,
+
+    // Animate details container (title and description together)
+    gsap.to(detailsContainerRef.current, {
+      y: active ? 0 : -100, // Start from above the card
       opacity: active ? 1 : 0,
-      duration: 0.3,
-      ease: "power3.out"
+      duration: 0.4, // Slightly longer for smoothness
+      ease: "power3.out",
+      pointerEvents: active ? "auto" : "none",
     });
   }, [active]);
 
@@ -48,7 +42,7 @@ const IndustryCard = ({ industry, active, onHover, onLeave, CARD_HEIGHT = 340, C
         height: CARD_HEIGHT,
         backgroundImage: `url(${industry.image})`,
         backgroundSize: "cover",
-        backgroundPosition: "center"
+        backgroundPosition: "center",
       }}
       onMouseEnter={onHover}
       onMouseLeave={onLeave}
@@ -61,7 +55,7 @@ const IndustryCard = ({ industry, active, onHover, onLeave, CARD_HEIGHT = 340, C
         className="absolute inset-0 transition-all duration-200"
         style={{
           background: "rgba(0,0,0,0.65)",
-          zIndex: 1
+          zIndex: 1,
         }}
       />
 
@@ -74,7 +68,7 @@ const IndustryCard = ({ industry, active, onHover, onLeave, CARD_HEIGHT = 340, C
         {industry.number && (
           <Heading
             text={industry.number}
-            size="text-70px"
+            size="text-120px xl:text-70px"
             color="text-neon"
             fontWeight="font-black"
             className="text-left vertical-text"
@@ -93,42 +87,37 @@ const IndustryCard = ({ industry, active, onHover, onLeave, CARD_HEIGHT = 340, C
         )}
       </div>
 
-      {/* Top Title (slides in above description) */}
+      {/* Details Container (Top Title + Description) */}
       <div
-        ref={titleTopRef}
-        className="absolute top-6 left-0 w-full z-20 flex items-start px-6"
+        ref={detailsContainerRef}
+        className="absolute top-6 left-0 w-full h-auto z-20"
         style={{
           opacity: 0,
-          y: -50
+          transform: "translateY(-100px)", // Initial position above the card
         }}
       >
-        <BodyText
-          text={industry.name}
-          size="text-2xl"
-          color="text-white"
-          fontWeight="font-bold"
-          className="drop-shadow-lg text-left"
-          centered={false}
-        />
-      </div>
+        {/* Top Title */}
+        <div className="flex items-start px-6">
+          <BodyText
+            text={industry.name}
+            size="text-2xl"
+            color="text-white"
+            fontWeight="font-bold"
+            className="drop-shadow-lg text-left"
+            centered={false}
+          />
+        </div>
 
-      {/* Details slide from top */}
-      <div
-        ref={detailsRef}
-        className="absolute top-24 left-0 w-full h-auto flex items-start justify-start px-6 text-white text-left z-20 pointer-events-none"
-        style={{
-          opacity: 0,
-          y: -30,
-          transition: "all 0.3s cubic-bezier(.4,0,.2,1)"
-        }}
-      >
-        <BodyText
-          text={industry.details}
-          size="text-base"
-          color="text-white"
-          className="text-left"
-          centered={false}
-        />
+        {/* Description */}
+        <div className="mt-4 px-6 text-white text-left">
+          <BodyText
+            text={industry.details}
+            size="text-base"
+            color="text-white"
+            className="text-left"
+            centered={false}
+          />
+        </div>
       </div>
     </div>
   );
