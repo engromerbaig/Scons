@@ -1,10 +1,10 @@
 import icons from "./modules/icons";
 import mobileAppImage from "../../assets/images/services/1.svg";
-import webAppImage from "../../assets/images/services/2.svg";
-import uiuxImage from "../../assets/images/services/3.svg";
-import blockchainImage from "../../assets/images/services/4.svg"; // Used for Digital Marketing
-import aiImage from "../../assets/images/services/6.svg";
-import consultationImage from "../../assets/images/services/7.webp";
+import webAppImage from "../../assets/images/services/6.svg";
+import uiuxImage from "../../assets/images/services/2.svg";
+import blockchainImage from "../../assets/images/services/3.svg"; // Used for Digital Marketing
+import aiImage from "../../assets/images/services/4.svg";
+import consultationImage from "../../assets/images/services/5.svg";
 
 // Accordion Images
 // Mobile
@@ -714,7 +714,7 @@ export const services = [
   },
   {
     heading: "Consulting Support",
-    spanText: "Support",
+    spanText: "Consulting",
     image: consultationImage,
     serviceAccordionData: [
       {
