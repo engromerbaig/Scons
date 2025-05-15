@@ -83,7 +83,7 @@ const ServiceAccordion = () => {
         {/* Accordion Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           {/* Left Side: Image for larger screens */}
-          <div className="hidden lg:flex lg:items-center">
+          <div className="hidden lg:flex lg:items-center ">
             <div className="w-full h-[500px] overflow-hidden ">
               <img
                 ref={imageRef}

@@ -1,6 +1,6 @@
-import accordianImage1 from "../../assets/images/service-details/ac/1.jpg"
-import accordianImage2 from "../../assets/images/service-details/ac/2.jpg"
-import accordianImage3 from "../../assets/images/service-details/ac/3.jpg"
+import accordianImage1 from "../../assets/images/service-details/ac/1.webp"
+import accordianImage2 from "../../assets/images/service-details/ac/2.webp"
+import accordianImage3 from "../../assets/images/service-details/ac/3.webp"
 
 export const serviceAccordionData = [
   {
