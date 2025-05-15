@@ -26,10 +26,7 @@ const SplideCarousel = ({
   useEffect(() => {
     const logOptions = () => {
       const width = window.innerWidth;
-      let activePerPage = perPage;
-      if (width <= 768) {
-        activePerPage = mobilePerPage;
-      }
+      let activePerPage = width <= 768 ? mobilePerPage : perPage;
       console.log(`Viewport width: ${width}px`);
       console.log(`Active perPage: ${activePerPage}`);
     };
@@ -42,6 +39,9 @@ const SplideCarousel = ({
     <div className={`pb-10 xl:pb-20 ${className} ${uniqueId}`}>
       <style>
         {`
+          .${uniqueId} .splide__track {
+            overflow: visible;
+          }
           .${uniqueId} .splide__slide {
             height: ${height};
             display: flex;
@@ -56,12 +56,7 @@ const SplideCarousel = ({
           }
           @media (max-width: 768px) {
             .${uniqueId} .splide__slide {
-              width: 100% !important;
               height: ${height};
-            }
-            .${uniqueId} .splide__list {
-              display: flex;
-              flex-wrap: nowrap;
             }
           }
         `}
@@ -69,24 +64,26 @@ const SplideCarousel = ({
       <Splide
         options={{
           type: "loop",
-          perPage,
+          perPage: perPage,
           perMove: 1,
           arrows: false,
           pagination: false,
-          gap,
-          direction,
+          gap: gap,
+          direction: direction,
           autoScroll: {
-            speed,
-            pauseOnHover,
+            speed: speed,
+            pauseOnHover: pauseOnHover,
             autoStart: true,
           },
           autoWidth: false,
-          height,
+          height: height,
           breakpoints: {
             768: {
               perPage: mobilePerPage,
+              gap: "1rem", // Adjusted gap for mobile
             },
           },
+          focus: "center",
         }}
         extensions={{ AutoScroll }}
         aria-label="Project Images Carousel"

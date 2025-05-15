@@ -132,17 +132,9 @@ const Hero = () => {
         {/* Bottom Section (Absolutely Positioned) */}
         <div className="absolute bottom-0 w-full h-[15vh] flex flex-col lg:flex-row items-center z-30">
           {/* Left Half: BodyText with Rocket Image */}
-          <div className="w-full lg:w-1/2 h-full flex items-center pl-2 xl:pl-20 relative">
-            {/* Rocket Image */}
-            <img
-              ref={rocketRef}
-              src={rocketImage}
-              alt="Rocket Background"
-              className="absolute hidden xl:block top-[-20%] left-4 h-40 w-auto opacity-90 object-contain pointer-events-none z-10"
-            />
-          </div>
+      
           {/* Right Half: SplideCarousel */}
-          <div className="w-full lg:w-1/2 h-full flex flex-col gap-y-6">
+          <div className="w-full  h-full flex flex-col gap-y-6">
             <div className="flex items-center gap-2 pl-2">
               {/* Neon bullet */}
               <span className="w-2 h-2 rounded-full bg-neon" />
@@ -164,8 +156,8 @@ const Hero = () => {
               images={logoImages}
               direction="ltr"
               speed={1}
-              perPage={4}
-              height="30px"
+              perPage={5}
+              height="35px"
               gap="1rem"
               pauseOnHover={false}
               className="w-full h-full"
