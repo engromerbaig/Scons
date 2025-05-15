@@ -52,7 +52,7 @@ const DropdownButton = ({
                 title="Reset"
               />
             ) : (
-              <svg width="10" height="10" viewBox="0 0 20 20" fill="none">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                 <path d="M6 8l4 4 4-4" stroke="#000" strokeWidth="2" fill="none" />
               </svg>
             )}
