@@ -1,8 +1,8 @@
 const privacyPolicyData = {
     title: "Privacy Policy",
     description: [
-        "Welcome to Tyfora's Privacy Policy. Your privacy is critically important to us.",
-        "This privacy policy document outlines the types of personal information collected and recorded by Tyfora and how we use it."
+        "Welcome to Scons's Privacy Policy. Your privacy is critically important to us.",
+        "This privacy policy document outlines the types of personal information collected and recorded by Scons and how we use it."
     ],
     policyList: [
         {

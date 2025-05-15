@@ -1,12 +1,12 @@
 export const faqData = [
     {
-        question: "Why choose Tyfora? What makes it different?",
-        answer: "Tyfora stands out for its commitment to innovation, quality, and inclusivity. We are not just a software company—we are your partners in success. Our expertise spans mobile and web app development, UI/UX design, blockchain, cloud solutions, AI, and consultation. With a diverse global team, cutting-edge technology, and a client-centric approach, we deliver solutions that empower businesses to thrive in a fast-evolving digital landscape."
+        question: "Why choose Scons? What makes it different?",
+        answer: "Scons stands out for its commitment to innovation, quality, and inclusivity. We are not just a software company—we are your partners in success. Our expertise spans mobile and web app development, UI/UX design, blockchain, cloud solutions, AI, and consultation. With a diverse global team, cutting-edge technology, and a client-centric approach, we deliver solutions that empower businesses to thrive in a fast-evolving digital landscape."
       },
 
       {
-        question: "What is Tyfora's approach to diversity and inclusion?",
-        answer: "At Tyfora, we believe in the power of diversity. We welcome talented individuals from around the world, irrespective of caste, color, creed, religion, or background. Our inclusive work environment encourages collaboration and innovation, reflecting our global vision."
+        question: "What is Scons's approach to diversity and inclusion?",
+        answer: "At Scons, we believe in the power of diversity. We welcome talented individuals from around the world, irrespective of caste, color, creed, religion, or background. Our inclusive work environment encourages collaboration and innovation, reflecting our global vision."
       },
       
     // { 
@@ -39,11 +39,11 @@ export const faqData = [
     // },
     // {
     //   question: "What blockchain development services do you offer?",
-    //   answer: "Tyfora provides blockchain-based solutions, including decentralized applications (dApps), smart contracts, and tokenization. We help businesses leverage blockchain technology for transparency, security, and operational efficiency."
+    //   answer: "Scons provides blockchain-based solutions, including decentralized applications (dApps), smart contracts, and tokenization. We help businesses leverage blockchain technology for transparency, security, and operational efficiency."
     // },
     // {
-    //     question: "What Web3 development services does Tyfora offer?",
-    //     answer: "Tyfora specializes in Web3 solutions, including decentralized applications (dApps), smart contract development, NFT marketplaces, and blockchain integration. We help businesses leverage the power of decentralized technologies to create secure, transparent, and innovative applications."
+    //     question: "What Web3 development services does Scons offer?",
+    //     answer: "Scons specializes in Web3 solutions, including decentralized applications (dApps), smart contract development, NFT marketplaces, and blockchain integration. We help businesses leverage the power of decentralized technologies to create secure, transparent, and innovative applications."
     //   },
       
     // {
@@ -51,7 +51,7 @@ export const faqData = [
     //   answer: "Yes, we offer cloud migration, infrastructure optimization, and DevOps solutions to streamline your operations. Our services include CI/CD implementation, monitoring, and scaling your applications efficiently in the cloud."
     // },
     // {
-    //   question: "How does Tyfora utilize AI and Machine Learning?",
+    //   question: "How does Scons utilize AI and Machine Learning?",
     //   answer: "We develop AI-driven solutions like predictive analytics, chatbots, recommendation systems, and computer vision applications. Our expertise in machine learning helps businesses derive actionable insights and automate complex processes."
     // },
     // {
@@ -60,29 +60,29 @@ export const faqData = [
     // },
     {
       question: "How do you ensure security in your applications?",
-      answer: "Security is a top priority at Tyfora. We follow industry best practices, including secure coding standards, regular vulnerability assessments, and encryption protocols to ensure your applications are robust and secure."
+      answer: "Security is a top priority at Scons. We follow industry best practices, including secure coding standards, regular vulnerability assessments, and encryption protocols to ensure your applications are robust and secure."
     },
     // {
     //   question: "Do you offer cross-platform app development?",
     //   answer: "Yes, we provide cross-platform app development services using frameworks like React Native and Flutter. This approach allows us to deliver high-quality apps for iOS and Android while reducing development time and costs."
     // },
     {
-      question: "Can Tyfora help with scalable architecture for apps?",
+      question: "Can Scons help with scalable architecture for apps?",
       answer: "Absolutely. We design and implement scalable architectures that can handle growth and high user traffic. Our solutions ensure your app remains performant and reliable as your business expands."
     },
     {
-      question: "How does Tyfora ensure project transparency?",
+      question: "How does Scons ensure project transparency?",
       answer: "We maintain transparency through regular updates, milestone tracking, and open communication. Our project management tools and collaborative approach ensure you are always informed and involved in the development process."
     },
 
     // additional here
     {
-        question: "How can I join Tyfora?",
-        answer: "Joining Tyfora is simple! We regularly post job openings on our careers portal at https://tyfora.com/careers. Explore our current opportunities, and if your skills align with our requirements, we’d love to hear from you. Apply directly through the portal, and our recruitment team will get in touch with you."
+        question: "How can I join Scons?",
+        answer: "Joining Scons is simple! We regularly post job openings on our careers portal at https://Scons.com/careers. Explore our current opportunities, and if your skills align with our requirements, we’d love to hear from you. Apply directly through the portal, and our recruitment team will get in touch with you."
       },
     //   {
-    //     question: "Are jobs at Tyfora remote or physical?",
-    //     answer: "Tyfora offers both remote and physical job opportunities. Some roles are based in our offices across the globe, while others are remote, depending on the nature of the job and the niche requirements. We strive to provide flexibility wherever possible."
+    //     question: "Are jobs at Scons remote or physical?",
+    //     answer: "Scons offers both remote and physical job opportunities. Some roles are based in our offices across the globe, while others are remote, depending on the nature of the job and the niche requirements. We strive to provide flexibility wherever possible."
     //   },
 
       
