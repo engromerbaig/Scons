@@ -12,6 +12,7 @@ import DevProcess from '../../components/DevProcessHorizontal/DevProcess';
 import ScrollToTopLink from '../../utilities/ScrollToTopLink';
 import AnimatedBackground from '../../utilities/AnimatedBackground/AnimatedBackground';
 import GreenBelt from '../../components/GreenBelt/GreenBelt';
+import ServiceAccordion from './ServiceAccordion';
 
 const ServiceDetails = () => {
     const { serviceSlug } = useParams();
@@ -49,18 +50,10 @@ const ServiceDetails = () => {
                 
             />
 
-            {/* Tagline Section */}
-            {/* <div className={`bg-neon ${theme.layoutPages.paddingHorizontal} rounded-b-2xl py-4 md:py-8 mt-4 md:mt-8 mx-4 md:mx-8 lg:mx-12`}>
-                <Heading
-                    text={service.tagline} // "Beyond Development, We Build Journeys"
-                    color="text-black"
-                    fontWeight='font-medium'
-                    size='text-50px'
-                    centered={true}
-                />
-            </div> */}
+  
+  <ServiceAccordion />
 
-            <GreenBelt className="rounded-b-2xl  mx-4 md:mx-8 lg:mx-12">
+            {/* <GreenBelt className="rounded-b-2xl  mx-4 md:mx-8 lg:mx-12">
             <Heading
                     text={service.tagline} // "Beyond Development, We Build Journeys"
                     color="text-black"
@@ -70,10 +63,10 @@ const ServiceDetails = () => {
                 />
 
 
-            </GreenBelt>
+            </GreenBelt> */}
 
             {/* Icon Section */}
-            <IconSection circularSection={service.circularSection} />
+            {/* <IconSection circularSection={service.circularSection} /> */}
 
             {/* Section Details */}
             <SectionDetails
