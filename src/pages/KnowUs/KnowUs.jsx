@@ -119,8 +119,8 @@ const KnowUs = () => {
 
       <MessageBox
         Message="We are a team of passionate individuals who believe in the power of technology to transform lives. Our mission is to create innovative solutions that make a difference."
-        Name="Seth Faraz"
-        Designation="CEO, Scons Tech"
+        Name="Mr. Faraz Ahmed"
+        Designation="Co-Founder & CTO, Scons"
         ProfileDisplay={ceoImage}
       />
 

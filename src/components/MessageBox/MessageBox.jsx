@@ -46,7 +46,7 @@ const MessageBox = ({ Message, Name, Designation, ProfileDisplay }) => {
           />
           <div className="flex flex-col items-start">
             <BodyText text={Name} color="text-white" />
-            <BodyText text={Designation} className="text-grayText" />
+            <BodyText text={Designation} className="text-grayText" size="text-sm" />
           </div>
         </div>
 
