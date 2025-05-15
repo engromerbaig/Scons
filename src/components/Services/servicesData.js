@@ -56,7 +56,7 @@ image: mobileAppImage,
     tagline: "Empowering Your Mobile Future",
     faqSpanText: "Develop Your Mobile App",
     faqBodyText: "Our mobile app development services deliver seamless, intuitive, and high-performance applications across platforms. We create native and hybrid apps designed to enhance your business's mobile presence.",
-    processBodyText: "A typical mobile app development project at TYFORA begins with ideation and concept creation, followed by the design phase where we focus on UI/UX. Once the design is finalized, the development stage begins, where we build the app for different platforms. After development, we conduct rigorous testing to ensure performance and usability.",
+    processBodyText: "A typical mobile app development project at Scons begins with ideation and concept creation, followed by the design phase where we focus on UI/UX. Once the design is finalized, the development stage begins, where we build the app for different platforms. After development, we conduct rigorous testing to ensure performance and usability.",
 
     number: "01",
     faqData : [
@@ -134,7 +134,7 @@ image: mobileAppImage,
         details: [  // Details related to iOS
           {
             heading: "Swift",
-            description: "iOS apps are the cornerstone of Apple’s ecosystem, offering seamless experiences across devices like iPhones and iPads. They are known for their performance, user-friendly interfaces, and adherence to strict quality standards. At Tyfora, we understand the intricacies of iOS development, from coding to design and optimization. By leveraging Apple’s native tools and best practices, we deliver apps that not only meet App Store requirements but also stand out in a competitive market. Businesses choose us because of our ability to combine functionality with an intuitive design that resonates with users.  ",
+            description: "iOS apps are the cornerstone of Apple’s ecosystem, offering seamless experiences across devices like iPhones and iPads. They are known for their performance, user-friendly interfaces, and adherence to strict quality standards. At Scons, we understand the intricacies of iOS development, from coding to design and optimization. By leveraging Apple’s native tools and best practices, we deliver apps that not only meet App Store requirements but also stand out in a competitive market. Businesses choose us because of our ability to combine functionality with an intuitive design that resonates with users.  ",
           },
           // {
           //   heading: "UIKit",
@@ -154,7 +154,7 @@ image: mobileAppImage,
         details: [  // Details related to Android
           {
             heading: "Java",
-            description: "Android powers the majority of mobile devices worldwide, offering unparalleled reach for businesses. Developing an Android app requires addressing compatibility across different devices, versions, and screen sizes. At Tyfora, we develop apps tailored to Android’s unique ecosystem, ensuring optimal performance and a native feel across devices. Our expertise in building scalable solutions helps businesses cater to global audiences. Clients partner with us because we strike the perfect balance between innovation and practicality, ensuring your app achieves its goals.",
+            description: "Android powers the majority of mobile devices worldwide, offering unparalleled reach for businesses. Developing an Android app requires addressing compatibility across different devices, versions, and screen sizes. At Scons, we develop apps tailored to Android’s unique ecosystem, ensuring optimal performance and a native feel across devices. Our expertise in building scalable solutions helps businesses cater to global audiences. Clients partner with us because we strike the perfect balance between innovation and practicality, ensuring your app achieves its goals.",
           },
           // {
           //   heading: "Kotlin",
@@ -174,7 +174,7 @@ image: mobileAppImage,
         details: [  // Details related to Hybrid
           {
             heading: "Flutter",
-            description: "Hybrid apps are ideal for businesses looking to maximize reach without developing separate apps for iOS and Android. Using advanced frameworks like Flutter and React Native, hybrid apps offer near-native performance while reducing development time and cost. Tyfora excels at building feature-rich hybrid applications that work seamlessly across platforms. Our clients trust us to deliver consistent quality, enabling them to target diverse audiences without compromising user experience.",
+            description: "Hybrid apps are ideal for businesses looking to maximize reach without developing separate apps for iOS and Android. Using advanced frameworks like Flutter and React Native, hybrid apps offer near-native performance while reducing development time and cost. Scons excels at building feature-rich hybrid applications that work seamlessly across platforms. Our clients trust us to deliver consistent quality, enabling them to target diverse audiences without compromising user experience.",
           },
           // {
           //   heading: "React Native",
@@ -221,7 +221,7 @@ image: mobileAppImage,
     tagline: "Scalable Web Solutions for Growth",
     faqSpanText : "Develop Your Website",
     faqBodyText : "Our comprehensive web development services cover everything from intuitive design to seamless functionality. We create responsive, secure, and high-performance websites tailored to your business needs.",
-    processBodyText:"A typical web development project at TYFORA begins with concept creation, followed by the planning phase and the development stage. After that, the process moves on to fine-tuning, testing, and ultimately, delivery.",
+    processBodyText:"A typical web development project at Scons begins with concept creation, followed by the planning phase and the development stage. After that, the process moves on to fine-tuning, testing, and ultimately, delivery.",
     number: "02",
  faqData : [
   {
@@ -291,7 +291,7 @@ image: mobileAppImage,
         details: [ // Details related to this service
           {
             heading: "HTML/CSS",
-            description: "The frontend of a web app is the user’s first touchpoint. It’s responsible for delivering a visually appealing, fast, and responsive experience. At Tyfora, we craft frontend solutions using modern technologies like React, Angular, and Vue.js to create engaging interfaces. Whether you need a simple interface or a complex user dashboard, we ensure every design enhances usability and performance. Businesses value our ability to combine aesthetics with technical precision, making their platforms truly stand out.",
+            description: "The frontend of a web app is the user’s first touchpoint. It’s responsible for delivering a visually appealing, fast, and responsive experience. At Scons, we craft frontend solutions using modern technologies like React, Angular, and Vue.js to create engaging interfaces. Whether you need a simple interface or a complex user dashboard, we ensure every design enhances usability and performance. Businesses value our ability to combine aesthetics with technical precision, making their platforms truly stand out.",
           },
     
         ],
@@ -313,7 +313,7 @@ image: mobileAppImage,
         details: [ // Details related to Backend
           {
             heading: "Node.js",
-            description: "The backend is the backbone of any web application, managing data, server-side logic, and system integrations. It ensures everything runs smoothly behind the scenes. Tyfora specializes in building scalable, secure backends using robust technologies like Node.js, Laravel, and Python. We design architectures that can handle growth and complex workflows with ease. Companies rely on us for backend solutions because of our focus on reliability, security, and future scalability.",
+            description: "The backend is the backbone of any web application, managing data, server-side logic, and system integrations. It ensures everything runs smoothly behind the scenes. Scons specializes in building scalable, secure backends using robust technologies like Node.js, Laravel, and Python. We design architectures that can handle growth and complex workflows with ease. Companies rely on us for backend solutions because of our focus on reliability, security, and future scalability.",
           },
      
         ],
@@ -335,7 +335,7 @@ image: mobileAppImage,
         details: [ // Details related to CMS
           {
             heading: "WordPress",
-            description: "A CMS is essential for managing content efficiently without needing technical expertise. It allows businesses to update websites, blogs, and product catalogs effortlessly. Tyfora develops custom CMS platforms or works with popular solutions like WordPress and Drupal to match your needs. Our clients appreciate our ability to tailor CMS functionality, ensuring a perfect fit for their business workflows.",
+            description: "A CMS is essential for managing content efficiently without needing technical expertise. It allows businesses to update websites, blogs, and product catalogs effortlessly. Scons develops custom CMS platforms or works with popular solutions like WordPress and Drupal to match your needs. Our clients appreciate our ability to tailor CMS functionality, ensuring a perfect fit for their business workflows.",
           },
       
         ],
@@ -377,7 +377,7 @@ image: mobileAppImage,
     tagline: "Designing Exceptional Experiences",
     faqSpanText: "Design your Website",
     faqBodyText: "Our UI/UX Design services focus on creating user-centered designs that improve engagement and usability across digital platforms. From research and ideation to prototyping and testing, we ensure that your app or website is not only visually appealing but also easy to use.",
-    processBodyText: "A typical UI/UX design project at TYFORA starts with research and understanding the user's needs. Next, we move on to wireframing and creating low-fidelity prototypes to visualize the layout.",
+    processBodyText: "A typical UI/UX design project at Scons starts with research and understanding the user's needs. Next, we move on to wireframing and creating low-fidelity prototypes to visualize the layout.",
 
     number: "03",
     
@@ -446,7 +446,7 @@ image: mobileAppImage,
         details: [ // Details related to Mobile App Design
           {
             heading: "Wireframing",
-            description: "Mobile app design is about creating user experiences that are intuitive and enjoyable. A well-designed app not only attracts users but also retains them. Tyfora focuses on designing apps that prioritize user journeys, ensuring every interaction is smooth and meaningful. Businesses trust us because we blend creativity with research-driven design, ensuring that form and function go hand in hand.",
+            description: "Mobile app design is about creating user experiences that are intuitive and enjoyable. A well-designed app not only attracts users but also retains them. Scons focuses on designing apps that prioritize user journeys, ensuring every interaction is smooth and meaningful. Businesses trust us because we blend creativity with research-driven design, ensuring that form and function go hand in hand.",
           },
    
         ],
@@ -463,7 +463,7 @@ image: mobileAppImage,
         details: [ // Details related to Web App Design
           {
             heading: "Responsive Design",
-            description: "Web app design requires balancing functionality with an appealing aesthetic. Tyfora specializes in crafting designs that simplify navigation and make complex tasks effortless. Our design philosophy revolves around understanding the end user, enabling us to create interfaces that feel natural and enhance productivity. Organizations partner with us because of our ability to deliver designs that are visually striking yet deeply practical.",
+            description: "Web app design requires balancing functionality with an appealing aesthetic. Scons specializes in crafting designs that simplify navigation and make complex tasks effortless. Our design philosophy revolves around understanding the end user, enabling us to create interfaces that feel natural and enhance productivity. Organizations partner with us because of our ability to deliver designs that are visually striking yet deeply practical.",
           },
           
         ],
@@ -480,7 +480,7 @@ image: mobileAppImage,
         details: [ // Details related to ERP Design
           {
             heading: "Custom Dashboards",
-            description: "ERP systems often suffer from complexity, making them difficult for teams to use effectively. Tyfora simplifies ERP interfaces with designs that are intuitive and accessible, even for non-technical users. By streamlining workflows and enhancing clarity, we help businesses increase productivity. Companies choose us because we transform dense ERP systems into tools employees can navigate with ease.",
+            description: "ERP systems often suffer from complexity, making them difficult for teams to use effectively. Scons simplifies ERP interfaces with designs that are intuitive and accessible, even for non-technical users. By streamlining workflows and enhancing clarity, we help businesses increase productivity. Companies choose us because we transform dense ERP systems into tools employees can navigate with ease.",
           },
    
         ],
@@ -524,7 +524,7 @@ image: mobileAppImage,
   tagline: "Securing the Future of Transactions",
   faqSpanText: "Develop Your Blockchain Solution",
   faqBodyText: "Our blockchain development services deliver secure, scalable, and transparent solutions using cutting-edge blockchain technologies. We build smart contracts, decentralized applications (DApps), and integrate blockchain into your existing systems.",
-  processBodyText: "A typical blockchain development project at TYFORA starts with understanding the client's needs and selecting the appropriate blockchain framework. We then move to smart contract development, followed by DApp design and development. Afterward, we integrate the blockchain with existing systems and rigorously test its security, scalability, and performance. Finally, we deploy the solution and provide ongoing support for maintenance and upgrades.",
+  processBodyText: "A typical blockchain development project at Scons starts with understanding the client's needs and selecting the appropriate blockchain framework. We then move to smart contract development, followed by DApp design and development. Afterward, we integrate the blockchain with existing systems and rigorously test its security, scalability, and performance. Finally, we deploy the solution and provide ongoing support for maintenance and upgrades.",
 
   number: "04",
   faqData: [
@@ -596,7 +596,7 @@ image: mobileAppImage,
       details: [
         {
           heading: "Ethereum Smart Contracts",
-          description: "Smart contracts are self-executing agreements written in code, ensuring automated and secure transactions. They reduce human error and boost efficiency. Tyfora develops error-free smart contracts tailored to your business needs, providing peace of mind and operational reliability. Clients value our expertise in building smart contracts that deliver precision and trust in a decentralized environment.",
+          description: "Smart contracts are self-executing agreements written in code, ensuring automated and secure transactions. They reduce human error and boost efficiency. Scons develops error-free smart contracts tailored to your business needs, providing peace of mind and operational reliability. Clients value our expertise in building smart contracts that deliver precision and trust in a decentralized environment.",
         },
    
       ],
@@ -613,7 +613,7 @@ image: mobileAppImage,
       details: [
         {
           heading: "Ethereum DApps",
-          description: "Decentralized applications run on blockchain technology, offering enhanced security, transparency, and resilience. At Tyfora, we create scalable DApps for industries like finance, healthcare, and supply chain. Our solutions empower businesses to innovate without limitations. Companies choose us for our proven ability to deliver robust decentralized systems that align with their goals.",
+          description: "Decentralized applications run on blockchain technology, offering enhanced security, transparency, and resilience. At Scons, we create scalable DApps for industries like finance, healthcare, and supply chain. Our solutions empower businesses to innovate without limitations. Companies choose us for our proven ability to deliver robust decentralized systems that align with their goals.",
         },
    
       ],
@@ -630,7 +630,7 @@ image: mobileAppImage,
       details: [
         {
           heading: "API Integration",
-          description: "Integrating blockchain into existing systems enhances data security, traceability, and operational efficiency. Tyfora helps businesses seamlessly adopt blockchain technology, ensuring minimal disruption and maximum benefit. Our clients trust us because of our capability to deliver smooth transitions and tailor solutions to their unique needs.",
+          description: "Integrating blockchain into existing systems enhances data security, traceability, and operational efficiency. Scons helps businesses seamlessly adopt blockchain technology, ensuring minimal disruption and maximum benefit. Our clients trust us because of our capability to deliver smooth transitions and tailor solutions to their unique needs.",
         },
      
       ],
@@ -675,7 +675,7 @@ image: mobileAppImage,
   tagline: "Building Agile, Scalable Infrastructure",
   faqSpanText: "Leverage the Power of Cloud & DevOps",
   faqBodyText: "Our Cloud and DevOps solutions enable businesses to accelerate software delivery, enhance collaboration, and improve operational efficiency by leveraging scalable cloud infrastructure, automated workflows, and robust security practices.",
-  processBodyText: "A typical Cloud & DevOps project at TYFORA starts with understanding your infrastructure needs and selecting the best cloud platform (AWS, Azure, Google Cloud, etc.). We then focus on cloud infrastructure setup, followed by implementing DevOps practices such as CI/CD pipelines, automation, and security protocols. Once the infrastructure is in place, we provide ongoing monitoring and optimization for scalability and performance.",
+  processBodyText: "A typical Cloud & DevOps project at Scons starts with understanding your infrastructure needs and selecting the best cloud platform (AWS, Azure, Google Cloud, etc.). We then focus on cloud infrastructure setup, followed by implementing DevOps practices such as CI/CD pipelines, automation, and security protocols. Once the infrastructure is in place, we provide ongoing monitoring and optimization for scalability and performance.",
 
   number: "05",
   faqData: [
@@ -747,7 +747,7 @@ image: mobileAppImage,
       details: [
         {
           heading: "AWS Cloud",
-          description: "Cloud infrastructure allows businesses to scale flexibly while reducing operational costs. Tyfora designs, deploys, and manages cloud environments tailored to your business needs. Our focus on performance and cost-efficiency makes us a trusted partner for organizations seeking reliable cloud solutions.",
+          description: "Cloud infrastructure allows businesses to scale flexibly while reducing operational costs. Scons designs, deploys, and manages cloud environments tailored to your business needs. Our focus on performance and cost-efficiency makes us a trusted partner for organizations seeking reliable cloud solutions.",
         },
      
       ],
@@ -766,7 +766,7 @@ image: mobileAppImage,
       details: [
         {
           heading: "Firewall Configuration",
-          description: "Networking and security are the pillars of a robust IT environment. Tyfora provides solutions that safeguard data, prevent breaches, and maintain compliance with industry standards. Businesses work with us because we prioritize security without compromising performance. ",
+          description: "Networking and security are the pillars of a robust IT environment. Scons provides solutions that safeguard data, prevent breaches, and maintain compliance with industry standards. Businesses work with us because we prioritize security without compromising performance. ",
         },
       
       ],
@@ -786,7 +786,7 @@ image: mobileAppImage,
       details: [
         {
           heading: "Database Management",
-          description: "Efficient data storage is crucial for operations, analytics, and decision-making. Tyfora implements secure, scalable storage solutions using cloud technologies that optimize accessibility and reliability. Clients choose us for our commitment to secure and cost-effective data management.",
+          description: "Efficient data storage is crucial for operations, analytics, and decision-making. Scons implements secure, scalable storage solutions using cloud technologies that optimize accessibility and reliability. Clients choose us for our commitment to secure and cost-effective data management.",
         },
     
       ],
@@ -834,7 +834,7 @@ image: mobileAppImage,
   tagline: "Smarter Solutions for Tomorrow",
   faqSpanText: "Leverage the Power of AI and ML",
   faqBodyText: "Our AI and machine learning solutions empower businesses by enabling intelligent applications, predictive analytics, and automated decision-making. We deliver tailored solutions to optimize operations, enhance customer experiences, and unlock new opportunities.",
-  processBodyText: "A typical AI and ML project at TYFORA begins with understanding your business challenges, followed by data collection and preprocessing. We then apply machine learning algorithms to train models, followed by testing and optimization. Finally, we integrate the models into your business processes and provide ongoing monitoring and improvements.",
+  processBodyText: "A typical AI and ML project at Scons begins with understanding your business challenges, followed by data collection and preprocessing. We then apply machine learning algorithms to train models, followed by testing and optimization. Finally, we integrate the models into your business processes and provide ongoing monitoring and improvements.",
 
   number: "06",
   faqData: [
@@ -905,7 +905,7 @@ image: mobileAppImage,
       details: [
         {
           heading: "Natural Language Processing (NLP)",
-          description: "AI applications transform businesses by automating tasks, predicting outcomes, and enhancing user experiences. Tyfora develops AI-driven solutions like chatbots, recommendation engines, and predictive analytics tailored to your needs. Companies trust us because of our ability to deliver impactful AI applications that drive tangible results.",
+          description: "AI applications transform businesses by automating tasks, predicting outcomes, and enhancing user experiences. Scons develops AI-driven solutions like chatbots, recommendation engines, and predictive analytics tailored to your needs. Companies trust us because of our ability to deliver impactful AI applications that drive tangible results.",
         },
     
       ],
@@ -924,7 +924,7 @@ image: mobileAppImage,
       details: [
         {
           heading: "Supervised Learning",
-          description: "Machine learning models unlock insights and automate decision-making processes. Tyfora designs algorithms that learn and improve over time, enabling businesses to stay ahead in competitive industries. Our clients rely on us for accurate, scalable solutions that deliver consistent value.",
+          description: "Machine learning models unlock insights and automate decision-making processes. Scons designs algorithms that learn and improve over time, enabling businesses to stay ahead in competitive industries. Our clients rely on us for accurate, scalable solutions that deliver consistent value.",
         },
   
       ],
@@ -943,7 +943,7 @@ image: mobileAppImage,
       details: [
         {
           heading: "Automated Workflow Management",
-          description: "Automation powered by AI streamlines operations, reduces costs, and minimizes human error. Tyfora develops intelligent automation systems that enhance efficiency and productivity. Businesses turn to us for solutions that optimize workflows without compromising quality.",
+          description: "Automation powered by AI streamlines operations, reduces costs, and minimizes human error. Scons develops intelligent automation systems that enhance efficiency and productivity. Businesses turn to us for solutions that optimize workflows without compromising quality.",
         },
     
       ],
@@ -1069,7 +1069,7 @@ image: mobileAppImage,
       details: [
         {
           heading: "Market Research",
-          description: "Expanding into new markets requires careful planning and local expertise. Tyfora guides businesses through market research, strategy development, and execution to ensure successful entry. Companies choose us because of our data-driven approach and deep market insights.",
+          description: "Expanding into new markets requires careful planning and local expertise. Scons guides businesses through market research, strategy development, and execution to ensure successful entry. Companies choose us because of our data-driven approach and deep market insights.",
         },
    
       ],
@@ -1082,7 +1082,7 @@ image: mobileAppImage,
       details: [
         {
           heading: "Brand Strategy",
-          description: "Strong branding and clear positioning are essential for standing out. Tyfora refines your brand identity and aligns it with market demands to create a lasting impact. Businesses trust us because of our ability to turn brands into industry leaders.",
+          description: "Strong branding and clear positioning are essential for standing out. Scons refines your brand identity and aligns it with market demands to create a lasting impact. Businesses trust us because of our ability to turn brands into industry leaders.",
         },
    
       ],
@@ -1095,7 +1095,7 @@ image: mobileAppImage,
       details: [
         {
           heading: "Revenue Strategies",
-          description: "Maximizing revenue while minimizing costs requires strategic planning. Tyfora analyzes your operations, identifies inefficiencies, and implements solutions that drive profitability. Organizations partner with us for actionable strategies that yield measurable results.",
+          description: "Maximizing revenue while minimizing costs requires strategic planning. Scons analyzes your operations, identifies inefficiencies, and implements solutions that drive profitability. Organizations partner with us for actionable strategies that yield measurable results.",
         },
    
       ],
@@ -1108,7 +1108,7 @@ image: mobileAppImage,
       details: [
         {
           heading: "Technology Integration",
-          description: "Transitioning to digital platforms is no longer optional—it’s essential for growth. Tyfora helps businesses embrace digital transformation, enhancing processes, customer experiences, and competitiveness. Companies work with us because of our tailored approach to modernization.",
+          description: "Transitioning to digital platforms is no longer optional—it’s essential for growth. Scons helps businesses embrace digital transformation, enhancing processes, customer experiences, and competitiveness. Companies work with us because of our tailored approach to modernization.",
         },
     
       ],
@@ -1121,7 +1121,7 @@ image: mobileAppImage,
       details: [
         {
           heading: "Business Plans",
-          description: "Securing investment requires clear vision and preparation. Tyfora helps businesses create compelling pitches, refine their financials, and align with investor expectations. Clients value our ability to position them for funding success.",
+          description: "Securing investment requires clear vision and preparation. Scons helps businesses create compelling pitches, refine their financials, and align with investor expectations. Clients value our ability to position them for funding success.",
         },
     
       ],
