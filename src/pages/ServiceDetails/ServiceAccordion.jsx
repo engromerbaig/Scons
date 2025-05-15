@@ -137,11 +137,20 @@ const ServiceAccordion = ({heading}) => {
                         centered={false}
                         className="max-w-[30rem]"
                       />
+
+                        <BodyText
+                        text="Key Features:"
+                        size='text-sm'
+                        fontWeight='font-black'
+                        centered={false}
+                        className="max-w-[30rem] py-4"
+                      />
+
                       <ul className="mt-4 max-w-[30rem]">
                         {service.bestPoints.map((point, pointIndex) => (
                           <li
                             key={pointIndex}
-                            className="flex items-center gap-2 mb-2"
+                            className="flex items-center gap-2 mb-4"
                           >
                             <IoIosCheckmarkCircle className="text-neon text-35px flex-shrink-0" />
                             <BodyText text={point} centered={false} />
