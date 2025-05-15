@@ -36,7 +36,7 @@ const IndustryCard = ({ industry, active, onHover, onLeave, CARD_HEIGHT = 400, C
 
   return (
     <div
-      className="relative rounded-2xl overflow-hidden flex-shrink-0 mx-2 cursor-pointer group transition-all duration-300 hover:border-2 hover:border-neon"
+      className="relative rounded-3xl overflow-hidden flex-shrink-0 mx-2 cursor-pointer group transition-all duration-300 hover:border-2 hover:border-neon"
       style={{
         width: CARD_WIDTH,
         height: CARD_HEIGHT,
