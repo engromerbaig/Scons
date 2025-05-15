@@ -48,7 +48,7 @@ const ProjectCard = ({ project }) => {
             alt={project.heading}
             className="w-full h-[115%] object-cover absolute top-0 left-0"
           />
-        </div>
+      </div>
         <img src={project.logo} className="w-1/5 mb-4" alt={`${project.heading} logo`} />
         <Heading
           text={project.heading}

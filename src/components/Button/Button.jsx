@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Button = ({
   name,
@@ -14,10 +15,12 @@ const Button = ({
   textAlign = "justify-start",
   noIconChange = false, // Prop to control icon filter and apply svg-black
   onClick,
+  link = null, // Optional link prop for react-router-dom
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
-  return (
+  // Common button content to avoid duplication
+  const buttonContent = (
     <div
       className={`inline-flex flex-row items-center ${textAlign} cursor-pointer p-3 ${bgColor} rounded-full ${
         hoverBgColor ? "hover:" + hoverBgColor : ""
@@ -67,6 +70,15 @@ const Button = ({
         </p>
       </div>
     </div>
+  );
+
+  // Render with Link if link prop is provided, otherwise render as div
+  return link ? (
+    <Link to={link} className="inline-flex">
+      {buttonContent}
+    </Link>
+  ) : (
+    buttonContent
   );
 };
 

@@ -16,7 +16,7 @@ const SectionDetails = ({ faqSpanText, faqBodyText, faqItems }) => {
 
   return (
     <div className={`min-h-screen  ${theme.layoutPages.paddingVertical}`} >
-      <div className="flex flex-col gap-6 pb-10">
+      <div className="flex flex-col gap-6 ">
 
       <GreenBelt className="">
 
@@ -24,12 +24,11 @@ const SectionDetails = ({ faqSpanText, faqBodyText, faqItems }) => {
 
 
       </GreenBelt>
-      <BodyText text="More than a development partner—Tyfora is a catalyst for innovation, storytelling, and strategic growth, building lasting legacies in the digital world."  className='px-6 lg:px-40' />
 
       </div>
    
 
-      <div className={`faq-list ${theme.layoutPages.conatinerVerticalGap} ${theme.layoutPages.paddingHorizontal}`}>
+      <div className={`faq-list bg-black ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal}`}>
         {faqItems.map((item, index) => (
           <SectionDetailItem
             key={index}
