@@ -22,7 +22,7 @@ const Projects = () => {
   const randomProjects = getRandomProjects(projects, 4);
 
   return (
-    <div
+    <div id="projects"
       className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} flex flex-col items-center`}
     >
       <div className="flex flex-col xl:flex-row xl:justify-between justify-start item-start xl:items-center w-full mb-8">

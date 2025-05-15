@@ -125,8 +125,8 @@ const Hero = () => {
                   hoverBgColor="bg-transparent"
                   hoverTextColor="black"
                   className="mt-4 px-4 py-2 border-b-4 border-neon rounded-none shadow-none"
-                  onClick={() => setModalOpen(true)}
-                />
+                  link="#projects"
+                  />
               </div>  
             </motion.div>
           </div>

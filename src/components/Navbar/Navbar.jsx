@@ -9,10 +9,8 @@ const Navbar = () => {
   const [closing, setClosing] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const location = useLocation(); // Get current location
 
   // Check if the current route is a service inner page
-  const isServicePage = location.pathname.startsWith('/service/');
 
   const toggleMobileMenu = (e) => {
     e.preventDefault();
@@ -66,7 +64,7 @@ const Navbar = () => {
           <img
             src="/hamburger.svg"
             alt="Menu"
-            className={`w-6 aspect-square lg:w-6 z-[200] ${isServicePage ? 'svg-black' : 'svg-black'}`}
+            className={`w-6 aspect-square lg:w-6 z-[200] svg-black`}
             loading='lazy'
           />
         </button>
