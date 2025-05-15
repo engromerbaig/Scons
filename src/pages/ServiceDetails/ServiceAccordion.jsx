@@ -4,6 +4,7 @@ import BodyText from '../../components/BodyText/BodyText';
 import { serviceAccordionData } from './serviceAccordionData';
 import { theme } from '../../theme';
 import { FiPlus, FiMinus } from 'react-icons/fi';
+import { IoIosCheckmarkCircle } from 'react-icons/io';
 import { gsap } from 'gsap';
 
 const ServiceAccordion = () => {
@@ -83,13 +84,13 @@ const ServiceAccordion = () => {
         {/* Accordion Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           {/* Left Side: Image for larger screens */}
-          <div className="hidden lg:flex lg:items-center ">
-            <div className="w-full h-[500px] overflow-hidden ">
+          <div className="hidden lg:flex lg:items-center">
+            <div className="w-full h-[500px] overflow-hidden">
               <img
                 ref={imageRef}
                 src={serviceAccordionData[activeService].image}
                 alt={serviceAccordionData[activeService].question}
-                className="w-full h-full object-contain transition-opacity duration-300 ease-in-out"
+                className="w-full h-full object-contain"
               />
             </div>
           </div>
@@ -105,7 +106,7 @@ const ServiceAccordion = () => {
                 >
                   <Heading
                     text={service.question}
-                    size="text-40px"
+                    size="text-50px xl:text-40px"
                     fontWeight="font-bold"
                     centered={false}
                     className={activeService === index ? 'text-neon' : ''}
@@ -134,6 +135,18 @@ const ServiceAccordion = () => {
                         centered={false}
                         className="max-w-[30rem]"
                       />
+                      <ul className="mt-4 max-w-[30rem]">
+                        {service.bestPoints.map((point, pointIndex) => (
+                          <li
+                            key={pointIndex}
+                            className="flex items-center gap-2 mb-2"
+                          >
+                            <IoIosCheckmarkCircle className="text-neon text-35px flex-shrink-0" />
+                            <BodyText text={point} centered={false} />
+                            {/* <span className="text-gray-600">{point}</span> */}
+                          </li>
+                        ))}
+                      </ul>
                       {/* Image for mobile */}
                       <div className="lg:hidden mt-4">
                         <div className="w-full h-[200px] overflow-hidden rounded-lg">
