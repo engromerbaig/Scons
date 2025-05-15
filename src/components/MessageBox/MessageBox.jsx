@@ -31,7 +31,7 @@ const MessageBox = ({ Message, Name, Designation, ProfileDisplay }) => {
     <div className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical}`}>
       <div className="relative bg-black rounded-3xl shadow-md border-[0.1px] border-gray-100 flex flex-col gap-y-6 xl:gap-y-10 items-start justify-between px-6 py-10 lg:py-10 lg:px-20">
         <Heading
-          text={Message}
+  text={`"${Message}"`}
           size="text-40px"
           color="text-white"
           centered={false}

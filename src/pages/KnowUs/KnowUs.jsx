@@ -118,9 +118,9 @@ const KnowUs = () => {
       </div>
 
         <MessageBox
-        Message={`We are a team of passionate individuals who believe in the power of technology to transform lives. Our transition from the electrical to the IT domain has been "nothing short of sensational", fueled by our rapidly growing client base.`}
+        Message={`We are a team of passionate individuals who believe in the power of technology to transform lives. Our transition from the electrical to the IT domain has been nothing short of sensational, fueled by our rapidly growing client base.`}
         Name="Mr. Faraz"
-        Designation="Co-Founder & CTO, Scons"
+        Designation="Co-Founder, Scons"
         ProfileDisplay={ceoImage}
       />
 
