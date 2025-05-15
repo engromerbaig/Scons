@@ -83,7 +83,6 @@ const ServiceDetails = () => {
             />
 
             {/* Reviews Section */}
-            <Reviews />
 
             {/* Development Process Section */}
             <DevProcess />
