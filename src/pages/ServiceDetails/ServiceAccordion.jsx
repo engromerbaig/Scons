@@ -1,15 +1,71 @@
-import React, { useState } from 'react';
+import React, { useState,useRef, useEffect } from 'react';
 import Heading from '../../components/Heading/Heading';
 import BodyText from '../../components/BodyText/BodyText';
 import { serviceAccordionData } from './serviceAccordionData';
 import { theme } from '../../theme';
-import { FaPlus, FaMinus } from 'react-icons/fa';
+import { FiPlus, FiMinus } from 'react-icons/fi';
+import { gsap } from 'gsap';
 
 const ServiceAccordion = () => {
   const [activeService, setActiveService] = useState(0);
+  const iconRefs = useRef([]);
+  const answerRefs = useRef([]);
+  const imageRef = useRef(null);
+
+  useEffect(() => {
+    // Debug: Log refs to ensure elements are captured
+    console.log('Icon Refs:', iconRefs.current);
+    console.log('Answer Refs:', answerRefs.current);
+    console.log('Image Ref:', imageRef.current);
+
+    // Animate icons
+    iconRefs.current.forEach((icon, index) => {
+      if (icon) {
+        gsap.to(icon, {
+          rotation: activeService === index ? 0 : 90,
+          duration: 0.3,
+          ease: 'power2.inOut',
+        });
+      }
+    });
+
+    // Animate answers
+    answerRefs.current.forEach((answer, index) => {
+      if (answer) {
+        gsap.to(answer, {
+          y: activeService === index ? 0 : -20,
+          opacity: activeService === index ? 1 : 0,
+          height: activeService === index ? 'auto' : 0,
+          duration: 0.3,
+          ease: 'power2.inOut',
+          overwrite: true,
+        });
+      }
+    });
+
+    // Animate image fade
+    if (imageRef.current) {
+      gsap.to(imageRef.current, {
+        opacity: 1,
+        duration: 0.3,
+        ease: 'power2.inOut',
+        overwrite: true,
+      });
+    }
+  }, [activeService]);
 
   const handleServiceClick = (index) => {
-    setActiveService(index);
+    // Fade out image before changing active service
+    if (imageRef.current) {
+      gsap.to(imageRef.current, {
+        opacity: 0,
+        duration: 0.15,
+        ease: 'power2.inOut',
+        onComplete: () => setActiveService(index),
+      });
+    } else {
+      setActiveService(index);
+    }
   };
 
   return (
@@ -30,10 +86,10 @@ const ServiceAccordion = () => {
           <div className="hidden lg:flex lg:items-center">
             <div className="w-full h-[300px] overflow-hidden rounded-lg">
               <img
+                ref={imageRef}
                 src={serviceAccordionData[activeService].image}
                 alt={serviceAccordionData[activeService].question}
-                className="w-full h-full object-cover transition-opacity duration-300 ease-in-out"
-                style={{ opacity: activeService === activeService ? 1 : 0 }}
+                className="w-full h-full object-cover"
               />
             </div>
           </div>
@@ -41,7 +97,7 @@ const ServiceAccordion = () => {
           {/* Right Side: Accordion Items */}
           <div>
             {serviceAccordionData.map((service, index) => (
-              <div key={service.id} className="mb-10">
+              <div key={service.id} className="mb-6">
                 {/* Accordion Item */}
                 <button
                   onClick={() => handleServiceClick(index)}
@@ -55,25 +111,28 @@ const ServiceAccordion = () => {
                     className={activeService === index ? 'text-neon' : ''}
                   />
                   {activeService === index ? (
-                    <FaMinus className="text-neon text-[20px] mt-1" />
+                    <FiMinus
+                      className="text-neon text-[30px] w-6 h-6 mt-1"
+                      ref={(el) => (iconRefs.current[index] = el)}
+                    />
                   ) : (
-                    <FaPlus className="text-black text-[20px] mt-1" />
+                    <FiPlus
+                      className="text-black text-[30px] w-6 h-6 mt-1"
+                      ref={(el) => (iconRefs.current[index] = el)}
+                    />
                   )}
                 </button>
                 {/* Answer and Image for mobile */}
-                {activeService === index && (
-                  <div
-                    className="overflow-hidden transition-all duration-300 ease-in-out"
-                    style={{
-                      maxHeight: activeService === index ? '500px' : '0',
-                      opacity: activeService === index ? 1 : 0,
-                    }}
-                  >
+                <div
+                  className="overflow-hidden"
+                  ref={(el) => (answerRefs.current[index] = el)}
+                >
+                  {activeService === index && (
                     <div className="p-0 pt-2">
                       <BodyText
                         text={service.answer}
                         centered={false}
-                        className="max-w-[30rem]"
+                        className="max-w-[30 whats the difference between web development and UI/UX designrem]"
                       />
                       {/* Image for mobile */}
                       <div className="lg:hidden mt-4">
@@ -81,13 +140,13 @@ const ServiceAccordion = () => {
                           <img
                             src={service.image}
                             alt={service.question}
-                            className="w-full h-full object-cover transition-opacity duration-300 ease-in-out"
+                            className="w-full h-full object-cover"
                           />
                         </div>
                       </div>
                     </div>
-                  </div>
-                )}
+                  )}
+                </div>
               </div>
             ))}
           </div>
