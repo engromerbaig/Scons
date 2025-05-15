@@ -18,16 +18,13 @@ export const socialsData = [
     },
     {
         icon: instagram, // Replace with the actual path to the Facebook icon
-        link: 'https://www.instagram.com/scons_/',
+        link: 'https://www.instagram.com/scons.tech/',
     },
     {
         icon: x, // Replace with the actual path to the Facebook icon
         link: 'https://x.com/sconsofficial', // X was previously Twitter
     },
 
-    {
-        icon: medium, // Replace with the actual path to the Facebook icon
-        link: 'https://medium.com/@scons.com', // X was previously Twitter
-    },
+ 
   ];
   
