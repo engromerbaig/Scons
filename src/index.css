@@ -95,23 +95,25 @@
 
 /* WebKit (Chrome, Edge, Safari) */
 ::-webkit-scrollbar {
-  width: 3px; /* Set scrollbar width */
-  height: 3px; /* Set scrollbar height for horizontal scrollbars */
+  width: 2px;
+  height: 2px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #000000; /* Black track color */
+  background: #fff;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--color-neon) ; /* Use the Tailwind-generated CSS variable */
-  border-radius: 9999px; /* Fully round scrollbar edges at top and bottom */
+  background-color: #555555;
+  border-radius:50%;
 }
-/* For Firefox */
-* {  scrollbar-width: thin; /* Set a thin scrollbar width */
 
-  scrollbar-color: var(--color-neon) #000000; /* neon scrollbar color and black track */
+/* Firefox scrollbar styling */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #555555 #fff;
 }
+
 
 
 /* smooth scorlling */
