@@ -47,6 +47,8 @@ const ProjectCard = ({ project }) => {
             src={project.coverImage} // Image 2 as cover
             alt={project.heading}
             className="w-full h-[115%] object-cover absolute top-0 left-0"
+                            loading="lazy"  // Changed from eager to lazy
+
           />
       </div>
         <img src={project.logo} className="w-1/5 mb-4" alt={`${project.heading} logo`} />

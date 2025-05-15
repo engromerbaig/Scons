@@ -65,14 +65,17 @@ const Hero = () => {
         className="relative w-full h-screen overflow-hidden bg-repeat"
         style={{ 
           backgroundImage: `url(${patternImage})`,
-          backgroundSize: '100px 100px' // Adjust size to ensure seamless repeating
+          backgroundSize: '100px 100px', // Adjust size to ensure seamless repeating
+          loading:"eager"
         }}
       >
         {/* Globe Image */}
         <img
           src={GlobeImage}
           alt="Globe Background"
-          className="absolute top-0 right-[-20%] h-full w-auto opacity-15 object-right object-contain pointer-events-none z-10"
+          className="absolute top-0 right-[-20%] h-full w-auto opacity-15 object-right object-contain pointer-events-none z-10 "
+                          loading="lazy"  // Changed from eager to lazy
+
         />
 
         {/* Content */}

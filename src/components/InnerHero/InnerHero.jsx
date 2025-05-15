@@ -75,6 +75,8 @@ const InnerHero = ({
               src={logoImage}
               alt="Logo"
               className={`w-40 h-16 mb-0 object-contain ${logoIsWhite ? "svg-white" : ""}`}
+                              loading="lazy"  // Changed from eager to lazy
+
             />
           )}
           <Heading
@@ -105,6 +107,8 @@ const InnerHero = ({
               src={illustrationImage}
               alt="Hero Illustration"
               className={` ${illustrationImageWidth} object-contain`}
+                              loading="lazy"  // Changed from eager to lazy
+
             />
           )}
         </div>

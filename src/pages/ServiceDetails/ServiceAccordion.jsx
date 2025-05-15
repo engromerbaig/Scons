@@ -81,6 +81,8 @@ const ServiceAccordion = ({ heading, accordionData }) => {
                 src={activeService !== null ? accordionData[activeService]?.image : ''}
                 alt={activeService !== null ? accordionData[activeService]?.question : ''}
                 className="w-full h-full object-contain opacity-0"
+                                loading="lazy"  // Changed from eager to lazy
+
               />
             </div>
           </div>
@@ -142,6 +144,8 @@ const ServiceAccordion = ({ heading, accordionData }) => {
                             src={service.image}
                             alt={service.question}
                             className="w-full h-full object-contain transition-opacity duration-300 ease-in-out"
+                                            loading="lazy"  // Changed from eager to lazy
+
                           />
                         </div>
                       </div>
