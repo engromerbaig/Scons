@@ -1,94 +1,62 @@
-import React, { useLayoutEffect, useRef, useState } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import React, { useState } from "react";
 import Heading from "../Heading/Heading";
 import BodyText from "../BodyText/BodyText";
-import AnimatedDevProcess from "./AnimatedDevProcess";
-import AnimatedBackground from "../../utilities/AnimatedBackground/AnimatedBackground";
+import HorizontalListView from "../../utilities/HorizontalListView";
+import IndustryCard from "../Industries/modules/IndustryCard";
+import { featureData } from "./modules/featureData";
 import { theme } from "../../theme";
-import MobileDevScroller from "./MobileDevScroller";
 
-gsap.registerPlugin(ScrollTrigger);
+const DevProcess = ({ processText }) => {
+  const [activeIndex, setActiveIndex] = useState(null);
 
-const DevProcess = ({featureData, faqSpanText, processText}) => {
-  const isMobile = window.matchMedia("(max-width: 767px)").matches;
+  if (!featureData || !Array.isArray(featureData)) return null;
 
-  if (isMobile) {
-    return <MobileDevScroller featureData={featureData} processText={processText} />;
-  }
-
-
-  const sectionRef = useRef(null);
-  const containerRef = useRef(null);
-  const [isComplete, setIsComplete] = useState(false);
-  const [isPinning, setIsPinning] = useState(false);
-  const scrollTriggerRef = useRef(null);
-
-  useLayoutEffect(() => {
-    let ctx = gsap.context(() => {
-      // Pin the section while scrolling
-      scrollTriggerRef.current = ScrollTrigger.create({
-        trigger: sectionRef.current,
-        pin: true,
-        scrub: 1,
-        start: "top top",
-        end: "+=350%", // Increased scroll length to accommodate all animations
-        pinSpacing: true,
-        anticipatePin: 1,
-        onEnter: () => {
-          console.log("Pinned the screen");
-          setIsPinning(true);
-        },
-        onLeaveBack: () => {
-          console.log("Scrolled back up");
-        },
-        onUpdate: (self) => {
-          // Only allow unpinning if all card animations are complete
-          if (isComplete && self.progress >= 0.95) {
-            console.log("Unpinning the screen - all animations complete");
-            setIsPinning(false);
-            ScrollTrigger.refresh();
-          }
-        },
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, [isComplete]);
-
-  const handleCardAnimationComplete = () => {
-    console.log("All cards animation complete - setting isComplete");
-    setIsComplete(true);
-  };
+  // Map featureData to fit IndustryCard props
+  const mappedData = featureData.map((item) => ({
+    name: item.title,
+    details: item.description,
+    image: item.image, // Optional: provide a placeholder image or leave empty
+  }));
 
   return (
-    <AnimatedBackground 
-      showBlob={false}
-      ref={sectionRef} 
-      className={`relative h-screen grid grid-cols-12 items-center ${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical}`}
-    >
-      {/* updated */}
-      <div className="col-span-5 flex flex-col items-start space-y-0"> {/* LHS takes 5 columns */}
+    <div className={`w-full min-h-screen flex flex-col justify-center ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal}`}>
+      <div className="flex flex-col items-start space-y-2">
         <Heading 
           text="Crafted for Your Ambition" 
           spanText="Ambition"
+          spanColor="text-neon"
           size="text-70px"
-          centered={false} 
+          centered={false}
+          color="text-black"
         />
         <BodyText 
-          text="At Tyfora, we understand your industry, challenges, and aspirations. Our solutions are tailored to fuel growth and deliver excellence, designed specifically for businesses like yours."
-          centered={false} 
-          lineHeight="leading-loose" 
+          text={
+            processText ||
+            "At Scons, we understand your industry, challenges, and aspirations. Our solutions are tailored to fuel growth and deliver excellence, designed specifically for businesses like yours."
+          }
+          centered={false}
+          lineHeight="leading-tight"
+          color="text-black"
+          className="max-w-4xl"
         />
       </div>
-      <div className="col-span-7 relative"> {/* RHS takes 7 columns */}
-        <AnimatedDevProcess 
-          onComplete={handleCardAnimationComplete} 
-          isPinning={isPinning}
-          featureData={featureData}
-        />
+
+      <div className="pt-16 w-full">
+        <HorizontalListView perPage={3} mobilePerPage={1}>
+          {mappedData.map((industry, idx) => (
+            <IndustryCard
+              key={idx}
+              industry={industry}
+              active={activeIndex === idx}
+              CARD_HEIGHT={400}
+              CARD_WIDTH={350}
+              onHover={() => setActiveIndex(idx)}
+              onLeave={() => setActiveIndex(null)}
+            />
+          ))}
+        </HorizontalListView>
       </div>
-    </AnimatedBackground>
+    </div>
   );
 };
 

@@ -17,7 +17,7 @@ const IndustryCard = ({ industry, active, onHover, onLeave, CARD_HEIGHT = 340 , 
     if (isMobile) return;
     // Animate overlay
     gsap.to(overlayRef.current, {
-      background: active ? "rgba(0,0,0,0.85)" : "rgba(0,0,0,0.4)",
+      background: active ? "rgba(0,0,0,0.85)" : "rgba(0,0,0,0.65)",
       duration: 0.18,
       ease: "power2.out"
     });
