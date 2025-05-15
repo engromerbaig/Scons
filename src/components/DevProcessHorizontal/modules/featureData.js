@@ -13,7 +13,7 @@ export const featureData = [
     },
     {
       number: "02",
-      title: "Scalable Technologies for Growth",
+      title: "Scalable Technologies",
       description: "Our platforms are engineered to evolve alongside your business, keeping you ahead in fast-changing markets.",
             image: image2,
 

@@ -1,10 +1,9 @@
 import React, { useRef, useEffect } from "react";
 import gsap from "gsap";
 import BodyText from "../../BodyText/BodyText";
+import Heading from "../../Heading/Heading";
 
-
-
-const IndustryCard = ({ industry, active, onHover, onLeave, CARD_HEIGHT = 340 , CARD_WIDTH = 300 }) => {
+const IndustryCard = ({ industry, active, onHover, onLeave, CARD_HEIGHT = 340, CARD_WIDTH = 300 }) => {
   const overlayRef = useRef(null);
   const detailsRef = useRef(null);
   const titleBottomRef = useRef(null);
@@ -18,30 +17,30 @@ const IndustryCard = ({ industry, active, onHover, onLeave, CARD_HEIGHT = 340 , 
     // Animate overlay
     gsap.to(overlayRef.current, {
       background: active ? "rgba(0,0,0,0.85)" : "rgba(0,0,0,0.65)",
-      duration: 0.18,
-      ease: "power2.out"
+      duration: 0.3, // Increased duration for smoother transition
+      ease: "power3.out" // Smoother easing
     });
     // Animate details
     gsap.to(detailsRef.current, {
       y: active ? 0 : -30,
       opacity: active ? 1 : 0,
-      duration: 0.18,
-      ease: "power2.out",
+      duration: 0.3, // Increased duration
+      ease: "power3.out", // Smoother easing
       pointerEvents: active ? "auto" : "none"
     });
     // Animate bottom title out
     gsap.to(titleBottomRef.current, {
       y: active ? 40 : 0,
       opacity: active ? 0 : 1,
-      duration: 0.18,
-      ease: "power2.out"
+      duration: 0.3, // Increased duration
+      ease: "power3.out" // Smoother easing
     });
     // Animate top title in
     gsap.to(titleTopRef.current, {
       y: active ? 0 : -30,
       opacity: active ? 1 : 0,
-      duration: 0.18,
-      ease: "power2.out"
+      duration: 0.3, // Increased duration
+      ease: "power3.out" // Smoother easing
     });
   }, [active, isMobile]);
 
@@ -73,17 +72,29 @@ const IndustryCard = ({ industry, active, onHover, onLeave, CARD_HEIGHT = 340 , 
       {/* Bottom Title */}
       <div
         ref={titleBottomRef}
-        className="absolute bottom-0 left-0 w-full z-10 p-4 flex items-end"
-        style={{ minHeight: 80 }}
+        className="absolute bottom-0 left-0 w-full z-10 p-4 flex flex-row items-start gap-4"
+        style={{ minHeight: 100 }} // Increased minHeight to accommodate multi-line text
       >
-        <BodyText
-          text={industry.name}
-          size="text-2xl"
-          color="text-white"
-          fontWeight="font-bold"
-          className="drop-shadow-lg text-left"
-          centered={false}
-        />
+        {industry.number && (
+          <Heading
+            text={industry.number}
+            size="text-70px"
+            color="text-neon"
+            fontWeight="font-black"
+            className="text-left vertical-text"
+            centered={false}
+          />
+        )}
+        {industry.name && (
+          <BodyText
+            text={industry.name}
+            size="text-2xl"
+            color="text-white"
+            fontWeight="font-bold"
+            className="drop-shadow-lg text-left max-w-[calc(100%-100px)]" // Adjust width to prevent overlap
+            centered={false}
+          />
+        )}
       </div>
 
       {/* Top Title (slides in above description) */}
@@ -108,16 +119,16 @@ const IndustryCard = ({ industry, active, onHover, onLeave, CARD_HEIGHT = 340 , 
       {/* Details slide from top */}
       <div
         ref={detailsRef}
-        className="absolute top-16 left-0 w-full h-auto flex items-start justify-start px-6 text-white text-left z-20 pointer-events-none"
+        className="absolute top-24 left-0 w-full h-auto flex items-start justify-start px-6 text-white text-left z-20 pointer-events-none"
         style={{
           opacity: isMobile ? 1 : 0,
           y: isMobile ? 0 : -30,
-          transition: "all 0.18s cubic-bezier(.4,0,.2,1)"
+          transition: "all 0.3s cubic-bezier(.4,0,.2,1)" // Match GSAP duration
         }}
       >
         <BodyText
           text={industry.details}
-          size="text-sm"
+          size="text-base"
           color="text-white"
           className="text-left"
           centered={false}

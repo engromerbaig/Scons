@@ -15,6 +15,7 @@ const DevProcess = ({ processText }) => {
   const mappedData = featureData.map((item) => ({
     name: item.title,
     details: item.description,
+    number: item.number,
     image: item.image, // Optional: provide a placeholder image or leave empty
   }));
 
