@@ -7,7 +7,7 @@ import { FiPlus, FiMinus } from 'react-icons/fi';
 import { IoIosCheckmarkCircle } from 'react-icons/io';
 import { gsap } from 'gsap';
 
-const ServiceAccordion = () => {
+const ServiceAccordion = ({heading}) => {
   const [activeService, setActiveService] = useState(0);
   const iconRefs = useRef([]);
   const answerRefs = useRef([]);
@@ -75,8 +75,10 @@ const ServiceAccordion = () => {
         {/* Heading */}
         <div className="text-left mb-12">
           <Heading
-            text="Type of Services We Provide"
-            spanText="Type of Services"
+            text={`Types of ${heading} Apps We Build`}
+            // text="Type of Services We Provide"
+            spanText={heading}
+            spanColor='text-neon'
             centered={false}
           />
         </div>

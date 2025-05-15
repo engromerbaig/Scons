@@ -194,7 +194,7 @@ image: mobileAppImage,
   // changing for details page web
   {
     heading: "Web App Development",
-    spanText:"App Development",
+    spanText:"Web",
 
     image: webAppImage,
 
@@ -351,7 +351,7 @@ image: mobileAppImage,
 
   {
     heading: "UI/UX Design",
-    spanText:"Design",
+    spanText:"UI/UX",
 
     image: uiuxImage,
 
@@ -499,7 +499,7 @@ image: mobileAppImage,
 //blochain
 {
   heading: "Blockchain Development",
-  spanText:"Development",
+  spanText:"Blockchain",
   image: blockchainImage,
 
   heading2: "Built on Trust with Blockchain Development",  
