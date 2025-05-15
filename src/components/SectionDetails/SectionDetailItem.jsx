@@ -64,7 +64,7 @@ const SectionDetailItem = ({
                   key={idx}
                   src={icon}
                   alt={`Icon ${idx}`}
-                  className="w-12 aspect-square svg-white opacity-50 hover:opacity-100 transition-opacity duration-300"
+                  className="w-12 aspect-square svg-neon opacity-50 hover:opacity-100 transition-opacity duration-300"
                 />
               ))}
             </div>
