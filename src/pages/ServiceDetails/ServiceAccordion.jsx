@@ -33,10 +33,10 @@ const ServiceAccordion = () => {
     answerRefs.current.forEach((answer, index) => {
       if (answer) {
         gsap.to(answer, {
-          y: activeService === index ? 0 : 20,
+          y: activeService === index ? 0 : 100,
           opacity: activeService === index ? 1 : 0,
           height: activeService === index ? 'auto' : 0,
-          duration: 0.3,
+          duration: 0.5,
           ease: 'power2.inOut',
           overwrite: true,
         });
