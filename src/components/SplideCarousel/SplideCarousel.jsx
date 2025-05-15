@@ -96,6 +96,7 @@ const SplideCarousel = ({
                 alt={`Carousel image ${index + 1}`}
                 className={`${imageSize} ${imageRound}`}
                 style={{ objectFit }}
+                loading="lazy"  // Changed from eager to lazy
               />
             </div>
           </SplideSlide>
