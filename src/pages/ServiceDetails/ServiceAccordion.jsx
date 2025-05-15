@@ -1,25 +1,19 @@
+// ServiceAccordion.jsx
 import React, { useState, useRef, useEffect } from 'react';
 import Heading from '../../components/Heading/Heading';
 import BodyText from '../../components/BodyText/BodyText';
-import { serviceAccordionData } from './serviceAccordionData';
 import { theme } from '../../theme';
 import { FiPlus, FiMinus } from 'react-icons/fi';
 import { IoIosCheckmarkCircle } from 'react-icons/io';
 import { gsap } from 'gsap';
 
-const ServiceAccordion = ({heading}) => {
+const ServiceAccordion = ({ heading, accordionData }) => {
   const [activeService, setActiveService] = useState(0);
   const iconRefs = useRef([]);
   const answerRefs = useRef([]);
   const imageRef = useRef(null);
 
   useEffect(() => {
-    // Debug: Log refs to ensure elements are captured
-    console.log('Icon Refs:', iconRefs.current);
-    console.log('Answer Refs:', answerRefs.current);
-    console.log('Image Ref:', imageRef.current);
-
-    // Animate icons
     iconRefs.current.forEach((icon, index) => {
       if (icon) {
         gsap.to(icon, {
@@ -30,7 +24,6 @@ const ServiceAccordion = ({heading}) => {
       }
     });
 
-    // Animate answers
     answerRefs.current.forEach((answer, index) => {
       if (answer) {
         gsap.to(answer, {
@@ -44,7 +37,6 @@ const ServiceAccordion = ({heading}) => {
       }
     });
 
-    // Animate image fade
     if (imageRef.current) {
       gsap.to(imageRef.current, {
         opacity: 1,
@@ -56,7 +48,6 @@ const ServiceAccordion = ({heading}) => {
   }, [activeService]);
 
   const handleServiceClick = (index) => {
-    // Fade out image before changing active service
     if (imageRef.current) {
       gsap.to(imageRef.current, {
         opacity: 0,
@@ -72,36 +63,30 @@ const ServiceAccordion = ({heading}) => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-white text-black">
       <section className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical}`}>
-        {/* Heading */}
         <div className="text-left mb-12">
           <Heading
             text={`Types of ${heading} Apps We Build`}
-            // text="Type of Services We Provide"
             spanText={heading}
-            spanColor='text-neon'
+            spanColor="text-neon"
             centered={false}
           />
         </div>
 
-        {/* Accordion Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-          {/* Left Side: Image for larger screens */}
           <div className="hidden lg:flex lg:items-center">
             <div className="w-full h-[500px] overflow-hidden">
               <img
                 ref={imageRef}
-                src={serviceAccordionData[activeService].image}
-                alt={serviceAccordionData[activeService].question}
+                src={accordionData[activeService].image}
+                alt={accordionData[activeService].question}
                 className="w-full h-full object-contain"
               />
             </div>
           </div>
 
-          {/* Right Side: Accordion Items */}
           <div>
-            {serviceAccordionData.map((service, index) => (
+            {accordionData.map((service, index) => (
               <div key={service.id} className="mb-6">
-                {/* Accordion Item */}
                 <button
                   onClick={() => handleServiceClick(index)}
                   className="w-full text-left p-0 rounded-lg flex items-start gap-x-4 justify-between"
@@ -125,40 +110,28 @@ const ServiceAccordion = ({heading}) => {
                     />
                   )}
                 </button>
-                {/* Answer and Image for mobile */}
-                <div
-                  className="overflow-hidden"
-                  ref={(el) => (answerRefs.current[index] = el)}
-                >
+                <div className="overflow-hidden" ref={(el) => (answerRefs.current[index] = el)}>
                   {activeService === index && (
                     <div className="p-0 pt-2">
-                      <BodyText
-                        text={service.answer}
-                        centered={false}
-                        className="max-w-[30rem]"
-                      />
+                      <BodyText text={service.answer} centered={false} className="max-w-[30rem]" />
 
-                        <BodyText
+                      <BodyText
                         text="Key Features:"
-                        size='text-sm'
-                        fontWeight='font-black'
+                        size="text-sm"
+                        fontWeight="font-black"
                         centered={false}
                         className="max-w-[30rem] py-4"
                       />
 
                       <ul className="mt-4 max-w-[30rem]">
                         {service.bestPoints.map((point, pointIndex) => (
-                          <li
-                            key={pointIndex}
-                            className="flex items-center gap-2 mb-4"
-                          >
+                          <li key={pointIndex} className="flex items-center gap-2 mb-4">
                             <IoIosCheckmarkCircle className="text-neon text-35px flex-shrink-0" />
                             <BodyText text={point} centered={false} />
-                            {/* <span className="text-gray-600">{point}</span> */}
                           </li>
                         ))}
                       </ul>
-                      {/* Image for mobile */}
+
                       <div className="lg:hidden mt-4">
                         <div className="w-full h-[200px] overflow-hidden rounded-lg">
                           <img

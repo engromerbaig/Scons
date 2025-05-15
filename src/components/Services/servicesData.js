@@ -8,6 +8,13 @@ import aiImage from "../../assets/images/services/6.svg"
 import consultationImage from "../../assets/images/services/7.webp"
 
 
+// images
+import accordianImage1 from "../../assets/images/service-details/ac/1.webp";
+import accordianImage2 from "../../assets/images/service-details/ac/2.webp";
+import accordianImage3 from "../../assets/images/service-details/ac/3.webp";
+
+
+
 
 
 
@@ -27,6 +34,48 @@ export const services = [
     heading: "Mobile App Development",
     spanText:"Mobile",
 image: mobileAppImage,
+    
+  serviceAccordionData : [
+  {
+    id: 1,
+    question: "Cross-Platform App Development",
+    answer: "Cross-platform app development allows developers to create apps that work on both iOS and Android using a single codebase.",
+    image: accordianImage1,
+    bestPoints: [
+      "Single codebase for multiple platforms",
+      "Faster development cycle",
+      "Cost-effective",
+      "Easier maintenance",
+    ],
+  },
+  {
+    id: 2,
+    question: "Hybrid App Development",
+    answer: "Hybrid app development combines web technologies like HTML, CSS, and JavaScript inside a native container to deliver app-like experiences.",
+    image: accordianImage2,
+    bestPoints: [
+      "Quick to launch",
+      "Access to device APIs",
+      "Lower development cost",
+      "Wide reach",
+    ],
+  },
+  {
+    id: 3,
+    question: "Native App Development",
+    answer: "Native app development involves building apps specifically for iOS or Android using platform-specific languages and tools like Swift or Kotlin.",
+    image: accordianImage3,
+    bestPoints: [
+      "Best performance",
+      "Full device integration",
+      "Highly responsive UI",
+      "Platform-specific features",
+    ],
+  },
+],
+
+
+
     // details hero page content
     heading2: "It Starts with a Vision in Mobile App Development",
     description: "Bringing Ideas to Life, One App at a Time",
@@ -197,6 +246,46 @@ image: mobileAppImage,
     spanText:"Web",
 
     image: webAppImage,
+
+    serviceAccordionData : [
+  {
+    id: 1,
+    question: "Dedicated Development",
+    answer: "Dedicated development involves building websites using coded frameworks and libraries like React, Vue, or Angular for highly customized solutions.",
+    image: accordianImage1,
+    bestPoints: [
+      "High customization",
+      "Optimized performance",
+      "Scalable and maintainable",
+      "Rich interactive UI",
+    ],
+  },
+  {
+    id: 2,
+    question: "Content Management Systems (CMS)",
+    answer: "CMS development uses platforms like WordPress, Joomla, or Drupal to create websites that are easy to manage and update without extensive coding.",
+    image: accordianImage2,
+    bestPoints: [
+      "User-friendly content editing",
+      "Quick deployment",
+      "Extensive plugin ecosystem",
+      "SEO friendly",
+    ],
+  },
+  {
+    id: 3,
+    question: "Static Site Generators",
+    answer: "Static site generators like Gatsby, Next.js, or Hugo create fast, secure, and SEO-optimized websites by pre-rendering pages during build time.",
+    image: accordianImage3,
+    bestPoints: [
+      "Blazing fast load times",
+      "Improved security",
+      "Easy hosting",
+      "Great for blogs and portfolios",
+    ],
+  },
+],
+
 
     heading2: "Expanding Horizons with Web App Development",
     description: "Your Digital Growth Engine",

@@ -51,7 +51,7 @@ const ServiceDetails = () => {
             />
 
   
-  <ServiceAccordion heading={service.spanText} />
+      <ServiceAccordion heading={service.spanText} accordionData={service.serviceAccordionData} />
 
             {/* <GreenBelt className="rounded-b-2xl  mx-4 md:mx-8 lg:mx-12">
             <Heading
