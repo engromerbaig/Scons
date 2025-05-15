@@ -58,7 +58,7 @@ const Navbar = () => {
     >
       <div className="flex items-center">
         <ScrollToTopLink to="/" className="cursor-pointer">
-          <img src="/logo2.svg" alt="Logo" className="lg:w-28 w-20 aspect-rectangle" />
+          <img src="/logo2.svg" alt="Logo" className="lg:w-28 w-20 aspect-rectangle" loading='lazy' />
         </ScrollToTopLink>
       </div>
       <div className="flex items-center">
@@ -67,6 +67,7 @@ const Navbar = () => {
             src="/hamburger.svg"
             alt="Menu"
             className={`w-6 aspect-square lg:w-6 z-[200] ${isServicePage ? 'svg-black' : 'svg-black'}`}
+            loading='lazy'
           />
         </button>
       </div>

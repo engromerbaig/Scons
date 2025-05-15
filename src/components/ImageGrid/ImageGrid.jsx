@@ -22,6 +22,7 @@ const ImageGrid = ({ data }) => {
                             src={item.image}
                             className={`rounded-${item.position === "left" ? "r" : "l"}-3xl w-full`}
                             alt={item.text}
+                            loading='lazy'
                         />
                         {/* Text box with Link */}
                         <div

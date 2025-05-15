@@ -34,6 +34,7 @@ const Button = ({
         <img
           src={icon}
           alt={name}
+          loading="lazy" // Changed from eager to lazy
           className={`${width} aspect-square flex-shrink-0 ${
             noIconChange ? "svg-black" : ""
           }`}

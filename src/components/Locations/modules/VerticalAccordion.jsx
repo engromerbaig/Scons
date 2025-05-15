@@ -61,8 +61,7 @@ const VerticalAccordion = () => {
                                     src={item.content.image}
                                     alt={item.title}
                                     className="w-3/4 lg:w-full h-auto object-contain mb-4 mx-auto svg-neon"
-                                    loading="eager"
-                                />
+loading='lazy'                                />
                                 <Heading
                                     text={item.title}
                                     color="text-black"

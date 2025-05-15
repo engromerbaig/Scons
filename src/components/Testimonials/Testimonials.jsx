@@ -34,8 +34,8 @@ const Testimonials = () => {
       </div>
 
       <div className="flex flex-row justify-center items-center gap-10 w-full mb-8">
-        <img src={clutchLogo} alt="clutch logo" className="w-[8%]" />
-        <img src={trustLogo} alt="trust logo" className="w-[10%]" />
+        <img src={clutchLogo} alt="clutch logo" className="w-[8%]" loading='lazy' />
+        <img src={trustLogo} alt="trust logo" className="w-[10%]" loading='lazy' />
       </div>
 
       <div

@@ -44,6 +44,7 @@ const CollapsibleContainer = ({ heading, workLocation, city, employmentType, chi
                             src={caretIcon}
                             alt="Caret"
                             className={`w-6 lg:w-8 aspect-square transform transition-transform duration-500 ${isOpen ? 'rotate-180' : ''}`}
+                            loading='lazy'
                         />
                     </div>
                 </div>
@@ -63,7 +64,7 @@ const CollapsibleContainer = ({ heading, workLocation, city, employmentType, chi
                                     >
                                         <div className="flex flex-col">
                                             <div className="flex gap-x-1 lg:gap-x-4">
-                                                <img src={playIcon} className="w-3" alt="" />
+                                                <img src={playIcon} className="w-3" alt="" loading='lazy' />
                                                 <Heading
                                                     text={item.jobType}
                                                     color="text-black"

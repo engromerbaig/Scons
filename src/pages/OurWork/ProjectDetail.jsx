@@ -70,6 +70,7 @@ const ProjectDetail = () => {
         src={project.coverImage}
         alt={project.heading}
         className="w-full h-[600px] object-cover "
+        loading='lazy'
       />
 
       {/* About Client Section */}
@@ -90,6 +91,7 @@ const ProjectDetail = () => {
       src={project.additionalImages[0]}
       alt="Project visual"
       className="w-full max-w-[800px] rounded-md object-contain"
+      loading='lazy'
     />
   </div>
 </div>
