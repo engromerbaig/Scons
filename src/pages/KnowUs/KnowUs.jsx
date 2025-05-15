@@ -22,7 +22,7 @@ import heroImage from "../../assets/images/about/about.png";
 
 import StartProjectBelt from "../../components/StartProjectBelt/StartProjectBelt";
 
-import ceoImage from "../../assets/images/about/ceo.jpeg";
+import ceoImage from "../../assets/images/about/ceo.webp";
 
 import { theme } from "../../theme";
 import Highlights from "../../components/UniqueApproach/modules/Highlights";
@@ -117,12 +117,13 @@ const KnowUs = () => {
         </div>
       </div>
 
-      <MessageBox
-        Message="We are a team of passionate individuals who believe in the power of technology to transform lives. Our mission is to create innovative solutions that make a difference."
-        Name="Mr. Faraz Ahmed"
+        <MessageBox
+        Message={`We are a team of passionate individuals who believe in the power of technology to transform lives. Our transition from the electrical to the IT domain has been "nothing short of sensational", fueled by our rapidly growing client base.`}
+        Name="Mr. Faraz"
         Designation="Co-Founder & CTO, Scons"
         ProfileDisplay={ceoImage}
       />
+
 
       <Industries />
       <Technologies />

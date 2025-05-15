@@ -42,7 +42,8 @@ const MessageBox = ({ Message, Name, Designation, ProfileDisplay }) => {
           <img
             src={ProfileDisplay}
             alt="Message Box"
-            className="lg:w-24 lg:h-24 w-12 h-12 rounded-full"
+            className="lg:w-20 lg:h-20 w-12 h-12 rounded-full object-cover"
+            loading="lazy"  // Changed from eager to lazy
           />
           <div className="flex flex-col items-start">
             <BodyText text={Name} color="text-white" />
