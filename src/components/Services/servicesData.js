@@ -8,13 +8,36 @@ import aiImage from "../../assets/images/services/6.svg"
 import consultationImage from "../../assets/images/services/7.webp"
 
 
-// images
-import accordianImage1 from "../../assets/images/service-details/ac/1.webp";
-import accordianImage2 from "../../assets/images/service-details/ac/2.webp";
-import accordianImage3 from "../../assets/images/service-details/ac/3.webp";
+// Accordian Images
+//Mobile
+import accordianmob1 from "../../assets/images/service-details/accordian/mobile/1.webp";
+import accordianmob2 from "../../assets/images/service-details/accordian/mobile/2.webp";
+import accordianmob3 from "../../assets/images/service-details/accordian/mobile/3.webp";
+//web
+import accordianweb1 from "../../assets/images/service-details/accordian/web/1.webp";
+import accordianweb2 from "../../assets/images/service-details/accordian/web/2.webp";
+import accordianweb3 from "../../assets/images/service-details/accordian/web/3.webp";
+
+//design
+import accordianuiux1 from "../../assets/images/service-details/accordian/uiux/1.webp";
+import accordianuiux2 from "../../assets/images/service-details/accordian/uiux/2.webp";
+import accordianuiux3 from "../../assets/images/service-details/accordian/uiux/3.webp";
+
+//digital
+import accordiandigital1 from "../../assets/images/service-details/accordian/digital/1.webp";
+import accordiandigital2 from "../../assets/images/service-details/accordian/digital/2.webp";
+import accordiandigital3 from "../../assets/images/service-details/accordian/digital/3.webp";
 
 
+//ai
+import accordianai1 from "../../assets/images/service-details/accordian/ai/1.webp";
+import accordianai2 from "../../assets/images/service-details/accordian/ai/2.webp";
+import accordianai3 from "../../assets/images/service-details/accordian/ai/3.webp";
 
+//consultant
+import accordianconsult1 from "../../assets/images/service-details/accordian/consultant/1.webp";
+import accordianconsult2 from "../../assets/images/service-details/accordian/consultant/2.webp";
+import accordianconsult3 from "../../assets/images/service-details/accordian/consultant/3.webp";
 
 
 
@@ -40,7 +63,7 @@ image: mobileAppImage,
     id: 1,
     question: "Cross-Platform App Development",
     answer: "Cross-platform app development allows developers to create apps that work on both iOS and Android using a single codebase.",
-    image: accordianImage1,
+    image: accordianmob1,
     bestPoints: [
       "Single codebase for multiple platforms",
       "Faster development cycle",
@@ -52,7 +75,7 @@ image: mobileAppImage,
     id: 2,
     question: "Hybrid App Development",
     answer: "Hybrid app development combines web technologies like HTML, CSS, and JavaScript inside a native container to deliver app-like experiences.",
-    image: accordianImage2,
+    image: accordianmob2,
     bestPoints: [
       "Quick to launch",
       "Access to device APIs",
@@ -64,7 +87,7 @@ image: mobileAppImage,
     id: 3,
     question: "Native App Development",
     answer: "Native app development involves building apps specifically for iOS or Android using platform-specific languages and tools like Swift or Kotlin.",
-    image: accordianImage3,
+    image: accordianmob3,
     bestPoints: [
       "Best performance",
       "Full device integration",
@@ -252,7 +275,7 @@ image: mobileAppImage,
     id: 1,
     question: "Dedicated Development",
     answer: "Dedicated development involves building websites using coded frameworks and libraries like React, Vue, or Angular for highly customized solutions.",
-    image: accordianImage1,
+    image: accordianweb1,
     bestPoints: [
       "High customization",
       "Optimized performance",
@@ -264,7 +287,7 @@ image: mobileAppImage,
     id: 2,
     question: "Content Management Systems (CMS)",
     answer: "CMS development uses platforms like WordPress, Joomla, or Drupal to create websites that are easy to manage and update without extensive coding.",
-    image: accordianImage2,
+    image: accordianweb2,
     bestPoints: [
       "User-friendly content editing",
       "Quick deployment",
@@ -276,7 +299,7 @@ image: mobileAppImage,
     id: 3,
     question: "Static Site Generators",
     answer: "Static site generators like Gatsby, Next.js, or Hugo create fast, secure, and SEO-optimized websites by pre-rendering pages during build time.",
-    image: accordianImage3,
+    image: accordianweb3,
     bestPoints: [
       "Blazing fast load times",
       "Improved security",
@@ -444,6 +467,58 @@ image: mobileAppImage,
 
     image: uiuxImage,
 
+
+    serviceAccordionData: [
+  {
+    id: 1,
+    question: "Logo Design",
+    answer: "Logo design focuses on creating unique and memorable visual symbols that represent your brand identity across all platforms and materials.",
+    image: accordianuiux1,
+    bestPoints: [
+      "Brand recognition",
+      "Custom and scalable designs",
+      "Versatile for all mediums",
+      "Timeless visual identity",
+    ],
+  },
+  {
+    id: 2,
+    question: "UI Design",
+    answer: "UI design involves crafting visually appealing and intuitive interfaces for websites and apps that enhance user engagement and satisfaction.",
+    image: accordianuiux2,
+    bestPoints: [
+      "User-friendly layouts",
+      "Consistent visual language",
+      "Responsive designs",
+      "Interactive elements",
+    ],
+  },
+  {
+    id: 3,
+    question: "UX Design",
+    answer: "UX design focuses on optimizing the overall user experience by improving usability, accessibility, and interaction flow across digital products.",
+    image: accordianuiux3,
+    bestPoints: [
+      "Seamless user journeys",
+      "User research driven",
+      "Problem-solving approach",
+      "Increased user retention",
+    ],
+  },
+  {
+    id: 4,
+    question: "Brand Identity",
+    answer: "Brand identity design creates a cohesive visual system including colors, typography, and messaging that defines your brand’s personality.",
+    image: accordianuiux3,
+    bestPoints: [
+      "Consistent brand messaging",
+      "Memorable brand presence",
+      "Emotional connection",
+      "Differentiation from competitors",
+    ],
+  },
+],
+
     heading2: "Designed to Stand Out in UI/UX Design",  
     description: "Where Function Meets Elegance",  
     helperText: "Exceptional design focused on creating unforgettable user experiences and lasting impressions",  
@@ -590,6 +665,56 @@ image: mobileAppImage,
   heading: "Blockchain Development",
   spanText:"Blockchain",
   image: blockchainImage,
+  serviceAccordionData: [
+  {
+    id: 1,
+    question: "Voice Bots & Conversational AI",
+    answer: "Develop intelligent voice bots and chatbots that interact naturally with users to automate customer service, bookings, and support.",
+    image: accordianai1,
+    bestPoints: [
+      "24/7 customer engagement",
+      "Natural language understanding",
+      "Multi-channel support",
+      "Reduced operational costs",
+    ],
+  },
+  {
+    id: 2,
+    question: "Zapier & Workflow Automation",
+    answer: "Automate repetitive tasks by integrating apps and services through Zapier, streamlining business processes without coding.",
+    image: accordianai2,
+    bestPoints: [
+      "Time-saving automation",
+      "No-code integrations",
+      "Improved efficiency",
+      "Scalable workflows",
+    ],
+  },
+  {
+    id: 3,
+    question: "Generative AI Solutions",
+    answer: "Leverage generative AI models to create content, images, code, and more, enhancing creativity and productivity across projects.",
+    image: accordianai3,
+    bestPoints: [
+      "Creative content generation",
+      "Personalized user experiences",
+      "Rapid prototyping",
+      "Cost-effective innovation",
+    ],
+  },
+  {
+    id: 4,
+    question: "AI-powered Analytics",
+    answer: "Use AI-driven analytics to extract insights, forecast trends, and make data-backed decisions for smarter business strategies.",
+    image: accordianai3,
+    bestPoints: [
+      "Real-time data processing",
+      "Predictive insights",
+      "Enhanced decision-making",
+      "Customizable dashboards",
+    ],
+  },
+],
 
   heading2: "Built on Trust with Blockchain Development",  
   description: "Securing the Foundations of Tomorrow",  
@@ -742,6 +867,58 @@ image: mobileAppImage,
 
   image: cloudImage,
 
+
+  serviceAccordionData: [
+  {
+    id: 1,
+    question: "Search Engine Optimization (SEO)",
+    answer: "SEO involves optimizing your website and content to rank higher on search engines, driving organic traffic and increasing visibility.",
+    image: accordiandigital1,
+    bestPoints: [
+      "Improved search rankings",
+      "Increased organic traffic",
+      "On-page and off-page SEO",
+      "Keyword research & analysis",
+    ],
+  },
+  {
+    id: 2,
+    question: "Pay-Per-Click Advertising (PPC)",
+    answer: "PPC campaigns allow you to reach your target audience quickly through paid ads on platforms like Google Ads and social media.",
+    image: accordiandigital2,
+    bestPoints: [
+      "Targeted ad campaigns",
+      "Measurable ROI",
+      "Flexible budget control",
+      "Quick lead generation",
+    ],
+  },
+  {
+    id: 3,
+    question: "Social Media Marketing",
+    answer: "Leverage social media platforms to build brand awareness, engage with your audience, and drive conversions through creative campaigns.",
+    image: accordiandigital3,
+    bestPoints: [
+      "Platform-specific strategies",
+      "Content creation & scheduling",
+      "Community engagement",
+      "Performance analytics",
+    ],
+  },
+  {
+    id: 4,
+    question: "Email Marketing",
+    answer: "Create personalized email campaigns that nurture leads, promote products, and maintain customer relationships effectively.",
+    image: accordiandigital3,
+    bestPoints: [
+      "Targeted mailing lists",
+      "Automated email workflows",
+      "A/B testing for optimization",
+      "High ROI communication",
+    ],
+  },
+]
+,
   heading2: "Accelerating Possibilities with Cloud & DevOps Solutions",  
   description: "Infrastructure That Evolves with You",  
   helperText: "Flexible cloud strategies and agile DevOps practices designed to scale and optimize operations effortlessly", 
@@ -900,7 +1077,45 @@ image: mobileAppImage,
   spanText:"Solutions",
 
   image: aiImage,
-
+serviceAccordionData: [
+  {
+    id: 1,
+    question: "B2B Support & Solutions",
+    answer: "Providing tailored support and solutions to help businesses streamline operations, improve partnerships, and grow effectively.",
+    image: accordianconsult1,
+    bestPoints: [
+      "Customized business strategies",
+      "Partner relationship management",
+      "Process optimization",
+      "Scalable support models",
+    ],
+  },
+  {
+    id: 2,
+    question: "Strategy Consulting",
+    answer: "Helping organizations define their vision and roadmap by analyzing market trends, competition, and internal capabilities.",
+    image: accordianconsult2,
+    bestPoints: [
+      "Market research & insights",
+      "Competitive analysis",
+      "Business model innovation",
+      "Long-term growth planning",
+    ],
+  },
+  {
+    id: 3,
+    question: "Technical Advisory",
+    answer: "Offering expert advice on technology selection, system architecture, and implementation to ensure efficient and future-proof solutions.",
+    image: accordianconsult3,
+    bestPoints: [
+      "Technology evaluation",
+      "Architecture design",
+      "Risk assessment",
+      "Implementation guidance",
+    ],
+  },
+]
+,
   heading2: "Driven by Intelligence in AI & ML Solutions",  
   description: "Turning Data Into Actionable Insights",  
   helperText: "AI-driven solutions that turn data into powerful insights, enabling smarter, faster decisions for business transformation", 
