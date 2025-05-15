@@ -10,7 +10,7 @@ export const serviceAccordionData = [
   },
   {
     id: 2,
-    question: "What is Mobile App Development?",
+    question: "What is Mobile App ",
     answer: "Mobile app development focuses on building applications for iOS and Android devices using frameworks like React Native.",
     image: accordianImage2,
   },
