@@ -433,7 +433,7 @@ export const services = [
   },
   {
     heading: "Digital Marketing",
-    spanText: "Marketing",
+    spanText: "Digital",
     image: blockchainImage,
     serviceAccordionData: [
       {
