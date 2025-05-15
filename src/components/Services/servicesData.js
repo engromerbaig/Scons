@@ -19,14 +19,20 @@ import accordianweb3 from "../../assets/images/service-details/accordian/web/3.w
 import accordianuiux1 from "../../assets/images/service-details/accordian/uiux/1.webp";
 import accordianuiux2 from "../../assets/images/service-details/accordian/uiux/2.webp";
 import accordianuiux3 from "../../assets/images/service-details/accordian/uiux/3.webp";
+import accordianuiux4 from "../../assets/images/service-details/accordian/uiux/4.png";
+
 // Digital Marketing (using blockchain accordion images)
 import accordiandigital1 from "../../assets/images/service-details/accordian/digital/1.webp";
 import accordiandigital2 from "../../assets/images/service-details/accordian/digital/2.webp";
 import accordiandigital3 from "../../assets/images/service-details/accordian/digital/3.webp";
+import accordiandigital4 from "../../assets/images/service-details/accordian/digital/4.webp";
+
 // AI Integration
-import accordianai1 from "../../assets/images/service-details/accordian/ai/1.webp";
-import accordianai2 from "../../assets/images/service-details/accordian/ai/2.webp";
-import accordianai3 from "../../assets/images/service-details/accordian/ai/3.webp";
+import accordianai1 from "../../assets/images/service-details/accordian/ai/1.svg";
+import accordianai2 from "../../assets/images/service-details/accordian/ai/2.svg";
+import accordianai3 from "../../assets/images/service-details/accordian/ai/3.svg";
+import accordianai4 from "../../assets/images/service-details/accordian/ai/4.webp";
+
 // Consulting
 import accordianconsult1 from "../../assets/images/service-details/accordian/consultant/1.webp";
 import accordianconsult2 from "../../assets/images/service-details/accordian/consultant/2.webp";
@@ -342,7 +348,7 @@ export const services = [
         id: 4,
         question: "Brand Identity",
         answer: "Create a cohesive visual system to define your brand’s personality.",
-        image: accordianuiux3,
+        image: accordianuiux4,
         bestPoints: [
           "Consistent brand messaging",
           "Memorable brand presence",
@@ -476,7 +482,7 @@ export const services = [
         id: 4,
         question: "Email Marketing",
         answer: "Create personalized email campaigns to nurture leads and maintain customer relationships.",
-        image: accordiandigital3,
+        image: accordiandigital4,
         bestPoints: [
           "Targeted mailing lists",
           "Automated email workflows",
@@ -623,7 +629,7 @@ export const services = [
         id: 4,
         question: "AI-powered Analytics",
         answer: "Use AI-driven analytics to extract insights and forecast trends for smarter decisions.",
-        image: accordianai3,
+        image: accordianai4,
         bestPoints: [
           "Real-time data processing",
           "Predictive insights",
