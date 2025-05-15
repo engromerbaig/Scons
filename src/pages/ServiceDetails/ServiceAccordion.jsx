@@ -1,4 +1,4 @@
-import React, { useState,useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Heading from '../../components/Heading/Heading';
 import BodyText from '../../components/BodyText/BodyText';
 import { serviceAccordionData } from './serviceAccordionData';
@@ -22,7 +22,7 @@ const ServiceAccordion = () => {
     iconRefs.current.forEach((icon, index) => {
       if (icon) {
         gsap.to(icon, {
-          rotation: activeService === index ? 0 : 90,
+          rotation: activeService === index ? 0 : 45,
           duration: 0.3,
           ease: 'power2.inOut',
         });
@@ -33,7 +33,7 @@ const ServiceAccordion = () => {
     answerRefs.current.forEach((answer, index) => {
       if (answer) {
         gsap.to(answer, {
-          y: activeService === index ? 0 : -20,
+          y: activeService === index ? 0 : 20,
           opacity: activeService === index ? 1 : 0,
           height: activeService === index ? 'auto' : 0,
           duration: 0.3,
@@ -132,7 +132,7 @@ const ServiceAccordion = () => {
                       <BodyText
                         text={service.answer}
                         centered={false}
-                        className="max-w-[30 whats the difference between web development and UI/UX designrem]"
+                        className="max-w-[30rem]"
                       />
                       {/* Image for mobile */}
                       <div className="lg:hidden mt-4">
