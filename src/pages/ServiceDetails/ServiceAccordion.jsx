@@ -1,4 +1,3 @@
-// ServiceAccordion.jsx
 import React, { useState, useRef, useEffect } from 'react';
 import Heading from '../../components/Heading/Heading';
 import BodyText from '../../components/BodyText/BodyText';
@@ -8,7 +7,7 @@ import { IoIosCheckmarkCircle } from 'react-icons/io';
 import { gsap } from 'gsap';
 
 const ServiceAccordion = ({ heading, accordionData }) => {
-  const [activeService, setActiveService] = useState(0);
+  const [activeService, setActiveService] = useState(0); // First accordion open by default
   const iconRefs = useRef([]);
   const answerRefs = useRef([]);
   const imageRef = useRef(null);
@@ -39,8 +38,8 @@ const ServiceAccordion = ({ heading, accordionData }) => {
 
     if (imageRef.current) {
       gsap.to(imageRef.current, {
-        opacity: 1,
-        duration: 0.3,
+        opacity: activeService !== null ? 1 : 0,
+        duration: 0.4,
         ease: 'power2.inOut',
         overwrite: true,
       });
@@ -51,9 +50,11 @@ const ServiceAccordion = ({ heading, accordionData }) => {
     if (imageRef.current) {
       gsap.to(imageRef.current, {
         opacity: 0,
-        duration: 0.15,
+        duration: 0.2,
         ease: 'power2.inOut',
-        onComplete: () => setActiveService(index),
+        onComplete: () => {
+          setActiveService(index);
+        },
       });
     } else {
       setActiveService(index);
@@ -77,19 +78,22 @@ const ServiceAccordion = ({ heading, accordionData }) => {
             <div className="w-full h-[500px] overflow-hidden">
               <img
                 ref={imageRef}
-                src={accordionData[activeService].image}
-                alt={accordionData[activeService].question}
-                className="w-full h-full object-contain"
+                src={activeService !== null ? accordionData[activeService]?.image : ''}
+                alt={activeService !== null ? accordionData[activeService]?.question : ''}
+                className="w-full h-full object-contain opacity-0"
               />
             </div>
           </div>
 
-          <div>
+          <div className="min-h-[700px] lg:min-h-[500px] overflow-hidden">
             {accordionData.map((service, index) => (
               <div key={service.id} className="mb-6">
                 <button
                   onClick={() => handleServiceClick(index)}
-                  className="w-full text-left p-0 rounded-lg flex items-start gap-x-4 justify-between"
+                  disabled={activeService === index} // Disable button when accordion is active
+                  className={`w-full text-left p-0 rounded-lg flex items-start gap-x-4 justify-between ${
+                    activeService === index ? 'cursor-default' : 'cursor-pointer'
+                  }`}
                 >
                   <Heading
                     text={service.question}
@@ -125,7 +129,7 @@ const ServiceAccordion = ({ heading, accordionData }) => {
 
                       <ul className="mt-4 max-w-[30rem]">
                         {service.bestPoints.map((point, pointIndex) => (
-                          <li key={pointIndex} className="flex items-center gap-2 mb-4">
+                          <li key={pointIndex} className="flex items-center gap-2 mb-2 xl:mb-4">
                             <IoIosCheckmarkCircle className="text-neon text-35px flex-shrink-0" />
                             <BodyText text={point} centered={false} />
                           </li>
