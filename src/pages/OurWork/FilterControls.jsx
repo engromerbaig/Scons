@@ -18,7 +18,7 @@ const FilterControls = ({
 }) => {
   return (
     <div className="flex flex-col items-start w-full justify-center  gap-4 mt-8">
-      <div className="flex flex-wrap gap-4 items-center">
+      <div className="flex flex-wrap gap-2 xl:gap-4 items-center">
         <DropdownButton
           label="Services"
           options={uniqueServices}

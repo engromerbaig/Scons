@@ -33,13 +33,13 @@ const DropdownButton = ({
     <div className="flex flex-col items-start relative" ref={dropdownRef}>
       <button
         type="button"
-        className="px-8 py-2 rounded-full bg-gray-100 text-sm font-medium flex flex-col items-start justify-between cursor-pointer xl:w-[300px]    transition-colors relative"
+        className="px-4 xl:px-8 py-2 rounded-full bg-gray-100 text-sm font-medium flex flex-col items-start justify-between cursor-pointer xl:w-[300px]    transition-colors relative"
         onClick={() => setIsOpen(!isOpen)}
         style={{ textAlign: "left" }}
       >
         <span className="text-10px text-gray-500 mb-0">{label}</span>
         <div className="w-full flex items-center justify-between">
-          <span className="truncate text-sm text-black font-normal">{selectedValue || `Select ${label}`}</span>
+          <span className="truncate text-xs text-black font-normal">{selectedValue || `Select ${label}`}</span>
           <span className="ml-2 flex items-center">
             {isNestedCategory ? (
               <FaUndo
@@ -52,7 +52,7 @@ const DropdownButton = ({
                 title="Reset"
               />
             ) : (
-              <svg width="22" height="22" viewBox="0 0 20 20" fill="none">
+              <svg width="10" height="10" viewBox="0 0 20 20" fill="none">
                 <path d="M6 8l4 4 4-4" stroke="#000" strokeWidth="2" fill="none" />
               </svg>
             )}
