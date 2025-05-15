@@ -85,7 +85,7 @@ const ServiceAccordion = ({ heading, accordionData }) => {
             </div>
           </div>
 
-          <div className="min-h-[700px] lg:min-h-[500px] overflow-hidden">
+          <div className="min-h-[700px] lg:min-h-[550px] overflow-hidden">
             {accordionData.map((service, index) => (
               <div key={service.id} className="mb-6">
                 <button
