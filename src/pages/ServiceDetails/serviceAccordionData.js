@@ -1,5 +1,6 @@
 import accordianImage1 from "../../assets/images/service-details/ac/1.jpg"
 import accordianImage2 from "../../assets/images/service-details/ac/2.jpg"
+import accordianImage3 from "../../assets/images/service-details/ac/3.jpg"
 
 export const serviceAccordionData = [
   {
@@ -18,7 +19,7 @@ export const serviceAccordionData = [
     id: 3,
     question: "What is Cloud Computing?",
     answer: "Cloud computing provides scalable, on-demand computing resources like servers and storage over the internet.",
-    image: accordianImage1,
+    image: accordianImage3,
   },
   {
     id: 4,

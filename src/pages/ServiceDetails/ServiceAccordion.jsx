@@ -84,12 +84,12 @@ const ServiceAccordion = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           {/* Left Side: Image for larger screens */}
           <div className="hidden lg:flex lg:items-center">
-            <div className="w-full h-[300px] overflow-hidden rounded-lg">
+            <div className="w-full h-[500px] overflow-hidden ">
               <img
                 ref={imageRef}
                 src={serviceAccordionData[activeService].image}
                 alt={serviceAccordionData[activeService].question}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain transition-opacity duration-300 ease-in-out"
               />
             </div>
           </div>
@@ -140,7 +140,7 @@ const ServiceAccordion = () => {
                           <img
                             src={service.image}
                             alt={service.question}
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-contain transition-opacity duration-300 ease-in-out"
                           />
                         </div>
                       </div>
