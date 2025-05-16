@@ -45,7 +45,7 @@ const ContactUs = () => {
 
           {/* RHS: Form Template */}
           <div className="lg:w-1/2">
-            <FormTemplate />
+            <FormTemplate buttonWidth='w-40' />
           </div>
         </div>
       </div>

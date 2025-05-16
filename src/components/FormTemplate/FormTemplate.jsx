@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import FormField from '../FormSteps/modules/FormField';
 import Button from '../Button/Button';
 
-const FormTemplate = ({ handleFormSubmit, inputStyles, initialFormData = {}, hideErrorMessages = false }) => {
+const FormTemplate = ({ handleFormSubmit, inputStyles, initialFormData = {}, hideErrorMessages = false , buttonWidth="w-full" }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -117,7 +117,7 @@ const FormTemplate = ({ handleFormSubmit, inputStyles, initialFormData = {}, hid
       <div className="flex justify-center mt-4">
         <Button
           name="Submit"
-          className="w-full py-2"
+          className={`${buttonWidth} py-2`} 
           bgColor={isFormValid ? "bg-neon" : "bg-neon/90"}
           textColor="text-neon"
           hoverBgColor={isFormValid ? "bg-neon" : "bg-neon"}
