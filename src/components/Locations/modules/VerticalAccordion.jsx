@@ -44,7 +44,7 @@ const VerticalAccordion = ({ isAnimate = true }) => {
 
     return (
         <div className="w-full overflow-hidden overflow-y-hidden">
-            <div className="h-[90vh] lg:h-[75vh] flex flex-col lg:flex-row text-black border-b-0 lg:border-b border-neon border-x-0">
+            <div className="h-[80vh] lg:h-[75vh] flex flex-col lg:flex-row text-black border-b-0 lg:border-b border-neon border-x-0">
                 {accordionData.map((item, index) => (
                     <motion.div
                         key={index}
@@ -62,7 +62,7 @@ const VerticalAccordion = ({ isAnimate = true }) => {
                         {(isAnimate && openIndex === index) || (!isAnimate) ? (
                             <div
                                 ref={(el) => (contentRef.current[index] = el)}
-                                className="w-full max-w-xl p-4 lg:p-10 overflow-y-auto flex flex-col items-center"
+                                className="w-3/4 max-w-xl p-2 lg:p-10 overflow-y-auto flex flex-col items-start"
                             >
                                 <img
                                     src={item.content.image}
@@ -75,9 +75,9 @@ const VerticalAccordion = ({ isAnimate = true }) => {
                                     color="text-black"
                                     font="font-manrope"
                                     size="text-50px"
-                                    centered={true}
+                                    centered={false}
                                 />
-                                <BodyText text={item.content.address} size="text-25px" />
+                                <BodyText text={item.content.address} size="text-25px" centered={false}/>
                                 <a 
                                     href={`tel:${item.content.phone.replace(/\s+/g, '')}`} 
                                     className="text-25px transition font-normal hover:font-bold focus:font-bold"
