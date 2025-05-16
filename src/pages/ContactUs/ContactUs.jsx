@@ -43,7 +43,7 @@ const ContactUs = () => {
 
               {/* Right Side: Form */}
               <div className="xl:w-1/2">
-                <FormTemplate buttonWidth="w-40" textAreaRows={4} />
+                <FormTemplate buttonWidth="w-40" textAreaRows={4}  showSelect={true} hideErrorMessages={true}/>
               </div>
 
             </div>

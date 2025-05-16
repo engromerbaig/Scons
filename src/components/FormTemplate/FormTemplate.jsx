@@ -2,11 +2,20 @@ import React, { useEffect, useState } from 'react';
 import FormField from '../FormSteps/modules/FormField';
 import Button from '../Button/Button';
 
-const FormTemplate = ({ handleFormSubmit, inputStyles, initialFormData = {}, hideErrorMessages = false , buttonWidth="w-full", textAreaRows=1 }) => {
+const FormTemplate = ({
+  handleFormSubmit,
+  inputStyles,
+  initialFormData = {},
+  hideErrorMessages = false,
+  buttonWidth = "w-full",
+  textAreaRows = 1,
+  showSelect = false, // default is false
+}) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
+    topic: '',
     description: '',
     ...initialFormData,
   });
@@ -16,27 +25,44 @@ const FormTemplate = ({ handleFormSubmit, inputStyles, initialFormData = {}, hid
     name: false,
     email: false,
     phone: false,
+    topic: false,
     description: false,
   });
 
   useEffect(() => {
     const { name, email, phone, description } = formData;
     const isAllFieldsFilled = name && email && phone && description;
-    setIsFormValid(!!isAllFieldsFilled);
-  }, [formData]);
+    const topicValid = showSelect ? formData.topic : true;
+    setIsFormValid(!!(isAllFieldsFilled && topicValid));
+  }, [formData, showSelect]);
 
   const onSubmit = () => {
-    if (!isFormValid) {
-      setErrors({
-        name: !formData.name,
-        email: !formData.email,
-        phone: !formData.phone,
-        description: !formData.description,
-      });
-      return;
-    }
+    const newErrors = {
+      name: !formData.name,
+      email: !formData.email,
+      phone: !formData.phone,
+      topic: showSelect ? !formData.topic : false,
+      description: !formData.description,
+    };
+
+    setErrors(newErrors);
+
+    const hasErrors = Object.values(newErrors).some((e) => e);
+    if (hasErrors) return;
+
     handleFormSubmit(formData);
   };
+
+  const topicOptions = [
+    { value: 'web_development', label: 'Web Development' },
+    { value: 'mobile_app_dev', label: 'Mobile App Development' },
+    { value: 'logo_design', label: 'Logo Design' },
+    { value: 'ux_ui_design', label: 'UX/UI Design' },
+    { value: 'digital_marketing', label: 'Digital Marketing' },
+    { value: 'seo_service', label: 'SEO Service' },
+    { value: 'ai_bot', label: 'AI Bot' },
+    { value: 'consultancy', label: 'Consultancy' },
+  ];
 
   return (
     <div className="flex flex-col gap-2 lg:gap-4">
@@ -58,7 +84,7 @@ const FormTemplate = ({ handleFormSubmit, inputStyles, initialFormData = {}, hid
         )}
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-2 lg:gap-2">
+      <div className="flex flex-col lg:flex-row gap-2">
         <div className="flex-1">
           <FormField
             name="email"
@@ -95,6 +121,27 @@ const FormTemplate = ({ handleFormSubmit, inputStyles, initialFormData = {}, hid
         </div>
       </div>
 
+      {showSelect && (
+        <div>
+          <FormField
+            name="topic"
+            type="select"
+            placeholder="Desired Service?"
+            value={formData.topic}
+            onChange={(e) => {
+              setFormData({ ...formData, topic: e.target.value });
+              setErrors({ ...errors, topic: false });
+            }}
+            options={topicOptions}
+            inputStyles={inputStyles}
+            hideErrorMessages={hideErrorMessages}
+          />
+          {!hideErrorMessages && errors.topic && (
+            <p className="text-red-500 text-sm mt-1">Please select a topic</p>
+          )}
+        </div>
+      )}
+
       <div>
         <FormField
           name="description"
@@ -117,10 +164,10 @@ const FormTemplate = ({ handleFormSubmit, inputStyles, initialFormData = {}, hid
       <div className="flex justify-center mt-4">
         <Button
           name="Submit"
-          className={`${buttonWidth} py-2`} 
-          bgColor={isFormValid ? "bg-neon" : "bg-neon/90"}
+          className={`${buttonWidth} py-2`}
+          bgColor={isFormValid ? 'bg-neon' : 'bg-neon/90'}
           textColor="text-neon"
-          hoverBgColor={isFormValid ? "bg-neon" : "bg-neon"}
+          hoverBgColor={isFormValid ? 'bg-neon' : 'bg-neon'}
           hoverTextColor="text-black"
           fontSize="text-sm"
           fontWeight="font-bold"

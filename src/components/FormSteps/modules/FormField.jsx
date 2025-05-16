@@ -63,7 +63,7 @@ const FormField = ({
           <select
             value={value || ''}
             onChange={handleChange}
-            className={`${selectStyles} z-20 appearance-none pr-10 focus:bg-innerBg focus:text-bodyText`}
+            className={`${selectStyles} z-20 appearance-none pr-10 focus:bg-white focus:text-bodyText`}
           >
             <option value="" disabled>
               {placeholder} *
@@ -71,10 +71,10 @@ const FormField = ({
             {options.map((option, index) => (
               <option
                 key={index}
-                value={option}
-                className="bg-innerBg text-bodyText hover:bg-green-600"
+                value={option.value}
+                className="bg-white text-bodyText hover:bg-white"
               >
-                {option}
+                {option.label}
               </option>
             ))}
           </select>
