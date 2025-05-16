@@ -24,6 +24,7 @@ import HeroButton from './components/HeroButton/HeroButton';
 import ChatModal from './components/ChatModal/ChatModal';
 
 import ProjectDetail from './pages/OurWork/ProjectDetail';
+import ContactUs from './pages/ContactUs/ContactUs';
 
 // Wrapper for ServiceDetails to force remount on param change
 function ServiceDetailsWrapper() {
@@ -52,6 +53,8 @@ function AppContent() {
           <Route path="/about-us" element={<KnowUs />} />
           <Route path="/portfolio" element={<OurWork />} />
           <Route path="/portfolio/:slug" element={<ProjectDetail />} />
+
+          <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/careers" element={<Careers />} />
           <Route path="/careers/:heading/:jobType" element={<JobDetails />} />
           <Route path="/careers/apply" element={<Apply />} />
