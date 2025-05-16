@@ -7,6 +7,7 @@ import BodyText from "../BodyText/BodyText";
 const ProjectCard = ({ project }) => {
   const imageRef = useRef(null);
   const lastScrollY = useRef(window.scrollY);
+  // new main
 
   useEffect(() => {
     const handleScroll = () => {
