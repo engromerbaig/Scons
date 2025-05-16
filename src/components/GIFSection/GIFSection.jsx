@@ -34,7 +34,7 @@ const GIFSection = () => {
 <Link className='py-6' to="#">
     <Button
 name="Get Started"
-
+openModal={true}
 />       </Link>
   
       </div>
