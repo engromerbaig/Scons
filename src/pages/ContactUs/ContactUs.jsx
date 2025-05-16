@@ -6,6 +6,10 @@ import BodyText from '../../components/BodyText/BodyText';
 import contactImage from '../../assets/images/contact.svg';
 import { theme } from '../../theme';
 import Locations from '../../components/Locations/Locations';
+import { contactDetails } from '../../components/MobileMenu/modules/contactDetails';
+
+import { FiPhone, FiMail } from 'react-icons/fi';
+
 
 const ContactUs = () => {
   return (
@@ -39,7 +43,16 @@ const ContactUs = () => {
                   centered={false}
                   className='max-w-sm'
                 />
-              </div>
+
+                    <a href={`tel:${contactDetails[1].detail}`} className="flex items-center gap-2 hover:text-neon font-semibold transition-colors">
+                    <FiPhone className="text-lg text-neon" />
+                    {contactDetails[1].detail}
+                </a>
+                <a href={`mailto:${contactDetails[0].detail}`}className="flex items-center gap-2 hover:text-neon  font-semibold transition-colors">
+                    <FiMail className="text-lg text-neon" />
+                    {contactDetails[0].detail}
+                </a>
+                            </div>
 
               {/* Right Side: Form */}
               <div className="xl:w-1/2">
