@@ -4,7 +4,7 @@ import VerticalAccordion from "./modules/VerticalAccordion";
 import AnimatedBackground from "../../utilities/AnimatedBackground/AnimatedBackground";
 import { theme } from "../../theme";
 
-const Locations = () => {
+const Locations = ({isAnimate}) => {
     return (
         <div className={`w-full  h-full   `}>
             {/* First row - Title section */}
@@ -17,7 +17,7 @@ const Locations = () => {
                 />
             </div>
 
-<VerticalAccordion />
+<VerticalAccordion isAnimate={isAnimate} />
 
 
             {/* Second row - Vertical Accordion */}

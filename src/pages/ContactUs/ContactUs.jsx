@@ -63,7 +63,7 @@ const ContactUs = () => {
           </div>
 
           {/* Locations Accordion Section */}
-          <Locations />
+          <Locations isAnimate={false} />
 
         </div>
       </div>
