@@ -39,7 +39,6 @@ const ServiceDetails = () => {
                 bodyText={service.helperText}
                 illustrationImage={service.image}
                 bgColor='bg-white'
-                showPattern={false}
                 headingColor='text-black'
                 bodyTextColor='text-black'
                 headingSize='text-90px'

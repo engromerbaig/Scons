@@ -1,11 +1,10 @@
-import React, { useEffect, useRef } from "react";
-import { gsap } from "gsap";
+import React, { useRef } from "react";
 import Heading from "../Heading/Heading";
 import BodyText from "../BodyText/BodyText";
 import InfiniteMarquee from "../InfiniteMarquee/InfiniteMarquee";
-import patternImage from "../../assets/icons/pattern.svg"; // default
 import "./index.css";
 import { theme } from "../../theme";
+import patternImage from "../../assets/images/cube.png";
 
 const InnerHero = ({
   logoImage,
@@ -25,25 +24,10 @@ const InnerHero = ({
   logoIsWhite = false,
   children,
   bgColor = "bg-white",
-  showPattern = false,
+  showPattern = true,
   patternSrc = patternImage,
 }) => {
   const patternRef = useRef(null);
-
-  useEffect(() => {
-    if (showPattern && patternRef.current) {
-      gsap.to(patternRef.current, {
-        opacity: 0.2,
-        duration: 10,
-        ease: "sine.inOut",
-        yoyo: true,
-        repeat: -1,
-        onStart: () => {
-          gsap.set(patternRef.current, { opacity: 0.1 });
-        },
-      });
-    }
-  }, [showPattern]);
 
   return (
     <section
@@ -61,7 +45,7 @@ const InnerHero = ({
         <div
           ref={patternRef}
           aria-hidden
-          className="absolute bottom-0 left-0 w-full h-full bg-no-repeat bg-bottom bg-cover pointer-events-none z-0"
+          className="absolute bottom-0 left-0 w-full h-full bg-no-repeat bg-bottom bg-cover pointer-events-none z-0 opacity-100"
           style={{ backgroundImage: `url(${patternSrc})` }}
         />
       )}
@@ -75,8 +59,7 @@ const InnerHero = ({
               src={logoImage}
               alt="Logo"
               className={`w-40 h-16 mb-0 object-contain ${logoIsWhite ? "svg-white" : ""}`}
-                              loading="lazy"  // Changed from eager to lazy
-
+              loading="lazy"
             />
           )}
           <Heading
@@ -107,8 +90,7 @@ const InnerHero = ({
               src={illustrationImage}
               alt="Hero Illustration"
               className={` ${illustrationImageWidth} object-contain`}
-                              loading="lazy"  // Changed from eager to lazy
-
+              loading="lazy"
             />
           )}
         </div>
