@@ -4,7 +4,6 @@ import FormTemplate from '../../components/FormTemplate/FormTemplate';
 import Heading from '../../components/Heading/Heading';
 import BodyText from '../../components/BodyText/BodyText';
 import contactImage from '../../assets/images/contact.svg';
-import accordionData from '../../components/Locations/modules/accordionData';
 import { theme } from '../../theme';
 import Locations from '../../components/Locations/Locations';
 
@@ -19,17 +18,40 @@ const ContactUs = () => {
         illustrationImageWidth="w-3/4"
       />
 
-      <div className={``}>
+      <div className="">
         <div className="flex flex-col gap-8">
+          
+          {/* Contact Section */}
+          <div className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical}`}>
+            <div className="flex flex-col xl:flex-row gap-8">
+              
+              {/* Left Side: Heading + BodyText */}
+              <div className="xl:w-1/2 flex flex-col gap-4">
+                <Heading
+                  text="Talk to Our Team"
+                  spanText="Team"
+                  centered={false}
+                  color="text-black"
+                  spanColor='text-neon'
+                />
+                <BodyText
+                  text="We’re here to help. Whether you have a question about our services, need assistance, or just want to say hello, feel free to reach out. We look forward to hearing from you!"
+                  centered={false}
+                  className='max-w-sm'
+                />
+              </div>
 
-             <div className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} `}>
-            <FormTemplate buttonWidth='w-40' textAreaRows={4} />
+              {/* Right Side: Form */}
+              <div className="xl:w-1/2">
+                <FormTemplate buttonWidth="w-40" textAreaRows={4} />
+              </div>
+
+            </div>
           </div>
-          {/* LHS: Location Data */}
-       <Locations/>
 
-          {/* RHS: Form Template */}
-         
+          {/* Locations Accordion Section */}
+          <Locations />
+
         </div>
       </div>
     </div>
