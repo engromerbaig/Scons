@@ -118,6 +118,8 @@ import ReactNativeIcon from '../../../assets/icons/services/Mobile App/Hybrid/Re
 import logo1 from '../../../assets/icons/services/UIUX/logo/1.svg';
 import logo2 from '../../../assets/icons/services/UIUX/logo/2.svg';
 import logo3 from '../../../assets/icons/services/UIUX/logo/3.svg';
+import logo4 from '../../../assets/icons/services/UIUX/logo/4.svg';
+import logo5 from '../../../assets/icons/services/UIUX/logo/5.svg';
 
 // MobileandWeb
 import figmaUI from '../../../assets/icons/services/UIUX/mobile/figma.svg';
@@ -135,7 +137,24 @@ import erp4 from '../../../assets/icons/services/UIUX/erp/4.svg';
 import erp5 from '../../../assets/icons/services/UIUX/erp/5.svg';
 
 
-// Blockchain
+// Blockchain(used for Digital Now)
+
+//seo
+
+import seo1 from "../../../assets/icons/services/Blockchain/seo/1.svg";
+import seo2 from "../../../assets/icons/services/Blockchain/seo/2.svg";
+
+//ppc
+
+import ppc1 from "../../../assets/icons/services/Blockchain/ppc/1.svg";
+import ppc2 from "../../../assets/icons/services/Blockchain/ppc/2.svg";
+
+
+//marketing
+import marketing1 from "../../../assets/icons/services/Blockchain/marketing/1.svg";
+import marketing2 from "../../../assets/icons/services/Blockchain/marketing/2.svg";
+
+
 // smart
 import smart1 from '../../../assets/icons/services/Blockchain/smart/1.svg';
 import smart2 from '../../../assets/icons/services/Blockchain/smart/2.svg';
@@ -350,6 +369,21 @@ consultationFAQ5: consultationFAQ5,
 
 
      blockchain: {
+
+        //seo
+        seo1: seo1,
+        seo2: seo2,
+
+        //ppc
+        ppc1: ppc1,
+        ppc2: ppc2,
+
+        //marketing
+        marketing1: marketing1,
+        marketing2: marketing2,
+
+
+        
         //smart
         smart1: smart1,
         smart2: smart2,
@@ -374,6 +408,8 @@ consultationFAQ5: consultationFAQ5,
         logo1: logo1,
         logo2: logo2,
         logo3: logo3,
+        logo4: logo4,
+        logo5: logo5,
 
         figmaUI: figmaUI,
         xdUI: xdUI,

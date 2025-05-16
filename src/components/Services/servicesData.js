@@ -433,7 +433,7 @@ export const services = [
               "We simplify ERP interfaces with intuitive designs that enhance productivity and accessibility for all users.",
           },
         ],
-        icons: [icons.uiux.erp1, icons.uiux.erp3, icons.uiux.erp4],
+        icons: [icons.uiux.logo1, icons.uiux.logo4, icons.uiux.logo5],
       },
     ],
   },
@@ -528,7 +528,7 @@ export const services = [
         answer: "Costs depend on campaign scope; we provide customized quotes after consultation.",
       },
     ],
-    services: ["SEO", "PPC", "Social Media Marketing", "Email Marketing"],
+    services: ["SEO", "PPC", "Digital Marketing"],
     iconRows: [
       {
         service: "SEO",
@@ -541,7 +541,7 @@ export const services = [
               "Our SEO services optimize your website to rank higher, driving organic traffic through targeted keywords and on-page enhancements.",
           },
         ],
-        icons: [icons.blockchain.smart1, icons.blockchain.smart2, icons.blockchain.smart3],
+        icons: [icons.blockchain.seo1, icons.blockchain.seo2],
       },
       {
         service: "PPC",
@@ -554,11 +554,11 @@ export const services = [
               "We create targeted PPC campaigns on Google Ads and social platforms to deliver quick, measurable results.",
           },
         ],
-        icons: [icons.blockchain.dapp1, icons.blockchain.dapp2, icons.blockchain.dapp3],
+        icons: [icons.blockchain.ppc1, icons.blockchain.ppc2],
       },
       {
-        service: "Social Media Marketing",
-        serviceHeading: "Social Media Marketing",
+        service: "Digital Marketing",
+        serviceHeading: "Digital Marketing",
         faqIcon: [icons.faq.blockchainFAQ3],
         details: [
           {
@@ -567,21 +567,9 @@ export const services = [
               "Our social media strategies engage audiences with creative content and platform-specific campaigns to boost brand awareness.",
           },
         ],
-        icons: [icons.blockchain.integ1, icons.blockchain.integ2, icons.blockchain.integ3],
+        icons: [icons.blockchain.marketing1, icons.blockchain.marketing2],
       },
-      {
-        service: "Email Marketing",
-        serviceHeading: "Email Marketing",
-        faqIcon: [icons.faq.blockchainFAQ3],
-        details: [
-          {
-            heading: "Campaign Automation",
-            description:
-              "We design personalized email campaigns with automated workflows to nurture leads and retain customers.",
-          },
-        ],
-        icons: [icons.blockchain.integ1, icons.blockchain.integ2, icons.blockchain.integ4],
-      },
+     
     ],
   },
   {
