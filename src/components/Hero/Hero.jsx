@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Heading from "../Heading/Heading";
 import AnimatedHeading from "./AnimatedHeading";
@@ -11,78 +11,40 @@ import GlobeImage from "../../assets/images/globe.svg";
 import Button from "../Button/Button";
 import patternImage from "../../assets/images/cube.png";
 import SplideCarousel from "../SplideCarousel/SplideCarousel";
-import rocketImage from "../../assets/icons/rocket.svg";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-// Register ScrollTrigger plugin
-gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
   const [isModalOpen, setModalOpen] = useState(false);
-  const rocketRef = useRef(null); // Reference to the rocket image
 
   // Extract image URLs from logoData
   const logoImages = logoData.map((logoItem) => logoItem.image);
 
-  useEffect(() => {
-    const rocket = rocketRef.current;
-
-    if (rocket) {
-      gsap.fromTo(
-        rocket,
-        {
-          x: 0,
-          y: 0,
-          opacity: 0.9,
-        },
-        {
-          x: 300, // Move 200px to the right
-          y: -150, // Move 100px upwards
-          opacity: 0, // Fade out completely
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: rocket,
-            start: "top bottom", // Start animation when rocket enters viewport
-            end: "bottom top", // End when rocket leaves viewport
-            scrub: 1, // Smoothly tie animation Greer to scroll
-            markers: false, // Set to true for debugging
-          },
-        }
-      );
-    }
-
-    // Cleanup ScrollTrigger on component unmount
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
-  }, []);
-
   return (
     <div className="w-full min-h-screen flex flex-col shadow-custom-bottom bg-white relative">
-      {/* Hero Section (100vh) */}
+      {/* Background Layer */}
       <div 
         className="absolute bottom-0 left-0 w-full h-full bg-no-repeat bg-bottom bg-cover pointer-events-none z-0 opacity-100"
         style={{ 
           backgroundImage: `url(${patternImage})`,
-          loading:"eager"
+          loading: "eager"
         }}
       >
         {/* Globe Image */}
         <img
           src={GlobeImage}
           alt="Globe Background"
-          className="absolute top-0 right-[-20%] h-full w-auto opacity-15 object-right object-contain pointer-events-none z-10 "
-                          loading="lazy"  // Changed from eager to lazy
-
+          className="absolute top-0 right-[-20%] h-full w-auto opacity-15 object-right object-contain pointer-events-none z-10"
+          loading="lazy"
         />
+      </div>
 
-        {/* Content */}
+      {/* Interactive Content Layer */}
+      <div className="relative z-100 min-h-screen flex flex-col">
+        {/* Main Content */}
         <div
-          className={`${theme.layoutPages.paddingHorizontal} w-full h-full flex items-center justify-center relative z-20`}
+          className={`${theme.layoutPages.paddingHorizontal} w-full flex-1 flex items-center justify-center relative`}
         >
           {/* Centered text container */}
-          <div className="w-full max-w-4xl text-left">
+          <div className="w-full max-w-4xl text-left relative z-110">
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
               <div className="mb-4">
                 <AnimatedHeading
@@ -104,7 +66,7 @@ const Hero = () => {
                 />
               </div>
 
-              <div className="flex items-center gap-x-4 xl:gap-x-6 mt-4">
+              <div className="flex items-center gap-x-4 xl:gap-x-6 mt-4 relative z-120">
                 <Button
                   name="Contact Us"
                   size="text-sm"
@@ -125,18 +87,15 @@ const Hero = () => {
                   hoverTextColor="black"
                   className="mt-4 px-4 py-2 border-b-4 border-neon rounded-none shadow-none"
                   link="#projects"
-                  />
+                />
               </div>  
             </motion.div>
           </div>
         </div>
 
-        {/* Bottom Section (Absolutely Positioned) */}
-        <div className="absolute bottom-0 w-full h-[15vh] flex flex-col lg:flex-row items-center z-30">
-          {/* Left Half: BodyText with Rocket Image */}
-      
-          {/* Right Half: SplideCarousel */}
-          <div className="w-full  h-full flex flex-col gap-y-6">
+        {/* Bottom Section */}
+        <div className="absolute bottom-0 left-0 w-full h-[15vh] flex flex-col lg:flex-row items-center z-100">
+          <div className="w-full h-full flex flex-col gap-y-6">
             <div className="flex items-center gap-2 pl-2">
               {/* Neon bullet */}
               <span className="w-2 h-2 rounded-full bg-neon" />
@@ -162,7 +121,7 @@ const Hero = () => {
               height="35px"
               gap="1rem"
               pauseOnHover={false}
-              className="w-full h-full"
+              className="w-full h-[35px] overflow-hidden"
               haveBorder={false}
               objectFit="contain"
               imageRound="rounded-none"
