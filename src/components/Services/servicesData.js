@@ -394,11 +394,11 @@ export const services = [
         answer: "Yes, we can enhance existing designs to improve usability and aesthetics.",
       },
     ],
-    services: ["Mobile App Design", "Web App Design", "ERP Design"],
+    services: ["Logo Design", "UI/UX Design", "Brand Identity"],
     iconRows: [
       {
-        service: "Mobile App Design",
-        serviceHeading: "Mobile App Design",
+        service: "Logo Design",
+        serviceHeading: "Logo Design",
         faqIcon: [icons.faq.uiuxFAQ1],
         details: [
           {
@@ -407,11 +407,11 @@ export const services = [
               "We design intuitive mobile app interfaces that prioritize user journeys and engagement, blending creativity with research-driven design.",
           },
         ],
-        icons: [icons.uiux.figmaUI, icons.uiux.xdUI, icons.uiux.sketchUI],
+        icons: [icons.uiux.logo1, icons.uiux.logo3, icons.uiux.logo2],
       },
       {
-        service: "Web App Design",
-        serviceHeading: "Web App Design",
+        service: "UI/UX Design",
+        serviceHeading: "UI/UX Design",
         faqIcon: [icons.faq.uiuxFAQ2],
         details: [
           {
@@ -423,8 +423,8 @@ export const services = [
         icons: [icons.uiux.figmaUI, icons.uiux.xdUI, icons.uiux.sketchUI],
       },
       {
-        service: "ERP Design",
-        serviceHeading: "ERP Design",
+        service: "Brand Identity",
+        serviceHeading: "Brand Identity",
         faqIcon: [icons.faq.uiuxFAQ3],
         details: [
           {

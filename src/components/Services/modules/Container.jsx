@@ -97,7 +97,8 @@ const Container = ({ heading, number, services, iconRows, link }) => {
                     src={icon}
                     alt={`icon-row${rowIndex}-${index}`}
                     loading="lazy"
-                    className='svg-neon '
+                    
+                    className='svg-neon  '
                 />
             ))}
         </div>

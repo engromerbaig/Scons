@@ -114,6 +114,11 @@ import ReactNativeIcon from '../../../assets/icons/services/Mobile App/Hybrid/Re
 
 //UIUX
 
+//logo
+import logo1 from '../../../assets/icons/services/UIUX/logo/1.svg';
+import logo2 from '../../../assets/icons/services/UIUX/logo/2.svg';
+import logo3 from '../../../assets/icons/services/UIUX/logo/3.svg';
+
 // MobileandWeb
 import figmaUI from '../../../assets/icons/services/UIUX/mobile/figma.svg';
 import xdUI from '../../../assets/icons/services/UIUX/mobile/xd.svg';
@@ -365,6 +370,10 @@ consultationFAQ5: consultationFAQ5,
 
       uiux: {
         //mobile and web
+
+        logo1: logo1,
+        logo2: logo2,
+        logo3: logo3,
 
         figmaUI: figmaUI,
         xdUI: xdUI,
