@@ -13,49 +13,52 @@ const Button = ({
   hoverTextColor = "white",
   hoverBgColor = "bg-black",
   textAlign = "justify-start",
-  noIconChange = false, // Prop to control icon filter and apply svg-black
+  noIconChange = false,
   onClick,
-  link = null, // Optional link prop for react-router-dom
+  link = null,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [isActive, setIsActive] = useState(false);
 
-  // Common button content to avoid duplication
+  const isInteracted = isHovered || isActive;
+
   const buttonContent = (
     <div
-      className={`inline-flex flex-row items-center ${textAlign} cursor-pointer p-3 ${bgColor} rounded-full ${
-        hoverBgColor ? "hover:" + hoverBgColor : ""
-      } transition-all duration-300 relative overflow-hidden hover:shadow-lg ${className}`}
+      className={`inline-flex flex-row items-center ${textAlign} cursor-pointer p-3 ${bgColor} rounded-full
+        ${hoverBgColor ? `hover:${hoverBgColor} active:${hoverBgColor}` : ""}
+        transition-all duration-300 relative overflow-hidden
+        hover:shadow-lg active:shadow-lg ${className}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onMouseDown={() => setIsActive(true)}
+      onMouseUp={() => setIsActive(false)}
       onClick={onClick}
     >
-      {/* Conditionally Render Icon */}
       {icon && (
         <img
           src={icon}
           alt={name}
-          loading="lazy" // Changed from eager to lazy
+          loading="lazy"
           className={`${width} aspect-square flex-shrink-0 ${
             noIconChange ? "svg-black" : ""
           }`}
           style={{
             filter: noIconChange
               ? "brightness(0) invert(0)"
-              : isHovered
+              : isInteracted
               ? "brightness(0) invert(1)"
               : "brightness(0) saturate(100%)",
-            transition: noIconChange ? "none" : "filter 0.3s ease", // Disable transition when noIconChange is true
+            transition: noIconChange ? "none" : "filter 0.3s ease",
           }}
         />
       )}
 
-      {/* Text */}
       <div className={`${icon ? "ml-1 lg:ml-4" : ""} relative overflow-hidden`}>
         <p
           className={`${fontSize} ${fontWeight} transition-transform duration-300 whitespace-nowrap`}
           style={{
-            transform: isHovered ? "translateY(0)" : "translateY(-200%)",
-            color: isHovered ? hoverTextColor : textColor,
+            transform: isInteracted ? "translateY(0)" : "translateY(-200%)",
+            color: isInteracted ? hoverTextColor : textColor,
           }}
         >
           {name}
@@ -63,7 +66,7 @@ const Button = ({
         <p
           className={`${fontSize} ${fontWeight} absolute top-0 left-0 transition-transform duration-300 whitespace-nowrap`}
           style={{
-            transform: isHovered ? "translateY(200%)" : "translateY(0)",
+            transform: isInteracted ? "translateY(200%)" : "translateY(0)",
             color: textColor,
           }}
         >
@@ -73,7 +76,6 @@ const Button = ({
     </div>
   );
 
-  // Render with Link if link prop is provided, otherwise render as div
   return link ? (
     <Link to={link} className="inline-flex">
       {buttonContent}
