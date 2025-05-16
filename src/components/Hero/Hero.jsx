@@ -87,6 +87,7 @@ const Hero = () => {
                   hoverTextColor="black"
                   className="mt-4 px-4 py-2 border-b-4 border-neon rounded-none shadow-none"
                   link="#projects"
+                  shadow="shadow-none"
                 />
               </div>  
             </motion.div>

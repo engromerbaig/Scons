@@ -14,6 +14,7 @@ const Button = ({
   hoverBgColor = "bg-black",
   textAlign = "justify-start",
   noIconChange = false,
+  shadow = "shadow-lg",
   onClick,
   link = null,
 }) => {
@@ -27,7 +28,7 @@ const Button = ({
       className={`inline-flex flex-row items-center ${textAlign} cursor-pointer p-3 ${bgColor} rounded-full
         ${hoverBgColor ? `hover:${hoverBgColor} active:${hoverBgColor}` : ""}
         transition-all duration-300 relative overflow-hidden
-        hover:shadow-lg active:shadow-lg ${className}`}
+        hover:${shadow} active:${shadow} ${className}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onMouseDown={() => setIsActive(true)}
