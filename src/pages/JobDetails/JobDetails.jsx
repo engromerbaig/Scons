@@ -49,6 +49,7 @@ const JobDetails = () => {
                 centeredHeading1={false}
                 centeredbodyText={false}
                 image={jobImage}
+                showBottomShadow={false}
             />
 
             <GreenBelt className="rounded-b-2xl  mx-4 md:mx-8 lg:mx-12">

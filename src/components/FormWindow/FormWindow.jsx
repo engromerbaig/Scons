@@ -52,7 +52,8 @@ const FormWindow = ({
                         spanColor={spanColor}
                         breakSpan={breakSpan} 
                         // size="text-40px" 
-                        size="text-70px" 
+                        size="text-60px" 
+                        lineHeight="leading-none"
 
                         centered={false} 
                         isAnimate={false} 

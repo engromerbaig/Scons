@@ -76,7 +76,7 @@ const Apply = () => {
     const handleBack = () => setStep((prev) => Math.max(prev - 1, 1));
 
     return (
-        <AnimatedBackground isInner className={`h-screen ${theme.layoutPages.paddingHorizontal}  overflow-hidden`}>
+        <div className={`h-screen ${theme.layoutPages.paddingHorizontal}  overflow-hidden`}>
             <div className="w-full h-full flex">
                 {step === 1 && (
                     <StepOne
@@ -119,7 +119,7 @@ const Apply = () => {
                 )}
                 {step === 5 && <StepFive />}
             </div>
-        </AnimatedBackground>
+        </div>
     );
 };
 
