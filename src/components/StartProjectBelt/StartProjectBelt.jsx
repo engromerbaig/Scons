@@ -15,6 +15,7 @@ const StartProjectBelt = () => {
     <Link to="#">
     <Button
 name="Get Started"
+openModal={true}
 
 />       </Link>
         </div>

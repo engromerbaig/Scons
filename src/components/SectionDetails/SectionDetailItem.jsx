@@ -80,8 +80,7 @@ const SectionDetailItem = ({
                   hoverTextColor='black'
                   bgColor="bg-neon"
                   hoverBgColor='bg-neon'
-                  className="px-6 py-2"
-                  link="/contact"
+                 openModal={true}
 />
           </div>
         </div>

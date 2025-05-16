@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import Heading from "../Heading/Heading";
 import AnimatedHeading from "./AnimatedHeading";
 import BodyText from "../BodyText/BodyText";
 import { theme } from "../../theme";
 import logoData from "./modules/logoData";
-import ChatModal from "../ChatModal/ChatModal";
 import './index.css';
 import GlobeImage from "../../assets/images/globe.svg";
 import Button from "../Button/Button";
@@ -13,8 +12,6 @@ import patternImage from "../../assets/images/cube.png";
 import SplideCarousel from "../SplideCarousel/SplideCarousel";
 
 const Hero = () => {
-  const [isModalOpen, setModalOpen] = useState(false);
-
   // Extract image URLs from logoData
   const logoImages = logoData.map((logoItem) => logoItem.image);
 
@@ -71,8 +68,8 @@ const Hero = () => {
                   name="Contact Us"
                   textColor="black"
                   bgColor="bg-neon"
-                  className="mt-4 "
-                  onClick={() => setModalOpen(true)}
+                  className="mt-4"
+                  openModal={true}
                 />
 
                 <Button
@@ -84,12 +81,12 @@ const Hero = () => {
                   hoverBgColor="bg-transparent"
                   hoverTextColor="black"
                   className="mt-4 px-4 py-2 border-b-4 border-neon rounded-none shadow-none"
-                 onClick={() => {
-    const el = document.getElementById("projects");
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    }
-  }}
+                  onClick={() => {
+                    const el = document.getElementById("projects");
+                    if (el) {
+                      el.scrollIntoView({ behavior: "smooth" });
+                    }
+                  }}
                   shadow="shadow-none"
                 />
               </div>  
@@ -101,10 +98,7 @@ const Hero = () => {
         <div className="absolute bottom-0 left-0 w-full h-[15vh] flex flex-col lg:flex-row items-center z-100">
           <div className="w-full h-full flex flex-col gap-y-6">
             <div className="flex items-center gap-2 pl-2">
-              {/* Neon bullet */}
               <span className="w-2 h-2 rounded-full bg-neon" />
-
-              {/* Heading component */}
               <Heading
                 text="Clients served by Econs Family."
                 spanText="Econs"
@@ -134,9 +128,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-
-      {/* Chat Modal */}
-      <ChatModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} />
     </div>
   );
 };

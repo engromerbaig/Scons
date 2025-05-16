@@ -1,27 +1,39 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import ChatModal from "../ChatModal/ChatModal";
 
 const Button = ({
   name,
   icon = null,
   width = "w-5",
-  fontWeight = "font-bold", // default: semibold
+  fontWeight = "font-bold",
   fontSize = "text-20px",
   className = "",
-  bgColor = "bg-black",         // default: black
-  textColor = "white",          // default: white
-  hoverTextColor = "white",     // default hover text
-  hoverBgColor = "bg-black",    // default hover background
+  bgColor = "bg-black",
+  textColor = "white",
+  hoverTextColor = "white",
+  hoverBgColor = "bg-black",
   textAlign = "justify-start",
   noIconChange = false,
   shadow = "shadow-lg",
   onClick,
   link = null,
+  openModal = false, // ✅ new prop
 }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isActive, setIsActive] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const isInteracted = isHovered || isActive;
+
+  const handleClick = (e) => {
+    if (openModal) {
+      setIsModalOpen(true);
+    }
+    if (onClick) {
+      onClick(e);
+    }
+  };
 
   const buttonContent = (
     <div
@@ -33,7 +45,7 @@ const Button = ({
       onMouseLeave={() => setIsHovered(false)}
       onMouseDown={() => setIsActive(true)}
       onMouseUp={() => setIsActive(false)}
-      onClick={onClick}
+      onClick={handleClick}
     >
       {icon && (
         <img
@@ -77,12 +89,20 @@ const Button = ({
     </div>
   );
 
-  return link ? (
-    <Link to={link} className="inline-flex">
-      {buttonContent}
-    </Link>
-  ) : (
-    buttonContent
+  return (
+    <>
+      {link ? (
+        <Link to={link} className="inline-flex">
+          {buttonContent}
+        </Link>
+      ) : (
+        buttonContent
+      )}
+
+      {openModal && (
+        <ChatModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      )}
+    </>
   );
 };
 
