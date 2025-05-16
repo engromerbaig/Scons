@@ -69,11 +69,9 @@ const Hero = () => {
               <div className="flex items-center gap-x-4 xl:gap-x-6 mt-4 relative z-120">
                 <Button
                   name="Contact Us"
-                  size="text-sm"
                   textColor="black"
-                  fontWeight="font-bold"
                   bgColor="bg-neon"
-                  className="mt-4 px-6 py-2"
+                  className="mt-4 "
                   onClick={() => setModalOpen(true)}
                 />
 

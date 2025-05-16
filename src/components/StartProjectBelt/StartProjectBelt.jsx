@@ -8,17 +8,14 @@ const StartProjectBelt = () => {
     return ( <div className={`bg-white ${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} `}>
 
 
-        <div className=" bg-grayBg rounded-full shadow-md border-[0.1px] border-gray-100 flex flex-row items-center justify-between py-4 px-10">
+        <div className=" bg-grayBg rounded-full shadow-xl border border-gray-200 flex flex-row items-center justify-between py-6 px-10">
 
         <Heading text="Ready to Start Your Project?" spanText="Project?" spanColor="text-neon" size="text-40px" color="text-black" centered={false} />
     
     <Link to="#">
     <Button
 name="Get Started"
-bgColor="bg-black"
-textColor="white"
 
-className="px-4 py-2"
 />       </Link>
         </div>
 

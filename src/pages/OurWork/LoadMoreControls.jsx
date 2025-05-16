@@ -18,20 +18,14 @@ const LoadMoreControls = ({
           {showLoadMore && (
             <Button
               name="Load More"
-              bgColor="bg-black"
-              textColor="white"
-              className="px-4 py-2"
-              fontSize="text-sm"
+         
               onClick={handleLoadMore}
             />
           )}
           {showShowLess && (
             <Button
               name="Show Less"
-              bgColor="bg-black"
-              textColor="white"
-              className="px-4 py-2"
-              fontSize="text-sm"
+   
               onClick={handleShowLess}
             />
           )}

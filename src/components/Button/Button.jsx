@@ -5,13 +5,13 @@ const Button = ({
   name,
   icon = null,
   width = "w-5",
-  fontWeight = "font-medium",
+  fontWeight = "font-bold", // default: semibold
   fontSize = "text-20px",
   className = "",
-  bgColor = "bg-grayBg",
-  textColor = "black",
-  hoverTextColor = "white",
-  hoverBgColor = "bg-black",
+  bgColor = "bg-black",         // default: black
+  textColor = "white",          // default: white
+  hoverTextColor = "white",     // default hover text
+  hoverBgColor = "bg-black",    // default hover background
   textAlign = "justify-start",
   noIconChange = false,
   shadow = "shadow-lg",
@@ -25,7 +25,7 @@ const Button = ({
 
   const buttonContent = (
     <div
-      className={`inline-flex flex-row items-center ${textAlign} cursor-pointer p-3 ${bgColor} rounded-full
+      className={`inline-flex flex-row items-center ${textAlign} cursor-pointer px-4 py-2 ${bgColor} rounded-full
         ${hoverBgColor ? `hover:${hoverBgColor} active:${hoverBgColor}` : ""}
         transition-all duration-300 relative overflow-hidden
         hover:${shadow} active:${shadow} ${className}`}

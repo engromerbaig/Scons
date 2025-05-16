@@ -15,11 +15,9 @@ const NotFound = () => {
         <Heading text="Oops! Page Not Found" color="text-black" size="text-50px" />
         <p className="pb-8 text-black">It looks like the page you’re looking for doesn’t exist.</p>
         <ScrollToTopLink to="/">
-          <Button name="Return to Home" size="text-sm"
-                  textColor="white"
-                  fontWeight="font-bold"
-                  bgColor="bg-black"
-                  className="px-4 py-2 " />
+          <Button name="Return to Home" 
+                
+                 />
         </ScrollToTopLink>
       </div>
     </div>

@@ -88,7 +88,7 @@ const NestedTabs = () => {
             />
             <div className="grid grid-cols-2 sm:grid-cols-2 xl:grid-cols-3 max-w-xl gap-4">
               {technologiesData[activeCategory][platform].map((tech) => (
-                <Button key={tech.name} name={tech.name} icon={tech.icon} />
+                <Button key={tech.name} name={tech.name} icon={tech.icon} bgColor="bg-gray-100" textColor="black" fontWeight="font-semibold" className="py-3" />
               ))}
             </div>
           </div>

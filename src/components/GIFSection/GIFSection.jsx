@@ -34,10 +34,7 @@ const GIFSection = () => {
 <Link className='py-6' to="#">
     <Button
 name="Get Started"
-bgColor="bg-black"
-textColor="white"
 
-className="px-4 py-2"
 />       </Link>
   
       </div>

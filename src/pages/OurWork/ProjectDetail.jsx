@@ -123,6 +123,12 @@ const ProjectDetail = () => {
             hoverBgColor="bg-neon"
             hoverTextColor="text-black"
             noIconChange={true}
+
+
+             bgColor="bg-gray-100"
+              textColor="black" 
+              fontWeight="font-semibold"
+               className="py-3"
           />
         );
       })}
