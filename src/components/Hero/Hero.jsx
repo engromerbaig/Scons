@@ -62,10 +62,9 @@ const Hero = () => {
     <div className="w-full min-h-screen flex flex-col shadow-custom-bottom bg-white relative">
       {/* Hero Section (100vh) */}
       <div 
-        className="relative w-full h-screen overflow-hidden bg-repeat"
+        className="absolute bottom-0 left-0 w-full h-full bg-no-repeat bg-bottom bg-cover pointer-events-none z-0 opacity-100"
         style={{ 
           backgroundImage: `url(${patternImage})`,
-          backgroundSize: '100px 100px', // Adjust size to ensure seamless repeating
           loading:"eager"
         }}
       >
