@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import FormField from '../FormSteps/modules/FormField';
 import Button from '../Button/Button';
 
-const FormTemplate = ({ handleFormSubmit, inputStyles, initialFormData = {}, hideErrorMessages = false , buttonWidth="w-full" }) => {
+const FormTemplate = ({ handleFormSubmit, inputStyles, initialFormData = {}, hideErrorMessages = false , buttonWidth="w-full", textAreaRows=1 }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -100,7 +100,7 @@ const FormTemplate = ({ handleFormSubmit, inputStyles, initialFormData = {}, hid
           name="description"
           type="textarea"
           placeholder="What would you like to discuss?"
-          rows={1}
+          rows={textAreaRows}
           value={formData.description}
           onChange={(e) => {
             setFormData({ ...formData, description: e.target.value });

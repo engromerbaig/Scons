@@ -5,6 +5,7 @@ import Heading from '../../components/Heading/Heading';
 import BodyText from '../../components/BodyText/BodyText';
 import contactImage from '../../assets/images/contact.svg';
 import accordionData from '../../components/Locations/modules/accordionData';
+import { theme } from '../../theme';
 
 const ContactUs = () => {
   return (
@@ -17,27 +18,29 @@ const ContactUs = () => {
         illustrationImageWidth="w-3/4"
       />
 
-      <div className="container mx-auto px-4 py-12">
-        <div className="flex flex-col lg:flex-row gap-8">
+      <div className={`${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal}`}>
+        <div className="flex flex-col lg:flex-row  justify-start gap-8">
           {/* LHS: Location Data */}
           <div className="lg:w-1/2">
             <Heading
               text="Our Locations"
               className="text-3xl font-bold mb-6"
+              centered={false}
             />
             {accordionData.map((location, index) => (
-              <div key={index} className="mb-8">
+              <div key={index} className="mb-8 max-w-md">
                 <Heading
-                  text={`${location.title}, ${location.country}`}
+                  text={`${location.title} Office`}
                   className="text-xl font-semibold mb-2"
+                  centered={false}
                 />
                 <BodyText
                   text={location.content.address}
-                  className="text-gray-700 mb-2"
+                  centered={false}
                 />
                 <BodyText
                   text={`Phone: ${location.content.phone}`}
-                  className="text-gray-700"
+                  centered={false}
                 />
               </div>
             ))}
@@ -45,7 +48,7 @@ const ContactUs = () => {
 
           {/* RHS: Form Template */}
           <div className="lg:w-1/2">
-            <FormTemplate buttonWidth='w-40' />
+            <FormTemplate buttonWidth='w-40' textAreaRows={4} />
           </div>
         </div>
       </div>
