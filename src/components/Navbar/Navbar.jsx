@@ -60,6 +60,10 @@ const Navbar = () => {
         </ScrollToTopLink>
       </div>
       <div className="flex items-center">
+        <div>
+
+            Phone
+        </div>
         <button type="button" onClick={toggleMobileMenu} className="relative">
           <img
             src="/hamburger.svg"

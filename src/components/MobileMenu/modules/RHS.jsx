@@ -66,10 +66,10 @@ const RHS = ({ containerVariants, textVariants, handleClose }) => (
                
          <div className="space-x-1 lg:space-x-4">
          <Link               onClick={handleClose}
- to="/terms-and-conditions" className="smooth-hover">Terms & Conditions</Link>
+ to="/terms-and-conditions" className="neon-hover">Terms & Conditions</Link>
           <span>|</span>
           <Link               onClick={handleClose}
- to="/privacy-policy" className="smooth-hover">Privacy Policy</Link>
+ to="/privacy-policy" className="neon-hover">Privacy Policy</Link>
       </div>
       
                   </div>

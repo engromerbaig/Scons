@@ -47,23 +47,27 @@ const LHS = ({ containerVariants, textVariants, handleClose }) => (
     </div>
 
     {/* Bottom Section (2/12) */}
-    <div className="h-[16.67%]  flex flex-col space-y-1 lg:space-y-4">
-      {contactDetails.map((contact) => (
-        <div key={contact.type} className="flex flex-row items-center space-x-1 lg:space-x-4">
-          <img
-            src={contact.icon}
-            alt={`${contact.type} Icon`}
-            className="w-5 aspect-square"
-          />
-          <a
-            href={contact.link}
-            className="text-black text-sm lg:text-30px font-medium smooth-hover"
-          >
-            {contact.detail}
-          </a>
-        </div>
-      ))}
-    </div>
+
+<div className="h-[16.67%] flex flex-col space-y-1 lg:space-y-4">
+  {contactDetails.map((contact) => {
+    const Icon = contact.icon; // Get the icon component
+    return (
+      <div
+        key={contact.type}
+        className="flex flex-row items-center space-x-1 lg:space-x-2"
+      >
+        <Icon className="text-35px text-black" />
+        <a
+          href={contact.link}
+          className="text-black text-sm lg:text-30px font-medium neon-hover"
+        >
+          {contact.detail}
+        </a>
+      </div>
+    );
+  })}
+</div>
+
   </motion.div>
 );
 

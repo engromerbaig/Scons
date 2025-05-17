@@ -44,14 +44,21 @@ const ContactUs = () => {
                   className='max-w-sm'
                 />
 
-                    <a href={`tel:${contactDetails[1].detail}`} className="flex items-center gap-2 hover:text-neon font-semibold transition-colors">
-                    <FiPhone className="text-lg text-neon" />
-                    {contactDetails[1].detail}
-                </a>
-                <a href={`mailto:${contactDetails[0].detail}`}className="flex items-center gap-2 hover:text-neon  font-semibold transition-colors">
-                    <FiMail className="text-lg text-neon" />
-                    {contactDetails[0].detail}
-                </a>
+            {contactDetails.map((contact) => {
+  const Icon = contact.icon;
+  return (
+    <a
+      key={contact.type}
+      href={contact.link}
+      className="flex items-center gap-2 hover:text-neon text-25px font-medium transition-colors"
+    >
+      <Icon className="text-25px text-black" />
+      {contact.detail}
+    </a>
+  );
+})}
+
+
                             </div>
 
               {/* Right Side: Form */}
