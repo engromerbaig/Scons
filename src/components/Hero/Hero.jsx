@@ -124,6 +124,7 @@ const Hero = () => {
               objectFit="contain"
               imageRound="rounded-none"
               mobilePerPage={2}
+              showLoader={false}
             />
           </div>
         </div>

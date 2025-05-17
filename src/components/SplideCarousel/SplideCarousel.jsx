@@ -1,7 +1,8 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { AutoScroll } from "@splidejs/splide-extension-auto-scroll";
 import "@splidejs/react-splide/css";
+import SkeletonLoader from "../../utilities/SkeletonLoader";
 
 const SplideCarousel = ({
   images = [],
@@ -13,10 +14,11 @@ const SplideCarousel = ({
   gap = "1rem",
   pauseOnHover = false,
   className = "",
-  haveBorder = true,
+  haveBorder = true, // Controls whether border is applied
   objectFit = "cover",
-  imageRound = "rounded-3xl",
+  imageRound = "rounded-none",
   imageSize = "w-full h-full",
+  showLoader = true, // Controls whether loader mechanism is used
 }) => {
   const uniqueId = useMemo(
     () => `splide-carousel-${Math.random().toString(36).substring(2, 9)}`,
@@ -48,11 +50,24 @@ const SplideCarousel = ({
             align-items: center;
             justify-content: center;
           }
+          .${uniqueId} .image-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            ${haveBorder ? `border: 4px solid #26292D; border-radius: inherit;` : ""}
+          }
+          .${uniqueId} .skeleton-loader {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+          }
           .${uniqueId} .splide__slide img {
             width: 100%;
             height: 100%;
             object-fit: ${objectFit};
-            ${haveBorder ? "border: 4px solid #26292D;" : ""}
           }
           @media (max-width: 768px) {
             .${uniqueId} .splide__slide {
@@ -88,19 +103,30 @@ const SplideCarousel = ({
         extensions={{ AutoScroll }}
         aria-label="Project Images Carousel"
       >
-        {images.map((image, index) => (
-          <SplideSlide key={index}>
-            <div style={{ height, width: "100%" }}>
-              <img
-                src={image}
-                alt={`Carousel image ${index + 1}`}
-                className={`${imageSize} ${imageRound}`}
-                style={{ objectFit }}
-                loading="lazy"  // Changed from eager to lazy
-              />
-            </div>
-          </SplideSlide>
-        ))}
+        {images.map((image, index) => {
+          const [isLoaded, setIsLoaded] = useState(false);
+
+          return (
+            <SplideSlide key={index}>
+              <div className={`image-container ${imageRound}`}>
+                {showLoader && !isLoaded && (
+                  <SkeletonLoader
+                    className={`skeleton-loader ${imageSize} ${imageRound}`}
+                    rounded={imageRound}
+                  />
+                )}
+                <img
+                  src={image}
+                  alt={`Carousel image ${index + 1}`}
+                  className={`${imageSize} ${imageRound}`}
+                  style={{ objectFit }}
+                  loading="lazy"
+                  onLoad={() => setIsLoaded(true)}
+                />
+              </div>
+            </SplideSlide>
+          );
+        })}
       </Splide>
     </div>
   );
