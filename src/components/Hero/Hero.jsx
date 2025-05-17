@@ -6,9 +6,7 @@ import BodyText from "../BodyText/BodyText";
 import { theme } from "../../theme";
 import logoData from "./modules/logoData";
 import './index.css';
-import GlobeImage from "../../assets/images/globe.svg";
 import Button from "../Button/Button";
-import patternImage from "../../assets/images/cube.png";
 import SplideCarousel from "../SplideCarousel/SplideCarousel";
 
 const Hero = () => {
@@ -21,13 +19,12 @@ const Hero = () => {
       <div 
         className="absolute bottom-0 left-0 w-full h-full bg-no-repeat bg-bottom bg-cover pointer-events-none z-0 opacity-100"
         style={{ 
-          backgroundImage: `url(${patternImage})`,
-          loading: "eager"
+          backgroundImage: `url(/pattern.png)` // from public folder
         }}
       >
         {/* Globe Image */}
         <img
-          src={GlobeImage}
+          src="/globe.svg" // from public folder
           alt="Globe Background"
           className="absolute top-0 right-[-20%] h-full w-auto opacity-15 object-right object-contain pointer-events-none z-10"
           loading="lazy"

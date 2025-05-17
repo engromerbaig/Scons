@@ -4,7 +4,6 @@ import BodyText from "../BodyText/BodyText";
 import InfiniteMarquee from "../InfiniteMarquee/InfiniteMarquee";
 import "./index.css";
 import { theme } from "../../theme";
-import patternImage from "../../assets/images/cube.png";
 
 const InnerHero = ({
   logoImage,
@@ -25,7 +24,7 @@ const InnerHero = ({
   children,
   bgColor = "bg-white",
   showPattern = true,
-  patternSrc = patternImage,
+  patternSrc = "/pattern.png", // Use public folder pattern image here
 }) => {
   const patternRef = useRef(null);
 
