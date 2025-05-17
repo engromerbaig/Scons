@@ -1,37 +1,38 @@
 [
     {
-      "id": 1,
-      "heading": "Success Story One",
-      "headline": "Transforming E-Commerce with Modern Web Solutions",
-      "location": "San Francisco, USA",
-      "bodyText": "Lorem ipsum dolor sit amet...",
-      "details": "Our client, a leading retailer, sought to revamp their online store. We delivered a high-performance, scalable web platform using the latest frameworks. The result was a 40% increase in user engagement and seamless integration with their backend systems.",
-      "service": "Web Development",
-      "technologies": ["React", "Tailwind", "Node.js", "Ruby on Rails"],
-      "year": "2023",
-      "clientDetails": "A huge investor based in Duisburg, Germany, operating since 1996 with a strong presence in multiple industries and a commitment to long-term growth.",
-      "deliverables": [
-        "High-performance frontend with React and Tailwind",
-        "Backend integration with Ruby on Rails",
-        "SEO optimization and analytics setup",
-        "Custom admin dashboard"
-      ],
-      "impactIntro": "The project led to significant improvements in user experience and operational efficiency.",
-      "impacts": [
-        {
-          "heading": "Enhanced User Engagement",
-          "text": "Achieved a 40% increase in user engagement through a modern, responsive design."
-        },
-        {
-          "heading": "Seamless Backend Integration",
-          "text": "Integrated with Ruby on Rails, ensuring smooth data flow and scalability."
-        },
-        {
-          "heading": "Improved SEO Performance",
-          "text": "Optimized the platform for search engines, boosting organic traffic by 25%."
-        }
-      ]
+  "id": 1,
+  "heading": "SN Hydraulik Service",
+  "headline": "Website for Hydraulic Repair & Maintenance Services",
+  "location": "Welzheim, Germany",
+  "bodyText": "Crafted a professional WordPress website for a German hydraulic service company, enhancing their digital presence and service outreach.",
+  "details": "SN Hydraulik Service required a reliable and visually appealing website to highlight their expertise in hydraulic repair and maintenance. We utilized WordPress with Elementor for rapid development, and incorporated brand-aligned graphics designed in Canva and Adobe Photoshop to ensure a consistent, high-impact visual identity.",
+  "service": "Web Development",
+  "technologies": ["WordPress", "Elementor", "Canva", "Adobe Photoshop"],
+  "year": "2023",
+  "clientDetails": "A trusted hydraulic service provider based in Welzheim, Germany, offering specialized repair, maintenance, and system optimization solutions for a wide range of industrial clients. The company is committed to precision engineering, quick response times, and customer-centric service delivery across the region.",
+  "deliverables": [
+    "Custom WordPress website",
+    "Responsive layout with Elementor",
+    "Visual content created with Canva and Photoshop",
+    "Service detail pages and contact integration"
+  ],
+  "impactIntro": "The redesigned website boosted brand professionalism and improved customer outreach.",
+  "impacts": [
+    {
+      "heading": "Stronger Online Presence",
+      "text": "Modernized design and responsive layout led to a 35% increase in web traffic."
     },
+    {
+      "heading": "Better Customer Engagement",
+      "text": "Streamlined contact pathways encouraged more service inquiries from local clients."
+    },
+    {
+      "heading": "Brand Cohesion",
+      "text": "Consistent visuals improved brand recognition across digital channels."
+    }
+  ]
+},
+
     {
       "id": 2,
       "heading": "Success Story Two",

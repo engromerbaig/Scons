@@ -188,7 +188,7 @@ const ProjectDetail = () => {
 
       {/* Deliverables & Outcomes */}
       <div
-        className={`flex flex-col gap-4  ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal}`}
+        className={`flex flex-col gap-4  ${theme.layoutPages.paddingBottom} ${theme.layoutPages.paddingHorizontal}`}
       >
         <Heading
           text="Deliverables & Outcomes"
@@ -197,7 +197,7 @@ const ProjectDetail = () => {
           lineHeight="leading-none"
         />
 
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 ">
+        <div className="grid grid-cols-1  gap-4 ">
           {project.deliverables.map((item, index) => (
             <div key={index} className="flex items-start gap-2">
               <IoIosCheckmarkCircle className="text-neon mt-1 shrink-0" size={20} />
