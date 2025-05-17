@@ -19,7 +19,7 @@ const Hero = () => {
       <div 
         className="absolute bottom-0 left-0 w-full h-full bg-no-repeat bg-bottom bg-cover pointer-events-none z-0 opacity-100"
         style={{ 
-          backgroundImage: `url(/pattern.png)` // from public folder
+          backgroundImage: `url(/pattern.webp)` // from public folder
         }}
       >
         {/* Globe Image */}

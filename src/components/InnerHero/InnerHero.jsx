@@ -24,7 +24,7 @@ const InnerHero = ({
   children,
   bgColor = "bg-white",
   showPattern = true,
-  patternSrc = "/pattern.png", // Use public folder pattern image here
+  patternSrc = "/pattern.webp", // Use public folder pattern image here
 }) => {
   const patternRef = useRef(null);
 

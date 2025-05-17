@@ -161,6 +161,7 @@ const ProjectDetail = () => {
                   textColor="black"
                   fontWeight="font-semibold"
                   className="py-3"
+                  fontSize="text-xs xl:text-sm" 
                 />
               );
             })}
