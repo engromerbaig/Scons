@@ -201,44 +201,41 @@
     }
   ]
 },
-    {
-      "id": 7,
-      "heading": "Success Story Seven",
-      "headline": "Streamlining Cloud Deployments for Enterprises",
-      "location": "Tokyo, Japan",
-      "bodyText": "Mauris blandit aliquet elit...",
-      "details": "An enterprise client needed reliable, automated deployments. Our DevOps team implemented CI/CD pipelines and container orchestration. This reduced deployment times from hours to minutes and improved system reliability.",
-      "service": "DevOps",
-      "technologies": ["Docker", "Kubernetes", "AWS"],
-      "year": "2021",
-      "clientDetails": "An experienced Duisburg-based investor since 1996, with a focus on cloud infrastructure and enterprise IT solutions.",
-      "deliverables": [
-        "CI/CD pipeline using GitHub Actions",
-        "Docker containerization of applications",
-        "Kubernetes orchestration on AWS",
-        "Monitoring with Prometheus and Grafana"
-      ],
-            "impactIntro": "The project led to significant improvements in user experience and operational efficiency.",
 
-      "impacts": [
-        {
-          "heading": "Reduced Deployment Time",
-          "text": "Cut deployment times from hours to minutes with CI/CD pipelines."
-        },
-        {
-          "heading": "Improved Reliability",
-          "text": "Achieved 99.99% system uptime with Kubernetes orchestration."
-        },
-        {
-          "heading": "Enhanced Monitoring",
-          "text": "Implemented Prometheus and Grafana for real-time system insights."
-        },
-        {
-          "heading": "Scalable Infrastructure",
-          "text": "Leveraged AWS to handle enterprise-scale workloads efficiently."
-        }
-      ]
+
+   {
+  "id": 7,
+  "heading": "Elegant Esthetics",
+  "headline": "Luxury Beauty & Wellness Website for an Aesthetic Studio",
+  "location": "California, USA",
+  "bodyText": "Designed and developed a visually elegant website for a beauty and skincare brand, enhancing their digital presence and promoting a client-first self-care philosophy.",
+  "details": "Elegant Esthetics needed a refined and welcoming website to represent their luxury skincare and wellness services. We used Adobe XD to prototype a soft, calming UI/UX design, developed the site with WordPress, and utilized Elementor for custom styling and modularity. The final result reflected the brand’s dedication to personalized care and sophistication.",
+  "service": "Web Design & Development",
+  "technologies": ["WordPress", "Elementor", "Adobe XD"],
+  "year": "2023",
+  "clientDetails": "Elegant Esthetics is a U.S.-based aesthetic studio founded by Tiffany Tovar, offering personalized skincare, beauty, and wellness services. With a mission to empower self-care, the studio blends expert knowledge with elegant service delivery to help clients look and feel radiant.",
+  "deliverables": [
+    "Custom WordPress website using Elementor",
+    "Adobe XD design prototypes",
+    "Responsive layout optimized for mobile devices",
+    "Integrated contact and booking modules"
+  ],
+  "impactIntro": "The new website created a luxurious and approachable digital identity for the client, increasing online bookings and engagement.",
+  "impacts": [
+    {
+      "heading": "Elevated Brand Image",
+      "text": "A modern, feminine design elevated client trust and reinforced brand elegance."
     },
+    {
+      "heading": "Improved Online Bookings",
+      "text": "Clear navigation and call-to-action sections increased appointment inquiries by 45%."
+    },
+    {
+      "heading": "User-Friendly Experience",
+      "text": "Mobile-optimized and intuitive design enhanced client interaction across devices."
+    }
+  ]
+},
     {
       "id": 8,
       "heading": "Success Story Eight",
