@@ -169,22 +169,30 @@ const ProjectDetail = () => {
         </div>
       </div>
 
-      <div className={`${theme.layoutPages.paddingVertical}`}>
-        <SplideCarousel
-          images={project.additionalImages.slice(1, 4)}
-          speed={1}
-          height="400px"
-          gap="1rem"
-          pauseOnHover={false}
-        />
-        <SplideCarousel
-          images={project.additionalImages.slice(4, 7)}
-          speed={-1}
-          height="400px"
-          gap="1rem"
-          pauseOnHover={false}
-        />
-      </div>
+
+{/* splide part */}
+     <div className={`${theme.layoutPages.paddingVertical}`}>
+  {project.additionalImages.slice(1, 4).some((img) => img) && (
+    <SplideCarousel
+      images={project.additionalImages.slice(1, 4)}
+      speed={1}
+      height="400px"
+      gap="1rem"
+      pauseOnHover={false}
+    />
+  )}
+
+  {project.additionalImages.slice(4, 7).some((img) => img) && (
+    <SplideCarousel
+      images={project.additionalImages.slice(4, 7)}
+      speed={-1}
+      height="400px"
+      gap="1rem"
+      pauseOnHover={false}
+    />
+  )}
+</div>
+
 
       {/* Deliverables & Outcomes */}
       <div
