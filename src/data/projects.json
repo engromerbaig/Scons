@@ -236,43 +236,10 @@
     }
   ]
 },
-    {
-      "id": 8,
-      "heading": "Success Story Eight",
-      "headline": "Enhancing Security for Financial Institutions",
-      "location": "Dubai, UAE",
-      "bodyText": "Pellentesque in ipsum id orci...",
-      "details": "A major bank required a comprehensive security audit. We conducted penetration testing and implemented advanced monitoring tools. The institution now enjoys enhanced protection against cyber threats and regulatory compliance.",
-      "service": "Cybersecurity",
-      "technologies": ["Wireshark", "Nmap"],
-      "year": "2023",
-      "clientDetails": "A Duisburg-based investor since 1996, with significant investments in cybersecurity and financial services.",
-      "deliverables": [
-        "Full-scale penetration testing report",
-        "Vulnerability scanning using Nmap",
-        "Traffic analysis via Wireshark",
-        "Implementation of intrusion detection system"
-      ],
-            "impactIntro": "The project led to significant improvements in user experience and operational efficiency.",
-
-      "impacts": [
-        {
-          "heading": "Enhanced Security",
-          "text": "Reduced cyber threats by 50% with thorough penetration testing."
-        },
-        {
-          "heading": "Regulatory Compliance",
-          "text": "Ensured compliance with financial regulations through audits."
-        },
-        {
-          "heading": "Proactive Monitoring",
-          "text": "Implemented intrusion detection for real-time threat monitoring."
-        }
-      ]
-    },
+ 
 
     {
-        "id": 9,
+        "id": 8,
         "heading": "Matuszak Hygiene",
         "headline": "Pest Management Website for Industrial Hygiene",
         "location": "Sprendlingen, Germany",
