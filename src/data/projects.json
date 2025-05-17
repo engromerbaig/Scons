@@ -33,44 +33,40 @@
   ]
 },
 
+   {
+  "id": 2,
+  "heading": "Dr. Thomas Tresper",
+  "headline": "Bilingual Website for German IP Attorney",
+  "location": "Frankfurt am Main, Germany",
+  "bodyText": "Developed a bilingual website for a German attorney specializing in intellectual property law, ensuring accessibility for both German and international clients.",
+  "details": "Dr. Thomas Tresper, a seasoned German attorney at law (Rechtsanwalt) with a specialization in IP and unfair competition, needed a professional online presence to represent his legal services. We designed a clean and trustworthy layout in Figma, and developed the website using WordPress and Elementor. The site supports both German and English content, allowing seamless communication with a broader clientele.",
+  "service": "Web Development",
+  "technologies": ["WordPress", "Elementor", "Figma"],
+  "year": "2023",
+  "clientDetails": "Dr. Thomas Tresper is a Frankfurt-based Rechtsanwalt practicing since 2005, with a sharp focus on intellectual property rights and unfair competition law. His clientele includes both domestic and international businesses seeking expert legal representation in protecting and enforcing their IP assets.",
+  "deliverables": [
+    "Bilingual WordPress website (German/English)",
+    "User interface design with Figma",
+    "Responsive layout via Elementor",
+    "Contact form and legal service pages"
+  ],
+  "impactIntro": "The bilingual site enhanced professional outreach and accessibility for international clients.",
+  "impacts": [
     {
-      "id": 2,
-      "heading": "Success Story Two",
-      "headline": "Revolutionizing Mobile Banking Experiences",
-      "location": "London, UK",
-      "bodyText": "Ut enim ad minim veniam...",
-      "details": "A fintech startup needed a secure and intuitive mobile app for its customers. We built a cross-platform application with robust authentication and real-time notifications. The app quickly gained traction, reaching over 100,000 downloads in six months.",
-      "service": "App Development",
-      "technologies": ["Flutter", "Firebase"],
-      "year": "2023",
-      "clientDetails": "A major financial investor headquartered in Duisburg, Germany, active since 1996 with extensive experience in fintech and mobile solutions.",
-      "deliverables": [
-        "Cross-platform mobile application using Flutter",
-        "Real-time push notifications",
-        "Firebase authentication and analytics",
-        "Secure payment gateway integration"
-      ],
-            "impactIntro": "The project led to significant improvements in user experience and operational efficiency.",
-
-      "impacts": [
-        {
-          "heading": "Massive User Adoption",
-          "text": "Reached over 100,000 downloads within six months of launch."
-        },
-        {
-          "heading": "Enhanced Security",
-          "text": "Implemented Firebase authentication to ensure secure user access."
-        },
-        {
-          "heading": "Real-Time Engagement",
-          "text": "Enabled real-time push notifications, increasing user interaction by 30%."
-        },
-        {
-          "heading": "Seamless Payments",
-          "text": "Integrated a secure payment gateway, reducing transaction errors by 15%."
-        }
-      ]
+      "heading": "Broadened Client Reach",
+      "text": "Dual-language support enabled effective communication with German and English-speaking clients alike."
     },
+    {
+      "heading": "Professional Online Presence",
+      "text": "Elegant design and legal-focused layout reinforced credibility and trust."
+    },
+    {
+      "heading": "Improved Usability",
+      "text": "Responsive design ensured smooth user experience across all devices."
+    }
+  ]
+},
+
     {
       "id": 3,
       "heading": "Success Story Three",
