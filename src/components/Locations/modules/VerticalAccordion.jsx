@@ -44,7 +44,7 @@ const VerticalAccordion = ({ isAnimate = true }) => {
 
     return (
         <div className="w-full overflow-hidden overflow-y-hidden">
-            <div className="h-[80vh] lg:h-[75vh] flex flex-col lg:flex-row text-black border-b-0 lg:border-b border-neon border-x">
+            <div className="h-[80vh] lgs:h-[75vh] flex flex-col lg:flex-row text-black border-b-0 lg:border-b border-neon border-x">
                 {accordionData.map((item, index) => (
                     <motion.div
                         key={index}
@@ -62,19 +62,21 @@ const VerticalAccordion = ({ isAnimate = true }) => {
                         {(isAnimate && openIndex === index) || (!isAnimate) ? (
                             <div
                                 ref={(el) => (contentRef.current[index] = el)}
-                                className="w-3/4 max-w-xl p-2 lg:p-10 overflow-y-auto flex flex-col items-start"
+                                className="w-4/5 max-w-xl p-2 lg:p-6 overflow-y-auto flex flex-col items-start"
                             >
                                 <img
                                     src={item.content.image}
                                     alt={item.title}
-                                    className="w-3/4 lg:w-full h-auto object-contain mb-4 mx-auto svg-neon"
+                                    className="w-4/5 h-auto object-contain mb-4 mx-auto svg-neon"
                                     loading='lazy'
                                 />
                                 <Heading
-                                    text={item.title}
+                                    // text={item.title}
+                                                                        text={`${item.title} Office`}
+
                                     color="text-black"
                                     font="font-manrope"
-                                    size="text-50px"
+                                    size="text-40px"
                                     centered={false}
                                 />
                                 <BodyText text={item.content.address} size="text-25px" centered={false}/>
