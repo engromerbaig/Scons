@@ -16,7 +16,7 @@ const InnerHero = ({
   bodySize = "text-25px",
   headingColor = "text-black",
   bodyTextColor = "text-black",
-  illustrationImageWidth = "w-full max-w-lg",
+  illustrationImageWidth = "w-1/2 xl:w-full xl:max-w-lg",
   showCarousel = true,
   carouselItems = [],
   showBottomShadow = true,
@@ -50,7 +50,7 @@ const InnerHero = ({
       )}
 
       {/* Main Content */}
-      <div className="relative flex flex-col-reverse xl:flex-row items-center justify-between w-full gap-8 z-10 text-white">
+      <div className="relative flex flex-col xl:flex-row items-center justify-between w-full gap-8 z-10 text-white">
         {/* Left Side */}
         <div className="flex flex-col items-start justify-center flex-1 gap-4 text-left">
           {logoImage && (
@@ -83,7 +83,7 @@ const InnerHero = ({
         </div>
 
         {/* Right Side: Illustration */}
-        <div className="hidden xl:flex flex-1 items-center justify-center">
+        <div className="flex flex-1 items-center justify-center">
           {illustrationImage && (
             <img
               src={illustrationImage}
