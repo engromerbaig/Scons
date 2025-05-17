@@ -44,7 +44,7 @@ const VerticalAccordion = ({ isAnimate = true }) => {
 
     return (
         <div className="w-full overflow-hidden overflow-y-hidden">
-            <div className="h-[80vh] lg:h-[75vh] flex flex-col lg:flex-row text-black border-b-0 lg:border-b border-neon border-x-0">
+            <div className="h-[80vh] lg:h-[75vh] flex flex-col lg:flex-row text-black border-b-0 lg:border-b border-neon border-x">
                 {accordionData.map((item, index) => (
                     <motion.div
                         key={index}

@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "framer-motion";
 import Heading from "../Heading/Heading";
 import AnimatedHeading from "./AnimatedHeading";

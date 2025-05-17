@@ -3,9 +3,7 @@ import React, { lazy } from 'react';
 // Lazy load components
 const Hero = lazy(() => import('../../components/Hero/Hero'));
 const UniqueApproachOld = lazy(() => import('../../components/UniqueApproach/UniqueApproachOld'));
-const Services = lazy(() => import('../../components/Services/Services'));
 const Industries = lazy(() => import('../../components/Industries/Industries'));
-const GIFSection = lazy(() => import('../../components/GIFSection/GIFSection'));
 const Locations = lazy(() => import('../../components/Locations/Locations'));
 
 
@@ -13,7 +11,6 @@ import Technologies from '../../components/Technologies/Technologies';
 
 import ServicesOld from '../../components/Services/ServicesOLD';
 import Projects from '../../components/Projects/Projects';
-import Reviews from '../../components/Reviews/Reviews';
 import Testimonials from '../../components/Testimonials/Testimonials';
 import StartProjectBelt from '../../components/StartProjectBelt/StartProjectBelt';
 
