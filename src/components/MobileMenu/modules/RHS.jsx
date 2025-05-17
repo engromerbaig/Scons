@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { services } from '../../Services/servicesData';
-import { socialsData } from './socialsData';
 import { theme } from '../../../theme';
 
 const RHS = ({ containerVariants, textVariants, handleClose }) => (

@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import MobileMenu from '../MobileMenu/MobileMenu';
 import { theme } from '../../theme';
 import ScrollToTopLink from '../../utilities/ScrollToTopLink';
