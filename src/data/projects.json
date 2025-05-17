@@ -101,44 +101,39 @@
   ]
 },
 
+  {
+  "id": 4,
+  "heading": "LitigationTech",
+  "headline": "Trial Support Web Platform for Legal Proceedings",
+  "location": "California, USA",
+  "bodyText": "Engineered a sleek and responsive web platform for a California-based trial support provider, enhancing service access for legal professionals handling in-person, remote, and hybrid litigation needs.",
+  "details": "LitigationTech needed a modern, scalable platform to reflect their expertise in courtroom technology and trial support services across Los Angeles and the Bay Area. Using React for the frontend and Node.js for the backend, we created a fast, responsive site styled with Tailwind CSS. The result is a robust, mobile-friendly platform that communicates complex legal services with clarity and professionalism.",
+  "service": "Full-Stack Web Development",
+  "technologies": ["React", "Node.js", "Tailwind CSS"],
+  "year": "2023",
+  "clientDetails": "LitigationTech is a California-based company specializing in trial support for legal teams engaged in high-stakes litigation. Offering services like remote evidence presentation, hybrid hearings, deposition support, and tech-driven courtroom logistics, they are trusted by law firms across the L.A. and Bay Area regions.",
+  "deliverables": [
+    "Frontend in React",
+    "Backend with Node.js",
+    "Responsive styling using Tailwind CSS",
+    "Dynamic service sections and contact modules"
+  ],
+  "impactIntro": "The platform increased accessibility to trial services while modernizing the company's online identity.",
+  "impacts": [
     {
-      "id": 4,
-      "heading": "Success Story Four",
-      "headline": "Empowering Businesses with AI Automation",
-      "location": "Bangalore, India",
-      "bodyText": "Excepteur sint occaecat...",
-      "details": "We developed a custom AI solution to automate data analysis for a logistics company. Using machine learning, the system reduced manual work by 70%. The client now makes faster, data-driven decisions with greater accuracy.",
-      "service": "AI Development",
-      "technologies": ["Python", "TensorFlow"],
-      "year": "2023",
-      "clientDetails": "A Duisburg-based investor since 1996, focusing on innovative AI and automation technologies globally.",
-      "deliverables": [
-        "Machine learning model for data analysis",
-        "Python-based backend automation scripts",
-        "Data visualization dashboard",
-        "Deployment on cloud with auto-scaling"
-      ],
-            "impactIntro": "The project led to significant improvements in user experience and operational efficiency.",
-
-      "impacts": [
-        {
-          "heading": "Reduced Manual Work",
-          "text": "Automated data analysis, cutting manual work by 70%."
-        },
-        {
-          "heading": "Faster Decision-Making",
-          "text": "Enabled data-driven decisions with 50% faster processing times."
-        },
-        {
-          "heading": "Improved Accuracy",
-          "text": "Enhanced prediction accuracy by 30% using machine learning models."
-        },
-        {
-          "heading": "Scalable Deployment",
-          "text": "Deployed on a cloud infrastructure with auto-scaling capabilities."
-        }
-      ]
+      "heading": "Improved Service Accessibility",
+      "text": "Faster, mobile-optimized experience led to increased service inquiries from attorneys and legal staff."
     },
+    {
+      "heading": "Modernized Brand Presence",
+      "text": "A sleek, minimal UI positioned LitigationTech as a forward-thinking legal tech provider."
+    },
+    {
+      "heading": "Scalable Architecture",
+      "text": "React and Node.js stack enabled easy feature expansion for future service offerings."
+    }
+  ]
+},
     {
       "id": 5,
       "heading": "Success Story Five",
