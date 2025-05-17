@@ -56,7 +56,7 @@ const LHS = ({ containerVariants, textVariants, handleClose }) => (
         key={contact.type}
         className="flex flex-row items-center space-x-1 lg:space-x-2"
       >
-        <Icon className="text-35px text-black" />
+        <Icon className="text-25px text-black" />
         <a
           href={contact.link}
           className="text-black text-sm lg:text-30px font-medium neon-hover"
