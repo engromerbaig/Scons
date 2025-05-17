@@ -50,8 +50,8 @@ const Navbar = () => {
   return (
     <nav
       className={`${
-        isSticky ? 'fixed top-0 bg-opacity-60' : 'absolute bg-transparent'
-      } ${theme.layoutPages.paddingHorizontal} pt-6 lg:pt-8 flex justify-between items-center w-full z-[50] transition-all duration-300`}
+        isSticky ? 'fixed top-0 bg-opacity-60 backdrop-blur-sm shadow-md' : 'absolute bg-transparent'
+      } ${theme.layoutPages.paddingHorizontal} py-4 lg:py-6 flex justify-between items-center w-full z-[50] transition-all duration-300`}
     >
       <div className="flex items-center">
         <ScrollToTopLink to="/" className="cursor-pointer">
@@ -75,7 +75,7 @@ const Navbar = () => {
           <Button
             name="Get in Touch"
             fontSize="text-10px"
-            className='py-1 px-1'
+            className="py-1 px-1"
             openModal={true}
           />
         </div>
