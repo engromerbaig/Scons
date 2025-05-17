@@ -45,7 +45,7 @@ const Hero = () => {
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
               <div className="mb-4">
                 <AnimatedHeading
-                  prefixText="We are"
+                  prefixText="We are a"
                   animatedWords={["Software", "Web", "App", "IT", "AI"]}
                   suffixText="Development Company"
                   color="text-black"
