@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import { navLinks } from '../../Navbar/navLinks';
 import { contactDetails } from './contactDetails';
 import { theme } from '../../../theme';
-import verticalLogo from '../../../assets/images/tyforaVertical.svg';
 
 
 const LHS = ({ containerVariants, textVariants, handleClose }) => (
@@ -15,9 +14,9 @@ const LHS = ({ containerVariants, textVariants, handleClose }) => (
     exit="exitLeft"
     variants={containerVariants}
     transition={{ duration: 0.5, delayChildren: 0.2 }}
-    className={`${theme.layoutPages.paddingMenu} lhs w-full lg:w-1/2  h-1/2 lg:h-full bg-grayBg flex flex-col py-4 md:py-6 lg:py-12`}
+    className={`${theme.layoutPages.paddingMenu} lhs w-full lg:w-1/2  h-1/2 lg:h-full bg-white flex flex-col py-4 md:py-6 lg:py-12`}
      style={{
-          backgroundImage: `url(${verticalLogo})`,
+          backgroundImage: `url(/sconsVertical.svg)`,
           backgroundPosition: 'right',
           backgroundSize: 'contain',
           backgroundRepeat: 'no-repeat',
