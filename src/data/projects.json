@@ -67,40 +67,40 @@
   ]
 },
 
+   {
+  "id": 3,
+  "heading": "Landes & Kollegen",
+  "headline": "Website for Oral & Maxillofacial Surgery Specialists",
+  "location": "Offenbach, Germany",
+  "bodyText": "Developed a modern, interactive website for a team of oral and maxillofacial surgeons affiliated with Sana Klinikum Offenbach, improving patient communication and emergency awareness.",
+  "details": "Landes & Kollegen, specialists in oral and maxillofacial surgery, needed a professional digital platform to reflect their emergency readiness and surgical expertise. We built a dynamic, visually engaging WordPress site using custom animations with GSAP and interactive UI elements powered by jQuery, ensuring responsiveness and user engagement.",
+  "service": "Web Development",
+  "technologies": ["WordPress", "GSAP", "jQuery"],
+  "year": "2023",
+  "clientDetails": "Landes & Kollegen is a team of certified oral and maxillofacial surgeons operating out of Offenbach, Germany. They are affiliated with Sana Klinikum Offenbach and provide around-the-clock emergency surgical care involving the mouth, jaw, and face. Their commitment to prompt, expert care is matched by their emphasis on patient education and digital accessibility.",
+  "deliverables": [
+    "Custom WordPress website",
+    "Animated interface using GSAP",
+    "Interactive components with jQuery",
+    "Emergency instructions and contact integration"
+  ],
+  "impactIntro": "The new website strengthened digital communication and reflected the clinic’s readiness for emergency care.",
+  "impacts": [
     {
-      "id": 3,
-      "heading": "Success Story Three",
-      "headline": "Designing Intuitive Interfaces for Healthcare",
-      "location": "Berlin, Germany",
-      "bodyText": "Duis aute irure dolor...",
-      "details": "Our team collaborated with a healthcare provider to redesign their patient portal. Through user research and prototyping, we created a clean, accessible interface. Patient satisfaction scores improved significantly after launch.",
-      "service": "UX/UI Design",
-      "technologies": ["Figma", "Adobe XD"],
-      "year": "2023",
-      "clientDetails": "An established Duisburg-based investor since 1996, with diversified investments in healthcare and technology sectors.",
-      "deliverables": [
-        "User research and stakeholder interviews",
-        "High-fidelity prototypes in Figma",
-        "Accessibility and usability testing",
-        "Implementation-ready design system"
-      ],
-            "impactIntro": "The project led to significant improvements in user experience and operational efficiency.",
-
-      "impacts": [
-        {
-          "heading": "Improved Patient Satisfaction",
-          "text": "Increased patient satisfaction scores by 35% with a user-friendly interface."
-        },
-        {
-          "heading": "Enhanced Accessibility",
-          "text": "Designed with accessibility in mind, meeting WCAG 2.1 standards."
-        },
-        {
-          "heading": "Streamlined Workflow",
-          "text": "Reduced patient task completion time by 20% through intuitive design."
-        }
-      ]
+      "heading": "Improved Emergency Access",
+      "text": "Clear call-to-action and emergency contact options improved patient response time."
     },
+    {
+      "heading": "Engaging User Experience",
+      "text": "GSAP-powered animations enhanced visual appeal and user engagement."
+    },
+    {
+      "heading": "Enhanced Digital Reputation",
+      "text": "Modern interface reinforced the clinic’s expertise and reliability in surgical care."
+    }
+  ]
+},
+
     {
       "id": 4,
       "heading": "Success Story Four",
