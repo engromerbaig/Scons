@@ -1,13 +1,15 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import ScrollToTopLink from "../../utilities/ScrollToTopLink";
 import Heading from "../Heading/Heading";
 import BodyText from "../BodyText/BodyText";
+import SkeletonLoader from "../../utilities/SkeletonLoader";
 
 const ProjectCard = ({ project }) => {
   const imageRef = useRef(null);
   const lastScrollY = useRef(window.scrollY);
-  // new main
+
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [logoLoaded, setLogoLoaded] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,18 +43,45 @@ const ProjectCard = ({ project }) => {
 
   return (
     <Link to={`/portfolio/${project.slug}`} className="group">
-      <div className="flex flex-col items-start ">
+      <div className="flex flex-col items-start">
+        {/* Cover Image */}
         <div className="relative w-full h-[500px] overflow-hidden rounded-3xl mb-4">
+          {!imageLoaded && (
+            <SkeletonLoader
+              className="w-full h-full absolute top-0 left-0"
+              rounded="rounded-3xl"
+            />
+          )}
           <img
             ref={imageRef}
-            src={project.coverImage} // Image 2 as cover
+            src={project.coverImage}
             alt={project.heading}
-            className="w-full h-[115%] object-cover absolute top-0 left-0"
-                            loading="lazy"  // Changed from eager to lazy
-
+            className={`w-full h-[115%] object-cover absolute top-0 left-0 transition-opacity duration-500 ${
+              imageLoaded ? "opacity-100" : "opacity-0"
+            }`}
+            loading="lazy"
+            onLoad={() => setImageLoaded(true)}
           />
-      </div>
-        <img src={project.logo} className="w-1/5 mb-4" alt={`${project.heading} logo`} />
+        </div>
+
+        {/* Logo */}
+        <div className="relative w-1/5 h-10 mb-4">
+          {!logoLoaded && (
+            <SkeletonLoader
+              className="w-full h-full absolute top-0 left-0"
+              rounded="rounded-lg"
+            />
+          )}
+          <img
+            src={project.logo}
+            className={`w-full h-full object-contain transition-opacity duration-500 ${
+              logoLoaded ? "opacity-100" : "opacity-0"
+            }`}
+            alt={`${project.heading} logo`}
+            onLoad={() => setLogoLoaded(true)}
+          />
+        </div>
+
         <Heading
           text={project.heading}
           size="text-35px"
@@ -60,7 +89,12 @@ const ProjectCard = ({ project }) => {
           centered={false}
           className="group-hover:underline"
         />
-        <BodyText text={project.headline} size="text-25px" centered={false} lineHeight="leading-loose" />
+        <BodyText
+          text={project.headline}
+          size="text-25px"
+          centered={false}
+          lineHeight="leading-loose"
+        />
       </div>
     </Link>
   );
