@@ -134,82 +134,73 @@
     }
   ]
 },
+   {
+  "id": 5,
+  "heading": "Visa Hub International",
+  "headline": "Visa Consultation Website for Global Non-Immigrant Services",
+  "location": "Karachi, Pakistan",
+  "bodyText": "Developed a comprehensive web portal for a visa consultancy firm, streamlining client onboarding and showcasing their global visa services through a modern digital platform.",
+  "details": "Visa Hub International needed a professional, scalable website to support their expanding non-immigrant visa services. We developed the site in WordPress using Elementor for rapid design deployment and customized integrations. Additionally, we integrated Magento components and SQL-based tools for managing application data and service workflows efficiently.",
+  "service": "Web Development",
+  "technologies": ["WordPress", "Elementor", "Magento", "SQL"],
+  "year": "2023",
+  "clientDetails": "Visa Hub International is a trusted global consultancy dedicated to simplifying non-immigrant visa applications for individuals and families. With experienced consultants and a user-centric approach, Visa Hub offers tailored guidance across multiple visa categories including tourism, business, and study abroad programs.",
+  "deliverables": [
+    "Custom WordPress website with Elementor",
+    "Integration with SQL for data management",
+    "Magento modules for client workflow",
+    "Multi-page form setup and contact automation"
+  ],
+  "impactIntro": "The new platform significantly enhanced operational efficiency and broadened Visa Hub’s digital reach.",
+  "impacts": [
     {
-      "id": 5,
-      "heading": "Success Story Five",
-      "headline": "Scaling Backend Infrastructure for E-Learning",
-      "location": "Toronto, Canada",
-      "bodyText": "Curabitur non nulla sit amet...",
-      "details": "An education platform faced challenges with growing user numbers. We overhauled their backend, implementing microservices and database optimization. This enabled smooth performance even during peak usage periods.",
-      "service": "Backend Development",
-      "technologies": ["Node.js", "Express", "MongoDB", "Swift"],
-      "year": "2022",
-      "clientDetails": "A Duisburg-based investor since 1996, with a strong commitment to supporting educational technology advancements.",
-      "deliverables": [
-        "Microservices architecture for scalability",
-        "Database performance tuning (MongoDB)",
-        "API rate limiting and caching",
-        "CI/CD pipelines for deployment"
-      ],
-            "impactIntro": "The project led to significant improvements in user experience and operational efficiency.",
-
-      "impacts": [
-        {
-          "heading": "Improved Scalability",
-          "text": "Scaled to handle 10x more users with microservices architecture."
-        },
-        {
-          "heading": "Enhanced Performance",
-          "text": "Reduced API response times by 40% through database optimization."
-        },
-        {
-          "heading": "Reliable Operations",
-          "text": "Ensured 99.9% uptime during peak usage with caching and rate limiting."
-        },
-        {
-          "heading": "Streamlined Deployment",
-          "text": "Implemented CI/CD pipelines, reducing deployment time by 60%."
-        },
-        {
-          "heading": "Cross-Platform Support",
-          "text": "Enabled Swift integration for iOS, improving mobile performance."
-        }
-      ]
+      "heading": "Streamlined Visa Applications",
+      "text": "Optimized digital forms and SQL workflows improved client onboarding by 35%."
     },
     {
-      "id": 6,
-      "heading": "Success Story Six",
-      "headline": "Modernizing Frontend for a SaaS Company",
-      "location": "Sydney, Australia",
-      "bodyText": "Vestibulum ac diam sit amet...",
-      "details": "A SaaS provider wanted a fresh look and faster load times. We rebuilt their frontend with React and Tailwind, focusing on responsive design. The new interface received positive feedback and increased customer retention.",
-      "service": "Frontend Development",
-      "technologies": ["React", "Figma", "WordPress"],
-      "year": "2025",
-      "clientDetails": "A Duisburg-based investor since 1996, with diverse investments in SaaS and digital transformation projects worldwide.",
-      "deliverables": [
-        "Responsive frontend with React",
-        "Tailwind-based design system",
-        "Performance optimization (Lighthouse score >90)",
-        "Figma-to-code component conversion"
-      ],
-            "impactIntro": "The project led to significant improvements in user experience and operational efficiency.",
-
-      "impacts": [
-        {
-          "heading": "Increased Retention",
-          "text": "Improved customer retention by 25% with a modern interface. lorem ipsum dolor sit amet, consectetur adipiscing elit."
-        },
-        {
-          "heading": "Faster Load Times",
-          "text": "Achieved a Lighthouse score above 90, reducing load times by 30%."
-        },
-        {
-          "heading": "Responsive Design",
-          "text": "Ensured seamless experience across devices with Tailwind CSS."
-        }
-      ]
+      "heading": "Expanded Global Reach",
+      "text": "The SEO-ready, responsive site attracted clients from over 15 new countries within the first quarter."
     },
+    {
+      "heading": "Professional Brand Identity",
+      "text": "Modern layout and service clarity improved credibility and conversion rates."
+    }
+  ]
+},
+    {
+  "id": 6,
+  "heading": "Tyfora",
+  "headline": "Corporate Website for a Mobile App Development Company",
+  "location": "Sydney, Australia",
+  "bodyText": "Built a fast, scalable website for an Australian mobile app development firm, showcasing their digital solutions and expertise in delivering high-performance applications across industries.",
+  "details": "Tyfora required a sleek and performance-driven website to establish their authority in the mobile app development space. We used React and Next.js for the frontend to ensure optimal speed and SEO, Node.js for backend flexibility, and Tailwind CSS for responsive design. Docker containers were implemented to streamline development and deployment across environments.",
+  "service": "Full-Stack Web Development",
+  "technologies": ["React", "Next.js", "Node.js", "Tailwind CSS", "Docker"],
+  "year": "2023",
+  "clientDetails": "Tyfora is a mobile app development company based in Sydney, Australia, providing robust software solutions across iOS, Android, and cross-platform ecosystems. They cater to startups and enterprises alike, specializing in innovation-driven products with a strong focus on scalability and user experience.",
+  "deliverables": [
+    "Frontend in React with Next.js for SEO",
+    "Backend with Node.js",
+    "Tailwind CSS for responsive styling",
+    "Docker-based deployment setup",
+    "Project showcase and contact modules"
+  ],
+  "impactIntro": "The site reinforced Tyfora’s brand as a top-tier development partner in the competitive Australian tech market.",
+  "impacts": [
+    {
+      "heading": "Boosted SEO & Performance",
+      "text": "Next.js rendered pages contributed to 50% faster load times and higher Google rankings."
+    },
+    {
+      "heading": "Streamlined DevOps",
+      "text": "Docker integration enabled smooth deployment pipelines and faster environment setup."
+    },
+    {
+      "heading": "Increased Client Engagement",
+      "text": "A clear service structure and case study section improved visitor retention and project inquiries."
+    }
+  ]
+},
     {
       "id": 7,
       "heading": "Success Story Seven",
