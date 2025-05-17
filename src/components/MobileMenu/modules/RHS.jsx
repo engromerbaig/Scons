@@ -13,14 +13,12 @@ const RHS = ({ containerVariants, textVariants, handleClose }) => (
     exit="exitRight"
     variants={containerVariants}
     transition={{ duration: 0.5, delayChildren: 0.2 }}
-    className="w-full lg:w-1/2 h-1/2 lg:h-full bg-white flex flex-row pointer-events-none overflow-hidden relative"
+    className="w-full lg:w-1/2 h-1/2 lg:h-full bg-white flex flex-row overflow-hidden relative"
         style={{
           backgroundImage: `url(/sconsVertical.svg)`,
           backgroundPosition: 'right',
           backgroundSize: 'contain',
           backgroundRepeat: 'no-repeat',
-          loading: 'eager',
-          pointerEvents: 'none',
         }}
     
   >
