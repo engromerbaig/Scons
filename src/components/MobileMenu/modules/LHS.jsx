@@ -15,13 +15,7 @@ const LHS = ({ containerVariants, textVariants, handleClose }) => (
     variants={containerVariants}
     transition={{ duration: 0.5, delayChildren: 0.2 }}
     className={`${theme.layoutPages.paddingMenu} lhs w-full lg:w-1/2  h-1/2 lg:h-full bg-white flex flex-col py-4 md:py-6 lg:py-12`}
-     style={{
-          backgroundImage: `url(/sconsVertical.svg)`,
-          backgroundPosition: 'right',
-          backgroundSize: 'contain',
-          backgroundRepeat: 'no-repeat',
-          loading: 'eager',
-        }}
+  
   >
     {/* Top Section (2/12) */}
     <div className="h-[16.67%] ">
