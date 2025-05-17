@@ -67,14 +67,14 @@ const ProjectDetail = () => {
       </InnerHero>
 
       {/* Cover Image with skeleton */}
-      <div className="relative w-full h-[600px]">
+      <div className="relative w-full h-full">
         {!coverImageLoaded && (
           <SkeletonLoader className="absolute top-0 left-0 w-full h-full" />
         )}
         <img
           src={project.coverImage}
           alt={project.heading}
-          className={`w-full h-[600px] object-cover transition-opacity duration-500 ease-in-out ${
+          className={`w-full h-full object-cover transition-opacity duration-500 ease-in-out ${
             coverImageLoaded ? "opacity-100" : "opacity-0"
           }`}
           loading="lazy"
