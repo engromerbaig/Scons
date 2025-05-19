@@ -1,19 +1,23 @@
-import React from 'react';
-import InnerHero from '../../components/InnerHero/InnerHero';
-import FormTemplate from '../../components/FormTemplate/FormTemplate';
-import Heading from '../../components/Heading/Heading';
-import BodyText from '../../components/BodyText/BodyText';
+import React, { useRef, useEffect, useState, lazy } from "react";
+
+// Lazy load all components
+const InnerHero = lazy(() => import('../../components/InnerHero/InnerHero'));
+const FormTemplate = lazy(() => import('../../components/FormTemplate/FormTemplate'));
+const Heading = lazy(() => import('../../components/Heading/Heading'));
+const BodyText = lazy(() => import('../../components/BodyText/BodyText'));
+const Locations = lazy(() => import('../../components/Locations/Locations'));
+const FadeInSection = lazy(() => import('../../utilities/Animations/FadeInSection'));
+
+// Static imports for non-component data
 import contactImage from '../../assets/images/contact.svg';
 import { theme } from '../../theme';
-import Locations from '../../components/Locations/Locations';
 import { contactDetails } from '../../components/MobileMenu/modules/contactDetails';
-
-import { FiPhone, FiMail } from 'react-icons/fi';
-
 
 const ContactUs = () => {
   return (
     <div>
+        <FadeInSection>
+
       <InnerHero
         headingText="Get in Contact With Us"
         spanText="Contact"
@@ -21,6 +25,8 @@ const ContactUs = () => {
         illustrationImage={contactImage}
         illustrationImageWidth="w-3/4"
       />
+        </FadeInSection>
+
 
       <div className="">
         <div className="flex flex-col gap-8">
@@ -44,33 +50,36 @@ const ContactUs = () => {
                   className='max-w-sm'
                 />
 
-            {contactDetails.map((contact) => {
-  const Icon = contact.icon;
-  return (
-    <a
-      key={contact.type}
-      href={contact.link}
-      className="flex items-center gap-2 hover:text-neon text-25px font-medium transition-colors"
-    >
-      <Icon className="text-25px text-black" />
-      {contact.detail}
-    </a>
-  );
-})}
-
-
-                            </div>
+                {contactDetails.map((contact) => {
+                  const Icon = contact.icon;
+                  return (
+                    <a
+                      key={contact.type}
+                      href={contact.link}
+                      className="flex items-center gap-2 hover:text-neon text-25px font-medium transition-colors"
+                    >
+                      <Icon className="text-25px text-black" />
+                      {contact.detail}
+                    </a>
+                  );
+                })}
+              </div>
 
               {/* Right Side: Form */}
               <div className="xl:w-1/2">
-                <FormTemplate buttonWidth="w-40" textAreaRows={4}  showSelect={true} hideErrorMessages={true}/>
+                <FormTemplate buttonWidth="w-40" textAreaRows={4} showSelect={true} hideErrorMessages={true}/>
               </div>
 
             </div>
           </div>
 
-          {/* Locations Accordion Section */}
+
+<FadeInSection>
           <Locations isAnimate={false} />
+
+
+</FadeInSection>
+          {/* Locations Accordion Section */}
 
         </div>
       </div>

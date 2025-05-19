@@ -1,13 +1,16 @@
-import React from 'react';
-import InnerHero from "../../components/InnerHero/InnerHero";
-import CollapsibleContainer from "../../components/CollapsibleContainer/CollapsibleContainer";
-import FAQ from "../../components/FAQ/FAQ";
-import jobListings from '../../data/jobListings.json'; // Import JSON data
-import GreenBelt from '../../components/GreenBelt/GreenBelt';
-import Heading from '../../components/Heading/Heading';
-import { theme } from '../../theme';
-import careerImage from '../../assets/images/career.svg'; // Import your image
+import React, { useRef, useEffect, useState, lazy } from "react";
 
+// Lazy load all components
+const InnerHero = lazy(() => import("../../components/InnerHero/InnerHero"));
+const CollapsibleContainer = lazy(() => import("../../components/CollapsibleContainer/CollapsibleContainer"));
+const FAQ = lazy(() => import("../../components/FAQ/FAQ"));
+const GreenBelt = lazy(() => import("../../components/GreenBelt/GreenBelt"));
+const Heading = lazy(() => import("../../components/Heading/Heading"));
+
+// Static imports for non-component data
+import jobListings from '../../data/jobListings.json';
+import { theme } from '../../theme';
+import careerImage from '../../assets/images/career.svg';
 
 const Careers = () => {
     return (
@@ -17,7 +20,7 @@ const Careers = () => {
                 headingText="Begin Your Career With Us"
                 spanText="Career"
                 bodyText="Join Scons and be part of a dynamic team transforming businesses worldwide. Innovate, grow, and excel with us."
-                illustrationImage={careerImage} // Use the imported image
+                illustrationImage={careerImage}
                 illustrationImageWidth='w-3/4'
             />
 
@@ -31,17 +34,16 @@ const Careers = () => {
                         city={job.city}
                         employmentType={job.employmentType}
                         childItems={job.childItems}
-                        borderColor={index % 2 === 0 ? 'border-bodyText' : 'border-neon'} // Alternating border color
+                        borderColor={index % 2 === 0 ? 'border-bodyText' : 'border-neon'}
                     />
                 ))}
             </div>
 
-
             <GreenBelt>
                 <Heading
-                text="Our Dedication"
-                spanText='Dedication'
-                size='text-70px'
+                    text="Our Dedication"
+                    spanText='Dedication'
+                    size='text-70px'
                 />
             </GreenBelt>
             {/* FAQ Section */}
