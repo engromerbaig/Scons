@@ -6,6 +6,7 @@ import TestimonialBox from "./TestimonialBox";
 import testimonials from "./testimonialsData";
 import clutchLogo from "../../assets/icons/reviews/1.svg";
 import trustLogo from "../../assets/icons/reviews/2.svg";
+import g2Logo from "../../assets/icons/reviews/3.png";
 
 const getRandomTestimonials = (array, count) => {
   const shuffled = [...array].sort(() => 0.5 - Math.random());
@@ -34,8 +35,8 @@ const Testimonials = () => {
       </div>
 
       <div className="flex flex-row justify-center items-center gap-10 w-full mb-8">
-        <img src={clutchLogo} alt="clutch logo" className="w-[8%]" loading='lazy' />
-        <img src={trustLogo} alt="trust logo" className="w-[10%]" loading='lazy' />
+        <img src={clutchLogo} alt="clutch logo" className="w-20 aspect-rectangle" loading='lazy' />
+        <img src={trustLogo} alt="trust logo" className="w-20 aspect-rectangle" loading='lazy' />
       </div>
 
       <div
