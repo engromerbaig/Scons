@@ -10,12 +10,14 @@
   "technologies": ["WordPress", "Elementor", "Canva", "Adobe Photoshop"],
   "year": "2023",
   "clientDetails": "A trusted hydraulic service provider based in Welzheim, Germany, offering specialized repair, maintenance, and system optimization solutions for a wide range of industrial clients. The company is committed to precision engineering, quick response times, and customer-centric service delivery across the region.",
-  "deliverables": [
-    "Custom WordPress website",
-    "Responsive layout with Elementor",
-    "Visual content created with Canva and Photoshop",
-    "Service detail pages and contact integration"
-  ],
+"deliverables": [
+  "WordPress Website",
+  "Responsive (Elementor)",
+  "Visuals (Canva, PS)",
+  "Service Pages & Contact",
+  "SEO Content"
+],
+
   "impactIntro": "The redesigned website boosted brand professionalism and improved customer outreach.",
   "impacts": [
     {
@@ -44,12 +46,13 @@
   "technologies": ["WordPress", "Elementor", "Figma"],
   "year": "2023",
   "clientDetails": "Dr. Thomas Tresper is a Frankfurt-based Rechtsanwalt practicing since 2005, with a sharp focus on intellectual property rights and unfair competition law. His clientele includes both domestic and international businesses seeking expert legal representation in protecting and enforcing their IP assets.",
-  "deliverables": [
-    "Bilingual WordPress website (German/English)",
-    "User interface design with Figma",
-    "Responsive layout via Elementor",
-    "Contact form and legal service pages"
-  ],
+"deliverables": [
+  "Bilingual Website (DE/EN)",
+  "UI Design (Figma)",
+  "Responsive (Elementor)",
+  "Contact & Legal Pages"
+],
+
   "impactIntro": "The bilingual site enhanced professional outreach and accessibility for international clients.",
   "impacts": [
     {
@@ -78,12 +81,12 @@
   "technologies": ["WordPress", "GSAP", "jQuery"],
   "year": "2023",
   "clientDetails": "Landes & Kollegen is a team of certified oral and maxillofacial surgeons operating out of Offenbach, Germany. They are affiliated with Sana Klinikum Offenbach and provide around-the-clock emergency surgical care involving the mouth, jaw, and face. Their commitment to prompt, expert care is matched by their emphasis on patient education and digital accessibility.",
-  "deliverables": [
-    "Custom WordPress website",
-    "Animated interface using GSAP",
-    "Interactive components with jQuery",
-    "Emergency instructions and contact integration"
-  ],
+"deliverables": [
+  "Custom WP Website",
+  "Animated UI (GSAP)",
+  "Interactive (jQuery)",
+  "Emergency Info & Contact"
+],
   "impactIntro": "The new website strengthened digital communication and reflected the clinic’s readiness for emergency care.",
   "impacts": [
     {
@@ -112,12 +115,12 @@
   "technologies": ["React", "Node.js", "Tailwind CSS"],
   "year": "2023",
   "clientDetails": "LitigationTech is a California-based company specializing in trial support for legal teams engaged in high-stakes litigation. Offering services like remote evidence presentation, hybrid hearings, deposition support, and tech-driven courtroom logistics, they are trusted by law firms across the L.A. and Bay Area regions.",
-  "deliverables": [
-    "Frontend in React",
-    "Backend with Node.js",
-    "Responsive styling using Tailwind CSS",
-    "Dynamic service sections and contact modules"
-  ],
+"deliverables": [
+  "Frontend (React)",
+  "Backend (Node.js)",
+  "Responsive (Tailwind CSS)",
+  "Dynamic Services & Contact"
+],
   "impactIntro": "The platform increased accessibility to trial services while modernizing the company's online identity.",
   "impacts": [
     {
@@ -145,12 +148,12 @@
   "technologies": ["WordPress", "Elementor", "Magento", "SQL"],
   "year": "2023",
   "clientDetails": "Visa Hub International is a trusted global consultancy dedicated to simplifying non-immigrant visa applications for individuals and families. With experienced consultants and a user-centric approach, Visa Hub offers tailored guidance across multiple visa categories including tourism, business, and study abroad programs.",
-  "deliverables": [
-    "Custom WordPress website with Elementor",
-    "Integration with SQL for data management",
-    "Magento modules for client workflow",
-    "Multi-page form setup and contact automation"
-  ],
+"deliverables": [
+  "WP Website (Elementor)",
+  "SQL Integration",
+  "Magento Modules",
+  "Multi-page Forms & Automation"
+],
   "impactIntro": "The new platform significantly enhanced operational efficiency and broadened Visa Hub’s digital reach.",
   "impacts": [
     {
@@ -178,13 +181,14 @@
   "technologies": ["React", "Next.js", "Node.js", "Tailwind CSS", "Docker"],
   "year": "2023",
   "clientDetails": "Tyfora is a mobile app development company based in Sydney, Australia, providing robust software solutions across iOS, Android, and cross-platform ecosystems. They cater to startups and enterprises alike, specializing in innovation-driven products with a strong focus on scalability and user experience.",
-  "deliverables": [
-    "Frontend in React with Next.js for SEO",
-    "Backend with Node.js",
-    "Tailwind CSS for responsive styling",
-    "Docker-based deployment setup",
-    "Project showcase and contact modules"
-  ],
+"deliverables": [
+  "Frontend (React, Next.js)",
+  "Backend (Node.js)",
+  "Responsive (Tailwind CSS)",
+  "Docker Deployment",
+  "Showcase & Contact Modules"
+],
+
   "impactIntro": "The site reinforced Tyfora’s brand as a top-tier development partner in the competitive Australian tech market.",
   "impacts": [
     {
@@ -214,12 +218,12 @@
   "technologies": ["WordPress", "Elementor", "Adobe XD"],
   "year": "2023",
   "clientDetails": "Elegant Esthetics is a U.S.-based aesthetic studio founded by Tiffany Tovar, offering personalized skincare, beauty, and wellness services. With a mission to empower self-care, the studio blends expert knowledge with elegant service delivery to help clients look and feel radiant.",
-  "deliverables": [
-    "Custom WordPress website using Elementor",
-    "Adobe XD design prototypes",
-    "Responsive layout optimized for mobile devices",
-    "Integrated contact and booking modules"
-  ],
+"deliverables": [
+  "WP Website (Elementor)",
+  "Design Prototypes (Adobe XD)",
+  "Responsive Mobile Layout",
+  "Contact & Booking Modules"
+],
   "impactIntro": "The new website created a luxurious and approachable digital identity for the client, increasing online bookings and engagement.",
   "impacts": [
     {
@@ -250,12 +254,13 @@
         "year": "2023",
       "clientDetails": "A German hygiene-focused company headquartered in Sprendlingen, specializing in advanced pest control solutions tailored for industrial and commercial sectors. With a strong foundation in the local market, the company is actively working to expand its presence across the European Union and into international markets, aiming to deliver high-quality, compliant, and sustainable hygiene services at scale.",
 
-        "deliverables": [
-          "Custom WordPress website",
-          "Design prototyping in Figma",
-          "Responsive layout via Elementor",
-          "SEO-ready pages and contact form integration"
-        ],
+    "deliverables": [
+  "Custom WP Website",
+  "Design Prototyping (Figma)",
+  "Responsive (Elementor)",
+  "SEO Pages & Contact Form"
+],
+
         "impactIntro": "The newly developed website significantly improved customer engagement and online presence.",
         "impacts": [
           {

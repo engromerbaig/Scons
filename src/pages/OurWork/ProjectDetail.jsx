@@ -13,6 +13,7 @@ import ImpactSection from "./ImpactSection";
 import Vision from "../../components/Vision/Vision";
 import InnerHero from "../../components/InnerHero/InnerHero";
 import SkeletonLoader from "../../utilities/SkeletonLoader";
+import Deliverables from "./Deliverables";
 
 const ProjectDetail = () => {
   const { slug } = useParams();
@@ -195,25 +196,7 @@ const ProjectDetail = () => {
 
 
       {/* Deliverables & Outcomes */}
-      <div
-        className={`flex flex-col gap-4  ${theme.layoutPages.paddingBottom} ${theme.layoutPages.paddingHorizontal}`}
-      >
-        <Heading
-          text="Deliverables & Outcomes"
-          centered={false}
-          color="text-black"
-          lineHeight="leading-none"
-        />
-
-        <div className="grid grid-cols-1  gap-4 ">
-          {project.deliverables.map((item, index) => (
-            <div key={index} className="flex items-start gap-2">
-              <IoIosCheckmarkCircle className="text-neon mt-1 shrink-0" size={20} />
-              <BodyText text={item} centered={false} color="text-black" />
-            </div>
-          ))}
-        </div>
-      </div>
+     <Deliverables deliverables={project.deliverables} />
 
       <HorizontalScroller
         heading={`How ${project.heading} came to life`}
