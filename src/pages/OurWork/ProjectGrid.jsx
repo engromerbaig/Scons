@@ -1,9 +1,9 @@
 import React from "react";
 import ProjectCard from "../../components/ProjectCard/ProjectCard";
 
-const ProjectGrid = ({ filteredProjects, enableAnimation = true, containerClassName = "py-20", cardOffset = "lg:mt-32" }) => {
+const ProjectGrid = ({ filteredProjects, enableAnimation = true, containerClassName = "py-20", cardOffset = "lg:mt-40" }) => {
   return (
-    <div className={`flex flex-wrap justify-between w-full ${containerClassName}`}>
+    <div className={`flex flex-wrap justify-between gap-10 xl:gap-2 w-full ${containerClassName}`}>
       {filteredProjects.map((project, index) => (
         <div
           key={project.id}

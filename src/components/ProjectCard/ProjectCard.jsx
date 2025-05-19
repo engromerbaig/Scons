@@ -45,7 +45,7 @@ const ProjectCard = ({ project }) => {
     <Link to={`/portfolio/${project.slug}`} className="group">
       <div className="flex flex-col items-start">
         {/* Cover Image */}
-        <div className="relative w-full h-[500px] overflow-hidden rounded-3xl mb-4">
+        <div className="relative w-full h-[500px] overflow-hidden rounded-3xl mb-2">
           {!imageLoaded && (
             <SkeletonLoader
               className="w-full h-full absolute top-0 left-0"
