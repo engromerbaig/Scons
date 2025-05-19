@@ -45,12 +45,12 @@ const colors = [
         align: "start",
         labels: {
           font: {
-            size: 14,
+            size: 10,
             family: "Manrope",
           },
           color: "#000",
-          padding: 20,
-          boxWidth: 20,
+          padding: 15,
+          boxWidth: 30,
           usePointStyle: false,
           generateLabels: (chart) => {
             return chart.data.labels.map((label, index) => ({
