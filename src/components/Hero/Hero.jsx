@@ -62,6 +62,7 @@ const Hero = () => {
                   text="We are your trusted development partner with just one goal in focus - to build products that generate a lasting, profitable impact."
                   centered={false}
                   color="text-black"
+                  className="max-w-2xl"
                 />
               </div>
 
