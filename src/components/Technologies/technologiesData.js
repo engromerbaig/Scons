@@ -137,4 +137,19 @@ export const technologiesData = {
     ],
     
   },
+
+   "Digital Marketing": {
+    Tools: [
+            { name: "SEO", icon: icons.blockchain.seo2 },
+
+      { name: "Ahrefs", icon: icons.blockchain.seo1 },
+         { name: "Digital Marketing", icon: icons.blockchain.ppc1 },
+      { name: "PPC", icon: icons.blockchain.ppc2 },
+      { name: "HubSpot", icon: icons.blockchain.marketing1 },
+      { name: "Meta Ads", icon: icons.blockchain.marketing2 },
+
+    ],
+ 
+    
+  },
 };
