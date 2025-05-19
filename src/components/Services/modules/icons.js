@@ -153,6 +153,7 @@ import ppc2 from "../../../assets/icons/services/Blockchain/ppc/2.svg";
 //marketing
 import marketing1 from "../../../assets/icons/services/Blockchain/marketing/1.svg";
 import marketing2 from "../../../assets/icons/services/Blockchain/marketing/2.svg";
+import marketing3 from "../../../assets/icons/services/Blockchain/marketing/3.svg";
 
 
 // smart
@@ -381,7 +382,7 @@ consultationFAQ5: consultationFAQ5,
         //marketing
         marketing1: marketing1,
         marketing2: marketing2,
-
+        marketing3: marketing3,
 
         
         //smart

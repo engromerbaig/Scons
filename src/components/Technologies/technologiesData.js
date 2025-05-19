@@ -147,6 +147,8 @@ export const technologiesData = {
       { name: "PPC", icon: icons.blockchain.ppc2 },
       { name: "HubSpot", icon: icons.blockchain.marketing1 },
       { name: "Meta Ads", icon: icons.blockchain.marketing2 },
+            { name: "Branding", icon: icons.blockchain.marketing3 },
+
 
     ],
  
