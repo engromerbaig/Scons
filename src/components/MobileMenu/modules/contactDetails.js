@@ -18,7 +18,7 @@ export const contactDetails = [
   {
     type: 'Phone',
     icon: FaPhoneAlt,
-    detail: '(936) 978-9230',
-    link: 'tel:(936) 978-9230',
+    detail: '+44 (7546) 296 810',
+    link: 'tel:+44 (7546) 296 810',
   },
 ];
