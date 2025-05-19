@@ -2,29 +2,34 @@ import React, { useEffect } from "react";
 import { useAnimation, motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
-const FadeInSection = ({ children, threshold = 0.5, className = "" }) => {
+const FadeInSection = ({ children, disabled = false }) => {
   const controls = useAnimation();
-  const [ref, inView] = useInView({ triggerOnce: true, threshold });
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.05 });
 
   useEffect(() => {
-    if (inView) {
+    if (!disabled && inView) {
       controls.start("visible");
     }
-  }, [controls, inView]);
+  }, [controls, inView, disabled]);
 
   const variants = {
-    // y20 controls the direction of animation
-    hidden: { opacity: 0, y: 20 }, 
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
+    hidden: { opacity: 0, y: 20 }, // smoother entry
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.7,
+        ease: "easeOut" // more natural easing
+      }
+    }
   };
 
   return (
     <motion.div
       ref={ref}
-      initial="hidden"
-      animate={controls}
-      variants={variants}
-      className={className} // Pass the className prop here
+      initial={disabled ? false : "hidden"}
+      animate={disabled ? false : controls}
+      variants={disabled ? {} : variants}
     >
       {children}
     </motion.div>
