@@ -7,6 +7,7 @@ import logoData from "./modules/logoData";
 import './index.css';
 import Button from "../Button/Button";
 import SplideCarousel from "../SplideCarousel/SplideCarousel";
+import FadeWrapper from "../../utilities/Animations/FadeWrapper";
 
 const Hero = () => {
   // Extract image URLs from logoData
@@ -38,7 +39,8 @@ const Hero = () => {
         >
           {/* Centered text container */}
           <div className="w-full max-w-4xl text-left relative z-110">
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
+            <FadeWrapper order={1}>
+                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
               <div className="mb-4">
                 <AnimatedHeading
                   prefixText="We are a"
@@ -50,6 +52,10 @@ const Hero = () => {
                   centered={false}
                 />
               </div>
+                          </motion.div>
+              </FadeWrapper>
+        
+
 
               <div>
                 <BodyText
@@ -59,7 +65,9 @@ const Hero = () => {
                 />
               </div>
 
-              <div className="flex items-center gap-x-4 xl:gap-x-6 mt-4 relative z-120">
+<FadeWrapper order={2}>
+
+       <div className="flex items-center gap-x-4 xl:gap-x-6 mt-4 relative z-120">
                 <Button
                   name="Contact Us"
                   textColor="black"
@@ -85,8 +93,9 @@ const Hero = () => {
                   }}
                   shadow="shadow-none"
                 />
-              </div>  
-            </motion.div>
+              </div> 
+  </FadeWrapper>
+          
           </div>
         </div>
 
@@ -107,7 +116,8 @@ const Hero = () => {
               />
             </div>
 
-            <SplideCarousel
+            <FadeWrapper order={3}>
+     <SplideCarousel
               images={logoImages}
               direction="ltr"
               speed={1}
@@ -122,6 +132,9 @@ const Hero = () => {
               mobilePerPage={2}
               showLoader={false}
             />
+              </FadeWrapper>
+
+       
           </div>
         </div>
       </div>
