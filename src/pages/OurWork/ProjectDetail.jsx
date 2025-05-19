@@ -48,24 +48,32 @@ const ProjectDetail = () => {
 
   return (
     <div className={`${theme.layoutPages.paddingBottom} min-h-screen`}>
-      <InnerHero
-        logoImage={project.logo}
-        headingText={project.heading}
-        bodyText={project.bodyText}
-        height="h-auto"
-        headingColor="text-black"
-        showBottomShadow={false}
-        showPattern={false}
+ <InnerHero
+  logoImage={project.logo}
+  headingText={project.heading}
+  bodyText={project.bodyText}
+  height="h-auto"
+  headingColor="text-black"
+  showBottomShadow={false}
+  showPattern={false}
+>
+  <div className="flex flex-wrap gap-2 items-start justify-start">
+    {(Array.isArray(project.service) ? project.service : [project.service]).map((serviceItem, index) => (
+      <div
+        key={index}
+        className="border-2 border-black text-center rounded-full px-4 py-1 w-fit"
       >
-        <div className="border-2 border-black text-center rounded-full w-40 px-2 py-1">
-          <BodyText
-            text={project.service}
-            size="text-xs"
-            fontWeight="font-semibold"
-            color="text-black"
-          />
-        </div>
-      </InnerHero>
+        <BodyText
+          text={serviceItem}
+          size="text-xs"
+          fontWeight="font-semibold"
+          color="text-black"
+        />
+      </div>
+    ))}
+  </div>
+</InnerHero>
+
 
       {/* Cover Image with skeleton */}
       <div className="relative w-full h-full">
