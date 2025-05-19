@@ -1,21 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy } from "react";
 import { useParams } from "react-router-dom";
+
+// Lazy load all components
+const Heading = lazy(() => import("../../components/Heading/Heading"));
+const BodyText = lazy(() => import("../../components/BodyText/BodyText"));
+const SplideCarousel = lazy(() => import("../../components/SplideCarousel/SplideCarousel"));
+const Button = lazy(() => import("../../components/Button/Button"));
+const HorizontalScroller = lazy(() => import("../../components/HorizontalScroller/HorizontalScroller"));
+const ImpactSection = lazy(() => import("./ImpactSection"));
+const Vision = lazy(() => import("../../components/Vision/Vision"));
+const InnerHero = lazy(() => import("../../components/InnerHero/InnerHero"));
+const SkeletonLoader = lazy(() => import("../../utilities/SkeletonLoader"));
+const Deliverables = lazy(() => import("./Deliverables"));
+const FadeWrapper = lazy(() => import("../../utilities/Animations/FadeWrapper"));
+const FadeInSection = lazy(() => import("../../utilities/Animations/FadeInSection"));
+
+// Static imports for non-component data
 import { theme } from "../../theme";
 import projects from "./projectDetails";
-import Heading from "../../components/Heading/Heading";
-import BodyText from "../../components/BodyText/BodyText";
-import SplideCarousel from "../../components/SplideCarousel/SplideCarousel";
 import { technologiesData } from "../../components/Technologies/technologiesData";
-import Button from "../../components/Button/Button";
 import { IoIosCheckmarkCircle } from "react-icons/io";
-import HorizontalScroller from "../../components/HorizontalScroller/HorizontalScroller";
-import ImpactSection from "./ImpactSection";
-import Vision from "../../components/Vision/Vision";
-import InnerHero from "../../components/InnerHero/InnerHero";
-import SkeletonLoader from "../../utilities/SkeletonLoader";
-import Deliverables from "./Deliverables";
 import { useLayoutEffect } from "react";
-
 
 const ProjectDetail = () => {
   const { slug } = useParams();
@@ -25,13 +30,11 @@ const ProjectDetail = () => {
   const [coverImageLoaded, setCoverImageLoaded] = useState(false);
   const [additionalImageLoaded, setAdditionalImageLoaded] = useState(false);
 
-
-useLayoutEffect(() => {
-  window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-  setCoverImageLoaded(false);
-  setAdditionalImageLoaded(false);
-}, [slug]);
-
+  useLayoutEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    setCoverImageLoaded(false);
+    setAdditionalImageLoaded(false);
+  }, [slug]);
 
   const findTechnologyIcon = (techName) => {
     for (const category in technologiesData) {
@@ -51,48 +54,48 @@ useLayoutEffect(() => {
 
   return (
     <div className={`${theme.layoutPages.paddingBottom} min-h-screen`}>
- <InnerHero
-logoImages={[project.logo]}
-headingText={project.heading}
-  bodyText={project.bodyText}
-  height="h-auto"
-  headingColor="text-black"
-  showBottomShadow={false}
-  showPattern={false}
->
-  <div className="flex flex-wrap gap-2 items-start justify-start">
-    {(Array.isArray(project.service) ? project.service : [project.service]).map((serviceItem, index) => (
-      <div
-        key={index}
-        className="border-2 border-black text-center rounded-full px-4 py-1 w-fit"
+      <InnerHero
+        logoImages={[project.logo]}
+        headingText={project.heading}
+        bodyText={project.bodyText}
+        height="h-auto"
+        headingColor="text-black"
+        showBottomShadow={false}
+        showPattern={false}
       >
-        <BodyText
-          text={serviceItem}
-          size="text-xs"
-          fontWeight="font-semibold"
-          color="text-black"
-        />
-      </div>
-    ))}
-  </div>
-</InnerHero>
+        <div className="flex flex-wrap gap-2 items-start justify-start">
+          {(Array.isArray(project.service) ? project.service : [project.service]).map((serviceItem, index) => (
+            <div
+              key={index}
+              className="border-2 border-black text-center rounded-full px-4 py-1 w-fit"
+            >
+              <BodyText
+                text={serviceItem}
+                size="text-xs"
+                fontWeight="font-semibold"
+                color="text-black"
+              />
+            </div>
+          ))}
+        </div>
+      </InnerHero>
 
-
-      {/* Cover Image with skeleton */}
-      <div className="relative w-full h-full">
-        {!coverImageLoaded && (
-          <SkeletonLoader className="absolute top-0 left-0 w-full h-full" />
-        )}
-        <img
-          src={project.coverImage}
-          alt={project.heading}
-          className={`w-full h-full object-cover transition-opacity duration-500 ease-in-out ${
-            coverImageLoaded ? "opacity-100" : "opacity-0"
-          }`}
-          loading="lazy"
-          onLoad={() => setCoverImageLoaded(true)}
-        />
-      </div>
+      <FadeInSection>
+        <div className="relative w-full h-full">
+          {!coverImageLoaded && (
+            <SkeletonLoader className="absolute top-0 left-0 w-full h-full" />
+          )}
+          <img
+            src={project.coverImage}
+            alt={project.heading}
+            className={`w-full h-full object-cover transition-opacity duration-500 ease-in-out ${
+              coverImageLoaded ? "opacity-100" : "opacity-0"
+            }`}
+            loading="lazy"
+            onLoad={() => setCoverImageLoaded(true)}
+          />
+        </div>
+      </FadeInSection>
 
       {/* About Client Section */}
       <div
@@ -135,79 +138,80 @@ headingText={project.heading}
         </div>
       </div>
 
-      {/* Project Description & Technologies */}
-      <div
-        className={`flex flex-col xl:flex-row justify-between items-end gap-8 ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal}`}
-      >
-        {/* Left: Description */}
-        <div className="flex flex-col gap-4 xl:w-3/5 w-full">
-          <Heading
-            text={project.headline}
-            centered={false}
-            lineHeight="leading-none"
-            color="text-black"
-          />
-          <BodyText text={project.details} centered={false} color="text-black" />
-        </div>
+      <FadeWrapper>
+        {/* Project Description & Technologies */}
+        <div
+          className={`flex flex-col xl:flex-row justify-between items-end gap-8 ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal}`}
+        >
+          {/* Left: Description */}
+          <div className="flex flex-col gap-4 xl:w-3/5 w-full">
+            <Heading
+              text={project.headline}
+              centered={false}
+              lineHeight="leading-none"
+              color="text-black"
+            />
+            <BodyText text={project.details} centered={false} color="text-black" />
+          </div>
 
-        {/* Right: Tech Stack (bottom aligned) */}
-        <div className="flex flex-col justify-start items-start gap-2 xl:w-2/5 w-full">
-          <BodyText
-            text="Stack Used:"
-            color="text-grayText"
-            centered={false}
-            fontWeight="font-bold"
-          />
-          <div className="grid grid-cols-2 gap-2 mt-2">
-            {project.technologies.map((tech, index) => {
-              const icon = findTechnologyIcon(tech);
-              return (
-                <Button
-                  key={index}
-                  name={tech}
-                  icon={icon}
-                  hoverBgColor="bg-neon"
-                  hoverTextColor="text-black"
-                  noIconChange={true}
-                  bgColor="bg-gray-100"
-                  textColor="black"
-                  fontWeight="font-semibold"
-                  className="py-3"
-                  fontSize="text-xs xl:text-sm" 
-                />
-              );
-            })}
+          {/* Right: Tech Stack (bottom aligned) */}
+          <div className="flex flex-col justify-start items-start gap-2 xl:w-2/5 w-full">
+            <BodyText
+              text="Stack Used:"
+              color="text-grayText"
+              centered={false}
+              fontWeight="font-bold"
+            />
+            <div className="grid grid-cols-2 gap-2 mt-2">
+              {project.technologies.map((tech, index) => {
+                const icon = findTechnologyIcon(tech);
+                return (
+                  <Button
+                    key={index}
+                    name={tech}
+                    icon={icon}
+                    hoverBgColor="bg-neon"
+                    hoverTextColor="text-black"
+                    noIconChange={true}
+                    bgColor="bg-gray-100"
+                    textColor="black"
+                    fontWeight="font-semibold"
+                    className="py-3"
+                    fontSize="text-xs xl:text-sm"
+                  />
+                );
+              })}
+            </div>
           </div>
         </div>
-      </div>
+      </FadeWrapper>
 
+      <FadeWrapper>
+        <div className={`${theme.layoutPages.paddingVertical}`}>
+          {project.additionalImages.slice(1, 4).some((img) => img) && (
+            <SplideCarousel
+              images={project.additionalImages.slice(1, 4)}
+              speed={1}
+              height="400px"
+              gap="1rem"
+              pauseOnHover={false}
+            />
+          )}
 
-{/* splide part */}
-     <div className={`${theme.layoutPages.paddingVertical}`}>
-  {project.additionalImages.slice(1, 4).some((img) => img) && (
-    <SplideCarousel
-      images={project.additionalImages.slice(1, 4)}
-      speed={1}
-      height="400px"
-      gap="1rem"
-      pauseOnHover={false}
-    />
-  )}
-
-  {project.additionalImages.slice(4, 7).some((img) => img) && (
-    <SplideCarousel
-      images={project.additionalImages.slice(4, 7)}
-      speed={-1}
-      height="400px"
-      gap="1rem"
-      pauseOnHover={false}
-    />
-  )}
-</div>
-
+          {project.additionalImages.slice(4, 7).some((img) => img) && (
+            <SplideCarousel
+              images={project.additionalImages.slice(4, 7)}
+              speed={-1}
+              height="400px"
+              gap="1rem"
+              pauseOnHover={false}
+            />
+          )}
+        </div>
+      </FadeWrapper>
 
       {/* Deliverables & Outcomes */}
-     <Deliverables deliverables={project.deliverables} heading={project.heading} />
+      <Deliverables deliverables={project.deliverables} heading={project.heading} />
 
       <HorizontalScroller
         heading={`How ${project.heading} came to life`}
