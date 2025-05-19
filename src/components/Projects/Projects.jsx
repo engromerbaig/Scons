@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import Heading from "../Heading/Heading";
 import { theme } from "../../theme";
 import projects from "../../pages/OurWork/projectDetails";
@@ -7,19 +7,17 @@ import ProjectGrid from "../../pages/OurWork/ProjectGrid";
 
 // Function to select 4 random unique projects
 const getRandomProjects = (projects, count = 4) => {
-  // Shuffle array using Fisher-Yates algorithm
   const shuffled = [...projects];
   for (let i = shuffled.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
   }
-  // Return first 'count' projects
   return shuffled.slice(0, Math.min(count, projects.length));
 };
 
 const Projects = () => {
-  // Select 4 random projects
-  const randomProjects = getRandomProjects(projects, 4);
+  // ✅ Only generate random projects once on mount
+  const randomProjects = useMemo(() => getRandomProjects(projects, 4), []);
 
   return (
     <div id="projects"
