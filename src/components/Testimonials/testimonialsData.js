@@ -1,33 +1,36 @@
 const placeholderClient = "https://randomuser.me/api/portraits/men/32.jpg";
 const placeholderQuote = "https://cdn-icons-png.flaticon.com/512/25/25426.png";
 
+import tillImage from "../../assets/images/testimonials/till.webp"
+import ingeborgImage from "../../assets/images/testimonials/ingeborg.png"
+
+import quoteIcon from "../../assets/images/testimonials/quote.svg"
+
 const testimonials = [
   {
-    quote: "Outstanding service and top-notch expertise. Our project was delivered ahead of schedule! lorem ipsum dolor sit amet, consectetur adipiscing elit. Outstanding service and top-notch expertise. Our project was delivered ahead of schedule! lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    name: "Jackie Dallxas",
-    position: "Director",
-    company: "Hotset",
+    quote: "After 30 hours of working with Muhammad (CEO Scons), I couldn't be more impressed by his professional and diligent way of meeting our needs. I am grateful for his calm and effective approach to every issue that my team and I have had to resolve and am looking forward to a lasting working relationship with him.",
+        name: "Till Kruger",
+
+    position: "CCO",
+    company: "GlobalNation",
     rating: 5,
-    clientImg: placeholderClient,
-    quoteImg: placeholderQuote,
+    clientImg: tillImage,
   },
   {
-    quote: "The team provided excellent workflow and communication throughout the project.",
-    name: "Samantha Lee",
-    position: "Product Manager",
-    company: "TechNova",
+    quote: "Mr. Muhammad worked tirelessly during the development of our B2C solutions. His dedication, problem-solving skills, and consistent effort were truly commendable. I am genuinely grateful for his valuable contributions.",
+    name: "Ms. Ingeborg Scheer ",
+    position: "CEO",
+    company: "dasign GmBH",
     rating: 5,
-    clientImg: "https://randomuser.me/api/portraits/women/44.jpg",
-    quoteImg: placeholderQuote,
+    clientImg: ingeborgImage,
   },
   {
-    quote: "Innovative solutions that empowered our business to scale rapidly.",
+    quote: "Job well done. Good communication and understanding. Highly recommend!",
     name: "Michael Chen",
-    position: "CTO",
-    company: "FinEdge",
+    position: "Freelancer",
+    company: "Upwork",
     rating: 4,
     clientImg: "https://randomuser.me/api/portraits/men/54.jpg",
-    quoteImg: placeholderQuote,
   },
   {
     quote: "Professional, reliable, and creative. Highly recommend for any tech project.",
@@ -36,17 +39,8 @@ const testimonials = [
     company: "EduSpark",
     rating: 5,
     clientImg: "https://randomuser.me/api/portraits/women/68.jpg",
-    quoteImg: placeholderQuote,
   },
-  {
-    quote: "Great experience from start to finish. The results exceeded our expectations.",
-    name: "David Kim",
-    position: "Operations Lead",
-    company: "RetailPro",
-    rating: 4,
-    clientImg: "https://randomuser.me/api/portraits/men/76.jpg",
-    quoteImg: placeholderQuote,
-  },
+
 ];
 
 export default testimonials;

@@ -47,7 +47,7 @@ const TestimonialBox = ({
       style={{ willChange: "transform" }}
     >
       {/* Background Quote Icon */}
-      <FaQuoteLeft className="absolute text-30px text-neon opacity-10 top-4 left-4 z-0" />
+      <FaQuoteLeft className="absolute text-50px text-neon opacity-10 top-4 left-4 z-0" />
 
       {/* Quote Text */}
       <div className="relative z-10">
@@ -59,7 +59,7 @@ const TestimonialBox = ({
         <img
           src={clientImg}
           alt={name}
-          className="w-12 h-12 rounded-full border-2 border-neon mr-4"
+          className="w-16 h-16 rounded-full border-2 border-neon mr-4"
         />
         <div>
           <div className="font-semibold text-white">{name}</div>
