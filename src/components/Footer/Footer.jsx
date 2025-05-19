@@ -96,26 +96,30 @@ const Footer = () => {
         ))}
 
         {/* SOCIALS */}
-        <div>
-          <div className="flex items-center mb-3">
-            <span className="inline-block w-2 h-2 bg-neon rounded-full mr-2" />
-            <Heading text="Our Channels" size="text-base" color="text-grayText" />
-          </div>
+       <div>
+  <div className="flex items-center mb-3">
+    <span className="inline-block w-2 h-2 bg-neon rounded-full mr-2" />
+    <Heading text="Our Channels" size="text-base" color="text-grayText" />
+  </div>
 
-          <div className="flex space-x-4">
-            {socialsData.map((item, idx) => (
-              <a
-                key={idx}
-                href={item.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-colors duration-200 hover:svg-neon"
-              >
-                <img src={item.icon} alt="social" className="w-6 h-6 svg-white" />
-              </a>
-            ))}
-          </div>
-        </div>
+  <div className="flex space-x-4 xl:space-x-6">
+    {socialsData.map((item, idx) => {
+      const Icon = item.icon;
+      return (
+        <a
+          key={idx}
+          href={item.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-white hover:text-neon transition-colors duration-200"
+        >
+          <Icon className="text-35px" />
+        </a>
+      );
+    })}
+  </div>
+</div>
+
 
 
 

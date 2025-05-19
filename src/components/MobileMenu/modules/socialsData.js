@@ -1,30 +1,22 @@
 // socialsData.js
-import facebook from '../../../assets/icons/socials/fb.svg'
-import linkedin from '../../../assets/icons/socials/linkedin.svg'
-
-import instagram from '../../../assets/icons/socials/insta.svg'
-import x from '../../../assets/icons/socials/x.svg'
-import medium from '../../../assets/icons/socials/medium.svg'
-
+import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6"; // for the new Twitter icon (X)
 
 export const socialsData = [
-    {
-      icon: facebook, // Replace with the actual path to the Facebook icon
-      link: 'https://www.facebook.com/',
-    },
-    {
-        icon: linkedin, // Replace with the actual path to the Facebook icon
-        link: 'https://www.linkedin.com/company/scons',
-    },
-    {
-        icon: instagram, // Replace with the actual path to the Facebook icon
-        link: 'https://www.instagram.com/scons.tech/',
-    },
-    {
-        icon: x, // Replace with the actual path to the Facebook icon
-        link: 'https://x.com/sconsofficial', // X was previously Twitter
-    },
-
- 
-  ];
-  
+  {
+    icon: FaFacebookF,
+    link: 'https://www.facebook.com/',
+  },
+  {
+    icon: FaLinkedinIn,
+    link: 'https://www.linkedin.com/company/scons',
+  },
+  {
+    icon: FaInstagram,
+    link: 'https://www.instagram.com/scons.tech/',
+  },
+  {
+    icon: FaXTwitter,
+    link: 'https://x.com/sconsofficial',
+  },
+];

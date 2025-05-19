@@ -90,32 +90,31 @@ const MobileMenu = ({ isOpen, onClose, onCloseComplete }) => {
             ></motion.div>
 
             {/* Pill container */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ delay: 0.2, duration: 0.3 }}
-              className={`bg-neon rounded-full pointer-events-auto ${
-                isMobile ? 'py-3 px-8 flex-row space-x-4' : 'py-12 px-6 flex-col space-y-8'
-              } flex items-center justify-center`}
-            >
-              {socialsData.map((social) => (
-                <a
-                  key={social.name}
-                  href={social.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="transition duration-300"
-                >
-                  <img
-                    src={social.icon}
-                    alt={`${social.name} Icon`}
-                    className="w-6 lg:w-7 aspect-square hover:scale-125 transition-all duration-300"
-                    loading="lazy"
-                  />
-                </a>
-              ))}
-            </motion.div>
+           <motion.div
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  exit={{ opacity: 0 }}
+  transition={{ delay: 0.2, duration: 0.3 }}
+  className={`bg-neon rounded-full pointer-events-auto ${
+    isMobile ? 'py-3 px-8 flex-row space-x-4' : 'py-12 px-6 flex-col space-y-8'
+  } flex items-center justify-center`}
+>
+  {socialsData.map((social, idx) => {
+    const Icon = social.icon;
+    return (
+      <a
+        key={idx}
+        href={social.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-black hover:text-white transition duration-300"
+      >
+        <Icon className="w-6 lg:w-7 h-6 lg:h-7 transition-transform " />
+      </a>
+    );
+  })}
+</motion.div>
+
           </motion.div>
 
           <RHS
