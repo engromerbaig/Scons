@@ -98,7 +98,7 @@ const Footer = () => {
         <div>
           <div className="flex items-center mb-3">
             <span className="inline-block w-2 h-2 bg-neon rounded-full mr-2" />
-            <Heading text="Social" size="text-base" color="text-grayText" />
+            <Heading text="Our Channels" size="text-base" color="text-grayText" />
           </div>
 
           <div className="flex space-x-4">
