@@ -1,13 +1,12 @@
 import React, { useRef } from "react";
 import Heading from "../Heading/Heading";
 import BodyText from "../BodyText/BodyText";
-import InfiniteMarquee from "../InfiniteMarquee/InfiniteMarquee";
 import "./index.css";
 import { theme } from "../../theme";
 import FadeWrapper from "../../utilities/Animations/FadeWrapper";
 
 const InnerHero = ({
-  logoImage,
+  logoImages = [], // now supports multiple logos
   illustrationImage,
   headingText,
   spanText,
@@ -21,11 +20,10 @@ const InnerHero = ({
   showCarousel = true,
   carouselItems = [],
   showBottomShadow = true,
-  logoIsWhite = false,
   children,
   bgColor = "bg-white",
   showPattern = true,
-  patternSrc = "/pattern.webp", // Use public folder pattern image here
+  patternSrc = "/pattern.webp",
 }) => {
   const patternRef = useRef(null);
 
@@ -54,14 +52,21 @@ const InnerHero = ({
       <div className="relative flex flex-col xl:flex-row items-center justify-between w-full gap-8 z-10 text-white">
         {/* Left Side */}
         <FadeWrapper order={1} className="flex flex-col items-start justify-center flex-1 gap-4 text-left">
-          {logoImage && (
-            <img
-              src={logoImage}
-              alt="Logo"
-              className={`w-40 h-16 mb-0 object-contain ${logoIsWhite ? "svg-white" : ""}`}
-              loading="lazy"
-            />
+          {/* Logos */}
+          {logoImages.length > 0 && (
+            <div className="flex flex-wrap items-center gap-4 mb-2">
+              {logoImages.map((logo, index) => (
+                <img
+                  key={index}
+                  src={logo}
+                  alt={`Logo ${index + 1}`}
+                  className="w-28 aspect-rectangle object-contain"
+                  loading="lazy"
+                />
+              ))}
+            </div>
           )}
+
           <Heading
             text={headingText}
             spanText={spanText}
@@ -96,12 +101,7 @@ const InnerHero = ({
         </FadeWrapper>
       </div>
 
-      {/* Optional Carousel */}
-      {showCarousel && carouselItems.length > 0 && (
-        <div className="absolute bottom-0 left-0 w-full z-20">
-          <InfiniteMarquee speed={70} items={carouselItems} textColor="text-white" />
-        </div>
-      )}
+ 
     </section>
   );
 };

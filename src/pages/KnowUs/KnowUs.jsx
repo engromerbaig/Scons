@@ -75,17 +75,17 @@ const KnowUs = () => {
   return (
     <>
       {/* Inner Hero Section */}
-      <InnerHero
-        logoImage={logoImage}
-        headingText="About Scons & The Journey So Far"
-        spanText="Scons"
-        bodyText="Scons is a dynamic tech powerhouse, delivering innovative software solutions worldwide."
-        // logoIsWhite={true}
-        showBottomShadow={true}
-        illustrationImage={aboutUsImage}
-        illustrationImageWidth="w-3/4"
-        showCarousel={false}
-      />
+<InnerHero
+  logoImages={[logoImage]}   // <-- plural and array
+  headingText="About Scons & The Journey So Far"
+  spanText="Scons"
+  bodyText="Scons is a dynamic tech powerhouse, delivering innovative software solutions worldwide."
+  showBottomShadow={true}
+  illustrationImage={aboutUsImage}
+  illustrationImageWidth="w-3/4"
+  showCarousel={false}
+/>
+
 
       <div
         className={`${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal} `}

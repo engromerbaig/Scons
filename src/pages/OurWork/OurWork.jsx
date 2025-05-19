@@ -8,6 +8,9 @@ import ProjectGrid from "./ProjectGrid";
 import LoadMoreControls from "./LoadMoreControls";
 import projectImage from "../../assets/images/project.svg";
 
+import behanceLogo from "../../assets/icons/inner/behance.svg"
+import dribbleLogo from "../../assets/icons/inner/2.png"
+
 const OurWork = () => {
   const {
     selectedService,
@@ -68,8 +71,9 @@ const OurWork = () => {
         headingText="A Catalog of Our Work"
         spanText="Catalog"
         bodyText="A showcase of diverse projects that highlight our expertise in creating impactful, innovative tech solutions across industries."
+        logoImages={[behanceLogo, dribbleLogo]}
         illustrationImage={projectImage}
-        illustrationImageWidth="w-3/4"
+        illustrationImageWidth="w-1/2 xl:w-3/4"
       />
 
       <div

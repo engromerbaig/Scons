@@ -52,8 +52,8 @@ useLayoutEffect(() => {
   return (
     <div className={`${theme.layoutPages.paddingBottom} min-h-screen`}>
  <InnerHero
-  logoImage={project.logo}
-  headingText={project.heading}
+logoImages={[project.logo]}
+headingText={project.heading}
   bodyText={project.bodyText}
   height="h-auto"
   headingColor="text-black"
