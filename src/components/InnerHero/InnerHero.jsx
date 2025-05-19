@@ -4,6 +4,7 @@ import BodyText from "../BodyText/BodyText";
 import InfiniteMarquee from "../InfiniteMarquee/InfiniteMarquee";
 import "./index.css";
 import { theme } from "../../theme";
+import FadeWrapper from "../../utilities/Animations/FadeWrapper";
 
 const InnerHero = ({
   logoImage,
@@ -52,7 +53,7 @@ const InnerHero = ({
       {/* Main Content */}
       <div className="relative flex flex-col xl:flex-row items-center justify-between w-full gap-8 z-10 text-white">
         {/* Left Side */}
-        <div className="flex flex-col items-start justify-center flex-1 gap-4 text-left">
+        <FadeWrapper order={1} className="flex flex-col items-start justify-center flex-1 gap-4 text-left">
           {logoImage && (
             <img
               src={logoImage}
@@ -80,10 +81,10 @@ const InnerHero = ({
             className="mt-2 leading-none"
           />
           {children && <div className="mt-4">{children}</div>}
-        </div>
+        </FadeWrapper>
 
         {/* Right Side: Illustration */}
-        <div className="flex flex-1 items-center justify-center">
+        <FadeWrapper order={2} className="flex flex-1 items-center justify-center">
           {illustrationImage && (
             <img
               src={illustrationImage}
@@ -92,7 +93,7 @@ const InnerHero = ({
               loading="lazy"
             />
           )}
-        </div>
+        </FadeWrapper>
       </div>
 
       {/* Optional Carousel */}
