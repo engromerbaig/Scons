@@ -5,6 +5,7 @@ import SectionDetailItem from "./SectionDetailItem";
 import AnimatedBackground from '../../utilities/AnimatedBackground/AnimatedBackground';
 import { theme } from '../../theme';
 import GreenBelt from '../GreenBelt/GreenBelt';
+import FadeWrapper from '../../utilities/Animations/FadeWrapper';
 
 const SectionDetails = ({ faqSpanText, faqBodyText, faqItems }) => {
   // Set the initial state to 0 so the first FAQ item is open by default
@@ -28,7 +29,8 @@ const SectionDetails = ({ faqSpanText, faqBodyText, faqItems }) => {
       </div>
    
 
-      <div className={`faq-list bg-black ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal}`}>
+   <FadeWrapper>
+ <div className={`faq-list bg-black ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal}`}>
         {faqItems.map((item, index) => (
           <SectionDetailItem
             key={index}
@@ -43,6 +45,10 @@ const SectionDetails = ({ faqSpanText, faqBodyText, faqItems }) => {
           />
         ))}
       </div>
+
+   </FadeWrapper>
+
+     
     </div>
   );
 };

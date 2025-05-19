@@ -1,18 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState, lazy } from "react";
 import { useParams } from 'react-router-dom';
+
+// Lazy load all components
+const Heading = lazy(() => import('../../components/Heading/Heading'));
+const InnerHero = lazy(() => import('../../components/InnerHero/InnerHero'));
+const IconSection = lazy(() => import('../../components/IconService/IconSection'));
+const SectionDetails = lazy(() => import('../../components/SectionDetails/SectionDetails'));
+const Reviews = lazy(() => import('../../components/Reviews/Reviews'));
+const FAQService = lazy(() => import('../../components/FAQService/FAQService'));
+const DevProcess = lazy(() => import('../../components/DevProcessHorizontal/DevProcess'));
+const ScrollToTopLink = lazy(() => import('../../utilities/ScrollToTopLink'));
+const AnimatedBackground = lazy(() => import('../../utilities/AnimatedBackground/AnimatedBackground'));
+const GreenBelt = lazy(() => import('../../components/GreenBelt/GreenBelt'));
+const ServiceAccordion = lazy(() => import('./ServiceAccordion'));
+const FadeInSection = lazy(() => import('../../utilities/Animations/FadeInSection'));
+const FadeWrapper = lazy(() => import('../../utilities/Animations/FadeWrapper'));
+
+// Static imports for non-component data
 import { services } from '../../components/Services/servicesData';
-import Heading from '../../components/Heading/Heading';
-import InnerHero from '../../components/InnerHero/InnerHero';
 import { theme } from '../../theme';
-import IconSection from '../../components/IconService/IconSection';
-import SectionDetails from '../../components/SectionDetails/SectionDetails';
-import Reviews from '../../components/Reviews/Reviews';
-import FAQService from '../../components/FAQService/FAQService';
-import DevProcess from '../../components/DevProcessHorizontal/DevProcess';
-import ScrollToTopLink from '../../utilities/ScrollToTopLink';
-import AnimatedBackground from '../../utilities/AnimatedBackground/AnimatedBackground';
-import GreenBelt from '../../components/GreenBelt/GreenBelt';
-import ServiceAccordion from './ServiceAccordion';
 
 const ServiceDetails = () => {
     const { serviceSlug } = useParams();
@@ -32,39 +38,23 @@ const ServiceDetails = () => {
     return (
         <div>
             {/* Hero Section */}
-            <InnerHero
-                headingText={service.heading}
-                spanText={service.spanText}
-                headingText2={service.description}
-                bodyText={service.helperText}
-                illustrationImage={service.image}
-                bgColor='bg-white'
-                headingColor='text-black'
-                bodyTextColor='text-black'
-                showBottomShadow={true}
-
-               
-
-                
-            />
-
-  
-      <ServiceAccordion heading={service.spanText} accordionData={service.serviceAccordionData} />
-
-            {/* <GreenBelt className="rounded-b-2xl  mx-4 md:mx-8 lg:mx-12">
-            <Heading
-                    text={service.tagline} // "Beyond Development, We Build Journeys"
-                    color="text-black"
-                    fontWeight='font-medium'
-                    size='text-50px'
-                    centered={true}
+            <FadeInSection>
+                <InnerHero
+                    headingText={service.heading}
+                    spanText={service.spanText}
+                    headingText2={service.description}
+                    bodyText={service.helperText}
+                    illustrationImage={service.image}
+                    bgColor='bg-white'
+                    headingColor='text-black'
+                    bodyTextColor='text-black'
+                    showBottomShadow={true}
                 />
+            </FadeInSection>
 
-
-            </GreenBelt> */}
-
-            {/* Icon Section */}
-            {/* <IconSection circularSection={service.circularSection} /> */}
+            <FadeInSection>
+                <ServiceAccordion heading={service.spanText} accordionData={service.serviceAccordionData} />
+            </FadeInSection>
 
             {/* Section Details */}
             <SectionDetails
@@ -73,42 +63,22 @@ const ServiceDetails = () => {
                 faqItems={service.iconRows}
             />
 
-            {/* Reviews Section */}
-
             {/* Development Process Section */}
-            <DevProcess />
+            <FadeWrapper>
+                <DevProcess />
+            </FadeWrapper>
 
             <GreenBelt className="flex flex-col lg:flex-row justify-center items-center space-y-4 lg:justify-between ">
-            <Heading
-            text='Let’s make great things happen together.' 
-            spanText='happen together.'
-            size='text-60px'
-            />
-
-                <ScrollToTopLink to="/lets-innovate">
-                    <button className="bg-transparent border-black border-2 text-30px  px-6 rounded-md py-3 smooth-hover">Let’s Innovate</button>
-                </ScrollToTopLink>
-
-
-
-            </GreenBelt>
-
-            {/* Call-to-Action Section */}
-            {/* <div
-                className={`bg-neon ${theme.layoutPages.paddingHorizontal} z-40 relative flex flex-col justify-center items-center gap-6 py-6 md:py-14`}
-            >
                 <Heading
-                    text="Let’s make great things happen together." // "How about we discuss things over a virtual coffee?"
-                    color="text-black"
-                    size="text-40px"
-                    centered={true}
+                    text='Let’s make great things happen together.'
+                    spanText='happen together.'
+                    size='text-60px'
                 />
                 <ScrollToTopLink to="/lets-innovate">
-                    <button className="bg-black font-bold px-6 py-3">Let’s Innovate</button>
+                    <button className="bg-transparent border-black border-2 text-30px px-6 rounded-md py-3 smooth-hover">Let’s Innovate</button>
                 </ScrollToTopLink>
-            </div> */}
+            </GreenBelt>
 
-            {/* FAQ Section */}
             <FAQService faqData={service.faqData} />
         </div>
     );
