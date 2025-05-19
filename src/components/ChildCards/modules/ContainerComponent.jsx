@@ -6,7 +6,7 @@ import Heading from "../../Heading/Heading";
 import BodyText from "../../BodyText/BodyText";
 
 const ContainerComponent = ({ logo, heading, number, text }) => (
-    <div className="glow-right-container flex-shrink-0 lg:h-screen flex flex-col border-r-2 bg-charcoal border-black p-10 scrollbar-hide scroll-container">
+    <div className="glow-right-container flex-shrink-0 lg:h-screen flex flex-col border-r-2 bg-charcoal lg:bg-black border-black p-10 scrollbar-hide scroll-container">
       
       {/* First Div - Icon Section (50% height) */}
       <div className="flex flex-col items-center justify-center h-1/2">
