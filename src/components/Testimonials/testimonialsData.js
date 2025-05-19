@@ -3,6 +3,8 @@ const placeholderQuote = "https://cdn-icons-png.flaticon.com/512/25/25426.png";
 
 import tillImage from "../../assets/images/testimonials/till.webp"
 import ingeborgImage from "../../assets/images/testimonials/ingeborg.png"
+import upworkImage from "../../assets/images/testimonials/3.svg"
+
 
 import quoteIcon from "../../assets/images/testimonials/quote.svg"
 
@@ -26,11 +28,11 @@ const testimonials = [
   },
   {
     quote: "Job well done. Good communication and understanding. Highly recommend!",
-    name: "Michael Chen",
-    position: "Freelancer",
+    name: "Freelancer",
+    position: "Freelancer via",
     company: "Upwork",
-    rating: 4,
-    clientImg: "https://randomuser.me/api/portraits/men/54.jpg",
+    rating: 5,
+    clientImg: upworkImage,
   },
   {
     quote: "Professional, reliable, and creative. Highly recommend for any tech project.",
