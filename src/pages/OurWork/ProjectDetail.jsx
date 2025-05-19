@@ -201,7 +201,7 @@ const ProjectDetail = () => {
         <Heading
           text="Deliverables & Outcomes"
           centered={false}
-          color="text-neon"
+          color="text-black"
           lineHeight="leading-none"
         />
 
