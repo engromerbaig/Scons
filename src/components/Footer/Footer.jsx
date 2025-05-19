@@ -9,6 +9,7 @@ import Heading from "../Heading/Heading";
 import BodyText from "../BodyText/BodyText";
 import ScrollToTopLink from "../../utilities/ScrollToTopLink";
 import { theme } from "../../theme";
+import Button from "../Button/Button";
 
 const Footer = () => {
   return (
@@ -115,6 +116,13 @@ const Footer = () => {
             ))}
           </div>
         </div>
+
+
+
+
+
+
+        
       </div>
 
       {/* ROW 3: Copyright */}
