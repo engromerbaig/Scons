@@ -109,7 +109,7 @@ text={`Throughout the ${heading}'s project, our team successfully achieved the f
 
 
       <div className="w-full max-w-md mx-auto xl:flex xl:items-center xl:max-w-4xl xl:gap-8">
-        <div className="relative h-96 xl:h-[600px] xl:flex-1">
+        <div className="relative h-[450px] xl:h-[600px] xl:flex-1">
           <Doughnut data={chartData} options={chartOptions} />
         </div>
       </div>
