@@ -156,9 +156,13 @@ const Container = ({ heading, number, services, iconRows, link }) => {
                 <div className="grid grid-cols-1 md:grid-cols-12">
                     <div className="col-span-1 md:col-span-9 md:grid md:grid-cols-9">
                         <div className="md:col-span-3 flex items-center justify-start mb-4 md:mb-0">
-                            <div className="text-neon text-200px font-black font-poppins outlined-text-2">
+                            <div className="outlined-stroke-wrapper">
+      <div className="text-neon text-[110px] xl:text-200px font-black font-poppins outlined-stroke">
                                 {number}
                             </div>
+
+                            </div>
+                      
                         </div>
                         <div className="md:col-span-6 text-white text-34px font-manrope grid gap-y-4 items-center">
                             {services.map((service, index) => (
