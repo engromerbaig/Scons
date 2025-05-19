@@ -26,6 +26,8 @@ const BlogDetails = lazy(() => import('./pages/BlogDetails/BlogDetails'));
 const ProjectDetail = lazy(() => import('./pages/OurWork/ProjectDetail'));
 const ContactUs = lazy(() => import('./pages/ContactUs/ContactUs'));
 
+import TopScroller from './utilities/TopScroller';
+
 // Wrapper for ServiceDetails to force remount on param change
 function ServiceDetailsWrapper() {
   const { serviceSlug } = useParams();
@@ -55,6 +57,7 @@ function AppContent() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Helmet>
 
+<TopScroller/>
       <Navbar />
       <HeroButton onClick={() => setModalOpen(true)} />
       <ChatModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} />
