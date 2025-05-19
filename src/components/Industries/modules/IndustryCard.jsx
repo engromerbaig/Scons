@@ -1,12 +1,33 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
 import BodyText from "../../BodyText/BodyText";
 import Heading from "../../Heading/Heading";
 
-const IndustryCard = ({ industry, active, onHover, onLeave, CARD_HEIGHT = 400, CARD_WIDTH = 350 }) => {
+const IndustryCard = ({
+  industry,
+  active,
+  onHover,
+  onLeave,
+  CARD_HEIGHT = 400,
+  CARD_WIDTH = 350,
+  responsiveSizes = {
+    sm: { width: 250, height: 350 }, // <640px
+    md: { width: 250, height: 350 }, // 640px to <1024px
+  },
+}) => {
   const overlayRef = useRef(null);
-  const detailsContainerRef = useRef(null); // New ref for the container
+  const detailsContainerRef = useRef(null);
   const titleBottomRef = useRef(null);
+
+  const [windowWidth, setWindowWidth] = useState(
+    typeof window !== "undefined" ? window.innerWidth : 1200
+  );
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     // Animate overlay
@@ -26,20 +47,32 @@ const IndustryCard = ({ industry, active, onHover, onLeave, CARD_HEIGHT = 400, C
 
     // Animate details container (title and description together)
     gsap.to(detailsContainerRef.current, {
-      y: active ? 0 : -100, // Start from above the card
+      y: active ? 0 : -100,
       opacity: active ? 1 : 0,
-      duration: 0.4, // Slightly longer for smoothness
+      duration: 0.4,
       ease: "power3.out",
       pointerEvents: active ? "auto" : "none",
     });
   }, [active]);
 
+  // Determine responsive width and height based on window width
+  let width = CARD_WIDTH;
+  let height = CARD_HEIGHT;
+
+  if (windowWidth < 640 && responsiveSizes.sm) {
+    width = responsiveSizes.sm.width;
+    height = responsiveSizes.sm.height;
+  } else if (windowWidth >= 640 && windowWidth < 1024 && responsiveSizes.md) {
+    width = responsiveSizes.md.width;
+    height = responsiveSizes.md.height;
+  }
+
   return (
     <div
       className="relative rounded-3xl overflow-hidden flex-shrink-0 mx-2 cursor-pointer group transition-all duration-300 hover:border-2 hover:border-neon"
       style={{
-        width: CARD_WIDTH,
-        height: CARD_HEIGHT,
+        width,
+        height,
         backgroundImage: `url(${industry.image})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
@@ -62,13 +95,13 @@ const IndustryCard = ({ industry, active, onHover, onLeave, CARD_HEIGHT = 400, C
       {/* Bottom Title */}
       <div
         ref={titleBottomRef}
-        className="absolute bottom-0 left-0 w-full z-10 p-4 flex flex-row items-start gap-4"
+        className="absolute bottom-0 left-0 w-full z-10 p-4 flex flex-row items-start justify-start xl:gap-4"
         style={{ minHeight: 100 }}
       >
         {industry.number && (
           <Heading
             text={industry.number}
-            size="text-120px xl:text-70px"
+            size="text-100px xl:text-70px"
             color="text-neon"
             fontWeight="font-black"
             className="text-left vertical-text"
@@ -78,7 +111,7 @@ const IndustryCard = ({ industry, active, onHover, onLeave, CARD_HEIGHT = 400, C
         {industry.name && (
           <BodyText
             text={industry.name}
-            size="text-2xl"
+            size="text-50px xl:text-35px"
             color="text-white"
             fontWeight="font-bold"
             className="drop-shadow-lg text-left max-w-[calc(100%-100px)]"
@@ -93,14 +126,14 @@ const IndustryCard = ({ industry, active, onHover, onLeave, CARD_HEIGHT = 400, C
         className="absolute top-6 left-0 w-full h-auto z-20"
         style={{
           opacity: 0,
-          transform: "translateY(-100px)", // Initial position above the card
+          transform: "translateY(-100px)",
         }}
       >
         {/* Top Title */}
         <div className="flex items-start px-6">
           <BodyText
             text={industry.name}
-            size="text-2xl"
+            size="text-35px"
             color="text-white"
             fontWeight="font-bold"
             className="drop-shadow-lg text-left"
@@ -112,10 +145,11 @@ const IndustryCard = ({ industry, active, onHover, onLeave, CARD_HEIGHT = 400, C
         <div className="mt-4 px-6 text-white text-left">
           <BodyText
             text={industry.details}
-            size="text-base"
+            size="text-sm"
             color="text-white"
-            className="text-left"
+            className="text-left leading-normal xl:leading-loose"
             centered={false}
+
           />
         </div>
       </div>
