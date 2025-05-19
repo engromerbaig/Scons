@@ -14,6 +14,8 @@ import Vision from "../../components/Vision/Vision";
 import InnerHero from "../../components/InnerHero/InnerHero";
 import SkeletonLoader from "../../utilities/SkeletonLoader";
 import Deliverables from "./Deliverables";
+import { useLayoutEffect } from "react";
+
 
 const ProjectDetail = () => {
   const { slug } = useParams();
@@ -23,12 +25,13 @@ const ProjectDetail = () => {
   const [coverImageLoaded, setCoverImageLoaded] = useState(false);
   const [additionalImageLoaded, setAdditionalImageLoaded] = useState(false);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    // Reset loading states if slug changes (optional)
-    setCoverImageLoaded(false);
-    setAdditionalImageLoaded(false);
-  }, [slug]);
+
+useLayoutEffect(() => {
+  window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  setCoverImageLoaded(false);
+  setAdditionalImageLoaded(false);
+}, [slug]);
+
 
   const findTechnologyIcon = (techName) => {
     for (const category in technologiesData) {
