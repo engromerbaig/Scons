@@ -2,11 +2,12 @@ import Heading from "../../components/Heading/Heading";
 import { theme } from "../../theme";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import BodyText from "../../components/BodyText/BodyText";
 
 // Register Chart.js components
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const Deliverables = ({ deliverables }) => {
+const Deliverables = ({ deliverables , heading }) => {
   // Generate equal percentages for each deliverable
   const dataCount = deliverables.length;
   const percentage = dataCount > 0 ? 100 / dataCount : 0;
@@ -87,12 +88,25 @@ const Deliverables = ({ deliverables }) => {
     <div
       className={`flex flex-col gap-4 ${theme.layoutPages.paddingBottom} ${theme.layoutPages.paddingHorizontal}`}
     >
+
+        <div className="flex flex-col pb-10">
       <Heading
         text="Deliverables & Outcomes"
         centered={false}
         color="text-black"
         lineHeight="leading-none"
       />
+      <BodyText
+    //   text="We deliver results that matter. Our focus is on outcomes, not just outputs. We ensure that every project we undertake is aligned with your goals and delivers tangible value."
+text={`Throughout the ${heading}'s project, our team successfully achieved the following key deliverables and impactful outcomes:`}
+      className="max-w-3xl"
+              centered={false}
+
+      />
+
+
+        </div>
+
 
       <div className="w-full max-w-md mx-auto xl:flex xl:items-center xl:max-w-4xl xl:gap-8">
         <div className="relative h-96 xl:h-[600px] xl:flex-1">

@@ -196,7 +196,7 @@ const ProjectDetail = () => {
 
 
       {/* Deliverables & Outcomes */}
-     <Deliverables deliverables={project.deliverables} />
+     <Deliverables deliverables={project.deliverables} heading={project.heading} />
 
       <HorizontalScroller
         heading={`How ${project.heading} came to life`}
