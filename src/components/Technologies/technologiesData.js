@@ -51,18 +51,21 @@ export const technologiesData = {
   },
 
   "UI/UX": {
-    Tools: [
+    DesignTools: [
       { name: "Figma", icon: icons.uiux.figmaUI },
       { name: "Adobe XD", icon: icons.uiux.xdUI },
       { name: "Sketch", icon: icons.uiux.sketchUI },
+
+
+      { name: "Photoshop", icon: icons.uiux.logo1 },
+      { name: "CorelDRAW", icon: icons.uiux.logo2 },
+      { name: "Illustrator", icon: icons.uiux.logo3 },
+      { name: "Creative Cloud", icon: icons.uiux.logo4 },
+      { name: "Canva", icon: icons.uiux.logo5 },
+
+ 
     ],
-    ERP: [
-      { name: "SAP", icon: icons.uiux.erp1 },
-      { name: "Dynamics 365", icon: icons.uiux.erp2 },
-      { name: "Oracle", icon: icons.uiux.erp3 },
-      { name: "Intacct", icon: icons.uiux.erp4 },
-      { name: "Infor", icon: icons.uiux.erp5 },
-    ],
+
   },
 
   "Blockchain": {
