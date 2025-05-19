@@ -7,7 +7,7 @@
   "bodyText": "Crafted a professional WordPress website for a German hydraulic service company, enhancing their digital presence and service outreach.",
   "details": "SN Hydraulik Service required a reliable and visually appealing website to highlight their expertise in hydraulic repair and maintenance. We utilized WordPress with Elementor for rapid development, and incorporated brand-aligned graphics designed in Canva and Adobe Photoshop to ensure a consistent, high-impact visual identity.",
   "service": ["Web Development", "UI/UX Design", "Branding"],
-  "technologies": ["WordPress", "Elementor", "Canva", "Adobe Photoshop"],
+  "technologies": ["WordPress", "Elementor", "Canva", "Photoshop", "SEO", "Digital Marketing"],
   "year": "2023",
   "clientDetails": "A trusted hydraulic service provider based in Welzheim, Germany, offering specialized repair, maintenance, and system optimization solutions for a wide range of industrial clients. The company is committed to precision engineering, quick response times, and customer-centric service delivery across the region.",
 "deliverables": [
@@ -78,7 +78,7 @@
   "bodyText": "Developed a modern, interactive website for a team of oral and maxillofacial surgeons affiliated with Sana Klinikum Offenbach, improving patient communication and emergency awareness.",
   "details": "Landes & Kollegen, specialists in oral and maxillofacial surgery, needed a professional digital platform to reflect their emergency readiness and surgical expertise. We built a dynamic, visually engaging WordPress site using custom animations with GSAP and interactive UI elements powered by jQuery, ensuring responsiveness and user engagement.",
   "service": "Web Development",
-  "technologies": ["WordPress", "GSAP", "jQuery"],
+  "technologies": ["WordPress", "JavaScript", "Digital Marketing", "SEO"],
   "year": "2023",
   "clientDetails": "Landes & Kollegen is a team of certified oral and maxillofacial surgeons operating out of Offenbach, Germany. They are affiliated with Sana Klinikum Offenbach and provide around-the-clock emergency surgical care involving the mouth, jaw, and face. Their commitment to prompt, expert care is matched by their emphasis on patient education and digital accessibility.",
 "deliverables": [
@@ -112,7 +112,7 @@
   "bodyText": "Engineered a sleek and responsive web platform for a California-based trial support provider, enhancing service access for legal professionals handling in-person, remote, and hybrid litigation needs.",
   "details": "LitigationTech needed a modern, scalable platform to reflect their expertise in courtroom technology and trial support services across Los Angeles and the Bay Area. Using React for the frontend and Node.js for the backend, we created a fast, responsive site styled with Tailwind CSS. The result is a robust, mobile-friendly platform that communicates complex legal services with clarity and professionalism.",
   "service": "Full-Stack Web Development",
-  "technologies": ["React", "Node.js", "Tailwind CSS"],
+  "technologies": ["React", "Node.js", "Tailwind CSS", "SEO", "Figma"],
   "year": "2023",
   "clientDetails": "LitigationTech is a California-based company specializing in trial support for legal teams engaged in high-stakes litigation. Offering services like remote evidence presentation, hybrid hearings, deposition support, and tech-driven courtroom logistics, they are trusted by law firms across the L.A. and Bay Area regions.",
 "deliverables": [
@@ -145,7 +145,7 @@
   "bodyText": "Developed a comprehensive web portal for a visa consultancy firm, streamlining client onboarding and showcasing their global visa services through a modern digital platform.",
   "details": "Visa Hub International needed a professional, scalable website to support their expanding non-immigrant visa services. We developed the site in WordPress using Elementor for rapid design deployment and customized integrations. Additionally, we integrated Magento components and SQL-based tools for managing application data and service workflows efficiently.",
   "service": "Web Development",
-  "technologies": ["WordPress", "Elementor", "Magento", "SQL"],
+  "technologies": ["WordPress", "Elementor", "Canva", "SEO", "Oracle"],
   "year": "2023",
   "clientDetails": "Visa Hub International is a trusted global consultancy dedicated to simplifying non-immigrant visa applications for individuals and families. With experienced consultants and a user-centric approach, Visa Hub offers tailored guidance across multiple visa categories including tourism, business, and study abroad programs.",
 "deliverables": [
@@ -178,7 +178,7 @@
   "bodyText": "Built a fast, scalable website for an Australian mobile app development firm, showcasing their digital solutions and expertise in delivering high-performance applications across industries.",
   "details": "Tyfora required a sleek and performance-driven website to establish their authority in the mobile app development space. We used React and Next.js for the frontend to ensure optimal speed and SEO, Node.js for backend flexibility, and Tailwind CSS for responsive design. Docker containers were implemented to streamline development and deployment across environments.",
   "service": "Full-Stack Web Development",
-  "technologies": ["React", "Next.js", "Node.js", "Tailwind CSS", "Docker"],
+  "technologies": ["React", "TypeScript", "Node.js", "Tailwind CSS", "Firebase", "MongoDB", "Figma", "AWS"],
   "year": "2023",
   "clientDetails": "Tyfora is a mobile app development company based in Sydney, Australia, providing robust software solutions across iOS, Android, and cross-platform ecosystems. They cater to startups and enterprises alike, specializing in innovation-driven products with a strong focus on scalability and user experience.",
 "deliverables": [
@@ -250,7 +250,7 @@
         "bodyText": "Developed a tailored CMS website for a German pest control company, streamlining content management and enhancing user experience.",
         "details": "Matuszak Hygiene required a professional and responsive website to showcase their pest management services for industrial and production environments. We designed a user-friendly interface using Figma, developed the site in WordPress, and utilized Elementor for rapid deployment and design customization.",
         "service": "Web Development",
-        "technologies": ["WordPress", "Figma", "Elementor"],
+        "technologies": ["WordPress", "Figma", "Elementor", "SEO"],
         "year": "2023",
       "clientDetails": "A German hygiene-focused company headquartered in Sprendlingen, specializing in advanced pest control solutions tailored for industrial and commercial sectors. With a strong foundation in the local market, the company is actively working to expand its presence across the European Union and into international markets, aiming to deliver high-quality, compliant, and sustainable hygiene services at scale.",
 
