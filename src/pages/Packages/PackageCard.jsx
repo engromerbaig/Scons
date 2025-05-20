@@ -88,7 +88,7 @@ const PackageCard = ({ packageInfo }) => {
 
             {/* Call to Action */}
  <div className="text-center mt-auto pt-10">
-    <Button name="Buy Now" hoverBgColor="bg-neon" openModal={true} />
+    <Button name="Buy Now" hoverBgColor="bg-neon" hoverTextColor="black" openModal={true} />
     {/* Contact Info - Email Only */}
     <div className="flex items-center justify-center gap-2 mt-2 text-sm text-black">
         {contactDetails
