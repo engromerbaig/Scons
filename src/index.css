@@ -390,3 +390,28 @@ html {
   box-shadow: 0 2px 4px 0 theme('colors.neon/10%');
   transition: background 0.3s, box-shadow 0.3s;
 }
+
+/* package card scrollbar */
+/* Custom Scrollbar Styling */
+.package-scrollbar::-webkit-scrollbar {
+    width: 2px important!;
+}
+
+.package-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.package-scrollbar::-webkit-scrollbar-thumb {
+    background: #00c5ff;
+    border-radius: 2px;
+}
+
+.package-scrollbar::-webkit-scrollbar-button {
+    display: none;
+}
+
+/* Firefox scrollbar styling */
+.package-scrollbar {
+    scrollbar-color: #00c5ff transparent;
+    scrollbar-width: thin;
+}
