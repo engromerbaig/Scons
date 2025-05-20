@@ -15,60 +15,61 @@ const Hero = () => {
 
   return (
     <div className="w-full min-h-screen flex flex-col shadow-custom-bottom bg-white relative">
-      {/* Background Layer */}
+      
+      {/* Background Image */}
       <div 
-        className="absolute bottom-0 left-0 w-full h-full bg-no-repeat bg-bottom bg-cover pointer-events-none z-0 opacity-100"
+        className="absolute bottom-0 left-0 w-full h-full bg-no-repeat bg-bottom bg-cover pointer-events-none z-0"
         style={{ 
-          backgroundImage: `url(/pattern.webp)` // from public folder
+          backgroundImage: `url(/iso.webp)`,
+          opacity: 0.04
         }}
-      >
-        {/* Globe Image */}
-        <img
-          src="/globe.svg" // from public folder
-          alt="Globe Background"
-          className="svg-neon absolute top-0 right-[-20%] h-full w-auto opacity-15 object-right object-contain pointer-events-none z-10"
-          loading="lazy"
-        />
-      </div>
+      />
 
-      {/* Interactive Content Layer */}
-      <div className="relative z-100 min-h-screen flex flex-col">
-        {/* Main Content */}
+      {/* Globe Image above background */}
+      <img
+        src="/globe.svg"
+        alt="Globe Background"
+        className="hidden lg:block absolute top-0 right-[-20%] h-full w-auto opacity-15 object-contain pointer-events-none z-10 svg-neon"
+        loading="lazy"
+      />
+
+      {/* Main Content */}
+      <div className="relative z-20 min-h-screen flex flex-col">
         <div
           className={`${theme.layoutPages.paddingHorizontal} w-full flex-1 flex items-center justify-center relative`}
         >
-          {/* Centered text container */}
-          <div className="w-full max-w-4xl text-left relative z-110">
+          <div className="w-full max-w-4xl text-left relative z-30">
             <FadeWrapper order={1}>
-                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
-              <div className="mb-4">
-                <AnimatedHeading
-                  prefixText="We are a"
-                  animatedWords={["Software", "Web", "App", "IT", "AI"]}
-                  suffixText="Development Company"
-                  color="text-black"
-                  fontWeight="font-black"
-                  className="leading-none"
-                  centered={false}
-                />
-              </div>
-                          </motion.div>
-              </FadeWrapper>
-        
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1 }}
+              >
+                <div className="mb-4">
+                  <AnimatedHeading
+                    prefixText="We are a"
+                    animatedWords={["Software", "Web", "App", "IT", "AI"]}
+                    suffixText="Development Company"
+                    color="text-black"
+                    fontWeight="font-black"
+                    className="leading-none"
+                    centered={false}
+                  />
+                </div>
+              </motion.div>
+            </FadeWrapper>
 
+            <div>
+              <BodyText
+                text="We are your trusted development partner with just one goal in focus - to build products that generate a lasting, profitable impact."
+                centered={false}
+                color="text-black"
+                className="max-w-2xl"
+              />
+            </div>
 
-              <div>
-                <BodyText
-                  text="We are your trusted development partner with just one goal in focus - to build products that generate a lasting, profitable impact."
-                  centered={false}
-                  color="text-black"
-                  className="max-w-2xl"
-                />
-              </div>
-
-<FadeWrapper order={2}>
-
-       <div className="flex items-center gap-x-4 xl:gap-x-6 mt-4 relative z-120">
+            <FadeWrapper order={2}>
+              <div className="flex items-center gap-x-4 xl:gap-x-6 mt-4 relative z-40">
                 <Button
                   name="Contact Us"
                   textColor="black"
@@ -94,14 +95,13 @@ const Hero = () => {
                   }}
                   shadow="shadow-none"
                 />
-              </div> 
-  </FadeWrapper>
-          
+              </div>
+            </FadeWrapper>
           </div>
         </div>
 
-        {/* Bottom Section */}
-        <div className="absolute bottom-0 left-0 w-full h-[15vh] flex flex-col lg:flex-row items-center z-100">
+        {/* Bottom Clients Carousel */}
+        <div className="absolute bottom-0 left-0 w-full h-[15vh] flex flex-col lg:flex-row items-center z-30">
           <div className="w-full h-full flex flex-col gap-y-6">
             <div className="flex items-center gap-2 pl-2">
               <span className="w-2 h-2 rounded-full bg-neon" />
@@ -118,24 +118,22 @@ const Hero = () => {
             </div>
 
             <FadeWrapper order={3}>
-     <SplideCarousel
-              images={logoImages}
-              direction="ltr"
-              speed={1}
-              perPage={5}
-              height="35px"
-              gap="1rem"
-              pauseOnHover={false}
-              className="w-full h-[35px] overflow-hidden"
-              haveBorder={false}
-              objectFit="contain"
-              imageRound="rounded-none"
-              mobilePerPage={2}
-              showLoader={false}
-            />
-              </FadeWrapper>
-
-       
+              <SplideCarousel
+                images={logoImages}
+                direction="ltr"
+                speed={1}
+                perPage={5}
+                height="35px"
+                gap="1rem"
+                pauseOnHover={false}
+                className="w-full h-[35px] overflow-hidden"
+                haveBorder={false}
+                objectFit="contain"
+                imageRound="rounded-none"
+                mobilePerPage={2}
+                showLoader={false}
+              />
+            </FadeWrapper>
           </div>
         </div>
       </div>

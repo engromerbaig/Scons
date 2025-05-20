@@ -23,7 +23,7 @@ const InnerHero = ({
   children,
   bgColor = "bg-white",
   showPattern = true,
-  patternSrc = "/pattern.webp",
+  patternSrc = "/iso.webp",
 }) => {
   const patternRef = useRef(null);
 
@@ -44,7 +44,7 @@ const InnerHero = ({
           ref={patternRef}
           aria-hidden
           className="absolute bottom-0 left-0 w-full h-full bg-no-repeat bg-bottom bg-cover pointer-events-none z-0 opacity-100"
-          style={{ backgroundImage: `url(${patternSrc})` }}
+          style={{ backgroundImage: `url(${patternSrc})`, opacity: 0.04 }}
         />
       )}
 
