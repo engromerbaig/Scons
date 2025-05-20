@@ -52,7 +52,7 @@ const ChatModal = ({ isOpen, onClose }) => {
         </button>
 
 
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col justify-start  text-start gap-6">
 
       <Heading
           text="Coffee Break?"
