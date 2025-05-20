@@ -22,28 +22,28 @@ const PackageCard = ({ packageInfo }) => {
     };
 
     return (
-        <div className="relative bg-white border border-grayText rounded-xl shadow-lg px-4 pt-4 pb-6 flex flex-col justify-between h-[600px] overflow-hidden">
+        <div className="relative bg-white border border-grayText rounded-xl shadow-lg py-10 px-12 flex flex-col justify-between h-[600px] overflow-hidden">
             {/* Title */}
-            <Heading text={packageInfo.title} className="text-xl font-bold text-center mb-2" />
+            <Heading text={packageInfo.title} className="text-3xl font-bold text-center mb-2" />
 
             {/* Price & Toggle */}
-            <div className="text-center mb-2">
-                <BodyText text={convertPrice(packageInfo.price)} className="text-2xl font-semibold" />
+            <div className="flex flex-row justify-center items-center text-center mb-2">
+                <BodyText text={convertPrice(packageInfo.price)} className="text-3xl font-semibold" />
                 <button
                     onClick={toggleCurrency}
-                    className="text-sm text-blue-500 underline mt-1"
+                    className="text-sm text-neon "
                 >
                     View in {currency === "PKR" ? "GBP" : "PKR"}
                 </button>
             </div>
 
             {/* Features with check icons */}
-            <div className="flex-1 overflow-x-hidden overflow-y-auto p-10 h-[150px] rounded-md thin-scrollbar break-words text-black bg-white">
-                <ul className="space-y-2 max-w-sm">
+            <div className="flex-1  overflow-x-hidden overflow-y-auto my-10 h-[150px] rounded-md thin-scrollbar break-words text-black \">
+                <ul className="space-y-2 max-w-[200px]">
                     {packageInfo.features.map((feature, idx) => (
                         <li key={idx} className="flex items-center justify-start space-x-2">
                             <FaCheckCircle className="text-neon text-sm" />
-                            <BodyText text={feature} />
+                            <BodyText text={feature} centered={false} />
                         </li>
                     ))}
                 </ul>
