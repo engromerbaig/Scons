@@ -24,7 +24,7 @@ export const packageData = [
     id: 2,
     title: "Full Website Package",
     description: "Ideal for businesses that need a complete professional website solution.",
-    price: 3500,
+    price: 10000,
     ribbonText:"Best Seller",
     features: {
       "Website": [
