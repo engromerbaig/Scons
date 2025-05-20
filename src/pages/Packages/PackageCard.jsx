@@ -20,6 +20,13 @@ const PackageCard = ({ packageInfo }) => {
 
     return (
         <div className="relative bg-white border border-grayText rounded-xl shadow-lg py-10 px-12 flex flex-col justify-between h-[600px] overflow-hidden">
+
+{packageInfo.ribbonText && <div className="absolute top-4 right-[-40px] w-[160px] rotate-45 bg-neon text-black text-center text-xs font-bold py-1 shadow-md z-10">
+    {packageInfo.ribbonText}
+</div> }
+            {/* Best Seller Ribbon */}
+
+
             {/* Title - Fixed height to accommodate two lines */}
             <Heading text={packageInfo.title} size="text-40px" className="font-bold text-center mb-2 h-[100px]" />
 
