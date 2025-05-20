@@ -1,25 +1,4 @@
-import React from 'react';
-import Heading from './components/Heading/Heading';
-import BodyText from './components/BodyText/BodyText';
 
-function App() {
-  return (
-    <div className="h-screen flex flex-col items-center justify-center gap-4">
-      <Heading
-      text= "Site Under Maintenance"
-
-      />
-
-      <BodyText
-      text= "We are currently working on updating our website. Please check back soon!"
-      />
-    </div>
-  );
-}
-
-export default App;
-
-/*
 
 // Original Code (Commented Out)
 
@@ -112,4 +91,4 @@ function App() {
   );
 }
 
-*/
+export default App;
