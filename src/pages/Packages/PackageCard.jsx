@@ -13,6 +13,10 @@ const PackageCard = ({ packageInfo }) => {
 
   const displayPrice = convertCurrency(packageInfo.price, "PKR", currency);
 
+  const formattedPrice = new Intl.NumberFormat("en-US", {
+    maximumFractionDigits: 0,
+  }).format(displayPrice);
+
   return (
     <div className="relative bg-white border border-grayText rounded-xl shadow-lg py-10 px-12 flex flex-col justify-between h-[600px] overflow-hidden">
       {packageInfo.ribbonText && (
@@ -37,27 +41,27 @@ const PackageCard = ({ packageInfo }) => {
       <div className="flex flex-row justify-center items-end gap-x-2 mb-3 h-[70px]">
         <div className="flex flex-col justify-end min-w-[200px] items-center">
           <div className="flex items-end gap-x-1">
-            <span className="text-sm">{currency === "PKR" ? "PKR" : currency === "GBP" ? "£" : currency === "USD" ? "$" : "AED"}</span>
-            <span className="text-[50px] leading-none font-bold">{displayPrice}</span>
+            <span className="text-sm">
+              {currency === "PKR" ? "PKR" : currency === "GBP" ? "£" : currency === "USD" ? "$" : "AED"}
+            </span>
+            <span className="text-60px leading-none font-bold">{formattedPrice}</span>
           </div>
         </div>
 
         {/* Currency Buttons */}
-<div className="grid grid-cols-2 grid-rows-2 gap-1 justify-center">
-  {currencies.map((cur) => (
-    <button
-      key={cur}
-      onClick={() => setCurrency(cur)}
-      className={`flex items-center justify-center px-2 py-1 text-10px font-medium rounded transition ${
-        currency === cur ? "bg-neon text-black" : "bg-gray-100 text-black"
-      }`}
-    >
-      {cur}
-    </button>
-  ))}
-</div>
-
-
+        <div className="grid grid-cols-2 grid-rows-2 gap-1 justify-center">
+          {currencies.map((cur) => (
+            <button
+              key={cur}
+              onClick={() => setCurrency(cur)}
+              className={`flex items-center justify-center px-2 py-1 text-10px font-medium rounded transition ${
+                currency === cur ? "bg-neon text-black" : "bg-gray-100 text-black"
+              }`}
+            >
+              {cur}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Features */}

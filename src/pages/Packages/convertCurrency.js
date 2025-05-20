@@ -7,13 +7,22 @@ const currencyRates = {
 export const convertCurrency = (price, fromCurrency, toCurrency = "PKR") => {
   if (fromCurrency === toCurrency) return price;
 
-  // For now, assume PKR is the base currency, so convert PKR to target
-  // Later, you can replace this logic with API calls
+  // Assume PKR is base currency
   if (fromCurrency === "PKR" && currencyRates[toCurrency]) {
-    return (price * currencyRates[toCurrency]).toFixed(0);
+    return price * currencyRates[toCurrency];
   }
 
-  // If converting from another currency to PKR or between other currencies, extend here
-  // For now, fallback to price unchanged
+  // Convert other currencies back to PKR
+  if (toCurrency === "PKR" && currencyRates[fromCurrency]) {
+    return price / currencyRates[fromCurrency];
+  }
+
+  // Convert between two non-PKR currencies via PKR as base
+  if (currencyRates[fromCurrency] && currencyRates[toCurrency]) {
+    const inPKR = price / currencyRates[fromCurrency];
+    return inPKR * currencyRates[toCurrency];
+  }
+
+  // Fallback
   return price;
 };
