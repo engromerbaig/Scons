@@ -1,3 +1,28 @@
+import React from 'react';
+import Heading from './components/Heading/Heading';
+import BodyText from './components/BodyText/BodyText';
+
+function App() {
+  return (
+    <div className="h-screen flex flex-col items-center justify-center gap-4">
+      <Heading
+      text= "Site Under Maintenance"
+
+      />
+
+      <BodyText
+      text= "We are currently working on updating our website. Please check back soon!"
+      />
+    </div>
+  );
+}
+
+export default App;
+
+/*
+
+// Original Code (Commented Out)
+
 import React, { Suspense, lazy, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation, useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
@@ -9,7 +34,6 @@ import ScrollToTop from './utilities/ScrollToTop';
 import HeroButton from './components/HeroButton/HeroButton';
 import ChatModal from './components/ChatModal/ChatModal';
 
-// Lazy imports
 const Home = lazy(() => import('./pages/Home/Home'));
 const KnowUs = lazy(() => import('./pages/KnowUs/KnowUs'));
 const OurWork = lazy(() => import('./pages/OurWork/OurWork'));
@@ -28,7 +52,6 @@ const ContactUs = lazy(() => import('./pages/ContactUs/ContactUs'));
 
 import TopScroller from './utilities/TopScroller';
 
-// Wrapper for ServiceDetails to force remount on param change
 function ServiceDetailsWrapper() {
   const { serviceSlug } = useParams();
   return <ServiceDetails key={serviceSlug} />;
@@ -43,21 +66,14 @@ function AppContent() {
 
   return (
     <div className="App overflow-hidden">
-      {/* Global Helmet - Default Metadata */}
       <Helmet>
         <title>Scons | UK Based Software Innovator's</title>
-        <meta
-          name="description"
-          content="Explore innovative software solutions by Scons tailored for startups and enterprises in the UK and worldwide."
-        />
-        <meta
-          name="keywords"
-          content="Scons, Software Company UK, Web Development, React, Node.js, Full Stack, Startups"
-        />
+        <meta name="description" content="Explore innovative software solutions by Scons tailored for startups and enterprises in the UK and worldwide." />
+        <meta name="keywords" content="Scons, Software Company UK, Web Development, React, Node.js, Full Stack, Startups" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Helmet>
 
-<TopScroller/>
+      <TopScroller />
       <Navbar />
       <HeroButton onClick={() => setModalOpen(true)} />
       <ChatModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} />
@@ -96,4 +112,4 @@ function App() {
   );
 }
 
-export default App;
+*/
