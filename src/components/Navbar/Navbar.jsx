@@ -71,7 +71,7 @@ const Navbar = () => {
         )}
 
         {/* Get in Touch button only on below lg */}
-        <div className="">
+        <div className="lg:hidden">
           <Button
             name="Get in Touch"
             fontSize="text-10px"
