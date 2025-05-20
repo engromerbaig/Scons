@@ -74,8 +74,12 @@ const ProjectCard = ({ project }) => {
    <div className="flex gap-2">
 
     <BodyText
-    text={`View ${project.heading} Details`}
-    color="text-white"
+text={
+  <>
+    View {project.heading} <br />
+    Details
+  </>
+}    color="text-white"
     size="text-sm"
     fontWeight="font-semibold"
     className="max-w-[200px] text-right "
