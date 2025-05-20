@@ -53,7 +53,7 @@ const NestedTabs = () => {
         ref={(el) => (tabsRef.current[index] = el)}
         onClick={() => setActiveCategory(cat)}
         onKeyDown={(e) => onKeyDown(e, isHorizontal)}
-        className={`px-4 py-2 m-2 rounded-full transition-colors text-left whitespace-nowrap ${
+        className={`px-4 py-2 m-2 rounded-r-full transition-colors text-left whitespace-nowrap ${
           isActive
             ? "tab-active-gradient text-black font-black"
             : "text-black hover:bg-gray-100"
