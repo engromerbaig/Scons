@@ -15,6 +15,8 @@ export const contactDetails = [
     detail: 'info@scons.com',
     link: 'mailto:info@scons.com',
   },
+
+  
   {
     type: 'Phone',
     icon: FaPhoneAlt,

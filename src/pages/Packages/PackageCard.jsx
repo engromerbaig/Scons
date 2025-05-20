@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { FaCheckCircle } from "react-icons/fa";
+import { FaPhoneAlt } from "react-icons/fa";
 import Heading from "../../components/Heading/Heading";
 import BodyText from "../../components/BodyText/BodyText";
 import Button from "../../components/Button/Button";
+import { contactDetails } from "../../components/MobileMenu/modules/contactDetails";
 
 const currencyRates = {
     GBP: 0.0027,
@@ -18,14 +20,14 @@ const PackageCard = ({ packageInfo }) => {
 
     return (
         <div className="relative bg-white border border-grayText rounded-xl shadow-lg py-10 px-12 flex flex-col justify-between h-[600px] overflow-hidden">
-            {/* Title */}
-            <Heading text={packageInfo.title} size="text-40px" className="font-bold text-center mb-2" />
+            {/* Title - Fixed height to accommodate two lines */}
+            <Heading text={packageInfo.title} size="text-40px" className="font-bold text-center mb-2 h-[100px]" />
 
-            {/* Short description */}
+            {/* Short description - Fixed height to align across cards */}
             <BodyText
                 text={packageInfo.description}
                 centered={true}
-                className="text-gray-600 text-sm mb-4 h-[40px] leading-snug"
+                className="text-gray-600 text-sm mb-4 h-[40px] leading-snug overflow-hidden"
             />
 
             {/* Currency section */}
@@ -48,7 +50,7 @@ const PackageCard = ({ packageInfo }) => {
                                 key={cur}
                                 onClick={() => setCurrency(cur)}
                                 className={`px-2 py-1 text-[10px] font-medium rounded transition ${
-                                    currency === cur ? "bg-neon text-black" : "bg-gray-100 text-black"
+                                    currency === cur ? 'bg-neon text-black' : 'bg-gray-100 text-black'
                                 }`}
                             >
                                 {cur}
@@ -78,9 +80,25 @@ const PackageCard = ({ packageInfo }) => {
             </div>
 
             {/* Call to Action */}
-            <div className="text-center mt-auto pt-5">
-                <Button name="Buy Now" openModal={true} />
-            </div>
+ <div className="text-center mt-auto pt-10">
+    <Button name="Buy Now" hoverBgColor="bg-neon" openModal={true} />
+    {/* Contact Info - Email Only */}
+    <div className="flex items-center justify-center gap-2 mt-2 text-sm text-black">
+        {contactDetails
+            .filter(contact => contact.type === 'Email')
+            .map((contact, idx) => {
+                const Icon = contact.icon;
+                return (
+                    <div key={idx} className="flex items-center gap-2">
+                        <Icon className="text-neon" />
+                        <a href={contact.link} className="hover:underline">
+                            {contact.detail}
+                        </a>
+                    </div>
+                );
+            })}
+    </div>
+</div>
         </div>
     );
 };
