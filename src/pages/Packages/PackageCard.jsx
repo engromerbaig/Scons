@@ -48,8 +48,8 @@ const PackageCard = ({ packageInfo }) => {
             <div className="flex-1 overflow-y-auto my-8 h-[150px] rounded-md package-scrollbar text-black">
                 <ul className="space-y-3 max-w-[220px] mx-auto">
                     {packageInfo.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-start space-x-2">
-                            <FaCheckCircle className="text-neon text-sm mt-1 flex-shrink-0" />
+                        <li key={idx} className="flex items-start space-x-3">
+                            <FaCheckCircle className="text-neon text-sm mt-2 flex-shrink-0" />
                             <BodyText
                                 text={feature}
                                 centered={false}
