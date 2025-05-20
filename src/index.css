@@ -313,11 +313,6 @@ html {
 
 
 
-.tab-active-gradient {
-  background: linear-gradient(90deg, theme('colors.neon / 0.10') 0%, theme('colors.neon / 0.31') 100%);
-  box-shadow: 0 2px 4px 0 theme('colors.neon / 0.1');
-  transition: background 0.3s, box-shadow 0.3s;
-}
 
 
 
@@ -385,3 +380,13 @@ html {
 /* glow containers */
 
 
+/* dynamic color read */
+.tab-active-gradient {
+  background: linear-gradient(
+    90deg, 
+    theme('colors.neon/0%') 0%, 
+    theme('colors.neon/31%') 100%
+  );
+  box-shadow: 0 2px 4px 0 theme('colors.neon/10%');
+  transition: background 0.3s, box-shadow 0.3s;
+}
