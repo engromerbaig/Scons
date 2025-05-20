@@ -34,7 +34,9 @@ export default {
       
       colors: {
         // bxlue: '#0b1a79',
-        neon: '#28ed70',
+        // neon: '#28ed70',
+        neon: '#00c5ff',
+
         charcoal: '#26292D',
         offWhite:'#F5F5F5',
         beige:"#ECE9DF",
