@@ -4,6 +4,7 @@ import PackageCard from "./PackageCard";
 import { packageData } from "./packageData";
 import Heading from "../../components/Heading/Heading";
 import BodyText from "../../components/BodyText/BodyText";
+import StartProjectBelt from "../../components/StartProjectBelt/StartProjectBelt";
 
 const Packages = () => {
     return (
@@ -28,6 +29,7 @@ const Packages = () => {
             </div>
 
 
+<StartProjectBelt text="Custom Project"/>
 
           
         </div>
