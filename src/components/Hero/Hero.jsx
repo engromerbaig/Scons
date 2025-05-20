@@ -26,7 +26,7 @@ const Hero = () => {
         <img
           src="/globe.svg" // from public folder
           alt="Globe Background"
-          className="absolute top-0 right-[-20%] h-full w-auto opacity-15 object-right object-contain pointer-events-none z-10"
+          className="svg-neon absolute top-0 right-[-20%] h-full w-auto opacity-15 object-right object-contain pointer-events-none z-10"
           loading="lazy"
         />
       </div>

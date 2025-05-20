@@ -35,7 +35,7 @@ const BusinessSuccess = ({heading, spanHeading, bodyText}) => {
     <motion.img
       src={timelineImage}
       alt="Timeline Overview"
-      className="w-full h-full object-cover" // Changed from object-contain
+      className="w-full h-full object-cover svg-neon" // Changed from object-contain
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
