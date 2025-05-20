@@ -1,7 +1,7 @@
 const currencyRates = {
   GBP: 0.0027,
-  USD: 0.0033,
-  AED: 0.0121,
+  USD: 0.0035,
+  AED: 0.013,
 };
 
 export const convertCurrency = (price, fromCurrency, toCurrency = "PKR") => {
