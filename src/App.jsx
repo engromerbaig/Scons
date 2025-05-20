@@ -28,6 +28,7 @@ const Blogs = lazy(() => import('./pages/Blogs/Blogs'));
 const BlogDetails = lazy(() => import('./pages/BlogDetails/BlogDetails'));
 const ProjectDetail = lazy(() => import('./pages/OurWork/ProjectDetail'));
 const ContactUs = lazy(() => import('./pages/ContactUs/ContactUs'));
+const Packages = lazy(() => import('./pages/Packages/Packages'));
 
 import TopScroller from './utilities/TopScroller';
 
@@ -71,6 +72,7 @@ function AppContent() {
           <Route path="/service/:serviceSlug" element={<ServiceDetailsWrapper />} />
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/blogs/:blogSlug" element={<BlogDetails />} />
+          <Route path="/packages" element={<Packages />} />
           <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="*" element={<NotFound />} />

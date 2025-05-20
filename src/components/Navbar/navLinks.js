@@ -5,6 +5,8 @@ export const navLinks = [
     // { to: "/blogs", label: "Blogs" },
 
     { to: "/careers", label: "Careers" },
+        { to: "/packages", label: "Packages" },
+
     { to: "/contact-us", label: "Contact Us" },
     // { to: "/lets-innovate", label: "Let's Innovate" },
 ];
