@@ -20,17 +20,11 @@ const Technologies = lazy(() => import("../../components/Technologies/Technologi
 const FadeInSection = lazy(() => import("../../utilities/Animations/FadeInSection"));
 
 // Static imports for non-component data
-import { visionMissionData } from "../../components/Vision/visionMissionData";
-import { visionData } from "./visionData";
-import handImage from "../../assets/images/about/hand.webp";
-import ballImage from "../../assets/images/about/ball.webp";
 import logoImage from "../../assets/images/about/logo.svg";
 import officeImage from "../../assets/images/about/office.webp";
 import aboutUsImage from "../../assets/images/about/about.svg";
-import heroImage from "../../assets/images/about/about.png";
 import ceoImage from "../../assets/images/about/ceo.webp";
 import { theme } from "../../theme";
-import knowUsMarqueeItems from "./knowUsMarquee";
 
 const KnowUs = () => {
   // Ref and state for intersection observer
