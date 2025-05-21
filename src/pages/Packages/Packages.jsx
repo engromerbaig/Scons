@@ -21,8 +21,8 @@ const Packages = () => {
     resetFilters,
   } = usePackageFilters(packageData);
 
-  // Group packages by category when "All" is selected
-  const groupedPackages = selectedCategory === "All"
+  // Group packages by category when "All Categories" is selected
+  const groupedPackages = selectedCategory === "All Categories"
     ? uniqueCategories.reduce((acc, category) => {
         const categoryPackages = packageData.filter(
           (pkg) => pkg.category === category
@@ -66,7 +66,7 @@ const Packages = () => {
       >
         <FilterControls
           selectedService={selectedCategory}
-          uniqueServices={["All", ...uniqueCategories]} // Add "All" option
+          uniqueServices={["All Categories", ...uniqueCategories]} // Add "All Categories" option
           handleServiceChange={handleCategoryChange}
           resetFilters={resetFilters}
           isNestedService={false} // No nested categories for packages

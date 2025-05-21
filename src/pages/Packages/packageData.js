@@ -105,5 +105,34 @@ export const packageData = [
         "Competitor analysis"
       ]
     }
-  }
+  },
+
+   {
+    id: 5,
+    title: "Full SEO Package",
+    description: "Comprehensive SEO service to improve your website’s search engine visibility.",
+    price: 2500,
+    category: "SEO",
+    features: {
+      "SEO Audit": [
+        "Full technical audit",
+        "On-page SEO analysis",
+        "Keyword research"
+      ],
+      "Optimization": [
+        "Meta tags & schema setup",
+        "Speed & Core Web Vitals improvement",
+        "Mobile & accessibility fixes"
+      ],
+      "Content": [
+        "Blog structure and ideas",
+        "Copywriting guidance",
+        "Internal linking strategy"
+      ],
+      "Reports": [
+        "Monthly ranking report",
+        "Competitor analysis"
+      ]
+    }
+  },
 ];

@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const usePackageFilters = (initialPackages) => {
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedCategory, setSelectedCategory] = useState("All Categories");
   const [filteredPackages, setFilteredPackages] = useState(initialPackages);
 
   // Extract unique categories from packageData
@@ -12,7 +12,7 @@ const usePackageFilters = (initialPackages) => {
   // Handle category change
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
-    if (category === "All") {
+    if (category === "All Categories") {
       setFilteredPackages(initialPackages);
     } else {
       setFilteredPackages(
@@ -23,7 +23,7 @@ const usePackageFilters = (initialPackages) => {
 
   // Reset filters
   const resetFilters = () => {
-    setSelectedCategory("All");
+    setSelectedCategory("All Categories");
     setFilteredPackages(initialPackages);
   };
 
