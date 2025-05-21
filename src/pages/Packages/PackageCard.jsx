@@ -18,7 +18,7 @@ const PackageCard = ({ packageInfo }) => {
   }).format(displayPrice);
 
   return (
-<div className="relative bg-white rounded-xl shadow-xl py-10 px-10 flex flex-col justify-between h-[600px] overflow-hidden transition-all duration-300 hover:ring-2 hover:ring-neon hover:shadow-[0_0_20px_rgba(0,197,255,0.2)]
+<div className="relative bg-white rounded-xl shadow-xl py-10 px-10 w-full flex flex-col justify-between h-[600px] overflow-hidden transition-all duration-300 hover:ring-2 hover:ring-neon hover:shadow-[0_0_20px_rgba(0,197,255,0.2)]
 ">
 
       {/* Blob in bottom-right corner */}   

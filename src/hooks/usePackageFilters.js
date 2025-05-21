@@ -1,8 +1,7 @@
-// src/hooks/usePackageFilters.js
 import { useState } from "react";
 
 const usePackageFilters = (initialPackages) => {
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("All");
   const [filteredPackages, setFilteredPackages] = useState(initialPackages);
 
   // Extract unique categories from packageData
@@ -13,7 +12,7 @@ const usePackageFilters = (initialPackages) => {
   // Handle category change
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
-    if (category === "" || category === "All") {
+    if (category === "All") {
       setFilteredPackages(initialPackages);
     } else {
       setFilteredPackages(
@@ -24,7 +23,7 @@ const usePackageFilters = (initialPackages) => {
 
   // Reset filters
   const resetFilters = () => {
-    setSelectedCategory("");
+    setSelectedCategory("All");
     setFilteredPackages(initialPackages);
   };
 

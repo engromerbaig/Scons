@@ -1,4 +1,3 @@
-// src/pages/Packages.js
 import { useState, lazy } from "react";
 import { theme } from "../../theme";
 import PackageCard from "./PackageCard";
@@ -21,6 +20,19 @@ const Packages = () => {
     handleCategoryChange,
     resetFilters,
   } = usePackageFilters(packageData);
+
+  // Group packages by category when "All" is selected
+  const groupedPackages = selectedCategory === "All"
+    ? uniqueCategories.reduce((acc, category) => {
+        const categoryPackages = packageData.filter(
+          (pkg) => pkg.category === category
+        );
+        if (categoryPackages.length > 0) {
+          acc[category] = categoryPackages;
+        }
+        return acc;
+      }, {})
+    : { [selectedCategory]: filteredPackages };
 
   return (
     <div className={`${theme.layoutPages.paddingBottom} min-h-screen`}>
@@ -58,14 +70,26 @@ const Packages = () => {
           handleServiceChange={handleCategoryChange}
           resetFilters={resetFilters}
           isNestedService={false} // No nested categories for packages
-          isPackages
+          isPackages={true} // Enable Packages mode
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
-          {filteredPackages.map((pkg) => (
-            <PackageCard key={pkg.id} packageInfo={pkg} />
-          ))}
-        </div>
+        {Object.entries(groupedPackages).map(([category, packages]) => (
+          <div key={category} className="mt-8">
+            <div className="relative inline-block my-10">
+              <Heading
+                text={`${category} Packages`}
+                centered={false}
+                className="mb-3"
+              />
+              <div className="absolute bottom-0 left-0 w-full  h-2 lg:h-3 bg-neon rounded-none"></div>
+            </div>
+            <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {packages.map((pkg) => (
+                <PackageCard key={pkg.id} packageInfo={pkg} />
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
 
       <StartProjectBelt text="Custom Project" />
