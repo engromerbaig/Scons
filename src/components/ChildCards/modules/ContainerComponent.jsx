@@ -9,7 +9,7 @@ const ContainerComponent = ({ logo, heading, number, text, glowColor }) => (
       
       {/* First Div - Icon Section (50% height) */}
       <div className="flex flex-col items-center justify-center h-1/2">
-        <img src={logo} className="md:w-24 w-16 aspect-square mb-4 svg-white" loading="lazy" alt="Icon" />
+        <img src={logo} className=" w-16 aspect-square mb-4 svg-white" loading="lazy" alt="Icon" />
       </div>
 
       {/* Second Div - Content Section (50% height, aligned to top) */}

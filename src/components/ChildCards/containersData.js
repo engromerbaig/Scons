@@ -8,39 +8,39 @@ import support from '../../assets/icons/business/support.svg';
 const containersData = [
   {
     logo: idea,
-    heading: "Research",
+    heading: "Planning",
     number: "01",
-    text: "We dive deep into project goals, analyzing requirements and designing a scalable microservices architecture for a robust foundation."
+    text: "We define clear goals, understand the vision, and outline a roadmap tailored to your business needs."
   },
   {
     logo: design,
-    heading: "Infrastructure",
+    heading: "Design",
     number: "02",
-    text: "Using AWS and Kubernetes, we set up a dynamic backend that scales efficiently, integrating core systems and mechanics."
+    text: "Scons crafts intuitive UI/UX and scalable architecture to ensure user-centric and robust system design."
   },
   {
     logo: develop,
     heading: "Development",
     number: "03",
-    text: "Our team builds and rigorously tests features to ensure flawless functionality, seamless performance, and a polished experience."
+    text: "Our engineers bring ideas to life with clean, efficient, and maintainable code across all layers."
   },
   {
     logo: test,
-    heading: "Tuning",
+    heading: "Testing",
     number: "04",
-    text: "We optimize for high traffic through extensive load testing, ensuring stability and speed under heavy user demand."
+    text: "We ensure quality through rigorous functional, performance, and security testing for flawless delivery."
   },
   {
     logo: launch,
-    heading: "Review",
+    heading: "Deployment",
     number: "05",
-    text: "We align with client feedback, fine-tuning the project to meet expectations and ensure audience resonance before launch."
+    text: "Seamless deployment using modern CI/CD practices to ensure stability and fast time-to-market."
   },
   {
     logo: support,
-    heading: "Deployment",
+    heading: "Maintenance",
     number: "06",
-    text: "We deploy the project seamlessly and provide ongoing monitoring to maintain peak performance and reliability."
+    text: "Post-launch, Scons provides continuous support, monitoring, and improvements to keep systems at peak performance."
   },
 ];
 
