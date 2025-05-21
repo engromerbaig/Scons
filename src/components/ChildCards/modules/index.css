@@ -22,7 +22,7 @@
     z-index: 0;
 }
 
-.glow-right-container:hover::after {
+.glow-right-container::after {
     width: 20%; /* Expand to cover the right 20% on hover */
     opacity: 1; /* Make the glow fully visible */
 }
