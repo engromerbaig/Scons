@@ -15,22 +15,35 @@ const useHorizontalScroll = (sliderRef, cardCount, isDesktop) => {
     if (!isDesktop) return; // Skip for mobile
 
     let ctx = gsap.context(() => {
-      const cardWidth = window.innerWidth > 1025 ? 33.33 : 50; // vw per card
-      const totalWidth = 100 + cardCount * cardWidth; // Business section + cards
+      // Get the gap size in pixels to account for spacing
+      const gapSize = 40; // 10 in tailwind translates to approximately 40px
+      const windowWidth = window.innerWidth;
+      const cardWidth = windowWidth > 1025 ? windowWidth * 0.33 : windowWidth * 0.5; // actual pixel width
+      
+      // Calculate total width including gaps
+      const businessSectionWidth = windowWidth;
+      const cardsWidth = cardCount * cardWidth;
+      const gapsWidth = gapSize * (cardCount + 1); // +1 for gap between business section and first card
+      
+      const totalWidth = businessSectionWidth + cardsWidth + gapsWidth;
+      
+      // Set the slider width
+      sliderRef.current.style.width = `${totalWidth}px`;
 
-      sliderRef.current.style.width = `${totalWidth}vw`;
-
+      // Create scroll animation
       gsap.to(sliderRef.current, {
-        x: () => -(sliderRef.current.offsetWidth - window.innerWidth),
+        x: () => -(totalWidth - windowWidth),
         ease: "none",
         scrollTrigger: {
           trigger: sliderRef.current,
           pin: true,
           scrub: 1,
           start: "top top",
-          end: () => `+=${sliderRef.current.scrollWidth - window.innerWidth}`,
+          end: () => `+=${totalWidth - windowWidth}`,
           toggleActions: "play none none reverse",
           invalidateOnRefresh: true,
+          // Add this to debug if needed
+          // markers: true,
         },
       });
     }, sliderRef);
@@ -51,16 +64,14 @@ const HorizontalScroller = ({ heading, spanHeading, bodyText }) => {
     <div ref={componentRef} className="overflow-hidden">
       {isDesktop ? (
         // Desktop: Pinned horizontal scroll
-        <div ref={sliderRef} className="flex h-screen">
+        <div ref={sliderRef} className="flex h-screen items-center bg-black gap-10">
           <div className="flex-shrink-0 w-screen">
             <BusinessSuccess heading={heading} spanHeading={spanHeading} bodyText={bodyText} />
           </div>
           {containersData.map((data, index) => (
             <div
               key={index}
-              className={`card-container h-screen flex-shrink-0 ${
-                window.innerWidth > 1025 ? "lg:w-[33.33vw]" : "md:w-[50vw]"
-              }`}
+              className="flex-shrink-0 w-[33vw] h-[60vh] flex items-center justify-center"
             >
               <ContainerComponent
                 logo={data.logo}
@@ -74,7 +85,7 @@ const HorizontalScroller = ({ heading, spanHeading, bodyText }) => {
       ) : (
         // Mobile: Vertical stack, no pinning, normal card height
         <div className={`flex flex-col bg-black ${theme.layoutPages.paddingVertical}`}>
-          <BusinessSuccess />
+          <BusinessSuccess heading={heading} spanHeading={spanHeading} bodyText={bodyText} />
           <div className="flex flex-col space-y-4 px-6 pb-4">
             {containersData.map((data, index) => (
               <div key={index} className="w-full">
