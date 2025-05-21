@@ -20,8 +20,8 @@ const Careers = () => {
                 headingText="Begin Your Career With Us"
                 spanText="Career"
                 bodyText="Join Scons and be part of a dynamic team transforming businesses worldwide. Innovate, grow, and excel with us."
-                illustrationImage={careerImage}
-                illustrationImageWidth='w-3/4'
+            
+                height="h-[70vh]"
             />
 
             {/* Job Listings */}
