@@ -4,51 +4,60 @@
     overflow: hidden;
 }
 
-/* Base glow effect (always visible, subtle) */
+/* Base glow effect (subtle, always visible) */
 .glow-right-container::before {
     content: "";
     position: absolute;
-    bottom: -80px;
-    right: -80px;
-    width: 250px;
-    height: 250px;
+    bottom: -90px;
+    right: -90px;
+    width: 260px;
+    height: 260px;
     background: radial-gradient(
         circle at center,
-        theme('colors.neon/60%'),
+        theme('colors.neon/50%'),
         theme('colors.neon/0%')
     );
-    opacity: 0.6;
-    filter: blur(50px); /* More blur for soft glow */
+    opacity: 0.5; /* Slightly reduced for subtlety */
+    filter: blur(60px); /* Softer blur for natural glow */
     border-radius: 50%;
     pointer-events: none;
     z-index: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.4s ease, transform 0.4s ease; /* Added transform transition */
+    transform: scale(1);
+}
+
+/* Enhance default glow slightly on hover */
+.glow-right-container:hover::before {
+    opacity: 0.65; /* Slight boost for interaction */
+    transform: scale(1.05); /* Subtle scale for dynamic effect */
 }
 
 /* Extra glow on hover */
 .glow-right-container::after {
     content: "";
     position: absolute;
-   bottom: -80px;
-    right: -80px;
-    width: 450px;
-    height: 450px;
+    bottom: -90px;
+    right: -90px;
+    width: 420px; /* Slightly larger for more impact */
+    height: 420px;
     background: radial-gradient(
         circle at center,
-        theme('colors.neon/40%'),
+        theme('colors.neon/45%'),
         theme('colors.neon/0%')
     );
     opacity: 0;
-    filter: blur(150px); /* Stronger blur for hover */
+    filter: blur(160px); /* Enhanced blur for dramatic hover */
     border-radius: 50%;
     pointer-events: none;
     z-index: 0;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.6s ease, transform 0.6s ease; /* Smoother transition */
+    transform: scale(1);
 }
 
 /* Activate the after-glow on hover */
 .glow-right-container:hover::after {
-    opacity: 0.85;
+    opacity: 0.9; /* Increased opacity for stronger effect */
+    transform: scale(1.1); /* Slight scale for dynamic hover */
 }
 
 .glow-content {
