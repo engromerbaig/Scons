@@ -49,7 +49,7 @@ const ProjectDetail = () => {
   };
 
   if (!project) {
-    return <div className="text-center py-20">Story not found</div>;
+    return <div className="text-center py-20">Project not found</div>;
   }
 
   return (
