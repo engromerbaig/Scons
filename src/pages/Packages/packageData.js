@@ -4,6 +4,7 @@ export const packageData = [
     title: "Early Bird",
     description: "Perfect for startups getting started with branding and web presence.",
     price: 1500,
+    category: "Branding & Web",
     features: {
       "Logo": [
         "Custom logo design",
@@ -25,7 +26,8 @@ export const packageData = [
     title: "Full Website Package",
     description: "Ideal for businesses that need a complete professional website solution.",
     price: 10000,
-    ribbonText:"Best Seller",
+    ribbonText: "Best Seller",
+    category: "Web Development",
     features: {
       "Website": [
         "Multi-page custom site",
@@ -53,6 +55,7 @@ export const packageData = [
     title: "Full SEO Package",
     description: "Comprehensive SEO service to improve your website’s search engine visibility.",
     price: 2500,
+    category: "SEO",
     features: {
       "SEO Audit": [
         "Full technical audit",
@@ -75,12 +78,12 @@ export const packageData = [
       ]
     }
   },
-
-   {
+  {
     id: 4,
     title: "Full Package",
     description: "Comprehensive SEO service to improve your website’s search engine visibility.",
     price: 105000,
+    category: "Comprehensive",
     features: {
       "SEO Audit": [
         "Full technical audit",

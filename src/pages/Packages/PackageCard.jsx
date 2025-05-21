@@ -19,15 +19,22 @@ const PackageCard = ({ packageInfo }) => {
 
   return (
     <div className="relative bg-white rounded-xl shadow-xl py-10 px-10 flex flex-col justify-between h-[600px] overflow-hidden">
-      {/* Blob in top-left corner */}
-      <div className="absolute top-[-50px] left-[-50px] w-[120px] h-[120px] bg-neon opacity-50 rounded-full animate-blob z-0"></div>
+      {/* Blob in bottom-right corner */}   
 
-      {packageInfo.ribbonText && (
-        <div className="absolute top-4 right-[-40px] w-[160px] rotate-45 bg-neon text-black text-center text-xs font-bold py-1 shadow-md z-10">
-          {packageInfo.ribbonText}
-        </div>
-      )}
+            <div className="absolute bottom-[-50px] right-[-50px] w-[110px] h-[110px] bg-neon opacity-50 rounded-full animate-blob z-0"></div>
+      
 
+{packageInfo.category && (
+  <div className="absolute top-0 left-2 px-1 text-neon border border-neon opacity-100 rounded-xl flex items-center justify-center text-center text-10px font-bold ">
+    {packageInfo.category}
+  </div>
+)}
+
+{packageInfo.ribbonText && (
+  <div className="absolute top-4 right-[-40px] w-[160px] rotate-45 bg-neon text-black text-center text-xs font-bold py-1 shadow-md z-10">
+    {packageInfo.ribbonText}
+  </div>
+)}
       {/* Title with custom neon underline */}
       <div className="relative mb-2 ">
         <Heading
