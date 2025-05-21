@@ -1,3 +1,4 @@
+// src/pages/PackageCard.js
 import { useState } from "react";
 import { FaCheckCircle } from "react-icons/fa";
 import Heading from "../../components/Heading/Heading";
@@ -11,34 +12,39 @@ const currencies = ["PKR", "GBP", "USD", "AED"];
 const PackageCard = ({ packageInfo }) => {
   const [currency, setCurrency] = useState("PKR");
 
-  const displayPrice = convertCurrency(packageInfo.price, "PKR", currency);
+  // Use rates from packageInfo, fallback to empty object if undefined
+  const displayPrice = convertCurrency(
+    packageInfo.price,
+    "PKR",
+    currency,
+    packageInfo.currencyRates || {}
+  );
 
   const formattedPrice = new Intl.NumberFormat("en-US", {
     maximumFractionDigits: 0,
   }).format(displayPrice);
 
   return (
-<div className="relative bg-white rounded-xl shadow-xl py-10 px-10 w-full flex flex-col justify-between h-[600px] overflow-hidden transition-all duration-300 border border-neon hover:ring-2 hover:ring-neon hover:shadow-[0_0_20px_rgba(0,197,255,0.2)]
-">
+    <div
+      className="relative bg-white rounded-xl shadow-xl py-10 px-10 w-full flex flex-col justify-between h-[600px] overflow-hidden transition-all duration-300 border border-neon hover:ring-2 hover:ring-neon hover:shadow-[0_0_20px_rgba(0,197,255,0.2)]"
+    >
+      {/* Blob in bottom-right corner */}
+      <div className="absolute bottom-[-50px] right-[-50px] w-[110px] h-[110px] bg-neon opacity-50 rounded-full animate-blob z-0"></div>
 
-      {/* Blob in bottom-right corner */}   
+      {packageInfo.category && (
+        <div className="absolute top-2 left-2 px-1 text-neon border border-neon opacity-100 rounded-xl flex items-center justify-center text-center text-10px font-bold">
+          {packageInfo.category}
+        </div>
+      )}
 
-            <div className="absolute bottom-[-50px] right-[-50px] w-[110px] h-[110px] bg-neon opacity-50 rounded-full animate-blob z-0"></div>
-      
+      {packageInfo.ribbonText && (
+        <div className="absolute top-4 right-[-40px] w-[160px] rotate-45 bg-neon text-black text-center text-xs font-bold py-1 shadow-md z-10">
+          {packageInfo.ribbonText}
+        </div>
+      )}
 
-{packageInfo.category && (
-  <div className="absolute top-2 left-2 px-1 text-neon border border-neon opacity-100 rounded-xl flex items-center justify-center text-center text-10px font-bold ">
-    {packageInfo.category}
-  </div>
-)}
-
-{packageInfo.ribbonText && (
-  <div className="absolute top-4 right-[-40px] w-[160px] rotate-45 bg-neon text-black text-center text-xs font-bold py-1 shadow-md z-10">
-    {packageInfo.ribbonText}
-  </div>
-)}
       {/* Title with custom neon underline */}
-      <div className="relative mb-2 ">
+      <div className="relative mb-2">
         <Heading
           text={packageInfo.title}
           size="text-70px xl:text-40px"
@@ -50,17 +56,25 @@ const PackageCard = ({ packageInfo }) => {
       <BodyText
         text={packageInfo.description}
         centered={true}
-        className="text-gray-600 text-sm mb-4 h-[50px] leading-tight overflow-hidden "
+        className="text-gray-600 text-sm mb-4 h-[50px] leading-tight overflow-hidden"
       />
 
       {/* Currency and Price */}
-      <div className="flex flex-row justify-center items-end gap-x-2 mb-3 h-[70px] ">
+      <div className="flex flex-row justify-center items-end gap-x-2 mb-3 h-[70px]">
         <div className="flex flex-col justify-end min-w-[200px] items-center">
           <div className="flex items-end gap-x-1">
             <span className="text-sm">
-              {currency === "PKR" ? "PKR" : currency === "GBP" ? "£" : currency === "USD" ? "$" : "AED"}
+              {currency === "PKR"
+                ? "₨"
+                : currency === "GBP"
+                ? "£"
+                : currency === "USD"
+                ? "$"
+                : "AED"}
             </span>
-            <span className="text-90px xl:text-60px leading-none font-bold">{formattedPrice}</span>
+            <span className="text-90px xl:text-60px leading-none font-bold">
+              {formattedPrice}
+            </span>
           </div>
         </div>
 
@@ -81,7 +95,7 @@ const PackageCard = ({ packageInfo }) => {
       </div>
 
       {/* Features */}
-      <div className="flex-1 overflow-y-auto my-4 h-[200px] rounded-md package-scrollbar text-black ">
+      <div className="flex-1 overflow-y-auto my-4 h-[200px] rounded-md package-scrollbar text-black">
         <div className="space-y-4 max-w-[250px] mx-auto">
           {Object.entries(packageInfo.features).map(([section, items], i) => (
             <div key={i}>
@@ -90,7 +104,11 @@ const PackageCard = ({ packageInfo }) => {
                 {items.map((item, idx) => (
                   <li key={idx} className="flex items-start space-x-2">
                     <FaCheckCircle className="text-neon text-xs mt-1 flex-shrink-0" />
-                    <BodyText text={item} centered={false} className="leading-snug text-sm" />
+                    <BodyText
+                      text={item}
+                      centered={false}
+                      className="leading-snug text-sm"
+                    />
                   </li>
                 ))}
               </ul>
@@ -100,8 +118,13 @@ const PackageCard = ({ packageInfo }) => {
       </div>
 
       {/* Call to Action */}
-      <div className="text-center mt-auto pt-10 ">
-        <Button name="Buy Now" hoverBgColor="bg-neon" hoverTextColor="black" openModal={true} />
+      <div className="text-center mt-auto pt-10">
+        <Button
+          name="Buy Now"
+          hoverBgColor="bg-neon"
+          hoverTextColor="black"
+          openModal={true}
+        />
         <div className="flex items-center justify-center gap-2 mt-2 text-sm text-black">
           {contactDetails
             .filter((contact) => contact.type === "Email")

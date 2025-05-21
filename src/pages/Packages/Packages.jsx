@@ -1,4 +1,5 @@
-import { useState, lazy } from "react";
+// src/pages/Packages.js
+import { useState, useEffect, lazy } from "react";
 import { theme } from "../../theme";
 import PackageCard from "./PackageCard";
 import { packageData } from "./packageData";
@@ -9,6 +10,7 @@ import FilterControls from "../OurWork/FilterControls"; // Adjust path as needed
 import usePackageFilters from "../../hooks/usePackageFilters"; // Adjust path as needed
 import { motion } from "framer-motion";
 import AnimatedHeading from "../../components/Hero/AnimatedHeading";
+import { fetchCurrencyRates } from "../../utilities/currencyApi";
 
 const InnerHero = lazy(() => import("../../components/InnerHero/InnerHero"));
 
@@ -21,29 +23,34 @@ const Packages = () => {
     resetFilters,
   } = usePackageFilters(packageData);
 
-  // Group packages by category when "All Categories" is selected
-// Define preferred order
-const preferredOrder = ["Web Development", "Hybrid", "Design"];
+  const [currencyRates, setCurrencyRates] = useState(null);
 
-// Sort the remaining categories alphabetically, excluding the preferred ones
-const remainingCategories = uniqueCategories
-  .filter((cat) => !preferredOrder.includes(cat))
-  .sort();
+  // Fetch exchange rates
+  useEffect(() => {
+    fetchCurrencyRates().then((rates) => setCurrencyRates(rates));
+  }, []);
 
-// Combine the preferred order and remaining
-const sortedCategories = [...preferredOrder, ...remainingCategories];
+  // Define preferred order
+  const preferredOrder = ["Web Development", "Hybrid", "Design"];
+  // Sort the remaining categories alphabetically, excluding the preferred ones
+  const remainingCategories = uniqueCategories
+    .filter((cat) => !preferredOrder.includes(cat))
+    .sort();
+  // Combine the preferred order and remaining
+  const sortedCategories = [...preferredOrder, ...remainingCategories];
 
-// Group packages based on sorted categories
-const groupedPackages = selectedCategory === "All Categories"
-  ? sortedCategories.reduce((acc, category) => {
-      const categoryPackages = packageData.filter(pkg => pkg.category === category);
-      if (categoryPackages.length > 0) {
-        acc[category] = categoryPackages;
-      }
-      return acc;
-    }, {})
-  : { [selectedCategory]: filteredPackages };
-
+  // Group packages based on sorted categories
+  const groupedPackages = selectedCategory === "All Categories"
+    ? sortedCategories.reduce((acc, category) => {
+        const categoryPackages = packageData.filter(
+          (pkg) => pkg.category === category
+        );
+        if (categoryPackages.length > 0) {
+          acc[category] = categoryPackages;
+        }
+        return acc;
+      }, {})
+    : { [selectedCategory]: filteredPackages };
 
   return (
     <div className={`${theme.layoutPages.paddingBottom} min-h-screen`}>
@@ -77,11 +84,11 @@ const groupedPackages = selectedCategory === "All Categories"
       >
         <FilterControls
           selectedService={selectedCategory}
-          uniqueServices={["All Categories", ...uniqueCategories]} // Add "All Categories" option
+          uniqueServices={["All Categories", ...uniqueCategories]}
           handleServiceChange={handleCategoryChange}
           resetFilters={resetFilters}
-          isNestedService={false} // No nested categories for packages
-          isPackages={true} // Enable Packages mode
+          isNestedService={false}
+          isPackages={true}
         />
 
         {Object.entries(groupedPackages).map(([category, packages]) => (
@@ -92,11 +99,14 @@ const groupedPackages = selectedCategory === "All Categories"
                 centered={false}
                 className="mb-3"
               />
-              <div className="absolute bottom-0 left-0 w-full  h-2 lg:h-3 bg-neon rounded-none"></div>
+              <div className="absolute bottom-0 left-0 w-full h-2 lg:h-3 bg-neon rounded-none"></div>
             </div>
             <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {packages.map((pkg) => (
-                <PackageCard key={pkg.id} packageInfo={pkg} />
+                <PackageCard
+                  key={pkg.id}
+                  packageInfo={{ ...pkg, currencyRates }}
+                />
               ))}
             </div>
           </div>

@@ -1,28 +1,30 @@
-const currencyRates = {
-  GBP: 0.0027,
-  USD: 0.0035,
-  AED: 0.013,
-};
-
-export const convertCurrency = (price, fromCurrency, toCurrency = "PKR") => {
+// src/pages/convertCurrency.js
+export const convertCurrency = (price, fromCurrency, toCurrency = "PKR", rates) => {
   if (fromCurrency === toCurrency) return price;
 
-  // Assume PKR is base currency
-  if (fromCurrency === "PKR" && currencyRates[toCurrency]) {
-    return price * currencyRates[toCurrency];
+  // Ensure rates are provided
+  if (!rates) {
+    console.warn("No currency rates provided, returning original price");
+    return price;
   }
 
-  // Convert other currencies back to PKR
-  if (toCurrency === "PKR" && currencyRates[fromCurrency]) {
-    return price / currencyRates[fromCurrency];
+  // Convert from PKR to target currency
+  if (fromCurrency === "PKR" && rates[toCurrency]) {
+    return price * rates[toCurrency];
   }
 
-  // Convert between two non-PKR currencies via PKR as base
-  if (currencyRates[fromCurrency] && currencyRates[toCurrency]) {
-    const inPKR = price / currencyRates[fromCurrency];
-    return inPKR * currencyRates[toCurrency];
+  // Convert from other currency to PKR
+  if (toCurrency === "PKR" && rates[fromCurrency]) {
+    return price / rates[fromCurrency];
   }
 
-  // Fallback
+  // Convert between two non-PKR currencies via PKR
+  if (rates[fromCurrency] && rates[toCurrency]) {
+    const inPKR = price / rates[fromCurrency];
+    return inPKR * rates[toCurrency];
+  }
+
+  // Fallback: return original price if conversion not possible
+  console.warn(`Conversion from ${fromCurrency} to ${toCurrency} not supported`);
   return price;
 };
