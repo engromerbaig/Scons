@@ -10,26 +10,26 @@
     position: absolute;
     bottom: -90px;
     right: -90px;
-    width: 260px;
-    height: 260px;
+    width: 250px;
+    height: 250px;
     background: radial-gradient(
         circle at center,
-        theme('colors.neon/50%'),
-        theme('colors.neon/0%')
+        var(--glow-color, #00F5D4) 50%, /* Default to teal-blue */
+        transparent 100%
     );
-    opacity: 0.5; /* Slightly reduced for subtlety */
-    filter: blur(60px); /* Softer blur for natural glow */
+    opacity: 0.5;
+    filter: blur(60px);
     border-radius: 50%;
     pointer-events: none;
     z-index: 0;
-    transition: opacity 0.4s ease, transform 0.4s ease; /* Added transform transition */
+    transition: opacity 0.4s ease, transform 0.4s ease;
     transform: scale(1);
 }
 
 /* Enhance default glow slightly on hover */
 .glow-right-container:hover::before {
-    opacity: 0.65; /* Slight boost for interaction */
-    transform: scale(1.05); /* Subtle scale for dynamic effect */
+    opacity: 0.65;
+    transform: scale(1.05);
 }
 
 /* Extra glow on hover */
@@ -38,27 +38,35 @@
     position: absolute;
     bottom: -90px;
     right: -90px;
-    width: 420px; /* Slightly larger for more impact */
-    height: 420px;
+    width: 250px;
+    height: 250px;
     background: radial-gradient(
         circle at center,
-        theme('colors.neon/45%'),
-        theme('colors.neon/0%')
+        var(--glow-color, #00F5D4) 45%,
+        transparent 100%
     );
     opacity: 0;
-    filter: blur(160px); /* Enhanced blur for dramatic hover */
+    filter: blur(130px);
     border-radius: 50%;
     pointer-events: none;
     z-index: 0;
-    transition: opacity 0.6s ease, transform 0.6s ease; /* Smoother transition */
+    transition: opacity 0.6s ease, transform 0.6s ease;
     transform: scale(1);
 }
 
 /* Activate the after-glow on hover */
 .glow-right-container:hover::after {
-    opacity: 0.9; /* Increased opacity for stronger effect */
-    transform: scale(1.1); /* Slight scale for dynamic hover */
+    opacity: 0.9;
+    transform: scale(1.1);
 }
+
+/* Color variations for glow */
+.glow-teal { --glow-color: #00C5FF; } /* Original teal */
+.glow-magenta { --glow-color: #4DD8FF; } /* Lighter cyan */
+.glow-lime { --glow-color: #80E5FF; } /* Very light cyan */
+.glow-violet { --glow-color: #00A3D6; } /* Darker teal */
+.glow-orange { --glow-color: #0081AA; } /* Deep teal */
+.glow-cyan { --glow-color: #00B7EB; } /* Saturated cyan */
 
 .glow-content {
     position: relative;

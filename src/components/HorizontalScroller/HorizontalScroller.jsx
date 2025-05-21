@@ -9,6 +9,14 @@ import containersData from "../ChildCards/containersData";
 gsap.registerPlugin(ScrollTrigger);
 import { theme } from "../../theme";
 
+const glowColors = [
+  "glow-teal",
+  "glow-magenta",
+  "glow-lime",
+  "glow-violet",
+  "glow-orange",
+  "glow-cyan"
+];
 // Custom hook for GSAP horizontal scroll animation
 const useHorizontalScroll = (sliderRef, cardCount, isDesktop) => {
   useLayoutEffect(() => {
@@ -78,6 +86,8 @@ const HorizontalScroller = ({ heading, spanHeading, bodyText }) => {
                 heading={data.heading}
                 number={data.number}
                 text={data.text}
+                        glowColor={glowColors[index % glowColors.length]} // Cycle through colors
+
               />
             </div>
           ))}
