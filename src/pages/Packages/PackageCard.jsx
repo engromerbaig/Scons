@@ -18,14 +18,16 @@ const PackageCard = ({ packageInfo }) => {
   }).format(displayPrice);
 
   return (
-    <div className="relative bg-white rounded-xl shadow-xl py-10 px-10 flex flex-col justify-between h-[600px] overflow-hidden">
+<div className="relative bg-white rounded-xl shadow-xl py-10 px-10 flex flex-col justify-between h-[600px] overflow-hidden transition-all duration-300 hover:ring-2 hover:ring-neon hover:shadow-[0_0_20px_rgba(0,197,255,0.2)]
+">
+
       {/* Blob in bottom-right corner */}   
 
             <div className="absolute bottom-[-50px] right-[-50px] w-[110px] h-[110px] bg-neon opacity-50 rounded-full animate-blob z-0"></div>
       
 
 {packageInfo.category && (
-  <div className="absolute top-0 left-2 px-1 text-neon border border-neon opacity-100 rounded-xl flex items-center justify-center text-center text-10px font-bold ">
+  <div className="absolute top-2 left-2 px-1 text-neon border border-neon opacity-100 rounded-xl flex items-center justify-center text-center text-10px font-bold ">
     {packageInfo.category}
   </div>
 )}
