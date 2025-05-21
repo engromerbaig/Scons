@@ -16,7 +16,7 @@ const useHorizontalScroll = (sliderRef, cardCount, isDesktop) => {
 
     let ctx = gsap.context(() => {
       // Get the gap size in pixels to account for spacing
-      const gapSize = 40; // 10 in tailwind translates to approximately 40px
+      const gapSize = 0; // 10 in tailwind translates to approximately 40px
       const windowWidth = window.innerWidth;
       const cardWidth = windowWidth > 1025 ? windowWidth * 0.33 : windowWidth * 0.5; // actual pixel width
       
@@ -64,7 +64,7 @@ const HorizontalScroller = ({ heading, spanHeading, bodyText }) => {
     <div ref={componentRef} className="overflow-hidden">
       {isDesktop ? (
         // Desktop: Pinned horizontal scroll
-        <div ref={sliderRef} className="flex h-screen items-center bg-black gap-10">
+        <div ref={sliderRef} className="flex h-screen items-center bg-black gap-0">
           <div className="flex-shrink-0 w-screen">
             <BusinessSuccess heading={heading} spanHeading={spanHeading} bodyText={bodyText} />
           </div>
