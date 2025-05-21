@@ -4,7 +4,7 @@ import Heading from "../Heading/Heading";
 import BodyText from "../BodyText/BodyText";
 import './index.css';
 import { theme } from "../../theme";
-import timelineImage from "../../assets/icons/mobile.png";
+import timelineImage from "../../assets/icons/2.svg";
 import FadeWrapper from "../../utilities/Animations/FadeWrapper";
 
 const BusinessSuccess = ({heading, spanHeading, bodyText}) => {
