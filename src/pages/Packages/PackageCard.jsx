@@ -50,7 +50,7 @@ const PackageCard = ({ packageInfo }) => {
       <BodyText
         text={packageInfo.description}
         centered={true}
-        className="text-gray-600 text-sm mb-4 h-[40px] leading-snug overflow-hidden "
+        className="text-gray-600 text-sm mb-4 h-[50px] leading-tight overflow-hidden "
       />
 
       {/* Currency and Price */}
