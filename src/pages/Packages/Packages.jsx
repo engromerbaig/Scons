@@ -22,17 +22,28 @@ const Packages = () => {
   } = usePackageFilters(packageData);
 
   // Group packages by category when "All Categories" is selected
-  const groupedPackages = selectedCategory === "All Categories"
-    ? uniqueCategories.reduce((acc, category) => {
-        const categoryPackages = packageData.filter(
-          (pkg) => pkg.category === category
-        );
-        if (categoryPackages.length > 0) {
-          acc[category] = categoryPackages;
-        }
-        return acc;
-      }, {})
-    : { [selectedCategory]: filteredPackages };
+// Define preferred order
+const preferredOrder = ["Web Development", "Hybrid", "Design"];
+
+// Sort the remaining categories alphabetically, excluding the preferred ones
+const remainingCategories = uniqueCategories
+  .filter((cat) => !preferredOrder.includes(cat))
+  .sort();
+
+// Combine the preferred order and remaining
+const sortedCategories = [...preferredOrder, ...remainingCategories];
+
+// Group packages based on sorted categories
+const groupedPackages = selectedCategory === "All Categories"
+  ? sortedCategories.reduce((acc, category) => {
+      const categoryPackages = packageData.filter(pkg => pkg.category === category);
+      if (categoryPackages.length > 0) {
+        acc[category] = categoryPackages;
+      }
+      return acc;
+    }, {})
+  : { [selectedCategory]: filteredPackages };
+
 
   return (
     <div className={`${theme.layoutPages.paddingBottom} min-h-screen`}>
