@@ -1,33 +1,57 @@
-/* Custom class for right-side glow on hover */
+/* Base container */
 .glow-right-container {
     position: relative;
     overflow: hidden;
 }
 
+/* Base glow effect (always visible, subtle) */
+.glow-right-container::before {
+    content: "";
+    position: absolute;
+    bottom: -80px;
+    right: -80px;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(
+        circle at center,
+        theme('colors.neon/60%'),
+        theme('colors.neon/0%')
+    );
+    opacity: 0.6;
+    filter: blur(50px); /* More blur for soft glow */
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Extra glow on hover */
 .glow-right-container::after {
     content: "";
     position: absolute;
-    top: 0;
-    right: 0;
-    width: 0; /* Start with no width */
-    height: 100%;
-    background: linear-gradient(
-        to left, 
-        theme('colors.neon/30%'), 
+   bottom: -80px;
+    right: -80px;
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(
+        circle at center,
+        theme('colors.neon/40%'),
         theme('colors.neon/0%')
-    ); /* Gradient glow using theme colors with opacity */
-    opacity: 0; /* Initially hidden */
-    transition: width 0.5s ease, opacity 0.5s ease; /* Smooth transition for width and opacity */
+    );
+    opacity: 0;
+    filter: blur(150px); /* Stronger blur for hover */
+    border-radius: 50%;
     pointer-events: none;
     z-index: 0;
+    transition: opacity 0.5s ease;
 }
 
-.glow-right-container::after {
-    width: 20%; /* Expand to cover the right 20% on hover */
-    opacity: 1; /* Make the glow fully visible */
+/* Activate the after-glow on hover */
+.glow-right-container:hover::after {
+    opacity: 0.85;
 }
 
 .glow-content {
     position: relative;
-    z-index: 1; /* Keep content above the glow */
+    z-index: 1; /* Ensure content stays on top */
 }
