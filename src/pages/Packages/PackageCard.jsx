@@ -32,7 +32,7 @@ const PackageCard = ({ packageInfo }) => {
       <div className="relative mb-2 z-10">
         <Heading
           text={packageInfo.title}
-          size="text-40px"
+          size="text-70px xl:text-40px"
           className="font-bold text-center h-[100px]"
         />
         <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-[100px] h-[4px] bg-black rounded-full"></div>
@@ -51,7 +51,7 @@ const PackageCard = ({ packageInfo }) => {
             <span className="text-sm">
               {currency === "PKR" ? "PKR" : currency === "GBP" ? "£" : currency === "USD" ? "$" : "AED"}
             </span>
-            <span className="text-60px leading-none font-bold">{formattedPrice}</span>
+            <span className="text-90px xl:text-60px leading-none font-bold">{formattedPrice}</span>
           </div>
         </div>
 
