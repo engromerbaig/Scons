@@ -29,7 +29,7 @@ const PackageCard = ({ packageInfo }) => {
       )}
 
       {/* Title with custom neon underline */}
-      <div className="relative mb-2 z-10">
+      <div className="relative mb-2 ">
         <Heading
           text={packageInfo.title}
           size="text-70px xl:text-40px"
@@ -41,11 +41,11 @@ const PackageCard = ({ packageInfo }) => {
       <BodyText
         text={packageInfo.description}
         centered={true}
-        className="text-gray-600 text-sm mb-4 h-[40px] leading-snug overflow-hidden z-10"
+        className="text-gray-600 text-sm mb-4 h-[40px] leading-snug overflow-hidden "
       />
 
       {/* Currency and Price */}
-      <div className="flex flex-row justify-center items-end gap-x-2 mb-3 h-[70px] z-10">
+      <div className="flex flex-row justify-center items-end gap-x-2 mb-3 h-[70px] ">
         <div className="flex flex-col justify-end min-w-[200px] items-center">
           <div className="flex items-end gap-x-1">
             <span className="text-sm">
@@ -72,7 +72,7 @@ const PackageCard = ({ packageInfo }) => {
       </div>
 
       {/* Features */}
-      <div className="flex-1 overflow-y-auto my-4 h-[200px] rounded-md package-scrollbar text-black z-10">
+      <div className="flex-1 overflow-y-auto my-4 h-[200px] rounded-md package-scrollbar text-black ">
         <div className="space-y-4 max-w-[250px] mx-auto">
           {Object.entries(packageInfo.features).map(([section, items], i) => (
             <div key={i}>
@@ -91,7 +91,7 @@ const PackageCard = ({ packageInfo }) => {
       </div>
 
       {/* Call to Action */}
-      <div className="text-center mt-auto pt-10 z-10">
+      <div className="text-center mt-auto pt-10 ">
         <Button name="Buy Now" hoverBgColor="bg-neon" hoverTextColor="black" openModal={true} />
         <div className="flex items-center justify-center gap-2 mt-2 text-sm text-black">
           {contactDetails
