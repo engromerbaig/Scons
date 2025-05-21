@@ -11,30 +11,33 @@ const FilterControls = ({
   handleTechnologyChange,
   setSortOrder,
   resetFilters,
-  isNestedService, // Pass this prop to indicate if a nested category is selected
-  isNestedTech,    // Same for technologies if needed
+  isNestedService,
+  isNestedTech,
   resetService,
   resetTech,
+  isPackages = false, // New prop to toggle Packages behavior
 }) => {
   return (
-    <div className="flex flex-col items-start w-full justify-center  gap-4 mt-8">
+    <div className="flex flex-col items-start w-full justify-center gap-4 mt-8">
       <div className="flex flex-wrap gap-2 xl:gap-4 items-center">
         <DropdownButton
-          label="Services"
+          label={isPackages ? "Category" : "Services"}
           options={uniqueServices}
           selectedValue={selectedService}
           onChange={handleServiceChange}
           isNestedCategory={isNestedService}
           onReset={resetService}
         />
-        <DropdownButton
-          label="Technologies"
-          options={uniqueTechnologies}
-          selectedValue={selectedTechnology}
-          onChange={handleTechnologyChange}
-          isNestedCategory={isNestedTech}
-          onReset={resetTech}
-        />
+        {!isPackages && (
+          <DropdownButton
+            label="Technologies"
+            options={uniqueTechnologies}
+            selectedValue={selectedTechnology}
+            onChange={handleTechnologyChange}
+            isNestedCategory={isNestedTech}
+            onReset={resetTech}
+          />
+        )}
         {/* <button
           className="px-4 py-2 border rounded-md text-sm flex items-center gap-2"
           onClick={() => setSortOrder(sortOrder === "desc" ? "asc" : "desc")}
