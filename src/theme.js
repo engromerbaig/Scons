@@ -9,6 +9,9 @@ export const theme = {
       paddingMenu: 'pl-6 md:pl-10 lg:pl-40',
 
 
+            paddingHorizontalPackage: 'px-20 md:px-20 lg:px-40',
+
+
       paddingVertical: 'py-16 md:py-20 lg:py-24',
       paddingBottom: 'pb-12 md:pb-20 lg:pb-24',
       conatinerVerticalGap:'space-y-6 lg:space-y-12',

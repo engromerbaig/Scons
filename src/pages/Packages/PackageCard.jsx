@@ -18,7 +18,7 @@ const PackageCard = ({ packageInfo }) => {
   }).format(displayPrice);
 
   return (
-    <div className="relative bg-white rounded-xl shadow-lg py-10 px-12 flex flex-col justify-between h-[600px] overflow-hidden">
+    <div className="relative bg-white rounded-xl shadow-xl py-10 px-10 flex flex-col justify-between h-[600px] overflow-hidden">
       {/* Blob in top-left corner */}
       <div className="absolute top-[-50px] left-[-50px] w-[120px] h-[120px] bg-neon opacity-50 rounded-full animate-blob z-0"></div>
 
