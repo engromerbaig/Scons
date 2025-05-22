@@ -11,7 +11,7 @@ const OfficeMarker = ({ office, position, icon, onPinClick }) => (
   >
     <Popup>
       <div className="bg-black text-white flex flex-row items-center mb-2 w-40">
-        <div className="w-8 h-8 overflow-hidden mr-2 flex-shrink-0">
+        <div className="w-8 h-8 overflow-hidden rounded-full mr-2 flex-shrink-0">
           <img
             src={office.content.flagImage}
             alt={`${office.title} flag`}
