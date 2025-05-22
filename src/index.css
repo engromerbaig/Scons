@@ -425,3 +425,23 @@ html {
     display:none;
 
 }
+
+
+.leaflet-container {
+  background-color: #000000 !important; /* Black map background */
+}
+
+.leaflet-popup-content-wrapper {
+  background-color: #000000 !important; /* Black popup content wrapper */
+  border-radius: 8px !important; /* Match Tailwind's rounded-lg */
+  padding: 0 !important; /* Padding handled by Tailwind */
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4) !important; /* Subtle shadow */
+}
+
+.leaflet-popup {
+  background-color: black !important; /* Transparent outer popup container */
+}
+
+.leaflet-popup-tip {
+  background-color: #000000 !important; /* Black popup arrow */
+}
