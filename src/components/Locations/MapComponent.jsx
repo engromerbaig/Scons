@@ -51,13 +51,19 @@ const MapComponent = ({ officeCoordinates, accordionData, activeOffice, onPinCli
             },
           }}
         >
-          <Popup>
-            <div className="bg-black text-white p-4 rounded-lg shadow-lg max-w-xs">
-              <h3 className="font-bold text-lg mb-2">{office.title} Office</h3>
-              <p className="text-sm">{office.content.address}</p>
-              <p className="text-sm">{office.content.phone}</p>
-            </div>
-          </Popup>
+<Popup>
+  <div className="bg-black text-white flex flex-row items-center mb-2 w-40">
+    <div className="w-8 h-8 overflow-hidden mr-2 flex-shrink-0">
+      <img
+        src={office.content.flagImage}
+        alt={`${office.title} flag`}
+        className="w-full h-full object-cover"
+      />
+    </div>
+    <h3 className="font-bold text-sm text-white">{office.title} Office</h3>
+  </div>
+</Popup>
+
         </Marker>
       ))}
     </MapContainer>
