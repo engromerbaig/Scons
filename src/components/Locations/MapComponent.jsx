@@ -36,7 +36,7 @@ const MapComponent = ({ officeCoordinates, accordionData, activeOffice, onPinCli
       center={officeCoordinates[accordionData[0].title]}
       zoom={2.3}
       style={{ height: "100%", width: "100%", backgroundColor: "#000000" }}
-      className="relative z-10 bg-black"
+      className="relative z-0 bg-black"
       ref={mapRef}
     >
       <TileLayer

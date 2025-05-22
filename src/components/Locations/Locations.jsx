@@ -28,7 +28,7 @@ const Locations = ({ isAnimate }) => {
   return (
     // Main container with Tailwind styling and theme-based padding
     // Customize: Adjust bg, padding, or height (e.g., remove h-screen)
-    <div className={`bg-black min-h-screen text-white ${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical}`}>
+    <div className={`bg-black  text-white ${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical}`}>
       {/* Page heading */}
       <div className="flex flex-col pb-10">
         <Heading text="Our Locations" spanText="Locations" spanColor="text-neon" color="text-white" centered={false} />
@@ -76,11 +76,11 @@ const Locations = ({ isAnimate }) => {
   </div>
 
   {/* Office image */}
-  <img
+  {/* <img
     src={activeOfficeData.content.image}
     alt={`${activeOfficeData.title} office`}
     className="w-full h-40 object-contain svg-neon rounded-md"
-  />
+  /> */}
 
   {/* Address and phone */}
   <div className="flex flex-col gap-y-2 text-gray-200">
@@ -116,7 +116,7 @@ const Locations = ({ isAnimate }) => {
         </div>
 
         {/* Map: col-span-8 on xl+, full width below */}
-        <div className="w-full xl:col-span-8 h-[400px] xl:h-full">
+        <div className="w-full xl:col-span-8 h-[400px] xl:h-[500px]">
           <MapComponent
             officeCoordinates={officeCoordinates}
             accordionData={accordionData}
