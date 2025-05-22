@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Heading from "../Heading/Heading";
+import BodyText from "../BodyText/BodyText";
 import AnimatedBackground from "../../utilities/AnimatedBackground/AnimatedBackground";
 import MapComponent from "./MapComponent";
 import accordionData from "./modules/accordionData";
@@ -25,10 +26,15 @@ const Locations = ({ isAnimate }) => {
     // Customize: Adjust bg, padding, or height (e.g., remove h-screen)
     <div className={`bg-black min-h-screen text-white ${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical}`}>
       {/* Animated background (optional) */}
-      <AnimatedBackground isAnimate={isAnimate} />
-      <div className="container mx-auto px-4">
         {/* Page heading */}
-        <Heading title="Our Locations" />
+
+        <div className="flex flex-col pb-10">
+  <Heading text="Our Locations" spanText="Locations" spanColor="text-neon" color="text-white" centered={false} />
+        <BodyText text="We have multiple offices around the world. Find the closest one to you!" color="text-white" centered={false} />
+
+
+        </div>
+      
         {/* Responsive layout: Grid for xl and above, flex column for below xl */}
         {/* Customize: Adjust gap, breakpoints (e.g., lg instead of xl), or styling */}
         <div className="flex flex-col xl:grid xl:grid-cols-12 gap-4 xl:gap-x-8">
@@ -65,7 +71,6 @@ const Locations = ({ isAnimate }) => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 
