@@ -57,7 +57,16 @@ const Locations = ({ isAnimate }) => {
             <div>
               {/* Office title and country */}
               <h3 className="text-2xl font-bold mb-2">{activeOfficeData.title}</h3>
-              <p className="text-lg text-gray-300 mb-4">{activeOfficeData.country}</p>
+
+   <div className="flex flex-row items-center gap-x-2">
+  <p className="text-lg text-gray-300 mb-0">{activeOfficeData.country}</p>
+  <img
+    src={activeOfficeData.content.flagImage}
+    alt={`${activeOfficeData.title} flag`}
+    className="rounded-full object-cover w-5 h-5 border-black border"
+  />
+</div>
+
               {/* Office image */}
               {/* Customize: Adjust image size or styling */}
               <img
