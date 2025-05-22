@@ -16,7 +16,7 @@ const officeCoordinates = {
   Karachi: [24.8607, 67.0011],
 };
 
-const Locations = ({ isAnimate }) => {
+const Locations = () => {
   const [activeOffice, setActiveOffice] = useState(accordionData[0].title);
   const activeOfficeData = accordionData.find((office) => office.title === activeOffice);
 

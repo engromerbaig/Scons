@@ -75,7 +75,7 @@ const ContactUs = () => {
 
 
 <FadeInSection>
-          <Locations isAnimate={false} />
+          <Locations  />
 
 
 </FadeInSection>
