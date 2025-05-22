@@ -18,18 +18,25 @@ const MobileMenu = ({ isOpen, onClose, onCloseComplete }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  useEffect(() => {
-    if (isOpen) {
-      const timer = setTimeout(() => setShowCloseButton(true), 500);
+useEffect(() => {
+  if (isOpen) {
+    const showBtnTimer = setTimeout(() => setShowCloseButton(true), 500);
+    const hideScrollTimer = setTimeout(() => {
       document.body.style.overflow = 'hidden';
-      return () => {
-        clearTimeout(timer);
-      };
-    }
-    // Immediately hide the button when menu starts closing
-    setShowCloseButton(false);
-    document.body.style.overflow = '';
-  }, [isOpen]);
+    }, 50);
+
+    return () => {
+      clearTimeout(showBtnTimer);
+      clearTimeout(hideScrollTimer);
+    };
+  }
+
+  setShowCloseButton(false);
+
+  // ✅ Put this back to reset the scrollbar
+  document.body.style.overflow = '';
+}, [isOpen]);
+
 
   useEffect(() => {
     const handleEscape = (event) => {
