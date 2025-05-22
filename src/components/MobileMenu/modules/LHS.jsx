@@ -51,7 +51,7 @@ const LHS = ({ containerVariants, textVariants, handleClose }) => (
           <div key={contact.type} className="flex ">
             <a
               href={contact.link}
-              className="text-black text-xl lg:text-45px  font-semibold hover:text-neon transition-colors duration-300"
+              className="text-black text-xl lg:text-40px  font-medium hover:text-neon transition-colors duration-300"
             >
               {contact.detail}
             </a>
