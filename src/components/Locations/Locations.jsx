@@ -29,11 +29,11 @@ const Locations = ({ isAnimate }) => {
       <div className="container mx-auto px-4">
         {/* Page heading */}
         <Heading title="Our Locations" />
-        {/* Grid layout: 4 columns for office details, 8 for map */}
-        {/* Customize: Adjust gap or column spans (e.g., col-span-6 each) */}
-        <div className="grid grid-cols-12 gap-4 gap-x-8">
-          {/* Left: Office Details */}
-          <div className="col-span-12 lg:col-span-4 bg-neutral-800 p-6 rounded-lg shadow-lg">
+        {/* Responsive layout: Grid for xl and above, flex column for below xl */}
+        {/* Customize: Adjust gap, breakpoints (e.g., lg instead of xl), or styling */}
+        <div className="flex flex-col xl:grid xl:grid-cols-12 gap-4 xl:gap-x-8">
+          {/* Office Details: col-span-4 on xl+, full width below */}
+          <div className="w-full xl:col-span-4  p-6 ">
             {activeOfficeData ? (
               <div>
                 {/* Office title and country */}
@@ -44,7 +44,7 @@ const Locations = ({ isAnimate }) => {
                 <img
                   src={activeOfficeData.content.image}
                   alt={`${activeOfficeData.title} office`}
-                  className="w-full h-40 object-cover rounded-md mb-4 svg-neon"
+                  className="w-full h-40 object-contain svg-neon rounded-md mb-4"
                 />
                 {/* Address and phone */}
                 <p className="text-gray-200">{activeOfficeData.content.address}</p>
@@ -54,8 +54,8 @@ const Locations = ({ isAnimate }) => {
               <p className="text-gray-400">Select a pin on the map</p>
             )}
           </div>
-          {/* Right: Map */}
-          <div className="col-span-12 lg:col-span-8">
+          {/* Map: col-span-8 on xl+, full width below */}
+          <div className="w-full xl:col-span-8 h-[400px] xl:h-full">
             <MapComponent
               officeCoordinates={officeCoordinates}
               accordionData={accordionData}
