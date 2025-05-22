@@ -415,3 +415,13 @@ html {
     scrollbar-color: #00c5ff transparent;
     scrollbar-width: thin;
 }
+
+
+.leaflet-bottom{
+  display:none;
+}
+
+.leaflet-control-zoom {
+    display:none;
+
+}

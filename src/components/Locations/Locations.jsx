@@ -23,7 +23,7 @@ const Locations = ({ isAnimate }) => {
   return (
     // Main container with Tailwind styling and theme-based padding
     // Customize: Adjust bg, padding, or height (e.g., remove h-screen)
-    <div className={`bg-black min-h-screen text-white ${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical}`}>
+    <div className={`bg-[#222222] min-h-screen text-white ${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical}`}>
       {/* Animated background (optional) */}
       <AnimatedBackground isAnimate={isAnimate} />
       <div className="container mx-auto px-4">

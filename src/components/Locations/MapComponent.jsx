@@ -36,7 +36,7 @@ const MapComponent = ({ officeCoordinates, accordionData, activeOffice, onPinCli
       center={officeCoordinates[accordionData[0].title]} // Initial center (first office)
       zoom={2.3} // Default zoom level (kept for wide view)
       style={{ height: "100%", width: "100%" }} // Full height/width of parent
-      className="shadow-lg" // Tailwind styles for shadow
+      className="relative z-10" // Tailwind styles for shadow
       ref={mapRef} // Reference for map control
     >
       {/* Dark-themed tile layer from Stadia Maps */}
