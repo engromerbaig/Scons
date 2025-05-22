@@ -4,6 +4,7 @@ import BodyText from "../BodyText/BodyText";
 import MapComponent from "./MapComponent";
 import accordionData from "./modules/accordionData";
 import { theme } from "../../theme";
+import Button from "../Button/Button";
 
 // Office coordinates (replace with precise latitude/longitude values)
 // Customize: Add more offices or update coordinates for accuracy
@@ -56,7 +57,7 @@ const Locations = ({ isAnimate }) => {
           {activeOfficeData ? (
             <div>
               {/* Office title and country */}
-              <h3 className="text-2xl font-bold mb-2">{activeOfficeData.title}</h3>
+              <h3 className="text-2xl font-bold mb-2">{`${activeOfficeData.title} Office`}</h3> {/* Customize: Adjust font size or styling */}
 
    <div className="flex flex-row items-center gap-x-2">
   <p className="text-lg text-gray-300 mb-0">{activeOfficeData.country}</p>
@@ -77,6 +78,16 @@ const Locations = ({ isAnimate }) => {
               {/* Address and phone */}
               <p className="text-gray-200">{activeOfficeData.content.address}</p>
               <p className="text-gray-200">{activeOfficeData.content.phone}</p>
+
+              <Button
+              name="Schedule a Meeting"
+              bgColor="bg-neon"
+              textColor="black"
+              hoverBgColor="bg-neon"
+              hoverTextColor="black"
+              className="mt-4"
+              link="/contact-us"
+              />
             </div>
           ) : (
             <p className="text-gray-400">Select an office</p>
