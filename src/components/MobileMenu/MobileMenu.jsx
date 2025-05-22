@@ -18,25 +18,22 @@ const MobileMenu = ({ isOpen, onClose, onCloseComplete }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-useEffect(() => {
-  if (isOpen) {
-    const showBtnTimer = setTimeout(() => setShowCloseButton(true), 500);
-    const hideScrollTimer = setTimeout(() => {
-      document.body.style.overflow = 'hidden';
-    }, 300);
+  useEffect(() => {
+    if (isOpen) {
+      const showBtnTimer = setTimeout(() => setShowCloseButton(true), 500);
+      const hideScrollTimer = setTimeout(() => {
+        document.body.style.overflow = 'hidden';
+      }, 300);
 
-    return () => {
-      clearTimeout(showBtnTimer);
-      clearTimeout(hideScrollTimer);
-    };
-  }
+      return () => {
+        clearTimeout(showBtnTimer);
+        clearTimeout(hideScrollTimer);
+      };
+    }
 
-  setShowCloseButton(false);
-
-  // ✅ Put this back to reset the scrollbar
-  document.body.style.overflow = '';
-}, [isOpen]);
-
+    setShowCloseButton(false);
+    document.body.style.overflow = '';
+  }, [isOpen]);
 
   useEffect(() => {
     const handleEscape = (event) => {
@@ -49,9 +46,7 @@ useEffect(() => {
   }, [onClose]);
 
   const handleClose = () => {
-    // First hide the button
     setShowCloseButton(false);
-    // Then trigger the closing animation
     onClose();
   };
 
@@ -68,24 +63,46 @@ useEffect(() => {
           animate="visible"
           className="fixed top-0 left-0 w-full h-screen flex flex-col md:flex-row z-[200] overflow-hidden"
         >
-          <LHS
-            containerVariants={containerVariants}
-            textVariants={textVariants}
-            handleClose={handleClose}
-          />
-          <RHS
-            containerVariants={containerVariants}
-            textVariants={textVariants}
-            handleClose={handleClose}
+        <LHS
+  containerVariants={containerVariants}
+  textVariants={textVariants}
+  handleClose={handleClose}
+/>
 
-          />
-          {/* Only render button if showCloseButton is true */}
+{/* Line-only version, no pill */}
+<motion.div
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  exit={{ opacity: 0 }}
+  transition={{ delay: 0.2, duration: 0.3 }}
+  className="pointer-events-none absolute left-1/2 top-0 h-full transform -translate-x-1/2 z-[250] flex items-center justify-center"
+>
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    transition={{ delay: 0.2, duration: 0.3 }}
+    className={`absolute bg-neon -z-10 ${
+      isMobile
+        ? 'w-screen h-2 top-1/2 left-1/2 -translate-x-1/2'
+        : 'inset-y-0 w-2'
+    }`}
+  />
+</motion.div>
+
+<RHS
+  containerVariants={containerVariants}
+  textVariants={textVariants}
+  handleClose={handleClose}
+/>
+
+
           {showCloseButton && (
             <motion.button
               initial={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={handleClose}
-           className="absolute top-3 right-2 lg:top-6 lg:right-6 text-25px border-2  lg:border-4 font-extrabold border-neon text-neon rounded-full w-6 h-6 lg:w-8 lg:h-8 flex items-center justify-center"
+              className="absolute top-3 right-2 lg:top-6 lg:right-6 text-25px border-2  lg:border-4 font-extrabold border-neon text-neon rounded-full w-6 h-6 lg:w-8 lg:h-8 flex items-center justify-center"
             >
               ✕
             </motion.button>

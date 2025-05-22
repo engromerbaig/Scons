@@ -49,7 +49,7 @@ const RHS = ({ containerVariants, textVariants, handleClose }) => (
             className={`${theme.layoutPages.paddingMenu}`}
           >
             <Link
-              className="text-base lg:text-45px font-medium text-black font-manrope hover:text-neon transition-colors duration-300"
+              className="text-base lg:text-45px font-semibold text-black font-manrope hover:text-neon transition-colors duration-300"
               to={`/service/${service.slug}`}
               onClick={handleClose}
             >
