@@ -23,7 +23,7 @@ useEffect(() => {
     const showBtnTimer = setTimeout(() => setShowCloseButton(true), 500);
     const hideScrollTimer = setTimeout(() => {
       document.body.style.overflow = 'hidden';
-    }, 50);
+    }, 300);
 
     return () => {
       clearTimeout(showBtnTimer);

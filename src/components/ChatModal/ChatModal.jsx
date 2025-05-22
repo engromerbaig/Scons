@@ -6,10 +6,27 @@ import Heading from '../Heading/Heading';
 import BodyText from '../BodyText/BodyText';
 
 const ChatModal = ({ isOpen, onClose }) => {
-  useEffect(() => {
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-    return () => (document.body.style.overflow = '');
-  }, [isOpen]);
+useEffect(() => {
+  let showBtnTimer;
+  let hideScrollTimer;
+
+  if (isOpen) {
+    showBtnTimer = setTimeout(() => setShowCloseButton(true), 500); // Adjust as needed
+    hideScrollTimer = setTimeout(() => {
+      document.body.style.overflow = 'hidden';
+    }, 0); // Slight delay prevents layout shift
+  } else {
+    document.body.style.overflow = '';
+  }
+
+  return () => {
+    clearTimeout(showBtnTimer);
+    clearTimeout(hideScrollTimer);
+    document.body.style.overflow = '';
+  };
+}, [isOpen]);
+
+
 
   const handleFormSubmit = async (formData) => {
     const payload = {
