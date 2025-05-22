@@ -90,7 +90,7 @@ const Locations = ({ isAnimate }) => {
   {/* Address and phone */}
   <div className="flex flex-col gap-y-2 text-gray-200">
     <div className="flex items-start gap-x-2 hover:text-neon">
-      <IoLocation  className="text-neon text-3xl mt-0.5" />
+      <IoLocation className="text-neon w-6 h-6 flex-shrink-0" /> {/* Fixed size */}
       <span className="pr-10">{activeOfficeData.content.address}</span>
     </div>
 
@@ -98,7 +98,7 @@ const Locations = ({ isAnimate }) => {
       href={`tel:${activeOfficeData.content.phone}`}
       className="flex items-center gap-x-2 hover:text-neon"
     >
-      <FaPhone className="text-neon text-lg" />
+      <FaPhone className="text-neon w-5 h-5 flex-shrink-0" /> {/* Fixed size */}
       <span>{activeOfficeData.content.phone}</span>
     </a>
   </div>
