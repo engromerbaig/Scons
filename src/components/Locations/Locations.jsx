@@ -6,6 +6,10 @@ import accordionData from "./modules/accordionData";
 import { theme } from "../../theme";
 import Button from "../Button/Button";
 
+
+            import { IoPin } from "react-icons/io5";
+import { FaPhone } from "react-icons/fa";
+
 // Office coordinates (replace with precise latitude/longitude values)
 // Customize: Add more offices or update coordinates for accuracy
 const officeCoordinates = {
@@ -55,40 +59,57 @@ const Locations = ({ isAnimate }) => {
 
           {/* Office details */}
           {activeOfficeData ? (
-            <div>
-              {/* Office title and country */}
-              <h3 className="text-2xl font-bold mb-2">{`${activeOfficeData.title} Office`}</h3> {/* Customize: Adjust font size or styling */}
 
-   <div className="flex flex-row items-center gap-x-2">
-  <p className="text-lg text-gray-300 mb-0">{activeOfficeData.country}</p>
+
+<div className="flex flex-col gap-y-4 xl:gap-y-6">
+  {/* Office title and country */}
+  <div>
+    <h3 className="text-2xl font-bold">{`${activeOfficeData.title} Office`}</h3>
+    <div className="flex flex-row items-center gap-x-2 mt-1">
+      <p className="text-lg text-gray-300 mb-0">{activeOfficeData.country}</p>
+      <img
+        src={activeOfficeData.content.flagImage}
+        alt={`${activeOfficeData.title} flag`}
+        className="rounded-full object-cover w-5 h-5 border-black border"
+      />
+    </div>
+  </div>
+
+  {/* Office image */}
   <img
-    src={activeOfficeData.content.flagImage}
-    alt={`${activeOfficeData.title} flag`}
-    className="rounded-full object-cover w-5 h-5 border-black border"
+    src={activeOfficeData.content.image}
+    alt={`${activeOfficeData.title} office`}
+    className="w-full h-40 object-contain svg-neon rounded-md"
+  />
+
+  {/* Address and phone */}
+  <div className="flex flex-col gap-y-2 text-gray-200">
+    <div className="flex items-start gap-x-2 hover:text-neon">
+      <IoPin className="text-neon text-3xl" />
+      <span className="pr-10">{activeOfficeData.content.address}</span>
+    </div>
+
+    <a
+      href={`tel:${activeOfficeData.content.phone}`}
+      className="flex items-center gap-x-2 hover:text-neon"
+    >
+      <FaPhone className="text-neon text-sm" />
+      <span>{activeOfficeData.content.phone}</span>
+    </a>
+  </div>
+
+  {/* CTA Button */}
+  <Button
+    name="Schedule a Meeting"
+    bgColor="bg-neon"
+    textColor="black"
+    hoverBgColor="bg-neon"
+    hoverTextColor="black"
+    link="/contact-us"
   />
 </div>
 
-              {/* Office image */}
-              {/* Customize: Adjust image size or styling */}
-              <img
-                src={activeOfficeData.content.image}
-                alt={`${activeOfficeData.title} office`}
-                className="w-full h-40 object-contain svg-neon rounded-md mb-4"
-              />
-              {/* Address and phone */}
-              <p className="text-gray-200">{activeOfficeData.content.address}</p>
-              <p className="text-gray-200">{activeOfficeData.content.phone}</p>
 
-              <Button
-              name="Schedule a Meeting"
-              bgColor="bg-neon"
-              textColor="black"
-              hoverBgColor="bg-neon"
-              hoverTextColor="black"
-              className="mt-4"
-              link="/contact-us"
-              />
-            </div>
           ) : (
             <p className="text-gray-400">Select an office</p>
           )}
