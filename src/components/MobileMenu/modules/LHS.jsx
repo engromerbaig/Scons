@@ -13,7 +13,7 @@ const LHS = ({ containerVariants, textVariants, handleClose }) => (
     exit="exitLeft"
     variants={containerVariants}
     transition={{ duration: 0.5, delayChildren: 0.2 }}
-    className={`${theme.layoutPages.paddingMenu} lhs w-full md:w-1/2 h-1/2 md:h-full bg-white flex flex-col py-4 md:py-6 lg:py-12`}
+    className={`${theme.layoutPages.paddingMenu} ${theme.layoutPages.paddingMenuVertical} lhs w-full md:w-1/2 h-1/2 md:h-full bg-white flex flex-col `}
   >
     {/* Top Section (2/12) */}
     <div className="h-[16.67%]">
@@ -35,7 +35,7 @@ const LHS = ({ containerVariants, textVariants, handleClose }) => (
         >
           <Link
             to={link.to}
-            className="text-xl lg:text-45px font-medium text-black font-manrope hover:text-neon active:text-neon transition-colors duration-300"
+            className="text-xl lg:text-45px font-semibold text-black font-manrope hover:text-neon active:text-neon transition-colors duration-300"
             onClick={handleClose}
           >
             {link.label}
@@ -51,7 +51,7 @@ const LHS = ({ containerVariants, textVariants, handleClose }) => (
           <div key={contact.type} className="flex ">
             <a
               href={contact.link}
-              className="text-black text-base md:text-40px font-semibold hover:text-neon transition-colors duration-300"
+              className="text-black text-xl lg:text-45px  font-semibold hover:text-neon transition-colors duration-300"
             >
               {contact.detail}
             </a>

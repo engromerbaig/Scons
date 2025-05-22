@@ -21,7 +21,7 @@ const RHS = ({ containerVariants, textVariants, handleClose }) => (
       backgroundRepeat: 'no-repeat',
     }}
   >
-    <div className="w-full flex flex-col py-4 md:py-12">
+    <div className={`w-full flex flex-col ${theme.layoutPages.paddingMenuVertical}`}>
       {/* Top Section (2/12) */}
       <div className="h-[16.67%]">
         <motion.h2
@@ -30,7 +30,7 @@ const RHS = ({ containerVariants, textVariants, handleClose }) => (
           exit="exit"
           variants={textVariants}
           transition={{ duration: 0.3 }}
-          className={` ${theme.layoutPages.paddingMenu} text-xl md:text-50px font-bold text-white`}
+          className={` ${theme.layoutPages.paddingMenu} text-xl md:text-50px font-bold text-neon`}
         >
           Our Services
         </motion.h2>
@@ -61,7 +61,7 @@ const RHS = ({ containerVariants, textVariants, handleClose }) => (
 
       {/* Bottom Section (2/12) */}
       <div className="h-[16.67%] flex items-end">
-        <div className="py-3 md:py-4 px-6 md:px-10 rounded-r-full bg-neon shadow-3xl flex flex-row justify-between space-x-4">
+        <div className="py-2 md:py-4 px-4 md:px-8 rounded-r-full bg-neon shadow-inner flex flex-row justify-between space-x-4">
          {socialsData.map((social, idx) => {
     const Icon = social.icon;
     return (
