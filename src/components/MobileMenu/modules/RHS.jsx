@@ -30,7 +30,7 @@ const RHS = ({ containerVariants, textVariants, handleClose }) => (
           exit="exit"
           variants={textVariants}
           transition={{ duration: 0.3 }}
-          className={` ${theme.layoutPages.paddingMenu} text-xl md:text-50px font-bold text-neon`}
+          className={` ${theme.layoutPages.paddingMenu} text-2xl md:text-60px font-bold text-neon`}
         >
           Our Services
         </motion.h2>

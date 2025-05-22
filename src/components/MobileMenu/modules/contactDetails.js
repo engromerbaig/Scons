@@ -12,8 +12,8 @@ export const contactDetails = [
   {
     type: 'Email',
     icon: MdEmail,
-    detail: 'info@scons.com',
-    link: 'mailto:info@scons.com',
+    detail: 'info@sconstech.com',
+    link: 'mailto:info@sconstech.com',
   },
 
   
