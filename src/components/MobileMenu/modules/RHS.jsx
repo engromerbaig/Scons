@@ -13,7 +13,7 @@ const RHS = ({ containerVariants, textVariants, handleClose }) => (
     exit="exitRight"
     variants={containerVariants}
     transition={{ duration: 0.5, delayChildren: 0.2 }}
-    className="w-full md:w-1/2 h-1/2 md:h-full bg-black flex flex-row overflow-hidden relative"
+    className="w-full md:w-1/2 h-1/2 md:h-full bg-white flex flex-row overflow-hidden relative"
     style={{
       backgroundImage: `url('/sconsVertical.svg')`,
       backgroundPosition: 'right',
@@ -49,7 +49,7 @@ const RHS = ({ containerVariants, textVariants, handleClose }) => (
             className={`${theme.layoutPages.paddingMenu}`}
           >
             <Link
-              className="text-base lg:text-45px font-medium text-white font-manrope hover:text-neon transition-colors duration-300"
+              className="text-base lg:text-45px font-medium text-black font-manrope hover:text-neon transition-colors duration-300"
               to={`/service/${service.slug}`}
               onClick={handleClose}
             >
