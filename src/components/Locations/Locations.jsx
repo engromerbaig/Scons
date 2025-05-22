@@ -7,8 +7,10 @@ import { theme } from "../../theme";
 import Button from "../Button/Button";
 
 
-            import { IoPin } from "react-icons/io5";
+import { IoLocation } from "react-icons/io5";
 import { FaPhone } from "react-icons/fa";
+
+import FadeWrapper from "../../utilities/Animations/FadeWrapper";
 
 // Office coordinates (replace with precise latitude/longitude values)
 // Customize: Add more offices or update coordinates for accuracy
@@ -61,21 +63,24 @@ const Locations = ({ isAnimate }) => {
           {activeOfficeData ? (
 
 
-<div className="flex flex-col gap-y-4 xl:gap-y-6">
+<FadeWrapper
+  key={activeOfficeData.title} // Forces fade animation on tab switch
+  className="flex flex-col gap-y-4 xl:gap-y-6"
+>
   {/* Office title and country */}
   <div>
     <h3 className="text-2xl font-bold">{`${activeOfficeData.title} Office`}</h3>
     <div className="flex flex-row items-center gap-x-2 mt-1">
-      <p className="text-lg text-gray-300 mb-0">{activeOfficeData.country}</p>
+      <p className="text-lg text-gray-300">{activeOfficeData.country}</p>
       <img
         src={activeOfficeData.content.flagImage}
         alt={`${activeOfficeData.title} flag`}
-        className="rounded-full object-cover w-5 h-5 border-black border"
+        className="rounded-full object-cover w-5 h-5 border border-black"
       />
     </div>
   </div>
 
-  {/* Office image */}
+  {/* Optional: Office image */}
   {/* <img
     src={activeOfficeData.content.image}
     alt={`${activeOfficeData.title} office`}
@@ -85,7 +90,7 @@ const Locations = ({ isAnimate }) => {
   {/* Address and phone */}
   <div className="flex flex-col gap-y-2 text-gray-200">
     <div className="flex items-start gap-x-2 hover:text-neon">
-      <IoPin className="text-neon text-3xl" />
+      <IoLocation  className="text-neon text-3xl mt-0.5" />
       <span className="pr-10">{activeOfficeData.content.address}</span>
     </div>
 
@@ -93,7 +98,7 @@ const Locations = ({ isAnimate }) => {
       href={`tel:${activeOfficeData.content.phone}`}
       className="flex items-center gap-x-2 hover:text-neon"
     >
-      <FaPhone className="text-neon text-sm" />
+      <FaPhone className="text-neon text-lg" />
       <span>{activeOfficeData.content.phone}</span>
     </a>
   </div>
@@ -107,7 +112,7 @@ const Locations = ({ isAnimate }) => {
     hoverTextColor="black"
     link="/contact-us"
   />
-</div>
+</FadeWrapper>
 
 
           ) : (
