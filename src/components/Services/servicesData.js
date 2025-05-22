@@ -706,158 +706,158 @@ export const services = [
       },
     ],
   },
-  {
-    heading: "Consulting Support",
-    spanText: "Consulting",
-    image: consultationImage,
-    serviceAccordionData: [
-      {
-        id: 1,
-        question: "B2B Support & Solutions",
-        answer: "Tailored support to streamline operations and improve partnerships.",
-        image: accordianconsult1,
-        bestPoints: [
-          "Customized business strategies",
-          "Partner relationship management",
-          "Process optimization",
-          "Scalable support models",
-        ],
-      },
-      {
-        id: 2,
-        question: "Strategy Consulting",
-        answer: "Define your vision and roadmap with market and competitive analysis.",
-        image: accordianconsult2,
-        bestPoints: [
-          "Market research & insights",
-          "Competitive analysis",
-          "Business model innovation",
-          "Long-term growth planning",
-        ],
-      },
-      {
-        id: 3,
-        question: "Technical Advisory",
-        answer: "Expert advice on technology selection and system architecture.",
-        image: accordianconsult3,
-        bestPoints: [
-          "Technology evaluation",
-          "Architecture design",
-          "Risk assessment",
-          "Implementation guidance",
-        ],
-      },
-    ],
-    heading2: "Guided by Experts in Consultation",
-    description: "Shaping Strategies for Limitless Success",
-    helperText: "Expert guidance that ensures every strategy aligns with your business goals, turning vision into reality.",
-    slug: "consultation",
-    tagline: "Shaping Strategies for Success",
-    faqSpanText: "Unlock Business Potential",
-    faqBodyText:
-      "Our consultation services help businesses navigate challenges, achieve operational excellence, and unlock growth through strategic advice.",
-    processBodyText:
-      "A consultation project begins with analyzing your goals, developing tailored strategies, and assisting with implementation and monitoring.",
-    number: "06",
-    faqData: [
-      {
-        question: "What does your consulting service include?",
-        answer: "We offer strategy development, market analysis, and tailored recommendations for your goals.",
-      },
-      {
-        question: "Who provides the consultation?",
-        answer: "Our team of experienced business analysts and technical experts leads the sessions.",
-      },
-      {
-        question: "How long is a typical consultation session?",
-        answer: "Sessions typically last 1–3 hours, depending on the scope.",
-      },
-      {
-        question: "Can you assist with technical and business strategies?",
-        answer: "Yes, we provide holistic solutions covering both technical and business needs.",
-      },
-      {
-        question: "Is consulting suitable for startups?",
-        answer: "Yes, we tailor advice to help startups scale and overcome challenges.",
-      },
-      {
-        question: "Do you offer ongoing consulting support?",
-        answer: "Yes, we provide recurring sessions to align with your evolving goals.",
-      },
-    ],
-    services: [
-      "Market Entry and Expansion Strategy",
-      "Branding and Positioning",
-      "Revenue Optimization and Cost Efficiency",
-      "Digital Transformation Strategy",
-      "Investment Readiness and Funding Strategy",
-    ],
-    iconRows: [
-      {
-        service: "Market Entry and Expansion Strategy",
-        serviceHeading: "Market Strategy",
-        faqIcon: [icons.faq.consultationFAQ1],
-        details: [
-          {
-            heading: "Market Research",
-            description:
-              "We guide businesses through market research and strategy development for successful market entry.",
-          },
-        ],
-        icons: [],
-      },
-      {
-        service: "Branding and Positioning",
-        serviceHeading: "Branding & Positioning",
-        faqIcon: [icons.faq.consultationFAQ2],
-        details: [
-          {
-            heading: "Brand Strategy",
-            description:
-              "We refine your brand identity to create a lasting impact and align with market demands.",
-          },
-        ],
-        icons: [],
-      },
-      {
-        service: "Revenue Optimization and Cost Efficiency",
-        serviceHeading: "Revenue Optimization",
-        faqIcon: [icons.faq.consultationFAQ3],
-        details: [
-          {
-            heading: "Revenue Strategies",
-            description:
-              "We analyze operations and implement strategies to maximize revenue and reduce costs.",
-          },
-        ],
-        icons: [],
-      },
-      {
-        service: "Digital Transformation Strategy",
-        serviceHeading: "Digital Transformation",
-        faqIcon: [icons.faq.consultationFAQ4],
-        details: [
-          {
-            heading: "Technology Integration",
-            description:
-              "We help businesses embrace digital tools to enhance processes and competitiveness.",
-          },
-        ],
-        icons: [],
-      },
-      {
-        service: "Investment Readiness and Funding Strategy",
-        serviceHeading: "Investment Preparation",
-        faqIcon: [icons.faq.consultationFAQ5],
-        details: [
-          {
-            heading: "Business Plans",
-            description:
-              "We prepare compelling pitches and financials to position businesses for funding success.",
-          },
-        ],
-        icons: [],
-      },
-    ],
-  },
+  // {
+  //   heading: "Consulting Support",
+  //   spanText: "Consulting",
+  //   image: consultationImage,
+  //   serviceAccordionData: [
+  //     {
+  //       id: 1,
+  //       question: "B2B Support & Solutions",
+  //       answer: "Tailored support to streamline operations and improve partnerships.",
+  //       image: accordianconsult1,
+  //       bestPoints: [
+  //         "Customized business strategies",
+  //         "Partner relationship management",
+  //         "Process optimization",
+  //         "Scalable support models",
+  //       ],
+  //     },
+  //     {
+  //       id: 2,
+  //       question: "Strategy Consulting",
+  //       answer: "Define your vision and roadmap with market and competitive analysis.",
+  //       image: accordianconsult2,
+  //       bestPoints: [
+  //         "Market research & insights",
+  //         "Competitive analysis",
+  //         "Business model innovation",
+  //         "Long-term growth planning",
+  //       ],
+  //     },
+  //     {
+  //       id: 3,
+  //       question: "Technical Advisory",
+  //       answer: "Expert advice on technology selection and system architecture.",
+  //       image: accordianconsult3,
+  //       bestPoints: [
+  //         "Technology evaluation",
+  //         "Architecture design",
+  //         "Risk assessment",
+  //         "Implementation guidance",
+  //       ],
+  //     },
+  //   ],
+  //   heading2: "Guided by Experts in Consultation",
+  //   description: "Shaping Strategies for Limitless Success",
+  //   helperText: "Expert guidance that ensures every strategy aligns with your business goals, turning vision into reality.",
+  //   slug: "consultation",
+  //   tagline: "Shaping Strategies for Success",
+  //   faqSpanText: "Unlock Business Potential",
+  //   faqBodyText:
+  //     "Our consultation services help businesses navigate challenges, achieve operational excellence, and unlock growth through strategic advice.",
+  //   processBodyText:
+  //     "A consultation project begins with analyzing your goals, developing tailored strategies, and assisting with implementation and monitoring.",
+  //   number: "06",
+  //   faqData: [
+  //     {
+  //       question: "What does your consulting service include?",
+  //       answer: "We offer strategy development, market analysis, and tailored recommendations for your goals.",
+  //     },
+  //     {
+  //       question: "Who provides the consultation?",
+  //       answer: "Our team of experienced business analysts and technical experts leads the sessions.",
+  //     },
+  //     {
+  //       question: "How long is a typical consultation session?",
+  //       answer: "Sessions typically last 1–3 hours, depending on the scope.",
+  //     },
+  //     {
+  //       question: "Can you assist with technical and business strategies?",
+  //       answer: "Yes, we provide holistic solutions covering both technical and business needs.",
+  //     },
+  //     {
+  //       question: "Is consulting suitable for startups?",
+  //       answer: "Yes, we tailor advice to help startups scale and overcome challenges.",
+  //     },
+  //     {
+  //       question: "Do you offer ongoing consulting support?",
+  //       answer: "Yes, we provide recurring sessions to align with your evolving goals.",
+  //     },
+  //   ],
+  //   services: [
+  //     "Market Entry and Expansion Strategy",
+  //     "Branding and Positioning",
+  //     "Revenue Optimization and Cost Efficiency",
+  //     "Digital Transformation Strategy",
+  //     "Investment Readiness and Funding Strategy",
+  //   ],
+  //   iconRows: [
+  //     {
+  //       service: "Market Entry and Expansion Strategy",
+  //       serviceHeading: "Market Strategy",
+  //       faqIcon: [icons.faq.consultationFAQ1],
+  //       details: [
+  //         {
+  //           heading: "Market Research",
+  //           description:
+  //             "We guide businesses through market research and strategy development for successful market entry.",
+  //         },
+  //       ],
+  //       icons: [],
+  //     },
+  //     {
+  //       service: "Branding and Positioning",
+  //       serviceHeading: "Branding & Positioning",
+  //       faqIcon: [icons.faq.consultationFAQ2],
+  //       details: [
+  //         {
+  //           heading: "Brand Strategy",
+  //           description:
+  //             "We refine your brand identity to create a lasting impact and align with market demands.",
+  //         },
+  //       ],
+  //       icons: [],
+  //     },
+  //     {
+  //       service: "Revenue Optimization and Cost Efficiency",
+  //       serviceHeading: "Revenue Optimization",
+  //       faqIcon: [icons.faq.consultationFAQ3],
+  //       details: [
+  //         {
+  //           heading: "Revenue Strategies",
+  //           description:
+  //             "We analyze operations and implement strategies to maximize revenue and reduce costs.",
+  //         },
+  //       ],
+  //       icons: [],
+  //     },
+  //     {
+  //       service: "Digital Transformation Strategy",
+  //       serviceHeading: "Digital Transformation",
+  //       faqIcon: [icons.faq.consultationFAQ4],
+  //       details: [
+  //         {
+  //           heading: "Technology Integration",
+  //           description:
+  //             "We help businesses embrace digital tools to enhance processes and competitiveness.",
+  //         },
+  //       ],
+  //       icons: [],
+  //     },
+  //     {
+  //       service: "Investment Readiness and Funding Strategy",
+  //       serviceHeading: "Investment Preparation",
+  //       faqIcon: [icons.faq.consultationFAQ5],
+  //       details: [
+  //         {
+  //           heading: "Business Plans",
+  //           description:
+  //             "We prepare compelling pitches and financials to position businesses for funding success.",
+  //         },
+  //       ],
+  //       icons: [],
+  //     },
+  //   ],
+  // },
 ];
