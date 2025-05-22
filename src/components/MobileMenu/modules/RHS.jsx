@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { services } from '../../Services/servicesData';
+import { socialsData } from './socialsData';
 import { theme } from '../../../theme';
 
 const RHS = ({ containerVariants, textVariants, handleClose }) => (
@@ -12,32 +13,31 @@ const RHS = ({ containerVariants, textVariants, handleClose }) => (
     exit="exitRight"
     variants={containerVariants}
     transition={{ duration: 0.5, delayChildren: 0.2 }}
-    className="w-full lg:w-1/2 h-1/2 lg:h-full bg-white flex flex-row overflow-hidden relative"
-        style={{
-          backgroundImage: `url(/sconsVertical.svg)`,
-          backgroundPosition: 'right',
-          backgroundSize: 'contain',
-          backgroundRepeat: 'no-repeat',
-        }}
-    
+    className="w-full md:w-1/2 h-1/2 md:h-full bg-black flex flex-row overflow-hidden relative"
+    style={{
+      backgroundImage: `url('/sconsVertical.svg')`,
+      backgroundPosition: 'right',
+      backgroundSize: 'contain',
+      backgroundRepeat: 'no-repeat',
+    }}
   >
-    <div className="w-full flex flex-col py-4 md:py-6 lg:py-12">
+    <div className="w-full flex flex-col py-4 md:py-12">
       {/* Top Section (2/12) */}
-      {/* <div className="h-[16.67%]">
+      <div className="h-[16.67%]">
         <motion.h2
           initial="hidden"
           animate="visible"
           exit="exit"
           variants={textVariants}
           transition={{ duration: 0.3 }}
-          className={`font-manrope ${theme.layoutPages.paddingMenu} text-xl md:text-50px text-grayBg`}
+          className={` ${theme.layoutPages.paddingMenu} text-xl md:text-50px text-white`}
         >
           Our Services
         </motion.h2>
-      </div> */}
+      </div>
 
       {/* Middle Section (8/12) */}
-      <div className="h-[90%] flex flex-col justify-between my-4 md:my-10  lg:my-20  ">
+      <div className="h-[66.66%] flex flex-col justify-between my-4 md:my-20  ">
         {services.map((service, index) => (
           <motion.div
             key={service.number}
@@ -49,7 +49,7 @@ const RHS = ({ containerVariants, textVariants, handleClose }) => (
             className={`${theme.layoutPages.paddingMenu}`}
           >
             <Link
-              className="text-base lg:text-45px font-medium text-black font-manrope hover:text-neon transition-colors duration-300"
+              className="text-base md:text-35px text-white font-monument hover:text-grayBg transition-colors duration-300"
               to={`/service/${service.slug}`}
               onClick={handleClose}
             >
@@ -60,23 +60,25 @@ const RHS = ({ containerVariants, textVariants, handleClose }) => (
       </div>
 
       {/* Bottom Section (2/12) */}
-      <div className="h-[10%] flex items-end">
-         <div className={`w-full flex lg:justify-end ${theme.layoutPages.paddingMenu} lg:px-8 rhs text-black text-30px`} >
-               
-         <div className="space-x-1 lg:space-x-4">
-         <Link               onClick={handleClose}
- to="/terms-and-conditions" className="neon-hover">Terms & Conditions</Link>
-          <span>|</span>
-          <Link               onClick={handleClose}
- to="/privacy-policy" className="neon-hover">Privacy Policy</Link>
+      <div className="h-[16.67%] flex items-end">
+        <div className="w-2/4 md:w-2/5 py-3 md:py-6 px-6 md:px-10 rounded-r-full bg-charcoal flex flex-row justify-between space-x-4">
+         {socialsData.map((social, idx) => {
+    const Icon = social.icon;
+    return (
+      <a
+        key={idx}
+        href={social.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-white hover:text-neon transition duration-300"
+      >
+        <Icon className="w-6 lg:w-7 h-6 lg:h-7 transition-transform " />
+      </a>
+    );
+  })}
+
+        </div>
       </div>
-      
-                  </div>
-      </div>
-
-
-
-
     </div>
   </motion.div>
 );

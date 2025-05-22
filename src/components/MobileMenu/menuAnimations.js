@@ -1,8 +1,8 @@
 // menuAnimations.js
 export const getContainerVariants = (isMobile) => ({
   hiddenLeft: {
-    x: isMobile ? 0 : '-100%', // Swapped
-    y: isMobile ? '-100%' : 0, // Swapped
+    x: isMobile ? '-100%' : 0,
+    y: isMobile ? 0 : '-100%',
     opacity: 0,
     transition: {
       type: "tween",
@@ -10,8 +10,8 @@ export const getContainerVariants = (isMobile) => ({
     }
   },
   hiddenRight: {
-    x: isMobile ? 0 : '100%', // Swapped
-    y: isMobile ? '100%' : 0, // Swapped
+    x: isMobile ? '100%' : 0,
+    y: isMobile ? 0 : '100%',
     opacity: 0,
     transition: {
       type: "tween",
@@ -28,8 +28,8 @@ export const getContainerVariants = (isMobile) => ({
     }
   },
   exitLeft: {
-    x: isMobile ? 0 : '-100%', // Swapped
-    y: isMobile ? '-100%' : 0, // Swapped
+    x: isMobile ? '-100%' : 0,
+    y: isMobile ? 0 : '-100%',
     opacity: 0,
     transition: {
       type: "tween",
@@ -37,8 +37,8 @@ export const getContainerVariants = (isMobile) => ({
     }
   },
   exitRight: {
-    x: isMobile ? 0 : '100%', // Swapped
-    y: isMobile ? '100%' : 0, // Swapped
+    x: isMobile ? '100%' : 0,
+    y: isMobile ? 0 : '100%',
     opacity: 0,
     transition: {
       type: "tween",
@@ -50,8 +50,8 @@ export const getContainerVariants = (isMobile) => ({
 export const getTextVariants = (isMobile) => ({
   hidden: { 
     opacity: 0,
-    x: isMobile ? 0 : -50, // Swapped
-    y: isMobile ? 50 : 0   // Swapped
+    x: isMobile ? -50 : 0,
+    y: isMobile ? 0 : 50
   },
   visible: { 
     opacity: 1,
@@ -64,7 +64,7 @@ export const getTextVariants = (isMobile) => ({
   },
   exit: { 
     opacity: 0,
-    x: isMobile ? 0 : -50, // Swapped
-    y: isMobile ? -50 : 0  // Swapped
+    x: isMobile ? -50 : 0,
+    y: isMobile ? 0 : -50
   }
 });
