@@ -30,7 +30,7 @@ const RHS = ({ containerVariants, textVariants, handleClose }) => (
           exit="exit"
           variants={textVariants}
           transition={{ duration: 0.3 }}
-          className={` ${theme.layoutPages.paddingMenu} text-xl md:text-50px text-white`}
+          className={` ${theme.layoutPages.paddingMenu} text-xl md:text-50px font-bold text-white`}
         >
           Our Services
         </motion.h2>
@@ -61,7 +61,7 @@ const RHS = ({ containerVariants, textVariants, handleClose }) => (
 
       {/* Bottom Section (2/12) */}
       <div className="h-[16.67%] flex items-end">
-        <div className="w-2/4 md:w-2/5 py-3 md:py-6 px-6 md:px-10 rounded-r-full bg-charcoal flex flex-row justify-between space-x-4">
+        <div className="py-3 md:py-4 px-6 md:px-10 rounded-r-full bg-neon shadow-3xl flex flex-row justify-between space-x-4">
          {socialsData.map((social, idx) => {
     const Icon = social.icon;
     return (
@@ -70,9 +70,9 @@ const RHS = ({ containerVariants, textVariants, handleClose }) => (
         href={social.link}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-white hover:text-neon transition duration-300"
+        className="text-black hover:text-white transition duration-300"
       >
-        <Icon className="w-6 lg:w-7 h-6 lg:h-7 transition-transform " />
+        <Icon className="w-5 lg:w-7 h-5 lg:h-7 transition-transform " />
       </a>
     );
   })}

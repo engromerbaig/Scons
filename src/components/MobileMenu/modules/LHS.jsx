@@ -13,17 +13,17 @@ const LHS = ({ containerVariants, textVariants, handleClose }) => (
     exit="exitLeft"
     variants={containerVariants}
     transition={{ duration: 0.5, delayChildren: 0.2 }}
-    className={`${theme.layoutPages.paddingMenu} w-full md:w-1/2 h-1/2 md:h-full bg-white flex flex-col py-4 md:py-12`}
+    className={`${theme.layoutPages.paddingMenu} lhs w-full md:w-1/2 h-1/2 md:h-full bg-white flex flex-col py-4 md:py-6 lg:py-12`}
   >
     {/* Top Section (2/12) */}
-    <div className="h-[16.67%] ">
+    <div className="h-[16.67%]">
       <Link to="/" className="cursor-pointer block" onClick={handleClose}>
-        <img src="/logo.svg" alt="Logo" className="md:w-36 w-28 aspect-rectangle svg-black" />
+        <img src="/logo2.svg" alt="Logo" className="lg:w-28 w-20 aspect-rectangle " />
       </Link>
     </div>
 
     {/* Middle Section (8/12) */}
-    <div className="h-[66.66%] flex flex-col justify-between  my-4 md:my-20  ">
+    <div className="h-[66.66%] flex flex-col justify-between my-4 md:my-10 lg:my-20">
       {navLinks.map((link, index) => (
         <motion.div
           key={link.to}
@@ -45,18 +45,19 @@ const LHS = ({ containerVariants, textVariants, handleClose }) => (
     </div>
 
     {/* Bottom Section (2/12) */}
-    <div className="h-[16.67%]  flex flex-col space-y-2 md:space-y-4">
-      {contactDetails.map((contact) => (
-        <div key={contact.type} className="flex flex-row items-center space-x-4">
-    
-          <a
-            href={contact.link}
-            className="text-black text-sm md:text-40px font-medium hover:text-neon transition duration-300"
-          >
-            {contact.detail}
-          </a>
-        </div>
-      ))}
+    <div className="h-[16.67%] flex flex-col space-y-0 md:space-y-4">
+      {contactDetails.map((contact) => {
+        return (
+          <div key={contact.type} className="flex ">
+            <a
+              href={contact.link}
+              className="text-black text-base md:text-40px font-semibold hover:text-neon transition-colors duration-300"
+            >
+              {contact.detail}
+            </a>
+          </div>
+        );
+      })}
     </div>
   </motion.div>
 );
