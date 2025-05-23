@@ -1,31 +1,23 @@
+// SmoothLink.js
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-const SmoothLink = ({ to, children, className, ...props }) => {
-  const navigate = useNavigate();
-
-  const handleClick = (e) => {
-    if (to.startsWith('#')) {
-      // It's an in-page anchor link
-      e.preventDefault();
-      const id = to.slice(1);
-      const el = document.getElementById(id);
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
+const SmoothLink = React.forwardRef(({ to, children, ...props }, ref) => (
+  <Link
+    to={to}
+    ref={ref}
+    {...props}
+    onClick={(e) => {
+      const target = document.querySelector(to);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
+        window.history.pushState(null, '', to);
       }
-    } else if (to.startsWith('/')) {
-      // Normal route navigation with react-router
-      // Prevent default and programmatically navigate
-      e.preventDefault();
-      navigate(to);
-    }
-  };
-
-  return (
-    <a href={to} onClick={handleClick} className={className} {...props}>
-      {children}
-    </a>
-  );
-};
+    }}
+  >
+    {children}
+  </Link>
+));
 
 export default SmoothLink;
