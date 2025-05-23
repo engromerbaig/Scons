@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import Heading from "../Heading/Heading";
+import BodyText from '../BodyText/BodyText';
 import FAQServiceItem from './FAQServiceItem'; // Import FAQServiceItem
 import { theme } from "../../theme";
 
-const FAQService = ({ faqTitle, faqData }) => {
+const FAQService = ({ faqData, faqHeading }) => {
   // Set activeIndex to 0 so the first FAQ item is open by default
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -14,7 +15,14 @@ const FAQService = ({ faqTitle, faqData }) => {
 
   return (
     <div className={`min-h-screen ${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical}`}>
-      <Heading text="Clear Answers to Your Key Questions" spanText="Key Questions" size="text-70px" className='pb-10' />
+
+      <flex className="flex-col items-start ">
+
+      <Heading text="We are Here to Help" showUnderline spanText="Help" size="text-70px" className='pb-6' centered={false} />
+      <BodyText text={`You have anything else regatding ${faqHeading} we can help you with?`} className='pb-6'  centered={false}  />
+
+
+      </flex>
 
       {/* FAQ items */}
       <div className={`faq-list ${theme.layoutPages.conatinerVerticalGap}`}>

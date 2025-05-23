@@ -68,18 +68,9 @@ const ServiceDetails = () => {
                 <DevProcess />
             </FadeWrapper>
 
-            <GreenBelt className="flex flex-col lg:flex-row justify-center items-center space-y-4 lg:justify-between ">
-                <Heading
-                    text='Let’s make great things happen together.'
-                    spanText='happen together.'
-                    size='text-60px'
-                />
-                <ScrollToTopLink to="/lets-innovate">
-                    <button className="bg-transparent border-black border-2 text-30px px-6 rounded-md py-3 smooth-hover">Let’s Innovate</button>
-                </ScrollToTopLink>
-            </GreenBelt>
+       
 
-            <FAQService faqData={service.faqData} />
+            <FAQService faqData={service.faqData} faqHeading={service.heading} />
         </div>
     );
 };
