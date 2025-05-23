@@ -23,12 +23,10 @@ const DevProcess = ({ processText }) => {
     <div className={`w-full min-h-screen flex flex-col justify-center ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal}`}>
       <div className="flex flex-col items-start space-y-2">
         <Heading 
-          text="Crafted for Your Ambition" 
-          spanText="Ambition"
-          spanColor="text-neon"
-          size="text-70px"
+          text="Where Innovation Meets Expertise" 
           centered={false}
-          color="text-black"
+          showUnderline
+          className="pb-6"
         />
         <BodyText 
           text={

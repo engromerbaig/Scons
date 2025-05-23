@@ -21,7 +21,7 @@ const SectionDetails = ({ faqSpanText, faqBodyText, faqItems }) => {
 
       <GreenBelt className="">
 
-      <Heading text="Beyond Development, We Build Journeys" spanText='We Build Journeys' size='text-70px' />
+      <Heading text="Creating Solutions That Drive Success"  />
 
 
       </GreenBelt>
