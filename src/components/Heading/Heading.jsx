@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
+import { gsap } from 'gsap';
 import useTypingAnimation from '../../utilities/Animations/useTypingAnimation.js';
 
 const Heading = ({
@@ -30,6 +31,7 @@ const Heading = ({
     order,
     speedMultiplier,
   });
+  const headingRef = useRef(null);
 
   // Split text into words while preserving spaces
   const splitIntoWords = (string) => {
@@ -51,15 +53,49 @@ const Heading = ({
     return `text-${colorName}/20`;
   };
 
+  // Setup Intersection Observer for underline animation
+  useEffect(() => {
+    if (!showUnderline) return;
+
+    const elements = headingRef.current.querySelectorAll('.underline-span');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const underline = entry.target.querySelector('.underline');
+            gsap.fromTo(
+              underline,
+              { scaleX: 0, transformOrigin: 'left' },
+              {
+                scaleX: 1,
+                duration: 0.8,
+                ease: 'power2.out',
+              }
+            );
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    elements.forEach((el) => observer.observe(el));
+
+    return () => {
+      elements.forEach((el) => observer.unobserve(el));
+    };
+  }, [showUnderline]);
+
   // Underline class for individual word spans
   const underlineClass = showUnderline
-    ? 'relative after:content-[""] after:absolute after:bottom-[-6%] lg:after:bottom-[-10%] after:left-0 after:w-full after:h-[6px] lg:after:h-3 after:bg-neon after:rounded-none'
+    ? 'underline-span relative'
     : '';
 
   // Render without animations if isAnimate is false
   if (!isAnimate) {
     return (
       <h1
+        ref={headingRef}
         className={`${centered ? 'text-center' : ''} ${getColorWithOpacity(color)} ${size} ${fontFamily} ${fontWeight} ${className}`}
         style={{
           wordBreak: 'normal',
@@ -70,6 +106,12 @@ const Heading = ({
         {parts[0] && splitIntoWords(parts[0]).map((word, wordIndex) => (
           <span key={`word-1-${wordIndex}`} className={underlineClass} style={{ display: 'inline-block' }}>
             {word}
+            {showUnderline && (
+              <span
+                className="underline absolute bottom-[-6%] lg:bottom-[-10%] left-0 w-full h-[6px] lg:h-3 bg-neon rounded-none"
+                style={{ transformOrigin: 'left', scaleX: 0 }}
+              />
+            )}
           </span>
         ))}
         {spanText && (
@@ -83,6 +125,12 @@ const Heading = ({
               {splitIntoWords(spanText).map((word, wordIndex) => (
                 <span key={`word-span-${wordIndex}`} className={underlineClass} style={{ display: 'inline-block' }}>
                   {word}
+                  {showUnderline && (
+                    <span
+                      className="underline absolute bottom-[-6%] lg:bottom-[-10%] left-0 w-full h-[6px] lg:h-3 bg-neon rounded-none"
+                      style={{ transformOrigin: 'left', scaleX: 0 }}
+                    />
+                  )}
                 </span>
               ))}
             </span>
@@ -92,6 +140,12 @@ const Heading = ({
         {parts[1] && splitIntoWords(parts[1]).map((word, wordIndex) => (
           <span key={`word-2-${wordIndex}`} className={underlineClass} style={{ display: 'inline-block' }}>
             {word}
+            {showUnderline && (
+              <span
+                className="underline absolute bottom-[-6%] lg:bottom-[-10%] left-0 w-full h-[6px] lg:h-3 bg-neon rounded-none"
+                style={{ transformOrigin: 'left', scaleX: 0 }}
+              />
+            )}
           </span>
         ))}
       </h1>
@@ -101,7 +155,7 @@ const Heading = ({
   // Render with animations if isAnimate is true
   return (
     <h1
-      ref={ref}
+      ref={headingRef}
       className={`${centered ? 'text-center' : ''} ${getColorWithOpacity(color)} ${size} ${fontFamily} ${fontWeight} ${className}`}
       style={{
         wordBreak: 'normal',
@@ -131,6 +185,12 @@ const Heading = ({
               </motion.span>
             );
           })}
+          {showUnderline && (
+            <span
+              className="underline absolute bottom-[-6%] lg:bottom-[-10%] left-0 w-full h-[6px] lg:h-3 bg-neon rounded-none"
+              style={{ transformOrigin: 'left', scaleX: 0 }}
+            />
+          )}
         </span>
       ))}
       {spanText && (
@@ -165,6 +225,12 @@ const Heading = ({
                     </motion.span>
                   );
                 })}
+                {showUnderline && (
+                  <span
+                    className="underline absolute bottom-[-6%] lg:bottom-[-10%] left-0 w-full h-[6px] lg:h-3 bg-neon rounded-none"
+                    style={{ transformOrigin: 'left', scaleX: 0 }}
+                  />
+                )}
               </span>
             ))}
           </span>
@@ -195,6 +261,12 @@ const Heading = ({
               </motion.span>
             );
           })}
+          {showUnderline && (
+            <span
+              className="underline absolute bottom-[-6%] lg:bottom-[-10%] left-0 w-full h-[6px] lg:h-3 bg-neon rounded-none"
+              style={{ transformOrigin: 'left', scaleX: 0 }}
+            />
+          )}
         </span>
       ))}
     </h1>
