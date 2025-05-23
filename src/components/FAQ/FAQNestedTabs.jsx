@@ -82,7 +82,7 @@ const FAQNestedTabs = () => {
         role="tabpanel"
         aria-labelledby={`faq-tab-${activeCategory.toLowerCase().replace(/\s+/g, "-")}`}
         tabIndex={0}
-        className="flex-1 space-y-6 xl:space-y-10 p-6 xl:p-8 w-full transition-opacity duration-300 ease-in-out"
+        className="flex-1 space-y-6  px-6 xl:px-8 w-full transition-opacity duration-300 ease-in-out"
       >
         {faqs.map((faq, index) => (
           <FAQItem

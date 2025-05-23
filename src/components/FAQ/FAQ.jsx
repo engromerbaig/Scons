@@ -15,7 +15,7 @@ const FAQ = () => {
           centered={false}
         />
         <BodyText
-          text="Find answers to common questions about Tyfora’s services, processes, and how we empower businesses with innovative solutions."
+          text="Find answers to common questions about Scons services, processes, and how we empower businesses with innovative solutions."
           centered={false}
           className="max-w-2xl"
         />
