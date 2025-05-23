@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Link } from 'react-router-dom'; // import Link from react-router-dom
+import SmoothLink from '../../../utilities/SmoothLink';
 import BodyText from '../../BodyText/BodyText';
 import Heading from '../../Heading/Heading';
 
@@ -43,7 +43,7 @@ const StatisticItem = ({ title, icon, value, link = '/' }) => {
   }, [inView, numericValue, isOneKPlus]);
 
   return (
-    <Link
+    <SmoothLink
       to={link}
       ref={ref}
       onMouseEnter={() => setHovered(true)}
@@ -69,7 +69,7 @@ const StatisticItem = ({ title, icon, value, link = '/' }) => {
         color="text-black"
         fontWeight="font-medium"
       />
-    </Link>
+    </SmoothLink>
   );
 };
 
