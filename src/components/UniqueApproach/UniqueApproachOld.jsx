@@ -31,6 +31,8 @@ const UniqueApproach = () => {
             spanColor="text-black"
             spanText="Approach"
             centered={false}
+            showUnderline
+            className="pb-10"
           />
         </div>
         <div className="relative w-full">
