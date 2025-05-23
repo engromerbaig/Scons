@@ -5,7 +5,7 @@ import { theme } from "../../theme";
 import TestimonialBox from "./TestimonialBox";
 import testimonials from "./testimonialsData";
 import clutchLogo from "../../assets/icons/inner/clutch.svg";
-import trustLogo from "../../assets/icons/inner/trustpilot.svg";
+import trustLogo from "../../assets/icons/inner/trustpilot2.svg";
 
 const getRandomTestimonials = (array, count) => {
   const shuffled = [...array].sort(() => 0.5 - Math.random());
@@ -36,7 +36,7 @@ const Testimonials = () => {
       <div className="flex flex-wrap items-center gap-4 mb-10">
         <img src={clutchLogo} alt="clutch logo"  className="w-28 aspect-rectangle object-contain"
                   loading="lazy" />
-        <img src={trustLogo} alt="trust logo"  className="w-28 aspect-rectangle object-contain"
+        <img src={trustLogo} alt="trust logo"  className="w-28 aspect-rectangle svg-white object-contain"
                   loading="lazy" />
       </div>
 
