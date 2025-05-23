@@ -92,15 +92,19 @@ const Packages = () => {
         />
 
         {Object.entries(groupedPackages).map(([category, packages]) => (
-          <div key={category} className="mt-8">
-            <div className="relative inline-block my-10">
+          <div key={category} className="mt-12">
+
+
               <Heading
                 text={`${category} Packages`}
                 centered={false}
-                className="mb-3"
+                className="mb-10"
+                showUnderline
               />
-              <div className="absolute bottom-0 left-0 w-full h-2 lg:h-3 bg-neon rounded-none"></div>
-            </div>
+
+              {/* effective underline */}
+
+
             <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {packages.map((pkg) => (
                 <PackageCard

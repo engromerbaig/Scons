@@ -21,6 +21,7 @@ const Heading = ({
   className = '',
   breakSpan = false,
   inActiveHeading = false,
+  showUnderline = false,
 }) => {
   const parts = spanText ? text.split(spanText) : [text];
   const { controls, ref, characterVariants } = useTypingAnimation({
@@ -50,6 +51,11 @@ const Heading = ({
     return `text-${colorName}/20`;
   };
 
+  // Underline class for individual word spans
+  const underlineClass = showUnderline
+    ? 'relative after:content-[""] after:absolute after:bottom-[-6%] lg:after:bottom-[-10%] after:left-0 after:w-full after:h-[6px] lg:after:h-3 after:bg-neon after:rounded-none'
+    : '';
+
   // Render without animations if isAnimate is false
   if (!isAnimate) {
     return (
@@ -61,21 +67,33 @@ const Heading = ({
           whiteSpace: 'pre-wrap',
         }}
       >
-        {parts[0]}
+        {parts[0] && splitIntoWords(parts[0]).map((word, wordIndex) => (
+          <span key={`word-1-${wordIndex}`} className={underlineClass} style={{ display: 'inline-block' }}>
+            {word}
+          </span>
+        ))}
         {spanText && (
           <>
             {!breakSpan && parts[0] && !parts[0].endsWith(' ') && ' '}
             <span
               className={`${getColorWithOpacity(spanColor)} ${spanSize} ${spanFontWeight} ${
-                breakSpan ? 'block mt-0' : 'inline'
+                breakSpan ? 'block mt-0' : 'inline-block'
               }`}
             >
-              {spanText}
+              {splitIntoWords(spanText).map((word, wordIndex) => (
+                <span key={`word-span-${wordIndex}`} className={underlineClass} style={{ display: 'inline-block' }}>
+                  {word}
+                </span>
+              ))}
             </span>
             {!breakSpan && parts[1] && !parts[1].startsWith(' ') && ' '}
           </>
         )}
-        {parts[1]}
+        {parts[1] && splitIntoWords(parts[1]).map((word, wordIndex) => (
+          <span key={`word-2-${wordIndex}`} className={underlineClass} style={{ display: 'inline-block' }}>
+            {word}
+          </span>
+        ))}
       </h1>
     );
   }
@@ -91,9 +109,8 @@ const Heading = ({
         whiteSpace: 'pre-wrap',
       }}
     >
-      {/* First part */}
       {splitIntoWords(parts[0]).map((word, wordIndex) => (
-        <span key={`word-1-${wordIndex}`} style={{ display: 'inline-block' }}>
+        <span key={`word-1-${wordIndex}`} className={underlineClass} style={{ display: 'inline-block' }}>
           {splitWordIntoChars(word).map((char, charIndex) => {
             const currentCharIndex = charCount++;
             return (
@@ -116,8 +133,6 @@ const Heading = ({
           })}
         </span>
       ))}
-
-      {/* Span text */}
       {spanText && (
         <>
           {!breakSpan && parts[0] && !parts[0].endsWith(' ') && (
@@ -129,10 +144,7 @@ const Heading = ({
             }`}
           >
             {splitIntoWords(spanText).map((word, wordIndex) => (
-              <span
-                key={`word-span-${wordIndex}`}
-                style={{ display: 'inline-block' }}
-              >
+              <span key={`word-span-${wordIndex}`} className={underlineClass} style={{ display: 'inline-block' }}>
                 {splitWordIntoChars(word).map((char, charIndex) => {
                   const currentCharIndex = charCount++;
                   return (
@@ -161,10 +173,8 @@ const Heading = ({
           )}
         </>
       )}
-
-      {/* Second part */}
       {parts[1] && splitIntoWords(parts[1]).map((word, wordIndex) => (
-        <span key={`word-2-${wordIndex}`} style={{ display: 'inline-block' }}>
+        <span key={`word-2-${wordIndex}`} className={underlineClass} style={{ display: 'inline-block' }}>
           {splitWordIntoChars(word).map((char, charIndex) => {
             const currentCharIndex = charCount++;
             return (
@@ -204,10 +214,16 @@ Heading.propTypes = {
   fontWeight: PropTypes.string,
   isAnimate: PropTypes.bool,
   order: PropTypes.number,
+  speedMultiplier: PropTypes.number,
   onAnimationComplete: PropTypes.func,
   className: PropTypes.string,
   breakSpan: PropTypes.bool,
   inActiveHeading: PropTypes.bool,
+  showUnderline: PropTypes.bool,
+};
+
+Heading.defaultProps = {
+  showUnderline: false,
 };
 
 export default Heading;
