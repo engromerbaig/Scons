@@ -25,7 +25,7 @@ const Testimonials = () => {
       className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} bg-black flex flex-col items-center min-h-screen`}
     >
       <div className="flex flex-col justify-center items-center w-full mb-8">
-        <Heading text="What Our Clients Say" color="text-white" centered={false} />
+        <Heading text="What Our Clients Say" spanText="Clients" spanColor="text-neon" color="text-white" className="pb-2" centered={false} />
         <BodyText
           text="Discover how our innovative solutions have transformed businesses and empowered growth."
           centered={false}

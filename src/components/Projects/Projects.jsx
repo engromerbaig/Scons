@@ -25,7 +25,7 @@ const Projects = () => {
     >
       <div className="flex flex-col xl:flex-row xl:justify-between justify-start item-start xl:items-center w-full mb-8">
         <Heading text="A Portfolio of Our Success" spanText="Success" centered={false} spanColor="text-neon" className="text-left" showUnderline />
-        <AnimatedArrow text="More Case Studies" to="/portfolio" />
+        <AnimatedArrow text="More Projects" to="/portfolio" />
       </div>
       <ProjectGrid
         filteredProjects={randomProjects}

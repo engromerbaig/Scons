@@ -12,9 +12,9 @@ const Industries = () => {
 
   return (
     <div
-      className={`min-h-screen bg-white text-black  ${theme.layoutPages.paddingVertical} flex flex-col items-center`}
+      className={`min-h-screen bg-white text-black  ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal} flex flex-col items-center`}
     >
-      <div className={`flex flex-col  justify-between items-start w-full py-20 ${theme.layoutPages.paddingHorizontal}`}>
+      <div className={`flex flex-col  justify-between items-start w-full py-20 `}>
         <Heading
           text="We Serve Diverse Industries And Markets"
           centered={false}

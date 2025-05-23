@@ -8,7 +8,7 @@ const Technologies = () => {
   return (
     <section className={`${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal}`}>
       <div className="max-w-7xl ">
-         <Heading text="Our Technologies" centered={false} />
+         <Heading text="Our Technologies" showUnderline className="pb-10" centered={false} />
           <BodyText
             text="Hire from our pool of 350+ specialized experts in web, mobile, and software engineering, specializing in the latest technologies and frameworks, ready to scale your development teams effortlessly."
             centered={false}

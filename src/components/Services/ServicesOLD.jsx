@@ -32,6 +32,8 @@ const ServicesOld = () => {
           centered={false}
           color='text-white'
           spanColor='text-white'
+          className='pb-10'
+          showUnderline
         />
         <BodyText
           text={descriptorText}
