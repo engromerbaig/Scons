@@ -1,43 +1,41 @@
 import React from 'react';
 import Heading from '../Heading/Heading';
 import BodyText from '../BodyText/BodyText';
-import { theme } from '../../theme';
-import caretDown from '../../assets/icons/caretdown.svg';
-
+import { FiPlus, FiMinus } from 'react-icons/fi';
 
 const FAQServiceItem = ({ question, answer, isActive, onClick }) => {
   return (
-    <div className={`faq-item border px-4 md:px-10 py-6 rounded-2xl border-black`}>
-      <div className="flex justify-between items-center cursor-pointer" onClick={onClick}>
+    <div className="faq-item">
+      <div className="flex justify-between items-start cursor-pointer" onClick={onClick}>
         {/* Question */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-start gap-4">
           <Heading
-          text={question}
-          size='text-40px'
-          fontWeight='font-medium'
-          centered={false}
-          isAnimate={false}
+            text={question}
+            size="text-40px xl:text-30px"
+            fontWeight="font-bold"
+            centered={false}
+            isAnimate={false}
           />
         </div>
 
-        {/* Toggle icon */}
-          <span 
-                          className={`transition-transform duration-300 ${isActive ? 'rotate-180' : 'rotate-0'}`}
-                      >
-                          <img src={caretDown} alt="Caret Icon" className="w-12 aspect-square svg-neon" />
-                      </span>
+        {/* Toggle icon with rotation animation */}
+        <span
+          className={`text-3xl text-neon mt-1 transition-transform duration-300 ${
+            isActive ? 'rotate-180' : 'rotate-0'
+          }`}
+        >
+          {isActive ? <FiMinus /> : <FiPlus />}
+        </span>
       </div>
 
       {/* Answer content */}
       {isActive && (
-        <div className="pt-4">
+        <div className="pt-2">
           <BodyText
-          text={answer}
-          size='text-30px'
-          lineHeight='leading-loose'
-          centered={false}
-          isAnimate={false}
-
+            text={answer}
+            lineHeight="leading-loose"
+            centered={false}
+            isAnimate={false}
           />
         </div>
       )}

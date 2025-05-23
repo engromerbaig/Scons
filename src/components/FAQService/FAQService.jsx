@@ -19,7 +19,11 @@ const FAQService = ({ faqData, faqHeading }) => {
       <flex className="flex-col items-start ">
 
       <Heading text="We are Here to Help" showUnderline spanText="Help" size="text-70px" className='pb-6' centered={false} />
-      <BodyText text={`You have anything else regatding ${faqHeading} we can help you with?`} className='pb-6'  centered={false}  />
+<BodyText
+  text={`Do you have any other questions regarding ${faqHeading}? Our experts at Scons are always here to help and guide you with anything you need.`}
+  className="pb-6 max-w-3xl"
+  centered={false}
+/>
 
 
       </flex>
