@@ -18,8 +18,9 @@ function Home() {
   return (
     <div>
       <FadeInSection><Hero /></FadeInSection>
+        <FadeInSection disabled><UniqueApproachOld /></FadeInSection>
+
       <FadeInSection disabled><Projects /></FadeInSection>
-      <FadeInSection disabled><UniqueApproachOld /></FadeInSection>
       <FadeInSection><ServicesOld /></FadeInSection>
             <FadeInSection><PackagesHome /></FadeInSection>
 
