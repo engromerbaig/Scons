@@ -1,6 +1,5 @@
 import React, { useRef, useEffect, useState, lazy } from "react";
 
-
 // Lazy load all components
 const Heading = lazy(() => import("../../components/Heading/Heading"));
 const BodyText = lazy(() => import("../../components/BodyText/BodyText"));
@@ -20,7 +19,7 @@ const Technologies = lazy(() => import("../../components/Technologies/Technologi
 const FadeInSection = lazy(() => import("../../utilities/Animations/FadeInSection"));
 
 // Static imports for non-component data
-import logoImage from "../../assets/icons/inner/trustpilot.svg"
+import logoImage from "../../assets/icons/inner/trustpilot.svg";
 import officeImage from "../../assets/images/about/office.webp";
 import aboutUsImage from "../../assets/images/about/about.svg";
 import ceoImage from "../../assets/images/about/ceo.webp";
@@ -31,6 +30,7 @@ const KnowUs = () => {
   // Ref and state for intersection observer
   const officeImgRef = useRef(null);
   const [isScaled, setIsScaled] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false); // State for image loading
 
   useEffect(() => {
     const img = officeImgRef.current;
@@ -67,7 +67,7 @@ const KnowUs = () => {
       {/* Inner Hero Section */}
       <FadeInSection>
         <InnerHero
-          logoImages={[logoImage]} // <-- plural and array
+          logoImages={[logoImage]}
           headingText="About Scons & The Journey So Far"
           spanText="Scons"
           bodyText="Scons is a dynamic tech powerhouse, delivering innovative software solutions worldwide."
@@ -80,22 +80,30 @@ const KnowUs = () => {
 
       <FadeInSection>
         <div
-          className={`${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal} `}
+          className={`${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal}`}
         >
           {/* Image container - centers image */}
-          {/* main image */}
-          <div className="flex justify-center mb-6">
+          <div className="relative w-full mb-6">
+            {!imageLoaded && (
+              <SkeletonLoader
+                className="w-full h-[500px] absolute top-0 left-0"
+                rounded="rounded-3xl"
+              />
+            )}
             <img
               ref={officeImgRef}
               src={officeImage}
               alt="Office"
-              className="w-full rounded-3xl"
+              className={`w-full rounded-3xl transition-opacity duration-500 ${
+                imageLoaded ? "opacity-100" : "opacity-0"
+              }`}
               style={{
-                transform: isScaled ? "scale(1.1)" : "scale(1)",
-                transition:
-                  "transform 1.2s cubic-bezier(0.22, 0.61, 0.36, 1)",
-                willChange: "transform",
+                transform: isScaled ? "scale(1.09)" : "scale(1)",
+                transition: "transform 1.2s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.5s",
+                willChange: "transform, opacity",
               }}
+              loading="lazy"
+              onLoad={() => setImageLoaded(true)}
             />
           </div>
 
