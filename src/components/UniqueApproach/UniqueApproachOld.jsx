@@ -36,11 +36,25 @@ const UniqueApproach = () => {
           />
         </div>
         <div className="relative w-full">
-          <BodyText
-            text="At Scons, innovation meets precision. Our client-centric approach ensures we understand your vision, ideate effectively, and deliver solutions that exceed expectations. From concept to deployment, we bring expertise and passion to every project."
-            color="text-black"
-            centered={false}
-          />
+        <BodyText
+  text={
+    <>
+      At <strong>Software CONSultants (Scons)</strong>, innovation meets precision. Our client-centric approach ensures we understand your vision, ideate effectively, and deliver solutions that exceed expectations. From concept to deployment, we bring expertise and passion to every project. Our journey goes back to 2011, when we started as MEP & IT Services at{' '}
+      <a
+        href="https://www.econs.com.pk/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="font-semibold text-black no-underline hover:no-underline"
+      >
+        Econs
+      </a>
+      , and through incredible leadership, the growth expanded our domain.
+    </>
+  }
+  color="text-black"
+  centered={false}
+/>
+
         </div>
         <div className={`relative ${theme.layoutPages.paddingVerticalTop} px-0 w-full`}>
           <Highlights />
