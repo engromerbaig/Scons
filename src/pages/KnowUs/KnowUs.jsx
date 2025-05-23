@@ -25,6 +25,7 @@ import officeImage from "../../assets/images/about/office.webp";
 import aboutUsImage from "../../assets/images/about/about.svg";
 import ceoImage from "../../assets/images/about/ceo.webp";
 import { theme } from "../../theme";
+import SkeletonLoader from "../../utilities/SkeletonLoader";
 
 const KnowUs = () => {
   // Ref and state for intersection observer
@@ -82,6 +83,7 @@ const KnowUs = () => {
           className={`${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal} `}
         >
           {/* Image container - centers image */}
+          {/* main image */}
           <div className="flex justify-center mb-6">
             <img
               ref={officeImgRef}
