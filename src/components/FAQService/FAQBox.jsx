@@ -15,45 +15,60 @@ const FAQBox = ({ question, answer, isActive, onClick }) => {
     const question = questionRef.current;
 
     if (isActive) {
-      gsap.to(box, {
+      // Create a timeline for smooth sequencing
+      const tl = gsap.timeline();
+      
+      // First: Expand the box and change background color
+      tl.to(box, {
         width: 330,
-        backgroundColor: '#00c5ff', // Neon color
+        backgroundColor: '#00c5ff',
         opacity: 1,
-        duration: 0.3,
+        duration: 0.4,
         ease: 'power2.out',
-      });
-      gsap.to(question, {
+      })
+      // Simultaneously: Move question up and change color
+      .to(question, {
         y: 0,
         color: '#ffffff',
-        duration: 0.3,
+        duration: 0.4,
         ease: 'power2.out',
-      });
-      gsap.to(answer, {
+      }, 0) // Start at the same time as box animation
+      // Then: Animate answer sliding up from bottom (after box expansion)
+      .to(answer, {
         height: 'auto',
+        y: 0,
         opacity: 1,
-        duration: 0.3,
+        duration: 0.5,
         ease: 'power2.out',
-      });
+      }, 0.3); // Start after box expansion completes
+      
     } else {
-      gsap.to(box, {
-        width: 250,
-        backgroundColor: '#E5E7EB', // gray-200
-        opacity: 0.6,
-        duration: 0.3,
-        ease: 'power2.out',
-      });
-      gsap.to(question, {
-        y: 'calc(100% - 2rem)',
-        color: '#000000',
-        duration: 0.3,
-        ease: 'power2.out',
-      });
-      gsap.to(answer, {
+      // Reverse animation timeline
+      const tl = gsap.timeline();
+      
+      // First: Hide answer
+      tl.to(answer, {
         height: 0,
+        y: 20,
         opacity: 0,
         duration: 0.3,
+        ease: 'power2.inOut',
+      })
+      // Then: Move question down and change color
+      .to(question, {
+        y: 'calc(100% - 2rem)',
+        color: '#000000',
+        duration: 0.4,
         ease: 'power2.out',
-      });
+      }, 0.1)
+      // Finally: Shrink box and change background
+      .to(box, {
+        width: 250,
+        backgroundColor: '#E5E7EB',
+        opacity: 0.6,
+        duration: 0.4,
+        ease: 'power2.out',
+      }, 0.1);
     }
   }, [isActive]);
 
@@ -64,7 +79,7 @@ const FAQBox = ({ question, answer, isActive, onClick }) => {
       style={{
         width: 250,
         height: 350,
-        backgroundColor: '#9CA3AF', // gray-400
+        backgroundColor: '#9CA3AF',
         opacity: 0.6,
         padding: '1.5rem',
       }}
@@ -73,25 +88,50 @@ const FAQBox = ({ question, answer, isActive, onClick }) => {
       onMouseLeave={() => isActive && onClick()}
     >
       <div className="flex-1" />
-      <div ref={questionRef} style={{ transform: 'translateY(calc(100% - 2rem))' }}>
+      
+      {/* Question container with fixed width to maintain wrap */}
+      <div 
+        ref={questionRef} 
+        style={{ 
+          transform: 'translateY(calc(100% - 2rem))',
+          width: '200px', // Fixed width to maintain text wrap
+          flexShrink: 0,
+        }}
+      >
         <Heading
           text={question}
           size="text-2xl"
           centered={false}
           showUnderline={false}
-          className={`mb-4 max-w-[250px] transition-colors duration-300 ${isActive ? 'text-white' : 'text-black'}`}
+          className={`mb-4 transition-colors duration-300 ${isActive ? 'text-white' : 'text-black'}`}
+          style={{ 
+            wordWrap: 'break-word',
+            whiteSpace: 'normal',
+            lineHeight: '1.2',
+          }}
         />
       </div>
+      
+      {/* Answer container */}
       <div
         ref={answerRef}
-        style={{ height: 0, opacity: 0, overflow: 'hidden' }}
+        style={{ 
+          height: 0, 
+          opacity: 0, 
+          overflow: 'hidden',
+          transform: 'translateY(20px)', // Start slightly below
+        }}
       >
         <BodyText
           text={answer}
           centered={false}
           color="text-white"
           size="text-base"
-          className="mt-2 max-w-[300px]"
+          className="mt-2"
+          style={{
+            width: '150px', // Fixed width to prevent rewrapping
+            lineHeight: '1.4',
+          }}
         />
       </div>
     </div>

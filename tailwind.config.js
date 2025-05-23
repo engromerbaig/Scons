@@ -22,6 +22,7 @@ export default {
       // => @media (min-width: 1536px) { ... }
     },
     extend:
+    
      {
       fontFamily: {
         clash: ['manrope Display', 'sans-serif'],
