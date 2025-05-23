@@ -1,14 +1,14 @@
 function importProjectImages(projectId) {
   try {
     const images = import.meta.glob(
-      "/src/assets/images/projects/**/*.{jpg,jpeg,png,webp}",
+      "/src/assets/images/projects/**/*.{jpg,jpeg,png,webp,svg}",
       { eager: true }
     );
 
     const projectImages = Object.keys(images)
       .filter((key) => key.includes(`/${projectId}/`))
       .sort((a, b) => {
-        // Extract the image number (e.g., "1" from "1.jpg")
+        // Extract the image number (e.g., "1" from "1.jpg" or "1.svg")
         const numA = parseInt(a.match(/\/(\d+)\.\w+$/)[1], 10);
         const numB = parseInt(b.match(/\/(\d+)\.\w+$/)[1], 10);
         return numA - numB;
