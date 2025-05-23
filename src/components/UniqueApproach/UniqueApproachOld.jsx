@@ -7,16 +7,17 @@ import Highlights from "./modules/Highlights";
 
 const itTopics = [
   "Web Design",
-  "Mobile Apps",
-  "Web 3.0",
-  "Crypto Solutions",
-  "UI/UX",
-  "AI Integration",
-  "E-commerce",
-  "Cloud Development",
-  "SaaS Platforms",
-  "Blockchain"
+  "Custom Website Development",
+  "Logo & Brand Identity",
+  "UI/UX Design",
+  "AI Chatbots",
+  "Digital Marketing",
+  "Search Engine Optimization (SEO)",
+  "E-commerce Solutions",
+  "Landing Pages",
+  "Conversion Rate Optimization"
 ];
+
 
 const UniqueApproach = () => {
   return (
