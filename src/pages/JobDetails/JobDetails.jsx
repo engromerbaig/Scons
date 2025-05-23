@@ -10,6 +10,7 @@ import GreenBelt from '../../components/GreenBelt/GreenBelt';
 import InnerHero from '../../components/InnerHero/InnerHero';
 import { slugify } from '../../utilities/slugify';
 import importJobImages from '../../utilities/importJobImages';
+import Button from '../../components/Button/Button';
 
 const JobDetails = () => {
     const { heading, jobType } = useParams();
@@ -44,25 +45,21 @@ const JobDetails = () => {
                 headingText={childJob.jobType}
                 spanText={getSpanText(childJob.jobType)} // Dynamically generated spanText
                 breakSpan1={true}
-                headingSize='text-120px'
                 bodyText={`${job.workLocation} - ${job.city} - ${job.employmentType}`}
                 centeredHeading1={false}
                 centeredbodyText={false}
                 image={jobImage}
-                showBottomShadow={false}
-            />
+                height='h-[70vh]'
+            >
 
-            <GreenBelt className="rounded-b-2xl  mx-4 md:mx-8 lg:mx-12">
-
-
-            <Heading
+                <BodyText
                     text={childJob.jobDescription}
-                    color="text -black"
-                    fontWeight='font-medium'
-                    size="text-50px"
-                    centered={true}
+                    color="text-black"
+                    centered={false}
                 />
-            </GreenBelt>
+
+                </InnerHero>
+
 
             {/* GreenBelt Section */}
             {/* <div className="bg-neon py-10 w-full">
@@ -89,23 +86,22 @@ const JobDetails = () => {
             </div> */}
 
             {/* Role Description */}
-            <div className="mt-8 w-4/5">
-                <Heading text="Role:" color="text-black" size='text-70px' fontWeight='font-semibold' centered={false} />
+            <div className="mt-12 w-4/5">
+                <Heading text="Role:" color="text-black" size='text-50px' fontWeight='font-semibold' centered={false} />
                 <BodyText
                     text={childJob.roleDescription}
-                    lineHeight="leading-loose"
                     centered={false}
                 />
             </div>
 
             {/* Experience Section */}
             <div className="mt-8 w-4/5">
-                <Heading text="Experience:" color="text-black" size='text-70px' fontWeight='font-semibold' centered={false} />
+                <Heading text="Experience:" color="text-black" size='text-50px' fontWeight='font-semibold' centered={false} />
                 <ul className="space-y-2 mt-4">
                     {childJob.experience.map((exp, index) => (
                         <li key={index} className="flex items-center space-x-4">
-                            <img src={bulletIcon} alt="Bullet Icon" className="w-4 h-4" />
-                            <span className="text-bodyText text-35px">{exp}</span>
+                            <img src={bulletIcon} alt="Bullet Icon" className="w-4 h-4 svg-neon" />
+                            <BodyText text={exp}  centered={false} />
                         </li>
                     ))}
                 </ul>
@@ -113,23 +109,30 @@ const JobDetails = () => {
 
             {/* Skills Section */}
             <div className="mt-8 w-4/5">
-                <Heading text="Skillsets:" color="text-black" size='text-70px' fontWeight='font-semibold' centered={false}  />
+                <Heading text="Skillsets:" color="text-black" size='text-50px' fontWeight='font-semibold' centered={false}  />
                 <ul className="space-y-2 mt-4">
                     {childJob.skills.map((skill, index) => (
                         <li key={index} className="flex items-center space-x-4">
-                            <img src={bulletIcon} alt="Bullet Icon" className="w-4 h-4" />
-                            <span className="text-bodyText text-35px">{skill}</span>
+                            <img src={bulletIcon} alt="Bullet Icon" className="w-4 h-4 svg-neon" />
+                            <BodyText text={skill}  centered={false} />
                         </li>
                     ))}
                 </ul>
             </div>
 
             {/* Apply Now Button */}
-            <ScrollToTopLink to="/careers/apply" className="mt-8 w-4/5 flex justify-start">
-                <button className=" font-bold text-neon border-neon border-2 px-6 py-2 rounded-md hover:bg-neon hover:text-black  transition-all duration-500 ease-in-out">
-                    Apply Now
-                </button>
-            </ScrollToTopLink>
+            <div className="mt-8 w-4/5 flex justify-start">
+              
+     <Button
+            name="Apply Now"
+            link={`/careers/apply`}
+            className='py-2 px-4'
+            />
+
+
+            </div>
+
+       
         </div>
     );
 };
