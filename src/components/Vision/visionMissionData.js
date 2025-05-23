@@ -1,39 +1,39 @@
 import visionImg from "../../assets/images/vision/1.webp";
 import missionImg from "../../assets/images/vision/2.webp";
-import customerImg from "../../assets/images/vision/3.webp";
-import transparencyImg from "../../assets/images/vision/4.webp";
+import innovationImg from "../../assets/images/vision/3.webp";
+import clientImg from "../../assets/images/vision/4.webp";
+import globalImg from "../../assets/images/vision/5.webp";
+import cultureImg from "../../assets/images/vision/6.webp";
 
 export const visionMissionData = [
   {
     heading: "Our Vision",
-    body: "To empower individuals and organizations worldwide by integrating innovative technology into every aspect of life, shaping a smarter and more connected future.",
+    body: "At Scons, we envision a smarter world powered by seamless, human-centered technology.",
     imageSrc: visionImg,
   },
   {
     heading: "Our Mission",
-    body: "To deliver cutting-edge software solutions that solve real-world problems, drive business growth, and anticipate the challenges of tomorrow.",
+    body: "To craft digital solutions that solve real problems, fuel growth, and future-proof businesses.",
     imageSrc: missionImg,
   },
   {
-    heading: "Customer First",
-    body: "We prioritize our clients' needs, ensuring every solution we create delivers exceptional value and user experience.",
-    imageSrc: customerImg,
+    heading: "Innovation",
+    body: "We embrace creativity and tech to build powerful, future-ready digital products.",
+    imageSrc: innovationImg,
   },
   {
-    heading: "Transparency",
-    body: "We operate with honesty and openness, fostering trust and long-term relationships with clients and team members.",
-    imageSrc: transparencyImg,
-  },
-
-  {
-    heading: "Transparency2",
-    body: "We operate with honesty and openness, fostering trust and long-term relationships with clients and team members.",
-    imageSrc: transparencyImg,
+    heading: "Client-Centric",
+    body: "We design every solution with our clients' goals, users, and growth in mind.",
+    imageSrc: clientImg,
   },
   {
-    heading: "Customer Care",
-    body: "We prioritize our clients' needs, ensuring every solution we create delivers exceptional value and user experience.",
-    imageSrc: customerImg,
+    heading: "Global Perspective",
+    body: "Scons delivers scalable solutions that resonate across cultures and markets.",
+    imageSrc: globalImg,
   },
-
+  {
+    heading: "People & Culture",
+    body: "We thrive through collaboration, diversity, and a shared drive to build what matters.",
+    imageSrc: cultureImg,
+  },
 ];

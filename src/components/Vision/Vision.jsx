@@ -2,7 +2,6 @@ import { visionMissionData } from './visionMissionData';
 import Heading from '../Heading/Heading';
 import BodyText from '../BodyText/BodyText';
 import { theme } from '../../theme';
-import visionBg from "../../assets/images/vision/vbg.webp";
 
 const Vision = () => (
   <section
