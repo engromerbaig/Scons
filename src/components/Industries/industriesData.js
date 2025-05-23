@@ -115,15 +115,15 @@ const industries = [
     },
 
     // new
-    {
-        name: "Fintech",
-        number: "10",
-        icon: fintechIcon,
-                image: financeImage,
+    // {
+    //     name: "Fintech",
+    //     number: "10",
+    //     icon: fintechIcon,
+    //             image: financeImage,
 
-        details: "Transform financial services with our fintech solutions, designed to optimize transactions, improve security, and drive innovation in payments, banking, and investments."
+    //     details: "Transform financial services with our fintech solutions, designed to optimize transactions, improve security, and drive innovation in payments, banking, and investments."
 
-    },
+    // },
 ];
 
 export default industries;
