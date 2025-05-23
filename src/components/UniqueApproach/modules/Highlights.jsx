@@ -10,12 +10,12 @@ import officeIcon from "../../../assets/icons/unique/4.svg";
 
 const Highlights = () => {
   // Define the stats directly in the Highlights component
-  const stats = [
-    { title: "Project Delivered", value: "200+", icon: projectIcon },
-    { title: "Active Clients", value: "50+", icon: clientIcon },
-    { title: "Years on the Market", value: "5+", icon: marketIcon },
-    { title: "Global Offices", value: "2", icon: officeIcon },
-  ];
+const stats = [
+  { title: "Project Delivered", value: "100+", icon: projectIcon, link: "/portfolio" },
+  { title: "Diverse Clients", value: "20+", icon: clientIcon, link: "#" },
+  { title: "Global Offices", value: "2", icon: officeIcon, link: "#locations" },
+];
+
 
   // Variants for individual StatisticItems to apply a basic fade-in with staggered timing
   const itemVariants = {
@@ -36,7 +36,7 @@ const Highlights = () => {
           variants={itemVariants}
           className=" flex flex-col items-center justify-start lg:justify-center py-4 lg:py-6 min-w-0" // Add padding and flex properties
         >
-          <StatisticItem title={stat.title} value={stat.value} icon={stat.icon} />
+          <StatisticItem title={stat.title} value={stat.value} icon={stat.icon} link={stat.link} />
         </motion.div>
       ))}
     </motion.div>

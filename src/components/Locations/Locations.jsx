@@ -21,7 +21,7 @@ const Locations = () => {
   const activeOfficeData = accordionData.find((office) => office.title === activeOffice);
 
   return (
-    <div className={`bg-black text-white ${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical}`}>
+    <div id="locations" className={`bg-black text-white ${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical}`}>
       <div className="flex flex-col pb-10">
         <Heading text="Our Locations" spanText="Locations" spanColor="text-neon" color="text-white" centered={false} />
         <BodyText text="We have multiple offices around the world. Find the closest one to you!" color="text-white" centered={false} />
