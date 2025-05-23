@@ -4,9 +4,8 @@ import BodyText from "../BodyText/BodyText";
 import { theme } from "../../theme";
 import TestimonialBox from "./TestimonialBox";
 import testimonials from "./testimonialsData";
-import clutchLogo from "../../assets/icons/reviews/1.svg";
-import trustLogo from "../../assets/icons/reviews/2.svg";
-import g2Logo from "../../assets/icons/reviews/3.png";
+import clutchLogo from "../../assets/icons/inner/clutch.svg";
+import trustLogo from "../../assets/icons/inner/trustpilot.svg";
 
 const getRandomTestimonials = (array, count) => {
   const shuffled = [...array].sort(() => 0.5 - Math.random());
@@ -34,9 +33,11 @@ const Testimonials = () => {
         />
       </div>
 
-      <div className="flex flex-row justify-center items-center gap-10 w-full mb-8">
-        <img src={clutchLogo} alt="clutch logo" className="w-20 aspect-rectangle" loading='lazy' />
-        <img src={trustLogo} alt="trust logo" className="w-20 aspect-rectangle" loading='lazy' />
+      <div className="flex flex-wrap items-center gap-4 mb-10">
+        <img src={clutchLogo} alt="clutch logo"  className="w-28 aspect-rectangle object-contain"
+                  loading="lazy" />
+        <img src={trustLogo} alt="trust logo"  className="w-28 aspect-rectangle object-contain"
+                  loading="lazy" />
       </div>
 
       <div

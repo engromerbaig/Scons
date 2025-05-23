@@ -20,7 +20,7 @@ const Technologies = lazy(() => import("../../components/Technologies/Technologi
 const FadeInSection = lazy(() => import("../../utilities/Animations/FadeInSection"));
 
 // Static imports for non-component data
-import logoImage from "../../assets/images/about/logo.svg";
+import logoImage from "../../assets/icons/inner/trustpilot.svg"
 import officeImage from "../../assets/images/about/office.webp";
 import aboutUsImage from "../../assets/images/about/about.svg";
 import ceoImage from "../../assets/images/about/ceo.webp";

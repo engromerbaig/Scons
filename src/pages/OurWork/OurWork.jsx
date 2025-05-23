@@ -9,7 +9,7 @@ import LoadMoreControls from "./LoadMoreControls";
 import projectImage from "../../assets/images/project.svg";
 
 import behanceLogo from "../../assets/icons/inner/behance.svg"
-import dribbleLogo from "../../assets/icons/inner/2.png"
+import dribbleLogo from "../../assets/icons/inner/dribble.svg"
 
 const OurWork = () => {
   const {
