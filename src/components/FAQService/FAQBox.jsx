@@ -16,7 +16,7 @@ const FAQBox = ({ question, answer, isActive, onClick }) => {
 
     if (isActive) {
       gsap.to(box, {
-        width: 450,
+        width: 330,
         backgroundColor: '#00c5ff', // Neon color
         opacity: 1,
         duration: 0.3,
@@ -36,7 +36,7 @@ const FAQBox = ({ question, answer, isActive, onClick }) => {
       });
     } else {
       gsap.to(box, {
-        width: 350,
+        width: 250,
         backgroundColor: '#E5E7EB', // gray-200
         opacity: 0.6,
         duration: 0.3,
@@ -62,7 +62,7 @@ const FAQBox = ({ question, answer, isActive, onClick }) => {
       ref={boxRef}
       className="faq-box rounded-3xl shadow-md overflow-hidden cursor-pointer flex flex-col transition-all duration-300"
       style={{
-        width: 350,
+        width: 250,
         height: 350,
         backgroundColor: '#9CA3AF', // gray-400
         opacity: 0.6,
