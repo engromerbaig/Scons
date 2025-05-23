@@ -31,11 +31,10 @@ const FAQService = ({ faqData, faqHeading }) => {
       <div className="flex flex-col items-start space-y-2">
         <Heading
           text={`Our ${faqHeading} Experts are here to Help`}
-          spanText="Help"
+          spanText={faqHeading}
           spanColor="text-neon"
-          showUnderline
-          size="text-70px"
-          className="pb-8 max-w-4xl"
+          size="text-60px"
+          className="pb-8 xl:max-w-5xl"
           centered={false}
         />
         <BodyText

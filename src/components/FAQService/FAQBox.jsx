@@ -19,7 +19,7 @@ const FAQBox = ({ question, answer, isActive, isHovered, onClick }) => {
 
     // Common properties for hovered and active states
     const expandedProps = {
-      width: 330,
+      width: 300,
       backgroundColor: '#00c5ff',
       opacity: 1,
     };
@@ -30,7 +30,7 @@ const FAQBox = ({ question, answer, isActive, isHovered, onClick }) => {
       // Expand box with neon outline for active state
       tl.to(box, {
         ...expandedProps,
-        ...(isActive ? { boxShadow: '0 0 0 2px var(--neon)' } : {}), // Neon outline for active state
+        ...(isActive ? { boxShadow: '0 0 0 2px #00c5ff' } : {}), // Neon outline for active state
         duration: 0.5,
         ease: 'power3.out',
       })
@@ -38,7 +38,7 @@ const FAQBox = ({ question, answer, isActive, isHovered, onClick }) => {
       .to(
         question,
         {
-          y: 20, // Final position at top (adjusted to prevent overshooting)
+          y: 20,
           color: '#ffffff',
           duration: 0.5,
           ease: 'power3.out',
@@ -72,7 +72,7 @@ const FAQBox = ({ question, answer, isActive, isHovered, onClick }) => {
       .to(
         question,
         {
-          y: 'calc(100% - 4rem)', // Adjusted for precise, smooth positioning
+          y: 'calc(100% - 4rem)',
           color: '#000000',
           duration: 0.4,
           ease: 'power3.out',
@@ -86,7 +86,7 @@ const FAQBox = ({ question, answer, isActive, isHovered, onClick }) => {
           width: 250,
           backgroundColor: '#E5E7EB',
           opacity: 0.7,
-          boxShadow: 'none', // Remove neon outline
+          boxShadow: 'none',
           duration: 0.4,
           ease: 'power3.out',
         },
@@ -105,11 +105,12 @@ const FAQBox = ({ question, answer, isActive, isHovered, onClick }) => {
       ref={boxRef}
       className={`faq-box rounded-3xl shadow-md overflow-hidden cursor-pointer flex flex-col transition-all ${isActive ? 'ring-2 ring-neon' : ''}`}
       style={{
-        width: 250,
+        minWidth: 250, // Changed from width to minWidth for smoother transitions
         height: 350,
         backgroundColor: '#E5E7EB',
         opacity: 0.6,
         padding: '1.5rem',
+        transformOrigin: 'left', // Anchor expansion to the left side
       }}
       onClick={onClick}
       onMouseEnter={() => !isActive && onClick('hover')}
@@ -151,9 +152,8 @@ const FAQBox = ({ question, answer, isActive, isHovered, onClick }) => {
           centered={false}
           color="text-white"
           size="text-base"
-          fontWeight='font-medium'
-          className="mt-2 max-w-[200px] leading-loose"
-  
+          fontWeight="font-medium"
+          className="mt-2 max-w-[200px] leading-loose" // Increased max-width to accommodate wider card
         />
       </div>
     </div>
