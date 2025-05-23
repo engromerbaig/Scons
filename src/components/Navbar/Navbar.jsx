@@ -80,14 +80,18 @@ const Navbar = () => {
           />
         </div>
 
-        <button type="button" onClick={toggleMobileMenu} className="relative">
-          <img
-            src="/hamburger.svg"
-            alt="Menu"
-            className="w-6 aspect-square z-[200]"
-            loading="lazy"
-          />
-        </button>
+   <button
+  type="button"
+  onClick={toggleMobileMenu}
+  className="relative hover:bg-neon/15 hover:rounded-full p-2 transition-all duration-300"
+>
+  <img
+    src="/hamburger.svg"
+    alt="Menu"
+    className="w-6 aspect-square z-[200]"
+    loading="lazy"
+  />
+</button>
       </div>
 
       <MobileMenu
