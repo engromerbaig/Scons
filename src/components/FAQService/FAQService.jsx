@@ -7,15 +7,27 @@ import { theme } from '../../theme';
 
 const FAQService = ({ faqData, faqHeading }) => {
   const [activeIndex, setActiveIndex] = useState(0); // First box active by default
+  const [hoveredIndex, setHoveredIndex] = useState(null);
 
-  const handleClick = (index) => {
-    setActiveIndex(activeIndex === index ? null : index);
+  const handleInteraction = (index, action) => {
+    if (action === 'hover') {
+      setHoveredIndex(index);
+      setActiveIndex(null); // Deactivate any active card on hover
+    } else if (action === 'leave') {
+      setHoveredIndex(null); // Clear hover state
+    } else {
+      // Click action: toggle active state
+      setActiveIndex(activeIndex === index ? null : index);
+      setHoveredIndex(null); // Clear hover state on click
+    }
   };
 
   if (!faqData || !Array.isArray(faqData)) return null;
 
   return (
-    <div className={`w-full min-h-screen flex flex-col justify-center ${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical}`}>
+    <div
+      className={`w-full min-h-screen flex flex-col justify-center ${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical}`}
+    >
       <div className="flex flex-col items-start space-y-2">
         <Heading
           text={`Our ${faqHeading} Experts are here to Help`}
@@ -41,7 +53,8 @@ const FAQService = ({ faqData, faqHeading }) => {
               question={item.question}
               answer={item.answer}
               isActive={activeIndex === index}
-              onClick={() => handleClick(index)}
+              isHovered={hoveredIndex === index}
+              onClick={(action) => handleInteraction(index, action)}
             />
           ))}
         </HorizontalListView>

@@ -4,7 +4,7 @@ import Heading from '../Heading/Heading';
 import BodyText from '../BodyText/BodyText';
 import { theme } from '../../theme';
 
-const FAQBox = ({ question, answer, isActive, onClick }) => {
+const FAQBox = ({ question, answer, isActive, isHovered, onClick }) => {
   const boxRef = useRef(null);
   const answerRef = useRef(null);
   const questionRef = useRef(null);
@@ -14,87 +14,113 @@ const FAQBox = ({ question, answer, isActive, onClick }) => {
     const answer = answerRef.current;
     const question = questionRef.current;
 
-    if (isActive) {
-      // Create a timeline for smooth sequencing
+    // Kill any existing animations to prevent conflicts
+    gsap.killTweensOf([box, answer, question]);
+
+    // Common properties for hovered and active states
+    const expandedProps = {
+      width: 330,
+      backgroundColor: '#00c5ff',
+      opacity: 1,
+    };
+
+    if (isActive || isHovered) {
       const tl = gsap.timeline();
-      
-      // First: Expand the box and change background color
+
+      // Expand box with neon outline for active state
       tl.to(box, {
-        width: 330,
-        backgroundColor: '#00c5ff',
-        opacity: 1,
-        duration: 0.4,
-        ease: 'power2.out',
-      })
-      // Simultaneously: Move question up and change color
-      .to(question, {
-        y: 0,
-        color: '#ffffff',
-        duration: 0.4,
-        ease: 'power2.out',
-      }, 0) // Start at the same time as box animation
-      // Then: Animate answer sliding up from bottom (after box expansion)
-      .to(answer, {
-        height: 'auto',
-        y: 0,
-        opacity: 1,
+        ...expandedProps,
+        ...(isActive ? { boxShadow: '0 0 0 2px var(--neon)' } : {}), // Neon outline for active state
         duration: 0.5,
-        ease: 'power2.out',
-      }, 0.3); // Start after box expansion completes
-      
+        ease: 'power3.out',
+      })
+      // Move question to top
+      .to(
+        question,
+        {
+          y: 20, // Final position at top (adjusted to prevent overshooting)
+          color: '#ffffff',
+          duration: 0.5,
+          ease: 'power3.out',
+        },
+        0
+      )
+      // Show answer
+      .to(
+        answer,
+        {
+          height: 'auto',
+          y: 0,
+          opacity: 1,
+          duration: 0.5,
+          ease: 'power3.out',
+        },
+        0.2
+      );
     } else {
-      // Reverse animation timeline
       const tl = gsap.timeline();
-      
-      // First: Hide answer
+
+      // Hide answer
       tl.to(answer, {
         height: 0,
         y: 20,
         opacity: 0,
         duration: 0.3,
-        ease: 'power2.inOut',
+        ease: 'power3.inOut',
       })
-      // Then: Move question down and change color
-      .to(question, {
-        y: 'calc(100% - 2rem)',
-        color: '#000000',
-        duration: 0.4,
-        ease: 'power2.out',
-      }, 0.1)
-      // Finally: Shrink box and change background
-      .to(box, {
-        width: 250,
-        backgroundColor: '#E5E7EB',
-        opacity: 0.6,
-        duration: 0.4,
-        ease: 'power2.out',
-      }, 0.1);
+      // Move question down
+      .to(
+        question,
+        {
+          y: 'calc(100% - 4rem)', // Adjusted for precise, smooth positioning
+          color: '#000000',
+          duration: 0.4,
+          ease: 'power3.out',
+        },
+        0.1
+      )
+      // Shrink box and remove outline
+      .to(
+        box,
+        {
+          width: 250,
+          backgroundColor: '#E5E7EB',
+          opacity: 0.7,
+          boxShadow: 'none', // Remove neon outline
+          duration: 0.4,
+          ease: 'power3.out',
+        },
+        0.1
+      );
     }
-  }, [isActive]);
+
+    // Cleanup on unmount
+    return () => {
+      gsap.killTweensOf([box, answer, question]);
+    };
+  }, [isActive, isHovered]);
 
   return (
     <div
       ref={boxRef}
-      className="faq-box rounded-3xl shadow-md overflow-hidden cursor-pointer flex flex-col transition-all duration-300"
+      className={`faq-box rounded-3xl shadow-md overflow-hidden cursor-pointer flex flex-col transition-all ${isActive ? 'ring-2 ring-neon' : ''}`}
       style={{
         width: 250,
         height: 350,
-        backgroundColor: '#9CA3AF',
+        backgroundColor: '#E5E7EB',
         opacity: 0.6,
         padding: '1.5rem',
       }}
       onClick={onClick}
-      onMouseEnter={() => !isActive && onClick()}
-      onMouseLeave={() => isActive && onClick()}
+      onMouseEnter={() => !isActive && onClick('hover')}
+      onMouseLeave={() => !isActive && onClick('leave')}
     >
       <div className="flex-1" />
-      
-      {/* Question container with fixed width to maintain wrap */}
-      <div 
-        ref={questionRef} 
-        style={{ 
-          transform: 'translateY(calc(100% - 2rem))',
-          width: '200px', // Fixed width to maintain text wrap
+      <div
+        ref={questionRef}
+        style={{
+          transform: 'translateY(calc(100% - 4rem))',
+          width: '200px',
           flexShrink: 0,
         }}
       >
@@ -103,23 +129,21 @@ const FAQBox = ({ question, answer, isActive, onClick }) => {
           size="text-2xl"
           centered={false}
           showUnderline={false}
-          className={`mb-4 transition-colors duration-300 ${isActive ? 'text-white' : 'text-black'}`}
-          style={{ 
+          className={`mb-4 transition-colors duration-300 ${isActive || isHovered ? 'text-white' : 'text-black'}`}
+          style={{
             wordWrap: 'break-word',
             whiteSpace: 'normal',
             lineHeight: '1.2',
           }}
         />
       </div>
-      
-      {/* Answer container */}
       <div
         ref={answerRef}
-        style={{ 
-          height: 0, 
-          opacity: 0, 
+        style={{
+          height: 0,
+          opacity: 0,
           overflow: 'hidden',
-          transform: 'translateY(20px)', // Start slightly below
+          transform: 'translateY(20px)',
         }}
       >
         <BodyText
@@ -127,11 +151,9 @@ const FAQBox = ({ question, answer, isActive, onClick }) => {
           centered={false}
           color="text-white"
           size="text-base"
-          className="mt-2"
-          style={{
-            width: '150px', // Fixed width to prevent rewrapping
-            lineHeight: '1.4',
-          }}
+          fontWeight='font-medium'
+          className="mt-2 max-w-[200px] leading-loose"
+  
         />
       </div>
     </div>
