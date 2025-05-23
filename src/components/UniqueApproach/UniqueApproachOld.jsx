@@ -26,10 +26,10 @@ const UniqueApproach = () => {
       <div className={`${theme.layoutPages.paddingHorizontal} `}>
         <div className="relative w-full">
           <Heading
-            text="Our Unique Approach"
+            text="Our Incredible Journey"
             color="text-black"
             spanColor="text-black"
-            spanText="Approach"
+            spanText="Journey"
             centered={false}
             showUnderline
             className="pb-10"
