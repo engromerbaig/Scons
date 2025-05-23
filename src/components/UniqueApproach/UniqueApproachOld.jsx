@@ -37,7 +37,7 @@ const UniqueApproach = () => {
         </div>
         <div className="relative w-full">
           <BodyText
-            text="At Tyfora, innovation meets precision. Our client-centric approach ensures we understand your vision, ideate effectively, and deliver solutions that exceed expectations. From concept to deployment, we bring expertise and passion to every project."
+            text="At Scons, innovation meets precision. Our client-centric approach ensures we understand your vision, ideate effectively, and deliver solutions that exceed expectations. From concept to deployment, we bring expertise and passion to every project."
             color="text-black"
             centered={false}
           />
