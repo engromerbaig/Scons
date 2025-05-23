@@ -101,7 +101,7 @@ const NestedTabs = () => {
     <div className="flex w-full max-w-6xl mx-auto border-y border-gray-200 flex-col xl:flex-row">
       {/* Horizontal List View for mobile */}
       <div className="xl:hidden w-full py-4 border-b border-gray-200">
-        <HorizontalListView perPage={3} gap="0.5rem" height="auto" className="px-4">
+        <HorizontalListView showArrow={false} perPage={3} gap="0.5rem" height="auto" className="px-4">
           {categories.map((cat, index) => renderTabButton(cat, index, true))}
         </HorizontalListView>
       </div>
