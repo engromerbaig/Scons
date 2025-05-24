@@ -66,9 +66,9 @@ function AppContent() {
           <Route path="/portfolio/:slug" element={<ProjectDetail />} />
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/careers" element={<Careers />} />
-          <Route path="/careers/:heading/:jobType" element={<JobDetails />} />
-          <Route path="/careers/apply" element={<Apply />} />
-          <Route path="/lets-innovate" element={<LetsInnovate />} />
+          {/* <Route path="/careers/:heading/:jobType" element={<JobDetails />} /> */}
+          {/* <Route path="/careers/apply" element={<Apply />} /> */}
+          {/* <Route path="/lets-innovate" element={<LetsInnovate />} /> */}
           <Route path="/service/:serviceSlug" element={<ServiceDetailsWrapper />} />
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/blogs/:blogSlug" element={<BlogDetails />} />

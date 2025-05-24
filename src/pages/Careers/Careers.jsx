@@ -7,6 +7,8 @@ const FAQ = lazy(() => import("../../components/FAQ/FAQ"));
 const GreenBelt = lazy(() => import("../../components/GreenBelt/GreenBelt"));
 const Heading = lazy(() => import("../../components/Heading/Heading"));
 
+import BodyText from "../../components/BodyText/BodyText";
+
 // Static imports for non-component data
 import jobListings from '../../data/jobListings.json';
 import { theme } from '../../theme';
@@ -25,8 +27,8 @@ const Careers = () => {
             />
 
             {/* Job Listings */}
-            <div className={` ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal} space-y-6 lg:space-y-12`}>
-                {jobListings.map((job, index) => (
+            <div className={` ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal} space-y-6 border-b `}>
+                {/* {jobListings.map((job, index) => (
                     <CollapsibleContainer
                         key={index}
                         heading={job.heading}
@@ -36,7 +38,18 @@ const Careers = () => {
                         childItems={job.childItems}
                         borderColor={index % 2 === 0 ? 'border-bodyText' : 'border-neon'}
                     />
-                ))}
+                ))} */}
+
+                <Heading
+                text="No Current Openings"
+                size="text-50px"
+                color="text-black"
+                centered={false}
+                />
+                <BodyText
+                text="Please check back later for updates."
+                centered={false}
+                />
             </div>
 
       

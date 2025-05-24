@@ -8,10 +8,12 @@ const BodyText = lazy(() => import('../../components/BodyText/BodyText'));
 const Locations = lazy(() => import('../../components/Locations/Locations'));
 const FadeInSection = lazy(() => import('../../utilities/Animations/FadeInSection'));
 
+
 // Static imports for non-component data
 import contactImage from '../../assets/images/contact.svg';
 import { theme } from '../../theme';
 import { contactDetails } from '../../components/MobileMenu/modules/contactDetails';
+import FAQ from "../../components/FAQ/FAQ";
 
 const ContactUs = () => {
   return (
@@ -79,6 +81,8 @@ const ContactUs = () => {
 
 
 </FadeInSection>
+
+<FAQ/>
           {/* Locations Accordion Section */}
 
         </div>
