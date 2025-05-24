@@ -16,6 +16,11 @@ import { contactDetails } from '../../components/MobileMenu/modules/contactDetai
 import FAQ from "../../components/FAQ/FAQ";
 
 const ContactUs = () => {
+
+    const handleFormSubmit = (formData) => {
+    console.log('Form2 Submitted with Data:', formData);
+  };
+
   return (
     <div>
         <FadeInSection>
@@ -69,7 +74,8 @@ const ContactUs = () => {
 
               {/* Right Side: Form */}
               <div className="xl:w-1/2">
-                <FormTemplate buttonWidth="w-40" textAreaRows={4} showSelect={true} hideErrorMessages={true}/>
+                <FormTemplate             handleFormSubmit={handleFormSubmit}
+ buttonWidth="w-40" textAreaRows={4} showSelect={true} hideErrorMessages={true}/>
               </div>
 
             </div>
