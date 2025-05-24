@@ -15,6 +15,38 @@ export const faqData = {
       answer:
         "We maintain transparency through regular updates, milestone tracking, and open communication. Our project management tools and collaborative approach ensure you are always informed and involved in the development process.",
     },
+    {
+      question: "Where is Scons based?",
+      answer:
+        "Scons is headquartered in Karachi, Pakistan, with a key operational office in Glasgow, United Kingdom. These strategic locations allow us to serve clients globally while fostering innovation and collaboration across diverse markets.",
+    },
+    {
+      question: "What is the history of Scons and Econs MEP?",
+      answer:
+        "Scons evolved from Econs MEP, which was launched in 2011 as a specialized provider of mechanical, electrical, and plumbing (MEP) services. As the IT sector grew, driven by the support of our clients and investors, Econs expanded into software development, leading to the formation of Scons. Today, Scons continues to build on this legacy, delivering cutting-edge IT solutions in mobile and web app development, blockchain, AI, and more, while maintaining a commitment to quality and innovation.",
+    },
+    {
+      question: "How has Scons grown with client and investor support?",
+      answer:
+        "Scons’ growth in the IT sector has been fueled by strong partnerships with clients and investors. Their trust and collaboration have enabled us to expand our capabilities, from our roots in Econs MEP to a global leader in software development. By leveraging client feedback and investor support, we continuously innovate and scale our solutions to meet the evolving needs of businesses worldwide.",
+    },
+  ],
+  "Services": [
+    {
+      question: "What services does Scons offer?",
+      answer:
+        "Scons provides a comprehensive range of services, including mobile and web app development, UI/UX design, blockchain solutions, cloud computing, artificial intelligence, and IT consultation. We tailor our offerings to meet your business needs, ensuring innovative and scalable solutions.",
+    },
+    {
+      question: "Does Scons offer domain and hosting services?",
+      answer:
+        "Yes, Scons includes domain registration and hosting for free with our website packages. These services are designed to provide a seamless experience, ensuring your website is up and running without additional costs. Visit https://sconstech.com for details on our website packages.",
+    },
+    {
+      question: "Can Scons handle custom software development?",
+      answer:
+        "Absolutely. Scons specializes in custom software development, creating tailored solutions that align with your unique business requirements. From ideation to deployment, we work closely with you to deliver software that drives results.",
+    },
   ],
   "Technical": [
     {
@@ -27,6 +59,11 @@ export const faqData = {
       answer:
         "Absolutely. We design and implement scalable architectures that can handle growth and high user traffic. Our solutions ensure your app remains performant and reliable as your business expands.",
     },
+    {
+      question: "What technologies does Scons use for development?",
+      answer:
+        "Scons leverages a wide range of modern technologies, including React, Node.js, Python, Solidity for blockchain, AWS for cloud solutions, and TensorFlow for AI. We choose the best tools for each project to ensure optimal performance and scalability.",
+    },
   ],
   "Career": [
     {
@@ -38,6 +75,11 @@ export const faqData = {
       question: "Are jobs at Scons remote or physical?",
       answer:
         "Scons offers both remote and physical job opportunities. Some roles are based in our offices across the globe, while others are remote, depending on the nature of the job and the niche requirements. We strive to provide flexibility wherever possible.",
+    },
+    {
+      question: "What kind of training does Scons provide for new hires?",
+      answer:
+        "Scons offers comprehensive onboarding and training programs tailored to each role. We provide access to technical workshops, mentorship, and resources to help new hires stay updated with the latest industry trends and technologies.",
     },
   ],
   "Legal": [
@@ -57,21 +99,28 @@ export const faqData = {
         "Yes, Scons ensures compliance with industry-specific regulations, such as HIPAA for healthcare or PCI-DSS for payment systems. We work closely with clients to understand their regulatory requirements and integrate compliance measures into our development process to meet legal and industry standards.",
     },
   ],
-  "About Scons": [
+  "Reviews": [
     {
-      question: "Where is Scons based?",
+      question: "How can clients share feedback or reviews about Scons?",
       answer:
-        "Scons is headquartered in Karachi, Pakistan, with a key operational office in Glasgow, United Kingdom. These strategic locations allow us to serve clients globally while fostering innovation and collaboration across diverse markets.",
+        "Clients can share feedback and reviews through our website at https://sconstech.com/contact or by emailing our support team at support@sconstech.com. We value client input and use it to continuously improve our services.",
     },
     {
-      question: "What is the history of Scons and Econs MEP?",
+      question: "Where can I find testimonials from Scons's clients?",
       answer:
-        "Scons evolved from Econs MEP, which was launched in 2011 as a specialized provider of mechanical, electrical, and plumbing (MEP) services. As the IT sector grew, driven by the support of our clients and investors, Econs expanded into software development, leading to the formation of Scons. Today, Scons continues to build on this legacy, delivering cutting-edge IT solutions in mobile and web app development, blockchain, AI, and more, while maintaining a commitment to quality and innovation.",
+        "Testimonials from our clients are available on our website at https://sconstech.com/testimonials. We showcase feedback from businesses across various industries to highlight the impact of our solutions.",
+    },
+  ],
+  "Revisions": [
+    {
+      question: "What is Scons's revision policy for projects?",
+      answer:
+        "Scons offers a flexible revision policy to ensure client satisfaction. Depending on the project agreement, we provide a set number of revision rounds during the development process. Additional revisions can be accommodated based on client needs and project scope.",
     },
     {
-      question: "How has Scons grown with client and investor support?",
+      question: "How does Scons handle revision requests?",
       answer:
-        "Scons’ growth in the IT sector has been fueled by strong partnerships with clients and investors. Their trust and collaboration have enabled us to expand our capabilities, from our roots in Econs MEP to a global leader in software development. By leveraging client feedback and investor support, we continuously innovate and scale our solutions to meet the evolving needs of businesses worldwide.",
+        "Revision requests are managed through our project management platform. Clients can submit requests with detailed feedback, and our team reviews and implements changes promptly, ensuring alignment with the project’s goals and timeline.",
     },
   ],
 };
