@@ -2,11 +2,14 @@ import React, { useState, useRef } from "react";
 import { faqData } from "./faqData";
 import FAQItem from "./modules/FAQItem";
 import HorizontalListView from "../../utilities/HorizontalListView";
+import Heading from "../Heading/Heading";
+import { SiHelpdesk } from "react-icons/si";
+
 
 const FAQNestedTabs = () => {
   const categories = Object.keys(faqData);
   const [activeCategory, setActiveCategory] = useState(categories[0]);
-  const [activeFAQ, setActiveFAQ] = useState(0); // Track active FAQ item
+  const [activeFAQ, setActiveFAQ] = useState(0);
   const tabsRef = useRef([]);
 
   const handleFAQClick = (index) => {
@@ -37,7 +40,7 @@ const FAQNestedTabs = () => {
 
     if (newIndex !== null) {
       setActiveCategory(categories[newIndex]);
-      setActiveFAQ(0); // Reset active FAQ when switching categories
+      setActiveFAQ(0);
       tabsRef.current[newIndex]?.focus();
     }
   };
@@ -58,7 +61,7 @@ const FAQNestedTabs = () => {
         ref={(el) => (tabsRef.current[index] = el)}
         onClick={() => {
           setActiveCategory(cat);
-          setActiveFAQ(0); // Reset active FAQ on category change
+          setActiveFAQ(0);
         }}
         onKeyDown={(e) => onKeyDown(e, isHorizontal)}
         className={`px-4 py-2 m-2 rounded-r-full transition-colors text-left whitespace-nowrap ${
@@ -82,25 +85,43 @@ const FAQNestedTabs = () => {
         role="tabpanel"
         aria-labelledby={`faq-tab-${activeCategory.toLowerCase().replace(/\s+/g, "-")}`}
         tabIndex={0}
-        className="flex-1 space-y-6  px-6 xl:px-8 w-full transition-opacity duration-300 ease-in-out"
+        className="flex-1 px-6 xl:px-8 w-full transition-opacity duration-300 ease-in-out"
       >
-        {faqs.map((faq, index) => (
-          <FAQItem
-            key={index}
-            question={faq.question}
-            answer={faq.answer}
-            isActive={activeFAQ === index}
-            onClick={() => handleFAQClick(index)}
-          />
-        ))}
+        {/* Active Category Heading */}
+
+        <div className="flex justify-start gap-x-4 items-center">
+
+          <SiHelpdesk className=" text-35px text-neon " />
+
+       <Heading
+        text={`${activeCategory} Question's`}
+        centered={false}
+        fontWeight="font-black"
+        size="text-35px"
+        />
+          
+        </div>
+        
+ 
+        <div className="space-y-4"> {/* Reduced space-y-6 to space-y-4 for tighter spacing */}
+          {faqs.map((faq, index) => (
+            <FAQItem
+              key={index}
+              question={faq.question}
+              answer={faq.answer}
+              isActive={activeFAQ === index}
+              onClick={() => handleFAQClick(index)}
+            />
+          ))}
+        </div>
       </div>
     );
   };
 
   return (
-    <div className="flex w-full max-w-6xl mx-auto  flex-col xl:flex-row">
+    <div className="flex w-full max-w-6xl mx-auto flex-col xl:flex-row">
       {/* Horizontal List View for mobile */}
-      <div className="xl:hidden w-full py-4 border-b border-gray-200">
+      <div className="xl:hidden w-full py-4  ">
         <HorizontalListView showArrow={false} perPage={3} gap="0.5rem" height="auto" className="px-4">
           {categories.map((cat, index) => renderTabButton(cat, index, true))}
         </HorizontalListView>
@@ -110,7 +131,7 @@ const FAQNestedTabs = () => {
       <div
         role="tablist"
         aria-orientation="vertical"
-        className="hidden xl:flex flex-col w-52 py-4 " 
+        className="hidden xl:flex flex-col w-52 pb-4"
       >
         {categories.map((cat, index) => renderTabButton(cat, index, false))}
       </div>

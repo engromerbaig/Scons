@@ -16,6 +16,7 @@ const FAQItem = ({ question, answer, isActive, onClick }) => {
                         fontWeight='font-bold'
                         centered={false}
                         isAnimate={false}
+                        className='pr-6 xl:pr-14'
                     />
                     {/* Toggle Icon */}
                     <span 
