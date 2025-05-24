@@ -32,7 +32,7 @@ export const faqData = {
     {
       question: "How can I join Scons?",
       answer:
-        "Joining Scons is simple! We regularly post job openings on our careers portal at https://Scons.com/careers. Explore our current opportunities, and if your skills align with our requirements, we’d love to hear from you. Apply directly through the portal, and our recruitment team will get in touch with you.",
+        "Joining Scons is simple! We regularly post job openings on our careers portal at https://sconstech.com/careers. Explore our current opportunities, and if your skills align with our requirements, we’d love to hear from you. Apply directly through the portal, and our recruitment team will get in touch with you.",
     },
     {
       question: "Are jobs at Scons remote or physical?",

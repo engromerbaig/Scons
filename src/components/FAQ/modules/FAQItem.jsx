@@ -39,6 +39,7 @@ const FAQItem = ({ question, answer, isActive, onClick }) => {
                             text={answer}
                             centered={false}
                             isAnimate={false}
+                            className='pr-6 xl:pr-14'
                         />
                     </FadeWrapper>
                 )}
