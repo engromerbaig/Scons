@@ -57,4 +57,21 @@ export const faqData = {
         "Yes, Scons ensures compliance with industry-specific regulations, such as HIPAA for healthcare or PCI-DSS for payment systems. We work closely with clients to understand their regulatory requirements and integrate compliance measures into our development process to meet legal and industry standards.",
     },
   ],
+  "About Scons": [
+    {
+      question: "Where is Scons based?",
+      answer:
+        "Scons is headquartered in Karachi, Pakistan, with a key operational office in Glasgow, United Kingdom. These strategic locations allow us to serve clients globally while fostering innovation and collaboration across diverse markets.",
+    },
+    {
+      question: "What is the history of Scons and Econs MEP?",
+      answer:
+        "Scons evolved from Econs MEP, which was launched in 2011 as a specialized provider of mechanical, electrical, and plumbing (MEP) services. As the IT sector grew, driven by the support of our clients and investors, Econs expanded into software development, leading to the formation of Scons. Today, Scons continues to build on this legacy, delivering cutting-edge IT solutions in mobile and web app development, blockchain, AI, and more, while maintaining a commitment to quality and innovation.",
+    },
+    {
+      question: "How has Scons grown with client and investor support?",
+      answer:
+        "Scons’ growth in the IT sector has been fueled by strong partnerships with clients and investors. Their trust and collaboration have enabled us to expand our capabilities, from our roots in Econs MEP to a global leader in software development. By leveraging client feedback and investor support, we continuously innovate and scale our solutions to meet the evolving needs of businesses worldwide.",
+    },
+  ],
 };

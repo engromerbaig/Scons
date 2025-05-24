@@ -15,7 +15,7 @@ import careerImage from '../../assets/images/career.svg';
 const Careers = () => {
     return (
         <>
-            {/* Inner Hero Section */}
+            {/* Inner Hero Section */} 
             <InnerHero
                 headingText="Begin Your Career With Us"
                 spanText="Career"
@@ -39,13 +39,7 @@ const Careers = () => {
                 ))}
             </div>
 
-            <GreenBelt>
-                <Heading
-                    text="Our Dedication"
-                    spanText='Dedication'
-                    size='text-70px'
-                />
-            </GreenBelt>
+      
             {/* FAQ Section */}
             <FAQ />
         </>
