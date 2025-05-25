@@ -4,7 +4,7 @@ export const packageData = [
     title: "Business Starter Package",
     description: "Ideal for startups or solo entrepreneurs needing a full online presence from scratch.",
     ribbonText:"Best Seller",
-    price: 10000,
+    price: 100,
     category: "Hybrid",
     features: {
       "Branding": [
@@ -31,7 +31,7 @@ export const packageData = [
     id: 2,
     title: "Standard Website Package",
     description: "Custom or WordPress website with essential features for businesses.",
-    price: 5000,
+    price: 50,
     category: "Web Development",
     features: {
       "Website": [
@@ -52,7 +52,7 @@ export const packageData = [
     id: 3,
     title: "E-commerce Package",
     description: "Full-featured e-commerce store setup using WooCommerce or Shopify.",
-    price: 8000,
+    price: 80,
     category: "Web Development",
     features: {
       "E-commerce": [
@@ -77,7 +77,7 @@ export const packageData = [
     id: 10,
     title: "One Pager Website Package",
     description: "Sleek single-page site built with React, Next.js, or plain HTML/CSS – perfect for startups or personal brands.",
-    price: 9000,
+    price: 70,
     category: "Web Development",
     features: {
       "Website": [
@@ -100,7 +100,7 @@ export const packageData = [
     id: 4,
     title: "Web App / MERN Stack Package",
     description: "Advanced MERN stack-based web applications for scalable solutions.",
-    price: 25000,
+    price: 250,
     category: "Full Stack Solution",
     features: {
       "Development": [
@@ -123,7 +123,7 @@ export const packageData = [
     id: 5,
     title: "Branding & Visual Identity",
     description: "Complete branding package for businesses to define their look and feel.",
-    price: 3000,
+    price: 50,
     category: "Design",
     features: {
       "Branding": [
@@ -142,7 +142,7 @@ export const packageData = [
     id: 6,
     title: "UI/UX Design",
     description: "High-quality UI/UX design for websites and mobile applications.",
-    price: 5000,
+    price: 80,
     category: "Design",
     features: {
       "Design": [
@@ -162,7 +162,7 @@ export const packageData = [
     id: 7,
     title: "Basic SEO Package",
     description: "Get your website ranked and indexed with essential SEO practices.",
-    price: 5000,
+    price: 50,
     category: "Marketing & SEO",
     features: {
       "SEO": [
@@ -184,7 +184,7 @@ export const packageData = [
     id: 8,
     title: "Advanced SEO Package",
     description: "In-depth optimization with technical and content-focused SEO strategy.",
-    price: 8000,
+    price: 99,
     category: "Marketing & SEO",
     features: {
       "SEO": [
@@ -206,7 +206,7 @@ export const packageData = [
     id: 9,
     title: "Digital Marketing Package",
     description: "Comprehensive online marketing setup for visibility and growth.",
-    price: 10000,
+    price: 120,
     category: "Marketing & SEO",
     features: {
       "Strategy": [

@@ -1,28 +1,59 @@
-// src/pages/PackageCard.js
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaCheckCircle } from "react-icons/fa";
 import Heading from "../../components/Heading/Heading";
 import BodyText from "../../components/BodyText/BodyText";
 import Button from "../../components/Button/Button";
 import { contactDetails } from "../../components/MobileMenu/modules/contactDetails";
-import { convertCurrency } from "./convertCurrency";
-
-const currencies = ["PKR", "GBP", "USD", "AED"];
-
+import convertCurrency from "./convertCurrency";
+import { fetchCurrencyRates } from "./convertCurrency";
+import { countryToCurrency } from "../../utilities/currencyMap";
 const PackageCard = ({ packageInfo }) => {
-  const [currency, setCurrency] = useState("PKR");
+  const [currency, setCurrency] = useState("USD");
+  const [localCurrency, setLocalCurrency] = useState(null);
+  const [rates, setRates] = useState({ USD: 1 });
 
-  // Use rates from packageInfo, fallback to empty object if undefined
+  // Fetch currency rates and determine local currency
+  useEffect(() => {
+    fetchCurrencyRates().then((fetchedRates) => {
+      const nonUSDCurrency = Object.keys(fetchedRates).find((key) => key !== "USD");
+      // Only set localCurrency if a valid rate exists (not 1 or undefined)
+      if (nonUSDCurrency && fetchedRates[nonUSDCurrency] && fetchedRates[nonUSDCurrency] !== 1) {
+        setLocalCurrency(nonUSDCurrency);
+        console.log("Local currency set:", nonUSDCurrency);
+      } else {
+        setLocalCurrency(null);
+        console.log("No valid local currency rate, using USD only");
+      }
+      setRates(fetchedRates);
+      console.log("Rates set in PackageCard:", fetchedRates);
+    });
+  }, []);
+
+  // Toggle between USD and local currency
+  const toggleCurrency = () => {
+    setCurrency(currency === "USD" ? localCurrency : "USD");
+  };
+
+  // Use rates from state, fallback to empty object if undefined
   const displayPrice = convertCurrency(
     packageInfo.price,
-    "PKR",
+    "USD", // Assume base price is in USD
     currency,
-    packageInfo.currencyRates || {}
+    rates
   );
 
   const formattedPrice = new Intl.NumberFormat("en-US", {
     maximumFractionDigits: 0,
   }).format(displayPrice);
+
+  // Get currency symbol from countryToCurrency or fallback to currency code
+  const symbol = countryToCurrency[currency]?.symbol || currency;
+
+  // Debug toggle button visibility
+  console.log("Toggle button visibility check:", {
+    localCurrency,
+    hasRate: !!rates[localCurrency],
+  });
 
   return (
     <div
@@ -63,35 +94,24 @@ const PackageCard = ({ packageInfo }) => {
       <div className="flex flex-row justify-center items-end gap-x-2 mb-3 h-[70px]">
         <div className="flex flex-col justify-end min-w-[200px] items-center">
           <div className="flex items-end gap-x-1">
-            <span className="text-sm">
-              {currency === "PKR"
-                ? "₨"
-                : currency === "GBP"
-                ? "£"
-                : currency === "USD"
-                ? "$"
-                : "AED"}
-            </span>
+            <span className="text-sm">{symbol}</span>
             <span className="text-90px xl:text-60px leading-none font-bold">
               {formattedPrice}
             </span>
           </div>
         </div>
 
-        {/* Currency Buttons */}
-        <div className="grid grid-cols-2 grid-rows-2 gap-1 justify-center">
-          {currencies.map((cur) => (
+        {/* Currency Toggle Button (only shown if localCurrency and valid rate exist) */}
+        {localCurrency && rates[localCurrency] && (
+          <div className="flex items-center justify-center w-[50px]">
             <button
-              key={cur}
-              onClick={() => setCurrency(cur)}
-              className={`flex items-center justify-center px-2 py-1 text-10px font-medium rounded transition ${
-                currency === cur ? "bg-neon text-black" : "bg-gray-100 text-black"
-              }`}
+              onClick={toggleCurrency}
+              className="flex items-center justify-center px-2 py-1 text-10px font-medium rounded bg-gray-100 text-black hover:bg-neon hover:text-black transition"
             >
-              {cur}
+              {currency === "USD" ? localCurrency : "USD"}
             </button>
-          ))}
-        </div>
+          </div>
+        )}
       </div>
 
       {/* Features */}
