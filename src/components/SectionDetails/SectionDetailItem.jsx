@@ -16,15 +16,15 @@ const SectionDetailItem = ({ serviceHeading, spanText, details, faqIcon, icons, 
   return (
     <div
       className={
-        isImageLeft ? 'pr-4 md:pr-60 py-10 xl:py-14' : 'pl-4 md:pl-60 py-10 xl:py-14'
+        isImageLeft ? 'pr-10 md:pr-60 py-10 xl:py-14' : 'pl-10 md:pl-60 py-10 xl:py-14'
       }
     >
       <div
         ref={containerRef}
-        className={`opacity-0 translate-x-[-100px]  text-black grid grid-cols-1 md:grid-cols-12  shadow-3xl py-6 xl:py-16 ${theme.layoutPages.paddingHorizontal} ${
+        className={`opacity-0 translate-x-[-100px] text-black grid grid-cols-1 md:grid-cols-12 shadow-3xl py-6 xl:py-16 ${theme.layoutPages.paddingHorizontal} ${
           isImageLeft
-            ? 'tube-active-gradient-mirrored border-l-0 rounded-r-full'
-            : 'tube-active-gradient border-r-0 rounded-l-full'
+            ? 'tube-active-gradient-mirrored border-l-0 rounded-r-[40px] xl:rounded-r-full'
+            : 'tube-active-gradient border-r-0 rounded-l-[40px] xl:rounded-l-full'
         }`}
       >
         {/* Image: Top or Left */}
@@ -32,15 +32,19 @@ const SectionDetailItem = ({ serviceHeading, spanText, details, faqIcon, icons, 
           <div
             className={`p-6 flex items-center justify-center ${
               isImageLeft
-                ? ' md:col-span-4 md:order-first'
-                : ' md:col-span-4 md:order-last'
+                ? 'md:col-span-5 md:order-first'
+                : 'md:col-span-5 md:order-last'
             }`}
           >
-            <img
-              src={faqIcon}
-              className="w-1/4 md:w-3/5 svg-neon"
-              alt="Service Icon"
-            />
+            {/* Wrapper for image with overlay */}
+            <div className="relative w-1/2 md:w-11/12 aspect-square">
+              <img
+                src={faqIcon}
+                className="w-full h-full rounded-full object-cover"
+                alt="Service Icon"
+              />
+              <div className="absolute inset-0 rounded-full bg-neon opacity-10 pointer-events-none"></div>
+            </div>
           </div>
         )}
 
@@ -48,8 +52,8 @@ const SectionDetailItem = ({ serviceHeading, spanText, details, faqIcon, icons, 
         <div
           className={`p-6 flex flex-col justify-between h-full ${
             isImageLeft
-              ? 'md:col-span-8 md:order-last'
-              : 'md:col-span-8 md:order-first'
+              ? 'md:col-span-7 md:order-last'
+              : 'md:col-span-7 md:order-first'
           }`}
         >
           <div>
@@ -66,7 +70,7 @@ const SectionDetailItem = ({ serviceHeading, spanText, details, faqIcon, icons, 
                 centered={false}
                 lineHeight="leading-loose"
                 color="text-black"
-                className='xl:max-w-sm pr-10'
+                className="xl:max-w-sm pr-10"
               />
             ))}
           </div>
