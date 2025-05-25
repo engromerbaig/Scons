@@ -57,7 +57,7 @@ const PackageCard = ({ packageInfo }) => {
 
   return (
     <div
-      className="relative bg-white rounded-xl shadow-xl py-10 px-10 w-full flex flex-col justify-between h-[600px] overflow-hidden transition-all duration-300 border border-neon hover:ring-2 hover:ring-neon hover:shadow-[0_0_20px_rgba(0,197,255,0.2)]"
+      className="relative bg-white rounded-xl shadow-xl max-w-sm py-10 px-10 w-full flex flex-col justify-between h-[600px] xl:h-[700px]  overflow-hidden transition-all duration-300 border border-neon hover:ring-2 hover:ring-neon hover:shadow-[0_0_20px_rgba(0,197,255,0.2)]"
     >
       {/* Blob in bottom-right corner */}
       <div className="absolute bottom-[-50px] right-[-50px] w-[110px] h-[110px] bg-neon opacity-50 rounded-full animate-blob z-0"></div>
@@ -79,7 +79,7 @@ const PackageCard = ({ packageInfo }) => {
         <Heading
           text={packageInfo.title}
           size="text-70px xl:text-40px"
-          className="font-bold text-center h-[100px]"
+          className="font-bold text-center h-[100px] xl:h-[140px] overflow-hidden"
         />
         <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-[100px] h-[4px] bg-black rounded-full"></div>
       </div>
@@ -87,7 +87,7 @@ const PackageCard = ({ packageInfo }) => {
       <BodyText
         text={packageInfo.description}
         centered={true}
-        className="text-gray-600 text-sm mb-4 h-[50px] leading-tight overflow-hidden"
+        className="text-gray-600 text-sm mb-4 h-[50px] xl:h-[60px] leading-tight overflow-hidden"
       />
 
       {/* Currency and Price */}

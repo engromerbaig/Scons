@@ -63,7 +63,7 @@ const Packages = () => {
           <div className="mb-4">
             <AnimatedHeading
               prefixText="We Offer"
-              animatedWords={["Design", "Web", "App", "Cheap"]}
+              animatedWords={["Design", "Web", "App", "AI", "SEO", "Marketing"]}
               suffixText="Packages"
               color="text-black"
               fontWeight="font-black"
@@ -105,14 +105,15 @@ const Packages = () => {
               {/* effective underline */}
 
 
-            <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {packages.map((pkg) => (
-                <PackageCard
-                  key={pkg.id}
-                  packageInfo={{ ...pkg, currencyRates }}
-                />
-              ))}
-            </div>
+<div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+  {packages.map((pkg) => (
+    <div key={pkg.id} className="w-full">
+      <PackageCard packageInfo={{ ...pkg, currencyRates }} />
+    </div>
+  ))}
+</div>
+
+
           </div>
         ))}
       </div>
