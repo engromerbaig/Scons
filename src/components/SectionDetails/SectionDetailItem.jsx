@@ -84,7 +84,7 @@ const SectionDetailItem = ({ serviceHeading, spanText, details, faqIcon, icons, 
                   key={idx}
                   src={icon}
                   alt={`Icon ${idx}`}
-                  className="w-8 xl:w-12 aspect-square svg-neon opacity-70 hover:opacity-100 transition-opacity duration-300"
+                  className="w-8 xl:w-12 aspect-square svg-black opacity-50 hover:opacity-100 transition-opacity duration-300"
                 />
               ))}
             </div>
