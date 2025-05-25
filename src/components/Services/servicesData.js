@@ -47,129 +47,8 @@ export const descriptorText =
   "Comprehensive services covering software development, enterprise solutions, app/web development, digital marketing, AI integration, and strategic consulting tailored to meet diverse business needs.";
 
 export const services = [
-  {
-    heading: "Mobile Apps",
-    spanText: "Mobile",
-    image: mobileAppImage,
-    serviceAccordionData: [
-      {
-        id: 1,
-        question: "Cross-Platform App Development",
-        answer: "Create apps that work on both iOS and Android using a single codebase.",
-        image: accordianmob1,
-        bestPoints: [
-          "Single codebase for multiple platforms",
-          "Faster development cycle",
-          "Cost-effective",
-          "Easier maintenance",
-        ],
-      },
-      {
-        id: 2,
-        question: "Hybrid App Development",
-        answer: "Combine web technologies to deliver app-like experiences in a native container.",
-        image: accordianmob2,
-        bestPoints: [
-          "Quick to launch",
-          "Access to device APIs",
-          "Lower development cost",
-          "Wide reach",
-        ],
-      },
-      {
-        id: 3,
-        question: "Native App Development",
-        answer: "Build apps specifically for iOS or Android using Swift or Kotlin.",
-        image: accordianmob3,
-        bestPoints: [
-          "Best performance",
-          "Full device integration",
-          "Highly responsive UI",
-          "Platform-specific features",
-        ],
-      },
-    ],
-    heading2: "It Starts with a Vision in Mobile App Development",
-    description: "Bringing Ideas to Life, One App at a Time",
-    helperText: "Mobile apps designed to meet today’s needs and redefine possibilities for tomorrow’s challenges.",
-    slug: "mobile-app-development",
-    tagline: "Empowering Your Mobile Future",
-    faqSpanText: "Develop Your Mobile App",
-    faqBodyText:
-      "Our mobile app development services deliver seamless, intuitive, and high-performance applications across platforms. We create native and hybrid apps designed to enhance your business's mobile presence.",
-    processBodyText:
-      "A typical mobile app development project begins with ideation, followed by UI/UX design, development, rigorous testing, and launch with post-launch support.",
-    number: "01",
-    faqData: [
-      {
-        question: "What types of mobile apps do you develop?",
-        answer: "We develop native, hybrid, and cross-platform apps for iOS and Android tailored to your needs.",
-      },
-      {
-        question: "How long does it take to develop a mobile app?",
-        answer: "Timelines vary based on complexity, typically ranging from 3 to 6 months.",
-      },
-      {
-        question: "What is the cost of developing a mobile app?",
-        answer: "Costs depend on features and platforms. We provide detailed estimates after consultation.",
-      },
-      {
-        question: "Do you offer post-launch support?",
-        answer: "Yes, we provide maintenance, updates, and optimization post-launch.",
-      },
-      {
-        question: "Can you develop apps for both iOS and Android?",
-        answer: "Yes, we specialize in cross-platform and native development for both platforms.",
-      },
-      {
-        question: "How do you ensure app security?",
-        answer: "We use encryption, secure APIs, and comply with platform security standards.",
-      },
-    ],
-    services: ["iOS", "Android", "Hybrid"],
-    iconRows: [
-      {
-        service: "iOS",
-        serviceHeading: "iOS",
-        faqIcon: [icons.faq.mobileFAQ1],
-        details: [
-          {
-            heading: "Swift",
-            description:
-              "We deliver high-performance iOS apps using Swift, ensuring seamless integration with Apple’s ecosystem and adherence to App Store standards.",
-          },
-        ],
-        icons: [icons.mobile.SwiftIOS, icons.mobile.UIKit, icons.mobile.CoreData],
-      },
-      {
-        service: "Android",
-        serviceHeading: "Android",
-        faqIcon: [icons.faq.mobileFAQ2],
-        details: [
-          {
-            heading: "Kotlin",
-            description:
-              "Our Android apps are built with Kotlin for optimal performance across diverse devices, ensuring scalability and user satisfaction.",
-          },
-        ],
-        icons: [icons.mobile.Java, icons.mobile.Kotlin, icons.mobile.Retrofit],
-      },
-      {
-        service: "Hybrid",
-        serviceHeading: "Hybrid Apps",
-        faqIcon: [icons.faq.mobileFAQ3],
-        details: [
-          {
-            heading: "Flutter",
-            description:
-              "We use Flutter and React Native to build hybrid apps that offer near-native performance with reduced development time and cost.",
-          },
-        ],
-        icons: [icons.mobile.FlutterHybrid, icons.mobile.ReactNative],
-      },
-    ],
-  },
-  {
+
+   {
     heading: "Web Development",
     spanText: "Web",
     image: webAppImage,
@@ -221,7 +100,7 @@ export const services = [
       "Our comprehensive web development services cover intuitive design to seamless functionality, creating responsive, secure, and high-performance websites.",
     processBodyText:
       "A typical web development project begins with concept creation, planning, development, testing, and delivery.",
-    number: "02",
+    number: "01",
     faqData: [
       {
         question: "What types of web apps do you develop?",
@@ -303,6 +182,130 @@ export const services = [
       },
     ],
   },
+  
+  {
+    heading: "Mobile Apps",
+    spanText: "Mobile",
+    image: mobileAppImage,
+    serviceAccordionData: [
+      {
+        id: 1,
+        question: "Cross-Platform App Development",
+        answer: "Create apps that work on both iOS and Android using a single codebase.",
+        image: accordianmob1,
+        bestPoints: [
+          "Single codebase for multiple platforms",
+          "Faster development cycle",
+          "Cost-effective",
+          "Easier maintenance",
+        ],
+      },
+      {
+        id: 2,
+        question: "Hybrid App Development",
+        answer: "Combine web technologies to deliver app-like experiences in a native container.",
+        image: accordianmob2,
+        bestPoints: [
+          "Quick to launch",
+          "Access to device APIs",
+          "Lower development cost",
+          "Wide reach",
+        ],
+      },
+      {
+        id: 3,
+        question: "Native App Development",
+        answer: "Build apps specifically for iOS or Android using Swift or Kotlin.",
+        image: accordianmob3,
+        bestPoints: [
+          "Best performance",
+          "Full device integration",
+          "Highly responsive UI",
+          "Platform-specific features",
+        ],
+      },
+    ],
+    heading2: "It Starts with a Vision in Mobile App Development",
+    description: "Bringing Ideas to Life, One App at a Time",
+    helperText: "Mobile apps designed to meet today’s needs and redefine possibilities for tomorrow’s challenges.",
+    slug: "mobile-app-development",
+    tagline: "Empowering Your Mobile Future",
+    faqSpanText: "Develop Your Mobile App",
+    faqBodyText:
+      "Our mobile app development services deliver seamless, intuitive, and high-performance applications across platforms. We create native and hybrid apps designed to enhance your business's mobile presence.",
+    processBodyText:
+      "A typical mobile app development project begins with ideation, followed by UI/UX design, development, rigorous testing, and launch with post-launch support.",
+    number: "02",
+    faqData: [
+      {
+        question: "What types of mobile apps do you develop?",
+        answer: "We develop native, hybrid, and cross-platform apps for iOS and Android tailored to your needs.",
+      },
+      {
+        question: "How long does it take to develop a mobile app?",
+        answer: "Timelines vary based on complexity, typically ranging from 3 to 6 months.",
+      },
+      {
+        question: "What is the cost of developing a mobile app?",
+        answer: "Costs depend on features and platforms. We provide detailed estimates after consultation.",
+      },
+      {
+        question: "Do you offer post-launch support?",
+        answer: "Yes, we provide maintenance, updates, and optimization post-launch.",
+      },
+      {
+        question: "Can you develop apps for both iOS and Android?",
+        answer: "Yes, we specialize in cross-platform and native development for both platforms.",
+      },
+      {
+        question: "How do you ensure app security?",
+        answer: "We use encryption, secure APIs, and comply with platform security standards.",
+      },
+    ],
+    services: ["iOS", "Android", "Hybrid"],
+    iconRows: [
+      {
+        service: "iOS",
+        serviceHeading: "iOS",
+        faqIcon: [icons.faq.mobileFAQ1],
+        details: [
+          {
+            heading: "Swift",
+            description:
+              "We deliver high-performance iOS apps using Swift, ensuring seamless integration with Apple’s ecosystem and adherence to App Store standards.",
+          },
+        ],
+        icons: [icons.mobile.SwiftIOS, icons.mobile.UIKit, icons.mobile.CoreData],
+      },
+      {
+        service: "Android",
+        serviceHeading: "Android",
+        faqIcon: [icons.faq.mobileFAQ2],
+        details: [
+          {
+            heading: "Kotlin",
+            description:
+              "Our Android apps are built with Kotlin for optimal performance across diverse devices, ensuring scalability and user satisfaction.",
+          },
+        ],
+        icons: [icons.mobile.Java, icons.mobile.Kotlin, icons.mobile.Retrofit],
+      },
+      {
+        service: "Hybrid",
+        serviceHeading: "Hybrid Apps",
+        faqIcon: [icons.faq.mobileFAQ3],
+        details: [
+          {
+            heading: "Flutter",
+            description:
+              "We use Flutter and React Native to build hybrid apps that offer near-native performance with reduced development time and cost.",
+          },
+        ],
+        icons: [icons.mobile.FlutterHybrid, icons.mobile.ReactNative],
+      },
+    ],
+  },
+ 
   {
     heading: "UI/UX Design",
     spanText: "UI/UX",
