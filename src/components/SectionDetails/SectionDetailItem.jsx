@@ -61,7 +61,7 @@ const SectionDetailItem = ({ serviceHeading, spanText, details, faqIcon, icons, 
               text={serviceHeading}
               spanText={spanText}
               centered={false}
-              className="pb-2"
+              className="pb-4"
             />
             {details.map((detail, idx) => (
               <BodyText
@@ -70,7 +70,7 @@ const SectionDetailItem = ({ serviceHeading, spanText, details, faqIcon, icons, 
                 centered={false}
                 lineHeight="leading-loose"
                 color="text-black"
-                className="xl:max-w-sm pr-10"
+                className="xl:max-w-sm pr-10 pb-4"
               />
             ))}
           </div>
