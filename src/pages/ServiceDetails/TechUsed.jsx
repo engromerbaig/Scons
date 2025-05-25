@@ -39,6 +39,7 @@ const TechUsed = ({ serviceHeading, heading}) => {
                   icon={tech.icon}
                   bgColor="bg-gray-100"
                   textColor="black"
+                  hoverBgColor="bg-neon"
                   fontWeight="font-semibold"
                   fontSize="text-xs xl:text-sm"
                   className="py-3"
