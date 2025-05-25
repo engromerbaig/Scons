@@ -61,6 +61,7 @@ const SectionDetailItem = ({ serviceHeading, spanText, details, faqIcon, icons, 
               text={serviceHeading}
               spanText={spanText}
               centered={false}
+              size='text-50px'
               className="pb-4"
             />
             {details.map((detail, idx) => (
