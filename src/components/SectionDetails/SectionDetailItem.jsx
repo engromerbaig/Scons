@@ -1,13 +1,15 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Heading from '../Heading/Heading';
 import BodyText from '../BodyText/BodyText';
 import Button from '../Button/Button';
 import { theme } from '../../theme';
 import slideInGsap from '../../utilities/Animations/slideInGsap';
+import SkeletonLoader from '../../utilities/SkeletonLoader';
 
 const SectionDetailItem = ({ serviceHeading, spanText, details, faqIcon, icons, isImageLeft }) => {
   const containerRef = useRef(null);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
     slideInGsap(containerRef.current, { fromRight: isImageLeft, delay: 0.2 });
@@ -38,10 +40,19 @@ const SectionDetailItem = ({ serviceHeading, spanText, details, faqIcon, icons, 
           >
             {/* Wrapper for image with overlay */}
             <div className="relative w-1/2 md:w-11/12 aspect-square">
+              {!imageLoaded && (
+                <SkeletonLoader
+                  className="w-full h-full absolute top-0 left-0"
+                  rounded="rounded-full"
+                />
+              )}
               <img
                 src={faqIcon}
-                className="w-full h-full rounded-full object-cover"
+                className={`w-full h-full rounded-full object-cover transition-opacity duration-500 ${
+                  imageLoaded ? "opacity-100" : "opacity-0"
+                }`}
                 alt="Service Icon"
+                onLoad={() => setImageLoaded(true)}
               />
               <div className="absolute inset-0 rounded-full bg-neon opacity-15 pointer-events-none"></div>
             </div>
@@ -89,20 +100,6 @@ const SectionDetailItem = ({ serviceHeading, spanText, details, faqIcon, icons, 
               ))}
             </div>
           )}
-
-          {/* Button */}
-          {/* <div className="pt-4">
-            <Button
-              name="Contact Us"
-              size="text-sm"
-              textColor="black"
-              fontWeight="font-bold"
-              hoverTextColor="black"
-              bgColor="bg-neon"
-              hoverBgColor="bg-neon"
-              openModal={true}
-            />
-          </div> */}
         </div>
       </div>
     </div>
