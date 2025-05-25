@@ -17,12 +17,13 @@ const SectionDetails = ({ faqSpanText, faqBodyText, heading, faqItems }) => {
         <span key={index}>
           <span className="font-bold">{heading}</span>
           {index < serviceHeadings.length - 2 && ', '}
-          {index === serviceHeadings.length - 2 && serviceHeadings.length > 1 && ', and '}
+          {index === serviceHeadings.length - 2 && serviceHeadings.length > 1 && ' and '}
           {index === serviceHeadings.length - 1 && serviceHeadings.length > 1 && ''}
         </span>
       ))}
     </>
   );
+
 
   return (
     <div className={`min-h-screen ${theme.layoutPages.paddingVertical}`}>
