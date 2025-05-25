@@ -1,54 +1,35 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Heading from "../Heading/Heading";
-import BodyText from "../BodyText/BodyText";
-import SectionDetailItem from "./SectionDetailItem";
-import AnimatedBackground from '../../utilities/AnimatedBackground/AnimatedBackground';
-import { theme } from '../../theme';
 import GreenBelt from '../GreenBelt/GreenBelt';
 import FadeWrapper from '../../utilities/Animations/FadeWrapper';
+import SectionDetailItem from "./SectionDetailItem";
+import { theme } from '../../theme';
 
 const SectionDetails = ({ faqSpanText, faqBodyText, faqItems }) => {
-  // Set the initial state to 0 so the first FAQ item is open by default
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  const handleClick = (index) => {
-    setActiveIndex(activeIndex === index ? null : index);  // Toggle open/close
-  };
-
   return (
-    <div className={`min-h-screen  ${theme.layoutPages.paddingVertical}`} >
-      <div className="flex flex-col gap-6 ">
-
-      <GreenBelt className="">
-
-      <Heading text="Creating Solutions That Drive Success"  />
-
-
-      </GreenBelt>
-
-      </div>
-   
-
-   <FadeWrapper>
- <div className={`faq-list  ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal}`}>
-        {faqItems.map((item, index) => (
-          <SectionDetailItem
-            key={index}
-            serviceHeading={item.serviceHeading}
-            details={item.details}
-            faqIcon={item.faqIcon[0]} // Pass the dynamic icon
-            icons={item.icons} // Pass the icons at this level
-            isActive={activeIndex === index}  // Compare with activeIndex
-            onClick={() => handleClick(index)}  // Handle click to toggle
-            isLast={index === faqItems.length - 1}
-            className=""
-          />
-        ))}
+    <div className={`min-h-screen ${theme.layoutPages.paddingVertical}`}>
+      <div className="flex flex-col gap-6">
+        <GreenBelt className="">
+          <Heading text="Creating Solutions That Drive Success" />
+        </GreenBelt>
       </div>
 
-   </FadeWrapper>
-
-     
+      <FadeWrapper>
+        <div className={`py-10 `}>
+          {faqItems.map((item, index) => (
+            <div key={index}>
+              <SectionDetailItem
+                serviceHeading={item.serviceHeading}
+                spanText={item.serviceHeading} // Use serviceHeading as spanText
+                details={item.details}
+                faqIcon={item.faqIcon[0]} // Pass the dynamic icon
+                icons={item.icons} // Pass the icons array
+                isImageLeft={index % 2 !== 0} // Alternate right for odd, left for even
+              />
+            </div>
+          ))}
+        </div>
+      </FadeWrapper>
     </div>
   );
 };

@@ -1,62 +1,77 @@
-import React from 'react';
-import caretDown from '../../assets/icons/caretdown2.svg'; // Caret down icon
+import React, { useRef, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import Heading from '../Heading/Heading';
 import BodyText from '../BodyText/BodyText';
-import CustomButton from '../CustomButton/CustomButton';
 import Button from '../Button/Button';
+import { theme } from '../../theme';
+import slideInGsap from '../../utilities/Animations/slideInGsap';
 
-const SectionDetailItem = ({ 
-  serviceHeading, 
-  details, 
-  icons, 
-  faqIcon, // Added dynamic faqIcon prop
-  isActive, 
-  onClick, 
-  isLast 
-}) => {
+const SectionDetailItem = ({ serviceHeading, spanText, details, faqIcon, icons, isImageLeft }) => {
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    slideInGsap(containerRef.current, { fromRight: isImageLeft, delay: 0.2 });
+  }, [isImageLeft]);
+
   return (
-    <div className={`faq-item ${isActive ? 'active' : ''} ${isLast ? 'border-[1px]' : 'border-[1px]'} rounded-md my-10 px-2 lg:px-10 border-neon py-4 lg:py-6`}>
-      <div className="flex justify-between items-center cursor-pointer" onClick={onClick}>
-        {/* Left icon and heading */}
-        <div className="flex items-center gap-4">
-          <div className=" border-2  rounded-lg border-neon p-2 lg:p-3">
-            <img src={faqIcon} alt="Service Icon" className="w-10 aspect-square svg-neon" />
+    <div
+      className={
+        isImageLeft ? 'pr-10 md:pr-32 py-10' : 'pl-10 md:pl-32 py-10'
+      }
+    >
+      <div
+        ref={containerRef}
+        className={`opacity-0 translate-x-[-100px] text-black grid grid-cols-1 md:grid-cols-12 border-neon border-4 py-10 ${theme.layoutPages.paddingHorizontal} ${
+          isImageLeft
+            ? 'border-l-0 rounded-r-full'
+            : 'border-r-0 rounded-l-full'
+        }`}
+      >
+        {/* Image: Top or Left */}
+        {faqIcon && (
+          <div
+            className={`p-6 flex items-center justify-center ${
+              isImageLeft
+                ? 'md:col-span-4 md:order-first'
+                : 'md:col-span-4 md:order-last'
+            }`}
+          >
+            <img
+              src={faqIcon}
+              className="w-1/4 md:w-3/5 svg-neon"
+              alt="Service Icon"
+            />
           </div>
-          <Heading 
-            text={serviceHeading} 
-            centered={false} 
-            size="text-50px" 
-            color="text-black" 
-            fontWeight="font-medium" 
-          />
-        </div>
+        )}
 
-        {/* Caret icon */}
-        <span className={`transition-transform duration-300 ${isActive ? 'rotate-180' : 'rotate-0'}`}>
-          <img src={caretDown} alt="Caret Icon" className="w-6 svg-neon aspect-square" />
-        </span>
-      </div>
-
-      {/* Expanded content */}
-      {isActive && (
-        <div className="pt-4">
-          {/* Detail section */}
-          <div className="">
-            {/* Iterate over each detail */}
+        {/* Heading, BodyText, Icons, and Button */}
+        <div
+          className={`p-6 flex flex-col justify-between h-full ${
+            isImageLeft
+              ? 'md:col-span-8 md:order-last'
+              : 'md:col-span-8 md:order-first'
+          }`}
+        >
+          <div>
+            <Heading
+              text={serviceHeading}
+              spanText={spanText}
+              centered={false}
+              className="pb-2"
+            />
             {details.map((detail, idx) => (
-              <div key={idx} className="flex flex-col items-start ">
-                <BodyText 
-                  text={detail.description} 
-                  centered={false} 
-                  color="text-black"
-                  className="leading-loose"
-                  isAnimate={false}
-                />
-              </div>
+              <BodyText
+                key={idx}
+                text={detail.description}
+                centered={false}
+                lineHeight="leading-loose"
+                color="text-black"
+                className='xl:max-w-sm'
+              />
             ))}
           </div>
 
-          {/* Render icons row only if there are icons */}
+          {/* Icons row */}
           {icons && icons.length > 0 && (
             <div className="flex justify-between items-center py-6">
               {icons.map((icon, idx) => (
@@ -71,22 +86,35 @@ const SectionDetailItem = ({
           )}
 
           {/* Button */}
-          <div className="pt-4">
-             <Button
-                  name="Contact Us"
-                  size="text-sm"
-                  textColor="black"
-                  fontWeight="font-bold"
-                  hoverTextColor='black'
-                  bgColor="bg-neon"
-                  hoverBgColor='bg-neon'
-                 openModal={true}
-/>
-          </div>
+          {/* <div className="pt-4">
+            <Button
+              name="Contact Us"
+              size="text-sm"
+              textColor="black"
+              fontWeight="font-bold"
+              hoverTextColor="black"
+              bgColor="bg-neon"
+              hoverBgColor="bg-neon"
+              openModal={true}
+            />
+          </div> */}
         </div>
-      )}
+      </div>
     </div>
   );
+};
+
+SectionDetailItem.propTypes = {
+  serviceHeading: PropTypes.string.isRequired,
+  spanText: PropTypes.string.isRequired,
+  details: PropTypes.arrayOf(
+    PropTypes.shape({
+      description: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  faqIcon: PropTypes.string,
+  icons: PropTypes.arrayOf(PropTypes.string),
+  isImageLeft: PropTypes.bool.isRequired,
 };
 
 export default SectionDetailItem;
