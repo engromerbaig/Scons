@@ -445,3 +445,15 @@ html {
 .leaflet-popup-tip {
   background-color: #000000 !important; /* Black popup arrow */
 }
+
+
+
+.tube-active-gradient {
+  background: linear-gradient(
+    90deg, 
+    theme('colors.neon/5%') 30%, 
+    theme('colors.neon/50%') 100%
+  );
+  box-shadow: 0 2px 10px 0 theme('colors.neon/10%');
+  transition: background 0.3s, box-shadow 0.3s;
+}
