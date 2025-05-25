@@ -7,40 +7,55 @@ import { theme } from '../../theme';
 import BodyText from '../BodyText/BodyText';
 
 const SectionDetails = ({ faqSpanText, faqBodyText, heading, faqItems }) => {
+  // Extract service headings from faqItems
+  const serviceHeadings = faqItems.map(item => item.serviceHeading);
+
+  // Format service headings as JSX with bold styling
+  const formattedHeadings = (
+    <>
+      {serviceHeadings.map((heading, index) => (
+        <span key={index}>
+          <span className="font-bold">{heading}</span>
+          {index < serviceHeadings.length - 2 && ', '}
+          {index === serviceHeadings.length - 2 && serviceHeadings.length > 1 && ', and '}
+          {index === serviceHeadings.length - 1 && serviceHeadings.length > 1 && ''}
+        </span>
+      ))}
+    </>
+  );
+
   return (
     <div className={`min-h-screen ${theme.layoutPages.paddingVertical}`}>
-
       <div className={`flex flex-col gap-2 ${theme.layoutPages.paddingHorizontal}`}>
+        <Heading
+          text={`Types of ${heading} Apps We Build`}
+          spanText={heading}
+          spanColor="text-neon"
+          centered={true}
+        />
 
-   <Heading
-            text={`Types of ${heading} Apps We Build`}
-            spanText={heading}
-            spanColor="text-neon"
-            centered={true}
-            // className={`${theme.layoutPages.paddingHorizontal}`}
-          />
-
-          <BodyText
-            text={`We cover a wide range of ${heading} apps, lorem epsom osd  s da fd ffs gf dg d gd dg dfg fd gfd gfd g dg d gdf gfdg  dfg fd gfd gfd g dg d gdf gfdg  dfg fd gfd gfd g dg d gdf gfdg`}
-            centered={true}
-            className='xl:px-40'
-          />
-
+        <BodyText
+          text={
+            <>
+              We specialize in building a wide range of {heading} applications, including {formattedHeadings}. Our team delivers tailored solutions to meet your unique business needs.
+            </>
+          }
+          centered={true}
+          className="xl:px-40"
+        />
       </div>
-   
-       
 
       <FadeWrapper>
-        <div className={`py-10 `}>
+        <div className={`py-10`}>
           {faqItems.map((item, index) => (
             <div key={index}>
               <SectionDetailItem
                 serviceHeading={item.serviceHeading}
-                spanText={item.serviceHeading} // Use serviceHeading as spanText
+                spanText={item.serviceHeading}
                 details={item.details}
-                faqIcon={item.faqIcon[0]} // Pass the dynamic icon
-                icons={item.icons} // Pass the icons array
-                isImageLeft={index % 2 === 0} // Alternate right for odd, left for even
+                faqIcon={item.faqIcon[0]}
+                icons={item.icons}
+                isImageLeft={index % 2 === 0}
               />
             </div>
           ))}
