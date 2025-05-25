@@ -16,15 +16,15 @@ const SectionDetailItem = ({ serviceHeading, spanText, details, faqIcon, icons, 
   return (
     <div
       className={
-        isImageLeft ? 'pr-10 md:pr-32 py-10' : 'pl-10 md:pl-32 py-10'
+        isImageLeft ? 'pr-4 md:pr-60 py-10 xl:py-14' : 'pl-4 md:pl-60 py-10 xl:py-14'
       }
     >
       <div
         ref={containerRef}
-        className={`opacity-0 translate-x-[-100px] tube-active-gradient text-black grid grid-cols-1 md:grid-cols-12  py-10 ${theme.layoutPages.paddingHorizontal} ${
+        className={`opacity-0 translate-x-[-100px]  text-black grid grid-cols-1 md:grid-cols-12  shadow-3xl py-6 xl:py-10 ${theme.layoutPages.paddingHorizontal} ${
           isImageLeft
-            ? 'border-l-0 rounded-r-full'
-            : 'border-r-0 rounded-l-full'
+            ? 'tube-active-gradient-mirrored border-l-0 rounded-r-full'
+            : 'tube-active-gradient border-r-0 rounded-l-full'
         }`}
       >
         {/* Image: Top or Left */}
@@ -32,8 +32,8 @@ const SectionDetailItem = ({ serviceHeading, spanText, details, faqIcon, icons, 
           <div
             className={`p-6 flex items-center justify-center ${
               isImageLeft
-                ? 'md:col-span-4 md:order-first'
-                : 'md:col-span-4 md:order-last'
+                ? ' md:col-span-4 md:order-first'
+                : ' md:col-span-4 md:order-last'
             }`}
           >
             <img
@@ -66,20 +66,20 @@ const SectionDetailItem = ({ serviceHeading, spanText, details, faqIcon, icons, 
                 centered={false}
                 lineHeight="leading-loose"
                 color="text-black"
-                className='xl:max-w-sm'
+                className='xl:max-w-sm pr-10'
               />
             ))}
           </div>
 
           {/* Icons row */}
           {icons && icons.length > 0 && (
-            <div className="flex justify-between items-center py-6">
+            <div className="flex justify-center xl:justify-between items-center gap-10 py-6">
               {icons.map((icon, idx) => (
                 <img
                   key={idx}
                   src={icon}
                   alt={`Icon ${idx}`}
-                  className="w-8 xl:w-12 aspect-square svg-neon opacity-50 hover:opacity-100 transition-opacity duration-300"
+                  className="w-8 xl:w-12 aspect-square svg-neon opacity-70 hover:opacity-100 transition-opacity duration-300"
                 />
               ))}
             </div>
