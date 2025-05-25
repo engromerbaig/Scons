@@ -26,7 +26,7 @@ const SectionDetails = ({ faqSpanText, faqBodyText, heading, faqItems }) => {
 
   return (
     <div className={`min-h-screen ${theme.layoutPages.paddingVertical}`}>
-      <div className={`flex flex-col gap-2 ${theme.layoutPages.paddingHorizontal}`}>
+ <div className={`flex flex-col gap-2 ${theme.layoutPages.paddingHorizontal} max-w-5xl mx-auto`}>
         <Heading
           text={`Types of ${heading} Apps We Build`}
           spanText={heading}
@@ -41,9 +41,9 @@ const SectionDetails = ({ faqSpanText, faqBodyText, heading, faqItems }) => {
             </>
           }
           centered={true}
-          className="xl:px-40"
         />
       </div>
+
 
       <FadeWrapper>
         <div className={`py-10`}>
