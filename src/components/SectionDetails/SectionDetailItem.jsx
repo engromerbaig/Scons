@@ -43,7 +43,7 @@ const SectionDetailItem = ({ serviceHeading, spanText, details, faqIcon, icons, 
                 className="w-full h-full rounded-full object-cover"
                 alt="Service Icon"
               />
-              <div className="absolute inset-0 rounded-full bg-neon opacity-10 pointer-events-none"></div>
+              <div className="absolute inset-0 rounded-full bg-neon opacity-15 pointer-events-none"></div>
             </div>
           </div>
         )}
