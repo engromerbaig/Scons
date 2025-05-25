@@ -11,9 +11,9 @@ import CMSFAQ from '../../../assets/icons/services/ServicesDetails/cms.svg';
 
 
 //mob
-import mobileFAQ1 from "../../../assets/icons/services/ServicesDetails/faq/mobile/1.jpg";
-import mobileFAQ2 from "../../../assets/icons/services/ServicesDetails/faq/mobile/2.jpg";
-import mobileFAQ3 from "../../../assets/icons/services/ServicesDetails/faq/mobile/3.jpg";
+import mobileFAQ1 from "../../../assets/icons/services/ServicesDetails/faq/mobile/1.webp";
+import mobileFAQ2 from "../../../assets/icons/services/ServicesDetails/faq/mobile/2.webp";
+import mobileFAQ3 from "../../../assets/icons/services/ServicesDetails/faq/mobile/3.webp";
 
 
 //web
