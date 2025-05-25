@@ -16,6 +16,8 @@ const ServiceAccordion = lazy(() => import('./ServiceAccordion'));
 const FadeInSection = lazy(() => import('../../utilities/Animations/FadeInSection'));
 const FadeWrapper = lazy(() => import('../../utilities/Animations/FadeWrapper'));
 
+import TechUsed from "./TechUsed";
+
 // Static imports for non-component data
 import { services } from '../../components/Services/servicesData';
 import { theme } from '../../theme';
@@ -63,6 +65,8 @@ const ServiceDetails = () => {
                 faqItems={service.iconRows}
                 heading={service.spanText}
             />
+
+            <TechUsed/>
 
             {/* Development Process Section */}
             <FadeWrapper>
