@@ -19,14 +19,14 @@ const SectionDetailItem = ({
       <div className="flex justify-between items-center cursor-pointer" onClick={onClick}>
         {/* Left icon and heading */}
         <div className="flex items-center gap-4">
-          <div className="bg-black border-2  rounded-lg border-neon p-2 lg:p-3">
+          <div className=" border-2  rounded-lg border-neon p-2 lg:p-3">
             <img src={faqIcon} alt="Service Icon" className="w-10 aspect-square svg-neon" />
           </div>
           <Heading 
             text={serviceHeading} 
             centered={false} 
             size="text-50px" 
-            color="text-white" 
+            color="text-black" 
             fontWeight="font-medium" 
           />
         </div>
@@ -48,7 +48,7 @@ const SectionDetailItem = ({
                 <BodyText 
                   text={detail.description} 
                   centered={false} 
-                  color="text-white"
+                  color="text-black"
                   className="leading-loose"
                   isAnimate={false}
                 />

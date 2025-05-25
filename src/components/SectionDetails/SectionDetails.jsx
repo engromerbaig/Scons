@@ -30,7 +30,7 @@ const SectionDetails = ({ faqSpanText, faqBodyText, faqItems }) => {
    
 
    <FadeWrapper>
- <div className={`faq-list bg-black ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal}`}>
+ <div className={`faq-list  ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal}`}>
         {faqItems.map((item, index) => (
           <SectionDetailItem
             key={index}
