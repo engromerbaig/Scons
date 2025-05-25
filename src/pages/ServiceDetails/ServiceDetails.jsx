@@ -89,7 +89,7 @@ const ServiceDetails = () => {
       </FadeWrapper>
 
       {/* Projects Section */}
-      {filteredProjects.length > 0 && (
+      {filteredProjects.length >= 2 && (
         <FadeInSection>
           <Projects
             heading={`Our ${service.heading} Projects`}
