@@ -50,7 +50,7 @@ export const technologiesData = {
     ],
   },
 
-  "UI/UX": {
+  "UI/UX Design": {
     DesignTools: [
       { name: "Figma", icon: icons.uiux.figmaUI },
       { name: "Adobe XD", icon: icons.uiux.xdUI },
@@ -113,7 +113,7 @@ export const technologiesData = {
     
   },
 
-  "AI & ML": {
+  "AI Integration": {
     AI: [
       { name: "Python", icon: icons.aiml.ai1 },
       { name: "Rails", icon: icons.aiml.ai2 },

@@ -48,7 +48,7 @@ export const descriptorText =
 
 export const services = [
   {
-    heading: "Mobile App Development",
+    heading: "Mobile Apps",
     spanText: "Mobile",
     image: mobileAppImage,
     serviceAccordionData: [
@@ -170,7 +170,7 @@ export const services = [
     ],
   },
   {
-    heading: "Web App Development",
+    heading: "Web Platforms",
     spanText: "Web",
     image: webAppImage,
     serviceAccordionData: [
