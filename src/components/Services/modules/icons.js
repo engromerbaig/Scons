@@ -28,9 +28,9 @@ import uiuxFAQ2 from "../../../assets/icons/services/ServicesDetails/faq/uiux/2.
 import uiuxFAQ3 from "../../../assets/icons/services/ServicesDetails/faq/uiux/3.webp";
 
 // Blockchain
-import blockchainFAQ1 from "../../../assets/icons/services/ServicesDetails/faq/blockchain/1.png";
-import blockchainFAQ2 from "../../../assets/icons/services/ServicesDetails/faq/blockchain/2.png";
-import blockchainFAQ3 from "../../../assets/icons/services/ServicesDetails/faq/blockchain/3.png";
+import blockchainFAQ1 from "../../../assets/icons/services/ServicesDetails/faq/blockchain/1.webp";
+import blockchainFAQ2 from "../../../assets/icons/services/ServicesDetails/faq/blockchain/2.webp";
+import blockchainFAQ3 from "../../../assets/icons/services/ServicesDetails/faq/blockchain/3.webp";
 
 // Cloud
 import cloudFAQ1 from "../../../assets/icons/services/ServicesDetails/faq/cloud/1.png";
