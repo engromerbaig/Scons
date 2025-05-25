@@ -38,9 +38,9 @@ import cloudFAQ2 from "../../../assets/icons/services/ServicesDetails/faq/cloud/
 import cloudFAQ3 from "../../../assets/icons/services/ServicesDetails/faq/cloud/3.png";
 
 // AI
-import aiFAQ1 from "../../../assets/icons/services/ServicesDetails/faq/ai/1.png";
-import aiFAQ2 from "../../../assets/icons/services/ServicesDetails/faq/ai/2.png";
-import aiFAQ3 from "../../../assets/icons/services/ServicesDetails/faq/ai/3.png";
+import aiFAQ1 from "../../../assets/icons/services/ServicesDetails/faq/ai/1.webp";
+import aiFAQ2 from "../../../assets/icons/services/ServicesDetails/faq/ai/2.webp";
+import aiFAQ3 from "../../../assets/icons/services/ServicesDetails/faq/ai/3.webp";
 
 // Consultation
 import consultationFAQ1 from "../../../assets/icons/services/ServicesDetails/faq/consultation/1.png";
