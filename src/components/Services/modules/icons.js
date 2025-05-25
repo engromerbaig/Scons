@@ -17,15 +17,15 @@ import mobileFAQ3 from "../../../assets/icons/services/ServicesDetails/faq/mobil
 
 
 //web
-import webFAQ1 from "../../../assets/icons/services/ServicesDetails/faq/web/1.png";
-import webFAQ2 from "../../../assets/icons/services/ServicesDetails/faq/web/2.png";
-import webFAQ3 from "../../../assets/icons/services/ServicesDetails/faq/web/3.png";
+import webFAQ1 from "../../../assets/icons/services/ServicesDetails/faq/web/1.webp";
+import webFAQ2 from "../../../assets/icons/services/ServicesDetails/faq/web/2.webp";
+import webFAQ3 from "../../../assets/icons/services/ServicesDetails/faq/web/3.webp";
 
 
 // UI/UX
-import uiuxFAQ1 from "../../../assets/icons/services/ServicesDetails/faq/uiux/1.png";
-import uiuxFAQ2 from "../../../assets/icons/services/ServicesDetails/faq/uiux/2.png";
-import uiuxFAQ3 from "../../../assets/icons/services/ServicesDetails/faq/uiux/3.png";
+import uiuxFAQ1 from "../../../assets/icons/services/ServicesDetails/faq/uiux/1.webp";
+import uiuxFAQ2 from "../../../assets/icons/services/ServicesDetails/faq/uiux/2.webp";
+import uiuxFAQ3 from "../../../assets/icons/services/ServicesDetails/faq/uiux/3.webp";
 
 // Blockchain
 import blockchainFAQ1 from "../../../assets/icons/services/ServicesDetails/faq/blockchain/1.png";
