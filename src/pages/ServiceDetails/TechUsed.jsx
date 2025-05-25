@@ -31,7 +31,7 @@ const TechUsed = ({ serviceHeading, heading}) => {
               className="mb-4"
               centered={false}
             />
-            <div className="grid grid-cols-2 xl:grid-cols-3 max-w-xl gap-2 xl:gap-4">
+            <div className="grid grid-cols-2 xl:grid-cols-4 max-w-4xl gap-2 xl:gap-4">
               {technologiesData[matchedCategory][platform].map((tech) => (
                 <Button
                   key={tech.name}
