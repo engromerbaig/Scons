@@ -28,11 +28,12 @@ const FadeWrapper = lazy(() =>
   import("../../utilities/Animations/FadeWrapper")
 );
 
-import TechUsed from "./TechUsed";
+import Projects from "../../components/Projects/Projects";
 
-// Static imports for non-component data
+import TechUsed from "./TechUsed";
 import { services } from "../../components/Services/servicesData";
 import { theme } from "../../theme";
+import projects from "../../pages/OurWork/projectDetails"; // Import projects data
 
 const ServiceDetails = () => {
   const { serviceSlug } = useParams();
@@ -48,6 +49,11 @@ const ServiceDetails = () => {
       </div>
     );
   }
+
+  // Filter projects where service.heading is in the project's service array
+  const filteredProjects = projects
+    .filter((project) => project.service.includes(service.heading))
+    .slice(0, 4); // Limit to 4 projects
 
   return (
     <div>
@@ -81,6 +87,17 @@ const ServiceDetails = () => {
       <FadeWrapper>
         <DevProcess />
       </FadeWrapper>
+
+      {/* Projects Section */}
+      {filteredProjects.length > 0 && (
+        <FadeInSection>
+          <Projects
+            heading={`Our ${service.heading} Projects`}
+            spanText={service.heading}
+            filteredProjects={filteredProjects}
+          />
+        </FadeInSection>
+      )}
 
       <FAQService faqData={service.faqData} faqHeading={service.heading} />
     </div>

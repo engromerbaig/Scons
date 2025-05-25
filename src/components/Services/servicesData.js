@@ -170,7 +170,7 @@ export const services = [
     ],
   },
   {
-    heading: "Web Platforms",
+    heading: "Web Development",
     spanText: "Web",
     image: webAppImage,
     serviceAccordionData: [

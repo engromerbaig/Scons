@@ -5,7 +5,7 @@ import projects from "../../pages/OurWork/projectDetails";
 import AnimatedArrow from "../AnimatedArrow/AnimatedArrow";
 import ProjectGrid from "../../pages/OurWork/ProjectGrid";
 
-// Function to select 4 random unique projects
+// Function to select random unique projects
 const getRandomProjects = (projects, count = 4) => {
   const shuffled = [...projects];
   for (let i = shuffled.length - 1; i > 0; i--) {
@@ -15,22 +15,44 @@ const getRandomProjects = (projects, count = 4) => {
   return shuffled.slice(0, Math.min(count, projects.length));
 };
 
-const Projects = () => {
-  // ✅ Only generate random projects once on mount
-  const randomProjects = useMemo(() => getRandomProjects(projects, 4), []);
+const Projects = ({
+  heading = "A Portfolio of Our Success",
+  spanText = "Success",
+  spanColor = "text-neon",
+  centered = false,
+  showUnderline = true,
+  arrowText = "More Projects",
+  arrowLink = "/portfolio",
+  filteredProjects = null, // Allow passing specific projects
+  enableAnimation = true,
+  containerClassName = "",
+}) => {
+  // Use provided filteredProjects or generate random projects
+  const randomProjects = useMemo(
+    () => filteredProjects || getRandomProjects(projects, 4),
+    [filteredProjects]
+  );
 
   return (
-    <div id="projects"
+    <div
+      id="projects"
       className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} flex flex-col items-center`}
     >
       <div className="flex flex-col xl:flex-row xl:justify-between justify-start item-start xl:items-center w-full mb-12 xl:mb-20">
-        <Heading text="A Portfolio of Our Success" spanText="Success" centered={false} spanColor="text-neon" className="text-left" showUnderline />
-        <AnimatedArrow text="More Projects" to="/portfolio" />
+        <Heading
+          text={heading}
+          spanText={spanText}
+          centered={centered}
+          spanColor={spanColor}
+          className="text-left"
+          showUnderline={showUnderline}
+        />
+        <AnimatedArrow text={arrowText} to={arrowLink} />
       </div>
       <ProjectGrid
         filteredProjects={randomProjects}
-        enableAnimation={true}
-        containerClassName=""
+        enableAnimation={enableAnimation}
+        containerClassName={containerClassName}
       />
     </div>
   );

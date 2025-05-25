@@ -18,7 +18,7 @@ export const technologiesData = {
     ],
   },
 
-  "Web Platforms": {
+  "Web Development": {
     Frontend: [
       { name: "JavaScript", icon: icons.web.JSFrontend },
       { name: "TypeScript", icon: icons.web.TSFrontend },
