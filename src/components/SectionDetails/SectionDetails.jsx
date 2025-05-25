@@ -24,7 +24,7 @@ const SectionDetails = ({ faqSpanText, faqBodyText, faqItems }) => {
                 details={item.details}
                 faqIcon={item.faqIcon[0]} // Pass the dynamic icon
                 icons={item.icons} // Pass the icons array
-                isImageLeft={index % 2 !== 0} // Alternate right for odd, left for even
+                isImageLeft={index % 2 === 0} // Alternate right for odd, left for even
               />
             </div>
           ))}
