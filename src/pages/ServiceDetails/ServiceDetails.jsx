@@ -52,15 +52,16 @@ const ServiceDetails = () => {
                 />
             </FadeInSection>
 
-            <FadeInSection>
+            {/* <FadeInSection>
                 <ServiceAccordion heading={service.spanText} accordionData={service.serviceAccordionData} />
-            </FadeInSection>
+            </FadeInSection> */}
 
             {/* Section Details */}
             <SectionDetails
                 faqSpanText={service.faqSpanText}
                 faqBodyText={service.faqBodyText}
                 faqItems={service.iconRows}
+                heading={service.spanText}
             />
 
             {/* Development Process Section */}

@@ -4,15 +4,31 @@ import GreenBelt from '../GreenBelt/GreenBelt';
 import FadeWrapper from '../../utilities/Animations/FadeWrapper';
 import SectionDetailItem from "./SectionDetailItem";
 import { theme } from '../../theme';
+import BodyText from '../BodyText/BodyText';
 
-const SectionDetails = ({ faqSpanText, faqBodyText, faqItems }) => {
+const SectionDetails = ({ faqSpanText, faqBodyText, heading, faqItems }) => {
   return (
     <div className={`min-h-screen ${theme.layoutPages.paddingVertical}`}>
-      <div className="flex flex-col gap-6">
-        <GreenBelt className="">
-          <Heading text="Creating Solutions That Drive Success" />
-        </GreenBelt>
+
+      <div className={`flex flex-col gap-2 ${theme.layoutPages.paddingHorizontal}`}>
+
+   <Heading
+            text={`Types of ${heading} Apps We Build`}
+            spanText={heading}
+            spanColor="text-neon"
+            centered={true}
+            // className={`${theme.layoutPages.paddingHorizontal}`}
+          />
+
+          <BodyText
+            text={`We cover a wide range of ${heading} apps, lorem epsom osd  s da fd ffs gf dg d gd dg dfg fd gfd gfd g dg d gdf gfdg  dfg fd gfd gfd g dg d gdf gfdg  dfg fd gfd gfd g dg d gdf gfdg`}
+            centered={true}
+            className='xl:px-40'
+          />
+
       </div>
+   
+       
 
       <FadeWrapper>
         <div className={`py-10 `}>
