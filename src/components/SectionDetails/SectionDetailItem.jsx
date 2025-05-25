@@ -21,7 +21,7 @@ const SectionDetailItem = ({ serviceHeading, spanText, details, faqIcon, icons, 
     >
       <div
         ref={containerRef}
-        className={`opacity-0 translate-x-[-100px]  text-black grid grid-cols-1 md:grid-cols-12  shadow-3xl py-6 xl:py-10 ${theme.layoutPages.paddingHorizontal} ${
+        className={`opacity-0 translate-x-[-100px]  text-black grid grid-cols-1 md:grid-cols-12  shadow-3xl py-6 xl:py-16 ${theme.layoutPages.paddingHorizontal} ${
           isImageLeft
             ? 'tube-active-gradient-mirrored border-l-0 rounded-r-full'
             : 'tube-active-gradient border-r-0 rounded-l-full'
