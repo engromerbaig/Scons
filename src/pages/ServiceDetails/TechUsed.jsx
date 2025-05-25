@@ -27,7 +27,7 @@ const TechUsed = ({ serviceHeading, heading}) => {
             <Heading
               text={platform}
               fontWeight="font-black"
-              size="text-30px"
+              size="text-40px xl:text-30px"
               className="mb-4"
               centered={false}
             />
@@ -63,7 +63,7 @@ const TechUsed = ({ serviceHeading, heading}) => {
           centered={false}
         />
         <BodyText
-          text="Hire from our pool of 350+ specialized experts in web, mobile, and software engineering, specializing in the latest technologies and frameworks, ready to scale your development teams effortlessly."
+          text={`We cover a wide range of ${heading} technologies to ensure a robust and scalable solution that aligns with your business needs.`}
           centered={false}
           className="max-w-2xl"
         />

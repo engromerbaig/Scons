@@ -75,7 +75,7 @@ const ServiceDetails = () => {
       />
 
       {/* Pass service.heading to TechUsed */}
-      <TechUsed heading={service.spanText} serviceHeading={service.heading} />
+      <TechUsed heading={service.heading} serviceHeading={service.heading} />
 
       {/* Development Process Section */}
       <FadeWrapper>
