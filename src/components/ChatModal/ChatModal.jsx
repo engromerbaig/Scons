@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import FormTemplate from '../FormTemplate/FormTemplate';
 import Heading from '../Heading/Heading';
 import BodyText from '../BodyText/BodyText';
+import { Link } from 'react-router-dom';
 const ChatModal = ({ isOpen, onClose }) => {
   const [showCloseButton, setShowCloseButton] = useState(false);
 
@@ -75,6 +76,22 @@ useEffect(() => {
             onSuccess={onClose}
             formName="contact"
           />
+
+        <BodyText
+  text={
+    <>
+      We will store your responses in our secure database. Please consult our{' '}
+      <span className="text-neon">
+        <Link to="/privacy-policy" onClick={onClose}>Privacy Policy</Link>
+      </span>.
+    </>
+  }
+  centered={false}
+  color="text-grayText"
+  size="text-sm"
+  className="mt-2 xl:mt-4"
+/>
+
         </div>
       </div>
     </div>
