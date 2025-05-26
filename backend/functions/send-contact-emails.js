@@ -13,13 +13,17 @@ if (missingEnvVars.length > 0) {
 }
 
 // Email transporter configuration
+
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  host: "smtp.zoho.com", // or "smtp.zoho.eu" if your domain is hosted in Europe
+  port: 465,
+  secure: true, // true for port 465, false for port 587
   auth: {
-    user: process.env.REACT_APP_EMAIL_USER,
-    pass: process.env.REACT_APP_EMAIL_PASS,
+    user: process.env.REACT_APP_EMAIL_USER, // e.g. "sales@sconstech.com"
+    pass: process.env.REACT_APP_EMAIL_PASS, // App Password from Zoho
   },
 });
+
 
 // Embedded HTML templates
 const thankYouEmailTemplate = `
@@ -360,15 +364,14 @@ exports.handler = async function (event, context) {
     const mailToUser = {
       from: process.env.REACT_APP_EMAIL_USER,
       to: email,
-      subject: 'Thank You for Contacting Tyfora!',
+      subject: 'Thank You for Contacting Scons!',
       html: thankYouEmailHtml,
     };
 
     // Send both emails concurrently
-    await Promise.all([
-      transporter.sendMail(mailToCompany),
-      transporter.sendMail(mailToUser),
-    ]);
+ await transporter.sendMail(mailToCompany);
+await new Promise(resolve => setTimeout(resolve, 1000)); // 1-second delay
+await transporter.sendMail(mailToUser);
 
     return {
       statusCode: 200,
