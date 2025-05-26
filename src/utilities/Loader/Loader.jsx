@@ -9,11 +9,10 @@ const Loader = () => {
         <div className="flex items-baseline">
           <Heading
             text="Scons"
-            fontWeight="font-medium"
+            fontWeight="font-semibold"
             color="text-black"
-            fontFamily="font-coolvetica"
+            fontFamily="font-poppins"
             size="text-150px md:text-90px"
-            isAnimate={true}
           />
           <span
             className="dot ml-2 w-2 h-2 rounded-full bg-neon pulse"
