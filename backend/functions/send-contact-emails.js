@@ -1,12 +1,24 @@
 const nodemailer = require('nodemailer');
-require('dotenv').config();
+const path = require('path');
+
+// Load environment variables explicitly from .env in the same directory
+require('dotenv').config({ path: path.resolve(__dirname, '.env') });
+
+// Validate environment variables
+const requiredEnvVars = ['EMAIL_USER', 'EMAIL_PASS', 'COMPANY_EMAIL'];
+const missingEnvVars = requiredEnvVars.filter((varName) => !process.env[varName]);
+
+if (missingEnvVars.length > 0) {
+  console.error('Missing environment variables:', missingEnvVars);
+  throw new Error(`Missing environment variables: ${missingEnvVars.join(', ')}`);
+}
 
 // Email transporter configuration
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: "engromerbaig@gmail.com",
-    pass: "ujnszpscgvuyghax",
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
   },
 });
 
@@ -293,9 +305,9 @@ function formatDate() {
 exports.handler = async function (event, context) {
   // Log environment variables for debugging
   console.log('Environment Variables:', {
-    EMAIL_USER: "engromerbaig@gmail.com",
-    EMAIL_PASS: "ujnszpscgvuyghax" ? '[REDACTED]' : 'undefined',
-    COMPANY_EMAIL: "engromerbaig@gmail.com",
+    EMAIL_USER: process.env.EMAIL_USER,
+    EMAIL_PASS: process.env.EMAIL_PASS ? '[REDACTED]' : 'undefined',
+    COMPANY_EMAIL: process.env.COMPANY_EMAIL,
   });
 
   // Only allow POST requests
@@ -339,15 +351,15 @@ exports.handler = async function (event, context) {
 
     // Email to the company
     const mailToCompany = {
-      from: "engromerbaig@gmail.com",
-      to: "engromerbaig@gmail.com",
+      from: process.env.EMAIL_USER,
+      to: process.env.COMPANY_EMAIL,
       subject: `New ${formName.charAt(0).toUpperCase() + formName.slice(1)} Submission from ${name}`,
       html: companyEmailHtml,
     };
 
     // Email to the user
     const mailToUser = {
-      from: "engromerbaig@gmail.com",
+      from: process.env.EMAIL_USER,
       to: email,
       subject: 'Thank You for Contacting Tyfora!',
       html: thankYouEmailHtml,
