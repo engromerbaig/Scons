@@ -13,6 +13,8 @@ import ScrollToTop from './utilities/ScrollToTop';
 import HeroButton from './components/HeroButton/HeroButton';
 import ChatModal from './components/ChatModal/ChatModal';
 
+import ThankYou from './pages/ThankYou/ThankYou';
+
 const Home = lazy(() => import('./pages/Home/Home'));
 const KnowUs = lazy(() => import('./pages/KnowUs/KnowUs'));
 const OurWork = lazy(() => import('./pages/OurWork/OurWork'));
@@ -75,6 +77,11 @@ function AppContent() {
           <Route path="/packages" element={<Packages />} />
           <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+
+          <Route
+          path="/thank-you"
+          element={<ThankYou />}
+        />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
