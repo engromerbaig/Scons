@@ -12,7 +12,7 @@ const Highlights = () => {
   // Define the stats directly in the Highlights component
 const stats = [
   { title: "Project Delivered", value: "100+", icon: projectIcon, link: "/portfolio" },
-  { title: "Diverse Clients", value: "20+", icon: clientIcon, link: "#" },
+  { title: "Diverse Clients", value: "20+", icon: clientIcon, link: "/portfolio" },
   { title: "Global Offices", value: "2", icon: officeIcon, link: "#locations" },
 ];
 

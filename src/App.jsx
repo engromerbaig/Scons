@@ -1,7 +1,3 @@
-
-
-// Original Code (Commented Out)
-
 import React, { Suspense, lazy, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation, useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
@@ -42,7 +38,9 @@ function ServiceDetailsWrapper() {
 function AppContent() {
   const location = useLocation();
   const hideFooterRoutes = ['/careers/apply', '/lets-innovate'];
+  const hideHeroButtonRoutes = ['/contact-us', '/thank-you'];
   const shouldShowFooter = !hideFooterRoutes.includes(location.pathname);
+  const shouldShowHeroButton = !hideHeroButtonRoutes.includes(location.pathname);
 
   const [isModalOpen, setModalOpen] = useState(false);
 
@@ -57,7 +55,7 @@ function AppContent() {
 
       <TopScroller />
       <Navbar />
-      <HeroButton onClick={() => setModalOpen(true)} />
+      {shouldShowHeroButton && <HeroButton onClick={() => setModalOpen(true)} />}
       <ChatModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} />
 
       <Suspense fallback={<Loader />}>
@@ -77,11 +75,7 @@ function AppContent() {
           <Route path="/packages" element={<Packages />} />
           <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-
-          <Route
-          path="/thank-you"
-          element={<ThankYou />}
-        />
+          <Route path="/thank-you" element={<ThankYou />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
