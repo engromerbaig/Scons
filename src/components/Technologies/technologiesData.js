@@ -10,7 +10,7 @@ export const technologiesData = {
     Android: [
       { name: "Java", icon: icons.mobile.Java },
       { name: "Kotlin", icon: icons.mobile.Kotlin },
-      { name: "Retrofit", icon: icons.mobile.Retrofit },
+      { name: "Rust", icon: icons.mobile.Retrofit },
     ],
     Hybrid: [
       { name: "React Native", icon: icons.mobile.ReactNative },
