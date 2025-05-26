@@ -51,6 +51,11 @@
 @tailwind utilities;
 
 
+/* avoiding layout shifts */
+html {
+  scrollbar-gutter: stable;
+}
+
 
 /* hide scroll bar */
 

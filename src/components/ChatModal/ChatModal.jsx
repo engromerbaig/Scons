@@ -5,26 +5,25 @@ import BodyText from '../BodyText/BodyText';
 const ChatModal = ({ isOpen, onClose }) => {
   const [showCloseButton, setShowCloseButton] = useState(false);
 
-  useEffect(() => {
-    let showBtnTimer;
-    let hideScrollTimer;
+useEffect(() => {
+  let showBtnTimer;
 
-    if (isOpen) {
-      showBtnTimer = setTimeout(() => setShowCloseButton(true), 500);
-      hideScrollTimer = setTimeout(() => {
-        document.body.style.overflow = 'hidden';
-      }, 0);
-    } else {
-      document.body.style.overflow = '';
-      setShowCloseButton(false);
-    }
+  if (isOpen) {
+    showBtnTimer = setTimeout(() => setShowCloseButton(true), 500);
+    document.body.style.overflow = 'hidden'; // Disable scroll immediately
 
-    return () => {
-      clearTimeout(showBtnTimer);
-      clearTimeout(hideScrollTimer);
-      document.body.style.overflow = '';
-    };
-  }, [isOpen]);
+  } else {
+    document.body.style.overflow = ''; // Re-enable scroll
+
+    setShowCloseButton(false);
+  }
+
+  return () => {
+    clearTimeout(showBtnTimer);
+    document.body.style.overflow = ''; // Ensure scroll is reset
+  };
+}, [isOpen]);
+
 
   const handleFormSubmit = (formData) => {
     console.log('Form Submitted with Data:', formData);
