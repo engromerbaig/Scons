@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import FormTemplate from '../FormTemplate/FormTemplate';
 import Heading from '../Heading/Heading';
 import BodyText from '../BodyText/BodyText';
-
 const ChatModal = ({ isOpen, onClose }) => {
+  const [showCloseButton, setShowCloseButton] = useState(false);
+
   useEffect(() => {
     let showBtnTimer;
     let hideScrollTimer;
@@ -15,6 +16,7 @@ const ChatModal = ({ isOpen, onClose }) => {
       }, 0);
     } else {
       document.body.style.overflow = '';
+      setShowCloseButton(false);
     }
 
     return () => {
@@ -43,12 +45,14 @@ const ChatModal = ({ isOpen, onClose }) => {
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
-        <button
-          onClick={onClose}
-          className="absolute top-6 right-6 text-50px text-black bg-white hover:bg-white rounded-full w-8 h-8 flex items-center justify-center z-120"
-        >
-          ×
-        </button>
+        {showCloseButton && (
+          <button
+            onClick={onClose}
+            className="absolute top-6 right-6 text-50px text-black bg-white hover:bg-white rounded-full w-8 h-8 flex items-center justify-center z-120"
+          >
+            ×
+          </button>
+        )}
 
         <div className="flex flex-col justify-start text-start gap-6">
           <Heading
@@ -69,7 +73,8 @@ const ChatModal = ({ isOpen, onClose }) => {
             handleFormSubmit={handleFormSubmit}
             inputStyles={inputStyles}
             hideErrorMessages={true}
-            onSuccess={onClose} // Pass onClose as onSuccess to close modal before redirect
+            onSuccess={onClose}
+            formName="contact"
           />
         </div>
       </div>

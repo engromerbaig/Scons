@@ -5,8 +5,8 @@ require('dotenv').config();
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
+    user: "engromerbaig@gmail.com",
+    pass: "ujnszpscgvuyghax",
   },
 });
 
@@ -20,7 +20,7 @@ const thankYouEmailTemplate = `
     <style>
         @font-face {
             font-family: 'manrope';
-            src: url('https://tyfora.com/fonts/manropeDisplay/manropeDisplay-Regular.woff2') format('woff2');
+            src: url('https://your-netlify-site.netlify.app/fonts/manropeDisplay/manropeDisplay-Regular.woff2') format('woff2');
             font-weight: 400;
             font-style: normal;
             font-display: swap;
@@ -80,7 +80,7 @@ const thankYouEmailTemplate = `
                 <div class="header">
                     <div style="text-align: left;">
                         <a href="https://tyfora.com/" class="logo">
-                            <img src="http://drive.google.com/uc?export=view&id=1WFQ67g5ZzE9U0QUbqyP0zNjIlGqJ85yd" alt="Tyfora Logo" style="width: 150px;">
+                            <img src="https://your-netlify-site.netlify.app/images/tyfora-logo.png" alt="Tyfora Logo" style="width: 150px;">
                         </a>
                     </div>
                     <div style="margin-top: 40px; margin-bottom: 40px; padding: 40px 0;">
@@ -101,7 +101,7 @@ const thankYouEmailTemplate = `
                         <strong>Description:</strong> {{description}}
                     </p>
                     <a href="https://tyfora.com/">
-                        <img src="http://drive.google.com/uc?export=view&id=1WFQ67g5ZzE9U0QUbqyP0zNjIlGqJ85yd" alt="Tyfora Logo" style="width: 150px;">
+                        <img src="https://your-netlify-site.netlify.app/images/tyfora-logo.png" alt="Tyfora Logo" style="width: 150px;">
                     </a>
                 </div>
             </td>
@@ -110,16 +110,16 @@ const thankYouEmailTemplate = `
             <td>
                 <div class="footer" style="text-align: center;">
                     <a href="https://www.facebook.com/tyfora" aria-label="Facebook" style="text-decoration: none; color: #00c5ff;">
-                        <img src="http://drive.google.com/uc?export=view&id=1zT85UNlpatrIpUki354bKrl4HWq4Z64y" alt="Facebook" style="width: 30px; height: 30px; margin-right: 10px;">
+                        <img src="https://your-netlify-site.netlify.app/images/facebook-icon.png" alt="Facebook" style="width: 30px; height: 30px; margin-right: 10px;">
                     </a>
                     <a href="https://www.linkedin.com/company/tyfora" aria-label="LinkedIn" style="text-decoration: none; color: #00c5ff;">
-                        <img src="http://drive.google.com/uc?export=view&id=1ianCDwCpGiHynlVmgNB3WBJYY8FmjKEt" alt="LinkedIn" style="width: 30px; height: 30px; margin-right: 10px;">
+                        <img src="https://your-netlify-site.netlify.app/images/linkedin-icon.png" alt="LinkedIn" style="width: 30px; height: 30px; margin-right: 10px;">
                     </a>
                     <a href="https://www.instagram.com/tyfora_/" aria-label="Instagram" style="text-decoration: none; color: #00c5ff;">
-                        <img src="http://drive.google.com/uc?export=view&id=1AAnQRpugLJfOLIQR2QnKbEO3FbOluSZ0" alt="Instagram" style="width: 30px; height: 30px; margin-right: 10px;">
+                        <img src="https://your-netlify-site.netlify.app/images/instagram-icon.png" alt="Instagram" style="width: 30px; height: 30px; margin-right: 10px;">
                     </a>
                     <a href="https://x.com/tyforaofficial" aria-label="X" style="text-decoration: none; color: #00c5ff;">
-                        <img src="http://drive.google.com/uc?export=view&id=1igiDdVmE-G4cJDXguTeWSIu2bkvBkUXT" alt="X" style="width: 30px; height: 30px;">
+                        <img src="https://your-netlify-site.netlify.app/images/x-icon.png" alt="X" style="width: 30px; height: 30px;">
                     </a>
                 </div>
             </td>
@@ -156,7 +156,7 @@ const companyEmailTemplate = `
     <style>
         @font-face {
             font-family: 'manrope';
-            src: url('https://tyfora.com/fonts/manropeDisplay/manropeDisplay-Regular.woff2') format('woff2');
+            src: url('https://your-netlify-site.netlify.app/fonts/manropeDisplay/manropeDisplay-Regular.woff2') format('woff2');
             font-weight: 400;
             font-style: normal;
             font-display: swap;
@@ -215,7 +215,7 @@ const companyEmailTemplate = `
     <table class="email-container" cellpadding="0" cellspacing="0" border="0" align="center" width="100%">
         <tr>
             <td class="header">
-                <h1 style="font-size: 24px; background: #00c5ff; padding: 15px 0; margin: 0 0 10px 0;">New Contact Submission</h1>
+                <h1 style="font-size: 24px; background: #00c5ff; padding: 15px 0; margin: 0 0 10px 0;">New {{formName}} Submission</h1>
                 <p style="font-size: 14px; font-weight: bold; color: #555; margin-top: 30px;">{{dateTime}}</p>
             </td>
         </tr>
@@ -232,10 +232,10 @@ const companyEmailTemplate = `
             <td>
                 <div class="main-content">
                     <p style="font-size: 14px; color: #cccbcb; font-weight: 600; line-height: 1.8;">
-                        A new contact form submission has been received. Please review the details above and follow up as needed.
+                        A new {{formName}} submission has been received. Please review the details above and follow up as needed.
                     </p>
                     <a href="https://tyfora.com/">
-                        <img src="http://drive.google.com/uc?export=view&id=1WFQ67g5ZzE9U0QUbqyP0zNjIlGqJ85yd" alt="Tyfora Logo" style="width: 150px;">
+                        <img src="https://your-netlify-site.netlify.app/images/tyfora-logo.png" alt="Tyfora Logo" style="width: 150px;">
                     </a>
                 </div>
             </td>
@@ -244,16 +244,16 @@ const companyEmailTemplate = `
             <td>
                 <div class="footer">
                     <a href="https://www.facebook.com/tyfora" aria-label="Visit Tyfora on Facebook" style="text-decoration: none; color: #00c5ff;">
-                        <img src="http://drive.google.com/uc?export=view&id=1zT85UNlpatrIpUki354bKrl4HWq4Z64y" alt="Facebook" class="social-icons">
+                        <img src="https://your-netlify-site.netlify.app/images/facebook-icon.png" alt="Facebook" class="social-icons">
                     </a>
                     <a href="https://www.linkedin.com/company/tyfora" aria-label="Visit Tyfora on LinkedIn" style="text-decoration: none; color: #00c5ff;">
-                        <img src="http://drive.google.com/uc?export=view&id=1ianCDwCpGiHynlVmgNB3WBJYY8FmjKEt" alt="LinkedIn" class="social-icons">
+                        <img src="https://your-netlify-site.netlify.app/images/linkedin-icon.png" alt="LinkedIn" class="social-icons">
                     </a>
                     <a href="https://www.instagram.com/tyfora_/" aria-label="Visit Tyfora on Instagram" style="text-decoration: none; color: #00c5ff;">
-                        <img src="http://drive.google.com/uc?export=view&id=1AAnQRpugLJfOLIQR2QnKbEO3FbOluSZ0" alt="Instagram" class="social-icons">
+                        <img src="https://your-netlify-site.netlify.app/images/instagram-icon.png" alt="Instagram" class="social-icons">
                     </a>
                     <a href="https://x.com/tyforaofficial" aria-label="Visit Tyfora on X" style="text-decoration: none; color: #00c5ff;">
-                        <img src="http://drive.google.com/uc?export=view&id=1igiDdVmE-G4cJDXguTeWSIu2bkvBkUXT" alt="X" class="social-icons">
+                        <img src="https://your-netlify-site.netlify.app/images/x-icon.png" alt="X" class="social-icons">
                     </a>
                 </div>
             </td>
@@ -291,6 +291,13 @@ function formatDate() {
 }
 
 exports.handler = async function (event, context) {
+  // Log environment variables for debugging
+  console.log('Environment Variables:', {
+    EMAIL_USER: "engromerbaig@gmail.com",
+    EMAIL_PASS: "ujnszpscgvuyghax" ? '[REDACTED]' : 'undefined',
+    COMPANY_EMAIL: "engromerbaig@gmail.com",
+  });
+
   // Only allow POST requests
   if (event.httpMethod !== 'POST') {
     return {
@@ -302,44 +309,55 @@ exports.handler = async function (event, context) {
   try {
     // Parse form data from Netlify
     const data = JSON.parse(event.body);
-    const { name, email, phone, topic, description } = data;
+    const formName = data['form-name'] || 'contact';
+    const { name, email, phone, topic = 'Not specified', description } = data;
     const dateTime = formatDate();
 
-    // Replace placeholders in company email template
+    // Validate required fields
+    if (!name || !email || !phone || !description) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ message: 'Missing required fields' }),
+      };
+    }
+
+    // Replace placeholders in templates
     const companyEmailHtml = companyEmailTemplate
+      .replace('{{formName}}', formName.charAt(0).toUpperCase() + formName.slice(1))
       .replace('{{dateTime}}', dateTime)
       .replace('{{name}}', name)
       .replace('{{email}}', email)
       .replace('{{phone}}', phone)
-      .replace('{{topic}}', topic || 'Not specified')
+      .replace('{{topic}}', topic)
       .replace('{{description}}', description);
 
-    // Replace placeholders in thank you email template
     const thankYouEmailHtml = thankYouEmailTemplate
       .replace('{{name}}', name)
       .replace('{{phone}}', phone)
-      .replace('{{topic}}', topic || 'Not specified')
+      .replace('{{topic}}', topic)
       .replace('{{description}}', description);
 
     // Email to the company
     const mailToCompany = {
-      from: process.env.EMAIL_USER,
-      to: process.env.COMPANY_EMAIL,
-      subject: `New Contact Form Submission from ${name}`,
+      from: "engromerbaig@gmail.com",
+      to: "engromerbaig@gmail.com",
+      subject: `New ${formName.charAt(0).toUpperCase() + formName.slice(1)} Submission from ${name}`,
       html: companyEmailHtml,
     };
 
     // Email to the user
     const mailToUser = {
-      from: process.env.EMAIL_USER,
+      from: "engromerbaig@gmail.com",
       to: email,
       subject: 'Thank You for Contacting Tyfora!',
       html: thankYouEmailHtml,
     };
 
-    // Send both emails
-    await transporter.sendMail(mailToCompany);
-    await transporter.sendMail(mailToUser);
+    // Send both emails concurrently
+    await Promise.all([
+      transporter.sendMail(mailToCompany),
+      transporter.sendMail(mailToUser),
+    ]);
 
     return {
       statusCode: 200,
@@ -349,7 +367,11 @@ exports.handler = async function (event, context) {
     console.error('Error sending emails:', error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ message: 'Error sending emails', error: error.message }),
+      body: JSON.stringify({
+        message: 'Error sending emails',
+        error: error.message,
+        stack: error.stack,
+      }),
     };
   }
 };

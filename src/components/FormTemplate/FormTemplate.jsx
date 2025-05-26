@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
+import { useNavigate } from 'react-router-dom';
 import FormField from '../FormSteps/modules/FormField';
 import Button from '../Button/Button';
 
@@ -11,9 +11,10 @@ const FormTemplate = ({
   buttonWidth = 'w-full',
   textAreaRows = 1,
   showSelect = false,
-  onSuccess, // Optional callback for additional actions before redirect
+  onSuccess,
+  formName = 'contact',
 }) => {
-  const navigate = useNavigate(); // Hook for programmatic navigation
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -36,13 +37,11 @@ const FormTemplate = ({
     const isAllFieldsFilled = name && email && phone && description;
     const topicValid = showSelect ? formData.topic : true;
     setIsFormValid(!!(isAllFieldsFilled && topicValid));
-    console.log('isFormValid:', isFormValid, 'formData:', formData); // Debug
   }, [formData, showSelect]);
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submit triggered'); // Debug
-    console.log('Form Data:', formData); // Debug
+    console.log('Form submit triggered', { formData });
 
     const newErrors = {
       name: !formData.name,
@@ -53,33 +52,30 @@ const FormTemplate = ({
     };
 
     setErrors(newErrors);
-    console.log('Errors:', newErrors); // Debug
-
-    const hasErrors = Object.values(newErrors).some((e) => e);
-    console.log('Has Errors:', hasErrors); // Debug
-    if (hasErrors) return;
+    if (Object.values(newErrors).some((e) => e)) {
+      console.log('Validation errors:', newErrors);
+      return;
+    }
 
     try {
-      console.log('Simulating submission locally'); // Debug
-      // Comment out Netlify fetch for local testing
-      /*
-      const response = await fetch('/', {
+      const response = await fetch('/.netlify/functions/send-contact-emails', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({
-          'form-name': 'contact',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          'form-name': formName,
           ...formData,
-        }).toString(),
+        }),
       });
 
       if (!response.ok) {
-        throw new Error('Form submission failed');
+        throw new Error(`Form submission failed: ${response.statusText}`);
       }
-      */
-      handleFormSubmit(formData); // Call the passed handleFormSubmit
-      if (onSuccess) onSuccess(); // Call optional onSuccess callback
-      navigate('/thank-you'); // Redirect to /thank-you
-      console.log('Submission successful, redirecting to /thank-you'); // Debug
+
+      const result = await response.json();
+      console.log('Submission result:', result);
+      handleFormSubmit(formData);
+      if (onSuccess) onSuccess();
+      navigate('/thank-you');
     } catch (error) {
       console.error('Error submitting form:', error);
     }
@@ -99,13 +95,13 @@ const FormTemplate = ({
   return (
     <div className="flex flex-col gap-2 lg:gap-6">
       <form
-        name="contact"
+        name={formName}
         method="POST"
         data-netlify="true"
         data-netlify-honeypot="bot-field"
         onSubmit={onSubmit}
       >
-        <input type="hidden" name="form-name" value="contact" />
+        <input type="hidden" name="form-name" value={formName} />
         <div>
           <FormField
             name="name"
