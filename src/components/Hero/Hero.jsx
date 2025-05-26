@@ -47,7 +47,7 @@ const Hero = () => {
               >
                 <div className="mb-4">
                   <AnimatedHeading
-                    prefixText="We are a"
+                    prefixText="We are"
                     animatedWords={["Software", "Web", "App", "IT", "AI"]}
                     suffixText="Development Company"
                     color="text-black"

@@ -24,6 +24,7 @@ const FormTemplate = ({
     ...initialFormData,
   });
   const [isFormValid, setIsFormValid] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState({
     name: false,
     email: false,
@@ -58,6 +59,7 @@ const FormTemplate = ({
     }
 
     try {
+      setIsLoading(true);
       const response = await fetch('/.netlify/functions/send-contact-emails', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -78,6 +80,8 @@ const FormTemplate = ({
       navigate('/thank-you');
     } catch (error) {
       console.error('Error submitting form:', error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -201,15 +205,16 @@ const FormTemplate = ({
           <Button
             name="Submit"
             className={`${buttonWidth} py-2`}
-            bgColor={isFormValid ? 'bg-neon' : 'bg-neon/90'}
+            bgColor={isFormValid ? 'bg-neon' : 'bg-neon/60'}
             textColor="text-neon"
-            hoverBgColor={isFormValid ? 'bg-neon' : 'bg-neon'}
+            hoverBgColor={isFormValid ? 'bg-neon' : 'bg-neon/60'}
             hoverTextColor="text-black"
             fontSize="text-sm"
             fontWeight="font-bold"
             textAlign="justify-center"
             type="submit"
-            disabled={!isFormValid}
+            disabled={!isFormValid || isLoading}
+            isLoading={isLoading}
           />
         </div>
       </form>
