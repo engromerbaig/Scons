@@ -97,7 +97,7 @@ const FormTemplate = ({
   ];
 
   return (
-    <div className="flex flex-col gap-2 lg:gap-6">
+    <div className="flex flex-col gap-20 lg:gap-40">
       <form
         name={formName}
         method="POST"
@@ -106,7 +106,8 @@ const FormTemplate = ({
         onSubmit={onSubmit}
       >
         <input type="hidden" name="form-name" value={formName} />
-        <div>
+
+        <div className="xl:mb-2">
           <FormField
             name="name"
             type="text"
@@ -124,7 +125,7 @@ const FormTemplate = ({
           )}
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-2">
+        <div className="flex flex-col lg:flex-row xl:gap-2 xl:mb-2">
           <div className="flex-1">
             <FormField
               name="email"
@@ -162,7 +163,7 @@ const FormTemplate = ({
         </div>
 
         {showSelect && (
-          <div>
+          <div className="xl:mb-2">
             <FormField
               name="topic"
               type="select"
@@ -182,7 +183,7 @@ const FormTemplate = ({
           </div>
         )}
 
-        <div>
+        <div className="xl:mb-2">
           <FormField
             name="description"
             type="textarea"
