@@ -5,7 +5,7 @@ const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '.env') });
 
 // Validate environment variables
-const requiredEnvVars = ['EMAIL_USER', 'EMAIL_PASS', 'COMPANY_EMAIL'];
+const requiredEnvVars = ['REACT_APP_EMAIL_USER', 'REACT_APP_EMAIL_PASS', 'REACT_APP_COMPANY_EMAIL'];
 const missingEnvVars = requiredEnvVars.filter((varName) => !process.env[varName]);
 
 if (missingEnvVars.length > 0) {
@@ -17,8 +17,8 @@ if (missingEnvVars.length > 0) {
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
+    user: process.env.REACT_APP_EMAIL_USER,
+    pass: process.env.REACT_APP_EMAIL_PASS,
   },
 });
 
@@ -305,9 +305,9 @@ function formatDate() {
 exports.handler = async function (event, context) {
   // Log environment variables for debugging
   console.log('Environment Variables:', {
-    EMAIL_USER: process.env.EMAIL_USER,
-    EMAIL_PASS: process.env.EMAIL_PASS ? '[REDACTED]' : 'undefined',
-    COMPANY_EMAIL: process.env.COMPANY_EMAIL,
+    REACT_APP_EMAIL_USER: process.env.REACT_APP_EMAIL_USER,
+    REACT_APP_EMAIL_PASS: process.env.REACT_APP_EMAIL_PASS ? '[REDACTED]' : 'undefined',
+    REACT_APP_COMPANY_EMAIL: process.env.REACT_APP_COMPANY_EMAIL,
   });
 
   // Only allow POST requests
@@ -351,15 +351,15 @@ exports.handler = async function (event, context) {
 
     // Email to the company
     const mailToCompany = {
-      from: process.env.EMAIL_USER,
-      to: process.env.COMPANY_EMAIL,
+      from: process.env.REACT_APP_EMAIL_USER,
+      to: process.env.REACT_APP_COMPANY_EMAIL,
       subject: `New ${formName.charAt(0).toUpperCase() + formName.slice(1)} Submission from ${name}`,
       html: companyEmailHtml,
     };
 
     // Email to the user
     const mailToUser = {
-      from: process.env.EMAIL_USER,
+      from: process.env.REACT_APP_EMAIL_USER,
       to: email,
       subject: 'Thank You for Contacting Tyfora!',
       html: thankYouEmailHtml,

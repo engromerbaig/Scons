@@ -3,15 +3,15 @@ const nodemailer = require('nodemailer');
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
+        user: process.env.REACT_APP_EMAIL_USER,
+        pass: process.env.REACT_APP_EMAIL_PASS,
     },
 });
 
 exports.sendMail = async (emailData) => {
     const mailToCompany = {
-        from: process.env.EMAIL_USER,
-        to: process.env.COMPANY_EMAIL,
+        from: process.env.REACT_APP_EMAIL_USER,
+        to: process.env.REACT_APP_COMPANY_EMAIL,
         subject: `Career Tyfora - New Application: ${emailData.firstName} ${emailData.lastName}`,
         html: `
             <p>A new candidate has submitted their application:</p>
@@ -28,7 +28,7 @@ exports.sendMail = async (emailData) => {
     };
 
     const mailToUser = {
-        from: process.env.EMAIL_USER,
+        from: process.env.REACT_APP_EMAIL_USER,
         to: emailData.email,
         subject: 'Thank you for your application',
         text: `Dear ${emailData.firstName},\n\nThank you for applying to our company.`,
