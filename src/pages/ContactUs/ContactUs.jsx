@@ -8,7 +8,6 @@ const BodyText = lazy(() => import('../../components/BodyText/BodyText'));
 const Locations = lazy(() => import('../../components/Locations/Locations'));
 const FadeInSection = lazy(() => import('../../utilities/Animations/FadeInSection'));
 
-
 // Static imports for non-component data
 import contactImage from '../../assets/images/contact.svg';
 import { theme } from '../../theme';
@@ -16,32 +15,27 @@ import { contactDetails } from '../../components/MobileMenu/modules/contactDetai
 import FAQ from "../../components/FAQ/FAQ";
 
 const ContactUs = () => {
-
-    const handleFormSubmit = (formData) => {
+  const handleFormSubmit = (formData) => {
     console.log('Form2 Submitted with Data:', formData);
   };
 
   return (
     <div>
-        <FadeInSection>
-
-      <InnerHero
-        headingText="Get in Contact With Us"
-        spanText="Contact"
-        bodyText="Have questions or want to work with us? Reach out today — we’re here to help and look forward to connecting with you."
-        illustrationImage={contactImage}
-        illustrationImageWidth="w-3/4"
-      />
-        </FadeInSection>
-
+      <FadeInSection>
+        <InnerHero
+          headingText="Get in Contact With Us"
+          spanText="Contact"
+          bodyText="Have questions or want to work with us? Reach out today — we’re here to help and look forward to connecting with you."
+          illustrationImage={contactImage}
+          illustrationImageWidth="w-3/4"
+        />
+      </FadeInSection>
 
       <div className="">
         <div className="flex flex-col gap-8">
-          
           {/* Contact Section */}
           <div className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical}`}>
             <div className="flex flex-col xl:flex-row gap-8">
-              
               {/* Left Side: Heading + BodyText */}
               <div className="xl:w-1/2 flex flex-col gap-4">
                 <Heading
@@ -74,23 +68,23 @@ const ContactUs = () => {
 
               {/* Right Side: Form */}
               <div className="xl:w-1/2">
-                <FormTemplate             handleFormSubmit={handleFormSubmit}
- buttonWidth="w-40" textAreaRows={4} showSelect={true} hideErrorMessages={true}/>
+                <FormTemplate
+                  handleFormSubmit={handleFormSubmit}
+                  buttonWidth="w-40"
+                  textAreaRows={4}
+                  showSelect={true}
+                  hideErrorMessages={true}
+                />
               </div>
-
             </div>
           </div>
 
+          <FadeInSection>
+            <Locations />
+          </FadeInSection>
 
-<FadeInSection>
-          <Locations  />
-
-
-</FadeInSection>
-
-<FAQ/>
+          <FAQ />
           {/* Locations Accordion Section */}
-
         </div>
       </div>
     </div>

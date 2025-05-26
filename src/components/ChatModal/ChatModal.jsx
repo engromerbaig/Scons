@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from 'react'; // Add useState for thank you message handling
+import React, { useEffect } from 'react';
 import FormTemplate from '../FormTemplate/FormTemplate';
 import Heading from '../Heading/Heading';
 import BodyText from '../BodyText/BodyText';
 
 const ChatModal = ({ isOpen, onClose }) => {
-  const [showThankYou, setShowThankYou] = useState(false); // State to control thank you message
-
   useEffect(() => {
     let showBtnTimer;
     let hideScrollTimer;
@@ -17,7 +15,6 @@ const ChatModal = ({ isOpen, onClose }) => {
       }, 0);
     } else {
       document.body.style.overflow = '';
-      setShowThankYou(false); // Reset thank you state when modal closes
     }
 
     return () => {
@@ -29,12 +26,6 @@ const ChatModal = ({ isOpen, onClose }) => {
 
   const handleFormSubmit = (formData) => {
     console.log('Form Submitted with Data:', formData);
-    setShowThankYou(true); // Show thank you message
-    // Close modal after 3 seconds
-    setTimeout(() => {
-      setShowThankYou(false);
-      onClose();
-    }, 3000); // Adjust duration as needed
   };
 
   const inputStyles = "m-1 py-2 px-6 text-sm rounded-full text-white placeholder-bodyText bg-charcoal w-full focus:outline-none";
@@ -60,46 +51,26 @@ const ChatModal = ({ isOpen, onClose }) => {
         </button>
 
         <div className="flex flex-col justify-start text-start gap-6">
-          {showThankYou ? (
-            <div className="text-white text-center">
-              <Heading
-                text="Thank You!"
-                spanText="You!"
-                spanColor="text-neon"
-                color="text-white"
-                size="text-50px"
-                centered={true}
-              />
-              <BodyText
-                text="We've received your submission and will get back to you soon."
-                centered={true}
-                color="text-white"
-                size="text-20px"
-              />
-            </div>
-          ) : (
-            <>
-              <Heading
-                text="Coffee Break?"
-                spanText="Break?"
-                spanColor="text-neon"
-                color="text-white"
-                size="text-50px"
-                centered={false}
-              />
-              <BodyText
-                text="Let's chat! We are here to help you with your project. Fill out the form below and we will get back to you as soon as possible."
-                centered={false}
-                color="text-white"
-                size="text-20px"
-              />
-              <FormTemplate
-                handleFormSubmit={handleFormSubmit}
-                inputStyles={inputStyles}
-                hideErrorMessages={true}
-              />
-            </>
-          )}
+          <Heading
+            text="Coffee Break?"
+            spanText="Break?"
+            spanColor="text-neon"
+            color="text-white"
+            size="text-50px"
+            centered={false}
+          />
+          <BodyText
+            text="Let's chat! We are here to help you with your project. Fill out the form below and we will get back to you as soon as possible."
+            centered={false}
+            color="text-white"
+            size="text-20px"
+          />
+          <FormTemplate
+            handleFormSubmit={handleFormSubmit}
+            inputStyles={inputStyles}
+            hideErrorMessages={true}
+            onSuccess={onClose} // Pass onClose as onSuccess to close modal before redirect
+          />
         </div>
       </div>
     </div>

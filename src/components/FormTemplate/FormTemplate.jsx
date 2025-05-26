@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
 import FormField from '../FormSteps/modules/FormField';
 import Button from '../Button/Button';
 
@@ -10,7 +11,9 @@ const FormTemplate = ({
   buttonWidth = 'w-full',
   textAreaRows = 1,
   showSelect = false,
+  onSuccess, // Optional callback for additional actions before redirect
 }) => {
+  const navigate = useNavigate(); // Hook for programmatic navigation
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -27,7 +30,6 @@ const FormTemplate = ({
     topic: false,
     description: false,
   });
-  const [isSubmitted, setIsSubmitted] = useState(false);
 
   useEffect(() => {
     const { name, email, phone, description } = formData;
@@ -74,9 +76,10 @@ const FormTemplate = ({
         throw new Error('Form submission failed');
       }
       */
-      setIsSubmitted(true);
-      handleFormSubmit(formData);
-      console.log('Submission successful, showing thank you message'); // Debug
+      handleFormSubmit(formData); // Call the passed handleFormSubmit
+      if (onSuccess) onSuccess(); // Call optional onSuccess callback
+      navigate('/thank-you'); // Redirect to /thank-you
+      console.log('Submission successful, redirecting to /thank-you'); // Debug
     } catch (error) {
       console.error('Error submitting form:', error);
     }
@@ -95,132 +98,125 @@ const FormTemplate = ({
 
   return (
     <div className="flex flex-col gap-2 lg:gap-6">
-      {isSubmitted ? (
-        <div className="text-white text-center">
-          <h2 className="text-2xl font-bold">Thank You!</h2>
-          <p className="text-lg">We've received your submission and will get back to you soon.</p>
-        </div>
-      ) : (
-        <form
-          name="contact"
-          method="POST"
-          data-netlify="true"
-          data-netlify-honeypot="bot-field"
-          onSubmit={onSubmit}
-        >
-          <input type="hidden" name="form-name" value="contact" />
-          <div>
-            <FormField
-              name="name"
-              type="text"
-              placeholder="Full Name"
-              value={formData.name}
-              onChange={(e) => {
-                setFormData({ ...formData, name: e.target.value });
-                setErrors({ ...errors, name: false });
-              }}
-              inputStyles={inputStyles}
-              hideErrorMessages={hideErrorMessages}
-            />
-            {!hideErrorMessages && errors.name && (
-              <p className="text-red-500 text-sm mt-1">Please enter your name</p>
-            )}
-          </div>
-
-          <div className="flex flex-col lg:flex-row gap-2">
-            <div className="flex-1">
-              <FormField
-                name="email"
-                type="email"
-                placeholder="Email"
-                value={formData.email}
-                onChange={(e) => {
-                  setFormData({ ...formData, email: e.target.value });
-                  setErrors({ ...errors, email: false });
-                }}
-                inputStyles={inputStyles}
-                hideErrorMessages={hideErrorMessages}
-              />
-              {!hideErrorMessages && errors.email && (
-                <p className="text-red-500 text-sm mt-1">Please enter your email</p>
-              )}
-            </div>
-            <div className="flex-1">
-              <FormField
-                name="phone"
-                type="text"
-                placeholder="Phone Number"
-                value={formData.phone}
-                onChange={(e) => {
-                  setFormData({ ...formData, phone: e.target.value });
-                  setErrors({ ...errors, phone: false });
-                }}
-                inputStyles={inputStyles}
-                hideErrorMessages={hideErrorMessages}
-              />
-              {!hideErrorMessages && errors.phone && (
-                <p className="text-red-500 text-sm mt-1">Please enter your phone number</p>
-              )}
-            </div>
-          </div>
-
-          {showSelect && (
-            <div>
-              <FormField
-                name="topic"
-                type="select"
-                placeholder="Desired Service?"
-                value={formData.topic}
-                onChange={(e) => {
-                  setFormData({ ...formData, topic: e.target.value });
-                  setErrors({ ...errors, topic: false });
-                }}
-                options={topicOptions}
-                inputStyles={inputStyles}
-                hideErrorMessages={hideErrorMessages}
-              />
-              {!hideErrorMessages && errors.topic && (
-                <p className="text-red-500 text-sm mt-1">Please select a topic</p>
-              )}
-            </div>
+      <form
+        name="contact"
+        method="POST"
+        data-netlify="true"
+        data-netlify-honeypot="bot-field"
+        onSubmit={onSubmit}
+      >
+        <input type="hidden" name="form-name" value="contact" />
+        <div>
+          <FormField
+            name="name"
+            type="text"
+            placeholder="Full Name"
+            value={formData.name}
+            onChange={(e) => {
+              setFormData({ ...formData, name: e.target.value });
+              setErrors({ ...errors, name: false });
+            }}
+            inputStyles={inputStyles}
+            hideErrorMessages={hideErrorMessages}
+          />
+          {!hideErrorMessages && errors.name && (
+            <p className="text-red-500 text-sm mt-1">Please enter your name</p>
           )}
+        </div>
 
-          <div>
+        <div className="flex flex-col lg:flex-row gap-2">
+          <div className="flex-1">
             <FormField
-              name="description"
-              type="textarea"
-              placeholder="What would you like to discuss?"
-              rows={textAreaRows}
-              value={formData.description}
+              name="email"
+              type="email"
+              placeholder="Email"
+              value={formData.email}
               onChange={(e) => {
-                setFormData({ ...formData, description: e.target.value });
-                setErrors({ ...errors, description: false });
+                setFormData({ ...formData, email: e.target.value });
+                setErrors({ ...errors, email: false });
               }}
               inputStyles={inputStyles}
               hideErrorMessages={hideErrorMessages}
             />
-            {!hideErrorMessages && errors.description && (
-              <p className="text-red-500 text-sm mt-1">Please enter a description</p>
+            {!hideErrorMessages && errors.email && (
+              <p className="text-red-500 text-sm mt-1">Please enter your email</p>
             )}
           </div>
-
-          <div className="flex justify-center mt-4">
-            <Button
-              name="Submit"
-              className={`${buttonWidth} py-2`}
-              bgColor={isFormValid ? 'bg-neon' : 'bg-neon/90'}
-              textColor="text-neon"
-              hoverBgColor={isFormValid ? 'bg-neon' : 'bg-neon'}
-              hoverTextColor="text-black"
-              fontSize="text-sm"
-              fontWeight="font-bold"
-              textAlign="justify-center"
-              type="submit"
-              disabled={!isFormValid}
+          <div className="flex-1">
+            <FormField
+              name="phone"
+              type="text"
+              placeholder="Phone Number"
+              value={formData.phone}
+              onChange={(e) => {
+                setFormData({ ...formData, phone: e.target.value });
+                setErrors({ ...errors, phone: false });
+              }}
+              inputStyles={inputStyles}
+              hideErrorMessages={hideErrorMessages}
             />
+            {!hideErrorMessages && errors.phone && (
+              <p className="text-red-500 text-sm mt-1">Please enter your phone number</p>
+            )}
           </div>
-        </form>
-      )}
+        </div>
+
+        {showSelect && (
+          <div>
+            <FormField
+              name="topic"
+              type="select"
+              placeholder="Desired Service?"
+              value={formData.topic}
+              onChange={(e) => {
+                setFormData({ ...formData, topic: e.target.value });
+                setErrors({ ...errors, topic: false });
+              }}
+              options={topicOptions}
+              inputStyles={inputStyles}
+              hideErrorMessages={hideErrorMessages}
+            />
+            {!hideErrorMessages && errors.topic && (
+              <p className="text-red-500 text-sm mt-1">Please select a topic</p>
+            )}
+          </div>
+        )}
+
+        <div>
+          <FormField
+            name="description"
+            type="textarea"
+            placeholder="What would you like to discuss?"
+            rows={textAreaRows}
+            value={formData.description}
+            onChange={(e) => {
+              setFormData({ ...formData, description: e.target.value });
+              setErrors({ ...errors, description: false });
+            }}
+            inputStyles={inputStyles}
+            hideErrorMessages={hideErrorMessages}
+          />
+          {!hideErrorMessages && errors.description && (
+            <p className="text-red-500 text-sm mt-1">Please enter a description</p>
+          )}
+        </div>
+
+        <div className="flex justify-center mt-4">
+          <Button
+            name="Submit"
+            className={`${buttonWidth} py-2`}
+            bgColor={isFormValid ? 'bg-neon' : 'bg-neon/90'}
+            textColor="text-neon"
+            hoverBgColor={isFormValid ? 'bg-neon' : 'bg-neon'}
+            hoverTextColor="text-black"
+            fontSize="text-sm"
+            fontWeight="font-bold"
+            textAlign="justify-center"
+            type="submit"
+            disabled={!isFormValid}
+          />
+        </div>
+      </form>
     </div>
   );
 };
