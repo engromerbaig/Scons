@@ -1,8 +1,7 @@
+const dotenv = require('dotenv');
 const nodemailer = require('nodemailer');
-const path = require('path');
 
-// Load environment variables explicitly from .env in the same directory
-require('dotenv').config({ path: path.resolve(__dirname, '.env') });
+dotenv.config(); // Loads .env from same directory
 
 // Validate environment variables
 const requiredEnvVars = ['REACT_APP_EMAIL_USER', 'REACT_APP_EMAIL_PASS', 'REACT_APP_COMPANY_EMAIL'];
