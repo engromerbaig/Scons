@@ -8,7 +8,7 @@ import Loader from './utilities/Loader/Loader';
 import ScrollToTop from './utilities/ScrollToTop';
 import HeroButton from './components/HeroButton/HeroButton';
 import ChatModal from './components/ChatModal/ChatModal';
-
+import ReturnButton from './utilities/ReturnButton';
 import ThankYou from './pages/ThankYou/ThankYou';
 
 const Home = lazy(() => import('./pages/Home/Home'));
@@ -41,6 +41,8 @@ function AppContent() {
   const hideHeroButtonRoutes = ['/contact-us', '/thank-you'];
   const shouldShowFooter = !hideFooterRoutes.includes(location.pathname);
   const shouldShowHeroButton = !hideHeroButtonRoutes.includes(location.pathname);
+  // Check if the current path matches /portfolio/:slug
+  const isPortfolioDetail = location.pathname.startsWith('/portfolio/');
 
   const [isModalOpen, setModalOpen] = useState(false);
 
@@ -82,6 +84,7 @@ function AppContent() {
 
       {shouldShowFooter && <FooterWrapper />}
       <ScrollToTop />
+      {isPortfolioDetail && <ReturnButton />}
     </div>
   );
 }

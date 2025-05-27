@@ -81,7 +81,7 @@ const SplideCarousel = ({
             height: 100%;
             background-size: cover;
             background-position: center;
-            filter: blur(2px); /* Adjust blur intensity as needed */
+            filter: blur(5px); /* Adjust blur intensity as needed */
             z-index: 1; /* Below the main image */
             opacity: 0.9; /* Optional: Adjust opacity for better effect */
             ${haveBorder ? `border-radius: inherit;` : ""}
