@@ -194,6 +194,8 @@ const ProjectDetail = () => {
               speed={1}
               height="400px"
               gap="1rem"
+              objectFit="contain"
+              haveBgBlurred={true}
               pauseOnHover={false}
             />
           )}
@@ -204,6 +206,8 @@ const ProjectDetail = () => {
               speed={-1}
               height="400px"
               gap="1rem"
+               objectFit="contain"
+              haveBgBlurred={true}
               pauseOnHover={false}
             />
           )}

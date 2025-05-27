@@ -19,6 +19,7 @@ const SplideCarousel = ({
   imageRound = "rounded-none",
   imageSize = "w-full h-full",
   showLoader = true, // Controls whether loader mechanism is used
+  haveBgBlurred = false, // Controls whether blurred background is applied
 }) => {
   const uniqueId = useMemo(
     () => `splide-carousel-${Math.random().toString(36).substring(2, 9)}`,
@@ -54,6 +55,7 @@ const SplideCarousel = ({
             position: relative;
             width: 100%;
             height: 100%;
+            overflow: hidden; /* Ensure blurred background stays within container */
             ${haveBorder ? `border: 4px solid #26292D; border-radius: inherit;` : ""}
           }
           .${uniqueId} .skeleton-loader {
@@ -68,6 +70,21 @@ const SplideCarousel = ({
             width: 100%;
             height: 100%;
             object-fit: ${objectFit};
+            z-index: 2; /* Ensure main image is above blurred background */
+            position: relative;
+          }
+          .${uniqueId} .blurred-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            filter: blur(2px); /* Adjust blur intensity as needed */
+            z-index: 1; /* Below the main image */
+            opacity: 0.9; /* Optional: Adjust opacity for better effect */
+            ${haveBorder ? `border-radius: inherit;` : ""}
           }
           @media (max-width: 768px) {
             .${uniqueId} .splide__slide {
@@ -113,6 +130,12 @@ const SplideCarousel = ({
                   <SkeletonLoader
                     className={`skeleton-loader ${imageSize} ${imageRound}`}
                     rounded={imageRound}
+                  />
+                )}
+                {haveBgBlurred && objectFit === "contain" && (
+                  <div
+                    className="blurred-background"
+                    style={{ backgroundImage: `url(${image})` }}
                   />
                 )}
                 <img
