@@ -15,6 +15,7 @@ const Loader = () => {
         .animate-line-1 { animation: fadeInOut 1.5s ease-in-out infinite; animation-delay: 0.1s; }
         .animate-line-2 { animation: fadeInOut 1.5s ease-in-out infinite; animation-delay: 0.2s; }
         .animate-line-3 { animation: fadeInOut 1.5s ease-in-out infinite; animation-delay: 0.3s; }
+        .animate-line-4 { animation: fadeInOut 1.5s ease-in-out infinite; animation-delay: 0.4s; }
       `}</style>
       
       <div className="relative w-full h-full">
@@ -23,27 +24,25 @@ const Loader = () => {
           const lineHeight = isLong ? 50 : 30;
           const startDistance = 50;
           
-          // Left semicircle: angles 90 to 270 (top to bottom on left side)
-          const isLeftSide = angle >= 90 && angle <= 270;
-          const leftSideIndex = isLeftSide ? 
-            [90, 135, 180, 225, 270].indexOf(angle) : -1;
+          // Animated angles: 180, 225, 270, 315, 0
+          const animatedAngles = [180, 225, 270, 315, 0];
+          const isAnimated = animatedAngles.includes(angle);
+          const animationIndex = animatedAngles.indexOf(angle);
           
           return (
             <span
               key={index}
               className={`absolute bg-black ${
-                isLeftSide && leftSideIndex !== -1 
-                  ? `animate-line-${leftSideIndex}` 
-                  : ''
+                isAnimated ? `animate-line-${animationIndex}` : ''
               }`}
               style={{
-                width: '8px',
+                width: '10px',
                 height: `${lineHeight}px`,
                 top: '50%',
                 left: '50%',
                 transformOrigin: 'center bottom',
                 transform: `translate(-50%, -100%) rotate(${angle}deg) translateY(-${startDistance}px)`,
-                opacity: isLeftSide ? 0.3 : 1
+                opacity: isAnimated ? 0.3 : 1
               }}
             />
           );
