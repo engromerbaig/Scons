@@ -90,6 +90,7 @@ import magnetoCMS from '../../../assets/icons/services/Web Platforms/cms/magneto
 import webflowCMS from '../../../assets/icons/services/Web Platforms/cms/webflow.svg';
 import elementorCMS from '../../../assets/icons/services/Web Platforms/cms/elementor.svg';
 
+import wixCMS from '../../../assets/icons/services/Web Platforms/cms/wix.svg';
 
 
 
@@ -337,7 +338,7 @@ consultationFAQ5: consultationFAQ5,
       Magneto: magnetoCMS,
       Webflow: webflowCMS, 
       Elementor: elementorCMS,
-      
+      Wix: wixCMS,
       // Added Webflow CMS icon
 
 
