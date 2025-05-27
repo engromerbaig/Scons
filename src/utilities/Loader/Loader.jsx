@@ -16,6 +16,20 @@ const Loader = () => {
         .animate-line-2 { animation: fadeInOut 1.5s ease-in-out infinite; animation-delay: 0.2s; }
         .animate-line-3 { animation: fadeInOut 1.5s ease-in-out infinite; animation-delay: 0.3s; }
         .animate-line-4 { animation: fadeInOut 1.5s ease-in-out infinite; animation-delay: 0.4s; }
+
+        @media (max-width: 800px) {
+          .line {
+            width: 5px !important;
+            height: 40px !important;
+          }
+          .line-short {
+            height: 21px !important;
+          }
+          .logo {
+            width: 38px !important;
+            height: 38px !important;
+          }
+        }
       `}</style>
       
       <div className="relative w-full h-full">
@@ -32,7 +46,7 @@ const Loader = () => {
           return (
             <span
               key={index}
-              className={`absolute bg-black ${
+              className={`absolute bg-black line ${isLong ? '' : 'line-short'} ${
                 isAnimated ? `animate-line-${animationIndex}` : ''
               }`}
               style={{
@@ -51,7 +65,7 @@ const Loader = () => {
         <img 
           src="/favicon.svg" 
           alt="Scons Logo" 
-          className="absolute"
+          className="absolute logo"
           style={{
             width: '50px',
             height: '50px',
