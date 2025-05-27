@@ -35,7 +35,7 @@ const thankYouEmailTemplate = `
     <style>
         @font-face {
             font-family: 'manrope';
-            src: url('https://your-netlify-site.netlify.app/fonts/manropeDisplay/manropeDisplay-Regular.woff2') format('woff2');
+            src: url('https://lucent-mandazi-5f971b.netlify.app/manrope/Manrope-Regular.ttf') format('ttf');
             font-weight: 400;
             font-style: normal;
             font-display: swap;
@@ -94,8 +94,8 @@ const thankYouEmailTemplate = `
             <td>
                 <div class="header">
                     <div style="text-align: left;">
-                        <a href="https://tyfora.com/" class="logo">
-                            <img src="https://your-netlify-site.netlify.app/images/tyfora-logo.png" alt="Tyfora Logo" style="width: 150px;">
+                        <a href="https://sconstech.com/" class="logo">
+                            <img src="https://preeminent-pudding-872349.netlify.app/logo.svg/" alt="Scons Logo" style="width: 150px;">
                         </a>
                     </div>
                     <div style="margin-top: 40px; margin-bottom: 40px; padding: 40px 0;">
@@ -115,8 +115,8 @@ const thankYouEmailTemplate = `
                         <strong>Topic:</strong> {{topic}}<br>
                         <strong>Description:</strong> {{description}}
                     </p>
-                    <a href="https://tyfora.com/">
-                        <img src="https://your-netlify-site.netlify.app/images/tyfora-logo.png" alt="Tyfora Logo" style="width: 150px;">
+                    <a href="https://sconstech.com/">
+                        <img src="https://preeminent-pudding-872349.netlify.app/logo.svg/" alt="Scons Logo" style="width: 150px;">
                     </a>
                 </div>
             </td>
@@ -124,17 +124,17 @@ const thankYouEmailTemplate = `
         <tr>
             <td>
                 <div class="footer" style="text-align: center;">
-                    <a href="https://www.facebook.com/tyfora" aria-label="Facebook" style="text-decoration: none; color: #00c5ff;">
-                        <img src="https://your-netlify-site.netlify.app/images/facebook-icon.png" alt="Facebook" style="width: 30px; height: 30px; margin-right: 10px;">
+                    <a href="https://www.facebook.com/sconstech/" aria-label="Facebook" style="text-decoration: none; color: #00c5ff;">
+                        <img src="https://preeminent-pudding-872349.netlify.app/facebook.png" alt="Facebook" style="width: 30px; height: 30px; margin-right: 10px;">
                     </a>
-                    <a href="https://www.linkedin.com/company/tyfora" aria-label="LinkedIn" style="text-decoration: none; color: #00c5ff;">
-                        <img src="https://your-netlify-site.netlify.app/images/linkedin-icon.png" alt="LinkedIn" style="width: 30px; height: 30px; margin-right: 10px;">
+                    <a href="https://www.linkedin.com/company/sconstech/" aria-label="LinkedIn" style="text-decoration: none; color: #00c5ff;">
+                        <img src="https://preeminent-pudding-872349.netlify.app/linkedin.png" alt="LinkedIn" style="width: 30px; height: 30px; margin-right: 10px;">
                     </a>
-                    <a href="https://www.instagram.com/tyfora_/" aria-label="Instagram" style="text-decoration: none; color: #00c5ff;">
-                        <img src="https://your-netlify-site.netlify.app/images/instagram-icon.png" alt="Instagram" style="width: 30px; height: 30px; margin-right: 10px;">
+                    <a href="https://www.instagram.com/scons.tech/" aria-label="Instagram" style="text-decoration: none; color: #00c5ff;">
+                        <img src="https://preeminent-pudding-872349.netlify.app/instagram.png" alt="Instagram" style="width: 30px; height: 30px; margin-right: 10px;">
                     </a>
-                    <a href="https://x.com/tyforaofficial" aria-label="X" style="text-decoration: none; color: #00c5ff;">
-                        <img src="https://your-netlify-site.netlify.app/images/x-icon.png" alt="X" style="width: 30px; height: 30px;">
+                    <a href="https://x.com/sconstech" aria-label="X" style="text-decoration: none; color: #00c5ff;">
+                        <img src="https://preeminent-pudding-872349.netlify.app/twitter.png" alt="X" style="width: 30px; height: 30px;">
                     </a>
                 </div>
             </td>
@@ -145,10 +145,10 @@ const thankYouEmailTemplate = `
                     <table width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%;">
                         <tr>
                             <td style="text-align: left; vertical-align: middle;">
-                                <span>Copyright © 2025 <strong>TYFORA.</strong> All rights reserved.</span>
+                                <span>Copyright © 2025 <strong>Scons.</strong> All rights reserved.</span>
                             </td>
                             <td style="text-align: right; vertical-align: middle;">
-                                <a href="https://tyfora.com/terms-and-conditions" style="color: #888; text-decoration: none; font-weight: 600;">
+                                <a href="https://sconstech.com/terms-and-conditions/" style="color: #888; text-decoration: none; font-weight: 600;">
                                     Terms & Conditions
                                 </a>
                             </td>
@@ -171,7 +171,7 @@ const companyEmailTemplate = `
     <style>
         @font-face {
             font-family: 'manrope';
-            src: url('https://your-netlify-site.netlify.app/fonts/manropeDisplay/manropeDisplay-Regular.woff2') format('woff2');
+            src: url('https://lucent-mandazi-5f971b.netlify.app/manrope/Manrope-Regular.ttf') format('ttf');
             font-weight: 400;
             font-style: normal;
             font-display: swap;
@@ -247,42 +247,42 @@ const companyEmailTemplate = `
             <td>
                 <div class="main-content">
                     <p style="font-size: 14px; color: #cccbcb; font-weight: 600; line-height: 1.8;">
-                        A new {{formName}} submission has been received. Please review the details above and follow up as needed.
+                        A new submission has been received. Please review the details above and follow up as needed.
                     </p>
-                    <a href="https://tyfora.com/">
-                        <img src="https://your-netlify-site.netlify.app/images/tyfora-logo.png" alt="Tyfora Logo" style="width: 150px;">
+                      <a href="https://sconstech.com/">
+                        <img src="https://preeminent-pudding-872349.netlify.app/logo.svg/" alt="Scons Logo" style="width: 150px;">
                     </a>
                 </div>
             </td>
         </tr>
         <tr>
             <td>
-                <div class="footer">
-                    <a href="https://www.facebook.com/tyfora" aria-label="Visit Tyfora on Facebook" style="text-decoration: none; color: #00c5ff;">
-                        <img src="https://your-netlify-site.netlify.app/images/facebook-icon.png" alt="Facebook" class="social-icons">
+               <div class="footer" >
+                    <a href="https://www.facebook.com/sconstech/" aria-label="Facebook" style="text-decoration: none; color: #00c5ff;">
+                        <img src="https://preeminent-pudding-872349.netlify.app/facebook.png" alt="Facebook" style="width: 30px; height: 30px; margin-right: 10px;">
                     </a>
-                    <a href="https://www.linkedin.com/company/tyfora" aria-label="Visit Tyfora on LinkedIn" style="text-decoration: none; color: #00c5ff;">
-                        <img src="https://your-netlify-site.netlify.app/images/linkedin-icon.png" alt="LinkedIn" class="social-icons">
+                    <a href="https://www.linkedin.com/company/sconstech/" aria-label="LinkedIn" style="text-decoration: none; color: #00c5ff;">
+                        <img src="https://preeminent-pudding-872349.netlify.app/linkedin.png" alt="LinkedIn" style="width: 30px; height: 30px; margin-right: 10px;">
                     </a>
-                    <a href="https://www.instagram.com/tyfora_/" aria-label="Visit Tyfora on Instagram" style="text-decoration: none; color: #00c5ff;">
-                        <img src="https://your-netlify-site.netlify.app/images/instagram-icon.png" alt="Instagram" class="social-icons">
+                    <a href="https://www.instagram.com/scons.tech/" aria-label="Instagram" style="text-decoration: none; color: #00c5ff;">
+                        <img src="https://preeminent-pudding-872349.netlify.app/instagram.png" alt="Instagram" style="width: 30px; height: 30px; margin-right: 10px;">
                     </a>
-                    <a href="https://x.com/tyforaofficial" aria-label="Visit Tyfora on X" style="text-decoration: none; color: #00c5ff;">
-                        <img src="https://your-netlify-site.netlify.app/images/x-icon.png" alt="X" class="social-icons">
+                    <a href="https://x.com/sconstech" aria-label="X" style="text-decoration: none; color: #00c5ff;">
+                        <img src="https://preeminent-pudding-872349.netlify.app/twitter.png" alt="X" style="width: 30px; height: 30px;">
                     </a>
                 </div>
             </td>
         </tr>
         <tr>
             <td>
-                <div class="footer-bottom">
-                    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                 <div class="footer-bottom" style="background-color: #ffffff; font-size: 12px; color: #888; padding: 10px 0;">
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%;">
                         <tr>
                             <td style="text-align: left; vertical-align: middle;">
-                                <span>Copyright © 2025 <strong>TYFORA.</strong> All rights reserved.</span>
+                                <span>Copyright © 2025 <strong>Scons.</strong> All rights reserved.</span>
                             </td>
                             <td style="text-align: right; vertical-align: middle;">
-                                <a href="https://tyfora.com/terms-and-conditions" style="color: #888; text-decoration: none; font-weight: 600;">
+                                <a href="https://sconstech.com/terms-and-conditions/" style="color: #888; text-decoration: none; font-weight: 600;">
                                     Terms & Conditions
                                 </a>
                             </td>

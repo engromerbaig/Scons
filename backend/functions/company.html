@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         @font-face {
@@ -24,14 +24,14 @@
         }
         .header {
             background-color: #f4f4f4;
-            padding: 20px;
             text-align: center;
-            position: relative;
+            padding: 50px 0 20px 0;
+            color: #333;
         }
-        .logo {
-            position: absolute;
-            top: 20px;
-            left: 20px;
+        .data-fields {
+            padding: 20px;
+            text-align: left;
+            background: #f4f4f4;
         }
         .main-content {
             text-align: center;
@@ -42,15 +42,17 @@
             text-align: center;
             padding: 20px 0;
         }
-        .social-icons img {
+        .social-icons {
             margin: 0 10px;
-            width: 25px;
+            width: 30px;
+            height: 30px;
         }
         .footer-bottom {
             background-color: #ffffff;
             text-align: center;
             font-size: 12px;
             color: #888;
+            padding: 10px 0;
         }
         .footer-bottom a {
             color: #888;
@@ -62,31 +64,27 @@
 <body>
     <table class="email-container" cellpadding="0" cellspacing="0" border="0" align="center" width="100%">
         <tr>
-            <td>
-                <div class="header">
-                    <div style="text-align: left;">
-                        <a href="https://sconstech.com/" class="logo">
-                            <img src="https://preeminent-pudding-872349.netlify.app/logo.svg/" alt="Scons Logo" style="width: 150px;">
-                        </a>
-                    </div>
-                    <div style="margin-top: 40px; margin-bottom: 40px; padding: 40px 0;">
-                        <h1 style="font-family: 'manrope', Arial, sans-serif; font-size: 24px; color: #333; margin: 0;">Thank you for contacting us!</h1>
-                        <p style="font-size: 16px; color: #333; font-weight: 600; margin: 10px 0;">We appreciate your interest, {{name}}.</p>
-                        <p style="font-size: 16px; color: #333; font-weight: 600; margin: 10px 0;">Our team will review your inquiry and get back to you soon.</p>
-                    </div>
-                </div>
+            <td class="header">
+                <h1 style="font-size: 24px; background: #00c5ff; padding: 15px 0; margin: 0 0 10px 0;">New {{formName}} Submission</h1>
+                <p style="font-size: 14px; font-weight: bold; color: #555; margin-top: 30px;">{{dateTime}}</p>
+            </td>
+        </tr>
+        <tr>
+            <td class="data-fields">
+                <div style="margin-bottom: 20px; font-size: 20px;"><strong style="color: #333;">Name:</strong> {{name}}</div>
+                <div style="margin-bottom: 20px; font-size: 20px;"><strong style="color: #333;">Email:</strong> {{email}}</div>
+                <div style="margin-bottom: 20px; font-size: 20px;"><strong style="color: #333;">Phone:</strong> {{phone}}</div>
+                <div style="margin-bottom: 20px; font-size: 20px;"><strong style="color: #333;">Topic:</strong> {{topic}}</div>
+                <div style="margin-bottom: 20px; font-size: 20px;"><strong style="color: #333;">Description:</strong> {{description}}</div>
             </td>
         </tr>
         <tr>
             <td>
                 <div class="main-content">
                     <p style="font-size: 14px; color: #cccbcb; font-weight: 600; line-height: 1.8;">
-                        Your inquiry details:<br>
-                        <strong>Phone:</strong> {{phone}}<br>
-                        <strong>Topic:</strong> {{topic}}<br>
-                        <strong>Description:</strong> {{description}}
+                        A new submission has been received. Please review the details above and follow up as needed.
                     </p>
-                    <a href="https://sconstech.com/">
+                      <a href="https://sconstech.com/">
                         <img src="https://preeminent-pudding-872349.netlify.app/logo.svg/" alt="Scons Logo" style="width: 150px;">
                     </a>
                 </div>
@@ -94,7 +92,7 @@
         </tr>
         <tr>
             <td>
-                <div class="footer" style="text-align: center;">
+               <div class="footer" >
                     <a href="https://www.facebook.com/sconstech/" aria-label="Facebook" style="text-decoration: none; color: #00c5ff;">
                         <img src="https://preeminent-pudding-872349.netlify.app/facebook.png" alt="Facebook" style="width: 30px; height: 30px; margin-right: 10px;">
                     </a>
@@ -112,7 +110,7 @@
         </tr>
         <tr>
             <td>
-                <div class="footer-bottom" style="background-color: #ffffff; font-size: 12px; color: #888; padding: 10px 0;">
+                 <div class="footer-bottom" style="background-color: #ffffff; font-size: 12px; color: #888; padding: 10px 0;">
                     <table width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%;">
                         <tr>
                             <td style="text-align: left; vertical-align: middle;">
