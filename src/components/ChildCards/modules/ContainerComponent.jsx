@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import './index.css';
 import { gsap } from "gsap";
 import Heading from "../../Heading/Heading";
@@ -6,6 +6,17 @@ import BodyText from "../../BodyText/BodyText";
 
 const ContainerComponent = ({ logo, heading, number, text, glowColor }) => {
   const imageRef = useRef(null);
+  const [isXL, setIsXL] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsXL(window.innerWidth >= 1280); // Tailwind's xl breakpoint
+    };
+
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
 
   useEffect(() => {
     gsap.to(imageRef.current, {
@@ -17,22 +28,16 @@ const ContainerComponent = ({ logo, heading, number, text, glowColor }) => {
   }, []);
 
   return (
-    <div className={`glow-right-container ${glowColor} flex-shrink-0 w-full h-full flex flex-col bg-charcoal lg:bg-transparent lg:border-b-[1px] lg:border-neon px-10 lg:px-14 py-14 scrollbar-hide scroll-container`}>
+    <div className={`${isXL ? `glow-right-container ${glowColor}` : ''} flex-shrink-0 w-full h-full flex flex-col bg-charcoal lg:bg-transparent lg:border-b-[1px] lg:border-neon px-10 lg:px-14 py-14 scrollbar-hide scroll-container`}>
 
-      {/* Top Row: Number (left), Icon (right) */}
+      {/* Top Row */}
       <div className="flex justify-between items-start w-full mb-4">
-        <div className="">
-     <Heading
-
+        <Heading
           text={`<${number}>`}
           color="text-neon"
           centered={false}
           size="text-70px"
         />
-
-        </div>
-   
-
         <img
           ref={imageRef}
           src={logo}
@@ -42,7 +47,7 @@ const ContainerComponent = ({ logo, heading, number, text, glowColor }) => {
         />
       </div>
 
-      {/* Heading and Text Section */}
+      {/* Content */}
       <div className="flex flex-col items-start w-full">
         <Heading
           text={heading}
@@ -51,7 +56,6 @@ const ContainerComponent = ({ logo, heading, number, text, glowColor }) => {
           color="text-white"
           className="mb-2"
         />
-
         <BodyText
           text={text}
           color="text-white"
@@ -60,7 +64,6 @@ const ContainerComponent = ({ logo, heading, number, text, glowColor }) => {
           className="whitespace-normal break-words"
         />
       </div>
-
     </div>
   );
 };
