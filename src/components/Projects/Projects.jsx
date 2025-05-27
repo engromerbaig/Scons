@@ -38,17 +38,21 @@ const Projects = ({
       id="projects"
       className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} flex flex-col items-center`}
     >
-      <div className="flex flex-col xl:flex-row xl:justify-between justify-start item-start xl:items-center w-full mb-12 xl:mb-20">
-        <Heading
-          text={heading}
-          spanText={spanText}
-          centered={centered}
-          spanColor={spanColor}
-          className="text-left"
-          showUnderline={showUnderline}
-        />
-        <AnimatedArrow text={arrowText} to={arrowLink} />
-      </div>
+     <div className="flex flex-col xl:flex-row xl:justify-between justify-start items-start xl:items-center w-full gap-y-4 mb-12 xl:mb-20">
+  <Heading
+    text={heading}
+    spanText={spanText}
+    centered={centered}
+    spanColor={spanColor}
+    className="text-left"
+    showUnderline={showUnderline}
+  />
+  <AnimatedArrow
+    text={arrowText}
+    to={arrowLink}
+    className="text-right xl:text-left self-end xl:self-auto" // Right-align text and push to right on mobile
+  />
+</div>
       <ProjectGrid
         filteredProjects={randomProjects}
         enableAnimation={enableAnimation}

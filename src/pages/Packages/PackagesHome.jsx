@@ -27,17 +27,21 @@ const PackagesHome = () => {
       id="packages"
       className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} flex flex-col items-center`}
     >
-      <div className="flex flex-col xl:flex-row xl:justify-between justify-start item-start xl:items-center w-full mb-8">
-        <Heading
-          text="Our Discounted Packages"
-          spanText="Packages"
-          centered={false}
-          spanColor="text-neon"
-          className="text-left pb-10"
-          showUnderline
-        />
-        <AnimatedArrow text="Show All Packages" to="/packages" />
-      </div>
+     <div className="flex flex-col xl:flex-row xl:justify-between justify-start items-start xl:items-center w-full mb-8 gap-y-4">
+  <Heading
+    text="Our Discounted Packages"
+    spanText="Packages"
+    centered={false}
+    spanColor="text-neon"
+    className="text-left pb-10"
+    showUnderline
+  />
+  <AnimatedArrow
+    text="Show All Packages"
+    to="/packages"
+    className="text-right xl:text-left self-end xl:self-auto"
+  />
+</div>
       <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {selectedPackages.map((pkg, index) => (
           <PackageCard
