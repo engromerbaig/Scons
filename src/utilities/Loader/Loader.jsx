@@ -1,23 +1,20 @@
 import React from 'react';
-import Heading from '../../components/Heading/Heading';
 import './Loader.css';
+
+const angles = [0, 45, 90, 135, 180, 225, 270, 315, 360];
 
 const Loader = () => {
   return (
-    <div className="flex items-center justify-center h-screen">
-      <div className="flex items-center justify-center relative">
-        <div className="flex items-baseline">
-          <Heading
-            text="Scons"
-            fontWeight="font-semibold"
-            color="text-black"
-            fontFamily="font-poppins"
-            size="text-150px md:text-90px"
-          />
+    <div className="loader-container">
+      <div className="loader-icon">
+        {angles.map((angle, index) => (
           <span
-            className="dot ml-2 w-2 h-2 rounded-full bg-neon pulse"
-          />
-        </div>
+            key={index}
+            className={`line ${angle % 90 === 0 ? 'line-long' : 'line-short'}`}
+            style={{ transform: `rotate(${angle}deg) translateY(-80px)` }}
+          ></span>
+        ))}
+        <img src="/favicon.svg" alt="Scons Logo" className="logo" />
       </div>
     </div>
   );
