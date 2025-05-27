@@ -12,13 +12,12 @@ const Vision = () => (
     {/* Content Overlay */}
     <div className="relative z-10 w-full flex flex-col items-center">
       {/* Main Heading */}
-      <div className="mb-12 text-start">
+      <div className="mb-12 text-center xl:text-start">
         <Heading
-          text="What We Stand For"
-          spanText='Stand'
+          text="What Scons Stands For"
+          spanText='Stands'
           spanColor='text-neon'
           color="text-white"
-          size="text-5xl"
           centered={false}
           fontWeight="font-bold"
           isAnimate={false}
@@ -52,6 +51,7 @@ const VisionCard = ({ item }) => {
         alt={item.heading}
         className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
         onLoad={() => setImageLoaded(true)}
+        loading="lazy"
       />
 
       {/* Overlay */}
