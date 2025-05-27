@@ -5,7 +5,7 @@ import { FaXTwitter } from "react-icons/fa6"; // for the new Twitter icon (X)
 export const socialsData = [
   {
     icon: FaFacebookF,
-    link: 'https://www.facebook.com/',
+    link: 'https://www.facebook.com/sconstech/',
   },
   {
     icon: FaLinkedinIn,
