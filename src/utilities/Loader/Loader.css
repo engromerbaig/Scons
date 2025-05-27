@@ -26,7 +26,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 4px;
+  width: 10px;
   background-color: #000;
   transform-origin: center;
 }
@@ -36,5 +36,5 @@
 }
 
 .line-short {
-  height: 20px;
+  height: 30px;
 }
