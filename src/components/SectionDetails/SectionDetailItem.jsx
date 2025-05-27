@@ -18,15 +18,15 @@ const SectionDetailItem = ({ serviceHeading, spanText, details, faqIcon, icons, 
   return (
     <div
       className={
-        isImageLeft ? 'pr-10 md:pr-60 py-10 xl:py-14' : 'pl-10 md:pl-60 py-10 xl:py-14'
+        isImageLeft ? 'pr-0 md:pr-60 py-10 xl:py-14' : 'pl-0 md:pl-60 py-10 xl:py-14'
       }
     >
       <div
         ref={containerRef}
-        className={`opacity-0 translate-x-[-100px] text-black grid grid-cols-1 md:grid-cols-12 shadow-3xl py-6 xl:py-16 ${theme.layoutPages.paddingHorizontal} ${
+        className={`opacity-0 translate-x-[-100px] text-black grid grid-cols-1 md:grid-cols-12 shadow-3xl border-2 border-neon py-6 xl:py-16 ${theme.layoutPages.paddingHorizontal} ${
           isImageLeft
-            ? 'tube-active-gradient-mirrored border-l-0 rounded-r-[40px] xl:rounded-r-full'
-            : 'tube-active-gradient border-r-0 rounded-l-[40px] xl:rounded-l-full'
+            ? 'tube-active-gradient-mirrored border-l-0 rounded-r-0 xl:rounded-r-full'
+            : 'tube-active-gradient border-r-0 rounded-l-0 xl:rounded-l-full'
         }`}
       >
         {/* Image: Top or Left */}

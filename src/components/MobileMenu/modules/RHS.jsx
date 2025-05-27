@@ -49,7 +49,7 @@ const RHS = ({ containerVariants, textVariants, handleClose }) => (
             className={`${theme.layoutPages.paddingMenu}`}
           >
             <Link
-              className="text-base lg:text-45px font-semibold text-black font-manrope hover:text-neon transition-colors duration-300"
+              className="text-xl lg:text-45px font-semibold text-black font-manrope hover:text-neon transition-colors duration-300"
               to={`/service/${service.slug}`}
               onClick={handleClose}
             >
@@ -72,7 +72,7 @@ const RHS = ({ containerVariants, textVariants, handleClose }) => (
         rel="noopener noreferrer"
         className="text-black hover:text-white transition duration-300"
       >
-        <Icon className="w-5 lg:w-7 h-5 lg:h-7 transition-transform " />
+        <Icon className="w-6 lg:w-7 h-6 lg:h-7 transition-transform " />
       </a>
     );
   })}
