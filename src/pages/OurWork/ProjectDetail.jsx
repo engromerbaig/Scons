@@ -156,33 +156,37 @@ const ProjectDetail = () => {
 
           {/* Right: Tech Stack (bottom aligned) */}
           <div className="flex flex-col justify-start items-start gap-2 xl:w-2/5 w-full">
-            <BodyText
-              text="Stack Used:"
-              color="text-grayText"
-              centered={false}
-              fontWeight="font-bold"
-            />
-            <div className="grid grid-cols-2 gap-2 mt-2">
-              {project.technologies.map((tech, index) => {
-                const icon = findTechnologyIcon(tech);
-                return (
-                  <Button
-                    key={index}
-                    name={tech}
-                    icon={icon}
-                    hoverBgColor="bg-neon"
-                    hoverTextColor="text-black"
-                    noIconChange={true}
-                    bgColor="bg-gray-100"
-                    textColor="black"
-                    fontWeight="font-semibold"
-                    className="py-3"
-                    fontSize="text-xs xl:text-sm"
-                  />
-                );
-              })}
-            </div>
-          </div>
+  <BodyText
+    text="Stack Used:"
+    color="text-grayText"
+    centered={false}
+    fontWeight="font-bold"
+  />
+  <div className="grid grid-cols-2 gap-2 mt-2">
+    {project.technologies
+      .filter((tech) => findTechnologyIcon(tech)) // Only include tech with valid icons
+      .map((tech, index) => {
+        const icon = findTechnologyIcon(tech);
+        return (
+          <Button
+            key={index}
+            name={tech}
+            icon={icon}
+            hoverBgColor="bg-neon"
+            hoverTextColor="text-black"
+            noIconChange={true}
+            bgColor="bg-gray-100"
+            textColor="black"
+            fontWeight="font-semibold"
+            className="py-3"
+            fontSize="text-xs xl:text-sm"
+          />
+        );
+      })}
+  </div>
+</div>
+
+
         </div>
       </FadeWrapper>
 
