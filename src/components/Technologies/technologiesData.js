@@ -51,7 +51,7 @@ export const technologiesData = {
   },
 
   "UI/UX Design": {
-    DesignTools: [
+    Tools: [
       { name: "Figma", icon: icons.uiux.figmaUI },
       { name: "Adobe XD", icon: icons.uiux.xdUI },
       { name: "Sketch", icon: icons.uiux.sketchUI },
