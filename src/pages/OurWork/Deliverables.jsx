@@ -14,12 +14,12 @@ const Deliverables = ({ deliverables, heading }) => {
 
   // Define colors for each segment
 const colors = [
-  "#28ed70", // neon green (main theme)
-  "#000000", // black (main theme)
-  "#89CFF0", // soft sky blue - fresh, calm contrast
-  "#FF6F61", // coral red - warm, vibrant accent
-  "#FFD700", // gold/yellow - bright, energetic highlight
-  "#6A5ACD", // slate blue - deeper cool tone for balance
+  "#00C5FF", // bright cyan/blue (main theme)
+  "#28ed70", // neon green
+  "#000000", // black
+  "#FF6F61", // coral red
+  "#FFD700", // gold/yellow
+  "#6A5ACD", // slate blue
 ];
 
   // Chart data
