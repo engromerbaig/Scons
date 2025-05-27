@@ -9,14 +9,14 @@ export const socialsData = [
   },
   {
     icon: FaLinkedinIn,
-    link: 'https://www.linkedin.com/company/scons',
+    link: 'https://www.linkedin.com/company/sconstech/',
   },
   {
     icon: FaInstagram,
     link: 'https://www.instagram.com/scons.tech/',
   },
-  {
-    icon: FaXTwitter,
-    link: 'https://x.com/sconsofficial',
-  },
+  // {
+  //   icon: FaXTwitter,
+  //   link: 'https://x.com/sconsofficial',
+  // },
 ];
