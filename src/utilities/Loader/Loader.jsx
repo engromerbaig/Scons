@@ -36,7 +36,7 @@ const Loader = () => {
                 isAnimated ? `animate-line-${animationIndex}` : ''
               }`}
               style={{
-                width: '10px',
+                width: '8px',
                 height: `${lineHeight}px`,
                 top: '50%',
                 left: '50%',
@@ -53,8 +53,8 @@ const Loader = () => {
           alt="Scons Logo" 
           className="absolute"
           style={{
-            width: '60px',
-            height: '60px',
+            width: '50px',
+            height: '50px',
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
