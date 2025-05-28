@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
 import BodyText from "../../BodyText/BodyText";
 import Heading from "../../Heading/Heading";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const IndustryCard = ({
   industry,
@@ -18,10 +19,10 @@ const IndustryCard = ({
   const overlayRef = useRef(null);
   const detailsContainerRef = useRef(null);
   const titleBottomRef = useRef(null);
-
   const [windowWidth, setWindowWidth] = useState(
     typeof window !== "undefined" ? window.innerWidth : 1200
   );
+  const [isDetailsVisible, setIsDetailsVisible] = useState(false);
 
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
@@ -29,31 +30,42 @@ const IndustryCard = ({
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Determine if mobile view (less than 640px)
+  const isMobile = windowWidth < 640;
+
+  // Use active state for desktop, isDetailsVisible for mobile
+  const isActive = isMobile ? isDetailsVisible : active;
+
   useEffect(() => {
     // Animate overlay
     gsap.to(overlayRef.current, {
-      background: active ? "rgba(0,0,0,0.85)" : "rgba(0,0,0,0.65)",
+      background: isActive ? "rgba(0,0,0,0.85)" : "rgba(0,0,0,0.65)",
       duration: 0.3,
       ease: "power3.out",
     });
 
     // Animate bottom title out
     gsap.to(titleBottomRef.current, {
-      y: active ? 40 : 0,
-      opacity: active ? 0 : 1,
+      y: isActive ? 40 : 0,
+      opacity: isActive ? 0 : 1,
       duration: 0.3,
       ease: "power3.out",
     });
 
     // Animate details container (title and description together)
     gsap.to(detailsContainerRef.current, {
-      y: active ? 0 : -100,
-      opacity: active ? 1 : 0,
+      y: isActive ? 0 : -100,
+      opacity: isActive ? 1 : 0,
       duration: 0.4,
       ease: "power3.out",
-      pointerEvents: active ? "auto" : "none",
+      pointerEvents: isActive ? "auto" : "none",
     });
-  }, [active]);
+  }, [isActive]);
+
+  // Toggle details visibility for mobile
+  const toggleDetails = () => {
+    setIsDetailsVisible((prev) => !prev);
+  };
 
   // Determine responsive width and height based on window width
   let width = CARD_WIDTH;
@@ -77,10 +89,9 @@ const IndustryCard = ({
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
-      onMouseEnter={onHover}
-      onMouseLeave={onLeave}
-      onTouchStart={onHover}
-      onTouchEnd={onLeave}
+      onMouseEnter={isMobile ? null : onHover}
+      onMouseLeave={isMobile ? null : onLeave}
+      onClick={isMobile ? toggleDetails : null}
     >
       {/* Overlay */}
       <div
@@ -91,6 +102,19 @@ const IndustryCard = ({
           zIndex: 1,
         }}
       />
+
+      {/* Eye Icon for Mobile */}
+      {isMobile && (
+        <div
+          className="absolute top-4 right-4 z-30 text-white text-xl cursor-pointer"
+          onClick={(e) => {
+            e.stopPropagation(); // Prevent card click from triggering when clicking the eye icon
+            toggleDetails();
+          }}
+        >
+          {isDetailsVisible ? <FaEyeSlash /> : <FaEye />}
+        </div>
+      )}
 
       {/* Bottom Title */}
       <div
@@ -136,7 +160,7 @@ const IndustryCard = ({
             size="text-35px"
             color="text-white"
             fontWeight="font-bold"
-            className="drop-shadow-lg text-left"
+            className="drop-shadow-lg pr-6 text-left"
             centered={false}
           />
         </div>
@@ -149,7 +173,6 @@ const IndustryCard = ({
             color="text-white"
             className="text-left leading-normal xl:leading-loose"
             centered={false}
-
           />
         </div>
       </div>

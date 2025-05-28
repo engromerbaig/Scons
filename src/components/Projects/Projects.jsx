@@ -50,7 +50,7 @@ const Projects = ({
   <AnimatedArrow
     text={arrowText}
     to={arrowLink}
-    className="text-right xl:text-left self-end xl:self-auto" // Right-align text and push to right on mobile
+    className="text-left self-auto xl:self-auto" // Right-align text and push to right on mobile
   />
 </div>
       <ProjectGrid

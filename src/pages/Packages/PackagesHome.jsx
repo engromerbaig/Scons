@@ -39,7 +39,7 @@ const PackagesHome = () => {
   <AnimatedArrow
     text="Show All Packages"
     to="/packages"
-    className="text-right xl:text-left self-end xl:self-auto" // Right-align text and push to right on mobile
+    className="text-left self-auto xl:self-auto" // Right-align text and push to right on mobile
   />
 </div>
       <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
