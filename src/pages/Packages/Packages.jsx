@@ -53,7 +53,7 @@ const Packages = () => {
     : { [selectedCategory]: filteredPackages };
 
   return (
-    <div className={`${theme.layoutPages.paddingBottom} min-h-screen`}>
+    <div className={`${theme.layoutPages.paddingBottom} `}>
       <InnerHero height="h-[70vh]" headingColor="text-black">
         <motion.div
           initial={{ opacity: 0 }}

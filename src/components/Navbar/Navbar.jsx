@@ -4,6 +4,7 @@ import { theme } from '../../theme';
 import ScrollToTopLink from '../../utilities/ScrollToTopLink';
 import { contactDetails } from '../MobileMenu/modules/contactDetails';
 import Button from '../Button/Button';
+import { navLinks } from './navLinks';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -30,13 +31,11 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-
       if (currentScrollY < lastScrollY && currentScrollY > 50) {
         setIsSticky(true);
       } else {
         setIsSticky(false);
       }
-
       setLastScrollY(currentScrollY);
     };
 
@@ -44,54 +43,65 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
-  const phoneDetail = contactDetails.find(detail => detail.type === 'Phone');
-  const PhoneIcon = phoneDetail?.icon;
-
   return (
-    <nav
-      className={`${
-        isSticky ? 'fixed top-0 bg-opacity-60 backdrop-blur-sm shadow-md' : 'absolute bg-transparent'
-      } ${theme.layoutPages.paddingHorizontal} py-4 lg:py-4 flex justify-between items-center w-full z-[50] transition-all duration-300`}
-    >
-      <div className="flex items-center">
-        <ScrollToTopLink to="/" className="cursor-pointer">
-          <img src="/logo2.svg" alt="Logo" className="lg:w-32 w-24 aspect-rectangle" loading="lazy" />
-        </ScrollToTopLink>
-      </div>
-
-      <div className="flex items-center gap-4 lg:gap-6">
-        {/* Phone details only on lg and above */}
-        {phoneDetail && (
-          <div className="hidden lg:flex items-center gap-2 text-sm font-semibold text-black">
-            <PhoneIcon className="text-black text-xl" />
-            <a href={phoneDetail.link} className="text-base font-bold hover:text-neon transition-colors">
-              {phoneDetail.detail}
-            </a>
-          </div>
-        )}
-
-        {/* Get in Touch button only on below lg */}
-        <div className="lg:hidden">
-          <Button
-            name="Get in Touch"
-            fontSize="text-10px"
-            className="py-1 px-1"
-            openModal={true}
-          />
+    <nav className={`w-full flex justify-center z-50 ${isSticky ? 'fixed top-0 backdrop-blur-sm ' : 'absolute'} transition-all duration-300 ${theme.layoutPages.paddingHorizontal} py-4`}>
+      <div className="bg-white rounded-full px-6 py-4 flex items-center gap-6 shadow-lg max-w-[90vw] lg:max-w-[60vw] w-full justify-between">
+        
+        {/* Left links */}
+        <div className="flex gap-6 items-center">
+          {navLinks.slice(0, Math.floor(navLinks.length / 2)).map((link) => (
+            <ScrollToTopLink
+              key={link.to}
+              to={link.to}
+              className="text-black font-semibold text-sm hover:text-blue-400 transition"
+            >
+              {link.label}
+            </ScrollToTopLink>
+          ))}
         </div>
 
-   <button
-  type="button"
-  onClick={toggleMobileMenu}
-  className="relative hover:bg-neon/15 hover:rounded-full p-2 transition-all duration-300"
->
-  <img
-    src="/hamburger.svg"
-    alt="Menu"
-    className="w-6 aspect-square z-[200]"
-    loading="lazy"
-  />
-</button>
+        {/* Logo */}
+        <div className="shrink-0">
+          <ScrollToTopLink to="/">
+            <img
+              src="/logo2.svg"
+              alt="Logo"
+              className="w-20 aspect-rectangle"
+              loading="lazy"
+            />
+          </ScrollToTopLink>
+        </div>
+
+        {/* Right links + button */}
+        <div className="flex gap-6 items-center">
+          {navLinks.slice(Math.floor(navLinks.length / 2)).map((link) => (
+            <ScrollToTopLink
+              key={link.to}
+              to={link.to}
+              className="text-black font-semibold text-sm hover:text-blue-400 transition"
+            >
+              {link.label}
+            </ScrollToTopLink>
+          ))}
+
+          {/* <Button
+            name="Get a custom plan"
+            fontSize="text-sm"
+            className="bg-blue-500 hover:bg-blue-600 text-black font-semibold py-2 px-4 rounded-full shadow transition"
+            openModal={true}
+          /> */}
+        </div>
+      </div>
+
+      {/* Mobile Button */}
+      <div className="absolute right-4 top-1/2 -translate-y-1/2 lg:hidden">
+        <button
+          type="button"
+          onClick={toggleMobileMenu}
+          className="relative hover:bg-blue-600/20 hover:rounded-full p-2 transition-all duration-300"
+        >
+          <img src="/hamburger.svg" alt="Menu" className="w-6 aspect-square z-[200]" loading="lazy" />
+        </button>
       </div>
 
       <MobileMenu
