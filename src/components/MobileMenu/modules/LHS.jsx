@@ -18,7 +18,7 @@ const LHS = ({ containerVariants, textVariants, handleClose }) => (
     {/* Top Section (2/12) */}
     <div className="h-[16.67%]">
       <Link to="/" className="cursor-pointer block" onClick={handleClose}>
-        <img src="/logo2.svg" alt="Logo" className="lg:w-28 w-20 aspect-rectangle " />
+          <img src="/logo2.svg" alt="Logo" className="lg:w-32 w-24 aspect-rectangle" loading="lazy" />
       </Link>
     </div>
 
