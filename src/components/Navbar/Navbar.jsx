@@ -51,11 +51,11 @@ const Navbar = () => {
     <nav
       className={`${
         isSticky ? 'fixed top-0 bg-opacity-60 backdrop-blur-sm shadow-md' : 'absolute bg-transparent'
-      } ${theme.layoutPages.paddingHorizontal} py-4 lg:py-6 flex justify-between items-center w-full z-[50] transition-all duration-300`}
+      } ${theme.layoutPages.paddingHorizontal} py-4 lg:py-4 flex justify-between items-center w-full z-[50] transition-all duration-300`}
     >
       <div className="flex items-center">
         <ScrollToTopLink to="/" className="cursor-pointer">
-          <img src="/logo2.svg" alt="Logo" className="lg:w-28 w-20 aspect-rectangle" loading="lazy" />
+          <img src="/logo2.svg" alt="Logo" className="lg:w-32 w-24 aspect-rectangle" loading="lazy" />
         </ScrollToTopLink>
       </div>
 
