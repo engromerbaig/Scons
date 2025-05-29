@@ -15,7 +15,7 @@ const StartProjectBelt = ({
 }) => {
   return (
     <MessageBoxLayout bgColor={bgColor} CIRCLE_COUNT={3}>
-      <div className="flex flex-col gap-y-2 xl:flex-row items-center justify-between text-center xl:text-left w-full">
+      <div className="flex flex-col gap-y-4 xl:flex-row items-center justify-between text-center xl:text-left w-full">
         <Heading
           text={`${headingText} ${text}?`}
           spanText={text}
