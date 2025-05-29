@@ -10,6 +10,8 @@ const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
 
+  const currentPath = typeof window !== 'undefined' ? window.location.pathname : '';
+
   const toggleMobileMenu = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -54,15 +56,22 @@ const Navbar = () => {
       >
         {/* Left links */}
         <div className="flex justify-between items-center flex-1 pr-20">
-          {navLinks.slice(0, Math.floor(navLinks.length / 2)).map((link) => (
-            <ScrollToTopLink
-              key={link.to}
-              to={link.to}
-              className="text-black font-bold rounded-full  text-base hover:bg-neon hover: transition"
-            >
-              {link.label}
-            </ScrollToTopLink>
-          ))}
+          {navLinks.slice(0, Math.floor(navLinks.length / 2)).map((link) => {
+            const isActive = currentPath === link.to;
+            return (
+              <ScrollToTopLink
+                key={link.to}
+                to={link.to}
+                className={`font-bold rounded-full py-1 px-2 text-base transition-colors duration-300 ease-in-out ${
+                  isActive
+                    ? 'border border-neon text-neon'
+                    : 'text-black hover:bg-neon/60'
+                }`}
+              >
+                {link.label}
+              </ScrollToTopLink>
+            );
+          })}
         </div>
 
         {/* Logo (Centered) */}
@@ -79,15 +88,22 @@ const Navbar = () => {
 
         {/* Right links */}
         <div className="flex justify-between items-center flex-1 pl-20">
-          {navLinks.slice(Math.floor(navLinks.length / 2)).map((link) => (
-            <ScrollToTopLink
-              key={link.to}
-              to={link.to}
-              className="text-black font-bold text-base hover:text-blue-400 transition"
-            >
-              {link.label}
-            </ScrollToTopLink>
-          ))}
+          {navLinks.slice(Math.floor(navLinks.length / 2)).map((link) => {
+            const isActive = currentPath === link.to;
+            return (
+              <ScrollToTopLink
+                key={link.to}
+                to={link.to}
+                className={`font-bold rounded-full py-1 px-2 text-base transition-colors duration-300 ease-in-out ${
+                  isActive
+                    ? 'border border-neon text-neon'
+                    : 'text-black hover:bg-neon/60'
+                }`}
+              >
+                {link.label}
+              </ScrollToTopLink>
+            );
+          })}
         </div>
       </div>
 
