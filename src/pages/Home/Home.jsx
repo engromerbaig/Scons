@@ -19,7 +19,10 @@ function Home() {
     <div>
       <FadeInSection><Hero /></FadeInSection>
         <FadeInSection disabled><UniqueApproachOld /></FadeInSection>
-      <FadeInSection disabled><StartProjectBelt headingText='Schedule a Virtual Meeting' text='Meeting' buttonText='Schedule Now' /></FadeInSection>
+      <FadeInSection disabled><StartProjectBelt headingText='Schedule a Virtual Meeting' text='Meeting' buttonText='Schedule Now'
+      link="https://calendly.com/sconstech-official"
+      
+      /></FadeInSection>
 
       <FadeInSection disabled><Projects showMystery={true} /></FadeInSection>
       <FadeInSection><ServicesOld /></FadeInSection>

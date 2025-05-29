@@ -5,7 +5,14 @@ import Button from "../Button/Button";
 import { Link } from "react-router-dom";
 import { MessageBoxLayout } from "../MessageBox/MessageBox";
 
-const StartProjectBelt = ({ text = "Project", bgColor = "bg-black" , buttonText = "Get Started" , headingText ="Ready to Start Your" }) => {
+const StartProjectBelt = ({
+  text = "Project",
+  bgColor = "bg-black",
+  buttonText = "Get Started",
+  headingText = "Ready to Start Your",
+  openModal = true,
+  link, // Optional link
+}) => {
   return (
     <MessageBoxLayout bgColor={bgColor} CIRCLE_COUNT={3}>
       <div className="flex flex-col gap-y-2 xl:flex-row items-center justify-between text-center xl:text-left w-full">
@@ -17,14 +24,14 @@ const StartProjectBelt = ({ text = "Project", bgColor = "bg-black" , buttonText 
           color="text-white"
           centered={true}
         />
-       <Button
+        <Button
           name={buttonText}
-          openModal={true}
+          openModal={openModal && !link} // Only true if no link
+          link={link} // link overrides openModal
           bgColor="bg-neon"
           hoverBgColor="bg-neon/90"
           textColor="black"
           hoverTextColor="black"
-          
         />
       </div>
     </MessageBoxLayout>
@@ -32,3 +39,5 @@ const StartProjectBelt = ({ text = "Project", bgColor = "bg-black" , buttonText 
 };
 
 export default StartProjectBelt;
+
+
