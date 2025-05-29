@@ -42,7 +42,7 @@ const CanvasMenuContent = ({ handleClose }) => (
     href={social.link}
     target="_blank"
     rel="noopener noreferrer"
-    className="text-35px bg-black p-3 rounded-full text-white hover:text-neon transition-colors duration-300"
+    className="text-xl bg-black p-2 lg:p-3 rounded-full text-white hover:text-neon transition-colors duration-300"
   >
     <social.icon />
   </a>
@@ -54,7 +54,7 @@ const CanvasMenuContent = ({ handleClose }) => (
     {/* Right Side: Services + Contact */}
     <div className="w-full md:w-1/2 flex flex-col justify-between">
       <div>
-        <h2 className="text-2xl lg:text-4xl font-bold text-neon mb-6">Our Services</h2>
+        <h2 className="text-2xl lg:text-4xl font-black text-black mb-6">Our Services</h2>
 
 
 <div className="flex flex-wrap gap-4">
