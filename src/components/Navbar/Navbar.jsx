@@ -62,10 +62,17 @@ const Navbar = () => {
         <div className="flex items-center justify-start h-16 xl:h-16">
           <ScrollToTopLink
             to="/"
-            className="cursor-pointer flex items-center justify-center h-16 xl:h-16 w-16 xl:w-20 rounded-b-xl bg-black shadow-md"
+            className="cursor-pointer flex items-center justify-center  xl:h-16  xl:w-20 rounded-b-xl xl:bg-black xl:shadow-md"
           >
-            <img src="/favicon2.svg" alt="Logo" className="w-10 xl:w-14 aspect-square" loading="lazy" />
-          </ScrollToTopLink>
+<picture>
+  <source srcSet="/favicon2.svg" media="(min-width: 1280px)" />
+  <img
+    src="/logo2.svg"
+    alt="Logo"
+    className="w-24 xl:w-14 aspect-square"
+    loading="lazy"
+  />
+</picture>          </ScrollToTopLink>
         </div>
 
         {/* Center Column - Navigation Links */}
@@ -110,11 +117,11 @@ const Navbar = () => {
           <button
             type="button"
             onClick={toggleMobileMenu}
-            className="relative bg-black shadow-md p-2 transition-all duration-300 h-16 xl:h-16 w-16 xl:w-20 rounded-b-xl flex items-center justify-center"
+            className="relative xl:bg-black xl:shadow-md p-2  transition-all duration-300  xl:h-16  xl:w-20 rounded-b-xl flex items-center justify-center"
           >
-            <div className="flex flex-col items-end gap-2">
-              <div className="w-4 h-0.5 bg-white rounded-sm"></div>
-              <div className="w-6 h-0.5 bg-white rounded-sm"></div>
+            <div className="flex flex-col items-end gap-2 ">
+              <div className="w-4 h-0.5 bg-black xl:bg-white rounded-sm"></div>
+              <div className="w-6 h-0.5 bg-black xl:bg-white rounded-sm"></div>
             </div>
           </button>
         </div>
