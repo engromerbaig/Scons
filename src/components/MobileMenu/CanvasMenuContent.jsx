@@ -10,20 +10,20 @@ import { navLinks } from '../Navbar/navLinks';
 import { theme } from '../../theme';
 
 const CanvasMenuContent = ({ handleClose }) => (
-  <div className={`w-full h-full flex flex-col xl:flex-row  ${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} gap-8 overflow-y-auto`}>
+  <div className={`w-full h-full bg-black flex flex-col xl:flex-row  ${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} gap-8 overflow-y-auto`}>
 
     {/* Left Side: NavLinks + Socials */}
     <div className="w-full md:w-1/2 flex flex-col justify-between">
       <div>
         <Link to="/" onClick={handleClose}>
-          <img src="/logo2.svg" alt="Logo" className="w-24 lg:w-32 mb-10" />
+          <img src="/logo.svg" alt="Logo" className="w-24 lg:w-32 mb-10" />
         </Link>
         {navLinks.map((link, idx) => (
           <Link
             key={idx}
             to={link.to}
             onClick={handleClose}
-            className="block text-xl lg:text-3xl font-semibold text-black hover:text-neon mb-4"
+            className="block text-xl lg:text-3xl font-semibold text-white hover:text-neon mb-4"
           >
             {link.label}
           </Link>
@@ -36,7 +36,7 @@ const CanvasMenuContent = ({ handleClose }) => (
             href={social.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xl text-black hover:text-neon"
+            className="text-xl text-white hover:text-neon"
           >
             {social.name}
           </a>
@@ -53,7 +53,7 @@ const CanvasMenuContent = ({ handleClose }) => (
             key={service.slug}
             to={`/service/${service.slug}`}
             onClick={handleClose}
-            className="block text-xl lg:text-3xl font-semibold text-black hover:text-neon mb-4"
+            className="block text-xl lg:text-3xl font-semibold text-white hover:text-neon mb-4"
           >
             {service.heading}
           </Link>
@@ -64,7 +64,7 @@ const CanvasMenuContent = ({ handleClose }) => (
           <a
             key={contact.type}
             href={contact.link}
-            className="block text-xl lg:text-2xl text-black hover:text-neon mb-2"
+            className="block text-xl lg:text-2xl text-white hover:text-neon mb-2"
           >
             {contact.detail}
           </a>
