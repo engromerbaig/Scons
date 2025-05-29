@@ -5,12 +5,12 @@ import Button from "../Button/Button";
 import { Link } from "react-router-dom";
 import { MessageBoxLayout } from "../MessageBox/MessageBox";
 
-const StartProjectBelt = ({ text = "Project" }) => {
+const StartProjectBelt = ({ text = "Project", bgColor = "bg-black" , buttonText = "Get Started" , headingText ="Ready to Start Your" }) => {
   return (
-    <MessageBoxLayout CIRCLE_COUNT={3}>
+    <MessageBoxLayout bgColor={bgColor} CIRCLE_COUNT={3}>
       <div className="flex flex-col gap-y-2 xl:flex-row items-center justify-between text-center xl:text-left w-full">
         <Heading
-          text={`Ready to Start Your ${text}?`}
+          text={`${headingText} ${text}?`}
           spanText={text}
           spanColor="text-neon"
           size="text-60px xl:text-40px"
@@ -18,7 +18,7 @@ const StartProjectBelt = ({ text = "Project" }) => {
           centered={true}
         />
        <Button
-          name="Start Now!"
+          name={buttonText}
           openModal={true}
           bgColor="bg-neon"
           hoverBgColor="bg-neon/90"
