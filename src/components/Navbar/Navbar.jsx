@@ -54,7 +54,7 @@ const Navbar = () => {
         isSticky ? 'fixed top-0  backdrop-blur-[2px] ' : 'absolute bg-transparent'
       } ${theme.layoutPages.paddingHorizontal}  w-full z-[50] transition-all duration-300`}
     >
-     <div className="grid grid-cols-3 items-start w-full h-20">
+  <div className="grid grid-cols-3 items-end w-full h-20">
   {/* Left Column - Logo */}
   <div className="flex items-center justify-start h-20">
     <ScrollToTopLink to="/" className="cursor-pointer flex items-center justify-center h-20 w-20 rounded-b-xl bg-black">
@@ -63,8 +63,8 @@ const Navbar = () => {
   </div>
 
   {/* Center Column - Navigation Links */}
-  <div className="flex items-center justify-center h-20 bg-red-300 mt-1">
-    <div className="hidden lg:flex items-center gap-8 bg-black px-10 py-3 rounded-xl min-w-[700px]">
+  <div className="flex items-end justify-center h-20">
+    <div className="hidden lg:flex items-center gap-8 bg-black px-12 py-4 rounded-xl min-w-[700px]">
       {navLinks.map((link, index) => (
         <ScrollToTopLink
           key={index}
@@ -79,7 +79,6 @@ const Navbar = () => {
 
   {/* Right Column - CTA and Hamburger */}
   <div className="flex items-center justify-end gap-4 h-20">
-    {/* Get in Touch button - mobile version */}
     <div className="lg:hidden">
       <Button
         name="Get in Touch"
@@ -89,7 +88,6 @@ const Navbar = () => {
       />
     </div>
 
-    {/* Hamburger Menu */}
     <button
       type="button"
       onClick={toggleMobileMenu}
@@ -102,6 +100,7 @@ const Navbar = () => {
     </button>
   </div>
 </div>
+
 
 
       <MobileMenu
