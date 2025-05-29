@@ -3,6 +3,7 @@ import MobileMenu from '../MobileMenu/MobileMenu';
 import { theme } from '../../theme';
 import ScrollToTopLink from '../../utilities/ScrollToTopLink';
 import { navLinks } from './navLinks';
+import { contactDetails } from '../MobileMenu/modules/contactDetails';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -11,6 +12,9 @@ const Navbar = () => {
   const [lastScrollY, setLastScrollY] = useState(0);
 
   const currentPath = typeof window !== 'undefined' ? window.location.pathname : '';
+
+  const phoneDetail = contactDetails.find(detail => detail.type === 'Phone');
+const PhoneIcon = phoneDetail?.icon;
 
   const toggleMobileMenu = (e) => {
     e.preventDefault();
@@ -55,24 +59,24 @@ const Navbar = () => {
         } bg-transparent rounded-full px-10 py-4 shadow-xl max-w-[90vw] lg:max-w-[65vw] w-full hidden lg:flex relative items-center`}
       >
         {/* Left links */}
-        <div className="flex justify-between items-center flex-1 pr-20">
-          {navLinks.slice(0, Math.floor(navLinks.length / 2)).map((link) => {
-            const isActive = currentPath === link.to;
-            return (
-              <ScrollToTopLink
-                key={link.to}
-                to={link.to}
-                className={`font-bold rounded-full py-1 px-2 text-base transition-colors duration-300 ease-in-out ${
-                  isActive
-                    ? 'border border-neon text-neon'
-                    : 'text-black hover:bg-neon/60'
-                }`}
-              >
-                {link.label}
-              </ScrollToTopLink>
-            );
-          })}
-        </div>
+      <div className="flex justify-between items-center flex-1 pr-14">
+  {navLinks.slice(0, Math.ceil(navLinks.length / 2)).map((link) => {
+    const isActive = currentPath === link.to;
+    return (
+      <ScrollToTopLink
+        key={link.to}
+        to={link.to}
+        className={`font-bold rounded-full py-1 px-2 text-base transition-colors duration-300 ease-in-out ${
+          isActive
+            ? 'border border-neon text-neon'
+            : 'text-black hover:bg-neon/60'
+        }`}
+      >
+        {link.label}
+      </ScrollToTopLink>
+    );
+  })}
+</div>
 
         {/* Logo (Centered) */}
         <div className="absolute left-1/2 transform -translate-x-1/2 shrink-0 z-10">
@@ -87,24 +91,35 @@ const Navbar = () => {
         </div>
 
         {/* Right links */}
-        <div className="flex justify-between items-center flex-1 pl-20">
-          {navLinks.slice(Math.floor(navLinks.length / 2)).map((link) => {
-            const isActive = currentPath === link.to;
-            return (
-              <ScrollToTopLink
-                key={link.to}
-                to={link.to}
-                className={`font-bold rounded-full py-1 px-2 text-base transition-colors duration-300 ease-in-out ${
-                  isActive
-                    ? 'border border-neon text-neon'
-                    : 'text-black hover:bg-neon/60'
-                }`}
-              >
-                {link.label}
-              </ScrollToTopLink>
-            );
-          })}
-        </div>
+<div className="flex justify-between items-center flex-1 pl-14">
+  {navLinks.slice(Math.ceil(navLinks.length / 2)).map((link) => {
+    const isActive = currentPath === link.to;
+    return (
+      <ScrollToTopLink
+        key={link.to}
+        to={link.to}
+        className={`font-bold rounded-full py-1 px-2 text-base transition-colors duration-300 ease-in-out ${
+          isActive
+            ? 'border border-neon text-neon'
+            : 'text-black hover:bg-neon/60'
+        }`}
+      >
+        {link.label}
+      </ScrollToTopLink>
+    );
+  })}
+
+  {/* Phone Detail */}
+  {/* {phoneDetail && (
+    <div className="hidden lg:flex items-center gap-2 text-sm font-semibold text-black ml-4">
+      <PhoneIcon className="text-black text-sm" />
+      <a href={phoneDetail.link} className="text-sm font-bold hover:text-neon transition-colors">
+        {phoneDetail.detail}
+      </a>
+    </div>
+  )} */}
+</div>
+
       </div>
 
       {/* Mobile view: Logo and Hamburger */}
