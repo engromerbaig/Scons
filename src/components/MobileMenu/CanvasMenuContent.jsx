@@ -56,22 +56,23 @@ const CanvasMenuContent = ({ handleClose }) => (
       <div>
         <h2 className="text-2xl lg:text-4xl font-bold text-neon mb-6">Our Services</h2>
 
+
 <div className="flex flex-wrap gap-4">
   {services.map((service) => (
     <Link
       key={service.slug}
       to={`/service/${service.slug}`}
       onClick={handleClose}
-      className="group inline-flex items-center gap-2 text-xl lg:text-2xl font-semibold text-neon border-2 px-4 py-2 rounded-full border-neon hover:text-neon transition-colors duration-300"
+      className="group inline-flex items-center gap-2 text-xl lg:text-2xl font-semibold text-white border-2 px-4 py-2 rounded-full border-neon hover:text-neon transition-colors duration-300"
     >
       {service.heading}
-      <span className="relative w-5 h-5">
-        <FiArrowUpRight className="absolute inset-0 transition-opacity duration-300 opacity-100 group-hover:opacity-0" />
-        <FiArrowRight className="absolute inset-0 transition-opacity duration-300 opacity-0 group-hover:opacity-100" />
-      </span>
+      <FiArrowUpRight
+        className="transform transition-transform duration-300 group-hover:rotate-45"
+      />
     </Link>
   ))}
 </div>
+
 
 
       </div>
