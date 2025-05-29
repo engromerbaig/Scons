@@ -5,13 +5,13 @@ import projects from "../../pages/OurWork/projectDetails";
 import AnimatedArrow from "../AnimatedArrow/AnimatedArrow";
 import ProjectGrid from "../../pages/OurWork/ProjectGrid";
 import ChatModal from "../ChatModal/ChatModal";
-import mysteryImage from "../../assets/images/mystery.png";
+import mysteryImage from "../../assets/icons/mystery.svg";
 
 // Mystery project configuration
 const mysteryProject = {
   coverImage: mysteryImage,
-  heading: "This Could Be Yours",
-  headline: "Ready to bring your vision to life? Let's create something extraordinary together!",
+  heading: "Start Your Own Project",
+  headline: "Next in line could be your project — let's start building it today!",
   isMystery: true, // Flag to identify mystery project
 };
 
