@@ -13,7 +13,7 @@ export const socialsData = [
   },
   {
     icon: FaInstagram,
-    link: 'https://www.instagram.com/scons.tech/',
+    link: 'https://www.instagram.com/sconstech/',
   },
   {
     icon: FaXTwitter,

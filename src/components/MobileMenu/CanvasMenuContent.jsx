@@ -9,6 +9,12 @@ import { socialsData } from './modules/socialsData';
 import { navLinks } from '../Navbar/navLinks';
 import { theme } from '../../theme';
 
+
+import { FiArrowUpRight } from "react-icons/fi";
+import { FiArrowRight } from "react-icons/fi"; 
+
+
+
 const CanvasMenuContent = ({ handleClose }) => (
   <div className={`w-full h-full bg-black flex flex-col xl:flex-row  ${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} gap-8 overflow-y-auto`}>
 
@@ -30,17 +36,18 @@ const CanvasMenuContent = ({ handleClose }) => (
         ))}
       </div>
       <div className="flex gap-4 mt-10">
-        {socialsData.map((social) => (
-          <a
-            key={social.name}
-            href={social.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xl text-white hover:text-neon"
-          >
-            {social.name}
-          </a>
-        ))}
+ {socialsData.map((social) => (
+  <a
+    key={social.link}
+    href={social.link}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-40px bg-neon p-2 rounded-full text-black hover:text-white transition-colors duration-300"
+  >
+    <social.icon />
+  </a>
+))}
+
       </div>
     </div>
 
@@ -48,16 +55,25 @@ const CanvasMenuContent = ({ handleClose }) => (
     <div className="w-full md:w-1/2 flex flex-col justify-between">
       <div>
         <h2 className="text-2xl lg:text-4xl font-bold text-neon mb-6">Our Services</h2>
-        {services.map((service, index) => (
-          <Link
-            key={service.slug}
-            to={`/service/${service.slug}`}
-            onClick={handleClose}
-            className="block text-xl lg:text-3xl font-semibold text-white hover:text-neon mb-4"
-          >
-            {service.heading}
-          </Link>
-        ))}
+
+<div className="flex flex-wrap gap-4">
+  {services.map((service) => (
+    <Link
+      key={service.slug}
+      to={`/service/${service.slug}`}
+      onClick={handleClose}
+      className="group inline-flex items-center gap-2 text-xl lg:text-2xl font-semibold text-neon border-2 px-4 py-2 rounded-full border-neon hover:text-neon transition-colors duration-300"
+    >
+      {service.heading}
+      <span className="relative w-5 h-5">
+        <FiArrowUpRight className="absolute inset-0 transition-opacity duration-300 opacity-100 group-hover:opacity-0" />
+        <FiArrowRight className="absolute inset-0 transition-opacity duration-300 opacity-0 group-hover:opacity-100" />
+      </span>
+    </Link>
+  ))}
+</div>
+
+
       </div>
       <div className="mt-10">
         {contactDetails.map((contact) => (
