@@ -42,7 +42,7 @@ const CanvasMenuContent = ({ handleClose }) => (
     href={social.link}
     target="_blank"
     rel="noopener noreferrer"
-    className="text-40px bg-neon p-2 rounded-full text-black hover:text-white transition-colors duration-300"
+    className="text-35px bg-white p-2 rounded-full text-black hover:text-neon transition-colors duration-300"
   >
     <social.icon />
   </a>
@@ -81,7 +81,7 @@ const CanvasMenuContent = ({ handleClose }) => (
           <a
             key={contact.type}
             href={contact.link}
-            className="block text-xl lg:text-2xl text-white hover:text-neon mb-2"
+            className="block text-xl lg:text-3xl text-white hover:text-neon mb-2"
           >
             {contact.detail}
           </a>
