@@ -84,8 +84,8 @@ const Navbar = () => {
                   style={{ minWidth: 'fit-content' }}
                 >
                   <span
-                    className={`absolute inset-0 border-2 ${
-                      isActive ? 'border-neon rounded-full' : 'border-transparent'
+                    className={`absolute inset-0 ${
+                      isActive ? 'border-neon rounded-full tab-active-gradient' : 'border-transparent'
                     }`}
                     style={{ pointerEvents: 'none' }}
                   />
