@@ -25,7 +25,6 @@ const Blogs = () => {
         <InnerHero
             headingText="Blogs & Insights"
             spanText="Insights" // Dynamically generated spanText
-            headingSize='text-120px'
             bodyText="Stay ahead with the latest insights, trends, and innovations. Explore expert opinions, industry updates, and fresh perspectives—all in one place!"
    
         />

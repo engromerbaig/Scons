@@ -2,9 +2,9 @@ export const navLinks = [
     // { to: "/", label: "Home" },
     { to: "/why-scons", label: "Why Scons?" },
     { to: "/portfolio", label: "Our Portfolio" },
-        { to: "#", label: "Services" },
+        // { to: "#", label: "Services" },
 
-    // { to: "/blogs", label: "Blogs" },
+    { to: "/blogs", label: "Blogs" },
 
     { to: "/careers", label: "Careers" },
         { to: "/packages", label: "Packages" },
