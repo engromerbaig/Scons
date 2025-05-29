@@ -4,6 +4,7 @@ import { theme } from '../../theme';
 import ScrollToTopLink from '../../utilities/ScrollToTopLink';
 import { contactDetails } from '../MobileMenu/modules/contactDetails';
 import Button from '../Button/Button';
+import { navLinks } from './navLinks';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -51,47 +52,62 @@ const Navbar = () => {
     <nav
       className={`${
         isSticky ? 'fixed top-0 bg-opacity-60 backdrop-blur-sm shadow-md' : 'absolute bg-transparent'
-      } ${theme.layoutPages.paddingHorizontal} py-4 lg:py-4 flex justify-between items-center w-full z-[50] transition-all duration-300`}
+      } ${theme.layoutPages.paddingHorizontal}  w-full z-[50] transition-all duration-300`}
     >
-      <div className="flex items-center">
-        <ScrollToTopLink to="/" className="cursor-pointer">
-          <img src="/logo2.svg" alt="Logo" className="lg:w-32 w-24 aspect-rectangle" loading="lazy" />
-        </ScrollToTopLink>
-      </div>
-
-      <div className="flex items-center gap-4 lg:gap-6">
-        {/* Phone details only on lg and above */}
-        {phoneDetail && (
-          <div className="hidden lg:flex items-center gap-2 text-sm font-semibold text-black">
-            <PhoneIcon className="text-black text-xl" />
-            <a href={phoneDetail.link} className="text-base font-bold hover:text-neon transition-colors">
-              {phoneDetail.detail}
-            </a>
-          </div>
-        )}
-
-        {/* Get in Touch button only on below lg */}
-        <div className="lg:hidden">
-          <Button
-            name="Get in Touch"
-            fontSize="text-10px"
-            className="py-1 px-1"
-            openModal={true}
-          />
+      <div className="grid grid-cols-3 items-start w-full">
+        {/* Left Column - Logo */}
+        <div className="flex items-center justify-start">
+          <ScrollToTopLink to="/" className="cursor-pointer bg-black">
+            <img src="/favicon.svg" alt="Logo" className="lg:w-14 w-12 aspect-rectangle" loading="lazy" />
+          </ScrollToTopLink>
         </div>
 
+        {/* Center Column - Navigation Links */}
+        <div className="flex items-center justify-center mt-2 lg:mt-2">
+          <div className="hidden lg:flex items-center gap-8 bg-black px-10 py-3 rounded-2xl">
+            {navLinks.map((link, index) => (
+              <ScrollToTopLink 
+                key={index}
+                to={link.to} 
+                className="text-base font-medium text-white hover:text-neon transition-colors"
+              >
+                {link.label}
+              </ScrollToTopLink>
+            ))}
+          </div>
+          
+  
+        </div>
+
+        {/* Right Column - CTA and Hamburger */}
+        <div className="flex items-center justify-end gap-4">
+          {/* Get in Touch button - visible on desktop */}
+         
+
+          {/* Get in Touch button - mobile version */}
+          <div className="lg:hidden">
+            <Button
+              name="Get in Touch"
+              fontSize="text-10px"
+              className="py-1 px-1"
+              openModal={true}
+            />
+          </div>
+
+          {/* Hamburger Menu */}
    <button
   type="button"
   onClick={toggleMobileMenu}
-  className="relative hover:bg-neon/15 hover:rounded-full p-2 transition-all duration-300"
+  className="relative bg-black p-2 transition-all duration-300 flex flex-col items-end justify-center gap-1"
 >
-  <img
-    src="/hamburger.svg"
-    alt="Menu"
-    className="w-6 aspect-square z-[200]"
-    loading="lazy"
-  />
+  {/* Line 1: 75% width */}
+  <div className="w-4 h-0.5 bg-white rounded-sm"></div>
+  
+  {/* Line 2: 100% width */}
+  <div className="w-6 h-0.5 bg-white rounded-sm"></div>
 </button>
+
+        </div>
       </div>
 
       <MobileMenu
