@@ -74,20 +74,21 @@ const Navbar = () => {
             {navLinks.map((link, index) => {
               const isActive = location.pathname === link.to;
 
-              // Debug log to verify link props
-              console.log(`Link ${index}: to=${link.to}, label=${link.label}`);
-
               return (
                 <ScrollToTopLink
                   key={index}
                   to={link.to}
-                  className={`relative text-base px-2 py-1 font-medium transition-colors whitespace-nowrap border-2 pointer-events-auto ${
-                    isActive
-                      ? 'border-neon text-neon rounded-full'
-                      : 'border-transparent text-white hover:text-neon'
+                  className={`relative text-base px-2 py-1 font-medium whitespace-nowrap transition-[color] duration-300 pointer-events-auto ${
+                    isActive ? 'text-neon' : 'text-white hover:text-neon'
                   }`}
-                  style={{ minWidth: 'fit-content' }} // Ensure link width is sufficient
+                  style={{ minWidth: 'fit-content' }}
                 >
+                  <span
+                    className={`absolute inset-0 border-2 ${
+                      isActive ? 'border-neon rounded-full' : 'border-transparent'
+                    }`}
+                    style={{ pointerEvents: 'none' }}
+                  />
                   {link.label}
                 </ScrollToTopLink>
               );
