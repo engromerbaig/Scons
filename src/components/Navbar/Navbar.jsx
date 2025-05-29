@@ -55,8 +55,8 @@ const PhoneIcon = phoneDetail?.icon;
       {/* Tube for lg and above */}
       <div
         className={`${
-          isSticky ? 'backdrop-blur-md' : ''
-        } bg-transparent rounded-full px-10 py-4 shadow-xl max-w-[90vw] lg:max-w-[65vw] w-full hidden lg:flex relative items-center`}
+          isSticky ? 'backdrop-blur-md ' : ''
+        } bg-black rounded-full px-10 py-3 shadow-xl max-w-[90vw] lg:max-w-[65vw] w-full hidden lg:flex relative items-center`}
       >
         {/* Left links */}
       <div className="flex justify-between items-center flex-1 pr-14">
@@ -66,10 +66,10 @@ const PhoneIcon = phoneDetail?.icon;
       <ScrollToTopLink
         key={link.to}
         to={link.to}
-        className={`font-bold rounded-full py-1 px-2 text-base transition-colors duration-300 ease-in-out ${
+        className={`font-bold rounded-full py-1 px-2 text-sm transition-colors duration-300 ease-in-out ${
           isActive
-            ? 'border border-neon text-neon'
-            : 'text-black hover:bg-neon/60'
+            ? 'border-2 border-neon text-neon'
+            : 'text-white hover:bg-neon hover:text-black'
         }`}
       >
         {link.label}
@@ -98,10 +98,10 @@ const PhoneIcon = phoneDetail?.icon;
       <ScrollToTopLink
         key={link.to}
         to={link.to}
-        className={`font-bold rounded-full py-1 px-2 text-base transition-colors duration-300 ease-in-out ${
+        className={`font-bold rounded-full py-1 px-2 text-sm transition-colors duration-300 ease-in-out ${
           isActive
-            ? 'border border-neon text-neon'
-            : 'text-black hover:bg-neon/60'
+            ? 'border-2 border-neon text-neon'
+            : 'text-white hover:bg-neon hover:text-black'
         }`}
       >
         {link.label}
@@ -111,8 +111,8 @@ const PhoneIcon = phoneDetail?.icon;
 
   {/* Phone Detail */}
   {/* {phoneDetail && (
-    <div className="hidden lg:flex items-center gap-2 text-sm font-semibold text-black ml-4">
-      <PhoneIcon className="text-black text-sm" />
+    <div className="hidden lg:flex items-center gap-2 text-sm font-semibold text-white ml-4">
+      <PhoneIcon className="text-white text-sm" />
       <a href={phoneDetail.link} className="text-sm font-bold hover:text-neon transition-colors">
         {phoneDetail.detail}
       </a>
