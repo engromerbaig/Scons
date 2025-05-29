@@ -11,12 +11,13 @@ const GreenBelt = lazy(() => import("../../components/GreenBelt/GreenBelt"));
 const StartProjectBelt = lazy(() => import("../../components/StartProjectBelt/StartProjectBelt"));
 const Highlights = lazy(() => import("../../components/UniqueApproach/modules/Highlights"));
 const HeadingWithText = lazy(() => import("../../utilities/HeadingWithText"));
-const MessageBox = lazy(() => import("../../components/MessageBox/MessageBox"));
 const Industries = lazy(() => import("../../components/Industries/Industries"));
 const Locations = lazy(() => import("../../components/Locations/Locations"));
 const Testimonials = lazy(() => import("../../components/Testimonials/Testimonials"));
 const Technologies = lazy(() => import("../../components/Technologies/Technologies"));
 const FadeInSection = lazy(() => import("../../utilities/Animations/FadeInSection"));
+
+import {MessageBox} from "../../components/MessageBox/MessageBox";
 
 // Static imports for non-component data
 import logoImage from "../../assets/icons/inner/trustpilot.svg";

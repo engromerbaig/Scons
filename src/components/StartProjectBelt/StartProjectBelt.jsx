@@ -3,33 +3,31 @@ import BodyText from "../BodyText/BodyText"; // Note: This is imported but not u
 import { theme } from "../../theme";
 import Button from "../Button/Button";
 import { Link } from "react-router-dom";
+import { MessageBoxLayout } from "../MessageBox/MessageBox";
 
 const StartProjectBelt = ({ text = "Project" }) => {
   return (
-    <div
-      className={`bg-white ${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical}`}
-    >
-      <div
-        className="bg-gray-100 rounded-full shadow-md flex flex-col gap-y-2 xl:flex-row items-center justify-center xl:justify-between py-6 px-10 text-center xl:text-left"
-      >
+    <MessageBoxLayout CIRCLE_COUNT={3}>
+      <div className="flex flex-col gap-y-2 xl:flex-row items-center justify-between text-center xl:text-left w-full">
         <Heading
           text={`Ready to Start Your ${text}?`}
           spanText={text}
           spanColor="text-neon"
-          size="text-40px"
-          color="text-black"
-          className="max-w-[200px] xl:max-w-4xl"
-          centered={true} // Override to true for mobile centering; adjust if Heading component handles this differently
+          size="text-60px xl:text-40px"
+          color="text-white"
+          centered={true}
         />
-
-        <Button
-          name="Get Started"
+       <Button
+          name="Start Now!"
           openModal={true}
-          fontSize="text-10px xl:text-sm"
-          className="mx-auto xl:mx-0" // Ensure button is centered horizontally on mobile
+          bgColor="bg-neon"
+          hoverBgColor="bg-neon/90"
+          textColor="black"
+          hoverTextColor="black"
+          
         />
       </div>
-    </div>
+    </MessageBoxLayout>
   );
 };
 
