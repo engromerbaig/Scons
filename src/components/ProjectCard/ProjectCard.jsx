@@ -81,7 +81,6 @@ const ProjectCard = ({ project, onMysteryClick }) => {
           />
 
           {/* Sliding Overlay */}
-      
           <div className="absolute inset-0 bg-black/60 -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-in-out rounded-3xl z-10" />
 
           {/* Sliding Text Bottom-Right */}
@@ -122,7 +121,7 @@ const ProjectCard = ({ project, onMysteryClick }) => {
         <Heading
           text={project.heading}
           size="text-35px"
-          fontWeight="font-semibold"
+          fontWeight={project.isMystery ? "font-black" : "font-semibold"}
           centered={false}
           className="group-hover:underline"
         />
