@@ -62,7 +62,7 @@ const Navbar = () => {
         <div className="flex items-center justify-start h-20">
           <ScrollToTopLink
             to="/"
-            className="cursor-pointer flex items-center justify-center h-20 w-20 rounded-b-xl bg-black"
+            className="cursor-pointer flex items-center justify-center h-20 w-20 rounded-b-xl bg-black shadow-md"
           >
             <img src="/favicon.svg" alt="Logo" className="w-10 aspect-square" loading="lazy" />
           </ScrollToTopLink>
@@ -70,7 +70,7 @@ const Navbar = () => {
 
         {/* Center Column - Navigation Links */}
         <div className="flex items-end justify-center h-20">
-          <div className="hidden lg:flex items-center justify-between gap-8 bg-black px-12 py-4 rounded-xl min-w-[800px]">
+          <div className="hidden lg:flex items-center justify-between gap-8 bg-black shadow-md px-12 py-4 rounded-xl min-w-[800px]">
             {navLinks.map((link, index) => {
               const isActive = location.pathname === link.to;
 
@@ -109,7 +109,7 @@ const Navbar = () => {
           <button
             type="button"
             onClick={toggleMobileMenu}
-            className="relative bg-black p-2 transition-all duration-300 h-20 w-20 rounded-b-xl flex items-center justify-center"
+            className="relative bg-black shadow-md p-2 transition-all duration-300 h-20 w-20 rounded-b-xl flex items-center justify-center"
           >
             <div className="flex flex-col items-end gap-2">
               <div className="w-4 h-0.5 bg-white rounded-sm"></div>
