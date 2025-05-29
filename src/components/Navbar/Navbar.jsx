@@ -98,17 +98,20 @@ const Navbar = () => {
 
 
           {/* Hamburger Menu */}
-   <button
+<button
   type="button"
   onClick={toggleMobileMenu}
-  className="relative bg-black p-2 transition-all duration-300  h-20 w-20 rounded-b-xl flex flex-col items-end justify-center gap-1 "
+  className="relative bg-black p-2 transition-all duration-300 h-20 w-20 rounded-b-xl flex items-center justify-center"
 >
-  {/* Line 1: 75% width */}
-  <div className="w-4 h-0.5 bg-white rounded-sm"></div>
-  
-  {/* Line 2: 100% width */}
-  <div className="w-6 h-0.5 bg-white rounded-sm"></div>
+  <div className="flex flex-col items-end gap-2">
+    {/* Line 1: 75% width */}
+    <div className="w-4 h-0.5 bg-white rounded-sm"></div>
+
+    {/* Line 2: 100% width */}
+    <div className="w-6 h-0.5 bg-white rounded-sm"></div>
+  </div>
 </button>
+
 
         </div>
       </div>
