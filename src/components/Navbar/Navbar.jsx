@@ -55,7 +55,7 @@ const PhoneIcon = phoneDetail?.icon;
       {/* Tube for lg and above */}
       <div
         className={`${
-          isSticky ? 'backdrop-blur-sm' : ''
+          isSticky ? 'backdrop-blur-md' : ''
         } bg-transparent rounded-full px-10 py-4 shadow-xl max-w-[90vw] lg:max-w-[65vw] w-full hidden lg:flex relative items-center`}
       >
         {/* Left links */}
