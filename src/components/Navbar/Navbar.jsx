@@ -64,7 +64,7 @@ const Navbar = () => {
 
   {/* Center Column - Navigation Links */}
   <div className="flex items-end justify-center h-20">
-    <div className="hidden lg:flex items-center gap-8 bg-black px-12 py-4 rounded-xl min-w-[700px]">
+    <div className="hidden lg:flex items-center justify-between gap-8 bg-black px-12 py-4 rounded-xl min-w-[750px]">
       {navLinks.map((link, index) => (
         <ScrollToTopLink
           key={index}
