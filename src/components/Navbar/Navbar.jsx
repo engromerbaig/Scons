@@ -56,15 +56,15 @@ const Navbar = () => {
     >
       <div className="grid grid-cols-3 items-start w-full">
         {/* Left Column - Logo */}
-        <div className="flex items-center justify-start">
-          <ScrollToTopLink to="/" className="cursor-pointer bg-black">
-            <img src="/favicon.svg" alt="Logo" className="lg:w-14 w-12 aspect-rectangle" loading="lazy" />
+        <div className="flex items-center justify-start ">
+          <ScrollToTopLink to="/" className="cursor-pointer flex items-center justify-center h-20 w-20 rounded-b-xl bg-black">
+            <img src="/favicon.svg" alt="Logo" className="w-10 aspect-square " loading="lazy" />
           </ScrollToTopLink>
         </div>
 
         {/* Center Column - Navigation Links */}
         <div className="flex items-center justify-center mt-2 lg:mt-2">
-          <div className="hidden lg:flex items-center gap-8 bg-black px-10 py-3 rounded-2xl">
+          <div className="hidden lg:flex items-center gap-8 bg-black px-10 py-3 rounded-xl">
             {navLinks.map((link, index) => (
               <ScrollToTopLink 
                 key={index}
@@ -94,11 +94,14 @@ const Navbar = () => {
             />
           </div>
 
+
+
+
           {/* Hamburger Menu */}
    <button
   type="button"
   onClick={toggleMobileMenu}
-  className="relative bg-black p-2 transition-all duration-300 flex flex-col items-end justify-center gap-1"
+  className="relative bg-black p-2 transition-all duration-300  h-20 w-20 rounded-b-xl flex flex-col items-end justify-center gap-1 "
 >
   {/* Line 1: 75% width */}
   <div className="w-4 h-0.5 bg-white rounded-sm"></div>
