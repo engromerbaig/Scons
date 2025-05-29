@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import MobileMenu from '../MobileMenu/MobileMenu';
 import { theme } from '../../theme';
 import ScrollToTopLink from '../../utilities/ScrollToTopLink';
-import { navLinks } from './navLinks';
 import { contactDetails } from '../MobileMenu/modules/contactDetails';
+import Button from '../Button/Button';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -11,14 +11,10 @@ const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  const currentPath = typeof window !== 'undefined' ? window.location.pathname : '';
-
-  const phoneDetail = contactDetails.find(detail => detail.type === 'Phone');
-const PhoneIcon = phoneDetail?.icon;
-
   const toggleMobileMenu = (e) => {
     e.preventDefault();
     e.stopPropagation();
+
     if (isMobileMenuOpen) {
       setClosing(true);
     } else {
@@ -34,11 +30,13 @@ const PhoneIcon = phoneDetail?.icon;
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
+
       if (currentScrollY < lastScrollY && currentScrollY > 50) {
         setIsSticky(true);
       } else {
         setIsSticky(false);
       }
+
       setLastScrollY(currentScrollY);
     };
 
@@ -46,108 +44,54 @@ const PhoneIcon = phoneDetail?.icon;
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
+  const phoneDetail = contactDetails.find(detail => detail.type === 'Phone');
+  const PhoneIcon = phoneDetail?.icon;
+
   return (
     <nav
-      className={`w-full flex justify-center z-50 ${
-        isSticky ? 'fixed top-0' : 'absolute'
-      } transition-all duration-300 ${theme.layoutPages.paddingHorizontal} py-4`}
+      className={`${
+        isSticky ? 'fixed top-0 bg-opacity-60 backdrop-blur-sm shadow-md' : 'absolute bg-transparent'
+      } ${theme.layoutPages.paddingHorizontal} py-4 lg:py-4 flex justify-between items-center w-full z-[50] transition-all duration-300`}
     >
-      {/* Tube for lg and above */}
-      <div
-        className={`${
-          isSticky ? 'backdrop-blur-md ' : ''
-        } bg-black rounded-full px-10 py-3 shadow-xl max-w-[90vw] lg:max-w-[65vw] w-full hidden lg:flex relative items-center`}
-      >
-        {/* Left links */}
-      <div className="flex justify-between items-center flex-1 pr-14">
-  {navLinks.slice(0, Math.ceil(navLinks.length / 2)).map((link) => {
-    const isActive = currentPath === link.to;
-    return (
-      <ScrollToTopLink
-        key={link.to}
-        to={link.to}
-        className={`font-bold rounded-full py-1 px-2 text-sm transition-colors duration-300 ease-in-out ${
-          isActive
-            ? 'border-2 border-neon text-neon'
-            : 'text-white hover:bg-neon hover:text-black'
-        }`}
-      >
-        {link.label}
-      </ScrollToTopLink>
-    );
-  })}
-</div>
-
-        {/* Logo (Centered) */}
-        <div className="absolute left-1/2 transform -translate-x-1/2 shrink-0 z-10">
-          <ScrollToTopLink to="/">
-            <img
-              src="/favicon.svg"
-              alt="Logo"
-              className="w-14  px-2 "
-              loading="lazy"
-            />
-          </ScrollToTopLink>
-        </div>
-
-        {/* Right links */}
-<div className="flex justify-between items-center flex-1 pl-14">
-  {navLinks.slice(Math.ceil(navLinks.length / 2)).map((link) => {
-    const isActive = currentPath === link.to;
-    return (
-      <ScrollToTopLink
-        key={link.to}
-        to={link.to}
-        className={`font-bold rounded-full py-1 px-2 text-sm transition-colors duration-300 ease-in-out ${
-          isActive
-            ? 'border-2 border-neon text-neon'
-            : 'text-white hover:bg-neon hover:text-black'
-        }`}
-      >
-        {link.label}
-      </ScrollToTopLink>
-    );
-  })}
-
-  {/* Phone Detail */}
-  {/* {phoneDetail && (
-    <div className="hidden lg:flex items-center gap-2 text-sm font-semibold text-white ml-4">
-      <PhoneIcon className="text-white text-sm" />
-      <a href={phoneDetail.link} className="text-sm font-bold hover:text-neon transition-colors">
-        {phoneDetail.detail}
-      </a>
-    </div>
-  )} */}
-</div>
-
+      <div className="flex items-center">
+        <ScrollToTopLink to="/" className="cursor-pointer">
+          <img src="/logo2.svg" alt="Logo" className="lg:w-32 w-24 aspect-rectangle" loading="lazy" />
+        </ScrollToTopLink>
       </div>
 
-      {/* Mobile view: Logo and Hamburger */}
-      <div className="flex justify-between items-center w-full lg:hidden">
-        <div className="shrink-0">
-          <ScrollToTopLink to="/">
-            <img
-              src="/logo2.svg"
-              alt="Logo"
-              className="w-20 aspect-rectangle"
-              loading="lazy"
-            />
-          </ScrollToTopLink>
+      <div className="flex items-center gap-4 lg:gap-6">
+        {/* Phone details only on lg and above */}
+        {phoneDetail && (
+          <div className="hidden lg:flex items-center gap-2 text-sm font-semibold text-black">
+            <PhoneIcon className="text-black text-xl" />
+            <a href={phoneDetail.link} className="text-base font-bold hover:text-neon transition-colors">
+              {phoneDetail.detail}
+            </a>
+          </div>
+        )}
+
+        {/* Get in Touch button only on below lg */}
+        <div className="lg:hidden">
+          <Button
+            name="Get in Touch"
+            fontSize="text-10px"
+            className="py-1 px-1"
+            openModal={true}
+          />
         </div>
-        <div className="relative">
-          <button
-            type="button"
-            onClick={toggleMobileMenu}
-            className="hover:bg-blue-600/20 hover:rounded-full p-2 transition-all duration-300"
-          >
-            <img
-              src="/hamburger.svg"
-              alt="Menu"
-              className="w-6 aspect-square z-[200]"
-              loading="lazy"
-            />
-          </button>
-        </div>
+
+   <button
+  type="button"
+  onClick={toggleMobileMenu}
+  className="relative hover:bg-neon/15 hover:rounded-full p-2 transition-all duration-300"
+>
+  <img
+    src="/hamburger.svg"
+    alt="Menu"
+    className="w-6 aspect-square z-[200]"
+    loading="lazy"
+  />
+</button>
       </div>
 
       <MobileMenu
