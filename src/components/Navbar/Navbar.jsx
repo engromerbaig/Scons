@@ -51,7 +51,7 @@ const Navbar = () => {
   return (
     <nav
       className={`${
-        isSticky ? 'fixed top-0 bg-opacity-60 backdrop-blur-sm shadow-md' : 'absolute bg-transparent'
+        isSticky ? 'fixed top-0  backdrop-blur-[2px] ' : 'absolute bg-transparent'
       } ${theme.layoutPages.paddingHorizontal}  w-full z-[50] transition-all duration-300`}
     >
       <div className="grid grid-cols-3 items-start w-full">
