@@ -58,7 +58,7 @@ const Navbar = () => {
             <ScrollToTopLink
               key={link.to}
               to={link.to}
-              className="text-black font-bold text-base hover:text-blue-400 transition"
+              className="text-black font-bold rounded-full  text-base hover:bg-neon hover: transition"
             >
               {link.label}
             </ScrollToTopLink>
@@ -71,7 +71,7 @@ const Navbar = () => {
             <img
               src="/favicon.svg"
               alt="Logo"
-              className="w-16  px-2 "
+              className="w-14  px-2 "
               loading="lazy"
             />
           </ScrollToTopLink>
