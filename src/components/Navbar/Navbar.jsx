@@ -13,7 +13,7 @@ const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  const location = useLocation(); // For active link logic
+  const location = useLocation();
 
   const toggleMobileMenu = (e) => {
     e.preventDefault();
@@ -60,7 +60,10 @@ const Navbar = () => {
       <div className="grid grid-cols-3 items-end w-full h-20">
         {/* Left Column - Logo */}
         <div className="flex items-center justify-start h-20">
-          <ScrollToTopLink to="/" className="cursor-pointer flex items-center justify-center h-20 w-20 rounded-b-xl bg-black">
+          <ScrollToTopLink
+            to="/"
+            className="cursor-pointer flex items-center justify-center h-20 w-20 rounded-b-xl bg-black"
+          >
             <img src="/favicon.svg" alt="Logo" className="w-10 aspect-square" loading="lazy" />
           </ScrollToTopLink>
         </div>
@@ -71,15 +74,19 @@ const Navbar = () => {
             {navLinks.map((link, index) => {
               const isActive = location.pathname === link.to;
 
+              // Debug log to verify link props
+              console.log(`Link ${index}: to=${link.to}, label=${link.label}`);
+
               return (
                 <ScrollToTopLink
                   key={index}
                   to={link.to}
-                  className={`text-base px-2 py-1 font-medium transition-colors whitespace-nowrap  ${
+                  className={`relative text-base px-2 py-1 font-medium transition-colors whitespace-nowrap border-2 pointer-events-auto ${
                     isActive
-                      ? 'border-2 border-neon text-neon rounded-full'
-                      : 'text-white hover:text-neon'
+                      ? 'border-neon text-neon rounded-full'
+                      : 'border-transparent text-white hover:text-neon'
                   }`}
+                  style={{ minWidth: 'fit-content' }} // Ensure link width is sufficient
                 >
                   {link.label}
                 </ScrollToTopLink>
