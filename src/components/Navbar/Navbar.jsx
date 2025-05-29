@@ -64,7 +64,7 @@ const Navbar = () => {
             to="/"
             className="cursor-pointer flex items-center justify-center h-16 xl:h-20 w-20 rounded-b-xl bg-black shadow-md"
           >
-            <img src="/favicon.svg" alt="Logo" className="w-10 aspect-square" loading="lazy" />
+            <img src="/favicon2.svg" alt="Logo" className="w-14 aspect-square" loading="lazy" />
           </ScrollToTopLink>
         </div>
 
