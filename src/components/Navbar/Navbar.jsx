@@ -50,7 +50,7 @@ const Navbar = () => {
       <div
         className={`${
           isSticky ? 'backdrop-blur-sm' : ''
-        } bg-transparent rounded-full px-10 py-4 shadow-lg max-w-[90vw] lg:max-w-[60vw] w-full hidden lg:flex relative items-center`}
+        } bg-transparent rounded-full px-10 py-4 shadow-xl max-w-[90vw] lg:max-w-[65vw] w-full hidden lg:flex relative items-center`}
       >
         {/* Left links */}
         <div className="flex justify-between items-center flex-1 pr-20">
@@ -58,7 +58,7 @@ const Navbar = () => {
             <ScrollToTopLink
               key={link.to}
               to={link.to}
-              className="text-black font-semibold text-sm hover:text-blue-400 transition"
+              className="text-black font-bold text-base hover:text-blue-400 transition"
             >
               {link.label}
             </ScrollToTopLink>
@@ -83,7 +83,7 @@ const Navbar = () => {
             <ScrollToTopLink
               key={link.to}
               to={link.to}
-              className="text-black font-semibold text-sm hover:text-blue-400 transition"
+              className="text-black font-bold text-base hover:text-blue-400 transition"
             >
               {link.label}
             </ScrollToTopLink>
