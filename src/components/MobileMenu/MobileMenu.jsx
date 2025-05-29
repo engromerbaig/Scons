@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import LHS from './modules/LHS';
 import RHS from './modules/RHS';
 import { getContainerVariants, getTextVariants } from './menuAnimations';
+import CanvasMenuContent from './CanvasMenuContent';
 
 const MobileMenu = ({ isOpen, onClose, onCloseComplete }) => {
   const [showCloseButton, setShowCloseButton] = useState(false);
@@ -65,60 +66,31 @@ const MobileMenu = ({ isOpen, onClose, onCloseComplete }) => {
 
   return (
     <AnimatePresence onExitComplete={handleCloseComplete}>
-      {isOpen && (
-        <motion.div
-          key="mobile-menu"
-          initial="visible"
-          exit="exit"
-          animate="visible"
-          className="fixed top-0 left-0 w-full h-screen flex flex-col md:flex-row z-[200] overflow-hidden"
+  {isOpen && (
+    <motion.div
+      key="mobile-menu"
+      initial={{ x: '-100%' }}
+      animate={{ x: 0 }}
+      exit={{ x: '-100%' }}
+      transition={{ duration: 0.5, ease: 'easeInOut' }}
+      className="fixed top-0 left-0 w-full h-screen bg-white z-[200] overflow-hidden flex flex-col"
+    >
+      <CanvasMenuContent handleClose={handleClose} />
+
+      {showCloseButton && (
+        <motion.button
+          initial={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={handleClose}
+          className="absolute top-3 right-2 lg:top-6 lg:right-6 text-25px border-2 lg:border-4 font-extrabold border-neon text-neon rounded-full w-6 h-6 lg:w-8 lg:h-8 flex items-center justify-center"
         >
-          <LHS
-            containerVariants={containerVariants}
-            textVariants={textVariants}
-            handleClose={handleClose}
-          />
-
-          {/* Central neon line */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ delay: 0.2, duration: 0.3 }}
-            className="pointer-events-none absolute left-1/2 top-0 h-full transform -translate-x-1/2 z-[250] flex items-center justify-center"
-          >
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ delay: 0.2, duration: 0.3 }}
-              className={`absolute bg-neon -z-10 ${
-                isMobile
-                  ? 'w-screen h-2 top-1/2 left-1/2 -translate-x-1/2'
-                  : 'inset-y-0 w-2'
-              }`}
-            />
-          </motion.div>
-
-          <RHS
-            containerVariants={containerVariants}
-            textVariants={textVariants}
-            handleClose={handleClose}
-          />
-
-          {showCloseButton && (
-            <motion.button
-              initial={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={handleClose}
-              className="absolute top-3 right-2 lg:top-6 lg:right-6 text-25px border-2 lg:border-4 font-extrabold border-neon text-neon rounded-full w-6 h-6 lg:w-8 lg:h-8 flex items-center justify-center"
-            >
-              ✕
-            </motion.button>
-          )}
-        </motion.div>
+          ✕
+        </motion.button>
       )}
-    </AnimatePresence>
+    </motion.div>
+  )}
+</AnimatePresence>
+
   );
 };
 
