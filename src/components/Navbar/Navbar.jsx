@@ -54,67 +54,55 @@ const Navbar = () => {
         isSticky ? 'fixed top-0  backdrop-blur-[2px] ' : 'absolute bg-transparent'
       } ${theme.layoutPages.paddingHorizontal}  w-full z-[50] transition-all duration-300`}
     >
-      <div className="grid grid-cols-3 items-start w-full">
-        {/* Left Column - Logo */}
-        <div className="flex items-center justify-start ">
-          <ScrollToTopLink to="/" className="cursor-pointer flex items-center justify-center h-20 w-20 rounded-b-xl bg-black">
-            <img src="/favicon.svg" alt="Logo" className="w-10 aspect-square " loading="lazy" />
-          </ScrollToTopLink>
-        </div>
-
-        {/* Center Column - Navigation Links */}
-        <div className="flex items-center justify-center mt-2 lg:mt-2">
-          <div className="hidden lg:flex items-center gap-8 bg-black px-10 py-3 rounded-xl">
-            {navLinks.map((link, index) => (
-              <ScrollToTopLink 
-                key={index}
-                to={link.to} 
-                className="text-base font-medium text-white hover:text-neon transition-colors"
-              >
-                {link.label}
-              </ScrollToTopLink>
-            ))}
-          </div>
-          
-  
-        </div>
-
-        {/* Right Column - CTA and Hamburger */}
-        <div className="flex items-center justify-end gap-4">
-          {/* Get in Touch button - visible on desktop */}
-         
-
-          {/* Get in Touch button - mobile version */}
-          <div className="lg:hidden">
-            <Button
-              name="Get in Touch"
-              fontSize="text-10px"
-              className="py-1 px-1"
-              openModal={true}
-            />
-          </div>
-
-
-
-
-          {/* Hamburger Menu */}
-<button
-  type="button"
-  onClick={toggleMobileMenu}
-  className="relative bg-black p-2 transition-all duration-300 h-20 w-20 rounded-b-xl flex items-center justify-center"
->
-  <div className="flex flex-col items-end gap-2">
-    {/* Line 1: 75% width */}
-    <div className="w-4 h-0.5 bg-white rounded-sm"></div>
-
-    {/* Line 2: 100% width */}
-    <div className="w-6 h-0.5 bg-white rounded-sm"></div>
+     <div className="grid grid-cols-3 items-start w-full h-20">
+  {/* Left Column - Logo */}
+  <div className="flex items-center justify-start h-20">
+    <ScrollToTopLink to="/" className="cursor-pointer flex items-center justify-center h-20 w-20 rounded-b-xl bg-black">
+      <img src="/favicon.svg" alt="Logo" className="w-10 aspect-square" loading="lazy" />
+    </ScrollToTopLink>
   </div>
-</button>
 
+  {/* Center Column - Navigation Links */}
+  <div className="flex items-center justify-center h-20 bg-red-300 mt-1">
+    <div className="hidden lg:flex items-center gap-8 bg-black px-10 py-3 rounded-xl min-w-[700px]">
+      {navLinks.map((link, index) => (
+        <ScrollToTopLink
+          key={index}
+          to={link.to}
+          className="text-base font-medium text-white hover:text-neon transition-colors whitespace-nowrap"
+        >
+          {link.label}
+        </ScrollToTopLink>
+      ))}
+    </div>
+  </div>
 
-        </div>
+  {/* Right Column - CTA and Hamburger */}
+  <div className="flex items-center justify-end gap-4 h-20">
+    {/* Get in Touch button - mobile version */}
+    <div className="lg:hidden">
+      <Button
+        name="Get in Touch"
+        fontSize="text-10px"
+        className="py-1 px-1"
+        openModal={true}
+      />
+    </div>
+
+    {/* Hamburger Menu */}
+    <button
+      type="button"
+      onClick={toggleMobileMenu}
+      className="relative bg-black p-2 transition-all duration-300 h-20 w-20 rounded-b-xl flex items-center justify-center"
+    >
+      <div className="flex flex-col items-end gap-2">
+        <div className="w-4 h-0.5 bg-white rounded-sm"></div>
+        <div className="w-6 h-0.5 bg-white rounded-sm"></div>
       </div>
+    </button>
+  </div>
+</div>
+
 
       <MobileMenu
         isOpen={isMobileMenuOpen && !closing}
