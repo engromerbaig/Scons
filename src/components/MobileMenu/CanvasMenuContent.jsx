@@ -22,7 +22,7 @@ const CanvasMenuContent = ({ handleClose }) => (
     <div className="w-full md:w-1/2 flex flex-col justify-between">
       <div>
         <Link to="/" onClick={handleClose}>
-          <img src="/logo2.svg" alt="Logo" className="w-24 lg:w-32 mb-10" />
+          <img src="/logo.svg" alt="Logo" className="w-24 lg:w-32 mb-10" />
         </Link>
         {navLinks.map((link, idx) => (
           <Link

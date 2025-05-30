@@ -65,11 +65,11 @@ const Navbar = () => {
             className="cursor-pointer flex items-center justify-center  xl:h-16  xl:w-20 rounded-b-xl xl:bg-black xl:shadow-md"
           >
 <picture>
-  <source srcSet="/favicon2.svg" media="(min-width: 1280px)" />
+  <source srcSet="/favicon.svg" media="(min-width: 1280px)" />
   <img
-    src="/logo2.svg"
+    src="/logo.svg"
     alt="Logo"
-    className="w-24 xl:w-14 aspect-square"
+    className="w-24 xl:w-12 aspect-square"
     loading="lazy"
   />
 </picture>          </ScrollToTopLink>
