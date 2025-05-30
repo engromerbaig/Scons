@@ -1,3 +1,5 @@
+// backend/functions/send-contact-emails.js
+
 const dotenv = require('dotenv');
 const nodemailer = require('nodemailer');
 
@@ -95,7 +97,7 @@ const thankYouEmailTemplate = `
                 <div class="header">
                     <div style="text-align: left;">
                         <a href="https://sconstech.com/" class="logo">
-                            <img src="https://preeminent-pudding-872349.netlify.app/logo.svg/" alt="Scons Logo" style="width: 150px;">
+                            <img src="https://lustrous-sundae-be0a50.netlify.app/logo.png/" alt="Scons Logo" style="width: 150px;">
                         </a>
                     </div>
                     <div style="margin-top: 40px; margin-bottom: 40px; padding: 40px 0;">
@@ -116,7 +118,7 @@ const thankYouEmailTemplate = `
                         <strong>Description:</strong> {{description}}
                     </p>
                     <a href="https://sconstech.com/">
-                        <img src="https://preeminent-pudding-872349.netlify.app/logo.svg/" alt="Scons Logo" style="width: 150px;">
+                        <img src="https://lustrous-sundae-be0a50.netlify.app/logo.png/" alt="Scons Logo" style="width: 150px;">
                     </a>
                 </div>
             </td>
@@ -125,16 +127,16 @@ const thankYouEmailTemplate = `
             <td>
                 <div class="footer" style="text-align: center;">
                     <a href="https://www.facebook.com/sconstech/" aria-label="Facebook" style="text-decoration: none; color: #00c5ff;">
-                        <img src="https://preeminent-pudding-872349.netlify.app/facebook.png" alt="Facebook" style="width: 30px; height: 30px; margin-right: 10px;">
+                        <img src="https://lustrous-sundae-be0a50.netlify.app/facebook.png" alt="Facebook" style="width: 30px; height: 30px; margin-right: 10px;">
                     </a>
                     <a href="https://www.linkedin.com/company/sconstech/" aria-label="LinkedIn" style="text-decoration: none; color: #00c5ff;">
-                        <img src="https://preeminent-pudding-872349.netlify.app/linkedin.png" alt="LinkedIn" style="width: 30px; height: 30px; margin-right: 10px;">
+                        <img src="https://lustrous-sundae-be0a50.netlify.app/linkedin.png" alt="LinkedIn" style="width: 30px; height: 30px; margin-right: 10px;">
                     </a>
-                    <a href="https://www.instagram.com/scons.tech/" aria-label="Instagram" style="text-decoration: none; color: #00c5ff;">
-                        <img src="https://preeminent-pudding-872349.netlify.app/instagram.png" alt="Instagram" style="width: 30px; height: 30px; margin-right: 10px;">
+                    <a href="https://www.instagram.com/sconstech/" aria-label="Instagram" style="text-decoration: none; color: #00c5ff;">
+                        <img src="https://lustrous-sundae-be0a50.netlify.app/instagram.png" alt="Instagram" style="width: 30px; height: 30px; margin-right: 10px;">
                     </a>
                     <a href="https://x.com/sconstech" aria-label="X" style="text-decoration: none; color: #00c5ff;">
-                        <img src="https://preeminent-pudding-872349.netlify.app/twitter.png" alt="X" style="width: 30px; height: 30px;">
+                        <img src="https://lustrous-sundae-be0a50.netlify.app/twitter.png" alt="X" style="width: 30px; height: 30px;">
                     </a>
                 </div>
             </td>
@@ -250,7 +252,7 @@ const companyEmailTemplate = `
                         A new submission has been received. Please review the details above and follow up as needed.
                     </p>
                       <a href="https://sconstech.com/">
-                        <img src="https://preeminent-pudding-872349.netlify.app/logo.svg/" alt="Scons Logo" style="width: 150px;">
+                        <img src="https://lustrous-sundae-be0a50.netlify.app/logo.png/" alt="Scons Logo" style="width: 150px;">
                     </a>
                 </div>
             </td>
@@ -259,16 +261,16 @@ const companyEmailTemplate = `
             <td>
                <div class="footer" >
                     <a href="https://www.facebook.com/sconstech/" aria-label="Facebook" style="text-decoration: none; color: #00c5ff;">
-                        <img src="https://preeminent-pudding-872349.netlify.app/facebook.png" alt="Facebook" style="width: 30px; height: 30px; margin-right: 10px;">
+                        <img src="https://lustrous-sundae-be0a50.netlify.app/facebook.png" alt="Facebook" style="width: 30px; height: 30px; margin-right: 10px;">
                     </a>
                     <a href="https://www.linkedin.com/company/sconstech/" aria-label="LinkedIn" style="text-decoration: none; color: #00c5ff;">
-                        <img src="https://preeminent-pudding-872349.netlify.app/linkedin.png" alt="LinkedIn" style="width: 30px; height: 30px; margin-right: 10px;">
+                        <img src="https://lustrous-sundae-be0a50.netlify.app/linkedin.png" alt="LinkedIn" style="width: 30px; height: 30px; margin-right: 10px;">
                     </a>
-                    <a href="https://www.instagram.com/scons.tech/" aria-label="Instagram" style="text-decoration: none; color: #00c5ff;">
-                        <img src="https://preeminent-pudding-872349.netlify.app/instagram.png" alt="Instagram" style="width: 30px; height: 30px; margin-right: 10px;">
+                    <a href="https://www.instagram.com/sconstech/" aria-label="Instagram" style="text-decoration: none; color: #00c5ff;">
+                        <img src="https://lustrous-sundae-be0a50.netlify.app/instagram.png" alt="Instagram" style="width: 30px; height: 30px; margin-right: 10px;">
                     </a>
                     <a href="https://x.com/sconstech" aria-label="X" style="text-decoration: none; color: #00c5ff;">
-                        <img src="https://preeminent-pudding-872349.netlify.app/twitter.png" alt="X" style="width: 30px; height: 30px;">
+                        <img src="https://lustrous-sundae-be0a50.netlify.app/twitter.png" alt="X" style="width: 30px; height: 30px;">
                     </a>
                 </div>
             </td>

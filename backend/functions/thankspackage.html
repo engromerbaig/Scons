@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Preloading loader text -->
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         @font-face {
@@ -71,9 +70,9 @@
                         </a>
                     </div>
                     <div style="margin-top: 40px; margin-bottom: 40px; padding: 40px 0;">
-                        <h1 style="font-family: 'manrope', Arial, sans-serif; font-size: 24px; color: #333; margin: 0;">Thank you for contacting us!</h1>
-                        <p style="font-size: 16px; color: #333; font-weight: 600; margin: 10px 0;">We appreciate your interest, {{name}}.</p>
-                        <p style="font-size: 16px; color: #333; font-weight: 600; margin: 10px 0;">Our team will review your inquiry and get back to you soon.</p>
+                        <h1 style="font-family: 'manrope', Arial, sans-serif; font-size: 24px; color: #333; margin: 0;">Thank you for your package inquiry {{name}}</h1>
+                        <p style="font-size: 16px; color: #333; font-weight: 600; margin: 10px 0;">We appreciate your interest in, {{packageName}}</p>
+                        <p style="font-size: 16px; color: #333; font-weight: 600; margin: 10px 0;">Our team will review your interest and get back to you soon.</p>
                     </div>
                 </div>
             </td>
@@ -83,10 +82,43 @@
                 <div class="main-content">
                     <p style="font-size: 14px; color: #cccbcb; font-weight: 600; line-height: 1.8;">
                         Your inquiry details:<br>
+                        <strong>Package Name:</strong> {{packageName}}<br>
+                        <strong>Package Price:</strong> {{packagePrice}}<br>
                         <strong>Phone:</strong> {{phone}}<br>
-                        <strong>Topic:</strong> {{topic}}<br>
-                        <strong>Description:</strong> {{description}}
+                        <strong>Email:</strong> {{email}}
                     </p>
+
+                    <!-- Add inside the main-content div after inquiry details -->
+<p style="font-size: 16px; color: #333; font-weight: 700; margin-top: 40px;">Payment Information</p>
+
+<div style="font-size: 14px; color: #444; line-height: 1.6; font-weight: 500; text-align: left; max-width: 500px; margin: 0 auto;">
+
+    <p><strong>For Payments Inside Pakistan:</strong><br>
+    PK19NAYA1234503112136495</p>
+
+    <p><strong>British Pound:</strong><br>
+    Beneficiary: Muhammad Omer Baig<br>
+    Sort Code: 04-29-09<br>
+    Account: 68661258<br>
+    Revolut Ltd, 7 Westferry Circus, London, E14 4HD, UK</p>
+
+    <p><strong>Euro:</strong><br>
+    Beneficiary: Muhammad Omer Baig<br>
+    IBAN: LT03 3250 0950 1703 0955<br>
+    BIC: REVOLT21<br>
+    Revolut Bank UAB, Vilnius, Lithuania<br>
+    Correspondent BIC: CHASDEFX</p>
+
+    <p><strong>US Dollar:</strong><br>
+    Beneficiary: Muhammad Omer Baig<br>
+    IBAN: LT03 3250 0950 1703 0955<br>
+    BIC: REVOLT21<br>
+    Revolut Bank UAB, Vilnius, Lithuania<br>
+    Correspondent BIC: CHASGB2L</p>
+
+    <p style="margin-top: 20px; color: #000;"><strong>Note:</strong> Once you make the payment, please email the receipt to <a href="mailto:sales@sconstech.com" style="color: #00c5ff;">sales@sconstech.com</a>. For any issues, contact <a href="mailto:help@sconstech.com" style="color: #00c5ff;">help@sconstech.com</a>.</p>
+</div>
+
                     <a href="https://sconstech.com/">
                         <img src="https://lustrous-sundae-be0a50.netlify.app/logo.png/" alt="Scons Logo" style="width: 150px;">
                     </a>
@@ -95,17 +127,17 @@
         </tr>
         <tr>
             <td>
-                <div class="footer" style="text-align: center;">
-                    <a href="https://www.facebook.com/sconstech/" aria-label="Facebook" style="text-decoration: none; color: #00c5ff;">
+                <div class="footer">
+                    <a href="https://www.facebook.com/sconstech/" aria-label="Facebook">
                         <img src="https://lustrous-sundae-be0a50.netlify.app/facebook.png" alt="Facebook" style="width: 30px; height: 30px; margin-right: 10px;">
                     </a>
-                    <a href="https://www.linkedin.com/company/sconstech/" aria-label="LinkedIn" style="text-decoration: none; color: #00c5ff;">
+                    <a href="https://www.linkedin.com/company/sconstech/" aria-label="LinkedIn">
                         <img src="https://lustrous-sundae-be0a50.netlify.app/linkedin.png" alt="LinkedIn" style="width: 30px; height: 30px; margin-right: 10px;">
                     </a>
-                    <a href="https://www.instagram.com/sconstech/" aria-label="Instagram" style="text-decoration: none; color: #00c5ff;">
+                    <a href="https://www.instagram.com/sconstech/" aria-label="Instagram">
                         <img src="https://lustrous-sundae-be0a50.netlify.app/instagram.png" alt="Instagram" style="width: 30px; height: 30px; margin-right: 10px;">
                     </a>
-                    <a href="https://x.com/sconstech" aria-label="X" style="text-decoration: none; color: #00c5ff;">
+                    <a href="https://x.com/sconstech" aria-label="X">
                         <img src="https://lustrous-sundae-be0a50.netlify.app/twitter.png" alt="X" style="width: 30px; height: 30px;">
                     </a>
                 </div>
@@ -113,8 +145,8 @@
         </tr>
         <tr>
             <td>
-                <div class="footer-bottom" style="background-color: #ffffff; font-size: 12px; color: #888; padding: 10px 0;">
-                    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%;">
+                <div class="footer-bottom">
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0">
                         <tr>
                             <td style="text-align: left; vertical-align: middle;">
                                 <span>Copyright © 2025 <strong>Scons.</strong> All rights reserved.</span>
