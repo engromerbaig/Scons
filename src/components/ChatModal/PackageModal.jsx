@@ -1,13 +1,23 @@
 import React from 'react';
 import ModalWrapper from './ModalWrapper';
-import FormTemplate from '../FormTemplate/FormTemplate';
 import Heading from '../Heading/Heading';
 import BodyText from '../BodyText/BodyText';
+import PackageFormTemplate from '../FormTemplate/PackageFormTemplate';
 import { Link } from 'react-router-dom';
 
-const ChatModal = ({ isOpen, onClose }) => {
+const PackageModal = ({ isOpen, onClose, packageInfo = {} }) => {
+  const { 
+    title = '', 
+    displayPrice = '', 
+    currentSymbol = 'USD',
+    price = '' // fallback to base price if displayPrice not available
+  } = packageInfo;
+
+  // Use displayPrice if available, otherwise format the base price
+  const finalPrice = displayPrice || `USD ${price}`;
+
   const handleFormSubmit = (formData) => {
-    console.log('Form Submitted with Data:', formData);
+    console.log('Package Inquiry Submitted:', formData);
   };
 
   const inputStyles = "m-1 py-2 px-6 text-sm rounded-full text-white placeholder-bodyText bg-charcoal w-full focus:outline-none";
@@ -15,30 +25,32 @@ const ChatModal = ({ isOpen, onClose }) => {
   return (
     <ModalWrapper isOpen={isOpen} onClose={onClose}>
       <Heading
-        text="Coffee Break?"
-        spanText="Break?"
+        text="Interested in our"
+        spanText={` ${title} Package?`}
         spanColor="text-neon"
         color="text-white"
         size="text-50px"
         centered={false}
       />
       <BodyText
-        text="Let's chat! We are here to help you with your project. Fill out the form below and we will get back to you as soon as possible."
+        text="Fill out the form below and our team will reach out to you with all the details you need."
         centered={false}
         color="text-white"
         size="text-20px"
       />
-      <FormTemplate
+      <PackageFormTemplate
+        packageName={title}
+        packagePrice={finalPrice}
         handleFormSubmit={handleFormSubmit}
         inputStyles={inputStyles}
         hideErrorMessages={true}
         onSuccess={onClose}
-        formName="contact"
+        formName={`package-inquiry-${title.toLowerCase().replace(/\s+/g, '-')}`}
       />
       <BodyText
         text={
           <>
-            We will store your responses in our secure database. Please consult our{' '}
+            Your data is safe with us. Learn more in our{' '}
             <span className="text-neon">
               <Link to="/privacy-policy" onClick={onClose}>Privacy Policy</Link>
             </span>.
@@ -53,4 +65,4 @@ const ChatModal = ({ isOpen, onClose }) => {
   );
 };
 
-export default ChatModal;
+export default PackageModal;

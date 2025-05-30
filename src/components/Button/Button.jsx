@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import ChatModal from '../ChatModal/ChatModal';
+import PackageModal from '../ChatModal/PackageModal';
 
 const Button = ({
   name,
@@ -21,18 +22,24 @@ const Button = ({
   disabled = false,
   link = null,
   openModal = false,
+  openPackageModal = false,
+  packageInfo = null, // New prop for package information
   isLoading = false,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isActive, setIsActive] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isChatModalOpen, setIsChatModalOpen] = useState(false);
+  const [isPackageModalOpen, setIsPackageModalOpen] = useState(false);
 
   const isInteracted = isHovered || isActive;
 
   const handleClick = (e) => {
     console.log('Button clicked:', name, 'Type:', type);
     if (openModal) {
-      setIsModalOpen(true);
+      setIsChatModalOpen(true);
+    }
+    if (openPackageModal) {
+      setIsPackageModalOpen(true);
     }
     if (onClick) {
       onClick(e);
@@ -118,17 +125,11 @@ const Button = ({
     </button>
   );
 
-  // Render with routing or anchor tag depending on the link type
   return (
     <>
       {link ? (
         link.startsWith('http') ? (
-          <a
-            href={link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex"
-          >
+          <a href={link} target="_blank" rel="noopener noreferrer" className="inline-flex">
             {buttonContent}
           </a>
         ) : (
@@ -139,8 +140,17 @@ const Button = ({
       ) : (
         buttonContent
       )}
+
       {openModal && (
-        <ChatModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+        <ChatModal isOpen={isChatModalOpen} onClose={() => setIsChatModalOpen(false)} />
+      )}
+
+      {openPackageModal && (
+        <PackageModal 
+          isOpen={isPackageModalOpen} 
+          onClose={() => setIsPackageModalOpen(false)}
+          packageInfo={packageInfo} // Pass package info to modal
+        />
       )}
     </>
   );

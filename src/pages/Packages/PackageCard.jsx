@@ -7,18 +7,17 @@ import { contactDetails } from "../../components/MobileMenu/modules/contactDetai
 import convertCurrency from "./convertCurrency";
 
 const PackageCard = ({ packageInfo }) => {
-  const [currency, setCurrency] = useState("USD"); // Always start with USD
-  const [localCurrency, setLocalCurrency] = useState(null); // Store local currency
-  const [rates, setRates] = useState({ USD: 1 }); // Always have USD rate
-  const [displayPrice, setDisplayPrice] = useState(packageInfo.price); // Start with USD price
-  const [symbol, setSymbol] = useState("USD"); // Start with USD symbol
-  const [isLoading, setIsLoading] = useState(true); // Track loading state
+  const [currency, setCurrency] = useState("USD");
+  const [localCurrency, setLocalCurrency] = useState(null);
+  const [rates, setRates] = useState({ USD: 1 });
+  const [displayPrice, setDisplayPrice] = useState(packageInfo.price);
+  const [symbol, setSymbol] = useState("USD");
+  const [isLoading, setIsLoading] = useState(true);
 
   // Fetch currency rates and determine local currency
   useEffect(() => {
     const fetchCurrencyData = async () => {
       const today = new Date().toDateString();
-      // Check localStorage for cached data
       const cachedData = JSON.parse(localStorage.getItem("currencyData"));
 
       if (cachedData && cachedData.date === today) {
@@ -34,7 +33,6 @@ const PackageCard = ({ packageInfo }) => {
           console.log("No valid local currency in cache, staying with USD");
         }
 
-        // Always display USD initially
         setCurrency("USD");
         setDisplayPrice(packageInfo.price);
         setSymbol("USD");
@@ -56,12 +54,9 @@ const PackageCard = ({ packageInfo }) => {
         console.log("Currency API response:", data);
 
         const { localCurrency, rates: fetchedRates } = data;
-
-        // Always ensure USD rate exists
         const safeRates = { USD: 1, ...fetchedRates };
         setRates(safeRates);
 
-        // Store local currency if valid and different from USD
         if (localCurrency && localCurrency !== "USD" && safeRates[localCurrency]) {
           setLocalCurrency(localCurrency);
           console.log(`Local currency detected: ${localCurrency}`);
@@ -70,7 +65,6 @@ const PackageCard = ({ packageInfo }) => {
           console.log("No valid local currency, staying with USD");
         }
 
-        // Cache the fetched data in localStorage
         localStorage.setItem(
           "currencyData",
           JSON.stringify({
@@ -80,14 +74,11 @@ const PackageCard = ({ packageInfo }) => {
           })
         );
 
-        // Always keep initial display in USD
         setCurrency("USD");
         setDisplayPrice(packageInfo.price);
         setSymbol("USD");
       } catch (error) {
         console.error("Error fetching currency data:", error);
-
-        // Fallback to USD on error
         setLocalCurrency(null);
         setCurrency("USD");
         setRates({ USD: 1 });
@@ -101,15 +92,13 @@ const PackageCard = ({ packageInfo }) => {
     fetchCurrencyData();
   }, [packageInfo.price]);
 
-  // Toggle between USD and local currency
   const toggleCurrency = () => {
     const newCurrency = currency === "USD" && localCurrency ? localCurrency : "USD";
     setCurrency(newCurrency);
 
-    // Convert price to new currency
     const { price: convertedPrice, symbol: currencySymbol } = convertCurrency(
       packageInfo.price,
-      "USD", // Base price is always in USD
+      "USD",
       newCurrency,
       rates
     );
@@ -120,17 +109,14 @@ const PackageCard = ({ packageInfo }) => {
     console.log(`Toggled to ${newCurrency}, price: ${convertedPrice} ${currencySymbol}`);
   };
 
-  // Format price for display
   const formattedPrice = new Intl.NumberFormat("en-US", {
     maximumFractionDigits: 0,
   }).format(displayPrice);
 
-  // Show loading state
   if (isLoading) {
     console.log("PackageCard is loading currency data...");
   }
 
-  // Debug toggle button visibility
   const shouldShowToggle = localCurrency && rates[localCurrency] && localCurrency !== "USD";
   console.log("Toggle button visibility:", {
     localCurrency,
@@ -139,11 +125,18 @@ const PackageCard = ({ packageInfo }) => {
     shouldShow: shouldShowToggle,
   });
 
+  // Create package info with current display values for the modal
+  const currentPackageInfo = {
+    ...packageInfo,
+    displayPrice: `${symbol} ${formattedPrice}`,
+    currentCurrency: currency,
+    currentSymbol: symbol
+  };
+
   return (
     <div
       className="relative bg-white rounded-xl shadow-xl max-w-sm py-10 px-10 w-full flex flex-col justify-between h-[600px] xl:h-[700px] overflow-hidden transition-all duration-300 border border-neon hover:ring-2 hover:ring-neon hover:shadow-[0_0_20px_rgba(0,197,255,0.2)]"
     >
-      {/* Blob in bottom-right corner */}
       <div className="absolute bottom-[-50px] right-[-50px] w-[110px] h-[110px] bg-neon opacity-50 rounded-full animate-blob z-0"></div>
 
       {packageInfo.category && (
@@ -158,7 +151,6 @@ const PackageCard = ({ packageInfo }) => {
         </div>
       )}
 
-      {/* Title with custom neon underline */}
       <div className="relative mb-2">
         <Heading
           text={packageInfo.title}
@@ -174,7 +166,6 @@ const PackageCard = ({ packageInfo }) => {
         className="text-gray-600 text-sm mb-4 h-[50px] xl:h-[60px] leading-tight overflow-hidden"
       />
 
-      {/* Currency and Price */}
       <div className="flex flex-row justify-center items-end gap-x-2 mb-3 h-[70px]">
         <div className="flex flex-col justify-end min-w-[200px] items-center">
           <div className="flex items-end gap-x-1">
@@ -185,7 +176,6 @@ const PackageCard = ({ packageInfo }) => {
           </div>
         </div>
 
-        {/* Currency Toggle Button - only show if we have a valid local currency */}
         {shouldShowToggle && (
           <div className="flex items-center justify-center w-[50px]">
             <button
@@ -199,7 +189,6 @@ const PackageCard = ({ packageInfo }) => {
         )}
       </div>
 
-      {/* Features */}
       <div className="flex-1 overflow-y-auto my-4 h-[200px] rounded-md package-scrollbar text-black">
         <div className="space-y-4 max-w-[250px] mx-auto">
           {Object.entries(packageInfo.features).map(([section, items], i) => (
@@ -222,13 +211,13 @@ const PackageCard = ({ packageInfo }) => {
         </div>
       </div>
 
-      {/* Call to Action */}
       <div className="text-center mt-auto pt-10">
         <Button
           name="Buy Now"
           hoverBgColor="bg-neon"
           hoverTextColor="black"
-          openModal={true}
+          openPackageModal={true}
+          packageInfo={currentPackageInfo} // Pass the current package info with display price
         />
         <div className="flex items-center justify-center gap-2 mt-2 text-sm text-black">
           {contactDetails
