@@ -78,8 +78,8 @@ const PackageFormTemplate = ({
     type="text"
     value={packageName}
     readOnly
-    className={`cursor-not-allowed text-40px font-bold w-full text-neon`}
-    style={{ backgroundColor: 'transparent', border: 'none' }}
+    className={`cursor-not-allowed text-xs font-bold px-4  border-2 border-neon rounded-full text-neon`}
+    style={{ backgroundColor: 'transparent' }}
   />
 </div>
 
@@ -110,7 +110,7 @@ const PackageFormTemplate = ({
         <p className="text-red-500 text-sm mt-1">Please enter your name</p>
       )}
 
-      {/* <FormField
+      <FormField
         name="email"
         type="email"
         placeholder="Email"
@@ -124,7 +124,7 @@ const PackageFormTemplate = ({
       />
       {!hideErrorMessages && errors.email && (
         <p className="text-red-500 text-sm mt-1">Please enter your email</p>
-      )} */}
+      )}
 
       <FormField
         name="phone"
