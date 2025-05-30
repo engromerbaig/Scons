@@ -70,12 +70,14 @@ const Button = ({
     >
       <div style={iconContainerStyle}>
         {isLoading ? (
-          <svg
-            className={`animate-spin h-5 w-5 ${isInteracted && !disabled ? 'text-white' : 'text-neon'}`}
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
+       <svg
+  className={`h-5 w-5 ${isInteracted && !disabled ? 'text-white' : 'text-neon'}`}
+  style={{ animation: 'spin 1s linear infinite' }}
+  xmlns="http://www.w3.org/2000/svg"
+  fill="none"
+  viewBox="0 0 24 24"
+>
+
             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="black" strokeWidth="4" />
             <path
               className="opacity-75"
