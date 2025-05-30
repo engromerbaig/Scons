@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import FormField from '../FormSteps/modules/FormField';
 import Button from '../Button/Button';
+import Heading from '../Heading/Heading';
+import BodyText from '../BodyText/BodyText';
 
 const PackageFormTemplate = ({
   packageName,
@@ -70,23 +72,25 @@ const PackageFormTemplate = ({
   };
 
   return (
-    <form name={formName} onSubmit={onSubmit} className="flex flex-col gap-6">
+    <form name={formName} onSubmit={onSubmit} className="flex flex-col gap-4">
+   <div>
+  <input
+    type="text"
+    value={packageName}
+    readOnly
+    className={`cursor-not-allowed text-40px font-bold w-full text-neon`}
+    style={{ backgroundColor: 'transparent', border: 'none' }}
+  />
+</div>
+
       <div>
-        <label className="text-white font-semibold">Package</label>
-        <input
-          type="text"
-          value={packageName}
-          readOnly
-          className={`${inputStyles} cursor-not-allowed bg-gray-700`}
-        />
-      </div>
-      <div>
-        <label className="text-white font-semibold">Price</label>
         <input
           type="text"
           value={packagePrice}
           readOnly
-          className={`${inputStyles} cursor-not-allowed bg-gray-700`}
+    className={`cursor-not-allowed text-40px font-black w-full text-white`}
+        style={{ backgroundColor: 'transparent', border: 'none' }}
+
         />
       </div>
 
@@ -106,7 +110,7 @@ const PackageFormTemplate = ({
         <p className="text-red-500 text-sm mt-1">Please enter your name</p>
       )}
 
-      <FormField
+      {/* <FormField
         name="email"
         type="email"
         placeholder="Email"
@@ -120,7 +124,7 @@ const PackageFormTemplate = ({
       />
       {!hideErrorMessages && errors.email && (
         <p className="text-red-500 text-sm mt-1">Please enter your email</p>
-      )}
+      )} */}
 
       <FormField
         name="phone"
@@ -140,7 +144,7 @@ const PackageFormTemplate = ({
 
       <div className="flex justify-center mt-4">
         <Button
-          name="Submit"
+          name="Submit Query"
           className="w-full py-2"
           bgColor={isFormValid ? 'bg-neon' : 'bg-neon/60'}
           textColor="text-neon"

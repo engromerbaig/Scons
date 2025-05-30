@@ -25,8 +25,7 @@ const PackageModal = ({ isOpen, onClose, packageInfo = {} }) => {
   return (
     <ModalWrapper isOpen={isOpen} onClose={onClose}>
       <Heading
-        text="Interested in our"
-        spanText={` ${title} Package?`}
+        text="Interested in our Package?"
         spanColor="text-neon"
         color="text-white"
         size="text-50px"
@@ -36,7 +35,7 @@ const PackageModal = ({ isOpen, onClose, packageInfo = {} }) => {
         text="Fill out the form below and our team will reach out to you with all the details you need."
         centered={false}
         color="text-white"
-        size="text-20px"
+        size="text-sm"
       />
       <PackageFormTemplate
         packageName={title}
