@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { services } from '../../Services/servicesData';
 import { socialsData } from './socialsData';
 import { theme } from '../../../theme';
+import { FiArrowUpRight } from 'react-icons/fi';
 
 const RHS = ({ containerVariants, textVariants, handleClose }) => (
   <motion.div
@@ -44,11 +45,15 @@ const RHS = ({ containerVariants, textVariants, handleClose }) => (
             className={`${theme.layoutPages.paddingMenu}`}
           >
             <Link
-              className="text-xl lg:text-45px font-semibold text-black  hover:text-white transition-colors duration-300"
+              className="text-xl lg:text-45px group inline-flex items-center gap-2 font-semibold text-black  hover:text-white transition-colors duration-300"
               to={`/service/${service.slug}`}
               onClick={handleClose}
             >
               {service.heading}
+
+               <FiArrowUpRight
+                              className="transform transition-transform duration-300 group-hover:rotate-45"
+                            />
             </Link>
           </motion.div>
         ))}
