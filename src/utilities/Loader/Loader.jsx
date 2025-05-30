@@ -1,81 +1,66 @@
 import React from 'react';
-
-const angles = [0, 45, 90, 135, 180, 225, 270, 315];
+import BodyText from '../../components/BodyText/BodyText';
 
 const Loader = () => {
   return (
-    <div className="flex items-center justify-center h-screen relative">
-      <style jsx>{`
-        @keyframes fadeInOut {
-          0%, 100% { opacity: 0.3; }
-          50% { opacity: 1; }
-        }
-        
-        .animate-line-0 { animation: fadeInOut 1.5s ease-in-out infinite; animation-delay: 0s; }
-        .animate-line-1 { animation: fadeInOut 1.5s ease-in-out infinite; animation-delay: 0.1s; }
-        .animate-line-2 { animation: fadeInOut 1.5s ease-in-out infinite; animation-delay: 0.2s; }
-        .animate-line-3 { animation: fadeInOut 1.5s ease-in-out infinite; animation-delay: 0.3s; }
-        .animate-line-4 { animation: fadeInOut 1.5s ease-in-out infinite; animation-delay: 0.4s; }
+    <div className="loader-container">
+      <div className="cube">
+        <div className="face front"></div>
+        <div className="face back"></div>
+        <div className="face right"></div>
+        <div className="face left"></div>
+        <div className="face top"></div>
+        <div className="face bottom"></div>
+      </div>
+      <BodyText text="Loading Content.." size="text-sm" fontWeight="font-semibold" />
 
-        @media (max-width: 800px) {
-          .line {
-            width: 5px !important;
-            height: 40px !important;
-          }
-          .line-short {
-            height: 21px !important;
-          }
-          .logo {
-            width: 38px !important;
-            height: 38px !important;
-          }
+      <style jsx>{`
+        .loader-container {
+          height: 100vh;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 20px;
+          background: #f9f9f9;
+        }
+
+        .cube {
+          width: 150px;
+          height: 150px;
+          position: relative;
+          transform-style: preserve-3d;
+          animation: spinCube 10s infinite linear;
+        }
+
+        .face {
+          width: 150px;
+          height: 150px;
+          position: absolute;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 20px;
+          font-weight: bold;
+          opacity: 0.95;
+        }
+
+        /* Opposite faces share color but not adjacent ones */
+        .front  { background: #99AEBB; transform: rotateY(0deg) translateZ(75px); }       /* Face 1 */
+        .back   { background: #99AEBB; transform: rotateY(180deg) translateZ(75px); }     /* Face 6 (opposite of front) */
+        .right  { background: #364954; transform: rotateY(90deg) translateZ(75px); }      /* Face 2 */
+        .left   { background: #364954; transform: rotateY(-90deg) translateZ(75px); }     /* Face 5 (opposite of right) */
+        .top    { background: #00C5FF; transform: rotateX(90deg) translateZ(75px); }      /* Face 3 */
+        .bottom { background: #00C5FF; transform: rotateX(-90deg) translateZ(75px); }     /* Face 4 (opposite of top) */
+
+        @keyframes spinCube {
+          0%   { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+          25%  { transform: rotateX(90deg) rotateY(90deg) rotateZ(90deg); }
+          50%  { transform: rotateX(180deg) rotateY(180deg) rotateZ(180deg); }
+          75%  { transform: rotateX(270deg) rotateY(270deg) rotateZ(270deg); }
+          100% { transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
         }
       `}</style>
-      
-      <div className="relative w-full h-full">
-        {angles.map((angle, index) => {
-          const isLong = angle % 90 === 0;
-          const lineHeight = isLong ? 50 : 30;
-          const startDistance = 50;
-          
-          // Animated angles: 180, 225, 270, 315, 0
-          const animatedAngles = [180, 225, 270, 315, 0];
-          const isAnimated = animatedAngles.includes(angle);
-          const animationIndex = animatedAngles.indexOf(angle);
-          
-          return (
-            <span
-              key={index}
-              className={`absolute bg-black line ${isLong ? '' : 'line-short'} ${
-                isAnimated ? `animate-line-${animationIndex}` : ''
-              }`}
-              style={{
-                width: '8px',
-                height: `${lineHeight}px`,
-                top: '50%',
-                left: '50%',
-                transformOrigin: 'center bottom',
-                transform: `translate(-50%, -100%) rotate(${angle}deg) translateY(-${startDistance}px)`,
-                opacity: isAnimated ? 0.3 : 1
-              }}
-            />
-          );
-        })}
-        
-        <img 
-          src="/favicon.svg" 
-          alt="Scons Logo" 
-          className="absolute logo"
-          style={{
-            width: '50px',
-            height: '50px',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            zIndex: 10
-          }}
-        />
-      </div>
     </div>
   );
 };
