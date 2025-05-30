@@ -31,7 +31,7 @@ const CanvasMenuContent = ({ handleClose }) => {
   const technologyIcons = getAllTechnologyIcons();
 
   return (
-    <div className={`w-full h-screen bg-white flex flex-col xl:flex-row ${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} gap-8 overflow-hidden`}>
+    <div className={`w-full h-screen bg-white flex flex-col xl:flex-row ${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingMenuVertical} gap-8 overflow-hidden`}>
       {/* Left Side: NavLinks + Socials + LegalPages */}
       <div className="w-full md:w-1/2 flex flex-col h-full">
         <div className="flex flex-col h-full justify-between">
