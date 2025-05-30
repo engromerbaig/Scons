@@ -17,6 +17,31 @@ const PackageCard = ({ packageInfo }) => {
   // Fetch currency rates and determine local currency
   useEffect(() => {
     const fetchCurrencyData = async () => {
+      const today = new Date().toDateString();
+      // Check localStorage for cached data
+      const cachedData = JSON.parse(localStorage.getItem("currencyData"));
+
+      if (cachedData && cachedData.date === today) {
+        console.log("Using cached currency data:", cachedData);
+        const safeRates = { USD: 1, ...cachedData.rates };
+        setRates(safeRates);
+
+        if (cachedData.localCurrency && cachedData.localCurrency !== "USD" && safeRates[cachedData.localCurrency]) {
+          setLocalCurrency(cachedData.localCurrency);
+          console.log(`Local currency from cache: ${cachedData.localCurrency}`);
+        } else {
+          setLocalCurrency(null);
+          console.log("No valid local currency in cache, staying with USD");
+        }
+
+        // Always display USD initially
+        setCurrency("USD");
+        setDisplayPrice(packageInfo.price);
+        setSymbol("USD");
+        setIsLoading(false);
+        return;
+      }
+
       try {
         setIsLoading(true);
         console.log("Fetching currency data...");
@@ -44,6 +69,16 @@ const PackageCard = ({ packageInfo }) => {
           setLocalCurrency(null);
           console.log("No valid local currency, staying with USD");
         }
+
+        // Cache the fetched data in localStorage
+        localStorage.setItem(
+          "currencyData",
+          JSON.stringify({
+            localCurrency,
+            rates: safeRates,
+            date: today,
+          })
+        );
 
         // Always keep initial display in USD
         setCurrency("USD");
@@ -101,7 +136,7 @@ const PackageCard = ({ packageInfo }) => {
     localCurrency,
     hasRate: !!rates[localCurrency],
     isNonUSD: localCurrency !== "USD",
-    shouldShow: shouldShowToggle
+    shouldShow: shouldShowToggle,
   });
 
   return (
