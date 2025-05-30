@@ -14,6 +14,10 @@ import { FiArrowUpRight } from "react-icons/fi";
 import { FiArrowRight } from "react-icons/fi"; 
 
 import LegalPages from '../Footer/LegalPages';
+import {technologiesData} from '../Technologies/technologiesData';
+import SplideCarousel from '../SplideCarousel/SplideCarousel';
+
+import BodyText from '../BodyText/BodyText';
 
 
 
