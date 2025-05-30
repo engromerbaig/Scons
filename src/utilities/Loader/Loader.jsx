@@ -26,32 +26,31 @@ const Loader = () => {
         }
 
         .cube {
-          width: 150px;
-          height: 150px;
+          width: 75px;
+          height: 75px;
           position: relative;
           transform-style: preserve-3d;
           animation: spinCube 10s infinite linear;
         }
 
         .face {
-          width: 150px;
-          height: 150px;
+          width: 75px;
+          height: 75px;
           position: absolute;
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 20px;
+          font-size: 14px;
           font-weight: bold;
           opacity: 0.95;
         }
 
-        /* Opposite faces share color but not adjacent ones */
-        .front  { background: #99AEBB; transform: rotateY(0deg) translateZ(75px); }       /* Face 1 */
-        .back   { background: #99AEBB; transform: rotateY(180deg) translateZ(75px); }     /* Face 6 (opposite of front) */
-        .right  { background: #364954; transform: rotateY(90deg) translateZ(75px); }      /* Face 2 */
-        .left   { background: #364954; transform: rotateY(-90deg) translateZ(75px); }     /* Face 5 (opposite of right) */
-        .top    { background: #00C5FF; transform: rotateX(90deg) translateZ(75px); }      /* Face 3 */
-        .bottom { background: #00C5FF; transform: rotateX(-90deg) translateZ(75px); }     /* Face 4 (opposite of top) */
+        .front  { background: #99AEBB; transform: rotateY(0deg) translateZ(37.5px); }
+        .back   { background: #99AEBB; transform: rotateY(180deg) translateZ(37.5px); }
+        .right  { background: #364954; transform: rotateY(90deg) translateZ(37.5px); }
+        .left   { background: #364954; transform: rotateY(-90deg) translateZ(37.5px); }
+        .top    { background: #00C5FF; transform: rotateX(90deg) translateZ(37.5px); }
+        .bottom { background: #00C5FF; transform: rotateX(-90deg) translateZ(37.5px); }
 
         @keyframes spinCube {
           0%   { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
