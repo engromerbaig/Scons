@@ -14,11 +14,17 @@ const LHS = ({ containerVariants, textVariants, handleClose }) => (
     variants={containerVariants}
     transition={{ duration: 0.5, delayChildren: 0.2 }}
     className={`${theme.layoutPages.paddingMenu} ${theme.layoutPages.paddingMenuVertical} lhs w-full md:w-1/2 h-1/2 md:h-full bg-white flex flex-col `}
+    style={{
+      backgroundImage: `url('/sconsVertical.svg')`,
+  backgroundPosition: 'right bottom',
+  backgroundSize: '50% auto',
+      backgroundRepeat: 'no-repeat',
+    }}
   >
     {/* Top Section (2/12) */}
     <div className="h-[16.67%]">
       <Link to="/" className="cursor-pointer block" onClick={handleClose}>
-          <img src="/logo2.svg" alt="Logo" className="lg:w-32 w-24 aspect-rectangle" loading="lazy" />
+          <img src="/logo.svg" alt="Logo" className="lg:w-32 w-24 aspect-rectangle" loading="lazy" />
       </Link>
     </div>
 

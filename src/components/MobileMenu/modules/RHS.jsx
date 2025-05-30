@@ -13,13 +13,8 @@ const RHS = ({ containerVariants, textVariants, handleClose }) => (
     exit="exitRight"
     variants={containerVariants}
     transition={{ duration: 0.5, delayChildren: 0.2 }}
-    className="w-full md:w-1/2 h-1/2 md:h-full bg-white flex flex-row overflow-hidden relative"
-    style={{
-      backgroundImage: `url('/sconsVertical.svg')`,
-  backgroundPosition: 'right bottom',
-  backgroundSize: '40% auto',
-      backgroundRepeat: 'no-repeat',
-    }}
+    className="w-full md:w-1/2 h-1/2 md:h-full bg-neon shadow-xl flex flex-row overflow-hidden relative"
+
   >
     <div className={`w-full flex flex-col ${theme.layoutPages.paddingMenuVertical}`}>
       {/* Top Section (2/12) */}
@@ -30,7 +25,7 @@ const RHS = ({ containerVariants, textVariants, handleClose }) => (
           exit="exit"
           variants={textVariants}
           transition={{ duration: 0.3 }}
-          className={` ${theme.layoutPages.paddingMenu} text-2xl md:text-60px font-bold text-neon`}
+          className={` ${theme.layoutPages.paddingMenu} text-2xl md:text-60px font-bold text-black`}
         >
           Our Services
         </motion.h2>
@@ -49,7 +44,7 @@ const RHS = ({ containerVariants, textVariants, handleClose }) => (
             className={`${theme.layoutPages.paddingMenu}`}
           >
             <Link
-              className="text-xl lg:text-45px font-semibold text-black font-manrope hover:text-neon transition-colors duration-300"
+              className="text-xl lg:text-45px font-semibold text-black  hover:text-white transition-colors duration-300"
               to={`/service/${service.slug}`}
               onClick={handleClose}
             >
@@ -61,7 +56,7 @@ const RHS = ({ containerVariants, textVariants, handleClose }) => (
 
       {/* Bottom Section (2/12) */}
       <div className="h-[16.67%] flex items-end">
-        <div className="py-2 md:py-4 px-4 md:px-8 rounded-r-full bg-neon shadow-inner flex flex-row justify-between space-x-4">
+        <div className="py-2 md:py-4 px-4 md:px-8 rounded-r-full bg-black shadow-inner flex flex-row justify-between space-x-4">
          {socialsData.map((social, idx) => {
     const Icon = social.icon;
     return (
@@ -70,7 +65,7 @@ const RHS = ({ containerVariants, textVariants, handleClose }) => (
         href={social.link}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-black hover:text-white transition duration-300"
+        className="text-white hover:text-neon transition duration-300"
       >
         <Icon className="w-6 lg:w-7 h-6 lg:h-7 transition-transform " />
       </a>

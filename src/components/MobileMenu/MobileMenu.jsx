@@ -80,7 +80,7 @@ const MobileMenu = ({ isOpen, onClose, onCloseComplete }) => {
           />
 
           {/* Central neon line */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -98,7 +98,7 @@ const MobileMenu = ({ isOpen, onClose, onCloseComplete }) => {
                   : 'inset-y-0 w-2'
               }`}
             />
-          </motion.div>
+          </motion.div> */}
 
           <RHS
             containerVariants={containerVariants}
