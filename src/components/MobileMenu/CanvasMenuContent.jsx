@@ -42,7 +42,7 @@ const CanvasMenuContent = ({ handleClose }) => (
     href={social.link}
     target="_blank"
     rel="noopener noreferrer"
-    className="text-xl bg-black p-2 lg:p-3 rounded-full text-white hover:text-neon transition-colors duration-300"
+    className="text-2xl bg-black p-2 lg:p-3 rounded-full text-white hover:text-neon transition-colors duration-300"
   >
     <social.icon />
   </a>

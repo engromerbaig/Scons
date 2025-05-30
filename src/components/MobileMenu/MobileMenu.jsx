@@ -82,7 +82,7 @@ const MobileMenu = ({ isOpen, onClose, onCloseComplete }) => {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={handleClose}
-          className="absolute top-3 right-2 lg:top-6 lg:right-6 text-25px border-2 lg:border-4 font-extrabold border-neon text-neon rounded-full w-6 h-6 lg:w-8 lg:h-8 flex items-center justify-center"
+          className="absolute top-3 right-2 lg:top-6 lg:right-6 text-25px border-2 lg:border-4 font-extrabold border-black bg-black text-white rounded-full w-6 h-6 lg:w-10 lg:h-10 p-2 flex items-center justify-center"
         >
           ✕
         </motion.button>
