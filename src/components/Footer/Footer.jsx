@@ -10,6 +10,7 @@ import BodyText from "../BodyText/BodyText";
 import ScrollToTopLink from "../../utilities/ScrollToTopLink";
 import { theme } from "../../theme";
 import Button from "../Button/Button";
+import LegalPages from "./LegalPages";
 
 const Footer = () => {
   return (
@@ -134,11 +135,7 @@ const Footer = () => {
         <div>
           &copy; {new Date().getFullYear()} <span className="  text-grayText">Scons.</span> All Rights Reserved
         </div>
-        <div className="flex space-x-4 mt-2 md:mt-0">
-          <Link to="/privacy-policy" className="neon-hover">Privacy Policy</Link>
-          <span>|</span>
-          <Link to="/terms-and-conditions" className="neon-hover">Terms &amp; Conditions</Link>
-        </div>
+      <LegalPages/>
       </div>
     </footer>
   );

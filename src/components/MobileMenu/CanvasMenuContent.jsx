@@ -13,6 +13,8 @@ import { theme } from '../../theme';
 import { FiArrowUpRight } from "react-icons/fi";
 import { FiArrowRight } from "react-icons/fi"; 
 
+import LegalPages from '../Footer/LegalPages';
+
 
 
 const CanvasMenuContent = ({ handleClose }) => (
@@ -86,6 +88,9 @@ const CanvasMenuContent = ({ handleClose }) => (
             {contact.detail}
           </a>
         ))}
+
+                <LegalPages onClick={handleClose} />
+
       </div>
     </div>
   </div>
