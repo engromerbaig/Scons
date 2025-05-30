@@ -22,7 +22,7 @@ const Footer = () => {
         {/* LOGO + CONTACT */}
         <div>
           <ScrollToTopLink to="/" className="cursor-pointer block mb-6">
-            <img src="/logo.svg" alt="Logo" loading='lazy' className="lg:w-28 w-20 aspect-rectangle" />
+            <img src="/logo2.svg" alt="Logo" loading='lazy' className="lg:w-28 w-20 aspect-rectangle" />
           </ScrollToTopLink>
 
           <div className="flex items-center mb-3">
