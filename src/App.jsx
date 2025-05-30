@@ -41,13 +41,13 @@ function AppContent() {
   const hideHeroButtonRoutes = ['/contact-us', '/thank-you'];
   const shouldShowFooter = !hideFooterRoutes.includes(location.pathname);
   const shouldShowHeroButton = !hideHeroButtonRoutes.includes(location.pathname);
-  // Check if the current path matches /portfolio/:slug
   const isPortfolioDetail = location.pathname.startsWith('/portfolio/');
 
   const [isModalOpen, setModalOpen] = useState(false);
 
-  return (
-    <div className="App overflow-hidden">
+  // Render only the Loader during Suspense fallback
+  const Content = () => (
+    <>
       <Helmet>
         <title>Scons | UK Based Software Innovator's</title>
         <meta name="description" content="Explore innovative software solutions by Scons tailored for startups and enterprises in the UK and worldwide." />
@@ -60,31 +60,37 @@ function AppContent() {
       {shouldShowHeroButton && <HeroButton onClick={() => setModalOpen(true)} />}
       <ChatModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} />
 
-      <Suspense fallback={<Loader />}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/why-scons" element={<KnowUs />} />
-          <Route path="/portfolio" element={<OurWork />} />
-          <Route path="/portfolio/:slug" element={<ProjectDetail />} />
-          <Route path="/contact-us" element={<ContactUs />} />
-          <Route path="/careers" element={<Careers />} />
-          {/* <Route path="/careers/:heading/:jobType" element={<JobDetails />} /> */}
-          {/* <Route path="/careers/apply" element={<Apply />} /> */}
-          {/* <Route path="/lets-innovate" element={<LetsInnovate />} /> */}
-          <Route path="/service/:serviceSlug" element={<ServiceDetailsWrapper />} />
-          <Route path="/blogs" element={<Blogs />} />
-          <Route path="/blogs/:blogSlug" element={<BlogDetails />} />
-          <Route path="/packages" element={<Packages />} />
-          <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/thank-you" element={<ThankYou />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Suspense>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/why-scons" element={<KnowUs />} />
+        <Route path="/portfolio" element={<OurWork />} />
+        <Route path="/portfolio/:slug" element={<ProjectDetail />} />
+        <Route path="/contact-us" element={<ContactUs />} />
+        <Route path="/careers" element={<Careers />} />
+        {/* <Route path="/careers/:heading/:jobType" element={<JobDetails />} /> */}
+        {/* <Route path="/careers/apply" element={<Apply />} /> */}
+        {/* <Route path="/lets-innovate" element={<LetsInnovate />} /> */}
+        <Route path="/service/:serviceSlug" element={<ServiceDetailsWrapper />} />
+        <Route path="/blogs" element={<Blogs />} />
+        <Route path="/blogs/:blogSlug" element={<BlogDetails />} />
+        <Route path="/packages" element={<Packages />} />
+        <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/thank-you" element={<ThankYou />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
 
       {shouldShowFooter && <FooterWrapper />}
       <ScrollToTop />
       {isPortfolioDetail && <ReturnButton />}
+    </>
+  );
+
+  return (
+    <div className="App overflow-hidden">
+      <Suspense fallback={<Loader />}>
+        <Content />
+      </Suspense>
     </div>
   );
 }
