@@ -73,15 +73,17 @@ const PackageFormTemplate = ({
 
   return (
     <form name={formName} onSubmit={onSubmit} className="flex flex-col gap-4">
-   <div>
+ <div className="">
   <input
     type="text"
     value={packageName}
     readOnly
-    className={`cursor-not-allowed text-xs font-bold px-4  border-2 border-neon rounded-full text-neon`}
+    size={packageName.length } // slight buffer
+    className="cursor-not-allowed text-xs font-bold px-4 text-center border-2 border-neon rounded-full text-neon"
     style={{ backgroundColor: 'transparent' }}
   />
 </div>
+
 
       <div>
         <input
