@@ -16,8 +16,8 @@ const RHS = ({ containerVariants, textVariants, handleClose }) => (
     className="w-full md:w-1/2 h-1/2 md:h-full bg-white flex flex-row overflow-hidden relative"
     style={{
       backgroundImage: `url('/sconsVertical.svg')`,
-      backgroundPosition: 'right',
-      backgroundSize: 'contain',
+  backgroundPosition: 'right bottom',
+  backgroundSize: '40% auto',
       backgroundRepeat: 'no-repeat',
     }}
   >
