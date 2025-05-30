@@ -86,7 +86,7 @@ const CanvasMenuContent = ({ handleClose }) => {
                   key={service.slug}
                   to={`/service/${service.slug}`}
                   onClick={handleClose}
-                  className="group inline-flex items-center gap-2 text-xl lg:text-2xl font-semibold text-black border-2 px-4 py-2 rounded-full border-neon hover:text-neon transition-colors duration-300"
+                  className="group inline-flex items-center gap-2 text-xl lg:text-2xl font-semibold text-black shadow-sm border-2 px-4 py-2 rounded-full border-neon hover:text-neon transition-colors duration-300"
                 >
                   {service.heading}
                   <FiArrowUpRight
