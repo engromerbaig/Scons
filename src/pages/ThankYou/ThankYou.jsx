@@ -7,7 +7,7 @@ const ThankYou = () => {
   return (
     <div className={`flex flex-col ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal} h-screen justify-center items-center gap-4 text-white text-center `}>
           <Heading
-            text="Thank You For Your Submission!"
+            text="Thank You For Your Interest!"
             color="text-black"
             centered={true}
             className="leading-none"
