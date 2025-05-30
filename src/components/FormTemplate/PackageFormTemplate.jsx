@@ -46,6 +46,8 @@ const PackageFormTemplate = ({
     try {
       setIsLoading(true);
 
+      // Comment out the API call
+      /*
       const response = await fetch('/.netlify/functions/send-package-inquiry', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -60,7 +62,14 @@ const PackageFormTemplate = ({
       if (!response.ok) throw new Error('Failed to submit package inquiry');
 
       const result = await response.json();
-      console.log('Package inquiry submission:', result);
+      */
+
+      // Log formData along with packageName and packagePrice (including currency symbol)
+      console.log('Package inquiry submission:', {
+        packageName,
+        packagePrice, // This will include the currency symbol
+        ...formData,
+      });
 
       handleFormSubmit(formData);
       if (onSuccess) onSuccess();
@@ -73,27 +82,23 @@ const PackageFormTemplate = ({
 
   return (
     <form name={formName} onSubmit={onSubmit} className="flex flex-col gap-4">
- <div className="">
-  <input
-    type="text"
-    value={packageName}
-    readOnly
-    size={packageName.length } // slight buffer
-    className="cursor-not-allowed text-xs font-bold px-4 text-center border-2 border-neon rounded-full text-neon"
-    style={{ backgroundColor: 'transparent' }}
-  />
-</div>
-
-
-      <div>
+      <div className="">
         <input
           type="text"
-          value={packagePrice}
+          value={packageName}
           readOnly
-    className={`cursor-not-allowed text-40px font-black w-full text-white`}
-        style={{ backgroundColor: 'transparent', border: 'none' }}
-
+          size={packageName.length} // slight buffer
+          className="cursor-not-allowed text-xs font-bold px-4 text-center border-2 border-neon rounded-full text-neon"
+          style={{ backgroundColor: 'transparent' }}
         />
+      </div>
+
+      <div
+        className="w-full justify-center text-white text-90px lg:text-60px font-black cursor-not-allowed flex items-baseline"
+        style={{ backgroundColor: 'transparent', border: 'none' }}
+      >
+        <span className="text-xs mr-1">{packagePrice?.match(/[^\d\s]+/)}</span>
+        <span>{packagePrice?.match(/[\d.,]+/)}</span>
       </div>
 
       <FormField
