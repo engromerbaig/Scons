@@ -6,18 +6,18 @@ import PackageFormTemplate from '../FormTemplate/PackageFormTemplate';
 import { Link } from 'react-router-dom';
 
 const PackageModal = ({ isOpen, onClose, packageInfo = {} }) => {
-  const { 
-    title = '', 
-    displayPrice = '', 
+  const {
+    title = '',
+    displayPrice = '',
     currentSymbol = 'USD',
-    price = '' // fallback to base price if displayPrice not available
+    price = '', // Fallback to base price
   } = packageInfo;
 
   // Use displayPrice if available, otherwise format the base price
-  const finalPrice = displayPrice || `USD ${price}`;
+  const finalPrice = displayPrice || `${currentSymbol} ${price}`;
 
   const handleFormSubmit = (formData) => {
-    console.log('Package Inquiry Submitted:', formData);
+    console.log('Package Inquiry Submitted:', { packageName: title, packagePrice: finalPrice, ...formData });
   };
 
   const inputStyles = "m-1 py-2 px-6 text-sm rounded-full text-white placeholder-bodyText bg-charcoal w-full focus:outline-none";
@@ -25,21 +25,13 @@ const PackageModal = ({ isOpen, onClose, packageInfo = {} }) => {
   return (
     <ModalWrapper isOpen={isOpen} onClose={onClose}>
       <Heading
-        text={`Interested in ${packageInfo.title}? `}
-        spanText={`${packageInfo.title}?`}
-
+        text={`Interested in ${title}?`}
+        spanText={`${title}?`}
         spanColor="text-neon"
         color="text-white"
         size="text-40px"
         centered={false}
-        className=''
       />
-      {/* <BodyText
-        text="Fill out the form below and our team will reach out to you with all the details you need."
-        centered={false}
-        color="text-white"
-        size="text-sm"
-      /> */}
       <PackageFormTemplate
         packageName={title}
         packagePrice={finalPrice}
@@ -47,7 +39,7 @@ const PackageModal = ({ isOpen, onClose, packageInfo = {} }) => {
         inputStyles={inputStyles}
         hideErrorMessages={true}
         onSuccess={onClose}
-        formName={`package-inquiry-${title.toLowerCase().replace(/\s+/g, '-')}`}
+        formName="package-inquiry" // Use static formName to match index.html
       />
       <BodyText
         text={
