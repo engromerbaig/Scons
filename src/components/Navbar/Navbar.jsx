@@ -1,19 +1,15 @@
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import MobileMenu from '../MobileMenu/MobileMenu';
 import { theme } from '../../theme';
 import ScrollToTopLink from '../../utilities/ScrollToTopLink';
 import { contactDetails } from '../MobileMenu/modules/contactDetails';
 import Button from '../Button/Button';
-import { navLinks } from './navLinks';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [closing, setClosing] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
-
-  const location = useLocation();
 
   const toggleMobileMenu = (e) => {
     e.preventDefault();
@@ -54,77 +50,48 @@ const Navbar = () => {
   return (
     <nav
       className={`${
-        isSticky ? 'fixed top-0 backdrop-blur-[2px]' : 'absolute bg-transparent'
-      } ${theme.layoutPages.paddingHorizontal} w-full z-[50] transition-all duration-300`}
+        isSticky ? 'fixed top-0 bg-opacity-60 backdrop-blur-sm shadow-md' : 'absolute bg-transparent'
+      } ${theme.layoutPages.paddingHorizontal} py-4 lg:py-4 flex justify-between items-center w-full z-[50] transition-all duration-300`}
     >
-      <div className="grid grid-cols-3 items-end w-full h-16 xl:h-16">
-        {/* Left Column - Logo */}
-        <div className="flex items-center justify-start h-16 xl:h-16">
-          <ScrollToTopLink
-            to="/"
-            className="cursor-pointer flex items-center justify-center  xl:h-16  xl:w-20 rounded-b-xl xl:bg-black xl:shadow-md"
-          >
-<picture>
-  <source srcSet="/favicon.svg" media="(min-width: 1280px)" />
+      <div className="flex items-center">
+        <ScrollToTopLink to="/" className="cursor-pointer">
+          <img src="/logo2.svg" alt="Logo" className="lg:w-32 w-24 aspect-rectangle" loading="lazy" />
+        </ScrollToTopLink>
+      </div>
+
+      <div className="flex items-center gap-4 lg:gap-6">
+        {/* Phone details only on lg and above */}
+        {phoneDetail && (
+          <div className="hidden lg:flex items-center gap-2 text-sm font-semibold text-black">
+            <PhoneIcon className="text-black text-xl" />
+            <a href={phoneDetail.link} className="text-base font-bold hover:text-neon transition-colors">
+              {phoneDetail.detail}
+            </a>
+          </div>
+        )}
+
+        {/* Get in Touch button only on below lg */}
+        <div className="lg:hidden">
+          <Button
+            name="Get in Touch"
+            fontSize="text-10px"
+            className="py-1 px-1"
+            openModal={true}
+          />
+        </div>
+
+   <button
+  type="button"
+  onClick={toggleMobileMenu}
+  className="relative hover:bg-neon/15 hover:rounded-full p-2 transition-all duration-300"
+>
   <img
-    src="/logo.svg"
-    alt="Logo"
-    className="w-24 xl:w-12 aspect-square"
+    src="/hamburger.svg"
+    alt="Menu"
+    className="w-6 aspect-square z-[200]"
     loading="lazy"
   />
-</picture>          </ScrollToTopLink>
-        </div>
-
-        {/* Center Column - Navigation Links */}
-        <div className="flex items-end justify-center h-16 xl:h-16">
-          <div className="hidden lg:flex items-center justify-between gap-8 bg-black shadow-md px-12 py-3 rounded-xl min-w-[800px]">
-            {navLinks.map((link, index) => {
-              const isActive = location.pathname === link.to;
-
-              return (
-                <ScrollToTopLink
-                  key={index}
-                  to={link.to}
-                  className={`relative text-base px-2 py-1 font-medium whitespace-nowrap transition-[color] duration-300 pointer-events-auto ${
-                    isActive ? 'text-neon' : 'text-white hover:text-neon'
-                  }`}
-                  style={{ minWidth: 'fit-content' }}
-                >
-                  <span
-                    className={`absolute inset-0 ${
-                      isActive ? 'border-neon rounded-full tab-active-gradient' : 'border-transparent'
-                    }`}
-                    style={{ pointerEvents: 'none' }}
-                  />
-                  {link.label}
-                </ScrollToTopLink>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Right Column - CTA and Hamburger */}
-        <div className="flex items-center justify-end gap-4 h-16 xl:h-16">
-          {/* <div className="lg:hidden">
-            <Button
-              name="Get in Touch"
-              fontSize="text-10px"
-              className="py-1 px-1"
-              openModal={true}
-            />
-          </div> */}
-
-          <button
-            type="button"
-            onClick={toggleMobileMenu}
-            className="relative xl:bg-black xl:shadow-md p-2  transition-all duration-300  xl:h-16  xl:w-20 rounded-b-xl flex items-center justify-center"
-          >
-            <div className="flex flex-col items-end gap-2 ">
-              <div className="w-4 h-0.5 bg-black xl:bg-white rounded-sm"></div>
-              <div className="w-6 h-0.5 bg-black xl:bg-white rounded-sm"></div>
-            </div>
-          </button>
-        </div>
+</button>
       </div>
 
       <MobileMenu
