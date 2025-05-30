@@ -97,9 +97,9 @@ const thankYouEmailTemplate = `
                         </a>
                     </div>
                     <div style="margin-top: 40px; margin-bottom: 40px; padding: 40px 0;">
-                        <h1 style="font-family: 'manrope', Arial, sans-serif; font-size: 24px; color: #333; margin: 0;">Thank you for your package inquiry!</h1>
-                        <p style="font-size: 16px; color: #333; font-weight: 600; margin: 10px 0;">We appreciate your interest, {{name}}.</p>
-                        <p style="font-size: 16px; color: #333; font-weight: 600; margin: 10px 0;">Our team will review your inquiry and get back to you soon.</p>
+                        <h1 style="font-family: 'manrope', Arial, sans-serif; font-size: 24px; color: #333; margin: 0;">Thank you for your package inquiry {{name}}</h1>
+                        <p style="font-size: 16px; color: #333; font-weight: 600; margin: 10px 0;">We appreciate your interest in, {{packageName}}</p>
+                        <p style="font-size: 16px; color: #333; font-weight: 600; margin: 10px 0;">Our team will review your interest and get back to you soon.</p>
                     </div>
                 </div>
             </td>
@@ -114,6 +114,38 @@ const thankYouEmailTemplate = `
                         <strong>Phone:</strong> {{phone}}<br>
                         <strong>Email:</strong> {{email}}
                     </p>
+
+                    <!-- Add inside the main-content div after inquiry details -->
+<p style="font-size: 16px; color: #333; font-weight: 700; margin-top: 40px;">Payment Information</p>
+
+<div style="font-size: 14px; color: #444; line-height: 1.6; font-weight: 500; text-align: left; max-width: 500px; margin: 0 auto;">
+
+    <p><strong>For Payments Inside Pakistan:</strong><br>
+    PK19NAYA1234503112136495</p>
+
+    <p><strong>British Pound:</strong><br>
+    Beneficiary: Muhammad Omer Baig<br>
+    Sort Code: 04-29-09<br>
+    Account: 68661258<br>
+    Revolut Ltd, 7 Westferry Circus, London, E14 4HD, UK</p>
+
+    <p><strong>Euro:</strong><br>
+    Beneficiary: Muhammad Omer Baig<br>
+    IBAN: LT03 3250 0950 1703 0955<br>
+    BIC: REVOLT21<br>
+    Revolut Bank UAB, Vilnius, Lithuania<br>
+    Correspondent BIC: CHASDEFX</p>
+
+    <p><strong>US Dollar:</strong><br>
+    Beneficiary: Muhammad Omer Baig<br>
+    IBAN: LT03 3250 0950 1703 0955<br>
+    BIC: REVOLT21<br>
+    Revolut Bank UAB, Vilnius, Lithuania<br>
+    Correspondent BIC: CHASGB2L</p>
+
+    <p style="margin-top: 20px; color: #000;"><strong>Note:</strong> Once you make the payment, please email the receipt to <a href="mailto:sales@sconstech.com" style="color: #00c5ff;">sales@sconstech.com</a>. For any issues, contact <a href="mailto:help@sconstech.com" style="color: #00c5ff;">help@sconstech.com</a>.</p>
+</div>
+
                     <a href="https://sconstech.com/">
                         <img src="https://lustrous-sundae-be0a50.netlify.app/logo.png/" alt="Scons Logo" style="width: 150px;">
                     </a>
