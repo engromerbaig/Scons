@@ -12,7 +12,7 @@ const Loader = () => {
         <div className="face top"></div>
         <div className="face bottom"></div>
       </div>
-      <BodyText text="Loading Content.." size="text-sm" fontWeight="font-semibold" />
+      {/* <BodyText text="Loading Content.." size="text-sm" fontWeight="font-semibold" /> */}
 
       <style jsx>{`
         .loader-container {
@@ -58,6 +58,25 @@ const Loader = () => {
           50%  { transform: rotateX(180deg) rotateY(180deg) rotateZ(180deg); }
           75%  { transform: rotateX(270deg) rotateY(270deg) rotateZ(270deg); }
           100% { transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
+        }
+
+        @media (max-width: 640px) {
+          .cube {
+            width: 50px;
+            height: 50px;
+          }
+
+          .face {
+            width: 50px;
+            height: 50px;
+          }
+
+          .front  { transform: rotateY(0deg) translateZ(25px); }
+          .back   { transform: rotateY(180deg) translateZ(25px); }
+          .right  { transform: rotateY(90deg) translateZ(25px); }
+          .left   { transform: rotateY(-90deg) translateZ(25px); }
+          .top    { transform: rotateX(90deg) translateZ(25px); }
+          .bottom { transform: rotateX(-90deg) translateZ(25px); }
         }
       `}</style>
     </div>
