@@ -4,15 +4,9 @@ import { theme } from "../../theme";
 import AnimatedArrow from "../../components/AnimatedArrow/AnimatedArrow";
 import { packageData } from "./packageData";
 import PackageCard from "./PackageCard";
-import { fetchCurrencyRates } from "../../utilities/currencyApi";
 
 const PackagesHome = () => {
-  const [currencyRates, setCurrencyRates] = useState(null);
 
-  // Fetch exchange rates
-  useEffect(() => {
-    fetchCurrencyRates().then((rates) => setCurrencyRates(rates));
-  }, []);
 
   // Filter packages to only include IDs 1, 10, and 5, and sort to place ID 1 in the middle
   const selectedPackages = packageData
@@ -46,7 +40,7 @@ const PackagesHome = () => {
         {selectedPackages.map((pkg, index) => (
           <PackageCard
             key={pkg.id}
-            packageInfo={{ ...pkg, currencyRates }}
+            packageInfo={pkg}
             className={pkg.id === 1 ? "lg:col-start-2" : ""}
           />
         ))}

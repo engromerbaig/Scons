@@ -10,7 +10,6 @@ import FilterControls from "../OurWork/FilterControls"; // Adjust path as needed
 import usePackageFilters from "../../hooks/usePackageFilters"; // Adjust path as needed
 import { motion } from "framer-motion";
 import AnimatedHeading from "../../components/Hero/AnimatedHeading";
-import { fetchCurrencyRates } from "../../utilities/currencyApi";
 
 const InnerHero = lazy(() => import("../../components/InnerHero/InnerHero"));
 
@@ -23,12 +22,7 @@ const Packages = () => {
     resetFilters,
   } = usePackageFilters(packageData);
 
-  const [currencyRates, setCurrencyRates] = useState(null);
 
-  // Fetch exchange rates
-  useEffect(() => {
-    fetchCurrencyRates().then((rates) => setCurrencyRates(rates));
-  }, []);
 
   // Define preferred order
   const preferredOrder = ["Web Development", "Hybrid", "Design"];
@@ -108,7 +102,7 @@ const Packages = () => {
 <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
   {packages.map((pkg) => (
     <div key={pkg.id} className="w-full">
-      <PackageCard packageInfo={{ ...pkg, currencyRates }} />
+      <PackageCard packageInfo={pkg} />
     </div>
   ))}
 </div>

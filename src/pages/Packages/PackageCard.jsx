@@ -5,59 +5,108 @@ import BodyText from "../../components/BodyText/BodyText";
 import Button from "../../components/Button/Button";
 import { contactDetails } from "../../components/MobileMenu/modules/contactDetails";
 import convertCurrency from "./convertCurrency";
-import { fetchCurrencyRates } from "./convertCurrency";
-import { countryToCurrency } from "../../utilities/currencyMap";
+
 const PackageCard = ({ packageInfo }) => {
-  const [currency, setCurrency] = useState("USD");
-  const [localCurrency, setLocalCurrency] = useState(null);
-  const [rates, setRates] = useState({ USD: 1 });
+  const [currency, setCurrency] = useState("USD"); // Always start with USD
+  const [localCurrency, setLocalCurrency] = useState(null); // Store local currency
+  const [rates, setRates] = useState({ USD: 1 }); // Always have USD rate
+  const [displayPrice, setDisplayPrice] = useState(packageInfo.price); // Start with USD price
+  const [symbol, setSymbol] = useState("USD"); // Start with USD symbol
+  const [isLoading, setIsLoading] = useState(true); // Track loading state
 
   // Fetch currency rates and determine local currency
   useEffect(() => {
-    fetchCurrencyRates().then((fetchedRates) => {
-      const nonUSDCurrency = Object.keys(fetchedRates).find((key) => key !== "USD");
-      // Only set localCurrency if a valid rate exists (not 1 or undefined)
-      if (nonUSDCurrency && fetchedRates[nonUSDCurrency] && fetchedRates[nonUSDCurrency] !== 1) {
-        setLocalCurrency(nonUSDCurrency);
-        console.log("Local currency set:", nonUSDCurrency);
-      } else {
+    const fetchCurrencyData = async () => {
+      try {
+        setIsLoading(true);
+        console.log("Fetching currency data...");
+
+        const response = await fetch("/.netlify/functions/fetchCurrency");
+
+        if (!response.ok) {
+          throw new Error(`Netlify function status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log("Currency API response:", data);
+
+        const { localCurrency, rates: fetchedRates } = data;
+
+        // Always ensure USD rate exists
+        const safeRates = { USD: 1, ...fetchedRates };
+        setRates(safeRates);
+
+        // Store local currency if valid and different from USD
+        if (localCurrency && localCurrency !== "USD" && safeRates[localCurrency]) {
+          setLocalCurrency(localCurrency);
+          console.log(`Local currency detected: ${localCurrency}`);
+        } else {
+          setLocalCurrency(null);
+          console.log("No valid local currency, staying with USD");
+        }
+
+        // Always keep initial display in USD
+        setCurrency("USD");
+        setDisplayPrice(packageInfo.price);
+        setSymbol("USD");
+      } catch (error) {
+        console.error("Error fetching currency data:", error);
+
+        // Fallback to USD on error
         setLocalCurrency(null);
-        console.log("No valid local currency rate, using USD only");
+        setCurrency("USD");
+        setRates({ USD: 1 });
+        setDisplayPrice(packageInfo.price);
+        setSymbol("USD");
+      } finally {
+        setIsLoading(false);
       }
-      setRates(fetchedRates);
-      console.log("Rates set in PackageCard:", fetchedRates);
-    });
-  }, []);
+    };
+
+    fetchCurrencyData();
+  }, [packageInfo.price]);
 
   // Toggle between USD and local currency
   const toggleCurrency = () => {
-    setCurrency(currency === "USD" ? localCurrency : "USD");
+    const newCurrency = currency === "USD" && localCurrency ? localCurrency : "USD";
+    setCurrency(newCurrency);
+
+    // Convert price to new currency
+    const { price: convertedPrice, symbol: currencySymbol } = convertCurrency(
+      packageInfo.price,
+      "USD", // Base price is always in USD
+      newCurrency,
+      rates
+    );
+
+    setDisplayPrice(convertedPrice);
+    setSymbol(currencySymbol);
+
+    console.log(`Toggled to ${newCurrency}, price: ${convertedPrice} ${currencySymbol}`);
   };
 
-  // Use rates from state, fallback to empty object if undefined
-  const displayPrice = convertCurrency(
-    packageInfo.price,
-    "USD", // Assume base price is in USD
-    currency,
-    rates
-  );
-
+  // Format price for display
   const formattedPrice = new Intl.NumberFormat("en-US", {
     maximumFractionDigits: 0,
   }).format(displayPrice);
 
-  // Get currency symbol from countryToCurrency or fallback to currency code
-  const symbol = countryToCurrency[currency]?.symbol || currency;
+  // Show loading state
+  if (isLoading) {
+    console.log("PackageCard is loading currency data...");
+  }
 
   // Debug toggle button visibility
-  console.log("Toggle button visibility check:", {
+  const shouldShowToggle = localCurrency && rates[localCurrency] && localCurrency !== "USD";
+  console.log("Toggle button visibility:", {
     localCurrency,
     hasRate: !!rates[localCurrency],
+    isNonUSD: localCurrency !== "USD",
+    shouldShow: shouldShowToggle
   });
 
   return (
     <div
-      className="relative bg-white rounded-xl shadow-xl max-w-sm py-10 px-10 w-full flex flex-col justify-between h-[600px] xl:h-[700px]  overflow-hidden transition-all duration-300 border border-neon hover:ring-2 hover:ring-neon hover:shadow-[0_0_20px_rgba(0,197,255,0.2)]"
+      className="relative bg-white rounded-xl shadow-xl max-w-sm py-10 px-10 w-full flex flex-col justify-between h-[600px] xl:h-[700px] overflow-hidden transition-all duration-300 border border-neon hover:ring-2 hover:ring-neon hover:shadow-[0_0_20px_rgba(0,197,255,0.2)]"
     >
       {/* Blob in bottom-right corner */}
       <div className="absolute bottom-[-50px] right-[-50px] w-[110px] h-[110px] bg-neon opacity-50 rounded-full animate-blob z-0"></div>
@@ -94,19 +143,20 @@ const PackageCard = ({ packageInfo }) => {
       <div className="flex flex-row justify-center items-end gap-x-2 mb-3 h-[70px]">
         <div className="flex flex-col justify-end min-w-[200px] items-center">
           <div className="flex items-end gap-x-1">
-            <span className="text-sm">{symbol}</span>
+            <span className="text-sm font-medium">{symbol}</span>
             <span className="text-90px xl:text-60px leading-none font-bold">
               {formattedPrice}
             </span>
           </div>
         </div>
 
-        {/* Currency Toggle Button (only shown if localCurrency and valid rate exist) */}
-        {localCurrency && rates[localCurrency] && (
+        {/* Currency Toggle Button - only show if we have a valid local currency */}
+        {shouldShowToggle && (
           <div className="flex items-center justify-center w-[50px]">
             <button
               onClick={toggleCurrency}
-              className="flex items-center justify-center px-2 py-1 text-10px font-medium rounded bg-gray-100 text-black hover:bg-neon hover:text-black transition"
+              className="flex items-center justify-center px-2 py-1 text-10px font-medium rounded bg-gray-100 text-black hover:bg-neon hover:text-black transition-colors duration-200"
+              title={`Switch to ${currency === "USD" ? localCurrency : "USD"}`}
             >
               {currency === "USD" ? localCurrency : "USD"}
             </button>

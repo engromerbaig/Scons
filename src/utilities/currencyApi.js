@@ -1,7 +1,7 @@
 const currencyUrl = "https://open.er-api.com/v6/latest/USD";
 const primaryGeoApiUrl = "http://ip-api.com/json/?fields=countryCode,currency";
 const fallbackGeoApiUrl = "https://freegeoip.app/json/";
-import { countryToCurrency } from "./currencyMap";
+import { countryToCurrency } from "./countryToCurrency ";
 
 // Fetch user location to determine local currency
 const fetchUserCurrency = async () => {
