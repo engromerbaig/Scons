@@ -73,7 +73,7 @@ const OurWork = () => {
         bodyText="A showcase of diverse projects that highlight our expertise in creating impactful, innovative tech solutions across industries."
         logoImages={[behanceLogo, dribbleLogo]}
         illustrationImage={projectImage}
-        illustrationImageWidth="w-1/2 xl:w-3/4"
+        illustrationImageWidth="w-4/5 xl:w-3/4"
       />
 
       <div
