@@ -11,7 +11,7 @@ const PackageCard = ({ packageInfo }) => {
   const [localCurrency, setLocalCurrency] = useState(null);
   const [rates, setRates] = useState({ USD: 1 });
   const [displayPrice, setDisplayPrice] = useState(packageInfo.price);
-  const [symbol, setSymbol] = useState("USD");
+  const [currencyCode, setCurrencyCode] = useState("USD");
   const [isLoading, setIsLoading] = useState(true);
 
   // Fetch currency rates and determine local currency
@@ -35,7 +35,7 @@ const PackageCard = ({ packageInfo }) => {
 
         setCurrency("USD");
         setDisplayPrice(packageInfo.price);
-        setSymbol("USD");
+        setCurrencyCode("USD");
         setIsLoading(false);
         return;
       }
@@ -53,13 +53,13 @@ const PackageCard = ({ packageInfo }) => {
         const data = await response.json();
         console.log("Currency API response:", data);
 
-        const { localCurrency, rates: fetchedRates } = data;
+        const { localCurrencyCode, rates: fetchedRates } = data;
         const safeRates = { USD: 1, ...fetchedRates };
         setRates(safeRates);
 
-        if (localCurrency && localCurrency !== "USD" && safeRates[localCurrency]) {
-          setLocalCurrency(localCurrency);
-          console.log(`Local currency detected: ${localCurrency}`);
+        if (localCurrencyCode && localCurrencyCode !== "USD" && safeRates[localCurrencyCode]) {
+          setLocalCurrency(localCurrencyCode);
+          console.log(`Local currency detected: ${localCurrencyCode}`);
         } else {
           setLocalCurrency(null);
           console.log("No valid local currency, staying with USD");
@@ -68,7 +68,7 @@ const PackageCard = ({ packageInfo }) => {
         localStorage.setItem(
           "currencyData",
           JSON.stringify({
-            localCurrency,
+            localCurrency: localCurrencyCode,
             rates: safeRates,
             date: today,
           })
@@ -76,14 +76,14 @@ const PackageCard = ({ packageInfo }) => {
 
         setCurrency("USD");
         setDisplayPrice(packageInfo.price);
-        setSymbol("USD");
+        setCurrencyCode("USD");
       } catch (error) {
         console.error("Error fetching currency data:", error);
         setLocalCurrency(null);
         setCurrency("USD");
         setRates({ USD: 1 });
         setDisplayPrice(packageInfo.price);
-        setSymbol("USD");
+        setCurrencyCode("USD");
       } finally {
         setIsLoading(false);
       }
@@ -96,7 +96,7 @@ const PackageCard = ({ packageInfo }) => {
     const newCurrency = currency === "USD" && localCurrency ? localCurrency : "USD";
     setCurrency(newCurrency);
 
-    const { price: convertedPrice, symbol: currencySymbol } = convertCurrency(
+    const { price: convertedPrice, currencyCode } = convertCurrency(
       packageInfo.price,
       "USD",
       newCurrency,
@@ -104,9 +104,9 @@ const PackageCard = ({ packageInfo }) => {
     );
 
     setDisplayPrice(convertedPrice);
-    setSymbol(currencySymbol);
+    setCurrencyCode(currencyCode);
 
-    console.log(`Toggled to ${newCurrency}, price: ${convertedPrice} ${currencySymbol}`);
+    console.log(`Toggled to ${newCurrency}, price: ${convertedPrice} ${currencyCode}`);
   };
 
   const formattedPrice = new Intl.NumberFormat("en-US", {
@@ -128,9 +128,9 @@ const PackageCard = ({ packageInfo }) => {
   // Create package info with current display values for the modal
   const currentPackageInfo = {
     ...packageInfo,
-    displayPrice: `${symbol} ${formattedPrice}`,
+    displayPrice: `${currencyCode} ${formattedPrice}`,
     currentCurrency: currency,
-    currentSymbol: symbol
+    currentCurrencyCode: currencyCode,
   };
 
   return (
@@ -169,7 +169,7 @@ const PackageCard = ({ packageInfo }) => {
       <div className="flex flex-row justify-center items-end gap-x-2 mb-3 h-[70px]">
         <div className="flex flex-col justify-end min-w-[200px] items-center">
           <div className="flex items-end gap-x-1">
-            <span className="text-sm font-medium">{symbol}</span>
+            <span className="text-sm font-medium">{currencyCode}</span>
             <span className="text-90px xl:text-60px leading-none font-bold">
               {formattedPrice}
             </span>

@@ -1,4 +1,3 @@
-// netlify/functions/fetchCurrency.js
 
 const geoApiUrl = "http://ip-api.com/json/"; // Free geo IP API that's more reliable
 const currencyApiUrl = "https://api.exchangerate-api.com/v4/latest/USD";
@@ -55,16 +54,16 @@ exports.handler = async (event) => {
     };
 
     // Fetch currency rates
-    const fetchRates = async (localCurrency) => {
+    const fetchRates = async (localCurrencyCode) => {
       // If local currency is USD, just return USD rates
-      if (localCurrency === "USD") {
+      if (localCurrencyCode === "USD") {
         cachedRates = { USD: 1 };
         cachedDate = today;
         return cachedRates;
       }
 
       // Check if we have cached rates for today
-      if (cachedRates && cachedDate === today && cachedRates[localCurrency]) {
+      if (cachedRates && cachedDate === today && cachedRates[localCurrencyCode]) {
         console.log("Using cached rates:", cachedRates);
         return cachedRates;
       }
@@ -84,16 +83,16 @@ exports.handler = async (event) => {
         const data = await response.json();
         console.log("Currency API response - rates available for:", Object.keys(data.rates || {}).length, "currencies");
         
-        if (data.rates && data.rates[localCurrency]) {
+        if (data.rates && data.rates[localCurrencyCode]) {
           cachedRates = {
             USD: 1,
-            [localCurrency]: data.rates[localCurrency],
+            [localCurrencyCode]: data.rates[localCurrencyCode],
           };
           cachedDate = today;
-          console.log(`Rates fetched successfully: 1 USD = ${cachedRates[localCurrency]} ${localCurrency}`);
+          console.log(`Rates fetched successfully: 1 USD = ${cachedRates[localCurrencyCode]} ${localCurrencyCode}`);
           return cachedRates;
         } else {
-          console.warn(`Local currency ${localCurrency} rate not available in API response`);
+          console.warn(`Local currency ${localCurrencyCode} rate not available in API response`);
           // Fallback to USD if local currency rate not available
           cachedRates = { USD: 1 };
           cachedDate = today;
@@ -108,10 +107,10 @@ exports.handler = async (event) => {
       }
     };
 
-    const localCurrency = await fetchUserCurrency();
-    const rates = await fetchRates(localCurrency);
+    const localCurrencyCode = await fetchUserCurrency();
+    const rates = await fetchRates(localCurrencyCode);
 
-    console.log("Final response:", { localCurrency, rates });
+    console.log("Final response:", { localCurrencyCode, rates });
 
     return {
       statusCode: 200,
@@ -122,7 +121,7 @@ exports.handler = async (event) => {
         "Access-Control-Allow-Headers": "Content-Type",
       },
       body: JSON.stringify({
-        localCurrency,
+        localCurrencyCode,
         rates,
       }),
     };
@@ -139,7 +138,7 @@ exports.handler = async (event) => {
         "Access-Control-Allow-Headers": "Content-Type",
       },
       body: JSON.stringify({
-        localCurrency: "USD",
+        localCurrencyCode: "USD",
         rates: { USD: 1 },
         error: "Failed to fetch currency data, using USD fallback",
       }),

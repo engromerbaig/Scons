@@ -1,12 +1,12 @@
-// src/utils/convertCurrency.js
 
 import { countryToCurrency } from "../../utilities/countryToCurrency ";
-// Helper function to get currency symbol from your mapping
-const getCurrencySymbol = (currencyCode) => {
+
+// Helper function to get currency code from your mapping
+const getCurrencyCode = (currencyCode) => {
   // Find the currency in your mapping
   for (const countryCode in countryToCurrency) {
     if (countryToCurrency[countryCode].currencyCode === currencyCode) {
-      return countryToCurrency[countryCode].symbol;
+      return countryToCurrency[countryCode].currencyCode;
     }
   }
   // Fallback to currency code if not found
@@ -18,18 +18,18 @@ const convertCurrency = (price, fromCurrency, toCurrency, rates) => {
     // Always ensure we have a valid price
     if (!price || isNaN(price)) {
       console.warn('Invalid price provided, returning 0');
-      return { price: 0, symbol: toCurrency };
+      return { price: 0, currencyCode: toCurrency };
     }
 
     // If no rates provided or invalid rates, fallback to original price
     if (!rates || typeof rates !== 'object') {
       console.warn('No rates provided, returning original price with USD');
-      return { price, symbol: 'USD' };
+      return { price, currencyCode: 'USD' };
     }
 
     // If converting to same currency, return as-is
     if (fromCurrency === toCurrency) {
-      return { price, symbol: toCurrency };
+      return { price, currencyCode: toCurrency };
     }
 
     let convertedPrice;
@@ -59,18 +59,18 @@ const convertCurrency = (price, fromCurrency, toCurrency, rates) => {
       console.warn(`Conversion from ${fromCurrency} to ${toCurrency} not supported with available rates`);
       convertedPrice = price;
       // Return with USD as fallback currency
-      return { price: convertedPrice, symbol: 'USD' };
+      return { price: convertedPrice, currencyCode: 'USD' };
     }
 
-    // Get appropriate currency symbol from your mapping
-    const symbol = getCurrencySymbol(toCurrency);
+    // Get appropriate currency code from your mapping
+    const currencyCode = getCurrencyCode(toCurrency);
 
-    return { price: convertedPrice, symbol };
+    return { price: convertedPrice, currencyCode };
 
   } catch (error) {
     console.error("Error in currency conversion:", error);
-    // On any error, return original price with USD symbol
-    return { price, symbol: getCurrencySymbol('USD') };
+    // On any error, return original price with USD currency code
+    return { price, currencyCode: getCurrencyCode('USD') };
   }
 };
 
