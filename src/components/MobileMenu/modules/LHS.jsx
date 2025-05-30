@@ -51,13 +51,13 @@ const LHS = ({ containerVariants, textVariants, handleClose }) => (
     </div>
 
     {/* Bottom Section (2/12) */}
-    <div className="h-[16.67%] flex flex-col space-y-0 md:space-y-4">
+    <div className="h-[16.67%] flex flex-col space-y-0 md:space-y-6">
       {contactDetails.map((contact) => {
         return (
           <div key={contact.type} className="flex ">
             <a
               href={contact.link}
-              className="text-black text-xl lg:text-40px  font-medium hover:text-neon transition-colors duration-300"
+              className="text-black text-xl lg:text-40px  font-semibold hover:text-neon transition-colors duration-300"
             >
               {contact.detail}
             </a>

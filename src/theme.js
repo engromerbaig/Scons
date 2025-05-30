@@ -7,7 +7,7 @@ export const theme = {
         // navbar horizontal this
       paddingHorizontal: 'px-4 md:px-10 lg:px-32',
       paddingMenu: 'pl-6 md:pl-10 lg:pl-40',
-      paddingMenuVertical:'py-8 lg:py-12',
+      paddingMenuVertical:'py-8 lg:py-8',
 
 
             paddingHorizontalPackage: 'px-20 md:px-20 lg:px-40',
