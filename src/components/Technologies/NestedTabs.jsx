@@ -86,7 +86,7 @@ const NestedTabs = () => {
               className="mb-4"
               centered={false}
             />
-            <div className="grid grid-cols-2  xl:grid-cols-3 max-w-xl gap-2 xl:gap-4">
+            <div className="grid grid-cols-2  xl:grid-cols-3 2xl:grid-cols-4 xl:max-w-2xl 2xl:max-w-4xl gap-2 xl:gap-4">
               {technologiesData[activeCategory][platform].map((tech) => (
                 <Button key={tech.name} name={tech.name} icon={tech.icon} bgColor="bg-gray-100" textColor="black" fontWeight="font-semibold" fontSize="text-xs xl:text-sm" className="py-3" />
               ))}
@@ -98,7 +98,7 @@ const NestedTabs = () => {
   };
 
   return (
-    <div className="flex w-full max-w-6xl mx-auto border-y border-gray-200 flex-col xl:flex-row">
+    <div className="flex w-full max-w-7xl mx-auto border-y border-gray-200 flex-col xl:flex-row">
       {/* Horizontal List View for mobile */}
       <div className="xl:hidden w-full py-4 border-b border-gray-200">
         <HorizontalListView showArrow={false} perPage={3} gap="0.5rem" height="auto" className="px-4">
@@ -110,7 +110,7 @@ const NestedTabs = () => {
       <div
         role="tablist"
         aria-orientation="vertical"
-        className="hidden xl:flex flex-col w-52 py-4 border-r border-gray-200"
+        className="hidden xl:flex flex-col w-60 py-4 border-r border-gray-200"
       >
         {categories.map((cat, index) => renderTabButton(cat, index, false))}
       </div>

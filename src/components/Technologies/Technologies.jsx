@@ -8,11 +8,11 @@ const Technologies = () => {
   return (
     <section className={`${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal}`}>
       <div className="max-w-7xl ">
-         <Heading text="Our Technologies" showUnderline className="pb-10" centered={false} />
+         <Heading text="Our Core Technologies" showUnderline className="pb-10" centered={false} />
           <BodyText
-            text="Hire from our pool of 350+ specialized experts in web, mobile, and software engineering, specializing in the latest technologies and frameworks, ready to scale your development teams effortlessly."
+            text="Leverage our expertise in modern web design and development, mobile app solutions, SEO, digital marketing, and AI integration. We work with the latest technologies and frameworks to build fast, scalable, and intelligent digital experiences."
             centered={false}
-            className="max-w-2xl"
+            className="max-w-3xl"
           />
 
         {/* Wrapper to prevent layout shift */}

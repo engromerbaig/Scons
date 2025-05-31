@@ -70,24 +70,24 @@ export const technologiesData = {
 
   },
 
-  "Blockchain": {
-    SmartContracts: [
-      { name: "Solana", icon: icons.blockchain.smart1 },
-      { name: "Bitcoin", icon: icons.blockchain.smart2 },
-      { name: "BNB Chain", icon: icons.blockchain.smart3 },
-    ],
-    DApps: [
-      { name: "Polygon", icon: icons.blockchain.dapp1 },
-      { name: "Cube", icon: icons.blockchain.dapp2 },
-      { name: "Uniswap", icon: icons.blockchain.dapp3 },
-    ],
-    Integrations: [
-      { name: "MetaMask", icon: icons.blockchain.integ1 },
-      { name: "Polkadot", icon: icons.blockchain.integ2 },
-      { name: "Ethereum", icon: icons.blockchain.integ3 },
-      { name: "Anchor", icon: icons.blockchain.integ4 },
-    ],
-  },
+  // "Blockchain": {
+  //   SmartContracts: [
+  //     { name: "Solana", icon: icons.blockchain.smart1 },
+  //     { name: "Bitcoin", icon: icons.blockchain.smart2 },
+  //     { name: "BNB Chain", icon: icons.blockchain.smart3 },
+  //   ],
+  //   DApps: [
+  //     { name: "Polygon", icon: icons.blockchain.dapp1 },
+  //     { name: "Cube", icon: icons.blockchain.dapp2 },
+  //     { name: "Uniswap", icon: icons.blockchain.dapp3 },
+  //   ],
+  //   Integrations: [
+  //     { name: "MetaMask", icon: icons.blockchain.integ1 },
+  //     { name: "Polkadot", icon: icons.blockchain.integ2 },
+  //     { name: "Ethereum", icon: icons.blockchain.integ3 },
+  //     { name: "Anchor", icon: icons.blockchain.integ4 },
+  //   ],
+  // },
 
   "Cloud & DevOps": {
     Cloud: [
