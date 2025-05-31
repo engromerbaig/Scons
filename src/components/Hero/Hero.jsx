@@ -8,13 +8,21 @@ import './index.css';
 import Button from "../Button/Button";
 import SplideCarousel from "../SplideCarousel/SplideCarousel";
 import FadeWrapper from "../../utilities/Animations/FadeWrapper";
+import { useVhVariable } from "../../utilities/useVhVariable";
+import React, { useRef } from 'react';
+
 
 const Hero = () => {
+
+  const heroRef = useRef(null);
+  useVhVariable(heroRef);
+
+
   // Extract image URLs from logoData
   const logoImages = logoData.map((logoItem) => logoItem.image);
 
   return (
-    <div className="w-full min-h-screen flex flex-col shadow-custom-bottom bg-white relative">
+    <div ref={heroRef} className="w-full min-h-screen flex flex-col shadow-custom-bottom bg-white relative">
       
       {/* Background Image */}
       <div 

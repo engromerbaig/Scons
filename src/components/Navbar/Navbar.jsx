@@ -4,8 +4,16 @@ import { theme } from '../../theme';
 import ScrollToTopLink from '../../utilities/ScrollToTopLink';
 import { contactDetails } from '../MobileMenu/modules/contactDetails';
 import Button from '../Button/Button';
+import { useVhVariable } from '../../utilities/useVhVariable';
+import React, { useRef } from 'react';
+
 
 const Navbar = () => {
+
+   const navRef = useRef(null);
+    useVhVariable(navRef);
+
+
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [closing, setClosing] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
@@ -48,7 +56,7 @@ const Navbar = () => {
   const PhoneIcon = phoneDetail?.icon;
 
   return (
-    <nav
+    <nav ref={navRef}
       className={`${
         isSticky ? 'fixed top-0 bg-opacity-60 backdrop-blur-sm shadow-md' : 'absolute bg-transparent'
       } ${theme.layoutPages.paddingHorizontal} py-4 lg:py-4 flex justify-between items-center w-full z-[50] transition-all duration-300`}

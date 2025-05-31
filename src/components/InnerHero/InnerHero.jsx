@@ -4,7 +4,7 @@ import BodyText from "../BodyText/BodyText";
 import "./index.css";
 import { theme } from "../../theme";
 import FadeWrapper from "../../utilities/Animations/FadeWrapper";
-
+import { useVhVariable } from "../../utilities/useVhVariable";
 const InnerHero = ({
   logoImages = [],
   illustrationImage,
@@ -27,8 +27,12 @@ const InnerHero = ({
 }) => {
   const patternRef = useRef(null);
 
+    const heroRef = useRef(null);
+    useVhVariable(heroRef);
+
   return (
     <section
+    ref={heroRef}
       className={`
         relative flex items-center justify-center w-full z-10
         ${theme.layoutPages.paddingVertical}

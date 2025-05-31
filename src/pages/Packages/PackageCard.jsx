@@ -136,7 +136,7 @@ const PackageCard = ({ packageInfo }) => {
 
   return (
     <div
-      className="relative bg-white rounded-xl shadow-xl w-full py-10 px-10 flex flex-col justify-between h-[600px] xl:h-[700px] overflow-hidden transition-all duration-300 border border-neon hover:ring-2 hover:ring-neon hover:shadow-[0_0_20px_rgba(0,197,255,0.2)]"
+      className="relative bg-white rounded-xl shadow-xl w-full py-10 px-10 flex flex-col justify-between h-[650px] xl:h-[700px] overflow-hidden transition-all duration-300 border border-neon hover:ring-2 hover:ring-neon hover:shadow-[0_0_20px_rgba(0,197,255,0.2)]"
     >
       <div className="absolute bottom-[-50px] right-[-50px] w-[110px] h-[110px] bg-neon opacity-50 rounded-full animate-blob z-0"></div>
 
