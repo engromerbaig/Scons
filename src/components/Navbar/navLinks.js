@@ -4,7 +4,7 @@ export const navLinks = [
     { to: "/portfolio", label: "Our Portfolio" },
         // { to: "#", label: "Services" },
 
-    // { to: "/blogs", label: "Blogs" },
+    { to: "/blogs", label: "Blogs" },
 
     { to: "/careers", label: "Careers" },
         { to: "/packages", label: "Packages" },

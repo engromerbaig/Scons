@@ -1,38 +1,29 @@
-import React from 'react';
-import { useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import Heading from '../../components/Heading/Heading';
-import BodyText from '../../components/BodyText/BodyText';
-import jobListings from '../../data/jobListings.json'; // Updated import
-import bulletIcon from '../../assets/icons/bullet.svg';
-import ScrollToTopLink from '../../utilities/ScrollToTopLink';
-import AnimatedBackground from '../../utilities/AnimatedBackground/AnimatedBackground';
-import GreenBelt from '../../components/GreenBelt/GreenBelt';
-import InnerHero from '../../components/InnerHero/InnerHero';
-import BlogCard from '../../components/BlogCard/BlogCard';
-import BlogPagination from '../../components/BlogPagination/BlogPagination';
-// import { slugify } from '../../utilities/slugify';
-// import importJobImages from '../../utilities/importJobImages';
+import React, { useEffect, useState } from 'react';
+import { getPosts } from '../../../lib/sanityQueries';
+import { PortableText } from '@portabletext/react';
+import { theme } from '../../theme';
 
+export default function Blogs() {
+  const [posts, setPosts] = useState([]);
 
+  useEffect(() => {
+    getPosts().then(setPosts);
+  }, []);
 
-const Blogs = () => {
-    useEffect(() => {
-        window.scrollTo(0, 0); // Ensures it stays at the top on first mount
-    }, []);
-    return (    <div className="flex flex-col items-center ">
-        {/* InnerHero Section */}
-        <InnerHero
-            headingText="Blogs & Insights"
-            spanText="Insights" // Dynamically generated spanText
-            bodyText="Stay ahead with the latest insights, trends, and innovations. Explore expert opinions, industry updates, and fresh perspectives—all in one place!"
-   
-        />
+  return (
+    <div className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical}`}>
+      <h1 className="text-3xl font-bold mb-6">Blog Posts</h1>
+      {posts.length === 0 && <p>Loading posts...</p>}
+      {posts.map(post => (
+        <article key={post._id} className="mb-12 border-b pb-6">
+          <h2 className="text-2xl font-semibold mb-4">{post.title}</h2>
 
-        <BlogPagination />
+          {/* Render the body using PortableText */}
+          <PortableText value={post.body} />
 
-
-    </div>  );
+          {/* Optional: add date, author, images here */}
+        </article>
+      ))}
+    </div>
+  );
 }
- 
-export default Blogs;

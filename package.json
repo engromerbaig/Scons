@@ -12,7 +12,9 @@
     "prebuild": "npm run install:functions"
   },
   "dependencies": {
+    "@portabletext/react": "^3.2.1",
     "@sanity/client": "^7.4.0",
+    "@sanity/image-url": "^1.1.0",
     "@splidejs/react-splide": "^0.7.12",
     "@splidejs/splide-extension-auto-scroll": "^0.5.3",
     "axios": "^1.7.7",
