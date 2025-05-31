@@ -14,6 +14,7 @@ const IndustryCard = ({
   responsiveSizes = {
     sm: { width: 250, height: 350 }, // <640px
     md: { width: 250, height: 350 }, // 640px to <1024px
+    xl: { width: 300, height: 400 }, // 1280px to <1536px
   },
 }) => {
   const overlayRef = useRef(null);
@@ -77,6 +78,9 @@ const IndustryCard = ({
   } else if (windowWidth >= 640 && windowWidth < 1024 && responsiveSizes.md) {
     width = responsiveSizes.md.width;
     height = responsiveSizes.md.height;
+  } else if (windowWidth >= 1280 && windowWidth < 1536 && responsiveSizes.xl) {
+    width = responsiveSizes.xl.width;
+    height = responsiveSizes.xl.height;
   }
 
   return (
@@ -138,7 +142,12 @@ const IndustryCard = ({
             size="text-50px xl:text-35px"
             color="text-white"
             fontWeight="font-bold"
-            className="drop-shadow-lg text-left max-w-[calc(100%-100px)]"
+            className="drop-shadow-lg text-left"
+            style={{
+              maxWidth: `calc(${width}px - 100px - 2rem)`, // Account for padding and number width
+              whiteSpace: "normal", // Allow natural wrapping
+              overflowWrap: "break-word", // Ensure consistent word breaking
+            }}
             centered={false}
           />
         )}
@@ -161,6 +170,11 @@ const IndustryCard = ({
             color="text-white"
             fontWeight="font-bold"
             className="drop-shadow-lg pr-6 text-left"
+            style={{
+              maxWidth: `calc(${width}px - 2rem)`, // Account for padding
+              whiteSpace: "normal",
+              overflowWrap: "break-word",
+            }}
             centered={false}
           />
         </div>
@@ -172,6 +186,11 @@ const IndustryCard = ({
             size="text-sm"
             color="text-white"
             className="text-left leading-normal xl:leading-loose"
+            style={{
+              maxWidth: `calc(${width}px - 2rem)`, // Account for padding
+              whiteSpace: "normal",
+              overflowWrap: "break-word",
+            }}
             centered={false}
           />
         </div>

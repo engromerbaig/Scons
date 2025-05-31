@@ -12,27 +12,29 @@ const Industries = () => {
 
   return (
     <div
-      className={`min-h-screen bg-white text-black  ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal} flex flex-col items-center`}
+      className={`min-h-screen bg-white text-black  ${theme.layoutPages.paddingVertical}  flex flex-col items-center`}
     >
-      <div className={`flex flex-col  justify-between items-start w-full py-20 `}>
+      <div className={`flex flex-col  justify-between items-start w-full py-20 ${theme.layoutPages.paddingHorizontal} `}>
         <Heading
-          text="We Serve Diverse Industries And Markets"
+          text="Tailored Services for Every Sector"
+          showUnderline
           centered={false}
           breakSpan={true}
           isAnimate={false}
           color="text-black"
+          className="pb-10"
         />
 
            <BodyText
-          text="We have a proven track record of delivering innovative solutions across various sectors, including healthcare, finance, education, and more. Our expertise allows us to tailor our services to meet the unique needs of each industry."
+          text="At Scons, we deliver innovative digital solutions tailored to the unique needs of industries like healthcare, finance, education, and more. Our industry-specific expertise empowers us to craft customized strategies that drive measurable success."
           centered={false}
           isAnimate={false}
           color="text-black"
-          className="max-w-4xl "
+          className="max-w-3xl "
         />
       </div>
 
-      <HorizontalListView perPage={2} mobilePerPage={1} >
+      <HorizontalListView showIndicators={true} perPage={2} mobilePerPage={1} >
         {industries.map((industry, idx) => (
           <IndustryCard
             key={idx}
