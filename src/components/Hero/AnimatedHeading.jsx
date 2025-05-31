@@ -38,7 +38,7 @@ const AnimatedHeading = ({
       )}
 
       {animatedWords.length > 0 && (
-        <div className="relative ml-2 xl:w-60 xl:h-14 2xl:h-16  w-40 h-10 px-4 py-2 bg-neon rounded-full overflow-hidden text-center">
+        <div className="relative ml-2 xl:w-60 2xl:w-80 xl:h-14 2xl:h-18  w-40 h-10 px-4 py-2 bg-neon rounded-full overflow-hidden text-center">
           <AnimatePresence mode="wait">
             <motion.span
               key={animatedWords[currentWordIndex]}
@@ -46,7 +46,7 @@ const AnimatedHeading = ({
               initial="initial"
               animate="animate"
               exit="exit"
-              className="absolute inset-0 flex items-center justify-center text-black font-black text-50px"
+              className="absolute inset-0 flex items-center italic justify-center text-black font-black text-50px"
             >
               {animatedWords[currentWordIndex]}
             </motion.span>
