@@ -2,14 +2,10 @@
 
 import React, { useEffect, useState } from 'react';
 import { getPosts } from '../../lib/sanityQueries';
-import { urlFor } from '../../lib/sanityImage';
 import { theme } from '../../theme';
-import { Link } from 'react-router-dom';
 import Heading from '../../components/Heading/Heading';
 import BodyText from '../../components/BodyText/BodyText';
-import calculateReadingTime from './calculateReadingTime';
-// Helper: Estimate reading time
-
+import BlogCard from './BlogCard';
 
 export default function Blogs() {
   const [posts, setPosts] = useState([]);
@@ -57,32 +53,7 @@ export default function Blogs() {
       {posts.length === 0 && <p className="text-center mt-6">No posts available</p>}
       <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mt-6">
         {posts.map(post => (
-          <Link
-            to={`/blogs/${post.slug?.current || ''}`}
-            key={post._id}
-            className="border rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300"
-          >
-            {post.mainImage ? (
-              <img
-                src={urlFor(post.mainImage).url()}
-                alt={post.title || 'Blog image'}
-                className="rounded-lg w-full h-60 object-cover"
-              />
-            ) : (
-              <div className="w-full h-60 bg-gray-200 rounded-lg flex items-center justify-center">
-                <p>No image</p>
-              </div>
-            )}
-            <div className="p-4">
-              <h2 className="text-xl font-semibold mb-2">{post.title || 'Untitled'}</h2>
-              <p className="text-sm text-gray-600 mb-1">
-                {post.date ? new Date(post.date).toLocaleDateString() : 'No date'}
-              </p>
-              <p className="text-sm text-gray-600">
-                {calculateReadingTime(post.body)} min read
-              </p>
-            </div>
-          </Link>
+          <BlogCard key={post._id} post={post} />
         ))}
       </div>
     </div>
