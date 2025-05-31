@@ -41,7 +41,7 @@ const DevProcess = ({ processText }) => {
       </div>
 
       <div className="pt-16 w-full">
-        <HorizontalListView perPage={3} mobilePerPage={1}>
+        <HorizontalListView showIndicators perPage={3} mobilePerPage={1}>
           {mappedData.map((industry, idx) => (
             <IndustryCard
               key={idx}
