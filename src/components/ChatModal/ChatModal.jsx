@@ -19,7 +19,7 @@ const ChatModal = ({ isOpen, onClose }) => {
         spanText="Break?"
         spanColor="text-neon"
         color="text-white"
-        size="text-50px"
+        size="text-70px xl:text-50px"
         centered={false}
       />
       <BodyText

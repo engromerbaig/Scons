@@ -29,7 +29,7 @@ const PackageModal = ({ isOpen, onClose, packageInfo = {} }) => {
         spanText={`${title}?`}
         spanColor="text-neon"
         color="text-white"
-        size="text-40px"
+        size="text-70px xl:text-40px"
         centered={false}
       />
       <PackageFormTemplate
