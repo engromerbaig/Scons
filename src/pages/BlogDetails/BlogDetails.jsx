@@ -68,16 +68,16 @@ const BlogDetails = () => {
     },
     block: {
       h1: ({ children }) => (
-        <h1 className="text-4xl font-bold my-4 font-manrope">{children}</h1>
+        <h1 className="text-60px font-bold my-4 font-manrope">{children}</h1>
       ),
       h2: ({ children }) => (
-        <h2 className="text-3xl font-semibold my-4 font-manrope">{children}</h2>
+        <h2 className="text-50px font-semibold my-4 font-manrope">{children}</h2>
       ),
       h3: ({ children }) => (
-        <h3 className="text-2xl font-semibold my-3 font-manrope">{children}</h3>
+        <h3 className="text-40px font-semibold my-3 font-manrope">{children}</h3>
       ),
       normal: ({ children }) => (
-        <p className="my-2 font-manrope text-gray-700">{children}</p>
+        <p className="my-2 font-manrope text-black leading-loose text-25px">{children}</p>
       ),
     },
     list: {
