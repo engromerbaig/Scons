@@ -1,8 +1,8 @@
 // pages/Blogs/BlogCard.jsx
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { urlFor } from '../../lib/sanityImage';
+import { format } from 'date-fns'; // Ensure date-fns is installed: npm install date-fns
 import calculateReadingTime from './calculateReadingTime';
 
 export default function BlogCard({ post }) {
@@ -25,7 +25,9 @@ export default function BlogCard({ post }) {
       <div className="p-4">
         <h2 className="text-xl font-semibold mb-2">{post.title || 'Untitled'}</h2>
         <p className="text-sm text-gray-600 mb-1">
-          {post.date ? new Date(post.date).toLocaleDateString() : 'No date'}
+          {post.publishedAt
+            ? format(new Date(post.publishedAt), 'MMMM dd, yyyy')
+            : 'No date available'}
         </p>
         <p className="text-sm text-gray-600">
           {calculateReadingTime(post.body)} min read

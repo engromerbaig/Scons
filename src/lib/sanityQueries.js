@@ -1,22 +1,24 @@
-// sanityQueries.js
-
+// lib/sanityQueries.js
 import sanityClient from './sanityClient';
 
 /**
- * Fetches all blog posts, ordered by date descending.
+ * Fetches all blog posts, ordered by publication date descending.
  * @returns {Promise<Array>} - Array of blog posts.
  */
 export const getPosts = async () => {
   try {
-    const query = `*[_type == "post"] | order(date desc){
+    const query = `*[_type == "post"] | order(publishedAt desc){
       _id,
       title,
-      date,
+      publishedAt, // Changed from 'date' to 'publishedAt'
       slug,
       mainImage { ..., asset-> { ..., metadata } },
-      body
+      body,
+      author { name }, // Include author name for BlogCard
+      categories[]->{ title } // Include categories if needed
     }`;
     const posts = await sanityClient.fetch(query);
+    console.log('Fetched posts:', posts); // Debug log to verify data
     return posts || [];
   } catch (error) {
     console.error('Error fetching posts:', error);
@@ -39,10 +41,12 @@ export const getPostBySlug = async (slug) => {
     const query = `*[_type == "post" && slug.current == $slug][0]{
       _id,
       title,
-      date,
+      publishedAt, // Changed from 'date' to 'publishedAt'
       slug,
       mainImage { ..., asset-> { ..., metadata } },
-      body
+      body,
+      author { name },
+      categories[]->{ title }
     }`;
     const post = await sanityClient.fetch(query, { slug });
     return post || null;

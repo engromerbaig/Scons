@@ -1,5 +1,4 @@
 // pages/BlogDetails/BlogDetails.jsx
-
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getPostBySlug } from '../../lib/sanityQueries';
@@ -100,7 +99,11 @@ const BlogDetails = () => {
           </div>
         )}
         <BodyText
-          text={post.date ? format(new Date(post.date), 'MMMM dd, yyyy') : 'No date'}
+          text={
+            post.publishedAt
+              ? format(new Date(post.publishedAt), 'MMMM dd, yyyy')
+              : 'No date available'
+          }
           size="text-35px"
           centered={false}
           className="mb-6"
