@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { getPosts } from '../../../lib/sanityQueries';
+import { getPosts } from '../../lib/sanityQueries';
 import { PortableText } from '@portabletext/react';
-import { urlFor } from '../../../lib/sanityImage';
+import { urlFor } from '../../lib/sanityImage';
 import { theme } from '../../theme';
 import Heading from '../../components/Heading/Heading';
 import BodyText from '../../components/BodyText/BodyText';
