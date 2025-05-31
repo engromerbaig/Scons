@@ -47,8 +47,8 @@ const DevProcess = ({ processText }) => {
               key={idx}
               industry={industry}
               active={activeIndex === idx}
-              CARD_HEIGHT={400}
-              CARD_WIDTH={350}
+              CARD_HEIGHT={450}
+              CARD_WIDTH={400}
               onHover={() => setActiveIndex(idx)}
               onLeave={() => setActiveIndex(null)}
             />
