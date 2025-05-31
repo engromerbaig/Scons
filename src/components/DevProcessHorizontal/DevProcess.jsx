@@ -20,8 +20,8 @@ const DevProcess = ({ processText }) => {
   }));
 
   return (
-    <div className={`w-full min-h-screen flex flex-col justify-center ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal}`}>
-      <div className="flex flex-col items-start space-y-2">
+    <div className={`w-full min-h-screen flex flex-col justify-center ${theme.layoutPages.paddingVertical} `}>
+      <div className={`flex flex-col items-start space-y-2 ${theme.layoutPages.paddingHorizontal}`}>
         <Heading 
           text="Where Innovation Meets Expertise" 
           centered={false}

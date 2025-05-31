@@ -12,9 +12,9 @@ const FAQService = ({ faqData, faqHeading }) => {
 
   return (
     <div
-      className={`w-full min-h-screen flex flex-col justify-center ${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical}`}
+      className={`w-full min-h-screen flex flex-col justify-center  ${theme.layoutPages.paddingVertical}`}
     >
-      <div className="flex flex-col items-start space-y-2">
+      <div className={`flex flex-col items-start ${theme.layoutPages.paddingHorizontal} space-y-2`}>
         <Heading
           text={`Our ${faqHeading} Experts are here to Help`}
           spanText={faqHeading}
