@@ -1,152 +1,113 @@
-import React, { useEffect } from 'react';
+// pages/BlogDetails/BlogDetails.jsx
+
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import blogs from '../../data/blogs';
-import { slugify } from '../../utilities/slugify';
-import Heading from '../../components/Heading/Heading';
-import BodyText from '../../components/BodyText/BodyText';
+import { getPostBySlug } from '../../lib/sanityQueries';
+import { PortableText } from '@portabletext/react';
+import { urlFor } from '../../lib/sanityImage';
 import InnerHero from '../../components/InnerHero/InnerHero';
+import BodyText from '../../components/BodyText/BodyText';
 import { theme } from '../../theme';
+import { format } from 'date-fns'; // Ensure date-fns is installed
 
 const BlogDetails = () => {
   const { blogSlug } = useParams();
-  const blog = blogs.find(b => slugify(b.title) === blogSlug);
+  const [post, setPost] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
+    let mounted = true;
     window.scrollTo(0, 0);
-  }, []);
 
-  if (!blog) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <Heading text="Blog not found" size="text-28px" centered={true} />
-      </div>
-    );
+    const fetchPost = async () => {
+      try {
+        const data = await getPostBySlug(blogSlug);
+        if (mounted) {
+          if (!data) {
+            setError('Blog post not found');
+          } else {
+            setPost(data);
+          }
+        }
+      } catch (err) {
+        if (mounted) {
+          setError('Failed to load blog post');
+        }
+      }
+    };
+
+    fetchPost();
+
+    return () => {
+      mounted = false;
+    };
+  }, [blogSlug]);
+
+  if (error) {
+    return <p className="text-center mt-20 text-red-500">{error}</p>;
   }
 
-  const renderElement = (Component, key, props) => (
-    Component ? <Component key={key} {...props} className="mb-4" /> : null
-  );
+  if (!post) {
+    return <p className="text-center mt-20">Loading blog...</p>;
+  }
 
-  const renderListItems = (items, listType = 'numbered') => {
-    if (!items || items.length === 0) return null;
-
-    const ListComponent = listType === 'numbered' ? 'ol' : 'ul';
-    const listStyleClass = listType === 'numbered' 
-      ? 'list-decimal ml-8 text-28px text-black font-semibold'
-      : 'list-disc ml-8 text-28px';
-
-    return (
-      <ListComponent className={`${listStyleClass} space-y-4`}>
-        {items.map((item, index) => (
-          <li key={`item-${index}`} className="pl-2">
-            {item.title ? (
-              <span className="inline-flex items-baseline flex-wrap">
-                <BodyText 
-                  text={item.title}
-                  color='text-black'
-                  size="text-28px"
-                  centered={false}
-                  lineHeight="leading-loose"
-                  fontWeight={listType === 'numbered' ? 'font-semibold' : 'font-bold'}
-                  className="inline"
-                />
-                <span className="px-2">:</span>
-                {listType === 'bullets' && (
-                  <BodyText 
-                    text={item.description} 
-                    size="text-28px"
-                    centered={false} 
-                    lineHeight="leading-loose"
-                    fontWeight="font-normal"
-                    className="inline"
-                  />
-                )}
-              </span>
-            ) : (
-              <BodyText 
-                text={item.description} 
-                size="text-28px"
-                centered={false} 
-                lineHeight="leading-loose"
-              />
-            )}
-            {listType === 'numbered' && item.title && (
-              <BodyText 
-                text={item.description} 
-                size="text-28px"
-                centered={false} 
-                lineHeight="leading-loose"
-                className="mt-1"
-              />
-            )}
-          </li>
-        ))}
-      </ListComponent>
-    );
+  const components = {
+    types: {
+      image: ({ value }) => (
+        <img
+          src={urlFor(value).width(800).url()}
+          alt={value.alt || 'Blog image'}
+          className="my-6 rounded-md w-full"
+        />
+      ),
+    },
+    block: {
+      h1: ({ children }) => <h1 className="text-4xl font-bold my-4">{children}</h1>,
+      h2: ({ children }) => <h2 className="text-3xl font-semibold my-4">{children}</h2>,
+      h3: ({ children }) => <h3 className="text-2xl font-semibold my-3">{children}</h3>,
+      normal: ({ children }) => <p className="my-2">{children}</p>,
+    },
+    list: {
+      bullet: ({ children }) => <ul className="list-disc ml-6 my-4">{children}</ul>,
+      number: ({ children }) => <ol className="list-decimal ml-6 my-4">{children}</ol>,
+    },
+    listItem: {
+      bullet: ({ children }) => <li>{children}</li>,
+      number: ({ children }) => <li>{children}</li>,
+    },
   };
-
-  const renderContentSection = (section, index) => (
-    <div key={index} className="mb-12">
-      {renderElement(Heading, `heading-${index}`, {
-        text: section.subheading,
-        size: "text-50px",
-        fontWeight: "font-medium",
-        centered: false
-      })}
-
-      {section.description && renderElement(BodyText, `desc-${index}`, {
-        text: section.description,
-        size: "text-28px",
-        centered: false,
-        lineHeight: "leading-loose"
-      })}
-
-      {section.numberedPoints && renderListItems(section.numberedPoints, 'numbered')}
-      {section.bulletPoints && renderListItems(section.bulletPoints, 'bullets')}
-
-      {section.hasImages && blog.image2 && blog.image3 && (
-        <div key={`images-${index}`} className="grid lg:grid-cols-2 gap-6 mb-4 mt-6">
-          {[blog.image2, blog.image3].map((src, imgIndex) => (
-            <img
-              key={imgIndex}
-              src={src}
-              alt={`${section.subheading} - ${imgIndex + 1}`}
-              className="w-full h-96 rounded-xl object-cover shadow-md"
-            />
-          ))}
-        </div>
-      )}
-
-      {section.description2 && renderElement(BodyText, `desc2-${index}`, {
-        text: section.description2,
-        size: "text-28px",
-        centered: false,
-        lineHeight: "leading-loose"
-      })}
-    </div>
-  );
 
   return (
     <div className="flex flex-col items-center">
       <InnerHero
-        headingText={blog.title}
-        spanText={blog.spanTitle}
-        headingSize="text-90px"
+        headingText={post.title || 'Untitled Blog Post'}
+        spanText=""
+        headingSize="text-70px"
         breakSpan1={true}
         bottomShadow={false}
       />
 
       <div className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingBottom}`}>
-        <img 
-          src={blog.image} 
-          alt={blog.title} 
-          className="w-full h-[32rem] rounded-b-xl object-cover mb-6 shadow-xl"
+        {post.mainImage ? (
+          <img
+            src={urlFor(post.mainImage).width(1200).height(600).url()}
+            alt={post.title || 'Blog image'}
+            className="w-full h-[32rem] rounded-b-xl object-cover mb-6 shadow-xl"
+          />
+        ) : (
+          <div className="w-full h-[32rem] bg-gray-200 rounded-b-xl mb-6 flex items-center justify-center">
+            <p>No image available</p>
+          </div>
+        )}
+        <BodyText
+          text={post.date ? format(new Date(post.date), 'MMMM dd, yyyy') : 'No date'}
+          size="text-35px"
+          centered={false}
+          className="mb-6"
         />
 
-        <BodyText text={blog.date} size="text-35px" centered={false} className="mb-6" />
-
         <div className="prose max-w-none">
-          {blog.content.map(renderContentSection)}
+          <PortableText value={post.body || []} components={components} />
         </div>
       </div>
     </div>

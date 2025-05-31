@@ -73,7 +73,7 @@ function AppContent() {
           {/* <Route path="/lets-innovate" element={<LetsInnovate />} /> */}
           <Route path="/service/:serviceSlug" element={<ServiceDetailsWrapper />} />
            <Route path="/blogs" element={<Blogs />} />
-          {/* <Route path="/blogs/:blogSlug" element={<BlogDetails />} /> */}
+          <Route path="/blogs/:blogSlug" element={<BlogDetails />} />
           <Route path="/packages" element={<Packages />} />
           <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
