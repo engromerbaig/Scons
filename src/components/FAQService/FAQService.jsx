@@ -2,25 +2,11 @@ import React, { useState } from 'react';
 import Heading from '../Heading/Heading';
 import BodyText from '../BodyText/BodyText';
 import HorizontalListView from '../../utilities/HorizontalListView';
-import FAQBox from './FAQBox';
+import IndustryCard from '../Industries/modules/IndustryCard';
 import { theme } from '../../theme';
 
 const FAQService = ({ faqData, faqHeading }) => {
-  const [activeIndex, setActiveIndex] = useState(0); // First box active by default
-  const [hoveredIndex, setHoveredIndex] = useState(null);
-
-  const handleInteraction = (index, action) => {
-    if (action === 'hover') {
-      setHoveredIndex(index);
-      setActiveIndex(null); // Deactivate any active card on hover
-    } else if (action === 'leave') {
-      setHoveredIndex(null); // Clear hover state
-    } else {
-      // Click action: toggle active state
-      setActiveIndex(activeIndex === index ? null : index);
-      setHoveredIndex(null); // Clear hover state on click
-    }
-  };
+  const [activeIndex, setActiveIndex] = useState(null);
 
   if (!faqData || !Array.isArray(faqData)) return null;
 
@@ -45,15 +31,29 @@ const FAQService = ({ faqData, faqHeading }) => {
       </div>
 
       <div className="pt-16 w-full">
-        <HorizontalListView perPage={3} mobilePerPage={1}>
+        <HorizontalListView perPage={3} mobilePerPage={1} showIndicators={true}>
           {faqData.map((item, index) => (
-            <FAQBox
+            <IndustryCard
               key={index}
-              question={item.question}
-              answer={item.answer}
-              isActive={activeIndex === index}
-              isHovered={hoveredIndex === index}
-              onClick={(action) => handleInteraction(index, action)}
+              industry={{
+                name: item.question,
+                details: item.answer,
+                image: item.image || '', // Use provided image or empty string for no background
+                number: item.number || null, // Optional number field
+              }}
+              active={activeIndex === index}
+              onHover={() => setActiveIndex(index)}
+              onLeave={() => setActiveIndex(null)}
+              borderColor="border-neon"
+              showOverlay={false}
+              showBorder={false}
+              titleColor='text-black'
+  bgColor="#ECEEF1" // light gray (same as Tailwind's bg-gray-200)
+  hoverBgColor="#00c5ff" // example neon color              titleColor='text-black'
+
+  answerFontSize='text-base'
+  answerLineHeight='leading-loose'
+  
             />
           ))}
         </HorizontalListView>

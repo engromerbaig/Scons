@@ -9,12 +9,20 @@ const IndustryCard = ({
   active,
   onHover,
   onLeave,
+  bgColor = '',
+  hoverBgColor = '',
+  showOverlay = true,
+  showBorder = true,
+  titleColor = 'text-white',
+  topTitleColor = 'text-white',
+  answerFontSize ='text-sm',
+  answerLineHeight = 'leading-normal',
   CARD_HEIGHT = 400,
   CARD_WIDTH = 350,
   responsiveSizes = {
-    sm: { width: 250, height: 350 }, // <640px
-    md: { width: 250, height: 350 }, // 640px to <1024px
-    xl: { width: 300, height: 400 }, // 1280px to <1536px
+    sm: { width: 250, height: 350 },
+    md: { width: 250, height: 350 },
+    xl: { width: 300, height: 400 },
   },
 }) => {
   const overlayRef = useRef(null);
@@ -31,21 +39,20 @@ const IndustryCard = ({
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Determine if mobile view (less than 640px)
   const isMobile = windowWidth < 640;
-
-  // Use active state for desktop, isDetailsVisible for mobile
   const isActive = isMobile ? isDetailsVisible : active;
 
   useEffect(() => {
-    // Animate overlay
-    gsap.to(overlayRef.current, {
-      background: isActive ? "rgba(0,0,0,0.85)" : "rgba(0,0,0,0.65)",
-      duration: 0.3,
-      ease: "power3.out",
-    });
+    if (showOverlay && overlayRef.current) {
+      gsap.to(overlayRef.current, {
+        background: isActive
+          ? "rgba(0,0,0,0.85)"
+          : "rgba(0,0,0,0.65)",
+        duration: 0.3,
+        ease: "power3.out",
+      });
+    }
 
-    // Animate bottom title out
     gsap.to(titleBottomRef.current, {
       y: isActive ? 40 : 0,
       opacity: isActive ? 0 : 1,
@@ -53,7 +60,6 @@ const IndustryCard = ({
       ease: "power3.out",
     });
 
-    // Animate details container (title and description together)
     gsap.to(detailsContainerRef.current, {
       y: isActive ? 0 : -100,
       opacity: isActive ? 1 : 0,
@@ -61,14 +67,12 @@ const IndustryCard = ({
       ease: "power3.out",
       pointerEvents: isActive ? "auto" : "none",
     });
-  }, [isActive]);
+  }, [isActive, showOverlay]);
 
-  // Toggle details visibility for mobile
   const toggleDetails = () => {
     setIsDetailsVisible((prev) => !prev);
   };
 
-  // Determine responsive width and height based on window width
   let width = CARD_WIDTH;
   let height = CARD_HEIGHT;
 
@@ -85,34 +89,43 @@ const IndustryCard = ({
 
   return (
     <div
-      className="relative rounded-3xl overflow-hidden flex-shrink-0 mx-2 cursor-pointer group transition-all duration-300 hover:border-2 hover:border-neon"
+      className={`relative rounded-3xl overflow-hidden flex-shrink-0 mx-2 cursor-pointer group transition-all duration-300
+        ${showBorder ? "hover:border-2 hover:border-neon" : ""} ${bgColor}`}
       style={{
         width,
         height,
         backgroundImage: `url(${industry.image})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
+backgroundColor:
+  isActive && hoverBgColor?.startsWith("#")
+    ? hoverBgColor
+    : !isActive && bgColor?.startsWith("#")
+    ? bgColor
+    : undefined,        transition: "background-color 0.4s ease",
       }}
       onMouseEnter={isMobile ? null : onHover}
       onMouseLeave={isMobile ? null : onLeave}
       onClick={isMobile ? toggleDetails : null}
     >
       {/* Overlay */}
-      <div
-        ref={overlayRef}
-        className="absolute inset-0 transition-all duration-200"
-        style={{
-          background: "rgba(0,0,0,0.65)",
-          zIndex: 1,
-        }}
-      />
+      {showOverlay && (
+        <div
+          ref={overlayRef}
+          className="absolute inset-0 transition-all duration-300"
+          style={{
+            background: "rgba(0,0,0,0.65)",
+            zIndex: 1,
+          }}
+        />
+      )}
 
       {/* Eye Icon for Mobile */}
       {isMobile && (
         <div
           className="absolute top-4 right-4 z-30 text-white text-xl cursor-pointer"
           onClick={(e) => {
-            e.stopPropagation(); // Prevent card click from triggering when clicking the eye icon
+            e.stopPropagation();
             toggleDetails();
           }}
         >
@@ -140,20 +153,20 @@ const IndustryCard = ({
           <BodyText
             text={industry.name}
             size="text-50px xl:text-35px"
-            color="text-white"
+            color={titleColor}
             fontWeight="font-bold"
-            className="drop-shadow-lg text-left"
+            className="drop-shadow-lg text-left transition-colors duration-300"
             style={{
-              maxWidth: `calc(${width}px - 100px - 2rem)`, // Account for padding and number width
-              whiteSpace: "normal", // Allow natural wrapping
-              overflowWrap: "break-word", // Ensure consistent word breaking
+              maxWidth: `calc(${width}px - 100px - 2rem)`,
+              whiteSpace: "normal",
+              overflowWrap: "break-word",
             }}
             centered={false}
           />
         )}
       </div>
 
-      {/* Details Container (Top Title + Description) */}
+      {/* Details Container */}
       <div
         ref={detailsContainerRef}
         className="absolute top-6 left-0 w-full h-auto z-20"
@@ -162,16 +175,15 @@ const IndustryCard = ({
           transform: "translateY(-100px)",
         }}
       >
-        {/* Top Title */}
         <div className="flex items-start px-6">
           <BodyText
             text={industry.name}
             size="text-35px"
-            color="text-white"
+            color={topTitleColor}
             fontWeight="font-bold"
-            className="drop-shadow-lg pr-6 text-left"
+            className="drop-shadow-lg pr-6 text-left transition-colors duration-300"
             style={{
-              maxWidth: `calc(${width}px - 2rem)`, // Account for padding
+              maxWidth: `calc(${width}px - 2rem)`,
               whiteSpace: "normal",
               overflowWrap: "break-word",
             }}
@@ -179,15 +191,14 @@ const IndustryCard = ({
           />
         </div>
 
-        {/* Description */}
-        <div className="mt-4 px-6 text-white text-left">
+        <div className="mt-4 px-6 text-left">
           <BodyText
             text={industry.details}
-            size="text-sm"
+            size={answerFontSize}
             color="text-white"
-            className="text-left leading-normal xl:leading-loose"
+            className={`text-left ${answerLineHeight} xl:leading-loose`}
             style={{
-              maxWidth: `calc(${width}px - 2rem)`, // Account for padding
+              maxWidth: `calc(${width}px - 2rem)`,
               whiteSpace: "normal",
               overflowWrap: "break-word",
             }}
