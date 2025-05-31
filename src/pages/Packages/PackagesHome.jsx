@@ -36,7 +36,7 @@ const PackagesHome = () => {
     className="text-left self-auto xl:self-auto" // Right-align text and push to right on mobile
   />
 </div>
-      <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="flex flex-wrap justify-center gap-20 xl:gap-0 xl:grid xl:grid-cols-3 xl:gap-x-10 2xl:gap-x-60   xl:justify-between w-full ">
         {selectedPackages.map((pkg, index) => (
           <PackageCard
             key={pkg.id}
