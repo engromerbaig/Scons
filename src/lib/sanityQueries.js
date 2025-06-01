@@ -10,15 +10,15 @@ export const getPosts = async () => {
     const query = `*[_type == "post"] | order(publishedAt desc){
       _id,
       title,
-      publishedAt, // Changed from 'date' to 'publishedAt'
+      publishedAt,
       slug,
       mainImage { ..., asset-> { ..., metadata } },
       body,
-      author { name }, // Include author name for BlogCard
-      categories[]->{ title } // Include categories if needed
+      author-> { name }, // Dereference author to get name
+      categories[]->{ title }
     }`;
     const posts = await sanityClient.fetch(query);
-    console.log('Fetched posts:', posts); // Debug log to verify data
+    console.log('Fetched posts:', posts); // Debug log
     return posts || [];
   } catch (error) {
     console.error('Error fetching posts:', error);
@@ -41,14 +41,15 @@ export const getPostBySlug = async (slug) => {
     const query = `*[_type == "post" && slug.current == $slug][0]{
       _id,
       title,
-      publishedAt, // Changed from 'date' to 'publishedAt'
+      publishedAt,
       slug,
       mainImage { ..., asset-> { ..., metadata } },
       body,
-      author { name },
+      author-> { name }, // Dereference author to get name
       categories[]->{ title }
     }`;
     const post = await sanityClient.fetch(query, { slug });
+    console.log('Fetched post:', post); // Debug log
     return post || null;
   } catch (error) {
     console.error(`Error fetching post with slug ${slug}:`, error);
