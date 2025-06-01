@@ -143,7 +143,7 @@ export default function Blogs() {
           ref={filterBoxRef}
           className={`${
             isFiltersOpen ? 'block' : 'hidden'
-          } xl:block w-full xl:h-96  bg-white border border-gray-200 rounded-lg shadow-md p-6 xl:sticky xl:top-4 ${
+          } xl:block w-full xl:h-[520px]  bg-white border border-gray-200 rounded-lg shadow-md p-6 xl:sticky xl:top-4 ${
             isSticky ? 'shadow-lg' : ''
           }`}
         >
