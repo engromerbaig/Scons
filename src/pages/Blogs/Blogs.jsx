@@ -8,6 +8,11 @@ import useBlogFilters from '../../hooks/useBlogFilters';
 import FilterControls from '../OurWork/FilterControls';
 import LoadMoreControls from '../OurWork/LoadMoreControls';
 import { FaFilter } from 'react-icons/fa';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+// Register GSAP ScrollTrigger
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Blogs() {
   const [posts, setPosts] = useState([]);
@@ -20,6 +25,7 @@ export default function Blogs() {
   const [lastAction, setLastAction] = useState(null);
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
+  const [filterWidth, setFilterWidth] = useState(null);
 
   const {
     selectedCategory,
@@ -68,29 +74,119 @@ export default function Blogs() {
     };
   }, []);
 
-  // Intersection Observer for sticky filter box
+  // Set initial filter box width and sticky detection
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsSticky(!entry.isIntersecting); // Sticky when sentinel is out of view
-      },
-      { threshold: 0, rootMargin: '0px' }
-    );
-
-    if (sentinelRef.current) {
-      observer.observe(sentinelRef.current);
+    if (loading || posts.length === 0) {
+      console.log('⏳ Waiting for posts to load before setting up sticky');
+      return;
     }
 
-    return () => {
-      if (sentinelRef.current) {
-        observer.unobserve(sentinelRef.current);
-      }
-    };
-  }, []);
+    console.log('=== STICKY SETUP START ===');
+    console.log('filterBoxRef.current:', !!filterBoxRef.current);
+    console.log('sentinelRef.current:', !!sentinelRef.current);
+    console.log('containerRef.current:', !!containerRef.current);
 
-  // Load More/Show Less scrolling
+    if (!filterBoxRef.current || !sentinelRef.current || !containerRef.current) {
+      console.log('❌ Missing refs, aborting sticky setup');
+      const timer = setTimeout(() => {
+        console.log('🔄 Retrying sticky setup after delay');
+        if (filterBoxRef.current && sentinelRef.current && containerRef.current) {
+          setupSticky();
+        }
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+
+    // Capture initial width of filter box
+    const filterBox = filterBoxRef.current;
+    const initialWidth = filterBox.getBoundingClientRect().width;
+    setFilterWidth(initialWidth);
+    console.log(`📏 Initial filter box width: ${initialWidth}px`);
+
+    setupSticky();
+
+    function setupSticky() {
+      const sentinel = sentinelRef.current;
+      const container = containerRef.current;
+
+      console.log('✅ All refs available, setting up scroll listener');
+
+      const handleScroll = () => {
+        const scrollY = window.scrollY;
+        const sentinelRect = sentinel.getBoundingClientRect();
+        const containerRect = container.getBoundingClientRect();
+        const windowWidth = window.innerWidth;
+        const filterBoxHeight = filterBox.getBoundingClientRect().height;
+
+        // Calculate container bottom relative to document
+        const containerBottom = containerRect.top + scrollY + containerRect.height;
+
+        console.log(
+          `📜 SCROLL: scrollY=${scrollY}, sentinelTop=${sentinelRect.top}, ` +
+          `containerBottom=${containerBottom}, filterBoxHeight=${filterBoxHeight}, windowWidth=${windowWidth}`
+        );
+
+        if (windowWidth < 1280) {
+          console.log('📱 Mobile view, skipping sticky');
+          if (isSticky) {
+            setIsSticky(false);
+            gsap.to(filterBox, {
+              duration: 0.3,
+              boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
+              ease: 'power2.out',
+            });
+          }
+          return;
+        }
+
+        // Check if filter box should be sticky
+        const shouldBeSticky =
+          sentinelRect.top <= 50 && // Top boundary: sentinel is near top
+          containerBottom > scrollY + filterBoxHeight + 50; // Bottom boundary: container bottom is below filter box
+
+        console.log(`🎯 STICKY CHECK: shouldBeSticky=${shouldBeSticky}, currentIsSticky=${isSticky}`);
+
+        if (shouldBeSticky !== isSticky) {
+          console.log(`🔄 CHANGING STICKY STATE: ${isSticky} -> ${shouldBeSticky}`);
+          setIsSticky(shouldBeSticky);
+
+          if (shouldBeSticky) {
+            console.log('🔒 APPLYING STICKY STYLES');
+            gsap.to(filterBox, {
+              duration: 0.3,
+              boxShadow: '0 10px 25px rgba(0, 0, 0, 0.15)',
+              ease: 'power2.out',
+            });
+          } else {
+            console.log('🔓 REMOVING STICKY STYLES');
+            gsap.to(filterBox, {
+              duration: 0.3,
+              boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
+              ease: 'power2.out',
+            });
+          }
+        }
+      };
+
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      console.log('🏁 Running initial scroll check');
+      handleScroll();
+
+      return () => {
+        console.log('🧹 Cleaning up scroll listener');
+        window.removeEventListener('scroll', handleScroll);
+      };
+    }
+  }, [isSticky, loading, posts.length]);
+
+  // Debug sticky state changes
   useEffect(() => {
-    if ((postsToShow > 6 || lastAction === "showLess") && buttonContainerRef.current) {
+    console.log('Sticky state updated:', isSticky);
+  }, [isSticky]);
+
+  // Scroll to bottom after load more/show less
+  useEffect(() => {
+    if ((postsToShow > 6 || lastAction === 'showLess') && buttonContainerRef.current) {
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           const buttonRect = buttonContainerRef.current.getBoundingClientRect();
@@ -100,30 +196,25 @@ export default function Blogs() {
 
           window.scrollTo({
             top: buttonBottom - viewportHeight + 20,
-            behavior: "smooth",
+            behavior: 'smooth',
           });
         });
       });
     }
   }, [postsToShow, lastAction]);
 
-  if (error) {
-    return <p className="text-center mt-20 text-red-500">{error}</p>;
-  }
-
-  if (loading) {
-    return <p className="text-center mt-20">Loading posts...</p>;
-  }
+  if (error) return <p className="text-center mt-20 text-red-500">{error}</p>;
+  if (loading) return <p className="text-center mt-20">Loading posts...</p>;
 
   return (
     <div
       ref={containerRef}
-      className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical}`}
+      className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} bg-neon`}
     >
       <Heading text="Blogs & News" centered={false} />
       <BodyText text="Read our latest blog posts!" centered={false} />
 
-      {/* Mobile: Toggle Button for Filters */}
+      {/* Mobile Filter Toggle */}
       <div className="xl:hidden flex justify-between items-center my-6">
         <button
           className="flex items-center gap-2 px-4 py-2 bg-neon text-white rounded-md"
@@ -133,62 +224,73 @@ export default function Blogs() {
         </button>
       </div>
 
-      {/* Sentinel for Intersection Observer */}
-      <div ref={sentinelRef} className="h-1"></div>
+      {/* Sentinel */}
+      <div
+        ref={sentinelRef}
+        className="h-[20px] xl:block hidden opacity-50 relative z-10"
+        style={{ marginBottom: '10px' }}
+      >
+      </div>
 
-      {/* Main Layout */}
+      {/* Layout */}
       <div className="flex flex-col py-10 xl:grid xl:grid-cols-[30%_70%] gap-8">
-        {/* Filters: Sticky for xl, Collapsible for smaller screens */}
-        <div
-          ref={filterBoxRef}
-          className={`${
-            isFiltersOpen ? 'block' : 'hidden'
-          } xl:block w-full xl:h-[520px]  bg-white border border-gray-200 rounded-lg shadow-md p-6 xl:sticky xl:top-4 ${
-            isSticky ? 'shadow-lg' : ''
-          }`}
-        >
-          <FilterControls
-            selectedService={selectedCategory}
-            selectedTechnology={selectedAuthor}
-            selectedDate={selectedDate}
-            sortOrder={sortOrder}
-            uniqueServices={uniqueCategories}
-            uniqueTechnologies={uniqueAuthors}
-            uniqueDates={uniqueDates}
-            handleServiceChange={handleCategoryChange}
-            handleTechnologyChange={handleAuthorChange}
-            handleDateChange={handleDateChange}
-            setSortOrder={setSortOrder}
-            resetFilters={resetFilters}
-            isNestedService={false}
-            isNestedTech={false}
-            isPackages={false}
-            isBlogs={true}
-            isServices={false}
-          />
+        {/* Filters Section */}
+        <div className={`${isFiltersOpen ? 'block' : 'hidden'} xl:block w-full`}>
+          <div
+            ref={filterBoxRef}
+            className={`bg-white border border-gray-200 flex flex-col justify-center items-center rounded-lg p-6 transition-all duration-300 ease-in-out
+              ${isSticky
+                ? 'xl:fixed xl:top-6 xl:z-20 xl:shadow-lg xl:border-gray-300'
+                : 'xl:relative xl:shadow-md'
+              }`}
+            style={{
+              ...(isSticky && filterWidth ? { width: `${filterWidth}px` } : {}),
+            }}
+          >
+            <div className="w-full">
+              <FilterControls
+                selectedService={selectedCategory}
+                selectedTechnology={selectedAuthor}
+                selectedDate={selectedDate}
+                sortOrder={sortOrder}
+                uniqueServices={uniqueCategories}
+                uniqueTechnologies={uniqueAuthors}
+                uniqueDates={uniqueDates}
+                handleServiceChange={handleCategoryChange}
+                handleTechnologyChange={handleAuthorChange}
+                handleDateChange={handleDateChange}
+                setSortOrder={setSortOrder}
+                resetFilters={resetFilters}
+                isNestedService={false}
+                isNestedTech={false}
+                isPackages={false}
+                isBlogs={true}
+                isServices={false}
+              />
+            </div>
+          </div>
         </div>
 
-        {/* Blog Cards */}
-        <div className=" xl:w-full">
+        {/* Blog Cards Section */}
+        <div className="xl:w-full">
           {filteredPosts.length === 0 && (
             <p className="text-center mt-6">No posts available</p>
           )}
           <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-2 mb-10">
-            {filteredPosts.map((post) => (
+            {filteredPosts.slice(0, postsToShow).map((post) => (
               <BlogCard key={post._id} post={post} />
             ))}
           </div>
 
-          {/* Load More Controls */}
           <LoadMoreControls
             showLoadMore={showLoadMore}
             showShowLess={showShowLess}
             handleLoadMore={() => {
-              setLastAction("loadMore");
+              setLastAction('loadMore');
               handleLoadMore();
             }}
             handleShowLess={() => {
-              setLastAction("showLess");
+              setLastAction('showLess');
               handleShowLess();
             }}
             buttonContainerRef={buttonContainerRef}
