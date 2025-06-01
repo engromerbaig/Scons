@@ -126,7 +126,7 @@ export default function Blogs() {
       {/* Mobile: Toggle Button for Filters */}
       <div className="xl:hidden flex justify-between items-center my-6">
         <button
-          className="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-md"
+          className="flex items-center gap-2 px-4 py-2 bg-neon text-white rounded-md"
           onClick={() => setIsFiltersOpen(!isFiltersOpen)}
         >
           <FaFilter /> {isFiltersOpen ? 'Hide Filters' : 'Show Filters'}
