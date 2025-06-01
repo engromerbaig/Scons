@@ -6,7 +6,7 @@ const useBlogFilters = (posts) => {
   const [selectedAuthor, setSelectedAuthor] = useState("All Authors");
   const [selectedDate, setSelectedDate] = useState("All Dates");
   const [sortOrder, setSortOrder] = useState("desc");
-  const [postsToShow, setPostsToShow] = useState(6);
+  const [postsToShow, setPostsToShow] = useState(3);
   const postsPerLoad = 3;
 
   // Normalize categories (handle array or single string)

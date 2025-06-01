@@ -5,6 +5,8 @@ import Heading from '../../components/Heading/Heading';
 import BodyText from '../../components/BodyText/BodyText';
 import BlogCard from './BlogCard';
 import useBlogFilters from '../../hooks/useBlogFilters';
+import FilterControls from '../OurWork/FilterControls';
+import LoadMoreControls from '../OurWork/LoadMoreControls';
 
 export default function Blogs() {
   const [posts, setPosts] = useState([]);
@@ -70,63 +72,25 @@ export default function Blogs() {
       <BodyText text="Read our latest blog posts!" centered={false} />
 
       {/* Filter Controls */}
-      <div className="flex flex-wrap gap-4 mb-6">
-        <select
-          value={selectedCategory}
-          onChange={(e) => handleCategoryChange(e.target.value)}
-          className="p-2 border rounded-lg"
-          aria-label="Filter by category"
-        >
-          {uniqueCategories.map((category) => (
-            <option key={category} value={category}>
-              {category}
-            </option>
-          ))}
-        </select>
-
-        <select
-          value={selectedAuthor}
-          onChange={(e) => handleAuthorChange(e.target.value)}
-          className="p-2 border rounded-lg"
-          aria-label="Filter by author"
-        >
-          {uniqueAuthors.map((author) => (
-            <option key={author} value={author}>
-              {author}
-            </option>
-          ))}
-        </select>
-
-        <select
-          value={selectedDate}
-          onChange={(e) => handleDateChange(e.target.value)}
-          className="p-2 border rounded-lg"
-          aria-label="Filter by date"
-        >
-          {uniqueDates.map((date) => (
-            <option key={date} value={date}>
-              {date}
-            </option>
-          ))}
-        </select>
-
-        <select
-          value={sortOrder}
-          onChange={(e) => setSortOrder(e.target.value)}
-          className="p-2 border rounded-lg"
-          aria-label="Sort order"
-        >
-          <option value="desc">Newest First</option>
-          <option value="asc">Oldest First</option>
-        </select>
-
-        <button
-          onClick={resetFilters}
-          className="px-4 py-2 bg-gray-200 rounded-lg"
-        >
-          Reset Filters
-        </button>
-      </div>
+      <FilterControls
+        selectedService={selectedCategory}
+        selectedTechnology={selectedAuthor}
+        selectedDate={selectedDate}
+        sortOrder={sortOrder}
+        uniqueServices={uniqueCategories}
+        uniqueTechnologies={uniqueAuthors}
+        uniqueDates={uniqueDates}
+        handleServiceChange={handleCategoryChange}
+        handleTechnologyChange={handleAuthorChange}
+        handleDateChange={handleDateChange}
+        setSortOrder={setSortOrder}
+        resetFilters={resetFilters}
+        isNestedService={false}
+        isNestedTech={false}
+        isPackages={false}
+        isBlogs={true}
+        isServices={false}
+      />
 
       {filteredPosts.length === 0 && (
         <p className="text-center mt-6">No posts available</p>
@@ -136,6 +100,21 @@ export default function Blogs() {
           <BlogCard key={post._id} post={post} />
         ))}
       </div>
+
+
+        {/* <LoadMoreControls
+          showLoadMore={showLoadMore}
+          showShowLess={showShowLess}
+          handleLoadMore={() => {
+            setLastAction("loadMore");
+            handleLoadMore();
+          }}
+          handleShowLess={() => {
+            setLastAction("showLess");
+            handleShowLess();
+          }}
+          buttonContainerRef={buttonContainerRef}
+        /> */}
 
       {/* Pagination Controls */}
       <div className="flex justify-center gap-4 mt-6">
