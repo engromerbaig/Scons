@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { getPosts } from '../../lib/sanityQueries';
 import { theme } from '../../theme';
 import Heading from '../../components/Heading/Heading';
@@ -10,8 +10,33 @@ import LoadMoreControls from '../OurWork/LoadMoreControls';
 
 export default function Blogs() {
   const [posts, setPosts] = useState([]);
+  const containerRef = useRef(null);
+  const buttonContainerRef = useRef(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [lastAction, setLastAction] = useState(null); // Track last action ("loadMore" or "showLess")
+
+  // Move useBlogFilters before useEffect
+  const {
+    selectedCategory,
+    selectedAuthor,
+    selectedDate,
+    sortOrder,
+    filteredPosts,
+    uniqueCategories,
+    uniqueAuthors,
+    uniqueDates,
+    handleCategoryChange,
+    handleAuthorChange,
+    handleDateChange,
+    setSortOrder,
+    resetFilters,
+    postsToShow,
+    showLoadMore,
+    showShowLess,
+    handleLoadMore,
+    handleShowLess,
+  } = useBlogFilters(posts);
 
   useEffect(() => {
     let mounted = true;
@@ -38,25 +63,24 @@ export default function Blogs() {
     };
   }, []);
 
-  const {
-    selectedCategory,
-    selectedAuthor,
-    selectedDate,
-    sortOrder,
-    filteredPosts,
-    uniqueCategories,
-    uniqueAuthors,
-    uniqueDates,
-    handleCategoryChange,
-    handleAuthorChange,
-    handleDateChange,
-    setSortOrder,
-    resetFilters,
-    showLoadMore,
-    showShowLess,
-    handleLoadMore,
-    handleShowLess,
-  } = useBlogFilters(posts);
+  useEffect(() => {
+    if ((postsToShow > 6 || lastAction === "showLess") && buttonContainerRef.current) {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          const buttonRect = buttonContainerRef.current.getBoundingClientRect();
+          const viewportHeight = window.innerHeight;
+          const scrollY = window.scrollY || window.pageYOffset;
+          const buttonBottom = buttonRect.top + buttonRect.height + scrollY;
+
+          // Scroll so the button container's bottom is at the viewport's bottom
+          window.scrollTo({
+            top: buttonBottom - viewportHeight + 20, // Small offset for padding
+            behavior: "smooth",
+          });
+        });
+      });
+    }
+  }, [postsToShow, lastAction]);
 
   if (error) {
     return <p className="text-center mt-20 text-red-500">{error}</p>;
@@ -67,7 +91,10 @@ export default function Blogs() {
   }
 
   return (
-    <div className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical}`}>
+    <div
+      ref={containerRef}
+      className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} flex flex-col items-center`}
+    >
       <Heading text="Blogs & News" centered={false} />
       <BodyText text="Read our latest blog posts!" centered={false} />
 
@@ -95,46 +122,26 @@ export default function Blogs() {
       {filteredPosts.length === 0 && (
         <p className="text-center mt-6">No posts available</p>
       )}
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mt-6">
+      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 my-10">
         {filteredPosts.map((post) => (
           <BlogCard key={post._id} post={post} />
         ))}
       </div>
 
-
-        {/* <LoadMoreControls
-          showLoadMore={showLoadMore}
-          showShowLess={showShowLess}
-          handleLoadMore={() => {
-            setLastAction("loadMore");
-            handleLoadMore();
-          }}
-          handleShowLess={() => {
-            setLastAction("showLess");
-            handleShowLess();
-          }}
-          buttonContainerRef={buttonContainerRef}
-        /> */}
-
-      {/* Pagination Controls */}
-      <div className="flex justify-center gap-4 mt-6">
-        {showLoadMore && (
-          <button
-            onClick={handleLoadMore}
-            className="px-4 py-2 bg-blue-500 text-white rounded-lg"
-          >
-            Load More
-          </button>
-        )}
-        {showShowLess && (
-          <button
-            onClick={handleShowLess}
-            className="px-4 py-2 bg-gray-200 rounded-lg"
-          >
-            Show Less
-          </button>
-        )}
-      </div>
+      {/* Load More Controls */}
+      <LoadMoreControls
+        showLoadMore={showLoadMore}
+        showShowLess={showShowLess}
+        handleLoadMore={() => {
+          setLastAction("loadMore");
+          handleLoadMore();
+        }}
+        handleShowLess={() => {
+          setLastAction("showLess");
+          handleShowLess();
+        }}
+        buttonContainerRef={buttonContainerRef}
+      />
     </div>
   );
 }

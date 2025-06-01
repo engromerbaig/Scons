@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { format } from "date-fns";
 
-const useBlogFilters = (posts) => {
+ const useBlogFilters = (posts) => {
   const [selectedCategory, setSelectedCategory] = useState("All Categories");
   const [selectedAuthor, setSelectedAuthor] = useState("All Authors");
   const [selectedDate, setSelectedDate] = useState("All Dates");
   const [sortOrder, setSortOrder] = useState("desc");
-  const [postsToShow, setPostsToShow] = useState(3);
+  const [postsToShow, setPostsToShow] = useState(6); // Changed from 3 to 6
   const postsPerLoad = 3;
 
   // Normalize categories (handle array or single string)
