@@ -1,9 +1,9 @@
-// pages/Blogs/BlogCard.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { urlFor } from '../../lib/sanityImage';
 import { format } from 'date-fns'; // Ensure date-fns is installed
 import calculateReadingTime from './calculateReadingTime';
+import Button from '../../components/Button/Button';
 
 export default function BlogCard({ post }) {
   return (
@@ -25,7 +25,7 @@ export default function BlogCard({ post }) {
       )}
       <div className="p-4">
         <h2 className="text-xl font-semibold mb-2 font-manrope">{post.title || 'Untitled'}</h2>
-        <div className="flex flex-wrap gap-2 items-center text-sm text-gray-600 mb-1">
+        <div className="flex flex-wrap gap-2 items-center text-sm text-gray-600 mb-2">
           <span>{post.author?.name || 'Anonymous'}</span>
           <span>|</span>
           <span>
@@ -36,6 +36,22 @@ export default function BlogCard({ post }) {
           <span>|</span>
           <span>{calculateReadingTime(post.body)} min read</span>
         </div>
+        <div className="flex flex-wrap gap-2 mb-2">
+          {post.categories?.map((category, index) => (
+            <span
+              key={index}
+              className="text-xs text-neon border-2 border-neon rounded-3xl px-2 py-1"
+            >
+              {category.title || category}
+            </span>
+          ))}
+        </div>
+        <Button
+        name="Read More"
+        fontSize='text-xs'
+        className='py-1 px-2'
+
+        />
       </div>
     </Link>
   );
