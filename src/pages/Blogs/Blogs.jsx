@@ -130,11 +130,11 @@ export default function Blogs() {
           console.log('📱 Mobile view, skipping sticky');
           if (isSticky) {
             setIsSticky(false);
-            gsap.to(filterBox, {
-              duration: 0.3,
-              boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
-              ease: 'power2.out',
-            });
+            // gsap.to(filterBox, {
+            //   duration: 0.3,
+            //   boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
+            //   ease: 'power2.out',
+            // });
           }
           return;
         }
@@ -152,18 +152,18 @@ export default function Blogs() {
 
           if (shouldBeSticky) {
             console.log('🔒 APPLYING STICKY STYLES');
-            gsap.to(filterBox, {
-              duration: 0.3,
-              boxShadow: '0 10px 25px rgba(0, 0, 0, 0.15)',
-              ease: 'power2.out',
-            });
+            // gsap.to(filterBox, {
+            //   duration: 0.3,
+            //   boxShadow: '0 10px 25px rgba(0, 0, 0, 0.15)',
+            //   ease: 'power2.out',
+            // });
           } else {
             console.log('🔓 REMOVING STICKY STYLES');
-            gsap.to(filterBox, {
-              duration: 0.3,
-              boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
-              ease: 'power2.out',
-            });
+            // gsap.to(filterBox, {
+            //   duration: 0.3,
+            //   boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
+            //   ease: 'power2.out',
+            // });
           }
         }
       };
@@ -209,7 +209,7 @@ export default function Blogs() {
   return (
     <div
       ref={containerRef}
-      className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} bg-neon`}
+      className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} `}
     >
       <Heading text="Blogs & News" centered={false} />
       <BodyText text="Read our latest blog posts!" centered={false} />
@@ -238,10 +238,10 @@ export default function Blogs() {
         <div className={`${isFiltersOpen ? 'block' : 'hidden'} xl:block w-full`}>
           <div
             ref={filterBoxRef}
-            className={`bg-white border border-gray-200 flex flex-col justify-center items-center rounded-lg p-6 transition-all duration-300 ease-in-out
+            className={`bg-white border border-gray-200 shadow-md flex flex-col justify-center items-center rounded-lg p-6 transition-all duration-300 ease-in-out
               ${isSticky
-                ? 'xl:fixed xl:top-6 xl:z-20 xl:shadow-lg xl:border-gray-300'
-                : 'xl:relative xl:shadow-md'
+                ? 'xl:fixed xl:top-6 xl:z-20 '
+                : 'xl:relative '
               }`}
             style={{
               ...(isSticky && filterWidth ? { width: `${filterWidth}px` } : {}),
