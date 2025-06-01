@@ -67,7 +67,8 @@ const FilterControls = ({
               onClick={() => setSortOrder("desc")}
               aria-label="Sort by newest first"
             >
-              <FaArrowDown />
+              Recent First
+              <FaArrowUp />
             </button>
             <button
               className={`px-4 py-2 border rounded-md text-sm flex items-center gap-2 ${
@@ -76,7 +77,8 @@ const FilterControls = ({
               onClick={() => setSortOrder("asc")}
               aria-label="Sort by oldest first"
             >
-              <FaArrowUp />
+              Oldest First
+              <FaArrowDown />
             </button>
           </>
         )}
