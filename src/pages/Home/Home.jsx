@@ -14,6 +14,7 @@ const Testimonials = lazy(() => import('../../components/Testimonials/Testimonia
 const StartProjectBelt = lazy(() => import('../../components/StartProjectBelt/StartProjectBelt'));
 const FadeInSection = lazy(() => import('../../utilities/Animations/FadeInSection'));
 import PackagesHome from '../Packages/PackagesHome';
+import BlogsHome from '../Blogs/BlogsHome';
 
 function Home() {
   return (
@@ -79,6 +80,9 @@ function Home() {
       </FadeInSection>
       <FadeInSection disabled>
         <StartProjectBelt />
+      </FadeInSection>
+      <FadeInSection >
+        <BlogsHome />
       </FadeInSection>
       <FadeInSection disabled>
         <Testimonials />
