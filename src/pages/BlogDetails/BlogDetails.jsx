@@ -61,7 +61,7 @@ const BlogDetails = () => {
           // Filter out current post and limit to 3
           const filteredPosts = (allPostsData || [])
             .filter(relatedPost => relatedPost._id !== postData?._id)
-            .slice(0, 3);
+            .slice(0, 4);
           
           setRelatedPosts(filteredPosts);
           setLoading(false);
@@ -237,7 +237,7 @@ const BlogDetails = () => {
                   <li key={heading.id} className={`ml-${heading.level === 'h1' ? 0 : heading.level === 'h2' ? 4 : 8}`}>
                     <a
                       href={`#${heading.id}`}
-                      className="text-gray-700 hover:text-neon transition-colors text-sm md:text-base"
+                      className="text-black font-semibold hover:text-neon transition-colors text-sm md:text-base"
                     >
                       {heading.text}
                     </a>
