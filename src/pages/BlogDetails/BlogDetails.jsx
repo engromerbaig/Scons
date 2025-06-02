@@ -11,6 +11,8 @@ import { theme } from '../../theme';
 import { format } from 'date-fns';
 import calculateReadingTime from '../Blogs/calculateReadingTime';
 import { FaTwitter, FaLinkedin, FaLink } from 'react-icons/fa';
+import { CiTimer } from 'react-icons/ci';
+
 
 const BlogDetails = () => {
   const { blogSlug } = useParams();
@@ -192,23 +194,54 @@ const BlogDetails = () => {
         {post?.title && (
           <Heading text={post.title} centered={false} className="max-w-3xl mb-6" />
         )}
-        <div className="flex flex-wrap gap-4 items-center mt-2 mb-8 text-sm text-gray-600">
-          {post?.author?.name && <span>{post.author.name}</span>}
-          {post?.author?.name && <span>|</span>}
-          {post?.publishedAt && (
-            <>
-              <span>{format(new Date(post.publishedAt), 'MMMM dd, yyyy')}</span>
-              <span>|</span>
-            </>
-          )}
-          {post?.body && <span>{calculateReadingTime(post.body)} min read</span>}
-          {post?.categories?.length > 0 && (
-            <>
-              <span>|</span>
-              <span>{post.categories.map(category => category.title).join(', ')}</span>
-            </>
-          )}
-        </div>
+
+
+<div className="text-sm text-black mt-2 mb-8 space-y-2">
+  {/* Row 1: Author and Date */}
+  <div className="flex flex-wrap gap-2 items-center">
+    {post?.author?.name && (
+      <>
+        <span className="font-bold">Written By:</span>
+        <span>{post.author.name}</span>
+      </>
+    )}
+    {post?.publishedAt && (
+      <>
+        <span className="hidden sm:inline">|</span>
+        <span className="font-bold">Published On:</span>
+        <span>{format(new Date(post.publishedAt), 'MMMM dd, yyyy')}</span>
+      </>
+    )}
+  </div>
+
+  {/* Row 2: Reading Time and Categories */}
+  <div className="flex flex-wrap gap-4 items-center">
+    {post?.body && (
+      <div className="flex items-center gap-1 text-black font-bold">
+        <CiTimer className="text-lg" />
+        <span>Reading Time:</span>
+        <span>{calculateReadingTime(post.body)} minutes</span>
+      </div>
+    )}
+            <span className="hidden sm:inline">|</span>
+
+
+    {/* Categories */}
+    {post?.categories?.length > 0 && (
+      <div className="flex flex-wrap gap-2">
+        {post.categories.map((category, idx) => (
+          <span
+            key={idx}
+            className="px-3 py-1  border border-black rounded-full text-sm font-bold text-black"
+          >
+            {category.title}
+          </span>
+        ))}
+      </div>
+    )}
+  </div>
+</div>
+
 
         {post?.mainImage ? (
           <img
