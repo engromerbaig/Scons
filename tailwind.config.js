@@ -38,6 +38,9 @@ export default {
         // neon: '#28ed70',
         neon: '#00c5ff',
 
+        sconsGray:"#99AEBB",
+        sconsCharcoal:"#364954",
+
         charcoal: '#26292D',
         offWhite:'#F5F5F5',
         beige:"#ECE9DF",
