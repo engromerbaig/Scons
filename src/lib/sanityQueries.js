@@ -45,7 +45,11 @@ export const getPostBySlug = async (slug) => {
       mainImage { ..., asset-> { ..., metadata } },
       body,
       author-> { name, slug, image { ..., asset-> { ..., metadata } }, bio },
-      categories[]->{ title }
+      categories[]->{ title },
+      seoTitle,
+      seoDescription,
+      ogImage { ..., asset-> { ..., metadata } },
+      keywords
     }`;
     const post = await sanityClient.fetch(query, { slug });
     console.log('Fetched post:', post); // Debug log

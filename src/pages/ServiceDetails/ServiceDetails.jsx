@@ -1,5 +1,7 @@
 import React, { useEffect, useState, lazy } from "react";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async"; // Import Helmet
+import ogLogo from "../../assets/images/og-default.jpg"; // Logo-based OG image
 
 // Lazy load all components
 const Heading = lazy(() => import("../../components/Heading/Heading"));
@@ -55,8 +57,59 @@ const ServiceDetails = () => {
     .filter((project) => project.service.includes(service.heading))
     .slice(0, 4); // Limit to 4 projects
 
+  // Generate meta description (trim to 160 characters)
+  const metaDescription =
+    service.description?.length > 160
+      ? `${service.description.substring(0, 157)}...`
+      : service.description || `Discover Scons' ${service.heading.toLowerCase()} services for innovative software solutions.`;
+
+  // Generate keywords
+  const keywords = [
+    "Scons",
+    service.heading.toLowerCase(),
+    "software development",
+    "UK tech",
+    "software solutions",
+    "startups",
+    "enterprises",
+  ].join(", ");
+
   return (
     <div>
+      <Helmet>
+        <title>{`${service.heading} | Scons`}</title>
+        <meta name="description" content={metaDescription} />
+        <meta name="keywords" content={keywords} />
+        <link rel="canonical" href={`https://sconstech.com/service/${serviceSlug}`} />
+        <meta property="og:title" content={`${service.heading} | Scons`} />
+        <meta property="og:description" content={metaDescription} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`https://sconstech.com/service/${serviceSlug}`} />
+        <meta property="og:image" content={ogLogo} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Scons logo" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`${service.heading} | Scons`} />
+        <meta name="twitter:description" content={metaDescription} />
+        <meta name="twitter:image" content={ogLogo} />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "serviceType": service.heading,
+            "provider": {
+              "@type": "Organization",
+              "name": "Scons",
+              "url": "https://sconstech.com",
+            },
+            "description": metaDescription,
+            "url": `https://sconstech.com/service/${serviceSlug}`,
+            "image": ogLogo,
+          })}
+        </script>
+      </Helmet>
+
       {/* Hero Section */}
       <FadeInSection>
         <InnerHero

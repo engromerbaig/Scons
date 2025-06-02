@@ -1,14 +1,16 @@
-import React, { useEffect, useRef, useState } from "react";
-import { theme } from "../../theme";
-import projects from "./projectDetails";
-import { useProjectFilters } from "../../hooks/useProjectFilters";
-import InnerHero from "../../components/InnerHero/InnerHero";
-import FilterControls from "./FilterControls";
-import ProjectGrid from "./ProjectGrid";
-import LoadMoreControls from "./LoadMoreControls";
-import projectImage from "../../assets/images/project.svg";
-import behanceLogo from "../../assets/icons/inner/behance.svg";
-import dribbleLogo from "../../assets/icons/inner/dribble.svg";
+import React, { useRef, useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet-async'; // Import Helmet
+import ogDefault from '../../assets/images/og-default.jpg'; // Default OG image
+import { theme } from '../../theme';
+import projects from './projectDetails';
+import { useProjectFilters } from '../../hooks/useProjectFilters';
+import InnerHero from '../../components/InnerHero/InnerHero';
+import FilterControls from './FilterControls';
+import ProjectGrid from './ProjectGrid';
+import LoadMoreControls from './LoadMoreControls';
+import projectImage from '../../assets/images/project.svg';
+import behanceLogo from '../../assets/icons/inner/behance.svg';
+import dribbleLogo from '../../assets/icons/inner/dribble.svg';
 
 const OurWork = () => {
   const {
@@ -39,7 +41,7 @@ const OurWork = () => {
   const [lastAction, setLastAction] = useState(null);
 
   useEffect(() => {
-    if ((projectsToShow > 4 || lastAction === "showLess") && buttonContainerRef.current) {
+    if ((projectsToShow > 4 || lastAction === 'showLess') && buttonContainerRef.current) {
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           const buttonRect = buttonContainerRef.current.getBoundingClientRect();
@@ -49,14 +51,14 @@ const OurWork = () => {
 
           window.scrollTo({
             top: buttonBottom - viewportHeight + 20,
-            behavior: "smooth",
+            behavior: 'smooth',
           });
         });
       });
     }
   }, [projectsToShow, lastAction]);
 
-  console.log("OurWork Debug:", {
+  console.log('OurWork Debug:', {
     projectsToShow,
     totalProjects,
     showLoadMore,
@@ -68,7 +70,34 @@ const OurWork = () => {
   });
 
   return (
-    <div className={`min-h-screen`}>
+    <div className="min-h-screen">
+      <Helmet>
+        <title>Our Portfolio | Scons</title>
+        <meta
+          name="description"
+          content="Explore Scons' portfolio of innovative tech projects, showcasing expertise in software development for startups and enterprises."
+        />
+        <meta
+          name="keywords"
+          content="Scons, portfolio, projects, software development, UK tech, startups, enterprises"
+        />
+        <link rel="canonical" href="https://sconstech.com/portfolio" />
+        <meta property="og:title" content="Our Work | Scons" />
+        <meta
+          property="og:description"
+          content="Explore Scons' portfolio of innovative tech projects, showcasing expertise in software development for startups and enterprises."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://sconstech.com/portfolio" />
+        <meta property="og:image" content={ogDefault} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Our Work | Scons" />
+        <meta
+          name="twitter:description"
+          content="Explore Scons' portfolio of innovative tech projects, showcasing expertise in software development for startups and enterprises."
+        />
+        <meta name="twitter:image" content={ogDefault} />
+      </Helmet>
       <InnerHero
         headingText="A Catalog of Our Work"
         spanText="Catalog"
@@ -77,7 +106,6 @@ const OurWork = () => {
         illustrationImage={projectImage}
         illustrationImageWidth="w-4/5 xl:w-3/4"
       />
-
       <div
         ref={containerRef}
         className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} flex flex-col items-center`}
@@ -97,18 +125,16 @@ const OurWork = () => {
           setSortOrder={setSortOrder}
           resetFilters={resetFilters}
         />
-
         <ProjectGrid filteredProjects={filteredProjects} />
-
         <LoadMoreControls
           showLoadMore={showLoadMore}
           showShowLess={showShowLess}
           handleLoadMore={() => {
-            setLastAction("loadMore");
+            setLastAction('loadMore');
             handleLoadMore();
           }}
           handleShowLess={() => {
-            setLastAction("showLess");
+            setLastAction('showLess');
             handleShowLess();
           }}
           buttonContainerRef={buttonContainerRef}

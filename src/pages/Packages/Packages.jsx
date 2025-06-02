@@ -1,15 +1,16 @@
-// src/pages/Packages.js
 import { useState, useEffect, lazy } from "react";
+import { Helmet } from "react-helmet-async"; // Import Helmet
 import { theme } from "../../theme";
 import PackageCard from "./PackageCard";
 import { packageData } from "./packageData";
 import Heading from "../../components/Heading/Heading";
 import BodyText from "../../components/BodyText/BodyText";
 import StartProjectBelt from "../../components/StartProjectBelt/StartProjectBelt";
-import FilterControls from "../OurWork/FilterControls"; // Adjust path as needed
-import usePackageFilters from "../../hooks/usePackageFilters"; // Adjust path as needed
+import FilterControls from "../OurWork/FilterControls";
+import usePackageFilters from "../../hooks/usePackageFilters";
 import { motion } from "framer-motion";
 import AnimatedHeading from "../../components/Hero/AnimatedHeading";
+import ogLogo from "../../assets/images/og-default.jpg"; // Logo-based OG image
 
 const InnerHero = lazy(() => import("../../components/InnerHero/InnerHero"));
 
@@ -21,8 +22,6 @@ const Packages = () => {
     handleCategoryChange,
     resetFilters,
   } = usePackageFilters(packageData);
-
-
 
   // Define preferred order
   const preferredOrder = ["Web Development", "Hybrid", "Design"];
@@ -46,8 +45,57 @@ const Packages = () => {
       }, {})
     : { [selectedCategory]: filteredPackages };
 
+  // Meta description (trim to 160 characters)
+  const metaDescription =
+    "Explore Scons' diverse packages for web development, design, and more, tailored to meet your business needs.".substring(0, 160);
+
+  // Keywords
+  const keywords = [
+    "Scons",
+    "packages",
+    "web development",
+    "design",
+    "hybrid",
+    "software solutions",
+    "UK tech",
+  ].join(", ");
+
   return (
-    <div className={`${theme.layoutPages.paddingBottom} `}>
+    <div className={`${theme.layoutPages.paddingBottom}`}>
+      <Helmet>
+        <title>Packages | Scons</title>
+        <meta name="description" content={metaDescription} />
+        <meta name="keywords" content={keywords} />
+        <link rel="canonical" href="https://sconstech.com/packages" />
+        <meta property="og:title" content="Packages | Scons" />
+        <meta property="og:description" content={metaDescription} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://sconstech.com/packages" />
+        <meta property="og:image" content={ogLogo} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Scons logo" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Packages | Scons" />
+        <meta name="twitter:description" content={metaDescription} />
+        <meta name="twitter:image" content={ogLogo} />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "serviceType": "Software Packages",
+            "provider": {
+              "@type": "Organization",
+              "name": "Scons",
+              "url": "https://sconstech.com",
+            },
+            "description": metaDescription,
+            "url": "https://sconstech.com/packages",
+            "image": ogLogo,
+          })}
+        </script>
+      </Helmet>
+
       <InnerHero height="h-[70vh]" headingColor="text-black">
         <motion.div
           initial={{ opacity: 0 }}
@@ -87,27 +135,20 @@ const Packages = () => {
 
         {Object.entries(groupedPackages).map(([category, packages]) => (
           <div key={category} className="mt-12">
+            <Heading
+              text={`${category} Packages`}
+              centered={false}
+              className="mb-10"
+              showUnderline
+            />
 
-
-              <Heading
-                text={`${category} Packages`}
-                centered={false}
-                className="mb-10"
-                showUnderline
-              />
-
-              {/* effective underline */}
-
-
-<div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-  {packages.map((pkg) => (
-    <div key={pkg.id} className="w-full">
-      <PackageCard packageInfo={pkg} />
-    </div>
-  ))}
-</div>
-
-
+            <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {packages.map((pkg) => (
+                <div key={pkg.id} className="w-full">
+                  <PackageCard packageInfo={pkg} />
+                </div>
+              ))}
+            </div>
           </div>
         ))}
       </div>

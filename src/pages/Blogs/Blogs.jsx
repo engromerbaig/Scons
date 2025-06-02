@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async"; // Import Helmet
 import { getPosts } from "../../lib/sanityQueries";
 import { theme } from "../../theme";
 import Heading from "../../components/Heading/Heading";
@@ -13,6 +14,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import FadeWrapper from "../../utilities/Animations/FadeWrapper";
 import InnerHero from "../../components/InnerHero/InnerHero";
 import SkeletonLoader from "../../utilities/SkeletonLoader";
+import ogLogo from "../../assets/images/og-default.jpg"; // Logo-based OG image
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -211,9 +213,57 @@ export default function Blogs() {
     </FadeWrapper>
   );
 
+  // Meta description (trim to 160 characters)
+  const metaDescription =
+    "Explore Scons' latest blog posts, insights, and tech updates for startups and enterprises.".substring(0, 160);
+
+  // Keywords
+  const keywords = [
+    "Scons",
+    "blogs",
+    "tech news",
+    "software development",
+    "UK tech",
+    "insights",
+    "updates",
+  ].join(", ");
+
   if (error) {
     return (
       <div className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingBottom}`}>
+        <Helmet>
+          <title>Blogs | Scons</title>
+          <meta name="description" content={metaDescription} />
+          <meta name="keywords" content={keywords} />
+          <link rel="canonical" href="https://sconstech.com/blogs" />
+          <meta property="og:title" content="Blogs | Scons" />
+          <meta property="og:description" content={metaDescription} />
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content="https://sconstech.com/blogs" />
+          <meta property="og:image" content={ogLogo} />
+          <meta property="og:image:width" content="1200" />
+          <meta property="og:image:height" content="630" />
+          <meta property="og:image:alt" content="Scons logo" />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content="Blogs | Scons" />
+          <meta name="twitter:description" content={metaDescription} />
+          <meta name="twitter:image" content={ogLogo} />
+          <script type="application/ld+json">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Blog",
+              "name": "Scons Blogs",
+              "description": metaDescription,
+              "url": "https://sconstech.com/blogs",
+              "image": ogLogo,
+              "publisher": {
+                "@type": "Organization",
+                "name": "Scons",
+                "url": "https://sconstech.com",
+              },
+            })}
+          </script>
+        </Helmet>
         <InnerHero
           headingText="Blogs & News"
           spanText="News"
@@ -227,6 +277,40 @@ export default function Blogs() {
 
   return (
     <div>
+      <Helmet>
+        <title>Blogs | Scons</title>
+        <meta name="description" content={metaDescription} />
+        <meta name="keywords" content={keywords} />
+        <link rel="canonical" href="https://sconstech.com/blogs" />
+        <meta property="og:title" content="Blogs | Scons" />
+        <meta property="og:description" content={metaDescription} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://sconstech.com/blogs" />
+        <meta property="og:image" content={ogLogo} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Scons logo" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Blogs | Scons" />
+        <meta name="twitter:description" content={metaDescription} />
+        <meta name="twitter:image" content={ogLogo} />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Blog",
+            "name": "Scons Blogs",
+            "description": metaDescription,
+            "url": "https://sconstech.com/blogs",
+            "image": ogLogo,
+            "publisher": {
+              "@type": "Organization",
+              "name": "Scons",
+              "url": "https://sconstech.com",
+            },
+          })}
+        </script>
+      </Helmet>
+
       <InnerHero
         headingText="Blogs & News"
         spanText="News"

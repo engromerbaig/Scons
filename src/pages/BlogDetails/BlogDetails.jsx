@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async'; // Import Helmet
 import { PortableText } from '@portabletext/react';
 import { urlFor } from '../../lib/sanityImage';
 import { getPostBySlug, getPosts } from '../../lib/sanityQueries';
@@ -25,7 +26,7 @@ const BlogDetails = () => {
   const extractTextFromBlock = (block) => {
     if (!block.children || !Array.isArray(block.children)) return '';
     return block.children
-      .map(child => child.text || '')
+      .map((child) => child.text || '')
       .join('')
       .trim();
   };
@@ -37,33 +38,36 @@ const BlogDetails = () => {
     const fetchData = async () => {
       try {
         const postData = await getPostBySlug(blogSlug);
-        // Fetch more posts to ensure we have enough after filtering
         const allPostsData = await getPosts(blogSlug, 6);
-        
+
         if (mounted) {
           if (!postData) {
             setError('Blog post not found');
           } else {
             setPost(postData);
-            
-            // Extract headings with better text extraction
-            const extractedHeadings = postData.body
-              ?.filter(block => block._type === 'block' && ['h1', 'h2', 'h3'].includes(block.style))
-              .map(block => ({
-                id: block._key,
-                level: block.style,
-                text: extractTextFromBlock(block),
-              }))
-              .filter(heading => heading.text) || []; // Only include headings with text
-            
+
+            // Extract headings
+            const extractedHeadings =
+              postData.body
+                ?.filter(
+                  (block) =>
+                    block._type === 'block' &&
+                    ['h1', 'h2', 'h3'].includes(block.style)
+                )
+                .map((block) => ({
+                  id: block._key,
+                  level: block.style,
+                  text: extractTextFromBlock(block),
+                }))
+                .filter((heading) => heading.text) || [];
+
             setHeadings(extractedHeadings);
           }
-          
-          // Filter out current post and limit to 4
+
           const filteredPosts = (allPostsData || [])
-            .filter(relatedPost => relatedPost._id !== postData?._id)
+            .filter((relatedPost) => relatedPost._id !== postData?._id)
             .slice(0, 4);
-          
+
           setRelatedPosts(filteredPosts);
           setLoading(false);
         }
@@ -84,50 +88,98 @@ const BlogDetails = () => {
 
   const shareUrl = window.location.href;
   const shareTitle = post?.title || 'Blog Post';
-  const shareOnTwitter = () => window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareTitle)}&url=${encodeURIComponent(shareUrl)}`, '_blank');
-  const shareOnLinkedIn = () => window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`, '_blank');
-  const copyLink = () => navigator.clipboard.writeText(shareUrl).then(() => alert('Link copied to clipboard!'));
+  const shareOnTwitter = () =>
+    window.open(
+      `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+        shareTitle
+      )}&url=${encodeURIComponent(shareUrl)}`,
+      '_blank'
+    );
+  const shareOnLinkedIn = () =>
+    window.open(
+      `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
+        shareUrl
+      )}`,
+      '_blank'
+    );
+  const copyLink = () =>
+    navigator.clipboard
+      .writeText(shareUrl)
+      .then(() => alert('Link copied to clipboard!'));
 
   const components = {
     types: {
-      image: ({ value }) => value && (
-        <img
-          src={urlFor(value)
-            .width(800)
-            .auto('format')
-            .fit('max')
-            .url()}
-          alt={value.alt || post?.title || 'Blog image'}
-          className="my-6 rounded-md w-full max-w-4xl mx-auto object-contain"
-          loading="lazy"
-        />
-      ),
+      image: ({ value }) =>
+        value && (
+          <img
+            src={urlFor(value)
+              .width(800)
+              .auto('format')
+              .fit('max')
+              .url()}
+            alt={value.alt || post?.title || 'Blog image'}
+            className="my-6 rounded-md w-full max-w-4xl mx-auto object-contain"
+            loading="lazy"
+          />
+        ),
     },
     block: {
-      h1: ({ children, node }) => node && children && (
-        <h1 id={node._key} className="text-4xl md:text-5xl font-bold my-6 font-manrope">{children}</h1>
-      ),
-      h2: ({ children, node }) => node && children && (
-        <h2 id={node._key} className="text-3xl md:text-4xl font-semibold my-5 font-manrope">{children}</h2>
-      ),
-      h3: ({ children, node }) => node && children && (
-        <h3 id={node._key} className="text-2xl md:text-3xl font-semibold my-4 font-manrope">{children}</h3>
-      ),
-      normal: ({ children }) => children && (
-        <p className="my-3 font-manrope text-gray-800 leading-relaxed text-base md:text-lg">{children}</p>
-      ),
+      h1: ({ children, node }) =>
+        node &&
+        children && (
+          <h1
+            id={node._key}
+            className="text-4xl md:text-5xl font-bold my-6 font-manrope"
+          >
+            {children}
+          </h1>
+        ),
+      h2: ({ children, node }) =>
+        node &&
+        children && (
+          <h2
+            id={node._key}
+            className="text-3xl md:text-4xl font-semibold my-5 font-manrope"
+          >
+            {children}
+          </h2>
+        ),
+      h3: ({ children, node }) =>
+        node &&
+        children && (
+          <h3
+            id={node._key}
+            className="text-2xl md:text-3xl font-semibold my-4 font-manrope"
+          >
+            {children}
+          </h3>
+        ),
+      normal: ({ children }) =>
+        children && (
+          <p className="my-3 font-manrope text-gray-800 leading-relaxed text-base md:text-lg">
+            {children}
+          </p>
+        ),
     },
     list: {
-      bullet: ({ children }) => children && (
-        <ul className="list-disc ml-6 my-4 font-manrope text-gray-800">{children}</ul>
-      ),
-      number: ({ children }) => children && (
-        <ol className="list-decimal ml-6 my-4 font-manrope text-gray-800">{children}</ol>
-      ),
+      bullet: ({ children }) =>
+        children && (
+          <ul className="list-disc ml-6 my-4 font-manrope text-gray-800">
+            {children}
+          </ul>
+        ),
+      number: ({ children }) =>
+        children && (
+          <ol className="list-decimal ml-6 my-4 font-manrope text-gray-800">
+            {children}
+          </ol>
+        ),
     },
     listItem: {
-      bullet: ({ children }) => children && <li className="font-manrope my-1">{children}</li>,
-      number: ({ children }) => children && <li className="font-manrope my-1">{children}</li>,
+      bullet: ({ children }) =>
+        children && <li className="font-manrope my-1">{children}</li>,
+      number: ({ children }) =>
+        children && <li className="font-manrope my-1">{children}</li>,
     },
   };
 
@@ -154,7 +206,10 @@ const BlogDetails = () => {
   const renderRelatedPostsSkeleton = () => (
     <div className="space-y-6">
       {[...Array(3)].map((_, index) => (
-        <div key={index} className="border border-gray-200 rounded-2xl overflow-hidden bg-white h-[300px] flex flex-col">
+        <div
+          key={index}
+          className="border border-gray-200 rounded-2xl overflow-hidden bg-white h-[300px] flex flex-col"
+        >
           <SkeletonLoader className="w-full h-32 rounded-t-2xl" />
           <div className="p-4 flex flex-col flex-grow">
             <SkeletonLoader className="w-3/4 h-6 mb-2" />
@@ -168,15 +223,21 @@ const BlogDetails = () => {
 
   if (error) {
     return (
-      <div className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical}`}>
-        <p className="text-center mt-20 text-red-500" role="alert">{error}</p>
+      <div
+        className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical}`}
+      >
+        <p className="text-center mt-20 text-red-500" role="alert">
+          {error}
+        </p>
       </div>
     );
   }
 
   if (loading) {
     return (
-      <div className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} lg:grid lg:grid-cols-[2fr_1fr] lg:gap-8`}>
+      <div
+        className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} lg:grid lg:grid-cols-[2fr_1fr] lg:gap-8`}
+      >
         <div>{renderSkeleton()}</div>
         <div className="mt-12 lg:mt-0">
           <SkeletonLoader className="w-1/2 h-8 mb-4" />
@@ -186,8 +247,75 @@ const BlogDetails = () => {
     );
   }
 
+  // Generate OG image URL or fallback to mainImage
+  const ogImageUrl =
+    post?.ogImage
+      ? urlFor(post.ogImage).width(1200).height(630).url()
+      : post?.mainImage
+      ? urlFor(post.mainImage).width(1200).height(630).url()
+      : null;
+
   return (
-    <div className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} lg:grid lg:grid-cols-[2fr_1fr] lg:gap-8`}>
+    <div
+      className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} lg:grid lg:grid-cols-[2fr_1fr] lg:gap-8`}
+    >
+      {/* Meta Tags */}
+      <Helmet>
+        <title>{post?.seoTitle || post?.title || 'Blog Post'}</title>
+        <meta
+          name="description"
+          content={
+            post?.seoDescription ||
+            (post?.body
+              ? extractTextFromBlock(post.body[0]).substring(0, 160)
+              : 'Read this blog post')
+          }
+        />
+        <meta name="keywords" content={post?.keywords?.join(', ') || ''} />
+        <meta name="author" content={post?.author?.name || ''} />
+
+        {/* Open Graph Tags */}
+        <meta property="og:title" content={post?.seoTitle || post?.title || 'Blog Post'} />
+        <meta
+          property="og:description"
+          content={
+            post?.seoDescription ||
+            (post?.body
+              ? extractTextFromBlock(post.body[0]).substring(0, 160)
+              : 'Read this blog post')
+          }
+        />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={shareUrl} />
+        {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
+        {post?.publishedAt && (
+          <meta
+            property="article:published_time"
+            content={new Date(post.publishedAt).toISOString()}
+          />
+        )}
+        {post?.categories?.length > 0 && (
+          <meta
+            property="article:tag"
+            content={post.categories.map((cat) => cat.title).join(', ')}
+          />
+        )}
+
+        {/* Twitter Card Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={post?.seoTitle || post?.title || 'Blog Post'} />
+        <meta
+          name="twitter:description"
+          content={
+            post?.seoDescription ||
+            (post?.body
+              ? extractTextFromBlock(post.body[0]).substring(0, 160)
+              : 'Read this blog post')
+          }
+        />
+        {ogImageUrl && <meta name="twitter:image" content={ogImageUrl} />}
+      </Helmet>
+
       {/* Main Content */}
       <div>
         {post?.title && (
@@ -221,9 +349,8 @@ const BlogDetails = () => {
                 <span>{calculateReadingTime(post.body)} minutes</span>
               </div>
             )}
-                <span className="">|</span>
+            <span className="">|</span>
 
-            {/* Categories */}
             {post?.categories?.length > 0 && (
               <div className="flex flex-wrap gap-2">
                 {post.categories.map((category, idx) => (
@@ -259,11 +386,21 @@ const BlogDetails = () => {
 
         {headings?.length > 0 && (
           <div className="mb-8 p-4 bg-gray-100 rounded-lg max-w-3xl">
-            <Heading text="Table of Contents" size="text-2xl" fontWeight="font-semibold" className="mb-4" />
+            <Heading
+              text="Table of Contents"
+              size="text-2xl"
+              fontWeight="font-semibold"
+              className="mb-4"
+            />
             <ul className="space-y-2">
-              {headings.map(heading => (
+              {headings.map((heading) => (
                 heading?.text && (
-                  <li key={heading.id} className={`ml-${heading.level === 'h1' ? 0 : heading.level === 'h2' ? 4 : 8}`}>
+                  <li
+                    key={heading.id}
+                    className={`ml-${
+                      heading.level === 'h1' ? 0 : heading.level === 'h2' ? 4 : 8
+                    }`}
+                  >
                     <a
                       href={`#${heading.id}`}
                       className="text-black font-semibold hover:text-neon transition-colors text-sm md:text-base"
@@ -278,14 +415,19 @@ const BlogDetails = () => {
         )}
 
         {post?.body && (
-          <div className="prose max-w-3xl ">
+          <div className="prose max-w-3xl">
             <PortableText value={post.body} components={components} />
           </div>
         )}
 
         {post?.author && (
           <div className="mt-12 p-6 bg-gray-100 rounded-lg max-w-3xl">
-            <Heading text="About the Author" size="text-2xl" fontWeight="font-semibold" className="mb-4" />
+            <Heading
+              text="About the Author"
+              size="text-2xl"
+              fontWeight="font-semibold"
+              className="mb-4"
+            />
             <div className="flex items-center gap-4">
               {post.author?.image ? (
                 <img
@@ -296,12 +438,19 @@ const BlogDetails = () => {
                 />
               ) : (
                 <div className="w-20 h-20 rounded-full bg-gray-300 flex items-center justify-center">
-                  <span className="text-gray-600 font-medium">{post.author?.name?.[0] || 'A'}</span>
+                  <span className="text-gray-600 font-medium">
+                    {post.author?.name?.[0] || 'A'}
+                  </span>
                 </div>
               )}
               <div>
                 {post.author?.name && (
-                  <BodyText text={post.author.name} size="text-lg" centered={false} fontWeight="font-semibold" />
+                  <BodyText
+                    text={post.author.name}
+                    size="text-lg"
+                    centered={false}
+                    fontWeight="font-semibold"
+                  />
                 )}
                 {post.author?.bio && (
                   <div className="prose text-sm text-gray-600">
@@ -340,10 +489,15 @@ const BlogDetails = () => {
 
       {/* More Blogs Sidebar */}
       <div className="mt-12 lg:mt-0">
-        <Heading text="Related Blogs" size="text-2xl" fontWeight="font-semibold" className="mb-6" />
+        <Heading
+          text="Related Blogs"
+          size="text-2xl"
+          fontWeight="font-semibold"
+          className="mb-6"
+        />
         {relatedPosts?.length > 0 ? (
           <div className="space-y-6">
-            {relatedPosts.map(post => (
+            {relatedPosts.map((post) => (
               post && <BlogCard key={post._id} post={post} />
             ))}
           </div>

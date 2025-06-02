@@ -41,18 +41,26 @@ function AppContent() {
   const hideHeroButtonRoutes = ['/contact-us', '/thank-you'];
   const shouldShowFooter = !hideFooterRoutes.includes(location.pathname);
   const shouldShowHeroButton = !hideHeroButtonRoutes.includes(location.pathname);
-  // Check if the current path matches /portfolio/:slug
   const isPortfolioDetail = location.pathname.startsWith('/portfolio/');
 
   const [isModalOpen, setModalOpen] = useState(false);
 
+  // Fallback meta tags
+  const defaultMeta = {
+    title: 'Scons | UK Based Software Innovators',
+    description: 'Explore innovative software solutions by Scons tailored for startups and enterprises in the UK and worldwide.',
+    keywords: 'Scons, Software Company UK, Web Development, React, Node.js, Full Stack, Startups',
+  };
+
   return (
     <div className="App overflow-hidden">
       <Helmet>
-        <title>Scons | UK Based Software Innovator's</title>
-        <meta name="description" content="Explore innovative software solutions by Scons tailored for startups and enterprises in the UK and worldwide." />
-        <meta name="keywords" content="Scons, Software Company UK, Web Development, React, Node.js, Full Stack, Startups" />
+        {/* Fallback meta tags, overridden by page-specific tags */}
+        <title>{defaultMeta.title}</title>
+        <meta name="description" content={defaultMeta.description} />
+        <meta name="keywords" content={defaultMeta.keywords} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="canonical" href={`https://sconstech.com${location.pathname}`} />
       </Helmet>
 
       <TopScroller />
@@ -68,11 +76,8 @@ function AppContent() {
           <Route path="/portfolio/:slug" element={<ProjectDetail />} />
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/careers" element={<Careers />} />
-          {/* <Route path="/careers/:heading/:jobType" element={<JobDetails />} /> */}
-          {/* <Route path="/careers/apply" element={<Apply />} /> */}
-          {/* <Route path="/lets-innovate" element={<LetsInnovate />} /> */}
           <Route path="/service/:serviceSlug" element={<ServiceDetailsWrapper />} />
-           <Route path="/blogs" element={<Blogs />} />
+          <Route path="/blogs" element={<Blogs />} />
           <Route path="/blogs/:blogSlug" element={<BlogDetails />} />
           <Route path="/packages" element={<Packages />} />
           <Route path="/terms-and-conditions" element={<TermsAndConditions />} />

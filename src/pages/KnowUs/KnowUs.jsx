@@ -1,37 +1,36 @@
-import React, { useRef, useEffect, useState, lazy } from "react";
+import React, { useRef, useEffect, useState, lazy } from 'react';
+import { Helmet } from 'react-helmet-async'; // Import Helmet
+import ogDefault from '../../assets/images/og-default.jpg'; // Default OG image
 
 // Lazy load all components
-const Heading = lazy(() => import("../../components/Heading/Heading"));
-const BodyText = lazy(() => import("../../components/BodyText/BodyText"));
-const Vision = lazy(() => import("../../components/Vision/Vision"));
-const Collage = lazy(() => import("../../components/Collage/Collage"));
-const InnerHero = lazy(() => import("../../components/InnerHero/InnerHero"));
-const AnimatedBackground = lazy(() => import("../../utilities/AnimatedBackground/AnimatedBackground"));
-const GreenBelt = lazy(() => import("../../components/GreenBelt/GreenBelt"));
-const StartProjectBelt = lazy(() => import("../../components/StartProjectBelt/StartProjectBelt"));
-const Highlights = lazy(() => import("../../components/UniqueApproach/modules/Highlights"));
-const HeadingWithText = lazy(() => import("../../utilities/HeadingWithText"));
-const Industries = lazy(() => import("../../components/Industries/Industries"));
-const Locations = lazy(() => import("../../components/Locations/Locations"));
-const Testimonials = lazy(() => import("../../components/Testimonials/Testimonials"));
-const Technologies = lazy(() => import("../../components/Technologies/Technologies"));
-const FadeInSection = lazy(() => import("../../utilities/Animations/FadeInSection"));
+const Heading = lazy(() => import('../../components/Heading/Heading'));
+const BodyText = lazy(() => import('../../components/BodyText/BodyText'));
+const Vision = lazy(() => import('../../components/Vision/Vision'));
+const Collage = lazy(() => import('../../components/Collage/Collage'));
+const InnerHero = lazy(() => import('../../components/InnerHero/InnerHero'));
+const AnimatedBackground = lazy(() => import('../../utilities/AnimatedBackground/AnimatedBackground'));
+const GreenBelt = lazy(() => import('../../components/GreenBelt/GreenBelt'));
+const StartProjectBelt = lazy(() => import('../../components/StartProjectBelt/StartProjectBelt'));
+const Highlights = lazy(() => import('../../components/UniqueApproach/modules/Highlights'));
+const HeadingWithText = lazy(() => import('../../utilities/HeadingWithText'));
+const Industries = lazy(() => import('../../components/Industries/Industries'));
+const Locations = lazy(() => import('../../components/Locations/Locations'));
+const Testimonials = lazy(() => import('../../components/Testimonials/Testimonials'));
+const Technologies = lazy(() => import('../../components/Technologies/Technologies'));
+const FadeInSection = lazy(() => import('../../utilities/Animations/FadeInSection'));
 
-import {MessageBox} from "../../components/MessageBox/MessageBox";
-
-// Static imports for non-component data
-import logoImage from "../../assets/icons/inner/trustpilot.svg";
-import officeImage from "../../assets/images/about/office.webp";
-import aboutUsImage from "../../assets/images/about/about.svg";
-import ceoImage from "../../assets/images/about/ceo.webp";
-import { theme } from "../../theme";
-import SkeletonLoader from "../../utilities/SkeletonLoader";
+import { MessageBox } from '../../components/MessageBox/MessageBox';
+import logoImage from '../../assets/icons/inner/trustpilot.svg';
+import officeImage from '../../assets/images/about/office.webp';
+import aboutUsImage from '../../assets/images/about/about.svg';
+import ceoImage from '../../assets/images/about/ceo.webp';
+import { theme } from '../../theme';
+import SkeletonLoader from '../../utilities/SkeletonLoader';
 
 const KnowUs = () => {
-  // Ref and state for intersection observer
   const officeImgRef = useRef(null);
   const [isScaled, setIsScaled] = useState(false);
-  const [imageLoaded, setImageLoaded] = useState(false); // State for image loading
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
     const img = officeImgRef.current;
@@ -42,17 +41,13 @@ const KnowUs = () => {
     const observer = new window.IntersectionObserver(
       ([entry]) => {
         if (entry.intersectionRatio >= 0.5) {
-          // Scale up immediately
           if (timeout) clearTimeout(timeout);
           setIsScaled(true);
         } else {
-          // Add a slight delay before unscaling for smoothness
           timeout = setTimeout(() => setIsScaled(false), 120);
         }
       },
-      {
-        threshold: [0, 0.5, 1],
-      }
+      { threshold: [0, 0.5, 1] }
     );
 
     observer.observe(img);
@@ -65,7 +60,33 @@ const KnowUs = () => {
 
   return (
     <>
-      {/* Inner Hero Section */}
+      <Helmet>
+        <title>About Us | Scons</title>
+        <meta
+          name="description"
+          content="Learn about Scons, a UK-based software innovator delivering cutting-edge solutions for global startups and enterprises."
+        />
+        <meta
+          name="keywords"
+          content="Scons, about us, software company, UK tech, mission, vision, technology solutions"
+        />
+        <link rel="canonical" href="https://sconstech.com/why-scons" />
+        <meta property="og:title" content="About Us | Scons" />
+        <meta
+          property="og:description"
+          content="Learn about Scons, a UK-based software innovator delivering cutting-edge solutions for global startups and enterprises."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://sconstech.com/why-scons" />
+        <meta property="og:image" content={ogDefault} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="About Us | Scons" />
+        <meta
+          name="twitter:description"
+          content="Learn about Scons, a UK-based software innovator delivering cutting-edge solutions for global startups and enterprises."
+        />
+        <meta name="twitter:image" content={ogDefault} />
+      </Helmet>
       <FadeInSection>
         <InnerHero
           logoImages={[logoImage]}
@@ -78,12 +99,10 @@ const KnowUs = () => {
           showCarousel={false}
         />
       </FadeInSection>
-
       <FadeInSection>
         <div
           className={`${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal}`}
         >
-          {/* Image container - centers image */}
           <div className="relative w-full mb-6">
             {!imageLoaded && (
               <SkeletonLoader
@@ -96,50 +115,41 @@ const KnowUs = () => {
               src={officeImage}
               alt="Office"
               className={`w-full rounded-3xl transition-opacity duration-500 ${
-                imageLoaded ? "opacity-100" : "opacity-0"
+                imageLoaded ? 'opacity-100' : 'opacity-0'
               }`}
               style={{
-                transform: isScaled ? "scale(1.09)" : "scale(1)",
-                transition: "transform 1.2s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.5s",
-                willChange: "transform, opacity",
+                transform: isScaled ? 'scale(1.09)' : 'scale(1)',
+                transition: 'transform 1.2s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.5s',
+                willChange: 'transform, opacity',
               }}
               loading="lazy"
               onLoad={() => setImageLoaded(true)}
             />
           </div>
-
-          {/* Text container - left aligned */}
           <div className="flex flex-col items-start gap-y-6 pt-10">
             <HeadingWithText
               heading="Building software for global leaders"
               body="At Scons, we envision a world where technology seamlessly integrates into every aspect of life, empowering individuals and businesses to achieve their fullest potential. We strive to be at the forefront of innovation, creating solutions that not only meet the needs of today but also anticipate the challenges of tomorrow."
             />
-
             <Highlights />
           </div>
         </div>
       </FadeInSection>
-
       <MessageBox
-        Message={`We are a team of passionate individuals who believe in the power of technology to transform lives. Our transition from the electrical to the IT domain has been nothing short of sensational, fueled by our rapidly growing client base.`}
+        Message="We are a team of passionate individuals who believe in the power of technology to transform lives. Our transition from the electrical to the IT domain has been nothing short of sensational, fueled by our rapidly growing client base."
         Name="Mr. Omer"
         Designation="Co-Founder, Scons"
         ProfileDisplay={ceoImage}
       />
-
       <FadeInSection>
         <Industries />
       </FadeInSection>
-
       <Technologies />
-
       <FadeInSection>
         <Vision />
       </FadeInSection>
-
       <Locations />
       <StartProjectBelt />
-
       <Testimonials />
     </>
   );

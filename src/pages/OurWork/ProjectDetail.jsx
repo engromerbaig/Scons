@@ -1,5 +1,7 @@
 import React, { useEffect, useState, lazy } from "react";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async"; // Import Helmet
+import ogLogo from "../../assets/images/og-default.jpg"; // Logo-based OG image
 
 // Lazy load all components
 const Heading = lazy(() => import("../../components/Heading/Heading"));
@@ -52,8 +54,60 @@ const ProjectDetail = () => {
     return <div className="text-center py-20">Project not found</div>;
   }
 
+  // Generate meta description (trim to 160 characters)
+  const metaDescription =
+    project.bodyText?.length > 160
+      ? `${project.bodyText.substring(0, 157)}...`
+      : project.bodyText || `Explore Scons' ${project.heading.toLowerCase()} project, showcasing innovative software solutions.`;
+
+  // Generate keywords
+  const keywords = [
+    "Scons",
+    project.heading.toLowerCase(),
+    ...(Array.isArray(project.service) ? project.service : [project.service]).map(s => s.toLowerCase()),
+    "software development",
+    "UK tech",
+    "portfolio",
+    "project",
+  ].join(", ");
+
   return (
     <div className={`${theme.layoutPages.paddingBottom} min-h-screen`}>
+      <Helmet>
+        <title>{`${project.heading} | Scons`}</title>
+        <meta name="description" content={metaDescription} />
+        <meta name="keywords" content={keywords} />
+        <link rel="canonical" href={`https://sconstech.com/portfolio/${slug}`} />
+        <meta property="og:title" content={`${project.heading} | Scons`} />
+        <meta property="og:description" content={metaDescription} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`https://sconstech.com/portfolio/${slug}`} />
+        <meta property="og:image" content={ogLogo} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Scons logo" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`${project.heading} | Scons`} />
+        <meta name="twitter:description" content={metaDescription} />
+        <meta name="twitter:image" content={ogLogo} />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "CreativeWork",
+            "name": project.heading,
+            "description": metaDescription,
+            "url": `https://sconstech.com/portfolio/${slug}`,
+            "image": ogLogo,
+            "creator": {
+              "@type": "Organization",
+              "name": "Scons",
+              "url": "https://sconstech.com",
+            },
+            "keywords": keywords.split(", "),
+          })}
+        </script>
+      </Helmet>
+
       <InnerHero
         logoImages={[project.logo]}
         headingText={project.heading}
@@ -156,37 +210,35 @@ const ProjectDetail = () => {
 
           {/* Right: Tech Stack (bottom aligned) */}
           <div className="flex flex-col justify-start items-start gap-2 xl:w-2/5 w-full">
-  <BodyText
-    text="Stack Used:"
-    color="text-grayText"
-    centered={false}
-    fontWeight="font-bold"
-  />
-  <div className="grid grid-cols-2 gap-2 mt-2">
-    {project.technologies
-      .filter((tech) => findTechnologyIcon(tech)) // Only include tech with valid icons
-      .map((tech, index) => {
-        const icon = findTechnologyIcon(tech);
-        return (
-          <Button
-            key={index}
-            name={tech}
-            icon={icon}
-            hoverBgColor="bg-neon"
-            hoverTextColor="text-black"
-            noIconChange={true}
-            bgColor="bg-gray-100"
-            textColor="black"
-            fontWeight="font-semibold"
-            className="py-3"
-            fontSize="text-xs xl:text-sm"
-          />
-        );
-      })}
-  </div>
-</div>
-
-
+            <BodyText
+              text="Stack Used:"
+              color="text-grayText"
+              centered={false}
+              fontWeight="font-bold"
+            />
+            <div className="grid grid-cols-2 gap-2 mt-2">
+              {project.technologies
+                .filter((tech) => findTechnologyIcon(tech)) // Only include tech with valid icons
+                .map((tech, index) => {
+                  const icon = findTechnologyIcon(tech);
+                  return (
+                    <Button
+                      key={index}
+                      name={tech}
+                      icon={icon}
+                      hoverBgColor="bg-neon"
+                      hoverTextColor="text-black"
+                      noIconChange={true}
+                      bgColor="bg-gray-100"
+                      textColor="black"
+                      fontWeight="font-semibold"
+                      className="py-3"
+                      fontSize="text-xs xl:text-sm"
+                    />
+                  );
+                })}
+            </div>
+          </div>
         </div>
       </FadeWrapper>
 
@@ -210,7 +262,7 @@ const ProjectDetail = () => {
               speed={-1}
               height="400px"
               gap="1rem"
-               objectFit="contain"
+              objectFit="contain"
               haveBgBlurred={true}
               pauseOnHover={false}
             />
