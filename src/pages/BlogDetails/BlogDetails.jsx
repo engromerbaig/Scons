@@ -20,6 +20,15 @@ const BlogDetails = () => {
   const [loading, setLoading] = useState(true);
   const [headings, setHeadings] = useState([]);
 
+  // Helper function to extract text from portable text blocks
+  const extractTextFromBlock = (block) => {
+    if (!block.children || !Array.isArray(block.children)) return '';
+    return block.children
+      .map(child => child.text || '')
+      .join('')
+      .trim();
+  };
+
   useEffect(() => {
     let mounted = true;
     window.scrollTo(0, 0);
@@ -27,22 +36,34 @@ const BlogDetails = () => {
     const fetchData = async () => {
       try {
         const postData = await getPostBySlug(blogSlug);
-        const recentPostsData = await getPosts(blogSlug, 3);
+        // Fetch more posts to ensure we have enough after filtering
+        const allPostsData = await getPosts(blogSlug, 6);
+        
         if (mounted) {
           if (!postData) {
             setError('Blog post not found');
           } else {
             setPost(postData);
+            
+            // Extract headings with better text extraction
             const extractedHeadings = postData.body
               ?.filter(block => block._type === 'block' && ['h1', 'h2', 'h3'].includes(block.style))
               .map(block => ({
                 id: block._key,
                 level: block.style,
-                text: block.children?.[0]?.text || '',
-              })) || [];
+                text: extractTextFromBlock(block),
+              }))
+              .filter(heading => heading.text) || []; // Only include headings with text
+            
             setHeadings(extractedHeadings);
           }
-          setRelatedPosts(recentPostsData || []);
+          
+          // Filter out current post and limit to 3
+          const filteredPosts = (allPostsData || [])
+            .filter(relatedPost => relatedPost._id !== postData?._id)
+            .slice(0, 3);
+          
+          setRelatedPosts(filteredPosts);
           setLoading(false);
         }
       } catch (err) {
@@ -64,7 +85,7 @@ const BlogDetails = () => {
   const shareTitle = post?.title || 'Blog Post';
   const shareOnTwitter = () => window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareTitle)}&url=${encodeURIComponent(shareUrl)}`, '_blank');
   const shareOnLinkedIn = () => window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`, '_blank');
-  const copyLink = () => navigator.clipboard.write(shareUrl).then(() => alert('Link copied to clipboard!'));
+  const copyLink = () => navigator.clipboard.writeText(shareUrl).then(() => alert('Link copied to clipboard!'));
 
   const components = {
     types: {
