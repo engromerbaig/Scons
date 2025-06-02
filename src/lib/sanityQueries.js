@@ -1,4 +1,3 @@
-// lib/sanityQueries.js
 import sanityClient from './sanityClient';
 
 /**
@@ -14,7 +13,7 @@ export const getPosts = async () => {
       slug,
       mainImage { ..., asset-> { ..., metadata } },
       body,
-      author-> { name }, // Dereference author to get name
+      author-> { name, slug, image { ..., asset-> { ..., metadata } }, bio },
       categories[]->{ title }
     }`;
     const posts = await sanityClient.fetch(query);
@@ -45,7 +44,7 @@ export const getPostBySlug = async (slug) => {
       slug,
       mainImage { ..., asset-> { ..., metadata } },
       body,
-      author-> { name }, // Dereference author to get name
+      author-> { name, slug, image { ..., asset-> { ..., metadata } }, bio },
       categories[]->{ title }
     }`;
     const post = await sanityClient.fetch(query, { slug });
