@@ -43,6 +43,8 @@ function AppContent() {
   const shouldShowHeroButton = !hideHeroButtonRoutes.includes(location.pathname);
   const isPortfolioDetail = location.pathname.startsWith('/portfolio/');
 
+  const isBlogDetail = location.pathname.startsWith('/blogs/');
+
   const [isModalOpen, setModalOpen] = useState(false);
 
   // Fallback meta tags
@@ -90,6 +92,7 @@ function AppContent() {
       {shouldShowFooter && <FooterWrapper />}
       <ScrollToTop />
       {isPortfolioDetail && <ReturnButton />}
+      {isBlogDetail && <ReturnButton text="Blogs" link="/blogs" />}
     </div>
   );
 }
