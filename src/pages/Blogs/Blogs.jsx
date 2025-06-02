@@ -234,7 +234,7 @@ export default function Blogs() {
 
       {/* Layout */}
       <div className="flex flex-col py-10 xl:grid xl:grid-cols-[30%_70%] gap-8">
-        {/* Filters Card*/}
+        {/* Filters Box for XL and above*/}
         <div className={`${isFiltersOpen ? 'block' : 'hidden'} xl:block w-full`}>
           <div
             ref={filterBoxRef}
