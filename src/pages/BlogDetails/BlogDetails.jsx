@@ -257,7 +257,7 @@ const BlogDetails = () => {
 
   return (
     <div
-      className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} lg:grid lg:grid-cols-[2fr_1fr] lg:gap-8`}
+      className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} lg:grid lg:grid-cols-[2fr_1fr] lg:gap-14`}
     >
       {/* Meta Tags */}
       <Helmet>
