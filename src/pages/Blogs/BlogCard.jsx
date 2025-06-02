@@ -1,18 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { urlFor } from '../../lib/sanityImage';
-import { format } from 'date-fns';
+import { format, isWithinInterval, subDays } from 'date-fns';
 import { CiTimer } from 'react-icons/ci';
 import calculateReadingTime from './calculateReadingTime';
 import Button from '../../components/Button/Button';
 
 export default function BlogCard({ post }) {
+  const isNewPost = post.publishedAt
+    ? isWithinInterval(new Date(post.publishedAt), {
+        start: subDays(new Date(), 2),
+        end: new Date(),
+      })
+    : false;
+
   return (
     <Link
       to={`/blogs/${post.slug?.current || ''}`}
-      className="group block border border-gray-200 rounded-2xl overflow-hidden bg-white shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 "
+      className="group  border border-gray-200 rounded-2xl overflow-hidden bg-white shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 h-[450px] flex flex-col"
     >
-      <div className="relative">
+      <div className="relative flex-shrink-0">
         {post.mainImage ? (
           <img
             src={urlFor(post.mainImage).url()}
@@ -30,34 +37,40 @@ export default function BlogCard({ post }) {
           <span>{calculateReadingTime(post.body)} min read</span>
         </div>
       </div>
-      <div className="p-5">
-        <h2 className="text-2xl font-bold mb-3 font-manrope text-gray-800 line-clamp-2 group-hover:text-neon transition-colors">
+      <div className="p-5 flex flex-col flex-grow">
+        <h2 className="text-2xl font-bold mb-3 font-manrope text-gray-800 line-clamp-2 group-hover:text-neon transition-colors min-h-[3.5rem]">
           {post.title || 'Untitled'}
         </h2>
-        <div className="flex items-center text-sm text-gray-500 mb-3">
-          <span>{post.author?.name || 'Anonymous'}</span>
+        <div className="flex items-center text-sm text-gray-500 mb-3 min-h-[1.5rem]">
+          <span className="truncate">{post.author?.name || 'Anonymous'}</span>
           <span className="mx-2">•</span>
-          <span>
+          <span className="truncate">
             {post.publishedAt
               ? format(new Date(post.publishedAt), 'MMMM dd, yyyy')
               : 'No date available'}
           </span>
         </div>
-        <div className="flex flex-wrap gap-2 mb-4">
+        <div className="flex flex-wrap gap-2 mb-4 min-h-[1rem]">
           {post.categories?.map((category, index) => (
             <span
               key={index}
-              className="text-xs font-semibold text-black bg-gray-200 rounded-full px-3 py-1 transition-colors group-hover:bg-neon/40"
+              className="text-xs font-semibold text-black bg-gray-200 rounded-full px-3 py-1 transition-colors group-hover:bg-neon/40 truncate"
             >
               {category.title || category}
             </span>
           ))}
         </div>
-        <Button
-          name="Read More"
-          fontSize="text-xs"
-          className="py-1 px-2   text-center"
-        />
+        <div className="mt-auto relative">
+          <Button
+            name="Read More"
+            fontSize="text-xs"
+            className="py-1 px-2 "
+          />
+          {isNewPost && (
+            <div className="absolute bottom-1 right-[-20px] bg-neon text-black text-xs font-black px-8 py-1 transform -rotate-45 translate-x-6 translate-y-3">
+Fresh           </div>
+          )}
+        </div>
       </div>
     </Link>
   );
