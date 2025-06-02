@@ -68,7 +68,7 @@ export default function BlogCard({ post }) {
           />
           {isNewPost && (
             <div className="absolute bottom-1 right-[-20px] bg-neon text-black text-xs font-black px-8 py-1 transform -rotate-45 translate-x-6 translate-y-3">
-Fresh           </div>
+NEW           </div>
           )}
         </div>
       </div>
