@@ -28,7 +28,7 @@ const FilterControls = ({
     "px-4 xl:px-8 py-2 rounded-full bg-gray-100 text-sm font-medium flex flex-col items-start w-full xl:w-[300px] transition-colors";
 
   return (
-    <div className="flex flex-col items-start w-full gap-4 mt-8">
+    <div className="flex flex-col items-start w-full gap-4 ">
       <div className="flex flex-wrap gap-2 xl:gap-4 items-center">
         {/* Category/Service Dropdown */}
         <DropdownButton

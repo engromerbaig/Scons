@@ -25,7 +25,6 @@ export default function Blogs() {
   const [lastAction, setLastAction] = useState(null);
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
-  const [filterWidth, setFilterWidth] = useState(null);
 
   const {
     selectedCategory,
@@ -74,7 +73,7 @@ export default function Blogs() {
     };
   }, []);
 
-  // Set initial filter box width and sticky detection
+  // Set up sticky detection
   useEffect(() => {
     if (loading || posts.length === 0) {
       console.log('⏳ Waiting for posts to load before setting up sticky');
@@ -97,17 +96,12 @@ export default function Blogs() {
       return () => clearTimeout(timer);
     }
 
-    // Capture initial width of filter box
-    const filterBox = filterBoxRef.current;
-    const initialWidth = filterBox.getBoundingClientRect().width;
-    setFilterWidth(initialWidth);
-    console.log(`📏 Initial filter box width: ${initialWidth}px`);
-
     setupSticky();
 
     function setupSticky() {
       const sentinel = sentinelRef.current;
       const container = containerRef.current;
+      const filterBox = filterBoxRef.current;
 
       console.log('✅ All refs available, setting up scroll listener');
 
@@ -130,11 +124,6 @@ export default function Blogs() {
           console.log('📱 Mobile view, skipping sticky');
           if (isSticky) {
             setIsSticky(false);
-            // gsap.to(filterBox, {
-            //   duration: 0.3,
-            //   boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
-            //   ease: 'power2.out',
-            // });
           }
           return;
         }
@@ -149,22 +138,6 @@ export default function Blogs() {
         if (shouldBeSticky !== isSticky) {
           console.log(`🔄 CHANGING STICKY STATE: ${isSticky} -> ${shouldBeSticky}`);
           setIsSticky(shouldBeSticky);
-
-          if (shouldBeSticky) {
-            console.log('🔒 APPLYING STICKY STYLES');
-            // gsap.to(filterBox, {
-            //   duration: 0.3,
-            //   boxShadow: '0 10px 25px rgba(0, 0, 0, 0.15)',
-            //   ease: 'power2.out',
-            // });
-          } else {
-            console.log('🔓 REMOVING STICKY STYLES');
-            // gsap.to(filterBox, {
-            //   duration: 0.3,
-            //   boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
-            //   ease: 'power2.out',
-            // });
-          }
         }
       };
 
@@ -234,20 +207,17 @@ export default function Blogs() {
 
       {/* Layout */}
       <div className="flex flex-col py-10 xl:grid xl:grid-cols-[30%_70%] gap-8">
-        {/* Filters Box for XL and above*/}
-        <div className={`${isFiltersOpen ? 'block' : 'hidden'} xl:block w-full`}>
+        {/* Filters Box for XL and above */}
+        <div className={`${isFiltersOpen ? 'block' : 'hidden'} xl:block w-full xl:w-[340px]`}>
           <div
             ref={filterBoxRef}
-            className={`bg-white border border-gray-200 shadow-md flex flex-col justify-center items-center rounded-lg p-6 transition-all duration-300 ease-in-out
+            className={`bg-white border border-gray-200  flex flex-col justify-center items-center rounded-lg px-6 py-8 transition-all duration-300 ease-in-out
               ${isSticky
-                ? 'xl:fixed xl:top-6 xl:z-20 '
-                : 'xl:relative '
+                ? 'xl:fixed xl:top-10 xl:z-20 xl:w-[340px]'
+                : 'xl:relative xl:w-[340px]'
               }`}
-            style={{
-              ...(isSticky && filterWidth ? { width: `${filterWidth}px` } : {}),
-            }}
           >
-            <div className="w-full">
+            <div className="w-[300px]">
               <FilterControls
                 selectedService={selectedCategory}
                 selectedTechnology={selectedAuthor}
