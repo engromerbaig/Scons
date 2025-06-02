@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import DropdownButton from "./DropdownButton";
 import { FaUndo, FaArrowUp, FaArrowDown, FaFilter } from "react-icons/fa";
 
+
+import { MdFilterAlt, MdFilterAltOff } from "react-icons/md";
+
+
 const FilterControls = ({
   selectedService,
   selectedTechnology,
@@ -36,12 +40,20 @@ const FilterControls = ({
   return (
     <div className="w-full">
       <div className="xl:hidden mb-4">
-        <button
-          className="flex items-center gap-2 px-4 py-2 bg-black text-white shadow-xl rounded-full w-[160px]"
-          onClick={() => setIsFiltersOpen(!isFiltersOpen)}
-        >
-          <FaFilter /> {isFiltersOpen ? "Hide Filters" : "Show Filters"}
-        </button>
+
+
+<button
+  className="flex items-center gap-2 px-4 py-2 bg-black text-white shadow-xl text-xs rounded-full w-[160px]"
+  onClick={() => setIsFiltersOpen(!isFiltersOpen)}
+>
+  {isFiltersOpen ? (
+    <MdFilterAltOff className="w-5 h-5" />
+  ) : (
+    <MdFilterAlt className="w-5 h-5" />
+  )}
+  {isFiltersOpen ? "Hide Filters" : "Show Filters"}
+</button>
+
       </div>
 
       <div className={`${isFiltersOpen ? "block" : "hidden"} xl:block`}>
