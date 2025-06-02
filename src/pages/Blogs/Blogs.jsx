@@ -7,7 +7,6 @@ import BlogCard from './BlogCard';
 import useBlogFilters from '../../hooks/useBlogFilters';
 import FilterControls from '../OurWork/FilterControls';
 import LoadMoreControls from '../OurWork/LoadMoreControls';
-import { FaFilter } from 'react-icons/fa';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -24,7 +23,6 @@ export default function Blogs() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [lastAction, setLastAction] = useState(null);
-  const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
   const [filterBoxDimensions, setFilterBoxDimensions] = useState({ width: 340, height: 0 });
 
@@ -201,16 +199,6 @@ export default function Blogs() {
       <Heading text="Blogs & News" centered={false} />
       <BodyText text="Read our latest blog posts!" centered={false} />
 
-      {/* Mobile Filter Toggle */}
-      <div className="xl:hidden flex justify-between items-center my-6">
-        <button
-          className="flex items-center gap-2 px-4 py-2 bg-neon text-white rounded-md"
-          onClick={() => setIsFiltersOpen(!isFiltersOpen)}
-        >
-          <FaFilter /> {isFiltersOpen ? 'Hide Filters' : 'Show Filters'}
-        </button>
-      </div>
-
       {/* Sentinel */}
       <div
         ref={sentinelRef}
@@ -221,7 +209,7 @@ export default function Blogs() {
       {/* Layout */}
       <div className="flex flex-col py-10 xl:grid xl:grid-cols-[30%_70%] gap-8">
         {/* Filters Box Container */}
-        <div className={`${isFiltersOpen ? 'block' : 'hidden'} xl:block w-full xl:w-[340px]`}>
+        <div className="w-full xl:w-[340px]">
           {/* Placeholder for sticky positioning - only visible on XL+ screens when sticky */}
           <div
             ref={filterPlaceholderRef}
@@ -236,7 +224,7 @@ export default function Blogs() {
           <div
             ref={filterBoxRef}
             className={`
-              bg-white border border-gray-200 flex flex-col justify-center items-center rounded-lg px-6 py-8
+              xl:bg-white xl:border xl:border-gray-200 xl:rounded-lg xl:px-6 xl:py-8
               ${isSticky
                 ? 'xl:fixed xl:top-[60px] xl:z-20'
                 : 'xl:relative'
@@ -247,7 +235,7 @@ export default function Blogs() {
               maxWidth: '340px'
             }}
           >
-            <div className="w-[300px]">
+            <div className="w-full xl:w-[300px] xl:mx-auto">
               <FilterControls
                 selectedService={selectedCategory}
                 selectedTechnology={selectedAuthor}

@@ -8,6 +8,7 @@ const DropdownButton = ({
   onChange,
   isNestedCategory,
   onReset,
+  isMobile = false,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = React.useRef(null);
@@ -30,10 +31,12 @@ const DropdownButton = ({
   };
 
   return (
-    <div className="flex flex-col items-start relative" ref={dropdownRef}>
+    <div className="flex flex-col items-start relative w-full xl:w-auto" ref={dropdownRef}>
       <button
         type="button"
-        className="px-4 xl:px-8 py-2 rounded-full bg-gray-100 text-sm font-medium flex flex-col items-start justify-between cursor-pointer xl:w-[300px]    transition-colors relative"
+        className={`px-4 xl:px-8 py-2 rounded-full bg-gray-100 text-sm font-medium flex flex-col items-start justify-between cursor-pointer transition-colors relative ${
+          isMobile ? 'w-full xl:w-[300px]' : 'xl:w-[300px]'
+        }`}
         onClick={() => setIsOpen(!isOpen)}
         style={{ textAlign: "left" }}
       >
@@ -60,7 +63,9 @@ const DropdownButton = ({
         </div>
       </button>
       {isOpen && (
-        <ul className="absolute top-full left-0 mt-1 w-[260px] max-h-48 overflow-y-auto bg-white border border-gray-200 rounded-md shadow-lg z-10 custom-scrollbar">
+        <ul className={`absolute top-full left-0 mt-1 max-h-48 overflow-y-auto bg-white border border-gray-200 rounded-md shadow-lg z-10 custom-scrollbar ${
+          isMobile ? 'w-full xl:w-[260px]' : 'w-[260px]'
+        }`}>
           {options.map((option) => (
             <li
               key={option}
