@@ -1,16 +1,15 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { getPosts } from '../../lib/sanityQueries';
-import { theme } from '../../theme';
-import Heading from '../../components/Heading/Heading';
-import BodyText from '../../components/BodyText/BodyText';
-import BlogCard from './BlogCard';
-import useBlogFilters from '../../hooks/useBlogFilters';
-import FilterControls from '../OurWork/FilterControls';
-import LoadMoreControls from '../OurWork/LoadMoreControls';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React, { useEffect, useRef, useState } from "react";
+import { getPosts } from "../../lib/sanityQueries";
+import { theme } from "../../theme";
+import Heading from "../../components/Heading/Heading";
+import BodyText from "../../components/BodyText/BodyText";
+import BlogCard from "./BlogCard";
+import useBlogFilters from "../../hooks/useBlogFilters";
+import FilterControls from "../OurWork/FilterControls";
+import LoadMoreControls from "../OurWork/LoadMoreControls";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-// Register GSAP ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Blogs() {
@@ -35,6 +34,12 @@ export default function Blogs() {
     uniqueCategories,
     uniqueAuthors,
     uniqueDates,
+    validCategories,
+    validAuthors,
+    validDates,
+    isCategoryClickable,
+    isAuthorClickable,
+    isDateClickable,
     handleCategoryChange,
     handleAuthorChange,
     handleDateChange,
@@ -47,33 +52,28 @@ export default function Blogs() {
     handleShowLess,
   } = useBlogFilters(posts);
 
-  // Capture filter box dimensions
   useEffect(() => {
     if (filterBoxRef.current && !loading) {
       const updateDimensions = () => {
         const rect = filterBoxRef.current.getBoundingClientRect();
         setFilterBoxDimensions({
           width: rect.width,
-          height: rect.height
+          height: rect.height,
         });
       };
 
-      // Update dimensions initially and on resize
       updateDimensions();
-      window.addEventListener('resize', updateDimensions);
-      
-      // Also update when filters change (content might change height)
+      window.addEventListener("resize", updateDimensions);
       const resizeObserver = new ResizeObserver(updateDimensions);
       resizeObserver.observe(filterBoxRef.current);
 
       return () => {
-        window.removeEventListener('resize', updateDimensions);
+        window.removeEventListener("resize", updateDimensions);
         resizeObserver.disconnect();
       };
     }
   }, [loading, selectedCategory, selectedAuthor, selectedDate, filteredPosts.length]);
 
-  // Fetch posts
   useEffect(() => {
     let mounted = true;
 
@@ -86,7 +86,7 @@ export default function Blogs() {
         }
       } catch (err) {
         if (mounted) {
-          setError('Failed to load posts');
+          setError("Failed to load posts");
           setLoading(false);
         }
       }
@@ -99,7 +99,6 @@ export default function Blogs() {
     };
   }, []);
 
-  // Set up sticky detection
   useEffect(() => {
     if (loading || posts.length === 0) {
       return;
@@ -127,10 +126,7 @@ export default function Blogs() {
         const containerRect = container.getBoundingClientRect();
         const windowWidth = window.innerWidth;
 
-        // Calculate container bottom relative to document
         const containerBottom = containerRect.top + scrollY + containerRect.height;
-
-        // Skip sticky behavior on mobile
         if (windowWidth < 1280) {
           if (isSticky) {
             setIsSticky(false);
@@ -138,17 +134,14 @@ export default function Blogs() {
           return;
         }
 
-        // Check if filter box should be sticky
         const shouldBeSticky =
-          sentinelRect.top <= 50 && // Top boundary: sentinel is near top
-          containerBottom > scrollY + filterBoxDimensions.height + 100; // Bottom boundary with buffer
+          sentinelRect.top <= 50 && containerBottom > scrollY + filterBoxDimensions.height + 100;
 
         if (shouldBeSticky !== isSticky) {
           setIsSticky(shouldBeSticky);
         }
       };
 
-      // Use throttled scroll for better performance
       let ticking = false;
       const throttledScroll = () => {
         if (!ticking) {
@@ -160,18 +153,17 @@ export default function Blogs() {
         }
       };
 
-      window.addEventListener('scroll', throttledScroll, { passive: true });
-      handleScroll(); // Initial check
+      window.addEventListener("scroll", throttledScroll, { passive: true });
+      handleScroll();
 
       return () => {
-        window.removeEventListener('scroll', throttledScroll);
+        window.removeEventListener("scroll", throttledScroll);
       };
     }
   }, [isSticky, loading, posts.length, filterBoxDimensions.height]);
 
-  // Scroll to bottom after load more/show less
   useEffect(() => {
-    if ((postsToShow > 6 || lastAction === 'showLess') && buttonContainerRef.current) {
+    if ((postsToShow > 6 || lastAction === "showLess") && buttonContainerRef.current) {
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           const buttonRect = buttonContainerRef.current.getBoundingClientRect();
@@ -181,7 +173,7 @@ export default function Blogs() {
 
           window.scrollTo({
             top: buttonBottom - viewportHeight + 20,
-            behavior: 'smooth',
+            behavior: "smooth",
           });
         });
       });
@@ -199,40 +191,31 @@ export default function Blogs() {
       <Heading text="Blogs & News" centered={false} />
       <BodyText text="Read our latest blog posts!" centered={false} />
 
-      {/* Sentinel */}
       <div
         ref={sentinelRef}
         className="h-[20px] xl:block hidden opacity-0 pointer-events-none"
-        style={{ marginBottom: '10px' }}
+        style={{ marginBottom: "10px" }}
       />
 
-      {/* Layout */}
       <div className="flex flex-col py-10 xl:grid xl:grid-cols-[30%_70%] gap-8">
-        {/* Filters Box Container */}
         <div className="w-full xl:w-[340px]">
-          {/* Placeholder for sticky positioning - only visible on XL+ screens when sticky */}
           <div
             ref={filterPlaceholderRef}
             className="hidden xl:block"
             style={{
-              height: isSticky ? `${filterBoxDimensions.height}px` : '0px',
-              width: isSticky ? `${filterBoxDimensions.width}px` : 'auto'
+              height: isSticky ? `${filterBoxDimensions.height}px` : "0px",
+              width: isSticky ? `${filterBoxDimensions.width}px` : "auto",
             }}
           />
-          
-          {/* Actual Filter Box */}
           <div
             ref={filterBoxRef}
             className={`
               xl:bg-white xl:border xl:border-gray-200 xl:rounded-lg xl:px-6 xl:py-8
-              ${isSticky
-                ? 'xl:fixed xl:top-[60px] xl:z-20'
-                : 'xl:relative'
-              }
+              ${isSticky ? "xl:fixed xl:top-[60px] xl:z-20" : "xl:relative"}
             `}
             style={{
-              width: isSticky ? `${filterBoxDimensions.width}px` : '100%',
-              maxWidth: '340px'
+              width: isSticky ? `${filterBoxDimensions.width}px` : "100%",
+              maxWidth: "340px",
             }}
           >
             <div className="w-full xl:w-[300px] xl:mx-auto">
@@ -244,6 +227,12 @@ export default function Blogs() {
                 uniqueServices={uniqueCategories}
                 uniqueTechnologies={uniqueAuthors}
                 uniqueDates={uniqueDates}
+                validServices={validCategories}
+                validTechnologies={validAuthors}
+                validDates={validDates}
+                isServiceClickable={isCategoryClickable}
+                isTechnologyClickable={isAuthorClickable}
+                isDateClickable={isDateClickable}
                 handleServiceChange={handleCategoryChange}
                 handleTechnologyChange={handleAuthorChange}
                 handleDateChange={handleDateChange}
@@ -259,11 +248,8 @@ export default function Blogs() {
           </div>
         </div>
 
-        {/* Blog Cards Section */}
         <div className="xl:w-full">
-          {filteredPosts.length === 0 && (
-            <p className="text-center mt-6">No posts available</p>
-          )}
+          {filteredPosts.length === 0 && <p className="text-center mt-6">No posts available</p>}
           <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-2 mb-10">
             {filteredPosts.slice(0, postsToShow).map((post) => (
               <BlogCard key={post._id} post={post} />
@@ -274,11 +260,11 @@ export default function Blogs() {
             showLoadMore={showLoadMore}
             showShowLess={showShowLess}
             handleLoadMore={() => {
-              setLastAction('loadMore');
+              setLastAction("loadMore");
               handleLoadMore();
             }}
             handleShowLess={() => {
-              setLastAction('showLess');
+              setLastAction("showLess");
               handleShowLess();
             }}
             buttonContainerRef={buttonContainerRef}

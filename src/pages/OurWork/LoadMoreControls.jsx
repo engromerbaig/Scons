@@ -13,7 +13,7 @@ const LoadMoreControls = ({
       {(showLoadMore || showShowLess) && (
         <div
           ref={buttonContainerRef}
-          className="flex flex-col md:flex-row gap-4 items-center justify-center pb-20"
+          className="flex flex-row gap-2 xl:gap-4 items-center justify-center pb-20"
         >
           {showLoadMore && (
             <Button

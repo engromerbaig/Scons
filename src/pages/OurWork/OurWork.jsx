@@ -7,9 +7,8 @@ import FilterControls from "./FilterControls";
 import ProjectGrid from "./ProjectGrid";
 import LoadMoreControls from "./LoadMoreControls";
 import projectImage from "../../assets/images/project.svg";
-
-import behanceLogo from "../../assets/icons/inner/behance.svg"
-import dribbleLogo from "../../assets/icons/inner/dribble.svg"
+import behanceLogo from "../../assets/icons/inner/behance.svg";
+import dribbleLogo from "../../assets/icons/inner/dribble.svg";
 
 const OurWork = () => {
   const {
@@ -19,6 +18,10 @@ const OurWork = () => {
     filteredProjects,
     uniqueServices,
     uniqueTechnologies,
+    validServices,
+    validTechnologies,
+    isServiceClickable,
+    isTechnologyClickable,
     handleServiceChange,
     handleTechnologyChange,
     setSortOrder,
@@ -33,9 +36,8 @@ const OurWork = () => {
 
   const containerRef = useRef(null);
   const buttonContainerRef = useRef(null);
-  const [lastAction, setLastAction] = useState(null); // Track last action ("loadMore" or "showLess")
+  const [lastAction, setLastAction] = useState(null);
 
-  // Handle scrolling to position buttons at the bottom of the viewport
   useEffect(() => {
     if ((projectsToShow > 4 || lastAction === "showLess") && buttonContainerRef.current) {
       requestAnimationFrame(() => {
@@ -45,9 +47,8 @@ const OurWork = () => {
           const scrollY = window.scrollY || window.pageYOffset;
           const buttonBottom = buttonRect.top + buttonRect.height + scrollY;
 
-          // Scroll so the button container's bottom is at the viewport's bottom
           window.scrollTo({
-            top: buttonBottom - viewportHeight + 20, // Small offset for padding
+            top: buttonBottom - viewportHeight + 20,
             behavior: "smooth",
           });
         });
@@ -55,7 +56,6 @@ const OurWork = () => {
     }
   }, [projectsToShow, lastAction]);
 
-  // Debug button visibility and scroll
   console.log("OurWork Debug:", {
     projectsToShow,
     totalProjects,
@@ -63,6 +63,8 @@ const OurWork = () => {
     showShowLess,
     filteredProjectsLength: filteredProjects.length,
     lastAction,
+    validServices,
+    validTechnologies,
   });
 
   return (
@@ -86,6 +88,10 @@ const OurWork = () => {
           sortOrder={sortOrder}
           uniqueServices={uniqueServices}
           uniqueTechnologies={uniqueTechnologies}
+          validServices={validServices}
+          validTechnologies={validTechnologies}
+          isServiceClickable={isServiceClickable}
+          isTechnologyClickable={isTechnologyClickable}
           handleServiceChange={handleServiceChange}
           handleTechnologyChange={handleTechnologyChange}
           setSortOrder={setSortOrder}

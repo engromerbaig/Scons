@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 
 export const useProjectFilters = (projects) => {
   const [selectedService, setSelectedService] = useState("All Services");
@@ -8,32 +8,72 @@ export const useProjectFilters = (projects) => {
   const projectsPerLoad = 2;
 
   // 🔄 Normalize service arrays and flatten for unique values
-  const uniqueServices = [
-    "All Services",
-    ...new Set(projects.flatMap((p) => Array.isArray(p.service) ? p.service : [p.service]))
-  ];
+  const uniqueServices = useMemo(
+    () => [
+      "All Services",
+      ...new Set(projects.flatMap((p) => (Array.isArray(p.service) ? p.service : [p.service]))),
+    ],
+    [projects]
+  );
 
-  const uniqueTechnologies = [
-    "All Technologies",
-    ...new Set(projects.flatMap((p) => p.technologies))
-  ];
+  const uniqueTechnologies = useMemo(
+    () => ["All Technologies", ...new Set(projects.flatMap((p) => p.technologies))],
+    [projects]
+  );
+
+  // 🔄 Compute valid services based on selected technology
+  const validServices = useMemo(() => {
+    if (selectedTechnology === "All Technologies") {
+      return uniqueServices;
+    }
+    const relevantProjects = projects.filter((p) => p.technologies.includes(selectedTechnology));
+    return [
+      "All Services",
+      ...new Set(relevantProjects.flatMap((p) => (Array.isArray(p.service) ? p.service : [p.service]))),
+    ];
+  }, [selectedTechnology, uniqueServices, projects]);
+
+  // 🔄 Compute valid technologies based on selected service
+  const validTechnologies = useMemo(() => {
+    if (selectedService === "All Services") {
+      return uniqueTechnologies;
+    }
+    const relevantProjects = projects.filter((p) =>
+      (Array.isArray(p.service) ? p.service : [p.service]).includes(selectedService)
+    );
+    return ["All Technologies", ...new Set(relevantProjects.flatMap((p) => p.technologies))];
+  }, [selectedService, uniqueTechnologies, projects]);
+
+  const isServiceClickable = (service) => validServices.includes(service);
+  const isTechnologyClickable = (technology) => validTechnologies.includes(technology);
 
   const handleServiceChange = (service) => {
-    setSelectedService(service);
-    setProjectsToShow(4);
+    if (isServiceClickable(service)) {
+      setSelectedService(service);
+      setProjectsToShow(4);
+      // Reset technology if it's not valid for the new service
+      if (service !== "All Services" && !validTechnologies.includes(selectedTechnology)) {
+        setSelectedTechnology("All Technologies");
+      }
+    }
   };
 
   const handleTechnologyChange = (technology) => {
-    setSelectedTechnology(technology);
-    setProjectsToShow(2);
+    if (isTechnologyClickable(technology)) {
+      setSelectedTechnology(technology);
+      setProjectsToShow(4);
+      // Reset service if it's not valid for the new technology
+      if (technology !== "All Technologies" && !validServices.includes(selectedService)) {
+        setSelectedService("All Services");
+      }
+    }
   };
 
-  // 🔍 Filtering Logic Adjusted
+  // 🔍 Filtering Logic
   const allFilteredProjects = projects
     .filter((p) => {
       const serviceArray = Array.isArray(p.service) ? p.service : [p.service];
-      const matchesService =
-        selectedService === "All Services" || serviceArray.includes(selectedService);
+      const matchesService = selectedService === "All Services" || serviceArray.includes(selectedService);
       const matchesTech =
         selectedTechnology === "All Technologies" || p.technologies.includes(selectedTechnology);
       return matchesService && matchesTech;
@@ -54,6 +94,8 @@ export const useProjectFilters = (projects) => {
     filteredProjectsLength: filteredProjects.length,
     showLoadMore: projectsToShow < allFilteredProjects.length,
     showShowLess: projectsToShow > 4,
+    validServices,
+    validTechnologies,
   });
 
   const handleLoadMore = () => {
@@ -78,6 +120,10 @@ export const useProjectFilters = (projects) => {
     filteredProjects,
     uniqueServices,
     uniqueTechnologies,
+    validServices,
+    validTechnologies,
+    isServiceClickable,
+    isTechnologyClickable,
     handleServiceChange,
     handleTechnologyChange,
     setSortOrder,

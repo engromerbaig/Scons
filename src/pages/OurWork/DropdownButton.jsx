@@ -9,6 +9,8 @@ const DropdownButton = ({
   isNestedCategory,
   onReset,
   isMobile = false,
+  isOptionClickable = () => true, // Default to all options clickable
+  validOptions = [], // Default to empty array (all options valid if not provided)
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = React.useRef(null);
@@ -26,8 +28,10 @@ const DropdownButton = ({
 
   // Handle option selection
   const handleSelect = (value) => {
-    onChange(value);
-    setIsOpen(false);
+    if (isOptionClickable(value)) {
+      onChange(value);
+      setIsOpen(false);
+    }
   };
 
   return (
@@ -35,20 +39,22 @@ const DropdownButton = ({
       <button
         type="button"
         className={`px-4 xl:px-8 py-2 rounded-full bg-gray-100 text-sm font-medium flex flex-col items-start justify-between cursor-pointer transition-colors relative ${
-          isMobile ? 'w-full xl:w-[300px]' : 'xl:w-[300px]'
+          isMobile ? "w-full xl:w-[300px]" : "xl:w-[300px]"
         }`}
         onClick={() => setIsOpen(!isOpen)}
         style={{ textAlign: "left" }}
       >
         <span className="text-10px text-gray-500 mb-0">{label}</span>
         <div className="w-full flex items-center justify-between">
-          <span className="truncate text-xs text-black font-normal">{selectedValue || `Select ${label}`}</span>
+          <span className="truncate text-xs text-black font-normal">
+            {selectedValue || `Select ${label}`}
+          </span>
           <span className="ml-2 flex items-center">
             {isNestedCategory ? (
               <FaUndo
                 className="text-gray-500 hover:text-gray-800"
                 size={18}
-                onClick={e => {
+                onClick={(e) => {
                   e.stopPropagation();
                   onReset();
                 }}
@@ -63,16 +69,32 @@ const DropdownButton = ({
         </div>
       </button>
       {isOpen && (
-        <ul className={`absolute top-full left-0 mt-1 max-h-48 overflow-y-auto bg-white border border-gray-200 rounded-md shadow-lg z-10 custom-scrollbar ${
-          isMobile ? 'w-full xl:w-[260px]' : 'w-[260px]'
-        }`}>
+        <ul
+          className={`absolute top-full left-0 mt-1 max-h-48 overflow-y-auto bg-white border border-gray-200 rounded-md shadow-lg z-10 custom-scrollbar ${
+            isMobile ? "w-full xl:w-[260px]" : "w-[260px]"
+          }`}
+        >
           {options.map((option) => (
             <li
               key={option}
-              className="px-4 py-2 text-sm text-black hover:bg-gray-100 cursor-pointer"
+              className={`
+                px-4 py-2 text-sm
+                ${
+                  isOptionClickable(option)
+                    ? "text-black hover:bg-gray-100 cursor-pointer"
+                    : "text-gray-400 cursor-not-allowed"
+                }
+                ${selectedValue === option && isOptionClickable(option) ? "bg-gray-50" : ""}
+              `}
               onClick={() => handleSelect(option)}
+              aria-disabled={!isOptionClickable(option)}
+              title={
+                !isOptionClickable(option)
+                  ? `This ${label.toLowerCase()} is not available for the current selection`
+                  : undefined
+              }
             >
-              {option}
+              {isNestedCategory && typeof option === "object" ? option.name : option}
             </li>
           ))}
         </ul>
