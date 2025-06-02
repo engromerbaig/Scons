@@ -40,7 +40,7 @@ export default function BlogCard({ post }) {
           {post.categories?.map((category, index) => (
             <span
               key={index}
-              className="text-xs text-neon border-2 border-neon rounded-3xl px-2 py-1"
+              className="text-10px font-bold text-neon border-2 border-neon rounded-2xl px-2 py-[1px]"
             >
               {category.title || category}
             </span>
