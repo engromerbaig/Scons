@@ -1,147 +1,307 @@
-// pages/BlogDetails/BlogDetails.jsx
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getPostBySlug } from '../../lib/sanityQueries';
 import { PortableText } from '@portabletext/react';
 import { urlFor } from '../../lib/sanityImage';
+import { getPostBySlug, getPosts } from '../../lib/sanityQueries';
 import Heading from '../../components/Heading/Heading';
 import BodyText from '../../components/BodyText/BodyText';
+import BlogCard from '../Blogs/BlogCard';
+import SkeletonLoader from '../../utilities/SkeletonLoader';
 import { theme } from '../../theme';
-import { format } from 'date-fns'; // Ensure date-fns is installed: npm install date-fns
-import calculateReadingTime from '../Blogs/calculateReadingTime'; // Import calculateReadingTime
+import { format } from 'date-fns';
+import calculateReadingTime from '../Blogs/calculateReadingTime';
+import { FaTwitter, FaLinkedin, FaLink } from 'react-icons/fa';
 
 const BlogDetails = () => {
   const { blogSlug } = useParams();
   const [post, setPost] = useState(null);
+  const [relatedPosts, setRelatedPosts] = useState([]);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [headings, setHeadings] = useState([]);
 
   useEffect(() => {
     let mounted = true;
     window.scrollTo(0, 0);
 
-    const fetchPost = async () => {
+    const fetchData = async () => {
       try {
-        const data = await getPostBySlug(blogSlug);
+        const postData = await getPostBySlug(blogSlug);
+        const recentPostsData = await getPosts(blogSlug, 3);
         if (mounted) {
-          if (!data) {
+          if (!postData) {
             setError('Blog post not found');
           } else {
-            setPost(data);
+            setPost(postData);
+            const extractedHeadings = postData.body
+              ?.filter(block => block._type === 'block' && ['h1', 'h2', 'h3'].includes(block.style))
+              .map(block => ({
+                id: block._key,
+                level: block.style,
+                text: block.children?.[0]?.text || '',
+              })) || [];
+            setHeadings(extractedHeadings);
           }
+          setRelatedPosts(recentPostsData || []);
+          setLoading(false);
         }
       } catch (err) {
         if (mounted) {
           setError('Failed to load blog post');
+          setLoading(false);
         }
       }
     };
 
-    fetchPost();
+    fetchData();
 
     return () => {
       mounted = false;
     };
   }, [blogSlug]);
 
-  if (error) {
-    return <p className="text-center mt-20 text-red-500">{error}</p>;
-  }
-
-  if (!post) {
-    return <p className="text-center mt-20">Loading blog...</p>;
-  }
+  const shareUrl = window.location.href;
+  const shareTitle = post?.title || 'Blog Post';
+  const shareOnTwitter = () => window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareTitle)}&url=${encodeURIComponent(shareUrl)}`, '_blank');
+  const shareOnLinkedIn = () => window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`, '_blank');
+  const copyLink = () => navigator.clipboard.write(shareUrl).then(() => alert('Link copied to clipboard!'));
 
   const components = {
     types: {
-      image: ({ value }) => (
+      image: ({ value }) => value && (
         <img
           src={urlFor(value)
             .width(800)
             .auto('format')
             .fit('max')
             .url()}
-          alt={value.alt || post.title || 'Blog image'}
+          alt={value.alt || post?.title || 'Blog image'}
           className="my-6 rounded-md w-full max-w-4xl mx-auto object-contain"
           loading="lazy"
         />
       ),
     },
     block: {
-      h1: ({ children }) => (
-        <h1 className="text-60px font-bold my-4 font-manrope">{children}</h1>
+      h1: ({ children, node }) => node && children && (
+        <h1 id={node._key} className="text-4xl md:text-5xl font-bold my-6 font-manrope">{children}</h1>
       ),
-      h2: ({ children }) => (
-        <h2 className="text-50px font-semibold my-4 font-manrope">{children}</h2>
+      h2: ({ children, node }) => node && children && (
+        <h2 id={node._key} className="text-3xl md:text-4xl font-semibold my-5 font-manrope">{children}</h2>
       ),
-      h3: ({ children }) => (
-        <h3 className="text-40px font-semibold my-3 font-manrope">{children}</h3>
+      h3: ({ children, node }) => node && children && (
+        <h3 id={node._key} className="text-2xl md:text-3xl font-semibold my-4 font-manrope">{children}</h3>
       ),
-      normal: ({ children }) => (
-        <p className="my-2 font-manrope text-black leading-loose text-25px">{children}</p>
+      normal: ({ children }) => children && (
+        <p className="my-3 font-manrope text-gray-800 leading-relaxed text-base md:text-lg">{children}</p>
       ),
     },
     list: {
-      bullet: ({ children }) => (
-        <ul className="list-disc ml-6 my-4 font-manrope">{children}</ul>
+      bullet: ({ children }) => children && (
+        <ul className="list-disc ml-6 my-4 font-manrope text-gray-800">{children}</ul>
       ),
-      number: ({ children }) => (
-        <ol className="list-decimal ml-6 my-4 font-manrope">{children}</ol>
+      number: ({ children }) => children && (
+        <ol className="list-decimal ml-6 my-4 font-manrope text-gray-800">{children}</ol>
       ),
     },
     listItem: {
-      bullet: ({ children }) => <li className="font-manrope">{children}</li>,
-      number: ({ children }) => <li className="font-manrope">{children}</li>,
+      bullet: ({ children }) => children && <li className="font-manrope my-1">{children}</li>,
+      number: ({ children }) => children && <li className="font-manrope my-1">{children}</li>,
     },
   };
 
+  const renderSkeleton = () => (
+    <div className="animate-pulse">
+      <SkeletonLoader className="w-3/4 h-12 mb-6" />
+      <div className="flex flex-wrap gap-4 mb-12">
+        <SkeletonLoader className="w-24 h-4" />
+        <SkeletonLoader className="w-4 h-4" />
+        <SkeletonLoader className="w-32 h-4" />
+        <SkeletonLoader className="w-4 h-4" />
+        <SkeletonLoader className="w-20 h-4" />
+      </div>
+      <SkeletonLoader className="w-full h-[32rem] rounded-xl mb-6" />
+      <div className="space-y-4">
+        <SkeletonLoader className="w-full h-8" />
+        <SkeletonLoader className="w-5/6 h-6" />
+        <SkeletonLoader className="w-4/5 h-6" />
+        <SkeletonLoader className="w-3/4 h-6" />
+      </div>
+    </div>
+  );
+
+  const renderRelatedPostsSkeleton = () => (
+    <div className="space-y-6">
+      {[...Array(3)].map((_, index) => (
+        <div key={index} className="border border-gray-200 rounded-2xl overflow-hidden bg-white h-[300px] flex flex-col">
+          <SkeletonLoader className="w-full h-32 rounded-t-2xl" />
+          <div className="p-4 flex flex-col flex-grow">
+            <SkeletonLoader className="w-3/4 h-6 mb-2" />
+            <SkeletonLoader className="w-1/2 h-4 mb-2" />
+            <SkeletonLoader className="w-16 h-4 rounded-full" />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+
+  if (error) {
+    return (
+      <div className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical}`}>
+        <p className="text-center mt-20 text-red-500" role="alert">{error}</p>
+      </div>
+    );
+  }
+
+  if (loading) {
+    return (
+      <div className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} lg:grid lg:grid-cols-[2fr_1fr] lg:gap-8`}>
+        <div>{renderSkeleton()}</div>
+        <div className="mt-12 lg:mt-0">
+          <SkeletonLoader className="w-1/2 h-8 mb-4" />
+          {renderRelatedPostsSkeleton()}
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div
-      className={`
-        ${theme.layoutPages.paddingHorizontal} 
-        ${theme.layoutPages.paddingVertical}
-      `}
-    >
-      <Heading text={post.title || 'Untitled Blog Post'} centered={false} className='max-w-3xl' />
-      <div className="flex flex-wrap gap-4 items-center mt-6 mb-12 text-sm text-gray-600">
-        <span>{post.author?.name || 'Anonymous'}</span>
-        <span>|</span>
-        <span>
-          {post.publishedAt
-            ? format(new Date(post.publishedAt), 'MMMM dd, yyyy')
-            : 'No date available'}
-        </span>
-        <span>|</span>
-        <span>{calculateReadingTime(post.body)} min Read</span>
-        {post.categories?.length > 0 && (
-          <>
-            <span>|</span>
-            <span>
-              {post.categories.map(category => category.title).join(', ')}
-            </span>
-          </>
+    <div className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} lg:grid lg:grid-cols-[2fr_1fr] lg:gap-8`}>
+      {/* Main Content */}
+      <div>
+        {post?.title && (
+          <Heading text={post.title} centered={false} className="max-w-3xl mb-6" />
         )}
+        <div className="flex flex-wrap gap-4 items-center mt-2 mb-8 text-sm text-gray-600">
+          {post?.author?.name && <span>{post.author.name}</span>}
+          {post?.author?.name && <span>|</span>}
+          {post?.publishedAt && (
+            <>
+              <span>{format(new Date(post.publishedAt), 'MMMM dd, yyyy')}</span>
+              <span>|</span>
+            </>
+          )}
+          {post?.body && <span>{calculateReadingTime(post.body)} min read</span>}
+          {post?.categories?.length > 0 && (
+            <>
+              <span>|</span>
+              <span>{post.categories.map(category => category.title).join(', ')}</span>
+            </>
+          )}
+        </div>
+
+        {post?.mainImage ? (
+          <img
+            src={urlFor(post.mainImage)
+              .width(1200)
+              .height(600)
+              .auto('format')
+              .fit('max')
+              .url()}
+            alt={post.mainImage.alt || post?.title || 'Blog image'}
+            className="w-full h-[32rem] rounded-xl object-cover mb-8 shadow-xl"
+            loading="lazy"
+          />
+        ) : (
+          <div className="w-full h-[32rem] bg-gray-200 rounded-xl mb-8 flex items-center justify-center">
+            <p className="text-gray-500 font-medium">No image available</p>
+          </div>
+        )}
+
+        {headings?.length > 0 && (
+          <div className="mb-8 p-4 bg-gray-100 rounded-lg max-w-3xl">
+            <Heading text="Table of Contents" size="text-2xl" fontWeight="font-semibold" className="mb-4" />
+            <ul className="space-y-2">
+              {headings.map(heading => (
+                heading?.text && (
+                  <li key={heading.id} className={`ml-${heading.level === 'h1' ? 0 : heading.level === 'h2' ? 4 : 8}`}>
+                    <a
+                      href={`#${heading.id}`}
+                      className="text-gray-700 hover:text-neon transition-colors text-sm md:text-base"
+                    >
+                      {heading.text}
+                    </a>
+                  </li>
+                )
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {post?.body && (
+          <div className="prose max-w-3xl mx-auto">
+            <PortableText value={post.body} components={components} />
+          </div>
+        )}
+
+        {post?.author && (
+          <div className="mt-12 p-6 bg-gray-100 rounded-lg max-w-3xl">
+            <Heading text="About the Author" size="text-2xl" fontWeight="font-semibold" className="mb-4" />
+            <div className="flex items-center gap-4">
+              {post.author?.image ? (
+                <img
+                  src={urlFor(post.author.image).width(80).height(80).url()}
+                  alt={post.author.name || 'Author'}
+                  className="w-20 h-20 rounded-full object-cover"
+                  loading="lazy"
+                />
+              ) : (
+                <div className="w-20 h-20 rounded-full bg-gray-300 flex items-center justify-center">
+                  <span className="text-gray-600 font-medium">{post.author?.name?.[0] || 'A'}</span>
+                </div>
+              )}
+              <div>
+                {post.author?.name && (
+                  <BodyText text={post.author.name} size="text-lg" fontWeight="font-semibold" />
+                )}
+                {post.author?.bio && (
+                  <BodyText
+                    text={post.author.bio}
+                    size="text-sm"
+                    className="text-gray-600"
+                  />
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+
+        <div className="mt-8 flex gap-4 max-w-3xl">
+          <button
+            onClick={shareOnTwitter}
+            className="p-2 bg-neon text-white rounded-full hover:bg-black transition-colors"
+            aria-label="Share on Twitter"
+          >
+            <FaTwitter size={20} />
+          </button>
+          <button
+            onClick={shareOnLinkedIn}
+            className="p-2 bg-neon text-white rounded-full hover:bg-black transition-colors"
+            aria-label="Share on LinkedIn"
+          >
+            <FaLinkedin size={20} />
+          </button>
+          <button
+            onClick={copyLink}
+            className="p-2 bg-neon text-white rounded-full hover:bg-black transition-colors"
+            aria-label="Copy link"
+          >
+            <FaLink size={20} />
+          </button>
+        </div>
       </div>
 
-      {post.mainImage ? (
-        <img
-          src={urlFor(post.mainImage)
-            .width(1200)
-            .height(600)
-            .auto('format')
-            .fit('max')
-            .url()}
-          alt={post.mainImage.alt || post.title || 'Blog image'}
-          className="w-full h-[32rem] rounded-xl object-cover mb-6 shadow-xl"
-          loading="lazy"
-        />
-      ) : (
-        <div className="w-full h-[32rem] bg-gray-200 rounded-b-xl mb-6 flex items-center justify-center">
-          <p>No image available</p>
-        </div>
-      )}
-
-      <div className="prose max-w-none">
-        <PortableText value={post.body || []} components={components} />
+      {/* More Blogs Sidebar */}
+      <div className="mt-12 lg:mt-0">
+        <Heading text="Related Blogs" size="text-2xl" fontWeight="font-semibold" className="mb-6" />
+        {relatedPosts?.length > 0 ? (
+          <div className="space-y-6">
+            {relatedPosts.map(post => (
+              post && <BlogCard key={post._id} post={post} />
+            ))}
+          </div>
+        ) : (
+          <p className="text-gray-600">No related posts available</p>
+        )}
       </div>
     </div>
   );
