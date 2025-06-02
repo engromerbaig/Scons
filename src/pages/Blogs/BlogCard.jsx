@@ -9,13 +9,39 @@ import SkeletonLoader from '../../utilities/SkeletonLoader';
 
 export default function BlogCard({ post }) {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
 
-  // Simulate data loading (or check if post data is ready)
+  // Check if post data is ready
   useEffect(() => {
-    if (post && post.title && post.publishedAt && post.mainImage) {
+    if (post && post.title && post.publishedAt) {
       setIsLoaded(true);
+      // Preload image to handle cached images
+      if (post.mainImage) {
+        const img = new Image();
+        img.src = urlFor(post.mainImage).url();
+        img.onload = () => setIsImageLoaded(true);
+        img.onerror = () => setIsImageLoaded(true); // Treat errors as loaded
+      }
     }
   }, [post]);
+
+  // Guard clause for undefined post
+  if (!post) {
+    return (
+      <div className="border border-gray-200 rounded-2xl overflow-hidden bg-white h-[450px] flex flex-col">
+        <SkeletonLoader className="w-full h-56" rounded="rounded-t-2xl" />
+        <div className="p-5 flex flex-col flex-grow">
+          <SkeletonLoader className="w-3/4 h-8 mb-3" />
+          <SkeletonLoader className="w-1/2 h-4 mb-3" />
+          <div className="flex flex-wrap gap-2 mb-4">
+            <SkeletonLoader className="w-16 h-6 rounded-full" />
+            <SkeletonLoader className="w-20 h-6 rounded-full" />
+          </div>
+          <SkeletonLoader className="w-20 h-8 rounded-md mt-auto" />
+        </div>
+      </div>
+    );
+  }
 
   const isNewPost = post.publishedAt
     ? isWithinInterval(new Date(post.publishedAt), {
@@ -24,25 +50,28 @@ export default function BlogCard({ post }) {
       })
     : false;
 
+  // Validate image URL
+  const imageUrl = post.mainImage && urlFor(post.mainImage).url();
+
   return (
     <Link
       to={`/blogs/${post.slug?.current || ''}`}
       className="group border border-gray-200 rounded-2xl overflow-hidden bg-white shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 h-[450px] flex flex-col"
     >
       <div className="relative flex-shrink-0">
-        {isLoaded && post.mainImage ? (
+        {isLoaded && imageUrl && isImageLoaded ? (
           <img
-            src={urlFor(post.mainImage).url()}
+            src={imageUrl}
             alt={post.mainImage?.alt || post.title || 'Blog image'}
             className="w-full h-56 object-cover rounded-t-2xl transition-transform duration-300 group-hover:scale-105"
             loading="lazy"
-            onLoad={() => setIsLoaded(true)}
           />
+        ) : isLoaded && !imageUrl ? (
+          <div className="w-full h-56 bg-gray-200 rounded-t-2xl flex items-center justify-center">
+            <p className="text-gray-500 font-medium">No image</p>
+          </div>
         ) : (
-          <SkeletonLoader
-            className="w-full h-56"
-            rounded="rounded-t-2xl"
-          />
+          <SkeletonLoader className="w-full h-56" rounded="rounded-t-2xl" />
         )}
         <div className="absolute top-2 right-2 bg-white/80 backdrop-blur-sm rounded-full px-2 py-1 text-xs font-semibold text-gray-700 flex items-center gap-1">
           <CiTimer className="text-lg" />
