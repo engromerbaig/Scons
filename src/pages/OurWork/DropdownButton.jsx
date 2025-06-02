@@ -71,7 +71,7 @@ const DropdownButton = ({
       {isOpen && (
         <ul
           className={`absolute top-full left-0 mt-1 max-h-48 overflow-y-auto bg-white border border-gray-200 rounded-md shadow-lg z-10 custom-scrollbar ${
-            isMobile ? "w-full xl:w-[260px]" : "w-[260px]"
+            isMobile ? "w-full xl:w-[300px]" : "w-[260px]"
           }`}
         >
           {options.map((option) => (
