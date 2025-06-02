@@ -210,7 +210,7 @@ export default function Blogs() {
           <div
             ref={filterBoxRef}
             className={`
-              xl:bg-white xl:border xl:border-gray-200 xl:rounded-lg xl:px-6 xl:py-8
+              xl:bg-white xl:border xl:border-gray-200 xl:rounded-lg xl:px-2 xl:py-8
               ${isSticky ? "xl:fixed xl:top-[60px] xl:z-20" : "xl:relative"}
             `}
             style={{
