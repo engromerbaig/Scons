@@ -246,43 +246,6 @@
       "text": "Wise integration facilitated smooth, low-fee global transactions for creators and supporters alike."
     }
   ]
-},
-
-
-      {
-  "id": 10,
-  "heading": "Dummy Project",
-  "headline": "Creator-Focused Platform Empowering Global Artistic Connections",
-  "location": "California, USA",
-  "bodyText": "Built a dynamic and scalable platform for a U.S.-based creator community, evolving from Wix to WordPress and ultimately to a modern React-based web application to support global collaboration and monetization.",
-  "details": "Global Nation™ is the successor to PatroNet, an early-2000s creator-support platform founded by Todd Rundgren. The new platform aimed to empower creators worldwide by offering a space to connect, collaborate, and monetize their work. The project involved multiple phases: initial deployment on Wix, migration to WordPress for enhanced control, and final transition to a robust, React-based architecture to support scalability and custom features. Wise payment integration was implemented for seamless international transactions.",
-  "service": ["Web Development", "Platform Migration", "UI/UX Design", "Payment Integration"],
-  "technologies": ["Wix", "WordPress", "React", "Wise API", "JavaScript", "Figma"],
-  "year": "2023",
-  "clientDetails": "Global Nation™, based in California, is a visionary platform reimagining the creator economy. It provides artists, musicians, and creative professionals a dedicated space to showcase their work, connect with supporters, and monetize directly via peer-driven engagement. With a focus on decentralization, community building, and sustainability, the platform is attracting a diverse global user base.",
-  "deliverables": [
-    "Initial Wix Setup",
-    "WordPress Migration",
-    "Full React Rebuild",
-    "Wise Payment Integration",
-    "Custom UI Components",
-    "Mobile-Responsive Design"
-  ],
-  "impactIntro": "The multi-stage transformation of the Global Nation™ platform empowered creators with enhanced tools, international reach, and a stronger sense of community.",
-  "impacts": [
-    {
-      "heading": "Creator Empowerment",
-      "text": "Provided artists a direct-to-fan revenue model, increasing patron contributions by 60%."
-    },
-    {
-      "heading": "Platform Scalability",
-      "text": "React-based architecture allowed for seamless expansion of features and user load handling."
-    },
-    {
-      "heading": "International Payments",
-      "text": "Wise integration facilitated smooth, low-fee global transactions for creators and supporters alike."
-    }
-  ]
 }
 
 
