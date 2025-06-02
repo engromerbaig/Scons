@@ -7,7 +7,7 @@ import { format } from "date-fns";
   const [selectedDate, setSelectedDate] = useState("All Dates");
   const [sortOrder, setSortOrder] = useState("desc");
   const [postsToShow, setPostsToShow] = useState(6); // Changed from 3 to 6
-  const postsPerLoad = 3;
+  const postsPerLoad = 2;
 
   // Normalize categories (handle array or single string)
   const uniqueCategories = [
