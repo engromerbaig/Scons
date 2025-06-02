@@ -19,12 +19,14 @@ export default function Blogs() {
   const containerRef = useRef(null);
   const buttonContainerRef = useRef(null);
   const filterBoxRef = useRef(null);
+  const filterPlaceholderRef = useRef(null);
   const sentinelRef = useRef(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [lastAction, setLastAction] = useState(null);
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
+  const [filterBoxDimensions, setFilterBoxDimensions] = useState({ width: 340, height: 0 });
 
   const {
     selectedCategory,
@@ -46,6 +48,32 @@ export default function Blogs() {
     handleLoadMore,
     handleShowLess,
   } = useBlogFilters(posts);
+
+  // Capture filter box dimensions
+  useEffect(() => {
+    if (filterBoxRef.current && !loading) {
+      const updateDimensions = () => {
+        const rect = filterBoxRef.current.getBoundingClientRect();
+        setFilterBoxDimensions({
+          width: rect.width,
+          height: rect.height
+        });
+      };
+
+      // Update dimensions initially and on resize
+      updateDimensions();
+      window.addEventListener('resize', updateDimensions);
+      
+      // Also update when filters change (content might change height)
+      const resizeObserver = new ResizeObserver(updateDimensions);
+      resizeObserver.observe(filterBoxRef.current);
+
+      return () => {
+        window.removeEventListener('resize', updateDimensions);
+        resizeObserver.disconnect();
+      };
+    }
+  }, [loading, selectedCategory, selectedAuthor, selectedDate, filteredPosts.length]);
 
   // Fetch posts
   useEffect(() => {
@@ -76,19 +104,11 @@ export default function Blogs() {
   // Set up sticky detection
   useEffect(() => {
     if (loading || posts.length === 0) {
-      console.log('⏳ Waiting for posts to load before setting up sticky');
       return;
     }
 
-    console.log('=== STICKY SETUP START ===');
-    console.log('filterBoxRef.current:', !!filterBoxRef.current);
-    console.log('sentinelRef.current:', !!sentinelRef.current);
-    console.log('containerRef.current:', !!containerRef.current);
-
     if (!filterBoxRef.current || !sentinelRef.current || !containerRef.current) {
-      console.log('❌ Missing refs, aborting sticky setup');
       const timer = setTimeout(() => {
-        console.log('🔄 Retrying sticky setup after delay');
         if (filterBoxRef.current && sentinelRef.current && containerRef.current) {
           setupSticky();
         }
@@ -103,25 +123,17 @@ export default function Blogs() {
       const container = containerRef.current;
       const filterBox = filterBoxRef.current;
 
-      console.log('✅ All refs available, setting up scroll listener');
-
       const handleScroll = () => {
         const scrollY = window.scrollY;
         const sentinelRect = sentinel.getBoundingClientRect();
         const containerRect = container.getBoundingClientRect();
         const windowWidth = window.innerWidth;
-        const filterBoxHeight = filterBox.getBoundingClientRect().height;
 
         // Calculate container bottom relative to document
         const containerBottom = containerRect.top + scrollY + containerRect.height;
 
-        console.log(
-          `📜 SCROLL: scrollY=${scrollY}, sentinelTop=${sentinelRect.top}, ` +
-          `containerBottom=${containerBottom}, filterBoxHeight=${filterBoxHeight}, windowWidth=${windowWidth}`
-        );
-
+        // Skip sticky behavior on mobile
         if (windowWidth < 1280) {
-          console.log('📱 Mobile view, skipping sticky');
           if (isSticky) {
             setIsSticky(false);
           }
@@ -131,31 +143,33 @@ export default function Blogs() {
         // Check if filter box should be sticky
         const shouldBeSticky =
           sentinelRect.top <= 50 && // Top boundary: sentinel is near top
-          containerBottom > scrollY + filterBoxHeight + 50; // Bottom boundary: container bottom is below filter box
-
-        console.log(`🎯 STICKY CHECK: shouldBeSticky=${shouldBeSticky}, currentIsSticky=${isSticky}`);
+          containerBottom > scrollY + filterBoxDimensions.height + 100; // Bottom boundary with buffer
 
         if (shouldBeSticky !== isSticky) {
-          console.log(`🔄 CHANGING STICKY STATE: ${isSticky} -> ${shouldBeSticky}`);
           setIsSticky(shouldBeSticky);
         }
       };
 
-      window.addEventListener('scroll', handleScroll, { passive: true });
-      console.log('🏁 Running initial scroll check');
-      handleScroll();
+      // Use throttled scroll for better performance
+      let ticking = false;
+      const throttledScroll = () => {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            handleScroll();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      };
+
+      window.addEventListener('scroll', throttledScroll, { passive: true });
+      handleScroll(); // Initial check
 
       return () => {
-        console.log('🧹 Cleaning up scroll listener');
-        window.removeEventListener('scroll', handleScroll);
+        window.removeEventListener('scroll', throttledScroll);
       };
     }
-  }, [isSticky, loading, posts.length]);
-
-  // Debug sticky state changes
-  useEffect(() => {
-    console.log('Sticky state updated:', isSticky);
-  }, [isSticky]);
+  }, [isSticky, loading, posts.length, filterBoxDimensions.height]);
 
   // Scroll to bottom after load more/show less
   useEffect(() => {
@@ -182,7 +196,7 @@ export default function Blogs() {
   return (
     <div
       ref={containerRef}
-      className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} `}
+      className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical}`}
     >
       <Heading text="Blogs & News" centered={false} />
       <BodyText text="Read our latest blog posts!" centered={false} />
@@ -200,22 +214,38 @@ export default function Blogs() {
       {/* Sentinel */}
       <div
         ref={sentinelRef}
-        className="h-[20px] xl:block hidden opacity-50 relative z-10"
+        className="h-[20px] xl:block hidden opacity-0 pointer-events-none"
         style={{ marginBottom: '10px' }}
-      >
-      </div>
+      />
 
       {/* Layout */}
       <div className="flex flex-col py-10 xl:grid xl:grid-cols-[30%_70%] gap-8">
-        {/* Filters Box for XL and above */}
+        {/* Filters Box Container */}
         <div className={`${isFiltersOpen ? 'block' : 'hidden'} xl:block w-full xl:w-[340px]`}>
+          {/* Placeholder for sticky positioning - only visible on XL+ screens when sticky */}
+          <div
+            ref={filterPlaceholderRef}
+            className="hidden xl:block"
+            style={{
+              height: isSticky ? `${filterBoxDimensions.height}px` : '0px',
+              width: isSticky ? `${filterBoxDimensions.width}px` : 'auto'
+            }}
+          />
+          
+          {/* Actual Filter Box */}
           <div
             ref={filterBoxRef}
-            className={`bg-white border border-gray-200  flex flex-col justify-center items-center rounded-lg px-6 py-8 transition-all duration-300 ease-in-out
+            className={`
+              bg-white border border-gray-200 flex flex-col justify-center items-center rounded-lg px-6 py-8
               ${isSticky
-                ? 'xl:fixed xl:top-10 xl:z-20 xl:w-[340px]'
-                : 'xl:relative xl:w-[340px]'
-              }`}
+                ? 'xl:fixed xl:top-[60px] xl:z-20'
+                : 'xl:relative'
+              }
+            `}
+            style={{
+              width: isSticky ? `${filterBoxDimensions.width}px` : '100%',
+              maxWidth: '340px'
+            }}
           >
             <div className="w-[300px]">
               <FilterControls
