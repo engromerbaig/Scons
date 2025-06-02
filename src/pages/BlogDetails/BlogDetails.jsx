@@ -205,7 +205,7 @@ const BlogDetails = () => {
             )}
             {post?.publishedAt && (
               <>
-                <span className="hidden sm:inline">|</span>
+                <span className="">|</span>
                 <span className="font-bold">Published On:</span>
                 <span>{format(new Date(post.publishedAt), 'MMMM dd, yyyy')}</span>
               </>
@@ -221,7 +221,7 @@ const BlogDetails = () => {
                 <span>{calculateReadingTime(post.body)} minutes</span>
               </div>
             )}
-            <span className="hidden sm:inline">|</span>
+                <span className="">|</span>
 
             {/* Categories */}
             {post?.categories?.length > 0 && (
@@ -278,7 +278,7 @@ const BlogDetails = () => {
         )}
 
         {post?.body && (
-          <div className="prose max-w-3xl mx-auto">
+          <div className="prose max-w-3xl ">
             <PortableText value={post.body} components={components} />
           </div>
         )}
