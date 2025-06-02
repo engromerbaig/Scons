@@ -10,6 +10,7 @@ import LoadMoreControls from "../OurWork/LoadMoreControls";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import FadeWrapper from "../../utilities/Animations/FadeWrapper";
+import InnerHero from "../../components/InnerHero/InnerHero";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -186,13 +187,23 @@ export default function Blogs() {
 
   return (
     <div
-      ref={containerRef}
-      className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical}`}
-    >
-      <Heading text="Blogs & News" centered={false} />
-      <BodyText text="Read our latest blog posts!" centered={false} />
+     
 
-      <div
+    >
+
+        <InnerHero
+        headingText="Blogs & News"
+        spanText="News"
+        bodyText="Explore the latest insights, updates, and stories from Scons. Stay informed with our expert articles and company news!."
+        height="h-[70vh]"
+
+      />
+
+
+
+<div    ref={containerRef}    className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingBottom}`}>
+
+  <div
         ref={sentinelRef}
         className="h-[20px] xl:block hidden opacity-0 pointer-events-none"
         style={{ marginBottom: "10px" }}
@@ -275,5 +286,8 @@ export default function Blogs() {
         </div>
       </div>
     </div>
+
+</div>
+    
   );
 }
