@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { getPosts } from "../../lib/sanityQueries";
 import { theme } from "../../theme";
 import Heading from "../../components/Heading/Heading";
@@ -11,6 +12,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import FadeWrapper from "../../utilities/Animations/FadeWrapper";
 import InnerHero from "../../components/InnerHero/InnerHero";
+import SkeletonLoader from "../../utilities/SkeletonLoader";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -54,6 +56,33 @@ export default function Blogs() {
     handleShowLess,
   } = useBlogFilters(posts);
 
+  // Fetch posts from Sanity
+  useEffect(() => {
+    let mounted = true;
+
+    const fetchPosts = async () => {
+      try {
+        const data = await getPosts();
+        if (mounted) {
+          setPosts(data || []);
+          setLoading(false);
+        }
+      } catch (err) {
+        if (mounted) {
+          setError("Failed to load posts. Please try again later.");
+          setLoading(false);
+        }
+      }
+    };
+
+    fetchPosts();
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  // Handle filter box dimensions for sticky behavior
   useEffect(() => {
     if (filterBoxRef.current && !loading) {
       const updateDimensions = () => {
@@ -76,31 +105,7 @@ export default function Blogs() {
     }
   }, [loading, selectedCategory, selectedAuthor, selectedDate, filteredPosts.length]);
 
-  useEffect(() => {
-    let mounted = true;
-
-    const fetchPosts = async () => {
-      try {
-        const data = await getPosts();
-        if (mounted) {
-          setPosts(data);
-          setLoading(false);
-        }
-      } catch (err) {
-        if (mounted) {
-          setError("Failed to load posts");
-          setLoading(false);
-        }
-      }
-    };
-
-    fetchPosts();
-
-    return () => {
-      mounted = false;
-    };
-  }, []);
-
+  // Sticky filter logic
   useEffect(() => {
     if (loading || posts.length === 0) {
       return;
@@ -164,6 +169,7 @@ export default function Blogs() {
     }
   }, [isSticky, loading, posts.length, filterBoxDimensions.height]);
 
+  // Scroll to button container after load more/show less
   useEffect(() => {
     if ((postsToShow > 6 || lastAction === "showLess") && buttonContainerRef.current) {
       requestAnimationFrame(() => {
@@ -182,112 +188,135 @@ export default function Blogs() {
     }
   }, [postsToShow, lastAction]);
 
-  if (error) return <p className="text-center mt-20 text-red-500">{error}</p>;
-  if (loading) return <p className="text-center mt-20">Loading posts...</p>;
-
-  return (
-    <div
-     
-
-    >
-
-        <InnerHero
-        headingText="Blogs & News"
-        spanText="News"
-        bodyText="Explore the latest insights, updates, and stories from Scons. Stay informed with our expert articles and company news!."
-        height="h-[70vh]"
-
-      />
-
-
-
-<div    ref={containerRef}    className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingBottom}`}>
-
-  <div
-        ref={sentinelRef}
-        className="h-[20px] xl:block hidden opacity-0 pointer-events-none"
-        style={{ marginBottom: "10px" }}
-      />
-
-      <div className="flex flex-col py-10 xl:grid xl:grid-cols-[30%_70%] gap-8">
-        <div className="w-full xl:w-[340px]">
-          <div
-            ref={filterPlaceholderRef}
-            className="hidden xl:block"
-            style={{
-              height: isSticky ? `${filterBoxDimensions.height}px` : "0px",
-              width: isSticky ? `${filterBoxDimensions.width}px` : "auto",
-            }}
-          />
-
-          {/* FILTER BOX */}
-          <div
-            ref={filterBoxRef}
-            className={`
-              xl:bg-white xl:border xl:border-gray-200 xl:shadow-3xl xl:rounded-lg xl:px-2 xl:py-8
-              ${isSticky ? "xl:fixed xl:top-[60px] xl:z-20" : "xl:relative"}
-            `}
-            style={{
-              width: isSticky ? `${filterBoxDimensions.width}px` : "100%",
-              maxWidth: "340px",
-            }}
-          >
-            <div className="w-full xl:w-[300px] xl:mx-auto">
-              <FilterControls
-                selectedService={selectedCategory}
-                selectedTechnology={selectedAuthor}
-                selectedDate={selectedDate}
-                sortOrder={sortOrder}
-                uniqueServices={uniqueCategories}
-                uniqueTechnologies={uniqueAuthors}
-                uniqueDates={uniqueDates}
-                validServices={validCategories}
-                validTechnologies={validAuthors}
-                validDates={validDates}
-                isServiceClickable={isCategoryClickable}
-                isTechnologyClickable={isAuthorClickable}
-                isDateClickable={isDateClickable}
-                handleServiceChange={handleCategoryChange}
-                handleTechnologyChange={handleAuthorChange}
-                handleDateChange={handleDateChange}
-                setSortOrder={setSortOrder}
-                resetFilters={resetFilters}
-                isNestedService={false}
-                isNestedTech={false}
-                isPackages={false}
-                isBlogs={true}
-                isServices={false}
-              />
+  // Render skeleton cards during loading
+  const renderSkeletonCards = () => (
+    <FadeWrapper className="grid gap-8 md:grid-cols-2 xl:grid-cols-2 mb-10">
+      {[...Array(6)].map((_, index) => (
+        <div
+          key={index}
+          className="border border-gray-200 rounded-2xl overflow-hidden bg-white h-[450px] flex flex-col"
+        >
+          <SkeletonLoader className="w-full h-56" rounded="rounded-t-2xl" />
+          <div className="p-5 flex flex-col flex-grow">
+            <SkeletonLoader className="w-3/4 h-8 mb-3" />
+            <SkeletonLoader className="w-1/2 h-4 mb-3" />
+            <div className="flex flex-wrap gap-2 mb-4">
+              <SkeletonLoader className="w-16 h-6 rounded-full" />
+              <SkeletonLoader className="w-20 h-6 rounded-full" />
             </div>
+            <SkeletonLoader className="w-20 h-8 rounded-md mt-auto" />
           </div>
         </div>
+      ))}
+    </FadeWrapper>
+  );
 
-        <div className="xl:w-full">
-          {filteredPosts.length === 0 && <p className="text-center mt-6">No posts available</p>}
-          <FadeWrapper key={lastAction} className="grid gap-8 md:grid-cols-2 xl:grid-cols-2 mb-10">
-            {filteredPosts.slice(0, postsToShow).map((post) => (
-              <BlogCard key={post._id} post={post} />
-            ))}
-          </FadeWrapper>
+  if (error) {
+    return (
+      <div className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingBottom}`}>
+        <InnerHero
+          headingText="Blogs & News"
+          spanText="News"
+          bodyText="Explore the latest insights, updates, and stories from Scons. Stay informed with our expert articles and company news!"
+          height="h-[70vh]"
+        />
+        <p className="text-center mt-20 text-red-500">{error}</p>
+      </div>
+    );
+  }
 
-          <LoadMoreControls
-            showLoadMore={showLoadMore}
-            showShowLess={showShowLess}
-            handleLoadMore={() => {
-              setLastAction("loadMore");
-              handleLoadMore();
-            }}
-            handleShowLess={() => {
-              setLastAction("showLess");
-              handleShowLess();
-            }}
-            buttonContainerRef={buttonContainerRef}
-          />
+  return (
+    <div>
+      <InnerHero
+        headingText="Blogs & News"
+        spanText="News"
+        bodyText="Explore the latest insights, updates, and stories from Scons. Stay informed with our expert articles and company news!"
+        height="h-[70vh]"
+      />
+
+      <div ref={containerRef} className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingBottom}`}>
+        <div ref={sentinelRef} className="h-[20px] xl:block hidden opacity-0 pointer-events-none" style={{ marginBottom: "10px" }} />
+
+        <div className="flex flex-col py-10 xl:grid xl:grid-cols-[30%_70%] gap-8">
+          <div className="w-full xl:w-[340px]">
+            <div
+              ref={filterPlaceholderRef}
+              className="hidden xl:block"
+              style={{
+                height: isSticky ? `${filterBoxDimensions.height}px` : "0px",
+                width: isSticky ? `${filterBoxDimensions.width}px` : "auto",
+              }}
+            />
+            <div
+              ref={filterBoxRef}
+              className={`
+                xl:bg-white xl:border xl:border-gray-200 xl:shadow-3xl xl:rounded-lg xl:px-2 xl:py-8
+                ${isSticky ? "xl:fixed xl:top-[60px] xl:z-20" : "xl:relative"}
+              `}
+              style={{
+                width: isSticky ? `${filterBoxDimensions.width}px` : "100%",
+                maxWidth: "340px",
+              }}
+            >
+              <div className="w-full xl:w-[300px] xl:mx-auto">
+                <FilterControls
+                  selectedService={selectedCategory}
+                  selectedTechnology={selectedAuthor}
+                  selectedDate={selectedDate}
+                  sortOrder={sortOrder}
+                  uniqueServices={uniqueCategories}
+                  uniqueTechnologies={uniqueAuthors}
+                  uniqueDates={uniqueDates}
+                  validServices={validCategories}
+                  validTechnologies={validAuthors}
+                  validDates={validDates}
+                  isServiceClickable={isCategoryClickable}
+                  isTechnologyClickable={isAuthorClickable}
+                  isDateClickable={isDateClickable}
+                  handleServiceChange={handleCategoryChange}
+                  handleTechnologyChange={handleAuthorChange}
+                  handleDateChange={handleDateChange}
+                  setSortOrder={setSortOrder}
+                  resetFilters={resetFilters}
+                  isNestedService={false}
+                  isNestedTech={false}
+                  isPackages={false}
+                  isBlogs={true}
+                  isServices={false}
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="xl:w-full">
+            {loading ? (
+              renderSkeletonCards()
+            ) : filteredPosts.length === 0 ? (
+              <p className="text-center mt-6">No posts available</p>
+            ) : (
+              <FadeWrapper key={lastAction} className="grid gap-8 md:grid-cols-2 xl:grid-cols-2 mb-10">
+                {filteredPosts.slice(0, postsToShow).map((post) => (
+                  <BlogCard key={post._id} post={post} />
+                ))}
+              </FadeWrapper>
+            )}
+
+            <LoadMoreControls
+              showLoadMore={showLoadMore}
+              showShowLess={showShowLess}
+              handleLoadMore={() => {
+                setLastAction("loadMore");
+                handleLoadMore();
+              }}
+              handleShowLess={() => {
+                setLastAction("showLess");
+                handleShowLess();
+              }}
+              buttonContainerRef={buttonContainerRef}
+            />
+          </div>
         </div>
       </div>
     </div>
-
-</div>
-    
   );
 }
