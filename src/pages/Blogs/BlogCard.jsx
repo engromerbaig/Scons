@@ -56,7 +56,7 @@ export default function BlogCard({ post }) {
   return (
     <Link
       to={`/blogs/${post.slug?.current || ''}`}
-      className="group border border-gray-200 rounded-2xl overflow-hidden bg-white shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 h-[450px] flex flex-col"
+      className="group border border-gray-200 rounded-2xl overflow-hidden bg-white shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 h-[500px] flex flex-col"
     >
       <div className="relative flex-shrink-0">
         {isLoaded && imageUrl && isImageLoaded ? (
