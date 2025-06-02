@@ -129,7 +129,7 @@ const BlogDetails = () => {
         children && (
           <h1
             id={node._key}
-            className="text-4xl md:text-5xl font-bold my-6 font-manrope"
+            className="text-4xl md:text-5xl font-black my-6 font-manrope"
           >
             {children}
           </h1>
@@ -139,7 +139,7 @@ const BlogDetails = () => {
         children && (
           <h2
             id={node._key}
-            className="text-3xl md:text-4xl font-semibold my-5 font-manrope"
+            className="text-3xl md:text-4xl font-bold my-5 font-manrope"
           >
             {children}
           </h2>
@@ -156,7 +156,7 @@ const BlogDetails = () => {
         ),
       normal: ({ children }) =>
         children && (
-          <p className="my-3 font-manrope text-gray-800 leading-relaxed text-base md:text-lg">
+          <p className="my-3 font-manrope text-black leading-relaxed text-base md:text-lg">
             {children}
           </p>
         ),
@@ -164,13 +164,13 @@ const BlogDetails = () => {
     list: {
       bullet: ({ children }) =>
         children && (
-          <ul className="list-disc ml-6 my-4 font-manrope text-gray-800">
+          <ul className="list-disc ml-6 my-4 font-manrope text-black">
             {children}
           </ul>
         ),
       number: ({ children }) =>
         children && (
-          <ol className="list-decimal ml-6 my-4 font-manrope text-gray-800">
+          <ol className="list-decimal ml-6 my-4 font-manrope text-black">
             {children}
           </ol>
         ),
@@ -193,7 +193,7 @@ const BlogDetails = () => {
         <SkeletonLoader className="w-4 h-4" />
         <SkeletonLoader className="w-20 h-4" />
       </div>
-      <SkeletonLoader className="w-full h-[32rem] rounded-xl mb-6" />
+      <SkeletonLoader className="w-full h-[24rem] rounded-xl mb-6" />
       <div className="space-y-4">
         <SkeletonLoader className="w-full h-8" />
         <SkeletonLoader className="w-5/6 h-6" />
@@ -375,11 +375,11 @@ const BlogDetails = () => {
               .fit('max')
               .url()}
             alt={post.mainImage.alt || post?.title || 'Blog image'}
-            className="w-full h-[32rem] rounded-xl object-cover mb-8 shadow-xl"
+            className="w-full h-[24rem] rounded-xl object-cover mb-8 shadow-xl"
             loading="lazy"
           />
         ) : (
-          <div className="w-full h-[32rem] bg-gray-200 rounded-xl mb-8 flex items-center justify-center">
+          <div className="w-full h-[24rem] bg-gray-200 rounded-xl mb-8 flex items-center justify-center">
             <p className="text-gray-500 font-medium">No image available</p>
           </div>
         )}
