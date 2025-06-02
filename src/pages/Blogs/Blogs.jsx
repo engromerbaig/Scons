@@ -9,6 +9,7 @@ import FilterControls from "../OurWork/FilterControls";
 import LoadMoreControls from "../OurWork/LoadMoreControls";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import FadeWrapper from "../../utilities/Animations/FadeWrapper";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -250,11 +251,11 @@ export default function Blogs() {
 
         <div className="xl:w-full">
           {filteredPosts.length === 0 && <p className="text-center mt-6">No posts available</p>}
-          <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-2 mb-10">
+          <FadeWrapper key={lastAction} className="grid gap-8 md:grid-cols-2 xl:grid-cols-2 mb-10">
             {filteredPosts.slice(0, postsToShow).map((post) => (
               <BlogCard key={post._id} post={post} />
             ))}
-          </div>
+          </FadeWrapper>
 
           <LoadMoreControls
             showLoadMore={showLoadMore}
