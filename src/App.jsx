@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useState } from 'react';
+import React, { Suspense, lazy, useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation, useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 
@@ -10,6 +10,8 @@ import HeroButton from './components/HeroButton/HeroButton';
 import ChatModal from './components/ChatModal/ChatModal';
 import ReturnButton from './utilities/ReturnButton';
 import ThankYou from './pages/ThankYou/ThankYou';
+import GAListener from './ga/GAListener';
+import { initGA } from './ga/ga';
 
 const Home = lazy(() => import('./pages/Home/Home'));
 const KnowUs = lazy(() => import('./pages/KnowUs/KnowUs'));
@@ -47,6 +49,10 @@ function AppContent() {
 
   const [isModalOpen, setModalOpen] = useState(false);
 
+  useEffect(() => {
+    initGA();
+  }, []);
+
   // Fallback meta tags
   const defaultMeta = {
     title: 'Scons | UK Based Software Innovators',
@@ -71,7 +77,10 @@ function AppContent() {
       <ChatModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} />
 
       <Suspense fallback={<Loader />}>
+                      <GAListener />
+
         <Routes>
+
           <Route path="/" element={<Home />} />
           <Route path="/why-scons" element={<KnowUs />} />
           <Route path="/portfolio" element={<OurWork />} />
