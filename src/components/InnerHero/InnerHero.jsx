@@ -22,6 +22,7 @@ const InnerHero = ({
   showBottomShadow = true,
   children,
   bgColor = "bg-white",
+  logoWidth="w-32",
   showPattern = true,
   patternSrc = "/iso.webp",
 }) => {
@@ -64,7 +65,7 @@ const InnerHero = ({
                   key={index}
                   src={logo}
                   alt={`Logo ${index + 1}`}
-                  className="w-32  object-contain"
+                  className={`${logoWidth}  object-contain`}
                   loading="lazy"
                 />
               ))}

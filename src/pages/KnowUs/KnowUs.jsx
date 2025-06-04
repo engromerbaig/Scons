@@ -92,11 +92,13 @@ const KnowUs = () => {
           logoImages={[logoImage]}
           headingText="About Scons Tech & The Journey So Far"
           spanText="Scons Tech"
-          bodyText="Scons Tech is a dynamic tech powerhouse, delivering innovative software solutions worldwide."
+  bodyText="Scons Tech is a forward-thinking software development company based in Pakistan & the UK, committed to delivering cutting-edge digital solutions to clients worldwide."
           showBottomShadow={true}
           illustrationImage={aboutUsImage}
           illustrationImageWidth="w-3/4"
           showCarousel={false}
+                    logoWidth='w-40'
+
         />
       </FadeInSection>
       <FadeInSection>
@@ -127,10 +129,11 @@ const KnowUs = () => {
             />
           </div>
           <div className="flex flex-col items-start gap-y-6 pt-10">
-            <HeadingWithText
-              heading="Building software for global leaders"
-              body="At Scons Tech, we envision a world where technology seamlessly integrates into every aspect of life, empowering individuals and businesses to achieve their fullest potential. We strive to be at the forefront of innovation, creating solutions that not only meet the needs of today but also anticipate the challenges of tomorrow."
-            />
+           <HeadingWithText
+  heading="Your All-In-One Digital Growth Partner"
+  body="Welcome to Scons Tech — your partner in innovation and digital growth. We're a passionate team of developers and consultants dedicated to building modern, user-focused software for startups, small businesses, and global brands. From custom websites and mobile apps to scalable digital solutions, we combine creativity and code to help your ideas thrive. At Scons Tech, we don’t just build software — we build your vision."
+/>
+
             <Highlights />
           </div>
         </div>
