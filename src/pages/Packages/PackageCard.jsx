@@ -171,7 +171,7 @@ const PackageCard = ({ packageInfo }) => {
         <div className="flex flex-col justify-end min-w-[200px] items-center">
           <div className="flex items-end gap-x-1">
             <span className="text-sm font-medium">{currencyCode}</span>
-            <span className="text-90px xl:text-60px leading-none font-bold">
+            <span className="text-100px xl:text-60px leading-none font-bold">
               {formattedPrice}
             </span>
           </div>
@@ -202,7 +202,7 @@ const PackageCard = ({ packageInfo }) => {
                     <BodyText
                       text={item}
                       centered={false}
-                      className="leading-snug text-sm"
+                      className="leading-snug text-sm pr-4"
                     />
                   </li>
                 ))}

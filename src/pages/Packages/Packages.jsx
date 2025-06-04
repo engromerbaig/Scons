@@ -47,11 +47,11 @@ const Packages = () => {
 
   // Meta description (trim to 160 characters)
   const metaDescription =
-    "Explore Scons' diverse packages for web development, design, and more, tailored to meet your business needs.".substring(0, 160);
+    "Explore Scons Tech' diverse packages for web development, design, and more, tailored to meet your business needs.".substring(0, 160);
 
   // Keywords
   const keywords = [
-    "Scons",
+    "Scons Tech",
     "packages",
     "web development",
     "design",
@@ -63,7 +63,7 @@ const Packages = () => {
   return (
     <div className={`${theme.layoutPages.paddingBottom}`}>
       <Helmet>
-        <title>Packages | Scons</title>
+        <title>Packages | Scons Tech</title>
         <meta name="description" content={metaDescription} />
         <meta name="keywords" content={keywords} />
         <link rel="canonical" href="https://sconstech.com/packages" />
