@@ -61,11 +61,11 @@ const ServiceDetails = () => {
   const metaDescription =
     service.description?.length > 160
       ? `${service.description.substring(0, 157)}...`
-      : service.description || `Discover Scons' ${service.heading.toLowerCase()} services for innovative software solutions.`;
+      : service.description || `Discover Scons Tech' ${service.heading.toLowerCase()} services for innovative software solutions.`;
 
   // Generate keywords
   const keywords = [
-    "Scons",
+    "Scons Tech",
     service.heading.toLowerCase(),
     "software development",
     "UK tech",
@@ -77,7 +77,7 @@ const ServiceDetails = () => {
   return (
     <div>
       <Helmet>
-        <title>{`${service.heading} | Scons`}</title>
+        <title>{`${service.heading} | Scons Tech`}</title>
         <meta name="description" content={metaDescription} />
         <meta name="keywords" content={keywords} />
         <link rel="canonical" href={`https://sconstech.com/service/${serviceSlug}`} />
@@ -88,9 +88,9 @@ const ServiceDetails = () => {
         <meta property="og:image" content={ogLogo} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="Scons logo" />
+        <meta property="og:image:alt" content="Scons Tech logo" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`${service.heading} | Scons`} />
+        <meta name="twitter:title" content={`${service.heading} | Scons Tech`} />
         <meta name="twitter:description" content={metaDescription} />
         <meta name="twitter:image" content={ogLogo} />
         <script type="application/ld+json">
@@ -100,7 +100,7 @@ const ServiceDetails = () => {
             "serviceType": service.heading,
             "provider": {
               "@type": "Organization",
-              "name": "Scons",
+              "name": "Scons Tech",
               "url": "https://sconstech.com",
             },
             "description": metaDescription,
