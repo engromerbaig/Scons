@@ -58,11 +58,11 @@ const ProjectDetail = () => {
   const metaDescription =
     project.bodyText?.length > 160
       ? `${project.bodyText.substring(0, 157)}...`
-      : project.bodyText || `Explore Scons' ${project.heading.toLowerCase()} project, showcasing innovative software solutions.`;
+      : project.bodyText || `Explore Scons Tech' ${project.heading.toLowerCase()} project, showcasing innovative software solutions.`;
 
   // Generate keywords
   const keywords = [
-    "Scons",
+    "Scons Tech",
     project.heading.toLowerCase(),
     ...(Array.isArray(project.service) ? project.service : [project.service]).map(s => s.toLowerCase()),
     "software development",
@@ -74,20 +74,20 @@ const ProjectDetail = () => {
   return (
     <div className={`${theme.layoutPages.paddingBottom} min-h-screen`}>
       <Helmet>
-        <title>{`${project.heading} | Scons`}</title>
+        <title>{`${project.heading} | Scons Tech`}</title>
         <meta name="description" content={metaDescription} />
         <meta name="keywords" content={keywords} />
         <link rel="canonical" href={`https://sconstech.com/portfolio/${slug}`} />
-        <meta property="og:title" content={`${project.heading} | Scons`} />
+        <meta property="og:title" content={`${project.heading} | Scons Tech`} />
         <meta property="og:description" content={metaDescription} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`https://sconstech.com/portfolio/${slug}`} />
         <meta property="og:image" content={ogLogo} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="Scons logo" />
+        <meta property="og:image:alt" content="Scons Tech logo" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`${project.heading} | Scons`} />
+        <meta name="twitter:title" content={`${project.heading} | Scons Tech`} />
         <meta name="twitter:description" content={metaDescription} />
         <meta name="twitter:image" content={ogLogo} />
         <script type="application/ld+json">
@@ -100,7 +100,7 @@ const ProjectDetail = () => {
             "image": ogLogo,
             "creator": {
               "@type": "Organization",
-              "name": "Scons",
+              "name": "Scons Tech",
               "url": "https://sconstech.com",
             },
             "keywords": keywords.split(", "),
@@ -276,7 +276,7 @@ const ProjectDetail = () => {
       <HorizontalScroller
         heading={`How ${project.heading} came to life`}
         spanHeading={project.heading}
-        bodyText="Scons brings projects to life with a clear and proven process—starting from strategic planning and architecture design, followed by precise development focused on performance and scalability. Each project is thoroughly tested and refined through client feedback to ensure a smooth, successful launch."
+        bodyText="Scons Tech brings projects to life with a clear and proven process—starting from strategic planning and architecture design, followed by precise development focused on performance and scalability. Each project is thoroughly tested and refined through client feedback to ensure a smooth, successful launch."
       />
 
       {/* Impact section */}

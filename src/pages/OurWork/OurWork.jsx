@@ -72,29 +72,29 @@ const OurWork = () => {
   return (
     <div className="min-h-screen">
       <Helmet>
-        <title>Our Portfolio | Scons</title>
+        <title>Our Portfolio | Scons Tech</title>
         <meta
           name="description"
-          content="Explore Scons' portfolio of innovative tech projects, showcasing expertise in software development for startups and enterprises."
+          content="Explore Scons Tech' portfolio of innovative tech projects, showcasing expertise in software development for startups and enterprises."
         />
         <meta
           name="keywords"
-          content="Scons, portfolio, projects, software development, UK tech, startups, enterprises"
+          content="Scons Tech, portfolio, projects, software development, UK tech, startups, enterprises"
         />
         <link rel="canonical" href="https://sconstech.com/portfolio" />
-        <meta property="og:title" content="Our Work | Scons" />
+        <meta property="og:title" content="Our Work | Scons Tech" />
         <meta
           property="og:description"
-          content="Explore Scons' portfolio of innovative tech projects, showcasing expertise in software development for startups and enterprises."
+          content="Explore Scons Tech' portfolio of innovative tech projects, showcasing expertise in software development for startups and enterprises."
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://sconstech.com/portfolio" />
         <meta property="og:image" content={ogDefault} />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Our Work | Scons" />
+        <meta name="twitter:title" content="Our Work | Scons Tech" />
         <meta
           name="twitter:description"
-          content="Explore Scons' portfolio of innovative tech projects, showcasing expertise in software development for startups and enterprises."
+          content="Explore Scons Tech' portfolio of innovative tech projects, showcasing expertise in software development for startups and enterprises."
         />
         <meta name="twitter:image" content={ogDefault} />
       </Helmet>
