@@ -82,7 +82,7 @@ function AppContent() {
         <Routes>
 
           <Route path="/" element={<Home />} />
-          <Route path="/why-scons" element={<KnowUs />} />
+          <Route path="/about" element={<KnowUs />} />
           <Route path="/portfolio" element={<OurWork />} />
           <Route path="/portfolio/:slug" element={<ProjectDetail />} />
           <Route path="/contact-us" element={<ContactUs />} />

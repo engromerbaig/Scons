@@ -70,14 +70,14 @@ const KnowUs = () => {
           name="keywords"
           content="Scons, about us, software company, UK tech, mission, vision, technology solutions"
         />
-        <link rel="canonical" href="https://sconstech.com/why-scons" />
+        <link rel="canonical" href="https://sconstech.com/about" />
         <meta property="og:title" content="About Us | Scons" />
         <meta
           property="og:description"
           content="Learn about Scons, a UK-based software innovator delivering cutting-edge solutions for global startups and enterprises."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://sconstech.com/why-scons" />
+        <meta property="og:url" content="https://sconstech.com/about" />
         <meta property="og:image" content={ogDefault} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="About Us | Scons" />
