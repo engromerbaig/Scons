@@ -3,7 +3,7 @@ import { createWriteStream } from 'fs';
 import { resolve } from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import sanityClient from '@sanity/client';
+import client from './src/lib/sanityClient.js';
 import projects from './src/data/projects.json' assert { type: 'json' }; // Adjust path as needed
 
 // __dirname polyfill for ESM
@@ -14,12 +14,7 @@ const __dirname = dirname(__filename);
 const baseUrl = 'https://sconstech.com';
 
 // Initialize Sanity client
-const client = sanityClient({
-  projectId: 'y7evdl39', // Replace with your project ID
-  dataset: 'production',
-  useCdn: true,
-  apiVersion: '2025-06-01', // Use current date or your API version
-});
+
 
 // Slugify function
 const generateSlug = (name) =>
