@@ -14,16 +14,86 @@ const PrivacyPolicy = () => {
     }
   };
 
+  // Function to parse markdown-like text into JSX
+  const parseMarkdown = (text) => {
+  const lines = text.split('\n');
+  const elements = [];
+  let listItems = [];
+
+  // Helper to parse bold markdown into JSX
+  const parseInlineBold = (str) => {
+    const parts = [];
+    let lastIndex = 0;
+    const regex = /\*\*(.*?)\*\*/g;
+    let match;
+    let key = 0;
+
+    while ((match = regex.exec(str)) !== null) {
+      if (match.index > lastIndex) {
+        parts.push(str.substring(lastIndex, match.index));
+      }
+      parts.push(<strong key={key++} className="font-semibold">{match[1]}</strong>);
+      lastIndex = regex.lastIndex;
+    }
+    if (lastIndex < str.length) {
+      parts.push(str.substring(lastIndex));
+    }
+    return parts.length ? parts : str;
+  };
+
+  lines.forEach((line, idx) => {
+    const trimmed = line.trim();
+
+    if (trimmed.startsWith('- ')) {
+      // It's a list item, collect it
+      listItems.push(parseInlineBold(trimmed.slice(2).trim()));
+    } else {
+      // If we were collecting list items, flush them as <ul>
+      if (listItems.length > 0) {
+        elements.push(
+          <ul key={`ul-${idx}`} className="list-disc pl-6 mb-4">
+            {listItems.map((item, i) => (
+              <li key={`li-${idx}-${i}`} className="mb-2 text-25px">{item}</li>
+            ))}
+          </ul>
+        );
+        listItems = [];
+      }
+      // For normal paragraphs, render as <p>
+      if (trimmed.length > 0) {
+        elements.push(
+          <p key={`p-${idx}`} className="mb-4 text-25px">
+            {parseInlineBold(trimmed)}
+          </p>
+        );
+      }
+    }
+  });
+
+  // Flush any remaining list items at end
+  if (listItems.length > 0) {
+    elements.push(
+      <ul key={`ul-end`} className="list-disc pl-6 mb-4">
+        {listItems.map((item, i) => (
+          <li key={`li-end-${i}`} className="mb-2">{item}</li>
+        ))}
+      </ul>
+    );
+  }
+
+  return elements;
+};
+
   return (
-    <div className={`${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal}  `}>
-      <div className="grid grid-cols-12 gap-6">
+    <div className={`${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal} `}>
+      <div className="grid grid-cols-12 gap-8">
         {/* Left Content (col-span-8) */}
         <div className="col-span-12 lg:col-span-8 max-w-xl">
           <Heading
             text={privacyPolicyData.title}
             centered={false}
             isAnimate={false}
-            className="mb-6"
+            className="mb-8 "
           />
           
           {privacyPolicyData.description.map((paragraph, index) => (
@@ -31,34 +101,29 @@ const PrivacyPolicy = () => {
               key={index}
               text={paragraph}
               centered={false}
-              className=" mb-4 leading-relaxed"
-
+              className=" mb-6 leading-relaxed"
               isAnimate={false}
             />
           ))}
 
-          <div className="mt-8">
+          <div className="mt-10">
             {privacyPolicyData.policyList.map((policy, index) => (
               <div
                 key={index}
                 ref={(el) => (sectionRefs.current[index] = el)}
-                className="mb-10 scroll-mt-20"
+                className="mb-12 scroll-mt-24"
               >
                 <Heading
                   text={policy.title}
                   size="text-2xl"
                   fontWeight="font-semibold"
                   isAnimate={false}
-                              centered={false}
-
+                  centered={false}
                   className="text-left mb-4"
                 />
-                <BodyText
-                  text={policy.text}
-                  centered={false}
-                  className="leading-relaxed"
-                  isAnimate={false}
-                />
+                <div className="leading-relaxed text-base">
+                  {parseMarkdown(policy.text)}
+                </div>
               </div>
             ))}
           </div>
@@ -66,13 +131,13 @@ const PrivacyPolicy = () => {
 
         {/* Right Sidebar (col-span-4) */}
         <div className="col-span-12 lg:col-span-4 hidden lg:block">
-          <div className="sticky top-20 bg-white rounded-lg shadow-sm p-6 border border-gray-200">
-            <ul className="space-y-3">
+          <div className="sticky top-24 bg-white rounded-xl shadow-md p-6 border border-gray-200">
+            <ul className="space-y-2">
               {privacyPolicyData.policyList.map((policy, index) => (
                 <li key={index}>
                   <button
                     onClick={() => scrollToSection(index)}
-                    className="w-full text-left text-black hover:text-neon hover:bg-gray-100 px-4 py-2 rounded-full transition-colors duration-200 text-25px font-medium"
+                    className="w-full text-left text-black text-sm hover:text-neon hover:bg-gray-50 px-4 py-2 rounded-full transition-colors duration-200 font-medium"
                   >
                     {policy.title}
                   </button>
