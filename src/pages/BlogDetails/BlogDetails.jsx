@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async'; // Import Helmet
+import { Helmet } from 'react-helmet-async';
 import { PortableText } from '@portabletext/react';
 import { urlFor } from '../../lib/sanityImage';
 import { getPostBySlug, getPosts } from '../../lib/sanityQueries';
@@ -11,7 +11,7 @@ import SkeletonLoader from '../../utilities/SkeletonLoader';
 import { theme } from '../../theme';
 import { format } from 'date-fns';
 import calculateReadingTime from '../Blogs/calculateReadingTime';
-import { FaTwitter, FaLinkedin, FaLink } from 'react-icons/fa';
+import { FaTwitter, FaLinkedin, FaLink, FaCheckCircle } from 'react-icons/fa';
 import { CiTimer } from 'react-icons/ci';
 
 const BlogDetails = () => {
@@ -129,7 +129,8 @@ const BlogDetails = () => {
         children && (
           <h1
             id={node._key}
-            className="text-4xl md:text-5xl font-black my-6 font-manrope"
+            className="text-4xl md:text-5xl  font-black my-6 font-manrope leading-tight"
+            style={{ textIndent: '0', marginLeft: '0' }}
           >
             {children}
           </h1>
@@ -139,7 +140,8 @@ const BlogDetails = () => {
         children && (
           <h2
             id={node._key}
-            className="text-3xl md:text-4xl font-bold my-5 font-manrope"
+            className="text-3xl md:text-4xl font-bold my-5 font-manrope leading-tight"
+            style={{ textIndent: '0', marginLeft: '0' }}
           >
             {children}
           </h2>
@@ -149,14 +151,15 @@ const BlogDetails = () => {
         children && (
           <h3
             id={node._key}
-            className="text-2xl md:text-3xl font-semibold my-4 font-manrope"
+            className="text-2xl md:text-3xl font-semibold my-4 font-manrope leading-tight"
+            style={{ textIndent: '0', marginLeft: '0' }}
           >
             {children}
           </h3>
         ),
       normal: ({ children }) =>
         children && (
-          <p className="my-3 font-manrope text-black leading-relaxed text-base md:text-lg">
+          <p className="my-3 font-manrope text-black leading-relaxed text-25px">
             {children}
           </p>
         ),
@@ -164,22 +167,31 @@ const BlogDetails = () => {
     list: {
       bullet: ({ children }) =>
         children && (
-          <ul className="list-disc ml-6 my-4 font-manrope text-black">
+          <ul className="my-4 font-manrope text-black">
             {children}
           </ul>
         ),
       number: ({ children }) =>
         children && (
-          <ol className="list-decimal ml-6 my-4 font-manrope text-black">
+          <ol className="list-decimal ml-10 my-4 font-manrope text-black">
             {children}
           </ol>
         ),
     },
     listItem: {
       bullet: ({ children }) =>
-        children && <li className="font-manrope my-1">{children}</li>,
+        children && (
+          <li className="font-manrope my-2 text-25px flex items-start">
+            <FaCheckCircle className="text-neon mr-2 mt-1 flex-shrink-0" />
+            <span>{children}</span>
+          </li>
+        ),
       number: ({ children }) =>
-        children && <li className="font-manrope my-1">{children}</li>,
+        children && (
+          <li className="font-manrope my-2 text-25px">
+            {children}
+          </li>
+        ),
     },
   };
 
@@ -247,7 +259,6 @@ const BlogDetails = () => {
     );
   }
 
-  // Generate OG image URL or fallback to mainImage
   const ogImageUrl =
     post?.ogImage
       ? urlFor(post.ogImage).width(1200).height(630).url()
@@ -259,7 +270,6 @@ const BlogDetails = () => {
     <div
       className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical} lg:grid lg:grid-cols-[2fr_1fr] lg:gap-14`}
     >
-      {/* Meta Tags */}
       <Helmet>
         <title>{post?.seoTitle || post?.title || 'Blog Post'}</title>
         <meta
@@ -273,8 +283,6 @@ const BlogDetails = () => {
         />
         <meta name="keywords" content={post?.keywords?.join(', ') || ''} />
         <meta name="author" content={post?.author?.name || ''} />
-
-        {/* Open Graph Tags */}
         <meta property="og:title" content={post?.seoTitle || post?.title || 'Blog Post'} />
         <meta
           property="og:description"
@@ -300,8 +308,6 @@ const BlogDetails = () => {
             content={post.categories.map((cat) => cat.title).join(', ')}
           />
         )}
-
-        {/* Twitter Card Tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={post?.seoTitle || post?.title || 'Blog Post'} />
         <meta
@@ -316,14 +322,12 @@ const BlogDetails = () => {
         {ogImageUrl && <meta name="twitter:image" content={ogImageUrl} />}
       </Helmet>
 
-      {/* Main Content */}
       <div>
         {post?.title && (
           <Heading text={post.title} centered={false} className="max-w-3xl mb-6" />
         )}
 
         <div className="text-sm text-black mt-2 mb-8 space-y-2">
-          {/* Row 1: Author and Date */}
           <div className="flex flex-wrap gap-2 items-center">
             {post?.author?.name && (
               <>
@@ -339,8 +343,6 @@ const BlogDetails = () => {
               </>
             )}
           </div>
-
-          {/* Row 2: Reading Time and Categories */}
           <div className="flex flex-wrap gap-4 items-center">
             {post?.body && (
               <div className="flex items-center gap-1 text-black font-bold">
@@ -350,7 +352,6 @@ const BlogDetails = () => {
               </div>
             )}
             <span className="">|</span>
-
             {post?.categories?.length > 0 && (
               <div className="flex flex-wrap gap-2">
                 {post.categories.map((category, idx) => (
@@ -487,7 +488,6 @@ const BlogDetails = () => {
         </div>
       </div>
 
-      {/* More Blogs Sidebar */}
       <div className="mt-12 lg:mt-0">
         <Heading
           text="Related Blogs"
