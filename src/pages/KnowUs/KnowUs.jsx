@@ -118,8 +118,8 @@ const KnowUs = () => {
                 imageLoaded ? 'opacity-100' : 'opacity-0'
               }`}
               style={{
-                transform: isScaled ? 'scale(1.09)' : 'scale(1)',
-                transition: 'transform 1.2s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.5s',
+                transform: isScaled ? 'scale(1.06)' : 'scale(1)',
+                transition: 'transform 1.0s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.5s',
                 willChange: 'transform, opacity',
               }}
               loading="lazy"
