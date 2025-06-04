@@ -5,32 +5,36 @@ import BodyText from '../BodyText/BodyText';
 import { theme } from '../../theme';
 import SkeletonLoader from '../../utilities/SkeletonLoader';
 
-const Vision = () => (
+const Vision = ({ bgColor = 'bg-white' }) => (
   <section
-    className={`relative min-h-screen flex flex-col items-center justify-start bg-black text-white ${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical}`}
+    className={`relative min-h-screen  ${bgColor} text-white w-full ${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical}`}
   >
     {/* Content Overlay */}
-    <div className="relative z-10 w-full flex flex-col items-center">
       {/* Main Heading */}
-      <div className="mb-12 text-center xl:text-start">
-        <Heading
-          text="What Scons Tech Stands For"
-          spanText='Stands'
-          spanColor='text-neon'
-          color="text-white"
-          centered={false}
-          fontWeight="font-bold"
-          isAnimate={false}
-        />
-      </div>
+  <Heading
+  text="What We Stand For at Scons Tech"
+  spanText="Stand For"
+  spanColor="text-neon"
+  color="text-black"
+  centered={false}
+  className="pb-6"
+  showUnderline
+/>
+
+<BodyText
+text="At Scons Tech, we’re shaping the digital future through innovation, integrity, and user-focused solutions. We craft high-quality web and mobile experiences that help businesses grow, combining creative design with scalable technology."
+
+  centered={false}
+  className="max-w-4xl pb-10"
+/>
+
 
       {/* Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-5xl">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-x-20 w-full ">
         {visionMissionData.map((item, index) => (
           <VisionCard key={index} item={item} />
         ))}
       </div>
-    </div>
   </section>
 );
 
@@ -38,12 +42,12 @@ const VisionCard = ({ item }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
 
   return (
-    <div className="relative rounded-2xl shadow-lg overflow-hidden flex flex-col items-start min-h-[320px] transition-transform hover:-translate-y-2 hover:shadow-2xl duration-300 border border-black">
+    <div className="relative rounded-3xl shadow-lg overflow-hidden flex flex-col items-start min-h-[320px] transition-transform hover:-translate-y-2 hover:shadow-2xl duration-300 border border-black">
       {/* Background Image */}
       {!imageLoaded && (
         <SkeletonLoader
           className="absolute top-0 left-0 w-full h-full"
-          rounded="rounded-2xl"
+          rounded="rounded-3xl"
         />
       )}
       <img
@@ -55,14 +59,14 @@ const VisionCard = ({ item }) => {
       />
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black bg-opacity-80 z-0" />
+      <div className="absolute inset-0 bg-black bg-opacity-60 z-0" />
 
       {/* Card Content */}
       <div className="relative z-10 p-8 w-full h-full flex flex-col">
         <Heading
           text={item.heading}
           color="text-white"
-          size="text-2xl"
+          size="text-3xl"
           centered={false}
           fontWeight="font-black"
           isAnimate={false}
@@ -72,6 +76,7 @@ const VisionCard = ({ item }) => {
           text={item.body}
           color="text-white"
           size="text-base"
+          fontWeight="font-medium"
           centered={false}
           isAnimate={false}
           className='leading-loose'
