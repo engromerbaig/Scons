@@ -95,9 +95,13 @@ const ContactUs = () => {
                 <FormTemplate
                   handleFormSubmit={handleFormSubmit}
                   buttonWidth="w-40"
-                  textAreaRows={4}
+                  inputStyles="m-1 p-2 md:p-4 border-[3px] rounded-3xl  text-bodyText placeholder-bodyText border-neon bg-transparent w-full focus:outline-none"
+                  textAreaRows={3}
                   showSelect={true}
                   hideErrorMessages={true}
+                  showPhoneNumber={false}
+                  isAudit
+                  btnText='Get Audit'
                 />
               </div>
             </div>
