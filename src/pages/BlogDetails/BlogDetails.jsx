@@ -66,7 +66,7 @@ const BlogDetails = () => {
 
           const filteredPosts = (allPostsData || [])
             .filter((relatedPost) => relatedPost._id !== postData?._id)
-            .slice(0, 4);
+            .slice(0, 3);
 
           setRelatedPosts(filteredPosts);
           setLoading(false);
