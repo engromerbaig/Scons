@@ -1,9 +1,9 @@
-// generate-sitemap.mjs (or ensure package.json has "type": "module")
 import { SitemapStream, streamToPromise } from 'sitemap';
 import { createWriteStream } from 'fs';
 import { resolve } from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import projects from './src/data/projects.json' assert { type: 'json' }; // Adjust path as needed
 
 // These lines help resolve __dirname in ESM
 const __filename = fileURLToPath(import.meta.url);
@@ -24,8 +24,25 @@ const links = [
   { url: '/thank-you', changefreq: 'yearly', priority: 0.3 }
 ];
 
-const sitemap = new SitemapStream({ hostname: baseUrl });
+// Slugify function (same as frontend)
+const generateSlug = (name) =>
+  name
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '') // Remove special characters
+    .replace(/\s+/g, '-')      // Replace spaces with hyphens
+    .replace(/--+/g, '-')      // Avoid duplicate hyphens
+    .trim();
 
+projects.forEach(project => {
+  const slug = generateSlug(project.heading);
+  links.push({
+    url: `/portfolio/${slug}`,
+    changefreq: 'yearly',
+    priority: 0.6
+  });
+});
+
+const sitemap = new SitemapStream({ hostname: baseUrl });
 const writeStream = createWriteStream(resolve(__dirname, 'public', 'sitemap.xml'));
 sitemap.pipe(writeStream);
 
