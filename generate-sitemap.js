@@ -3,14 +3,34 @@ import { createWriteStream } from 'fs';
 import { resolve } from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import sanityClient from '@sanity/client';
 import projects from './src/data/projects.json' assert { type: 'json' }; // Adjust path as needed
 
-// These lines help resolve __dirname in ESM
+// __dirname polyfill for ESM
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const baseUrl = 'https://sconstech.com'; // Replace with your actual domain
+// Your domain
+const baseUrl = 'https://sconstech.com';
 
+// Initialize Sanity client
+const client = sanityClient({
+  projectId: 'y7evdl39', // Replace with your project ID
+  dataset: 'production',
+  useCdn: true,
+  apiVersion: '2025-06-01', // Use current date or your API version
+});
+
+// Slugify function
+const generateSlug = (name) =>
+  name
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/--+/g, '-')
+    .trim();
+
+// Static and portfolio links
 const links = [
   { url: '/', changefreq: 'weekly', priority: 1.0 },
   { url: '/about', changefreq: 'monthly', priority: 0.8 },
@@ -24,15 +44,7 @@ const links = [
   { url: '/thank-you', changefreq: 'yearly', priority: 0.3 }
 ];
 
-// Slugify function (same as frontend)
-const generateSlug = (name) =>
-  name
-    .toLowerCase()
-    .replace(/[^\w\s-]/g, '') // Remove special characters
-    .replace(/\s+/g, '-')      // Replace spaces with hyphens
-    .replace(/--+/g, '-')      // Avoid duplicate hyphens
-    .trim();
-
+// Add portfolio pages from local JSON
 projects.forEach(project => {
   const slug = generateSlug(project.heading);
   links.push({
@@ -42,15 +54,38 @@ projects.forEach(project => {
   });
 });
 
-const sitemap = new SitemapStream({ hostname: baseUrl });
-const writeStream = createWriteStream(resolve(__dirname, 'public', 'sitemap.xml'));
-sitemap.pipe(writeStream);
+// Main sitemap generation function
+async function generateSitemap() {
+  try {
+    // Fetch blog post slugs from Sanity
+    const blogPosts = await client.fetch(`*[_type == "post"]{ "slug": slug.current }`);
 
-for (const link of links) {
-  sitemap.write(link);
+    blogPosts.forEach((post) => {
+      if (post.slug) {
+        links.push({
+          url: `/blogs/${post.slug}`,
+          changefreq: 'weekly',
+          priority: 0.7,
+        });
+      }
+    });
+
+    // Create sitemap stream and file
+    const sitemap = new SitemapStream({ hostname: baseUrl });
+    const writeStream = createWriteStream(resolve(__dirname, 'public', 'sitemap.xml'));
+    sitemap.pipe(writeStream);
+
+    // Write all collected links
+    for (const link of links) {
+      sitemap.write(link);
+    }
+    sitemap.end();
+
+    await streamToPromise(sitemap);
+    console.log('✅ Sitemap generated at public/sitemap.xml');
+  } catch (error) {
+    console.error('❌ Failed to generate sitemap:', error);
+  }
 }
-sitemap.end();
 
-streamToPromise(sitemap)
-  .then(() => console.log('✅ Sitemap generated at public/sitemap.xml'))
-  .catch((error) => console.error('❌ Failed to generate sitemap:', error));
+generateSitemap();
