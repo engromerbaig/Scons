@@ -40,7 +40,7 @@ const UniqueApproach = () => {
         <BodyText
   text={
     <>
-      At <strong>Software CONSultants (Scons)</strong>, innovation meets precision. Our client-centric approach ensures we understand your vision, ideate effectively, and deliver solutions that exceed expectations. From concept to deployment, we bring expertise and passion to every project. Our journey goes back to 2011, when we started as MEP & IT Services at{' '}
+      At <strong>Software CONSultants Technologies (Scons Tech)</strong>, innovation meets precision. Our client-centric approach ensures we understand your vision, ideate effectively, and deliver solutions that exceed expectations. From concept to deployment, we bring expertise and passion to every project. Our journey goes back to 2011, when we started as MEP & IT Services at{' '}
       <a
         href="https://www.econs.com.pk/"
         target="_blank"

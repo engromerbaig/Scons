@@ -26,7 +26,7 @@ const Industries = () => {
         />
 
            <BodyText
-          text="At Scons, we deliver innovative digital solutions tailored to the unique needs of industries like healthcare, finance, education, and more. Our industry-specific expertise empowers us to craft customized strategies that drive measurable success."
+          text="At Scons Tech, we deliver innovative digital solutions tailored to the unique needs of industries like healthcare, finance, education, and more. Our industry-specific expertise empowers us to craft customized strategies that drive measurable success."
           centered={false}
           isAnimate={false}
           color="text-black"
