@@ -1,4 +1,6 @@
 import React, { useRef, useEffect, useState, lazy } from "react";
+import { Helmet } from 'react-helmet-async'; // Import Helmet
+import ogDefault from '../../assets/images/og-default.jpg'; // Default OG image
 
 // Lazy load all components
 const InnerHero = lazy(() => import("../../components/InnerHero/InnerHero"));
@@ -17,12 +19,39 @@ import careerImage from '../../assets/images/career.svg';
 const Careers = () => {
     return (
         <>
+            <Helmet>
+                <title>Careers | Scons Tech</title>
+                <meta
+                    name="description"
+                    content="Join Scons Tech and be part of a dynamic team transforming businesses worldwide. Explore career opportunities and grow with us."
+                />
+                <meta
+                    name="keywords"
+                    content="Scons Tech careers, tech jobs, software development jobs, UK tech careers, Pakistan tech jobs, join our team"
+                />
+                <link rel="canonical" href="https://sconstech.com/careers" />
+                <meta property="og:title" content="Careers | Scons Tech" />
+                <meta
+                    property="og:description"
+                    content="Join Scons Tech and be part of a dynamic team transforming businesses worldwide. Explore career opportunities and grow with us."
+                />
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content="https://sconstech.com/careers" />
+                <meta property="og:image" content={ogDefault} />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="Careers | Scons Tech" />
+                <meta
+                    name="twitter:description"
+                    content="Join Scons Tech and be part of a dynamic team transforming businesses worldwide. Explore career opportunities and grow with us."
+                />
+                <meta name="twitter:image" content={ogDefault} />
+            </Helmet>
+
             {/* Inner Hero Section */} 
             <InnerHero
                 headingText="Begin Your Career With Us"
                 spanText="Career"
                 bodyText="Join Scons Tech and be part of a dynamic team transforming businesses worldwide. Innovate, grow, and excel with us."
-            
                 height="h-[70vh]"
             />
 
@@ -41,18 +70,17 @@ const Careers = () => {
                 ))} */}
 
                 <Heading
-                text="No Current Openings"
-                size="text-50px"
-                color="text-black"
-                centered={false}
+                    text="No Current Openings"
+                    size="text-50px"
+                    color="text-black"
+                    centered={false}
                 />
                 <BodyText
-                text="Please check back later for updates."
-                centered={false}
+                    text="Please check back later for updates."
+                    centered={false}
                 />
             </div>
 
-      
             {/* FAQ Section */}
             <FAQ />
         </>
