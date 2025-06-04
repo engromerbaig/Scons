@@ -20,30 +20,30 @@ function Home() {
   return (
     <div>
       <Helmet>
-        <title>Home | Scons</title>
+        <title>Home | Scons Tech</title>
         {/* this is what google picks up */}
         <meta
           name="description"
-          content="Scons delivers innovative software solutions for startups and enterprises in the UK and beyond. Explore our services and projects."
+          content="Scons Tech delivers innovative software solutions for startups and enterprises in the UK and beyond. Explore our services and projects."
         />
         <meta
           name="keywords"
-          content="Scons, software development, UK software company, web development, startups, enterprises, technology solutions"
+          content="Scons Tech, software development, UK software company, web development, startups, enterprises, technology solutions"
         />
         <link rel="canonical" href="https://sconstech.com/" />
-        <meta property="og:title" content="Home | Scons" />
+        <meta property="og:title" content="Home | Scons Tech" />
         <meta
           property="og:description"
-          content="Scons delivers innovative software solutions for startups and enterprises in the UK and beyond. Explore our services and projects."
+          content="Scons Tech delivers innovative software solutions for startups and enterprises in the UK and beyond. Explore our services and projects."
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://sconstech.com/" />
         <meta property="og:image" content={ogDefault} />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Home | Scons" />
+        <meta name="twitter:title" content="Home | Scons Tech" />
         <meta
           name="twitter:description"
-          content="Scons delivers innovative software solutions for startups and enterprises in the UK and beyond. Explore our services and projects."
+          content="Scons Tech delivers innovative software solutions for startups and enterprises in the UK and beyond. Explore our services and projects."
         />
         <meta name="twitter:image" content={ogDefault} />
       </Helmet>
