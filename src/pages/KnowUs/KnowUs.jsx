@@ -61,38 +61,38 @@ const KnowUs = () => {
   return (
     <>
       <Helmet>
-        <title>About Us | Scons</title>
+        <title>About Us | Scons Tech</title>
         <meta
           name="description"
-          content="Learn about Scons, a UK-based software innovator delivering cutting-edge solutions for global startups and enterprises."
+          content="Learn about Scons Tech, a UK-based software innovator delivering cutting-edge solutions for global startups and enterprises."
         />
         <meta
           name="keywords"
-          content="Scons, about us, software company, UK tech, mission, vision, technology solutions"
+          content="Scons Tech, about us, software company, UK tech, mission, vision, technology solutions"
         />
         <link rel="canonical" href="https://sconstech.com/about" />
-        <meta property="og:title" content="About Us | Scons" />
+        <meta property="og:title" content="About Us | Scons Tech" />
         <meta
           property="og:description"
-          content="Learn about Scons, a UK-based software innovator delivering cutting-edge solutions for global startups and enterprises."
+          content="Learn about Scons Tech, a UK-based software innovator delivering cutting-edge solutions for global startups and enterprises."
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://sconstech.com/about" />
         <meta property="og:image" content={ogDefault} />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="About Us | Scons" />
+        <meta name="twitter:title" content="About Us | Scons Tech" />
         <meta
           name="twitter:description"
-          content="Learn about Scons, a UK-based software innovator delivering cutting-edge solutions for global startups and enterprises."
+          content="Learn about Scons Tech, a UK-based software innovator delivering cutting-edge solutions for global startups and enterprises."
         />
         <meta name="twitter:image" content={ogDefault} />
       </Helmet>
       <FadeInSection>
         <InnerHero
           logoImages={[logoImage]}
-          headingText="About Scons & The Journey So Far"
-          spanText="Scons"
-          bodyText="Scons is a dynamic tech powerhouse, delivering innovative software solutions worldwide."
+          headingText="About Scons Tech & The Journey So Far"
+          spanText="Scons Tech"
+          bodyText="Scons Tech is a dynamic tech powerhouse, delivering innovative software solutions worldwide."
           showBottomShadow={true}
           illustrationImage={aboutUsImage}
           illustrationImageWidth="w-3/4"
@@ -129,7 +129,7 @@ const KnowUs = () => {
           <div className="flex flex-col items-start gap-y-6 pt-10">
             <HeadingWithText
               heading="Building software for global leaders"
-              body="At Scons, we envision a world where technology seamlessly integrates into every aspect of life, empowering individuals and businesses to achieve their fullest potential. We strive to be at the forefront of innovation, creating solutions that not only meet the needs of today but also anticipate the challenges of tomorrow."
+              body="At Scons Tech, we envision a world where technology seamlessly integrates into every aspect of life, empowering individuals and businesses to achieve their fullest potential. We strive to be at the forefront of innovation, creating solutions that not only meet the needs of today but also anticipate the challenges of tomorrow."
             />
             <Highlights />
           </div>
@@ -138,7 +138,7 @@ const KnowUs = () => {
       <MessageBox
         Message="We are a team of passionate individuals who believe in the power of technology to transform lives. Our transition from the electrical to the IT domain has been nothing short of sensational, fueled by our rapidly growing client base."
         Name="Mr. Omer"
-        Designation="Co-Founder, Scons"
+        Designation="Co-Founder, Scons Tech"
         ProfileDisplay={ceoImage}
       />
       <FadeInSection>
