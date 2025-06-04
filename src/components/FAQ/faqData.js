@@ -1,124 +1,124 @@
 export const faqData = {
   "General": [
     {
-      question: "Why choose Scons? What makes it different?",
+      question: "Why choose Scons Tech? What makes it different?",
       answer:
-        "Scons stands out for its commitment to innovation, quality, and inclusivity. We are not just a software company—we are your partners in success. Our expertise spans mobile and web app development, UI/UX design, blockchain, cloud solutions, AI, and consultation. With a diverse global team, cutting-edge technology, and a client-centric approach, we deliver solutions that empower businesses to thrive in a fast-evolving digital landscape.",
+        "Scons Tech stands out for its commitment to innovation, quality, and inclusivity. We are not just a software company—we are your partners in success. Our expertise spans mobile and web app development, UI/UX design, blockchain, cloud solutions, AI, and consultation. With a diverse global team, cutting-edge technology, and a client-centric approach, we deliver solutions that empower businesses to thrive in a fast-evolving digital landscape.",
     },
     {
-      question: "What is Scons's approach to diversity and inclusion?",
+      question: "What is Scons Tech's approach to diversity and inclusion?",
       answer:
-        "At Scons, we believe in the power of diversity. We welcome talented individuals from around the world, irrespective of caste, color, creed, religion, or background. Our inclusive work environment encourages collaboration and innovation, reflecting our global vision.",
+        "At Scons Tech, we believe in the power of diversity. We welcome talented individuals from around the world, irrespective of caste, color, creed, religion, or background. Our inclusive work environment encourages collaboration and innovation, reflecting our global vision.",
     },
     {
-      question: "How does Scons ensure project transparency?",
+      question: "How does Scons Tech ensure project transparency?",
       answer:
         "We maintain transparency through regular updates, milestone tracking, and open communication. Our project management tools and collaborative approach ensure you are always informed and involved in the development process.",
     },
     {
-      question: "Where is Scons based?",
+      question: "Where is Scons Tech based?",
       answer:
-        "Scons is headquartered in Karachi, Pakistan, with a key operational office in Glasgow, United Kingdom. These strategic locations allow us to serve clients globally while fostering innovation and collaboration across diverse markets.",
+        "Scons Tech is headquartered in Karachi, Pakistan, with a key operational office in Glasgow, United Kingdom. These strategic locations allow us to serve clients globally while fostering innovation and collaboration across diverse markets.",
     },
     {
-      question: "What is the history of Scons and Econs MEP?",
+      question: "What is the history of Scons Tech and Econs MEP?",
       answer:
-        "Scons evolved from Econs MEP, which was launched in 2011 as a specialized provider of mechanical, electrical, and plumbing (MEP) services. As the IT sector grew, driven by the support of our clients and investors, Econs expanded into software development, leading to the formation of Scons. Today, Scons continues to build on this legacy, delivering cutting-edge IT solutions in mobile and web app development, blockchain, AI, and more, while maintaining a commitment to quality and innovation.",
+        "Scons Tech evolved from Econs MEP, which was launched in 2011 as a specialized provider of mechanical, electrical, and plumbing (MEP) services. As the IT sector grew, driven by the support of our clients and investors, Econs expanded into software development, leading to the formation of Scons Tech. Today, Scons Tech continues to build on this legacy, delivering cutting-edge IT solutions in mobile and web app development, blockchain, AI, and more, while maintaining a commitment to quality and innovation.",
     },
     {
-      question: "How has Scons grown with client and investor support?",
+      question: "How has Scons Tech grown with client and investor support?",
       answer:
-        "Scons’ growth in the IT sector has been fueled by strong partnerships with clients and investors. Their trust and collaboration have enabled us to expand our capabilities, from our roots in Econs MEP to a global leader in software development. By leveraging client feedback and investor support, we continuously innovate and scale our solutions to meet the evolving needs of businesses worldwide.",
+        "Scons Tech’ growth in the IT sector has been fueled by strong partnerships with clients and investors. Their trust and collaboration have enabled us to expand our capabilities, from our roots in Econs MEP to a global leader in software development. By leveraging client feedback and investor support, we continuously innovate and scale our solutions to meet the evolving needs of businesses worldwide.",
     },
   ],
   "Services": [
     {
-      question: "What services does Scons offer?",
+      question: "What services does Scons Tech offer?",
       answer:
-        "Scons provides a comprehensive range of services, including mobile and web app development, UI/UX design, blockchain solutions, cloud computing, artificial intelligence, and IT consultation. We tailor our offerings to meet your business needs, ensuring innovative and scalable solutions.",
+        "Scons Tech provides a comprehensive range of services, including mobile and web app development, UI/UX design, blockchain solutions, cloud computing, artificial intelligence, and IT consultation. We tailor our offerings to meet your business needs, ensuring innovative and scalable solutions.",
     },
     {
-      question: "Does Scons offer domain and hosting services?",
+      question: "Does Scons Tech offer domain and hosting services?",
       answer:
-        "Yes, Scons includes domain registration and hosting for free with our website packages. These services are designed to provide a seamless experience, ensuring your website is up and running without additional costs. Visit https://sconstech.com for details on our website packages.",
+        "Yes, Scons Tech includes domain registration and hosting for free with our website packages. These services are designed to provide a seamless experience, ensuring your website is up and running without additional costs. Visit sconstech.com/packages for details on our website packages.",
     },
     {
-      question: "Can Scons handle custom software development?",
+      question: "Can Scons Tech handle custom software development?",
       answer:
-        "Absolutely. Scons specializes in custom software development, creating tailored solutions that align with your unique business requirements. From ideation to deployment, we work closely with you to deliver software that drives results.",
+        "Absolutely. Scons Tech specializes in custom software development, creating tailored solutions that align with your unique business requirements. From ideation to deployment, we work closely with you to deliver software that drives results.",
     },
   ],
   "Technical": [
     {
       question: "How do you ensure security in your applications?",
       answer:
-        "Security is a top priority at Scons. We follow industry best practices, including secure coding standards, regular vulnerability assessments, and encryption protocols to ensure your applications are robust and secure.",
+        "Security is a top priority at Scons Tech. We follow industry best practices, including secure coding standards, regular vulnerability assessments, and encryption protocols to ensure your applications are robust and secure.",
     },
     {
-      question: "Can Scons help with scalable architecture for apps?",
+      question: "Can Scons Tech help with scalable architecture for apps?",
       answer:
         "Absolutely. We design and implement scalable architectures that can handle growth and high user traffic. Our solutions ensure your app remains performant and reliable as your business expands.",
     },
     {
-      question: "What technologies does Scons use for development?",
+      question: "What technologies does Scons Tech use for development?",
       answer:
-        "Scons leverages a wide range of modern technologies, including React, Node.js, Python, Solidity for blockchain, AWS for cloud solutions, and TensorFlow for AI. We choose the best tools for each project to ensure optimal performance and scalability.",
+        "Scons Tech leverages a wide range of modern technologies, including React, Node.js, Python, Solidity for blockchain, AWS for cloud solutions, and TensorFlow for AI. We choose the best tools for each project to ensure optimal performance and scalability.",
     },
   ],
   "Career": [
     {
-      question: "How can I join Scons?",
+      question: "How can I join Scons Tech?",
       answer:
-        "Joining Scons is simple! We regularly post job openings on our careers portal at https://sconstech.com/careers. Explore our current opportunities, and if your skills align with our requirements, we’d love to hear from you. Apply directly through the portal, and our recruitment team will get in touch with you.",
+        "Joining Scons Tech is simple! We regularly post job openings on our careers portal at sconstech.com/careers. Explore our current opportunities, and if your skills align with our requirements, we’d love to hear from you. Apply directly through the portal, and our recruitment team will get in touch with you.",
     },
     {
-      question: "Are jobs at Scons remote or physical?",
+      question: "Are jobs at Scons Tech remote or physical?",
       answer:
-        "Scons offers both remote and physical job opportunities. Some roles are based in our offices across the globe, while others are remote, depending on the nature of the job and the niche requirements. We strive to provide flexibility wherever possible.",
+        "Scons Tech offers both remote and physical job opportunities. Some roles are based in our offices across the globe, while others are remote, depending on the nature of the job and the niche requirements. We strive to provide flexibility wherever possible.",
     },
     {
-      question: "What kind of training does Scons provide for new hires?",
+      question: "What kind of training does Scons Tech provide for new hires?",
       answer:
-        "Scons offers comprehensive onboarding and training programs tailored to each role. We provide access to technical workshops, mentorship, and resources to help new hires stay updated with the latest industry trends and technologies.",
+        "Scons Tech offers comprehensive onboarding and training programs tailored to each role. We provide access to technical workshops, mentorship, and resources to help new hires stay updated with the latest industry trends and technologies.",
     },
   ],
   "Legal": [
     {
-      question: "What are Scons's data privacy policies?",
+      question: "What are Scons Tech's data privacy policies?",
       answer:
-        "Scons adheres to strict data privacy regulations, including GDPR, CCPA, and other global standards. We implement robust data protection measures, such as encryption, access controls, and regular audits, to safeguard client and user data throughout the development and deployment process.",
+        "Scons Tech adheres to strict data privacy regulations, including GDPR, CCPA, and other global standards. We implement robust data protection measures, such as encryption, access controls, and regular audits, to safeguard client and user data throughout the development and deployment process.",
     },
     {
-      question: "How does Scons handle intellectual property rights?",
+      question: "How does Scons Tech handle intellectual property rights?",
       answer:
-        "At Scons, we respect and protect intellectual property rights. We ensure that all deliverables, including software and designs, are transferred to clients as per agreed contracts. Our development process includes clear documentation and agreements to safeguard your IP and ensure compliance with legal standards.",
+        "At Scons Tech, we respect and protect intellectual property rights. We ensure that all deliverables, including software and designs, are transferred to clients as per agreed contracts. Our development process includes clear documentation and agreements to safeguard your IP and ensure compliance with legal standards.",
     },
     {
-      question: "Does Scons comply with industry-specific regulations?",
+      question: "Does Scons Tech comply with industry-specific regulations?",
       answer:
-        "Yes, Scons ensures compliance with industry-specific regulations, such as HIPAA for healthcare or PCI-DSS for payment systems. We work closely with clients to understand their regulatory requirements and integrate compliance measures into our development process to meet legal and industry standards.",
+        "Yes, Scons Tech ensures compliance with industry-specific regulations, such as HIPAA for healthcare or PCI-DSS for payment systems. We work closely with clients to understand their regulatory requirements and integrate compliance measures into our development process to meet legal and industry standards.",
     },
   ],
   "Reviews": [
     {
-      question: "How can clients share feedback or reviews about Scons?",
+      question: "How can clients share feedback or reviews about Scons Tech?",
       answer:
-        "Clients can share feedback and reviews through our website at https://sconstech.com/contact or by emailing our support team at support@sconstech.com. We value client input and use it to continuously improve our services.",
+        "Clients can share feedback and reviews through our website at sconstech.com/contact-us or by emailing our support team at support@Scons Techtech.com. We value client input and use it to continuously improve our services.",
     },
     {
-      question: "Where can I find testimonials from Scons's clients?",
+      question: "Where can I find testimonials from Scons Tech's clients?",
       answer:
-        "Testimonials from our clients are available on our website at https://sconstech.com/testimonials. We showcase feedback from businesses across various industries to highlight the impact of our solutions.",
+        "Testimonials from our clients are available on our website at sconstech.com and on our social handles. We showcase feedback from businesses across various industries to highlight the impact of our solutions.",
     },
   ],
   "Revisions": [
     {
-      question: "What is Scons's revision policy for projects?",
+      question: "What is Scons Tech's revision policy for projects?",
       answer:
-        "Scons offers a flexible revision policy to ensure client satisfaction. Depending on the project agreement, we provide a set number of revision rounds during the development process. Additional revisions can be accommodated based on client needs and project scope.",
+        "Scons Tech offers a flexible revision policy to ensure client satisfaction. Depending on the project agreement, we provide a set number of revision rounds during the development process. Additional revisions can be accommodated based on client needs and project scope.",
     },
     {
-      question: "How does Scons handle revision requests?",
+      question: "How does Scons Tech handle revision requests?",
       answer:
         "Revision requests are managed through our project management platform. Clients can submit requests with detailed feedback, and our team reviews and implements changes promptly, ensuring alignment with the project’s goals and timeline.",
     },

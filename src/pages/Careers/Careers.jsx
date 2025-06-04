@@ -21,7 +21,7 @@ const Careers = () => {
             <InnerHero
                 headingText="Begin Your Career With Us"
                 spanText="Career"
-                bodyText="Join Scons and be part of a dynamic team transforming businesses worldwide. Innovate, grow, and excel with us."
+                bodyText="Join Scons Tech and be part of a dynamic team transforming businesses worldwide. Innovate, grow, and excel with us."
             
                 height="h-[70vh]"
             />
