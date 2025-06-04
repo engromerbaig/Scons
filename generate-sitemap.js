@@ -4,7 +4,8 @@ import { resolve } from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import client from './src/lib/sanityClient.js';
-import projects from './src/data/projects.json' assert { type: 'json' }; // Adjust path as needed
+import projects from './src/data/projects.json' assert { type: 'json' };
+import { services } from './src/components/Services/servicesForSitemap.js';
 
 // __dirname polyfill for ESM
 const __filename = fileURLToPath(import.meta.url);
@@ -13,10 +14,7 @@ const __dirname = dirname(__filename);
 // Your domain
 const baseUrl = 'https://sconstech.com';
 
-// Initialize Sanity client
-
-
-// Slugify function
+// Slugify function (you can reuse this if needed)
 const generateSlug = (name) =>
   name
     .toLowerCase()
@@ -47,6 +45,17 @@ projects.forEach(project => {
     changefreq: 'yearly',
     priority: 0.6
   });
+});
+
+// Add services pages from services array
+services.forEach(service => {
+  if (service.slug) {
+    links.push({
+      url: `/service/${service.slug}`,
+      changefreq: 'monthly',
+      priority: 0.7,
+    });
+  }
 });
 
 // Main sitemap generation function
