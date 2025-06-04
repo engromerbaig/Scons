@@ -8,7 +8,7 @@ import cultureImg from "../../assets/images/vision/6.webp";
 export const visionMissionData = [
   {
     heading: "Our Vision",
-    body: "At Scons, we envision a smarter world powered by seamless, human-centered technology.",
+    body: "At Scons Tech, we envision a smarter world powered by seamless, human-centered technology.",
     imageSrc: visionImg,
   },
   {
@@ -21,19 +21,19 @@ export const visionMissionData = [
     body: "We embrace creativity and tech to build powerful, future-ready digital products.",
     imageSrc: innovationImg,
   },
-  {
-    heading: "Client-Centric",
-    body: "We design every solution with our clients' goals, users, and growth in mind.",
-    imageSrc: clientImg,
-  },
-  {
-    heading: "Global Perspective",
-    body: "Scons delivers scalable solutions that resonate across cultures and markets.",
-    imageSrc: globalImg,
-  },
-  {
-    heading: "People & Culture",
-    body: "We thrive through collaboration, diversity, and a shared drive to build what matters.",
-    imageSrc: cultureImg,
-  },
+  // {
+  //   heading: "Client-Centric",
+  //   body: "We design every solution with our clients' goals, users, and growth in mind.",
+  //   imageSrc: clientImg,
+  // },
+  // {
+  //   heading: "Global Perspective",
+  //   body: "Scons Tech delivers scalable solutions that resonate across cultures and markets.",
+  //   imageSrc: globalImg,
+  // },
+  // {
+  //   heading: "People & Culture",
+  //   body: "We thrive through collaboration, diversity, and a shared drive to build what matters.",
+  //   imageSrc: cultureImg,
+  // },
 ];

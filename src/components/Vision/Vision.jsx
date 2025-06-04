@@ -14,7 +14,7 @@ const Vision = () => (
       {/* Main Heading */}
       <div className="mb-12 text-center xl:text-start">
         <Heading
-          text="What Scons Stands For"
+          text="What Scons Tech Stands For"
           spanText='Stands'
           spanColor='text-neon'
           color="text-white"
@@ -74,6 +74,7 @@ const VisionCard = ({ item }) => {
           size="text-base"
           centered={false}
           isAnimate={false}
+          className='leading-loose'
         />
       </div>
     </div>
