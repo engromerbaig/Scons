@@ -324,7 +324,7 @@ const BlogDetails = () => {
 
       <div>
         {post?.title && (
-          <Heading text={post.title} centered={false} className="max-w-3xl mb-6" />
+          <Heading text={post.title} centered={false} size='text-60px' className="max-w-3xl mb-6" />
         )}
 
         <div className="text-sm text-black mt-2 mb-8 space-y-2">
