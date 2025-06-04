@@ -21,6 +21,7 @@ function Home() {
     <div>
       <Helmet>
         <title>Home | Scons</title>
+        {/* this is what google picks up */}
         <meta
           name="description"
           content="Scons delivers innovative software solutions for startups and enterprises in the UK and beyond. Explore our services and projects."
