@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sconstech.com/sitemap.xml
