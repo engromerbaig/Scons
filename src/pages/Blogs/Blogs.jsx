@@ -215,11 +215,11 @@ export default function Blogs() {
 
   // Meta description (trim to 160 characters)
   const metaDescription =
-    "Explore Scons' latest blog posts, insights, and tech updates for startups and enterprises.".substring(0, 160);
+    "Explore Scons Tech' latest blog posts, insights, and tech updates for startups and enterprises.".substring(0, 160);
 
   // Keywords
   const keywords = [
-    "Scons",
+    "Scons Tech",
     "blogs",
     "tech news",
     "software development",
@@ -232,33 +232,33 @@ export default function Blogs() {
     return (
       <div className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingBottom}`}>
         <Helmet>
-          <title>Blogs | Scons</title>
+          <title>Blogs | Scons Tech</title>
           <meta name="description" content={metaDescription} />
           <meta name="keywords" content={keywords} />
           <link rel="canonical" href="https://sconstech.com/blogs" />
-          <meta property="og:title" content="Blogs | Scons" />
+          <meta property="og:title" content="Blogs | Scons Tech" />
           <meta property="og:description" content={metaDescription} />
           <meta property="og:type" content="website" />
           <meta property="og:url" content="https://sconstech.com/blogs" />
           <meta property="og:image" content={ogLogo} />
           <meta property="og:image:width" content="1200" />
           <meta property="og:image:height" content="630" />
-          <meta property="og:image:alt" content="Scons logo" />
+          <meta property="og:image:alt" content="Scons Tech logo" />
           <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:title" content="Blogs | Scons" />
+          <meta name="twitter:title" content="Blogs | Scons Tech" />
           <meta name="twitter:description" content={metaDescription} />
           <meta name="twitter:image" content={ogLogo} />
           <script type="application/ld+json">
             {JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Blog",
-              "name": "Scons Blogs",
+              "name": "Scons Tech Blogs",
               "description": metaDescription,
               "url": "https://sconstech.com/blogs",
               "image": ogLogo,
               "publisher": {
                 "@type": "Organization",
-                "name": "Scons",
+                "name": "Scons Tech",
                 "url": "https://sconstech.com",
               },
             })}
@@ -267,7 +267,7 @@ export default function Blogs() {
         <InnerHero
           headingText="Blogs & News"
           spanText="News"
-          bodyText="Explore the latest insights, updates, and stories from Scons. Stay informed with our expert articles and company news!"
+          bodyText="Explore the latest insights, updates, and stories from Scons Tech. Stay informed with our expert articles and company news!"
           height="h-[70vh]"
         />
         <p className="text-center mt-20 text-red-500">{error}</p>
@@ -278,33 +278,33 @@ export default function Blogs() {
   return (
     <div>
       <Helmet>
-        <title>Blogs | Scons</title>
+        <title>Blogs | Scons Tech</title>
         <meta name="description" content={metaDescription} />
         <meta name="keywords" content={keywords} />
         <link rel="canonical" href="https://sconstech.com/blogs" />
-        <meta property="og:title" content="Blogs | Scons" />
+        <meta property="og:title" content="Blogs | Scons Tech" />
         <meta property="og:description" content={metaDescription} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://sconstech.com/blogs" />
         <meta property="og:image" content={ogLogo} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="Scons logo" />
+        <meta property="og:image:alt" content="Scons Tech logo" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Blogs | Scons" />
+        <meta name="twitter:title" content="Blogs | Scons Tech" />
         <meta name="twitter:description" content={metaDescription} />
         <meta name="twitter:image" content={ogLogo} />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Blog",
-            "name": "Scons Blogs",
+            "name": "Scons Tech Blogs",
             "description": metaDescription,
             "url": "https://sconstech.com/blogs",
             "image": ogLogo,
             "publisher": {
               "@type": "Organization",
-              "name": "Scons",
+              "name": "Scons Tech",
               "url": "https://sconstech.com",
             },
           })}
@@ -314,7 +314,7 @@ export default function Blogs() {
       <InnerHero
         headingText="Blogs & News"
         spanText="News"
-        bodyText="Explore the latest insights, updates, and stories from Scons. Stay informed with our expert articles and company news!"
+        bodyText="Explore the latest insights, updates, and stories from Scons Tech. Stay informed with our expert articles and company news!"
         height="h-[70vh]"
       />
 
