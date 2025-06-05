@@ -91,7 +91,7 @@ const ContactUs = () => {
                   );
                 })}
               </div>
-              <div className="xl:w-1/2">
+              <div className="xl:w-1/2 shadow-xl rounded-xl border px-6 py-4">
                 <FormTemplate
                   handleFormSubmit={handleFormSubmit}
                   buttonWidth="w-40"

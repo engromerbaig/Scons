@@ -111,10 +111,8 @@ const FormTemplate = ({
     { value: 'audit', label: 'Audit' },
     { value: 'web_development', label: 'Web Development' },
     { value: 'mobile_app_dev', label: 'Mobile App Development' },
-    { value: 'logo_design', label: 'Logo Design' },
-    { value: 'ux_ui_design', label: 'UX/UI Design' },
-    { value: 'digital_marketing', label: 'Digital Marketing' },
-    { value: 'seo_service', label: 'SEO Service' },
+    { value: 'design_services', label: 'Design Services' },
+    { value: 'marketing_seo', label: 'Marketing & SEO' },
     { value: 'ai_bot', label: 'AI Bot' },
   ];
 
@@ -135,7 +133,7 @@ const FormTemplate = ({
         {showSelect && (
           <div className="mb-6">
             <label className="block text-lg font-bold text-black mb-3">
-              Desired Services
+              I am Interested In
             </label>
             <div className="flex flex-wrap gap-3">
               {topicOptions.map((option) => {
@@ -146,12 +144,12 @@ const FormTemplate = ({
                     type="button"
                     onClick={() => handleTopicToggle(option.value)}
                     className={`
-                      relative px-4 py-2 pl-8 rounded-full border-2 border-neon
+                      relative px-4 py-2 pl-8 rounded-full border-[3px] border-neon
                       ${isSelected ? 'bg-neon' : 'bg-white'}
                       hover:bg-neon/80
                       transition-all duration-300 ease-in-out
                       flex items-center justify-center
-                      text-sm font-medium text-black
+                      text-sm font-semibold text-black
                       min-w-[120px]
                     `}
                   >
