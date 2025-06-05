@@ -63,7 +63,7 @@ const ContactUs = () => {
           <div
             className={`${theme.layoutPages.paddingHorizontal} ${theme.layoutPages.paddingVertical}`}
           >
-            <div className="flex flex-col xl:flex-row gap-8">
+            <div className="flex flex-col xl:flex-row gap-8 xl:gap-14">
               <div className="xl:w-1/2 flex flex-col gap-4">
                 <Heading
                   text="Get a Free Audit"
@@ -80,14 +80,14 @@ const ContactUs = () => {
                 {contactDetails.map((contact) => {
                   const Icon = contact.icon;
                   return (
-                    <a
-                      key={contact.type}
-                      href={contact.link}
-                      className="flex items-center gap-2 hover:text-neon text-25px font-medium transition-colors"
-                    >
-                      <Icon className="text-25px text-black" />
-                      {contact.detail}
-                    </a>
+                   <a
+  key={contact.type}
+  href={contact.link}
+  className="flex items-center gap-2 px-2 py-4 border-[3px] border-transparent hover:border-neon hover:bg-neon/5 rounded-xl text-25px font-medium transition-all duration-300 ease-in-out max-w-sm"
+>
+  <Icon className="text-25px text-neon" />
+  {contact.detail}
+</a>
                   );
                 })}
               </div>
