@@ -1,5 +1,3 @@
-// backend/functions/send-contact-emails.js
-
 const dotenv = require('dotenv');
 const nodemailer = require('nodemailer');
 
@@ -15,17 +13,15 @@ if (missingEnvVars.length > 0) {
 }
 
 // Email transporter configuration
-
 const transporter = nodemailer.createTransport({
-  host: "smtp.zoho.com", // or "smtp.zoho.eu" if your domain is hosted in Europe
+  host: 'smtp.zoho.com', // or 'smtp.zoho.eu' if your domain is hosted in Europe
   port: 465,
   secure: true, // true for port 465, false for port 587
   auth: {
-    user: process.env.REACT_APP_EMAIL_USER, // e.g. "sales@sconstech.com"
+    user: process.env.REACT_APP_EMAIL_USER, // e.g., 'sales@sconstech.com'
     pass: process.env.REACT_APP_EMAIL_PASS, // App Password from Zoho
   },
 });
-
 
 // Embedded HTML templates
 const thankYouEmailTemplate = `
@@ -111,11 +107,9 @@ const thankYouEmailTemplate = `
         <tr>
             <td>
                 <div class="main-content">
-                    <p style="font-size: 14px; color: #cccbcb; font-weight: 600; line-height: 1.8;">
+                    <p style="font-size: 14px; color: #000; font-weight: 600; line-height: 1.8;">
                         Your inquiry details:<br>
-                        <strong>Phone:</strong> {{phone}}<br>
-                        <strong>Topic:</strong> {{topic}}<br>
-                        <strong>Description:</strong> {{description}}
+                        {{inquiryDetails}}
                     </p>
                     <a href="https://sconstech.com/">
                         <img src="https://lustrous-sundae-be0a50.netlify.app/logo.png/" alt="Scons Logo" style="width: 150px;">
@@ -238,20 +232,16 @@ const companyEmailTemplate = `
         </tr>
         <tr>
             <td class="data-fields">
-                <div style="margin-bottom: 20px; font-size: 20px;"><strong style="color: #333;">Name:</strong> {{name}}</div>
-                <div style="margin-bottom: 20px; font-size: 20px;"><strong style="color: #333;">Email:</strong> {{email}}</div>
-                <div style="margin-bottom: 20px; font-size: 20px;"><strong style="color: #333;">Phone:</strong> {{phone}}</div>
-                <div style="margin-bottom: 20px; font-size: 20px;"><strong style="color: #333;">Topic:</strong> {{topic}}</div>
-                <div style="margin-bottom: 20px; font-size: 20px;"><strong style="color: #333;">Description:</strong> {{description}}</div>
+                {{inquiryDetails}}
             </td>
         </tr>
         <tr>
             <td>
                 <div class="main-content">
-                    <p style="font-size: 14px; color: #cccbcb; font-weight: 600; line-height: 1.8;">
+                    <p style="font-size: 14px; color: #000; font-weight: 600; line-height: 1.8;">
                         A new submission has been received. Please review the details above and follow up as needed.
                     </p>
-                      <a href="https://sconstech.com/">
+                    <a href="https://sconstech.com/">
                         <img src="https://lustrous-sundae-be0a50.netlify.app/logo.png/" alt="Scons Logo" style="width: 150px;">
                     </a>
                 </div>
@@ -259,7 +249,7 @@ const companyEmailTemplate = `
         </tr>
         <tr>
             <td>
-               <div class="footer" >
+                <div class="footer">
                     <a href="https://www.facebook.com/sconstech/" aria-label="Facebook" style="text-decoration: none; color: #00c5ff;">
                         <img src="https://lustrous-sundae-be0a50.netlify.app/facebook.png" alt="Facebook" style="width: 30px; height: 30px; margin-right: 10px;">
                     </a>
@@ -277,7 +267,7 @@ const companyEmailTemplate = `
         </tr>
         <tr>
             <td>
-                 <div class="footer-bottom" style="background-color: #ffffff; font-size: 12px; color: #888; padding: 10px 0;">
+                <div class="footer-bottom" style="background-color: #ffffff; font-size: 12px; color: #888; padding: 10px 0;">
                     <table width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%;">
                         <tr>
                             <td style="text-align: left; vertical-align: middle;">
@@ -307,6 +297,13 @@ function formatDate() {
   return `${date} - ${time}`;
 }
 
+// Helper function to generate field HTML only for non-empty values
+function generateFieldHtml(label, value) {
+  if (!value || (Array.isArray(value) && value.length === 0)) return '';
+  const formattedValue = Array.isArray(value) ? value.join(', ') : value;
+  return `<div style="margin-bottom: 20px; font-size: 20px;"><strong style="color: #333;">${label}:</strong> ${formattedValue}</div>`;
+}
+
 exports.handler = async function (event, context) {
   // Log environment variables for debugging
   console.log('Environment Variables:', {
@@ -327,32 +324,49 @@ exports.handler = async function (event, context) {
     // Parse form data from Netlify
     const data = JSON.parse(event.body);
     const formName = data['form-name'] || 'contact';
-    const { name, email, phone, topic = 'Not specified', description } = data;
+    const { name, email, phone, topics = [], description, url } = data;
     const dateTime = formatDate();
 
     // Validate required fields
-    if (!name || !email || !phone || !description) {
+    if (!name || !email || !description) {
       return {
         statusCode: 400,
         body: JSON.stringify({ message: 'Missing required fields' }),
       };
     }
 
+    // Map topic values to human-readable labels
+    const topicLabels = {
+      audit: 'Audit',
+      web_development: 'Web Development',
+      mobile_app_dev: 'Mobile App Development',
+      design_services: 'Design Services',
+      marketing_seo: 'Marketing & SEO',
+      ai_bot: 'AI Bot',
+    };
+    const formattedTopics = Array.isArray(topics)
+      ? topics.map((t) => topicLabels[t] || t).join(', ')
+      : topics;
+
+    // Generate dynamic inquiry details for both emails
+    const inquiryDetails = `
+      ${generateFieldHtml('Name', name)}
+      ${generateFieldHtml('Email', email)}
+      ${generateFieldHtml('Phone', phone)}
+      ${generateFieldHtml('Topics', formattedTopics)}
+      ${generateFieldHtml('Description', description)}
+      ${generateFieldHtml('URL', url)}
+    `.trim();
+
     // Replace placeholders in templates
     const companyEmailHtml = companyEmailTemplate
       .replace('{{formName}}', formName.charAt(0).toUpperCase() + formName.slice(1))
       .replace('{{dateTime}}', dateTime)
-      .replace('{{name}}', name)
-      .replace('{{email}}', email)
-      .replace('{{phone}}', phone)
-      .replace('{{topic}}', topic)
-      .replace('{{description}}', description);
+      .replace('{{inquiryDetails}}', inquiryDetails);
 
     const thankYouEmailHtml = thankYouEmailTemplate
       .replace('{{name}}', name)
-      .replace('{{phone}}', phone)
-      .replace('{{topic}}', topic)
-      .replace('{{description}}', description);
+      .replace('{{inquiryDetails}}', inquiryDetails);
 
     // Email to the company
     const mailToCompany = {
@@ -371,9 +385,9 @@ exports.handler = async function (event, context) {
     };
 
     // Send both emails concurrently
- await transporter.sendMail(mailToCompany);
-await new Promise(resolve => setTimeout(resolve, 1000)); // 1-second delay
-await transporter.sendMail(mailToUser);
+    await transporter.sendMail(mailToCompany);
+    await new Promise((resolve) => setTimeout(resolve, 1000)); // 1-second delay
+    await transporter.sendMail(mailToUser);
 
     return {
       statusCode: 200,
