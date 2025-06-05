@@ -107,7 +107,7 @@ const thankYouEmailTemplate = `
         <tr>
             <td>
                 <div class="main-content">
-                    <p style="font-size: 14px; color: #cccbcb; font-weight: 600; line-height: 1.8;">
+                    <p style="font-size: 14px; color: #000; font-weight: 600; line-height: 1.8;">
                         Your inquiry details:<br>
                         <strong>Package Name:</strong> {{packageName}}<br>
                         <strong>Package Price:</strong> {{packagePrice}}<br>
@@ -277,7 +277,7 @@ const companyEmailTemplate = `
         <tr>
             <td>
                 <div class="main-content">
-                    <p style="font-size: 14px; color: #cccbcb; font-weight: 600; line-height: 1.8;">
+                    <p style="font-size: 14px; color: #000; font-weight: 600; line-height: 1.8;">
                         A new package inquiry has been received. Please review the details above and follow up as needed.
                     </p>
                     <a href="https://sconstech.com/">
