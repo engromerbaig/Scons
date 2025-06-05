@@ -50,13 +50,13 @@ const ContactUs = () => {
         <meta name="twitter:image" content={ogDefault} />
       </Helmet>
       <FadeInSection>
-        <InnerHero
+        {/* <InnerHero
           headingText="Get in Contact With Us"
           spanText="Contact"
           bodyText="Have questions or want to work with us? Reach out today — we’re here to help and look forward to connecting with you."
           illustrationImage={contactImage}
           illustrationImageWidth="w-3/4"
-        />
+        /> */}
       </FadeInSection>
       <div className="">
         <div className="flex flex-col gap-8">
@@ -66,8 +66,8 @@ const ContactUs = () => {
             <div className="flex flex-col xl:flex-row gap-8">
               <div className="xl:w-1/2 flex flex-col gap-4">
                 <Heading
-                  text="Talk to Our Team"
-                  spanText="Team"
+                  text="Get a Free Audit"
+                  spanText="Audit"
                   centered={false}
                   color="text-black"
                   spanColor="text-neon"
@@ -95,7 +95,7 @@ const ContactUs = () => {
                 <FormTemplate
                   handleFormSubmit={handleFormSubmit}
                   buttonWidth="w-40"
-                  inputStyles="m-1 p-2 md:p-4 border-[3px] rounded-xl shadow-xs  text-black placeholder-bodyText border-neon bg-transparent w-full focus:outline-none"
+                  inputStyles="m-1 p-2 md:p-3 border-[3px] rounded-xl shadow-xs  text-black placeholder-bodyText border-neon bg-transparent w-full focus:outline-none"
                   textAreaRows={3}
                   showSelect={true}
                   hideErrorMessages={true}
