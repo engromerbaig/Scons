@@ -1,7 +1,9 @@
+
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import FormField from '../FormSteps/modules/FormField';
 import Button from '../Button/Button';
+import AuditModalBox from './AuditModalBox';
 
 const FormTemplate = ({
   handleFormSubmit,
@@ -37,6 +39,7 @@ const FormTemplate = ({
     description: false,
     url: false,
   });
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const { name, email, phone, description, topics, url } = formData;
@@ -44,6 +47,18 @@ const FormTemplate = ({
     const topicsValid = showSelect ? topics.length > 0 : true;
     setIsFormValid(!!(isRequiredFieldsFilled && (!showPhoneNumber || phone)));
   }, [formData, showSelect, isAudit, showPhoneNumber]);
+
+  // Disable/enable scrolling when modal is open/closed
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isModalOpen]);
 
   const handleTopicToggle = (topicValue) => {
     const updatedTopics = formData.topics.includes(topicValue)
@@ -280,6 +295,18 @@ const FormTemplate = ({
           )}
         </div>
 
+        {isAudit && (
+          <div className="flex justify-center mt-2">
+            <button
+              type="button"
+              onClick={() => setIsModalOpen(true)}
+              className="text-neon text-sm font-semibold hover:text-neon/80 transition-colors duration-300"
+            >
+              View Audit Details
+            </button>
+          </div>
+        )}
+
         <div className="flex justify-center mt-4">
           <Button
             name={btnText}
@@ -297,6 +324,8 @@ const FormTemplate = ({
           />
         </div>
       </form>
+
+      <AuditModalBox isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   );
 };
