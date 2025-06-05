@@ -79,15 +79,21 @@ const ContactUs = () => {
                   color="text-black"
                   spanColor="text-neon"
                 />
-                <BodyText
-                  text="We’re here to help. Whether you have a question about our services, need assistance, or just want to say hello, feel free to reach out. We look forward to hearing from you!"
-                  centered={false}
-                  className="max-w-sm"
-                />
+              <BodyText
+  text="Get a FREE audit and analysis of your website! Whether you're curious about your site's performance, design, or SEO, we're here to help. Reach out now — no strings attached, just real insights from the experts at Scons Tech."
+  centered={false}
+  className="max-w-sm"
+/>
 
                 <Button
                 name="What's in a Free Audit?"
-                className='py-2 md:py-4 '
+                        textColor="black"
+                        fontSize='text-25px'
+                  fontWeight="font-semibold"
+                  bgColor="bg-neon/5"
+                  hoverBgColor="bg-neon/5"
+                  hoverTextColor="black"
+                  className="py-2 border-2 rounded-xl border-neon  shadow-none max-w-[250px] xl:max-w-sm"
                                   onClick={() => setIsAuditModalOpen(true)}
 
                 />
@@ -97,7 +103,7 @@ const ContactUs = () => {
 <a
   key={contact.type}
   href={contact.link}
-  className="flex items-center gap-2 px-2 py-2 rounded-xl text-25px font-medium transition-all duration-300 ease-in-out max-w-[250px] xl:max-w-sm
+  className="flex items-center text-black gap-2 px-2 py-2 rounded-xl text-25px font-medium transition-all duration-300 ease-in-out max-w-[250px] xl:max-w-sm
              border-2 
              xl:border-transparent border-neon  xl:bg-transparent
              xl:hover:border-neon 
