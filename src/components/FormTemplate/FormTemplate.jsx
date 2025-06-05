@@ -15,7 +15,7 @@ const FormTemplate = ({
   formName = 'contact',
   isAudit = false,
   showPhoneNumber = true,
-  btnText='Submit',
+  btnText = 'Submit',
 }) => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -118,6 +118,9 @@ const FormTemplate = ({
     { value: 'ai_bot', label: 'AI Bot' },
   ];
 
+  // Define margin classes based on isAudit
+  const marginClasses = isAudit ? 'mb-2 xl:mb-4' : 'xl:mb-2';
+
   return (
     <div className="flex flex-col gap-20 lg:gap-40">
       <form
@@ -184,7 +187,7 @@ const FormTemplate = ({
         )}
 
         {isAudit && (
-          <div className="xl:mb-2">
+          <div className={marginClasses}>
             <FormField
               name="url"
               type="url"
@@ -203,7 +206,7 @@ const FormTemplate = ({
           </div>
         )}
 
-        <div className="xl:mb-2">
+        <div className={marginClasses}>
           <FormField
             name="name"
             type="text"
@@ -221,7 +224,7 @@ const FormTemplate = ({
           )}
         </div>
 
-        <div className={`flex flex-col ${showPhoneNumber ? 'lg:flex-row xl:gap-2' : ''} xl:mb-2`}>
+        <div className={`flex flex-col ${showPhoneNumber ? 'lg:flex-row xl:gap-2' : ''} ${marginClasses}`}>
           <div className={showPhoneNumber ? 'flex-1' : 'w-full'}>
             <FormField
               name="email"
@@ -260,7 +263,7 @@ const FormTemplate = ({
           )}
         </div>
 
-        <div className="xl:mb-2">
+        <div className={marginClasses}>
           <FormField
             name="description"
             type="textarea"

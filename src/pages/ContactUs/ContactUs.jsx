@@ -95,7 +95,7 @@ const ContactUs = () => {
                 <FormTemplate
                   handleFormSubmit={handleFormSubmit}
                   buttonWidth="w-40"
-                  inputStyles="m-1 p-2 md:p-4 border-[3px] rounded-3xl  text-bodyText placeholder-bodyText border-neon bg-transparent w-full focus:outline-none"
+                  inputStyles="m-1 p-2 md:p-4 border-[3px] rounded-xl shadow-xs  text-black placeholder-bodyText border-neon bg-transparent w-full focus:outline-none"
                   textAreaRows={3}
                   showSelect={true}
                   hideErrorMessages={true}
