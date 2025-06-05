@@ -14,8 +14,15 @@ import contactImage from '../../assets/images/contact.svg';
 import { theme } from '../../theme';
 import { contactDetails } from '../../components/MobileMenu/modules/contactDetails';
 import FAQ from '../../components/FAQ/FAQ';
+import { socialsData } from '../../components/MobileMenu/modules/socialsData';
+import AuditModalBox from '../../components/FormTemplate/AuditModalBox';
+
+import Button from '../../components/Button/Button';
 
 const ContactUs = () => {
+
+    const [isAuditModalOpen, setIsAuditModalOpen] = useState(false);
+
   const handleFormSubmit = (formData) => {
     console.log('Form2 Submitted with Data:', formData);
   };
@@ -77,6 +84,13 @@ const ContactUs = () => {
                   centered={false}
                   className="max-w-sm"
                 />
+
+                <Button
+                name="What's in a Free Audit?"
+                className='py-2 md:py-4 '
+                                  onClick={() => setIsAuditModalOpen(true)}
+
+                />
                 {contactDetails.map((contact) => {
                   const Icon = contact.icon;
                   return (
@@ -95,6 +109,24 @@ const ContactUs = () => {
 
                   );
                 })}
+
+                  <div className="py-2 md:py-4 flex flex-row justify-between xl:space-x-2 max-w-[180px]">
+         {socialsData.map((social, idx) => {
+    const Icon = social.icon;
+    return (
+      <a
+        key={idx}
+        href={social.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-black hover:text-neon transition duration-300"
+      >
+        <Icon className="w-6 lg:w-7 h-6 lg:h-7 transition-transform " />
+      </a>
+    );
+  })}
+
+        </div>
               </div>
               <div className="xl:w-1/2 xl:shadow-xl xl:rounded-xl xl:border xl:px-6 xl:py-4">
                 <FormTemplate
@@ -117,6 +149,11 @@ const ContactUs = () => {
           <FAQ />
         </div>
       </div>
+
+         <AuditModalBox
+        isOpen={isAuditModalOpen}
+        onClose={() => setIsAuditModalOpen(false)}
+      />
     </div>
   );
 };
