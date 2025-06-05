@@ -80,22 +80,27 @@ const ContactUs = () => {
                 {contactDetails.map((contact) => {
                   const Icon = contact.icon;
                   return (
-                   <a
+<a
   key={contact.type}
   href={contact.link}
-  className="flex items-center gap-2 px-2 py-4 border-[3px] border-transparent hover:border-neon hover:bg-neon/5 rounded-xl text-25px font-medium transition-all duration-300 ease-in-out max-w-sm"
+  className="flex items-center gap-2 px-2 py-2 rounded-xl text-25px font-medium transition-all duration-300 ease-in-out max-w-[250px] xl:max-w-sm
+             border-2 
+             xl:border-transparent border-neon  xl:bg-transparent
+             xl:hover:border-neon 
+             xl:hover:bg-neon/5 bg-neon/5"
 >
   <Icon className="text-25px text-neon" />
   {contact.detail}
 </a>
+
                   );
                 })}
               </div>
-              <div className="xl:w-1/2 shadow-xl rounded-xl border px-6 py-4">
+              <div className="xl:w-1/2 xl:shadow-xl xl:rounded-xl xl:border xl:px-6 xl:py-4">
                 <FormTemplate
                   handleFormSubmit={handleFormSubmit}
                   buttonWidth="w-40"
-                  inputStyles="m-1 p-2 md:p-3 border-[3px] rounded-xl shadow-xs  text-black placeholder-bodyText border-neon bg-transparent w-full focus:outline-none"
+                  inputStyles="m-1 p-2 md:p-3 border-2 rounded-xl shadow-xs text-sm  text-black placeholder-bodyText border-neon bg-transparent w-full focus:outline-none"
                   textAreaRows={3}
                   showSelect={true}
                   hideErrorMessages={true}

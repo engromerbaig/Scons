@@ -2,9 +2,9 @@ import React, { useState, useRef, useEffect } from 'react';
 
 // Default styles for inputs and selects
 const defaultInputStyles =
-  "m-1 p-2 md:p-3 border-b text-bodyText placeholder-bodyText border-bodyText bg-transparent w-full focus:outline-none";
+  "m-1 p-2 md:p-3 border-b text-bodyText text-sm placeholder-bodyText border-bodyText bg-transparent w-full focus:outline-none";
 const defaultSelectStyles =
-  "m-1 p-2 md:p-3 border-b text-bodyText placeholder-bodyText border-bodyText bg-transparent w-full focus:outline-none appearance-none";
+  "m-1 p-2 md:p-3 border-b text-bodyText placeholder-bodyText text-sm  border-bodyText bg-transparent w-full focus:outline-none appearance-none";
 
 const errorStyles = "text-red-500 text-sm mt-1";
 

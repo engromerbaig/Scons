@@ -159,12 +159,12 @@ const FormTemplate = ({
                     type="button"
                     onClick={() => handleTopicToggle(option.value)}
                     className={`
-                      relative px-4 py-2 pl-8 rounded-full border-[3px] border-neon
-                      ${isSelected ? 'bg-neon' : 'bg-white'}
+                      relative px-4 py-2 pl-7 rounded-full border-2 border-neon
+                      ${isSelected ? 'bg-neon' : 'bg-transparent'}
                       hover:bg-neon/80
                       transition-all duration-300 ease-in-out
                       flex items-center justify-center
-                      text-sm font-semibold text-black
+                      text-xs xl:text-sm font-semibold text-black
                       min-w-[120px]
                     `}
                   >
@@ -300,7 +300,7 @@ const FormTemplate = ({
             <button
               type="button"
               onClick={() => setIsModalOpen(true)}
-              className="text-neon text-sm font-semibold hover:text-neon/80 transition-colors duration-300"
+              className="text-neon text-sm font-bold underline hover:text-neon/80 transition-colors duration-300"
             >
               View Audit Details
             </button>
