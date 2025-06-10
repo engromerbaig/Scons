@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 exports.handler = async (event, context) => {
   if (event.httpMethod !== 'POST') {
     return {
@@ -19,12 +21,17 @@ exports.handler = async (event, context) => {
     console.log('Booked Appointment:', { title, start, end });
 
     // In-memory store (for demo purposes; use a database in production)
-    const appointments = require('./appointments-store.json');
+    let appointments = [];
+    try {
+      appointments = require('./appointments-store.json');
+    } catch (e) {
+      appointments = [];
+    }
     appointments.push({ title, start, end });
 
     // Simulate saving to a persistent store
     // In production, write to a database like FaunaDB or MongoDB Atlas
-    require('fs').writeFileSync('./appointments-store.json', JSON.stringify(appointments));
+    fs.writeFileSync('./appointments-store.json', JSON.stringify(appointments));
 
     return {
       statusCode: 200,
