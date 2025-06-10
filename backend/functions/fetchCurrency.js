@@ -37,7 +37,6 @@ exports.handler = async (event) => {
   try {
     console.log("Event headers:", event.headers);
     let clientIp = (event.headers["x-forwarded-for"] || event.headers["x-nf-client-connection-ip"] || "").split(",")[0].trim() || null;
-    // No hardcoded IP; rely on headers or fallback to base URL
     console.log("Client IP:", clientIp || "No valid IP, using base Geo API");
 
     const fetchWithRetry = async (url, options, retries = 3) => {
@@ -61,7 +60,6 @@ exports.handler = async (event) => {
 
     const fetchUserCurrency = async () => {
       try {
-        // Use IP only if valid, otherwise fallback to base URL
         const geoUrl = isValidIp(clientIp) ? `${geoApiUrl}${clientIp}/` : geoApiUrl;
         console.log("Calling Geo API:", geoUrl);
         const data = await fetchWithRetry(geoUrl, {
@@ -69,7 +67,6 @@ exports.handler = async (event) => {
         });
         console.log("Geo API full response:", JSON.stringify(data));
         let countryCode = data.country_code || data.countryCode || "US";
-        // Fallback to x-nf-geo if Geo API fails
         if (!countryCode && event.headers["x-nf-geo"]) {
           try {
             const geoData = JSON.parse(Buffer.from(event.headers["x-nf-geo"], "base64").toString());
@@ -91,7 +88,6 @@ exports.handler = async (event) => {
         return currencyInfo.currencyCode;
       } catch (error) {
         console.error("Geo API error:", error.message, error.stack);
-        // Fallback to x-nf-geo on error
         if (event.headers["x-nf-geo"]) {
           try {
             const geoData = JSON.parse(Buffer.from(event.headers["x-nf-geo"], "base64").toString());
@@ -168,7 +164,7 @@ exports.handler = async (event) => {
         "Access-Control-Allow-Headers": "Content-Type",
       },
       body: JSON.stringify({
-        localCurrency: "",
+        localCurrencyCode: "", // Fixed from localCurrency
         rates: { USD: 1 },
         error: "Failed to fetch currency data",
       }),

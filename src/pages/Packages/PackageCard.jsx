@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { FaCheckCircle } from "react-icons/fa";
 import Heading from "../../components/Heading/Heading";
@@ -19,34 +18,87 @@ const PackageCard = ({ packageInfo }) => {
   useEffect(() => {
     const fetchCurrencyData = async () => {
       const today = new Date().toDateString();
-      const cachedData = JSON.parse(localStorage.getItem("currencyData"));
+      let cachedData;
 
-      if (cachedData && cachedData.date === today) {
-        console.log("Using cached currency data:", cachedData);
-        const safeRates = { USD: 1, ...cachedData.rates };
-        setRates(safeRates);
-
-        if (cachedData.localCurrency && cachedData.localCurrency !== "USD" && safeRates[cachedData.localCurrency]) {
-          setLocalCurrency(cachedData.localCurrency);
-          console.log(`Local currency from cache: ${cachedData.localCurrency}`);
-        } else {
-          setLocalCurrency(null);
-          console.log("No valid local currency in cache, staying with USD");
-        }
-
-        setCurrency("USD");
-        setDisplayPrice(packageInfo.price);
-        setCurrencyCode("USD");
-        setIsLoading(false);
-        return;
+      // Parse cached data safely
+      try {
+        cachedData = JSON.parse(localStorage.getItem("currencyData"));
+        console.log("Cached data:", cachedData);
+      } catch (e) {
+        console.warn("Invalid cached currency data, clearing cache:", e);
+        localStorage.removeItem("currencyData");
       }
 
+      // Check if cached data is valid for today
+      if (cachedData && cachedData.date === today && cachedData.rates) {
+        console.log("Using cached currency data:", cachedData);
+        const safeRates = { USD: 1, ...cachedData.rates };
+        console.log("Safe rates from cache:", safeRates);
+
+        // Fetch API to check if location has changed
+        try {
+          const response = await fetch("/netlify/functions/fetchCurrency");
+          if (!response.ok) {
+            throw new Error(`Netlify function status: ${response.status}`);
+          }
+          const data = await response.json();
+          console.log("Currency API response for validation:", data);
+
+          const { localCurrencyCode } = data;
+          console.log("API localCurrencyCode:", localCurrencyCode);
+
+          // If cached currency differs from API, clear cache and refetch
+          if (cachedData.localCurrency !== localCurrencyCode) {
+            console.log(`Currency changed: ${cachedData.localCurrency} -> ${localCurrencyCode}, clearing cache`);
+            localStorage.removeItem("currencyData");
+            await fetchCurrencyData(); // Recursive call to refetch
+            return;
+          }
+
+          // Use cached data if currency matches
+          setRates(safeRates);
+          if (
+            cachedData.localCurrency &&
+            cachedData.localCurrency !== "USD" &&
+            safeRates[cachedData.localCurrency]
+          ) {
+            setLocalCurrency(cachedData.localCurrency);
+            console.log(`Local currency from cache: ${cachedData.localCurrency}`);
+          } else {
+            setLocalCurrency(null);
+            console.log("No valid local currency in cache, using USD");
+          }
+
+          setCurrency("USD");
+          setDisplayPrice(packageInfo.price);
+          setCurrencyCode("USD");
+          setIsLoading(false);
+          return;
+        } catch (error) {
+          console.error("Error validating currency data:", error);
+          // Use cached data if validation fails
+          setRates(safeRates);
+          setLocalCurrency(
+            cachedData.localCurrency &&
+            cachedData.localCurrency !== "USD" &&
+            safeRates[cachedData.localCurrency]
+              ? cachedData.localCurrency
+              : null
+          );
+          setCurrency("USD");
+          setDisplayPrice(packageInfo.price);
+          setCurrencyCode("USD");
+          setIsLoading(false);
+          return;
+        }
+      }
+
+      // No valid cache, fetch fresh data
       try {
         setIsLoading(true);
-        console.log("Fetching currency data...");
+        console.log("Fetching fresh currency data from /netlify/functions/fetchCurrency");
 
-        const response = await fetch("/.netlify/functions/fetchCurrency");
-
+        const response = await fetch("/netlify/functions/fetchCurrency");
         if (!response.ok) {
           throw new Error(`Netlify function status: ${response.status}`);
         }
@@ -55,15 +107,23 @@ const PackageCard = ({ packageInfo }) => {
         console.log("Currency API response:", data);
 
         const { localCurrencyCode, rates: fetchedRates } = data;
+        console.log("Fetched localCurrencyCode:", localCurrencyCode);
+        console.log("Fetched rates:", fetchedRates);
+
         const safeRates = { USD: 1, ...fetchedRates };
+        console.log("Safe rates from API:", safeRates);
         setRates(safeRates);
 
-        if (localCurrencyCode && localCurrencyCode !== "USD" && safeRates[localCurrencyCode]) {
+        if (
+          localCurrencyCode &&
+          localCurrencyCode !== "USD" &&
+          safeRates[localCurrencyCode]
+        ) {
           setLocalCurrency(localCurrencyCode);
-          console.log(`Local currency detected: ${localCurrencyCode}`);
+          console.log(`Local currency set: ${localCurrencyCode}`);
         } else {
           setLocalCurrency(null);
-          console.log("No valid local currency, staying with USD");
+          console.log("No valid local currency, using USD");
         }
 
         localStorage.setItem(
@@ -95,6 +155,7 @@ const PackageCard = ({ packageInfo }) => {
 
   const toggleCurrency = () => {
     const newCurrency = currency === "USD" && localCurrency ? localCurrency : "USD";
+    console.log(`Toggling currency to: ${newCurrency}`);
     setCurrency(newCurrency);
 
     const { price: convertedPrice, currencyCode } = convertCurrency(
@@ -104,19 +165,14 @@ const PackageCard = ({ packageInfo }) => {
       rates
     );
 
+    console.log(`Converted price: ${convertedPrice} ${currencyCode}`);
     setDisplayPrice(convertedPrice);
     setCurrencyCode(currencyCode);
-
-    console.log(`Toggled to ${newCurrency}, price: ${convertedPrice} ${currencyCode}`);
   };
 
   const formattedPrice = new Intl.NumberFormat("en-US", {
     maximumFractionDigits: 0,
   }).format(displayPrice);
-
-  if (isLoading) {
-    console.log("PackageCard is loading currency data...");
-  }
 
   const shouldShowToggle = localCurrency && rates[localCurrency] && localCurrency !== "USD";
   console.log("Toggle button visibility:", {
