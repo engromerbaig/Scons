@@ -55,9 +55,9 @@ function AppContent() {
 
   // Fallback meta tags
   const defaultMeta = {
-    title: 'Scons | UK Based Software Innovators',
-    description: 'Explore innovative software solutions by Scons tailored for startups and enterprises in the UK and worldwide.',
-    keywords: 'Scons, Software Company UK, Web Development, React, Node.js, Full Stack, Startups',
+    title: 'Scons Tech | Web Development, Mobile Apps, UI/UX Design, SEO & Digital Strategy',
+    description: 'Explore innovative software solutions by Scons tailored for startups and enterprises in the Pakistan and worldwide.',
+    keywords: 'Scons, Software Company Pakistan, Web Development, React, Node.js, Full Stack, Startups',
   };
 
   return (
