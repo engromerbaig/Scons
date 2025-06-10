@@ -1,5 +1,4 @@
-// Share the in-memory store
-const appointments = require('./bookAppointment').appointments || [];
+const { getAppointments } = require('./appointmentsStore');
 
 exports.handler = async (event, context) => {
   if (event.httpMethod !== 'GET') {
@@ -14,6 +13,7 @@ exports.handler = async (event, context) => {
   }
 
   try {
+    const appointments = getAppointments();
     return {
       statusCode: 200,
       headers: {

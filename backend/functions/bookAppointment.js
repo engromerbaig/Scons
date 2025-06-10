@@ -1,5 +1,4 @@
-// In-memory store (temporary for testing)
-let appointments = [];
+const { addAppointment } = require('./appointmentsStore');
 
 exports.handler = async (event, context) => {
   if (event.httpMethod !== 'POST') {
@@ -29,8 +28,8 @@ exports.handler = async (event, context) => {
     // Log the booked appointment
     console.log('Booked Appointment:', { title, start, end });
 
-    // Add to in-memory store (resets on function restart)
-    appointments.push({ title, start, end });
+    // Add to shared in-memory store
+    addAppointment({ title, start, end });
 
     return {
       statusCode: 200,
