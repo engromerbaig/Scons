@@ -8,12 +8,10 @@ const MeetingInfo = ({ meetingInfo, selectedDate }) => {
       <div className="bg-white rounded-lg shadow-sm border p-6 h-full">
         <div className="mb-6">
           <div className="flex items-center gap-3 mb-3">
-            <div className="w-10 h-10 bg-neon rounded-full flex items-center justify-center">
-              <User size={20} className="text-white" />
+            <div className=" flex items-center justify-center">
+             <img src="./favicon.svg" alt="Host Avatar" className="w-6 h-6" />
             </div>
-            <div>
-              <p className="text-sm text-gray-600">{meetingInfo.host}</p>
-            </div>
+         
           </div>
           <h1 className="text-2xl font-bold text-gray-900 mb-2">
             {meetingInfo.title}
