@@ -1,9 +1,14 @@
-const fs = require('fs');
+// In-memory store (temporary for testing)
+let appointments = [];
 
 exports.handler = async (event, context) => {
   if (event.httpMethod !== 'POST') {
     return {
       statusCode: 405,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type',
+      },
       body: JSON.stringify({ error: 'Method not allowed' }),
     };
   }
@@ -13,34 +18,36 @@ exports.handler = async (event, context) => {
     if (!title || !start || !end) {
       return {
         statusCode: 400,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Headers': 'Content-Type',
+        },
         body: JSON.stringify({ error: 'Missing required fields' }),
       };
     }
 
-    // Log the booked appointment to console
+    // Log the booked appointment
     console.log('Booked Appointment:', { title, start, end });
 
-    // In-memory store (for demo purposes; use a database in production)
-    let appointments = [];
-    try {
-      appointments = require('./appointments-store.json');
-    } catch (e) {
-      appointments = [];
-    }
+    // Add to in-memory store (resets on function restart)
     appointments.push({ title, start, end });
-
-    // Simulate saving to a persistent store
-    // In production, write to a database like FaunaDB or MongoDB Atlas
-    fs.writeFileSync('./appointments-store.json', JSON.stringify(appointments));
 
     return {
       statusCode: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type',
+      },
       body: JSON.stringify({ message: 'Appointment booked successfully' }),
     };
   } catch (error) {
     console.error('Error booking appointment:', error);
     return {
       statusCode: 500,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type',
+      },
       body: JSON.stringify({ error: 'Internal server error' }),
     };
   }

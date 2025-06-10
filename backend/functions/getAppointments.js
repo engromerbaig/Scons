@@ -1,30 +1,35 @@
+// Share the in-memory store
+const appointments = require('./bookAppointment').appointments || [];
+
 exports.handler = async (event, context) => {
   if (event.httpMethod !== 'GET') {
     return {
       statusCode: 405,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type',
+      },
       body: JSON.stringify({ error: 'Method not allowed' }),
     };
   }
 
   try {
-    // Load appointments from in-memory store
-    // In production, fetch from a database like FaunaDB or MongoDB Atlas
-    let appointments = [];
-    try {
-      appointments = require('./appointments-store.json');
-    } catch (e) {
-      // If file doesn't exist, return empty array
-      appointments = [];
-    }
-
     return {
       statusCode: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type',
+      },
       body: JSON.stringify(appointments),
     };
   } catch (error) {
     console.error('Error fetching appointments:', error);
     return {
       statusCode: 500,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type',
+      },
       body: JSON.stringify({ error: 'Internal server error' }),
     };
   }
