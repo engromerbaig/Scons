@@ -13,6 +13,8 @@ import ThankYou from './pages/ThankYou/ThankYou';
 import GAListener from './ga/GAListener';
 import { initGA } from './ga/ga';
 
+import AppointmentScheduler from './components/AppointmentScheduler/AppointmentScheduler';
+
 const Home = lazy(() => import('./pages/Home/Home'));
 const KnowUs = lazy(() => import('./pages/KnowUs/KnowUs'));
 const OurWork = lazy(() => import('./pages/OurWork/OurWork'));
@@ -82,7 +84,8 @@ function AppContent() {
         <Routes>
 
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<KnowUs />} />
+<Route path="/schedule" element={<AppointmentScheduler />} />        
+  <Route path="/about" element={<KnowUs />} />
           <Route path="/portfolio" element={<OurWork />} />
           <Route path="/portfolio/:slug" element={<ProjectDetail />} />
           <Route path="/contact-us" element={<ContactUs />} />

@@ -59,7 +59,7 @@ function Home() {
           headingText="Schedule a Virtual Meeting"
           text="Meeting"
           buttonText="Schedule Now"
-          link="https://calendly.com/sconstech-official"
+          link="/schedule"
         />
       </FadeInSection>
       <FadeInSection disabled>
