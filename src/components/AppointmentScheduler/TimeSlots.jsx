@@ -25,9 +25,9 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
   };
 
   return (
-    <div className="col-span-12 lg:col-span-3">
+    <div className="col-span-12 lg:col-span-3 h-full">
       {selectedDate ? (
-        <div className="bg-white rounded-lg shadow-sm border p-6">
+        <div className="bg-white rounded-lg shadow-sm border p-6 h-full flex flex-col">
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-xl font-semibold text-gray-900">
               Available Times
@@ -45,7 +45,7 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
               {moment(selectedDate).format('dddd, MMMM D')}
             </p>
           </div>
-          <div className="space-y-3 max-h-96 overflow-y-auto">
+          <div className="space-y-3 overflow-y-auto flex-1">
             {getAvailableSlots(selectedDate).length > 0 ? (
               getAvailableSlots(selectedDate).map((slot, index) => (
                 <button
@@ -70,7 +70,7 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
           </div>
         </div>
       ) : (
-        <div className="bg-white rounded-lg shadow-sm border p-6">
+        <div className="bg-white rounded-lg shadow-sm border p-6 h-full flex flex-col justify-center">
           <div className="text-center py-12">
             <CalendarDays size={48} className="text-gray-300 mx-auto mb-4" />
             <h3 className="text-lg font-medium text-gray-900 mb-2">

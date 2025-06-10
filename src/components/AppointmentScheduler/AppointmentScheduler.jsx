@@ -57,73 +57,80 @@ const AppointmentScheduler = () => {
     setSelectedDate(date);
   };
 
-const handleBookSlot = async (timeSlot) => {
-  const [hour] = timeSlot.value.split(':');
-  const start = moment(selectedDate).set({
-    hour: parseInt(hour),
-    minute: 0,
-  }).toDate();
-  const end = moment(start).add(1, 'hour').toDate();
+  const handleBookSlot = async (timeSlot) => {
+    const [hour] = timeSlot.value.split(':');
+    const start = moment(selectedDate).set({
+      hour: parseInt(hour),
+      minute: 0,
+    }).toDate();
+    const end = moment(start).add(1, 'hour').toDate();
     
-  const title = window.prompt('Enter your name for the appointment:');
-  if (title) {
-    const newEvent = { 
-      title: `Meeting with ${title}`, 
-      start: start.toISOString(), 
-      end: end.toISOString() 
-    };
-    console.log('Booked Appointment:', newEvent);
-    
-    try {
-      const response = await fetch('/.netlify/functions/bookAppointment', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newEvent),
-      });
-      if (response.ok) {
-        const fetchResponse = await fetch('/.netlify/functions/getAppointments');
-        if (!fetchResponse.ok) {
-          console.error('Failed to fetch appointments:', await fetchResponse.text());
-          throw new Error('Failed to fetch appointments');
+    const title = window.prompt('Enter your name for the appointment:');
+    if (title) {
+      const newEvent = { 
+        title: `Meeting with ${title}`, 
+        start: start.toISOString(), 
+        end: end.toISOString() 
+      };
+      console.log('Booked Appointment:', newEvent);
+      
+      try {
+        const response = await fetch('/.netlify/functions/bookAppointment', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(newEvent),
+        });
+        if (response.ok) {
+          const fetchResponse = await fetch('/.netlify/functions/getAppointments');
+          if (!fetchResponse.ok) {
+            console.error('Failed to fetch appointments:', await fetchResponse.text());
+            throw new Error('Failed to fetch appointments');
+          }
+          const updatedEvents = await fetchResponse.json();
+          console.log('Updated Appointments:', updatedEvents);
+          setEvents(updatedEvents.map(event => ({
+            title: event.title,
+            start: new Date(event.start),
+            end: new Date(event.end),
+          })));
+          setSelectedDate(null);
+          alert(`Appointment booked for ${moment(start).format('MMMM D, YYYY [at] h:mm A')}`);
+        } else {
+          console.error('Failed to book appointment:', await response.text());
+          alert('Failed to book appointment. Please try again.');
         }
-        const updatedEvents = await fetchResponse.json();
-        console.log('Updated Appointments:', updatedEvents); // Debug log
-        setEvents(updatedEvents.map(event => ({
-          title: event.title,
-          start: new Date(event.start),
-          end: new Date(event.end),
-        })));
-        setSelectedDate(null);
-        alert(`Appointment booked for ${moment(start).format('MMMM D, YYYY [at] h:mm A')}`);
-      } else {
-        console.error('Failed to book appointment:', await response.text());
-        alert('Failed to book appointment. Please try again.');
+      } catch (error) {
+        console.error('Error booking appointment:', error);
+        alert('An error occurred. Please try again.');
       }
-    } catch (error) {
-      console.error('Error booking appointment:', error);
-      alert('An error occurred. Please try again.');
     }
-  }
-};
+  };
+
   return (
     <div className={`min-h-screen ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal}`}>
       <div className="p-0">
-        <div className="grid grid-cols-12 gap-8 h-full">
-          <MeetingInfo meetingInfo={meetingInfo} selectedDate={selectedDate} />
-          <CalendarView
-            currentMonth={currentMonth}
-            setCurrentMonth={setCurrentMonth}
-            selectedDate={selectedDate}
-            events={events}
-            handleDateClick={handleDateClick}
-          />
-          <TimeSlots
-            selectedDate={selectedDate}
-            setSelectedDate={setSelectedDate}
-            availableTimeSlots={availableTimeSlots}
-            events={events}
-            handleBookSlot={handleBookSlot}
-          />
+        <div className="grid grid-cols-12 gap-8 min-h-full items-stretch">
+          <div className="col-span-12 lg:col-span-3 h-full">
+            <MeetingInfo meetingInfo={meetingInfo} selectedDate={selectedDate} />
+          </div>
+          <div className="col-span-12 lg:col-span-6 h-full">
+            <CalendarView
+              currentMonth={currentMonth}
+              setCurrentMonth={setCurrentMonth}
+              selectedDate={selectedDate}
+              events={events}
+              handleDateClick={handleDateClick}
+            />
+          </div>
+          <div className="col-span-12 lg:col-span-3 h-full">
+            <TimeSlots
+              selectedDate={selectedDate}
+              setSelectedDate={setSelectedDate}
+              availableTimeSlots={availableTimeSlots}
+              events={events}
+              handleBookSlot={handleBookSlot}
+            />
+          </div>
         </div>
       </div>
     </div>

@@ -71,8 +71,8 @@ const CalendarView = ({ currentMonth, setCurrentMonth, selectedDate, events, han
   const dayNames = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
 
   return (
-    <div className="col-span-12 lg:col-span-6">
-      <div className="bg-white rounded-lg shadow-sm border p-6">
+    <div className="col-span-12 lg:col-span-6 h-full">
+      <div className="bg-white rounded-lg shadow-sm border p-6 h-full">
         <h2 className="text-xl font-semibold text-gray-900 mb-6">Select a Date</h2>
         <div className="flex items-center justify-between mb-6">
           <button
