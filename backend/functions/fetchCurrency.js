@@ -1,10 +1,22 @@
-const geoApiUrl = "https://ipapi.co/json/"; // Correct Geo API
+const geoApiUrl = "https://ipapi.co/json/"; // Geo API
 const currencyApiUrl = "https://api.exchangerate-api.com/v4/latest/USD";
 
 const { countryToCurrency } = require('./currencyMap'); // Verify path
 
 let cachedRates = null;
 let cachedDate = null;
+
+// Simple IP validation (basic check for public IPv4/IPv6)
+const isValidIp = (ip) => {
+  if (!ip) return false;
+  // Exclude localhost and invalid IPs
+  if (ip === "::1" || ip === "127.0.0.1" || ip === "localhost") return false;
+  // Basic IPv4 regex (simplified)
+  const ipv4Regex = /^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/;
+  // Basic IPv6 regex (simplified)
+  const ipv6Regex = /^([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}$/;
+  return ipv4Regex.test(ip) || ipv6Regex.test(ip);
+};
 
 exports.handler = async (event) => {
   const today = new Date().toDateString();
@@ -24,7 +36,9 @@ exports.handler = async (event) => {
 
   try {
     console.log("Event headers:", event.headers);
-    const clientIp = (event.headers["x-forwarded-for"] || event.headers["x-nf-client-connection-ip"] || "").split(",")[0].trim() || "39.57.50.221"; // Hardcode for testing
+    let clientIp = (event.headers["x-forwarded-for"] || event.headers["x-nf-client-connection-ip"] || "").split(",")[0].trim() || null;
+    // Hardcode Pakistan IP for testing
+    clientIp = isValidIp(clientIp) ? clientIp : "39.57.50.221";
     console.log("Client IP:", clientIp);
 
     const fetchWithRetry = async (url, options, retries = 3) => {
@@ -48,19 +62,20 @@ exports.handler = async (event) => {
 
     const fetchUserCurrency = async () => {
       try {
-        const geoUrl = `${geoApiUrl}${clientIp}/`;
+        // Use IP only if valid, otherwise fallback to base URL
+        const geoUrl = isValidIp(clientIp) ? `${geoApiUrl}${clientIp}/` : geoApiUrl;
         console.log("Calling Geo API:", geoUrl);
         const data = await fetchWithRetry(geoUrl, {
           headers: { "User-Agent": "Mozilla/5.0 (compatible; Netlify Function)" },
         });
         console.log("Geo API full response:", JSON.stringify(data));
-        let countryCode = data.country_code || "US";
+        let countryCode = data.country_code || data.countryCode || "US";
         // Fallback to x-nf-geo if Geo API fails
-        if (!data.country_code && event.headers["x-nf-geo"]) {
+        if (!countryCode && event.headers["x-nf-geo"]) {
           try {
             const geoData = JSON.parse(Buffer.from(event.headers["x-nf-geo"], "base64").toString());
             countryCode = geoData.country?.code || "US";
-            console.log("Using x-nf-geo country:", countryCode);
+            console.log("Using x-nf-geo countryCode:", countryCode);
           } catch (e) {
             console.error("Failed to parse x-nf-geo:", e.message);
           }
@@ -72,11 +87,23 @@ exports.handler = async (event) => {
         }
         console.log("Available countries in mapping:", Object.keys(countryToCurrency));
         const currencyInfo = countryToCurrency[countryCode] || { currencyCode: "USD" };
-        console.log("Currency mapping:", countryToCurrency[countryCode] || "No mapping");
+        console.log("Currency mapping:", countryCode, currencyInfo);
         console.log(`Mapped ${countryCode} to currency:`, currencyInfo);
         return currencyInfo.currencyCode;
       } catch (error) {
         console.error("Geo API error:", error.message, error.stack);
+        // Fallback to x-nf-geo on error
+        if (event.headers["x-nf-geo"]) {
+          try {
+            const geoData = JSON.parse(Buffer.from(event.headers["x-nf-geo"], "base64").toString());
+            const countryCode = geoData.country?.code || "US";
+            console.log("Using x-nf-geo fallback countryCode:", countryCode);
+            const currencyInfo = countryToCurrency[countryCode] || { currencyCode: "USD" };
+            return currencyInfo.currencyCode;
+          } catch (e) {
+            console.error("Failed to parse x-nf-geo fallback:", e.message);
+          }
+        }
         return "USD";
       }
     };
