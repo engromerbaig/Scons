@@ -11,7 +11,7 @@ const isValidIp = (ip) => {
   if (!ip) return false;
   // Exclude localhost and invalid IPs
   if (ip === "::1" || ip === "127.0.0.1" || ip === "localhost") return false;
-  // Basic IPv4 regex (simplified)
+  // Basic IPv4 regex
   const ipv4Regex = /^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/;
   // Basic IPv6 regex (simplified)
   const ipv6Regex = /^([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}$/;
@@ -37,9 +37,8 @@ exports.handler = async (event) => {
   try {
     console.log("Event headers:", event.headers);
     let clientIp = (event.headers["x-forwarded-for"] || event.headers["x-nf-client-connection-ip"] || "").split(",")[0].trim() || null;
-    // Hardcode Pakistan IP for testing
-    clientIp = isValidIp(clientIp) ? clientIp : "39.57.50.221";
-    console.log("Client IP:", clientIp);
+    // No hardcoded IP; rely on headers or fallback to base URL
+    console.log("Client IP:", clientIp || "No valid IP, using base Geo API");
 
     const fetchWithRetry = async (url, options, retries = 3) => {
       for (let i = 0; i < retries; i++) {
@@ -169,7 +168,7 @@ exports.handler = async (event) => {
         "Access-Control-Allow-Headers": "Content-Type",
       },
       body: JSON.stringify({
-        localCurrencyCode: "USD",
+        localCurrency: "",
         rates: { USD: 1 },
         error: "Failed to fetch currency data",
       }),
