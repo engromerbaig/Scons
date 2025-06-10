@@ -1,4 +1,4 @@
-const { addAppointment } = require('./appointmentsStore');
+const fetch = require('node-fetch');
 
 exports.handler = async (event, context) => {
   if (event.httpMethod !== 'POST') {
@@ -28,8 +28,29 @@ exports.handler = async (event, context) => {
     // Log the booked appointment
     console.log('Booked Appointment:', { title, start, end });
 
-    // Add to shared in-memory store
-    addAppointment({ title, start, end });
+    // Fetch current appointments from JSONBin.io
+    const binResponse = await fetch('https://api.jsonbin.io/v3/b/684839328a456b7966abcf8f', {
+      headers: {
+        'X-Master-Key': process.env.JSONBIN_API_KEY,
+      },
+    });
+    if (!binResponse.ok) throw new Error('Failed to fetch bin');
+    const binData = await binResponse.json();
+    const appointments = binData.record.appointments || [];
+
+    // Add new appointment
+    appointments.push({ title, start, end });
+
+    // Update JSONBin.io
+    const updateResponse = await fetch('https://api.jsonbin.io/v3/b/<your-bin-id>', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Master-Key': process.env.JSONBIN_API_KEY,
+      },
+      body: JSON.stringify({ appointments }),
+    });
+    if (!updateResponse.ok) throw new Error('Failed to update bin');
 
     return {
       statusCode: 200,

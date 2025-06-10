@@ -1,4 +1,4 @@
-const { getAppointments } = require('./appointmentsStore');
+const fetch = require('node-fetch');
 
 exports.handler = async (event, context) => {
   if (event.httpMethod !== 'GET') {
@@ -13,7 +13,15 @@ exports.handler = async (event, context) => {
   }
 
   try {
-    const appointments = getAppointments();
+    const response = await fetch('https://api.jsonbin.io/v3/b/684839328a456b7966abcf8f', {
+      headers: {
+        'X-Master-Key': process.env.JSONBIN_API_KEY,
+      },
+    });
+    if (!response.ok) throw new Error('Failed to fetch bin');
+    const data = await response.json();
+    const appointments = data.record.appointments || [];
+
     return {
       statusCode: 200,
       headers: {

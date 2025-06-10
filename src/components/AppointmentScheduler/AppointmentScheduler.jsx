@@ -81,10 +81,13 @@ const handleBookSlot = async (timeSlot) => {
         body: JSON.stringify(newEvent),
       });
       if (response.ok) {
-        // Refetch appointments to sync with backend
         const fetchResponse = await fetch('/.netlify/functions/getAppointments');
-        if (!fetchResponse.ok) throw new Error('Failed to fetch appointments');
+        if (!fetchResponse.ok) {
+          console.error('Failed to fetch appointments:', await fetchResponse.text());
+          throw new Error('Failed to fetch appointments');
+        }
         const updatedEvents = await fetchResponse.json();
+        console.log('Updated Appointments:', updatedEvents); // Debug log
         setEvents(updatedEvents.map(event => ({
           title: event.title,
           start: new Date(event.start),
@@ -93,6 +96,7 @@ const handleBookSlot = async (timeSlot) => {
         setSelectedDate(null);
         alert(`Appointment booked for ${moment(start).format('MMMM D, YYYY [at] h:mm A')}`);
       } else {
+        console.error('Failed to book appointment:', await response.text());
         alert('Failed to book appointment. Please try again.');
       }
     } catch (error) {
@@ -101,7 +105,6 @@ const handleBookSlot = async (timeSlot) => {
     }
   }
 };
-
   return (
     <div className={`min-h-screen ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal}`}>
       <div className="p-0">
