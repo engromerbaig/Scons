@@ -42,7 +42,7 @@ exports.handler = async (event, context) => {
     appointments.push({ title, start, end });
 
     // Update JSONBin.io
-    const updateResponse = await fetch('https://api.jsonbin.io/v3/b/<your-bin-id>', {
+    const updateResponse = await fetch('https://api.jsonbin.io/v3/b/684839328a456b7966abcf8f', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
