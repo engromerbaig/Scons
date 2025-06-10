@@ -272,14 +272,14 @@ const PackageCard = ({ packageInfo }) => {
       )}
 
       {/* Debug info in development */}
-      {process.env.NODE_ENV === 'development' && debugInfo && (
+      {/* {process.env.NODE_ENV === 'development' && debugInfo && (
         <div className="absolute top-2 right-2 text-xs bg-gray-100 p-2 rounded max-w-[200px] text-left">
           <div>IP: {debugInfo.clientIp}</div>
           <div>Location: {debugInfo.location?.countryCode || 'N/A'}</div>
           <div>Currency: {debugInfo.detectedCurrency || 'N/A'}</div>
           <div>Rates: {debugInfo.ratesCount || 0}</div>
         </div>
-      )}
+      )} */}
 
       <div className="relative mb-2">
         <Heading
