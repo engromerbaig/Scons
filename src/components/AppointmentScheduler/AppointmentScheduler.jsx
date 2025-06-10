@@ -129,8 +129,8 @@ const AppointmentScheduler = () => {
   const dayNames = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 
   return (
-    <div className={`min-h-screen bg-gray-50 ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal}`}>
-      <div className="max-w-7xl mx-auto p-6">
+    <div className={`min-h-screen  ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal}`}>
+      <div className="p-0">
         <div className="grid grid-cols-12 gap-8 h-full">
           
           {/* Left Column - Meeting Info */}
@@ -138,7 +138,7 @@ const AppointmentScheduler = () => {
             <div className="bg-white rounded-lg shadow-sm border p-6 sticky top-6">
               <div className="mb-6">
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
+                  <div className="w-10 h-10 bg-neon rounded-full flex items-center justify-center">
                     <User size={20} className="text-white" />
                   </div>
                   <div>
@@ -170,7 +170,7 @@ const AppointmentScheduler = () => {
 
               {selectedDate && (
                 <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
-                  <p className="text-sm font-medium text-blue-900">
+                  <p className="text-sm font-medium text-black">
                     Selected Date
                   </p>
                   <p className="text-sm text-blue-700">
@@ -182,7 +182,7 @@ const AppointmentScheduler = () => {
           </div>
 
           {/* Center Column - Calendar */}
-          <div className="col-span-12 lg:col-span-5">
+          <div className="col-span-12 lg:col-span-6">
             <div className="bg-white rounded-lg shadow-sm border p-6">
               <h2 className="text-xl font-semibold text-gray-900 mb-6">
                 Select a Date
@@ -243,7 +243,7 @@ const AppointmentScheduler = () => {
                       >
                         <span className={`
                           text-sm font-medium
-                          ${todayDate && inCurrentMonth && (!selectedDate || !moment(date).isSame(selectedDate, 'day')) ? 'text-blue-600' : ''}
+                          ${todayDate && inCurrentMonth && (!selectedDate || !moment(date).isSame(selectedDate, 'day')) ? 'text-neon' : ''}
                           ${selectedDate && moment(date).isSame(selectedDate, 'day') ? 'text-white' : ''}
                         `}>
                           {moment(date).format('D')}
@@ -262,7 +262,7 @@ const AppointmentScheduler = () => {
           </div>
 
           {/* Right Column - Available Time Slots */}
-          <div className="col-span-12 lg:col-span-4">
+          <div className="col-span-12 lg:col-span-3">
             {selectedDate ? (
               <div className="bg-white rounded-lg shadow-sm border p-6">
                 <div className="flex items-center justify-between mb-6">
@@ -271,7 +271,7 @@ const AppointmentScheduler = () => {
                   </h3>
                   <button
                     onClick={() => setSelectedDate(null)}
-                    className="text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center gap-1"
+                    className="text-neon hover:text-blue-800 text-sm font-medium flex items-center gap-1"
                   >
                     <ArrowLeft size={16} />
                     Back
@@ -290,7 +290,7 @@ const AppointmentScheduler = () => {
                       <button
                         key={index}
                         onClick={() => handleBookSlot(slot)}
-                        className="w-full text-left p-4 border-2 border-blue-600 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition-colors duration-200 font-medium"
+                        className="w-full  px-4 py-3 text-sm border-2 border-neon text-center text-neon rounded-lg hover:bg-neon hover:text-white transition-colors duration-200 font-bold"
                       >
                         {slot.time}
                       </button>
