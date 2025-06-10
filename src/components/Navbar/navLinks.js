@@ -1,6 +1,6 @@
 export const navLinks = [
     // { to: "/", label: "Home" },
-    { to: "/about", label: "Why Scons Tech?" },
+    { to: "/about", label: "Why Us?" },
     { to: "/portfolio", label: "Our Portfolio" },
         // { to: "#", label: "Services" },
 
