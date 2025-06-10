@@ -1,6 +1,9 @@
 const geoApiUrl = "https://ipapi.co/json/"; // More reliable Geo API
 const currencyApiUrl = "https://api.exchangerate-api.com/v4/latest/USD";
 
+const { countryToCurrency } = require('./currencyMap'); // Adjust path as needed
+
+
 let cachedRates = null;
 let cachedDate = null;
 
