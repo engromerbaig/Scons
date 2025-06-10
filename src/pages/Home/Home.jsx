@@ -1,8 +1,8 @@
 import React, { lazy } from 'react';
-import { Helmet } from 'react-helmet-async'; // Import Helmet
-import ogDefault from '../../assets/images/og-default.jpg'; // Default OG image
+import { Helmet } from 'react-helmet-async';
+import ogDefault from '../../assets/images/og-default.jpg';
+import schema from '../../utilities/schema';
 
-// Lazy load all components
 const Hero = lazy(() => import('../../components/Hero/Hero'));
 const UniqueApproachOld = lazy(() => import('../../components/UniqueApproach/UniqueApproachOld'));
 const Industries = lazy(() => import('../../components/Industries/Industries'));
@@ -20,32 +20,33 @@ function Home() {
   return (
     <div>
       <Helmet>
-        <title>Home | Scons Tech</title>
-        {/* this is what google picks up */}
+        <title>Scons Tech | Web Development, Mobile Apps, UI/UX Design, SEO & Digital Strategy</title>
         <meta
           name="description"
-          content="Scons Tech delivers innovative software solutions for startups and enterprises in the UK and beyond. Explore our services and projects."
+          content="Scons Tech offers expert web development, mobile app creation, UI/UX design, and SEO services to boost your digital presence. Partner with us for innovative solutions."
         />
         <meta
           name="keywords"
-          content="Scons Tech, software development, UK software company, web development, startups, enterprises, technology solutions"
+          content="Scons Tech, web development, mobile apps, UI/UX design, SEO, digital strategy, software solutions, tech company"
         />
         <link rel="canonical" href="https://sconstech.com/" />
-        <meta property="og:title" content="Home | Scons Tech" />
+        <meta property="og:title" content="Scons Tech | Web Development, Mobile Apps, UI/UX Design, SEO & Digital Strategy" />
         <meta
           property="og:description"
-          content="Scons Tech delivers innovative software solutions for startups and enterprises in the UK and beyond. Explore our services and projects."
+          content="Scons Tech offers expert web development, mobile app creation, UI/UX design, and SEO services to boost your digital presence. Partner with us for innovative solutions."
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://sconstech.com/" />
         <meta property="og:image" content={ogDefault} />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Home | Scons Tech" />
+        <meta name="twitter:title" content="Scons Tech | Web Development, Mobile Apps, UI/UX Design, SEO & Digital Strategy" />
         <meta
           name="twitter:description"
-          content="Scons Tech delivers innovative software solutions for startups and enterprises in the UK and beyond. Explore our services and projects."
+          content="Scons Tech offers expert web development, mobile app creation, UI/UX design, and SEO services to boost your digital presence. Partner with us for innovative solutions."
         />
         <meta name="twitter:image" content={ogDefault} />
+        {/* Include external schema */}
+        <script type="application/ld+json">{schema}</script>
       </Helmet>
       <FadeInSection>
         <Hero />
@@ -82,7 +83,7 @@ function Home() {
       <FadeInSection disabled>
         <StartProjectBelt />
       </FadeInSection>
-      <FadeInSection >
+      <FadeInSection>
         <BlogsHome />
       </FadeInSection>
       <FadeInSection disabled>
