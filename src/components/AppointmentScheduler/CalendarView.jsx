@@ -10,6 +10,32 @@ moment.updateLocale('en', {
 });
 
 const CalendarView = ({ currentMonth, setCurrentMonth, selectedDate, events, handleDateClick }) => {
+  const holidays = [
+    // USA
+    '2025-01-01', // New Year's Day
+    '2025-01-20', // MLK Day
+    '2025-02-17', // Presidents' Day
+    '2025-05-26', // Memorial Day
+    '2025-06-19', // Juneteenth
+    '2025-07-04', // Independence Day
+    '2025-09-01', // Labor Day
+    '2025-10-13', // Columbus Day
+    '2025-11-11', // Veterans Day
+    '2025-11-27', // Thanksgiving
+    '2025-12-25', // Christmas
+    // UK
+    '2025-04-18', // Good Friday
+    '2025-04-21', // Easter Monday
+    '2025-05-05', // Early May Bank Holiday
+    '2025-08-25', // Summer Bank Holiday
+    '2025-12-26', // Boxing Day
+    // Germany
+    '2025-05-01', // Labour Day
+    '2025-05-29', // Ascension Day
+    '2025-06-09', // Whit Monday
+    '2025-10-03', // German Unity Day
+  ];
+
   const generateCalendarDates = () => {
     const startOfMonth = moment(currentMonth).startOf('month');
     const endOfMonth = moment(currentMonth).endOf('month');
@@ -51,9 +77,14 @@ const CalendarView = ({ currentMonth, setCurrentMonth, selectedDate, events, han
     return day === 0 || day === 6;
   };
 
+  const isHoliday = (date) => {
+    return holidays.includes(moment(date).format('YYYY-MM-DD'));
+  };
+
   const isCurrentMonthInPast = () => {
-    const endOfMonth = moment(currentMonth).endOf('month');
-    return endOfMonth.isBefore(moment(), 'day');
+    const currentDate = moment();
+    const currentMonthStart = moment(currentMonth).startOf('month');
+    return currentMonthStart.isBefore(currentDate, 'month');
   };
 
   const navigateMonth = (direction) => {
@@ -109,7 +140,8 @@ const CalendarView = ({ currentMonth, setCurrentMonth, selectedDate, events, han
               const todayDate = isToday(date);
               const pastDate = isPastDate(date);
               const weekend = isWeekend(date);
-              const unavailable = pastDate || weekend;
+              const holiday = isHoliday(date);
+              const unavailable = pastDate || weekend || holiday;
               const isSelected = selectedDate && moment(date).isSame(selectedDate, 'day');
 
               return (
@@ -124,7 +156,7 @@ const CalendarView = ({ currentMonth, setCurrentMonth, selectedDate, events, han
                   <span
                     className={`
                       w-10 h-10 xl:w-12 xl:h-12 p-4 flex items-center justify-center rounded-full text-sm xl:text-base font-black relative
-                      ${isSelected ? 'bg-neon text-white' : unavailable ? 'text-gray-300' : 'text-neon bg-neon/10 hover:bg-neon/20 hover:text-neon'}
+                      ${isSelected ? 'bg-black text-white' : unavailable ? 'text-gray-300' : 'text-neon bg-neon/10 hover:bg-neon/20 hover:text-neon'}
                     `}
                   >
                     {moment(date).format('D')}
