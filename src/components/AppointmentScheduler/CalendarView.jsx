@@ -101,7 +101,7 @@ const CalendarView = ({ currentMonth, setCurrentMonth, selectedDate, events, han
         {/* Calendar Grid */}
         <div className="calendar-grid">
           {/* Day Headers */}
-          <div className="grid grid-cols-7 gap-0 mb-2">
+          <div className="grid grid-cols-7 gap-2 mb-2">
             {dayNames.map((day) => (
               <div key={day} className="text-center py-2 text-sm font-medium text-gray-500">
                 {day}
@@ -110,7 +110,7 @@ const CalendarView = ({ currentMonth, setCurrentMonth, selectedDate, events, han
           </div>
 
           {/* Calendar Dates */}
-          <div className="grid grid-cols-7 gap-0 rounded-lg overflow-hidden">
+          <div className="grid grid-cols-7 gap-2 rounded-lg overflow-hidden">
             {calendarDates.map((date, index) => {
               if (!date) {
                 return <div key={index} className="h-16" />; // Empty cell for padding
@@ -132,7 +132,7 @@ const CalendarView = ({ currentMonth, setCurrentMonth, selectedDate, events, han
                 >
                   <span
                     className={`
-                      w-12 h-12 p-2 flex items-center justify-center rounded-full text-sm xl:text-base font-black relative
+                      w-10 h-10 xl:w-12 xl:h-12 p-4 flex items-center justify-center rounded-full text-sm xl:text-base font-black relative
                       ${unavailable ? 'text-gray-300' : 'text-neon bg-neon/10 hover:bg-neon/20'}
                       ${selectedDate && moment(date).isSame(selectedDate, 'day') ? 'bg-[#00c5ff] text-white' : ''}
                     `}
