@@ -12,10 +12,9 @@ const AppointmentScheduler = () => {
 
   // Meeting configuration
   const meetingInfo = {
-    title: "15 Minute Meeting",
-    duration: "1 hour",
+    title: "Free Meeting",
+    duration: "30 mins - 1 hour",
     type: "Google Meet",
-    host: "John Doe",
     description: "A brief meeting to discuss your needs and how we can help."
   };
 

@@ -29,10 +29,7 @@ const MeetingInfo = ({ meetingInfo, selectedDate }) => {
             <Video size={18} className="text-gray-500" />
             <span className="text-sm">{meetingInfo.type}</span>
           </div>
-          <div className="flex items-center gap-3 text-gray-700">
-            <MapPin size={18} className="text-gray-500" />
-            <span className="text-sm">Web conferencing details provided upon confirmation</span>
-          </div>
+    
         </div>
         {selectedDate && (
           <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">

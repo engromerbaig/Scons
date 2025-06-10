@@ -27,25 +27,19 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
   return (
     <div className="col-span-12 lg:col-span-3 h-full">
       {selectedDate ? (
-        <div className="bg-white rounded-lg shadow-sm border p-6 h-full flex flex-col">
+        <div className="bg-white rounded-lg shadow-sm border p-6 h-full flex flex-col ">
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-xl font-semibold text-gray-900">
-              Available Times
+              Available Slots
             </h3>
-            <button
-              onClick={() => setSelectedDate(null)}
-              className="text-neon hover:text-blue-800 text-sm font-medium flex items-center gap-1"
-            >
-              <ArrowLeft size={16} />
-              Back
-            </button>
+          
           </div>
           <div className="mb-4">
             <p className="text-gray-600 font-medium">
               {moment(selectedDate).format('dddd, MMMM D')}
             </p>
           </div>
-          <div className="space-y-3 overflow-y-auto flex-1">
+          <div className="space-y-4 overflow-y-auto flex-1">
             {getAvailableSlots(selectedDate).length > 0 ? (
               getAvailableSlots(selectedDate).map((slot, index) => (
                 <button

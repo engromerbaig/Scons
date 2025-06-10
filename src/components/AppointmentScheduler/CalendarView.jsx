@@ -124,7 +124,7 @@ const CalendarView = ({ currentMonth, setCurrentMonth, selectedDate, events, han
                   <span
                     className={`
                       w-10 h-10 xl:w-12 xl:h-12 p-4 flex items-center justify-center rounded-full text-sm xl:text-base font-black relative
-                      ${isSelected ? 'bg-neon text-white' : unavailable ? 'text-gray-300' : 'text-neon border-neon hover:bg-neon/20 hover:text-neon'}
+                      ${isSelected ? 'bg-neon text-white' : unavailable ? 'text-gray-300' : 'text-neon bg-neon/10 hover:bg-neon/20 hover:text-neon'}
                     `}
                   >
                     {moment(date).format('D')}
