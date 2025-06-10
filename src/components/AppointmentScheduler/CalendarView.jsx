@@ -133,7 +133,7 @@ const CalendarView = ({ currentMonth, setCurrentMonth, selectedDate, events, han
                   <span
                     className={`
                       w-10 h-10 xl:w-12 xl:h-12 p-4 flex items-center justify-center rounded-full text-sm xl:text-base font-black relative
-                      ${unavailable ? 'text-gray-300' : 'text-neon bg-neon/10 hover:bg-neon/20'}
+                      ${unavailable ? 'text-gray-300' : 'text-neon bg-neon/10 hover:bg-neon/20 hover:text-neon'}
                       ${selectedDate && moment(date).isSame(selectedDate, 'day') ? 'bg-[#00c5ff] text-white' : ''}
                     `}
                   >
