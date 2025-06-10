@@ -1,115 +1,68 @@
-const geoApiUrl = "https://ipapi.co/json/"; // Geo API
+
+const geoApiUrl = "http://ip-api.com/json/"; // Free geo IP API that's more reliable
 const currencyApiUrl = "https://api.exchangerate-api.com/v4/latest/USD";
 
-const { countryToCurrency } = require('./currencyMap'); // Verify path
+// Import your currency mapping - you'll need to copy this into the function
+const { countryToCurrency } = require('./currencyMap'); // Adjust path as needed
 
+// In-memory cache (persists for the lifetime of the function instance)
 let cachedRates = null;
 let cachedDate = null;
-
-// Simple IP validation (basic check for public IPv4/IPv6)
-const isValidIp = (ip) => {
-  if (!ip) return false;
-  // Exclude localhost and invalid IPs
-  if (ip === "::1" || ip === "127.0.0.1" || ip === "localhost") return false;
-  // Basic IPv4 regex
-  const ipv4Regex = /^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/;
-  // Basic IPv6 regex (simplified)
-  const ipv6Regex = /^([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}$/;
-  return ipv4Regex.test(ip) || ipv6Regex.test(ip);
-};
 
 exports.handler = async (event) => {
   const today = new Date().toDateString();
 
-  // Handle OPTIONS preflight
-  if (event.httpMethod === "OPTIONS") {
-    return {
-      statusCode: 200,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type",
-      },
-      body: "",
-    };
-  }
-
   try {
-    console.log("Event headers:", event.headers);
-    let clientIp = (event.headers["x-forwarded-for"] || event.headers["x-nf-client-connection-ip"] || "").split(",")[0].trim() || null;
-    console.log("Client IP:", clientIp || "No valid IP, using base Geo API");
+    console.log("Fetch function available:", typeof fetch);
 
-    const fetchWithRetry = async (url, options, retries = 3) => {
-      for (let i = 0; i < retries; i++) {
-        try {
-          const response = await fetch(url, options);
-          if (response.status === 429) {
-            console.warn("Rate limit hit, waiting 5s...");
-            await new Promise((resolve) => setTimeout(resolve, 5000));
-            continue;
-          }
-          if (!response.ok) throw new Error(`Status: ${response.status} ${response.statusText}`);
-          return await response.json();
-        } catch (error) {
-          if (i === retries - 1) throw error;
-          console.warn(`Retry ${i + 1}/${retries} for ${url}`);
-          await new Promise((resolve) => setTimeout(resolve, 1000));
-        }
-      }
-    };
+    // Get client IP from Netlify headers
+    const clientIp = event.headers["client-ip"] || event.headers["x-forwarded-for"] || "unknown";
+    console.log("Client IP:", clientIp);
 
+    // Fetch user currency based on location
     const fetchUserCurrency = async () => {
       try {
-        const geoUrl = isValidIp(clientIp) ? `${geoApiUrl}${clientIp}/` : geoApiUrl;
-        console.log("Calling Geo API:", geoUrl);
-        const data = await fetchWithRetry(geoUrl, {
-          headers: { "User-Agent": "Mozilla/5.0 (compatible; Netlify Function)" },
+        console.log("Calling Geo API:", geoApiUrl);
+        const response = await fetch(geoApiUrl, {
+          headers: {
+            'User-Agent': 'Mozilla/5.0 (compatible; Netlify Function)'
+          }
         });
-        console.log("Geo API full response:", JSON.stringify(data));
-        let countryCode = data.country_code || data.countryCode || "US";
-        if (!countryCode && event.headers["x-nf-geo"]) {
-          try {
-            const geoData = JSON.parse(Buffer.from(event.headers["x-nf-geo"], "base64").toString());
-            countryCode = geoData.country?.code || "US";
-            console.log("Using x-nf-geo countryCode:", countryCode);
-          } catch (e) {
-            console.error("Failed to parse x-nf-geo:", e.message);
-          }
+        
+        if (!response.ok) {
+          throw new Error(`Geo API status: ${response.status} ${response.statusText}`);
         }
-        console.log("Country code:", countryCode);
-        if (!countryToCurrency) {
-          console.error("countryToCurrency mapping is undefined");
-          return "USD";
+        
+        const data = await response.json();
+        console.log("Geo API response:", { currency: data.currency, country: data.country, countryCode: data.countryCode });
+        
+        // Use country code to get currency from your mapping
+        const countryCode = data.countryCode;
+        if (countryCode && countryToCurrency[countryCode]) {
+          const currencyInfo = countryToCurrency[countryCode];
+          console.log(`Mapped ${countryCode} to currency:`, currencyInfo);
+          return currencyInfo.currencyCode;
         }
-        console.log("Available countries in mapping:", Object.keys(countryToCurrency));
-        const currencyInfo = countryToCurrency[countryCode] || { currencyCode: "USD" };
-        console.log("Currency mapping:", countryCode, currencyInfo);
-        console.log(`Mapped ${countryCode} to currency:`, currencyInfo);
-        return currencyInfo.currencyCode;
-      } catch (error) {
-        console.error("Geo API error:", error.message, error.stack);
-        if (event.headers["x-nf-geo"]) {
-          try {
-            const geoData = JSON.parse(Buffer.from(event.headers["x-nf-geo"], "base64").toString());
-            const countryCode = geoData.country?.code || "US";
-            console.log("Using x-nf-geo fallback countryCode:", countryCode);
-            const currencyInfo = countryToCurrency[countryCode] || { currencyCode: "USD" };
-            return currencyInfo.currencyCode;
-          } catch (e) {
-            console.error("Failed to parse x-nf-geo fallback:", e.message);
-          }
-        }
+        
+        // Fallback to USD if no mapping found
+        console.log(`No currency mapping found for country code: ${countryCode}`);
         return "USD";
+      } catch (error) {
+        console.error("Geo API error:", error.message);
+        return "USD"; // Always fallback to USD
       }
     };
 
+    // Fetch currency rates
     const fetchRates = async (localCurrencyCode) => {
+      // If local currency is USD, just return USD rates
       if (localCurrencyCode === "USD") {
         cachedRates = { USD: 1 };
         cachedDate = today;
-        return cachedRates;
+        return rates;
       }
 
+      // Check if we have cached rates for today
       if (cachedRates && cachedDate === today && cachedRates[localCurrencyCode]) {
         console.log("Using cached rates:", cachedRates);
         return cachedRates;
@@ -117,31 +70,73 @@ exports.handler = async (event) => {
 
       try {
         console.log("Calling Currency API:", currencyApiUrl);
-        const data = await fetchWithRetry(currencyApiUrl, {
-          headers: { "User-Agent": "Mozilla/5.0 (compatible; Netlify Function)" },
+        const response = await fetch(currencyApiUrl, {
+          headers: {
+            'User-Agent': 'Mozilla/5.0 (compatible; Netlify Function)'
+          }
         });
-        console.log("Currency API response:", Object.keys(data.rates || {}).length, "currencies");
+        
+        if (!response.ok) {
+          throw new Error(`Currency API status: ${response.status} ${response.statusText}`);
+        }
+        
+        const data = await response.json();
+        console.log("Currency API response - rates available for:", Object.keys(data.rates || {}).length, "currencies");
+        
         if (data.rates && data.rates[localCurrencyCode]) {
           cachedRates = {
             USD: 1,
-            [localCurrencyCode]: data.rates[localCurrencyCode],
+            [targetCurrency]: data.rates[targetCurrency]
           };
+          
+          cachedRates = rates;
           cachedDate = today;
-          console.log(`Rates fetched: 1 USD = ${cachedRates[localCurrencyCode]} ${localCurrencyCode}`);
+          console.log(`Rates fetched successfully: 1 USD = ${cachedRates[localCurrencyCode]} ${localCurrencyCode}`);
+          return cachedRates;
+        } else {
+          console.warn(`Local currency ${localCurrencyCode} rate not available in API response`);
+          // Fallback to USD if local currency rate not available
+          cachedRates = { USD: 1 };
+          cachedDate = today;
           return cachedRates;
         }
-        console.warn(`Currency ${localCurrencyCode} not available in API response`);
-        return { USD: 1 };
       } catch (error) {
-        console.error("Currency API error:", error.message, error.stack);
-        return { USD: 1 };
+        console.error("Error fetching rates:", error.message);
+        // Always fallback to USD on error
+        cachedRates = { USD: 1 };
+        cachedDate = today;
+        return cachedRates;
       }
     };
 
-    const localCurrencyCode = await fetchUserCurrency();
-    const rates = await fetchRates(localCurrencyCode);
-
-    console.log("Final response:", { localCurrencyCode, rates });
+    // Main execution flow
+    console.log("=== Starting location detection ===");
+    const locationData = await fetchUserLocation();
+    
+    console.log("=== Determining currency ===");
+    const detectedCurrency = getCurrencyFromLocation(locationData);
+    
+    console.log("=== Fetching exchange rates ===");
+    const rates = await fetchExchangeRates(detectedCurrency);
+    
+    // Determine final currency (fallback to USD if detection failed)
+    const finalCurrency = detectedCurrency && rates[detectedCurrency] ? detectedCurrency : "USD";
+    
+    console.log("=== Final Result ===");
+    console.log("Detected Currency:", detectedCurrency);
+    console.log("Final Currency:", finalCurrency);
+    console.log("Available Rates:", Object.keys(rates));
+    
+    const result = {
+      localCurrencyCode: finalCurrency,
+      rates: rates,
+      debug: {
+        clientIp: clientIp || "not detected",
+        location: locationData || "not detected",
+        detectedCurrency: detectedCurrency || "not detected",
+        ratesCount: Object.keys(rates).length
+      }
+    };
 
     return {
       statusCode: 200,
@@ -150,11 +145,18 @@ exports.handler = async (event) => {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
         "Access-Control-Allow-Headers": "Content-Type",
+        "Cache-Control": "public, max-age=3600" // Cache for 1 hour
       },
-      body: JSON.stringify({ localCurrencyCode, rates }),
+      body: JSON.stringify({
+        localCurrencyCode,
+        rates,
+      }),
     };
+
   } catch (error) {
     console.error("Function error:", error.message, error.stack);
+    
+    // Always return USD as fallback, even on complete failure
     return {
       statusCode: 200,
       headers: {
@@ -166,7 +168,7 @@ exports.handler = async (event) => {
       body: JSON.stringify({
         localCurrencyCode: "", // Fixed from localCurrency
         rates: { USD: 1 },
-        error: "Failed to fetch currency data",
+        error: "Failed to fetch currency data, using USD fallback",
       }),
     };
   }
