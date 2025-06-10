@@ -15,6 +15,7 @@ import FadeWrapper from "../../utilities/Animations/FadeWrapper";
 import InnerHero from "../../components/InnerHero/InnerHero";
 import SkeletonLoader from "../../utilities/SkeletonLoader";
 import ogLogo from "../../assets/images/og-default.jpg"; // Logo-based OG image
+import schema from '../../utilities/schema';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -248,21 +249,8 @@ export default function Blogs() {
           <meta name="twitter:title" content="Blogs | Scons Tech" />
           <meta name="twitter:description" content={metaDescription} />
           <meta name="twitter:image" content={ogLogo} />
-          <script type="application/ld+json">
-            {JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Blog",
-              "name": "Scons Tech Blogs",
-              "description": metaDescription,
-              "url": "https://sconstech.com/blogs",
-              "image": ogLogo,
-              "publisher": {
-                "@type": "Organization",
-                "name": "Scons Tech",
-                "url": "https://sconstech.com",
-              },
-            })}
-          </script>
+                <script type="application/ld+json">{schema}</script>
+
         </Helmet>
         <InnerHero
           headingText="Blogs & News"

@@ -10,6 +10,9 @@ const BodyText = lazy(() => import('../../components/BodyText/BodyText'));
 const Locations = lazy(() => import('../../components/Locations/Locations'));
 const FadeInSection = lazy(() => import('../../utilities/Animations/FadeInSection'));
 
+import schema from '../../utilities/schema';
+
+
 import contactImage from '../../assets/images/contact.svg';
 import { theme } from '../../theme';
 import { contactDetails } from '../../components/MobileMenu/modules/contactDetails';
@@ -55,6 +58,9 @@ const ContactUs = () => {
           content="Get in touch with Scons for innovative software solutions. Reach out via our contact form or find our office locations."
         />
         <meta name="twitter:image" content={ogDefault} />
+
+                <script type="application/ld+json">{schema}</script>
+
       </Helmet>
       <FadeInSection>
         {/* <InnerHero

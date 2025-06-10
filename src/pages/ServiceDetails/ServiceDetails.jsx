@@ -3,6 +3,9 @@ import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async"; // Import Helmet
 import ogLogo from "../../assets/images/og-default.jpg"; // Logo-based OG image
 
+import schema from '../../utilities/schema';
+
+
 // Lazy load all components
 const Heading = lazy(() => import("../../components/Heading/Heading"));
 const InnerHero = lazy(() => import("../../components/InnerHero/InnerHero"));
@@ -10,6 +13,9 @@ const IconSection = lazy(() => import("../../components/IconService/IconSection"
 const SectionDetails = lazy(() =>
   import("../../components/SectionDetails/SectionDetails")
 );
+
+
+
 const Reviews = lazy(() => import("../../components/Reviews/Reviews"));
 const FAQService = lazy(() => import("../../components/FAQService/FAQService"));
 const DevProcess = lazy(() =>
@@ -93,21 +99,8 @@ const ServiceDetails = () => {
         <meta name="twitter:title" content={`${service.heading} | Scons Tech`} />
         <meta name="twitter:description" content={metaDescription} />
         <meta name="twitter:image" content={ogLogo} />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Service",
-            "serviceType": service.heading,
-            "provider": {
-              "@type": "Organization",
-              "name": "Scons Tech",
-              "url": "https://sconstech.com",
-            },
-            "description": metaDescription,
-            "url": `https://sconstech.com/service/${serviceSlug}`,
-            "image": ogLogo,
-          })}
-        </script>
+          <script type="application/ld+json">{schema}</script>
+
       </Helmet>
 
       {/* Hero Section */}

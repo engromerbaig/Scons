@@ -9,6 +9,9 @@ const FAQ = lazy(() => import("../../components/FAQ/FAQ"));
 const GreenBelt = lazy(() => import("../../components/GreenBelt/GreenBelt"));
 const Heading = lazy(() => import("../../components/Heading/Heading"));
 
+import schema from '../../utilities/schema';
+
+
 import BodyText from "../../components/BodyText/BodyText";
 
 // Static imports for non-component data
@@ -45,6 +48,9 @@ const Careers = () => {
                     content="Join Scons Tech and be part of a dynamic team transforming businesses worldwide. Explore career opportunities and grow with us."
                 />
                 <meta name="twitter:image" content={ogDefault} />
+
+                        <script type="application/ld+json">{schema}</script>
+
             </Helmet>
 
             {/* Inner Hero Section */} 

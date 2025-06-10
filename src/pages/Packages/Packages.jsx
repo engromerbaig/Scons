@@ -12,6 +12,9 @@ import { motion } from "framer-motion";
 import AnimatedHeading from "../../components/Hero/AnimatedHeading";
 import ogLogo from "../../assets/images/og-default.jpg"; // Logo-based OG image
 
+import schema from '../../utilities/schema';
+
+
 const InnerHero = lazy(() => import("../../components/InnerHero/InnerHero"));
 
 const Packages = () => {
@@ -79,21 +82,8 @@ const Packages = () => {
         <meta name="twitter:title" content="Packages | Scons" />
         <meta name="twitter:description" content={metaDescription} />
         <meta name="twitter:image" content={ogLogo} />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Service",
-            "serviceType": "Software Packages",
-            "provider": {
-              "@type": "Organization",
-              "name": "Scons",
-              "url": "https://sconstech.com",
-            },
-            "description": metaDescription,
-            "url": "https://sconstech.com/packages",
-            "image": ogLogo,
-          })}
-        </script>
+           <script type="application/ld+json">{schema}</script>
+
       </Helmet>
 
       <InnerHero height="h-[70vh]" headingColor="text-black">

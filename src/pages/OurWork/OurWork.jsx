@@ -11,6 +11,7 @@ import LoadMoreControls from './LoadMoreControls';
 import projectImage from '../../assets/images/project.svg';
 import behanceLogo from '../../assets/icons/inner/behance.svg';
 import dribbleLogo from '../../assets/icons/inner/dribble.svg';
+import schema from '../../utilities/schema';
 
 const OurWork = () => {
   const {
@@ -97,6 +98,9 @@ const OurWork = () => {
           content="Explore Scons Tech' portfolio of innovative tech projects, showcasing expertise in software development for startups and enterprises."
         />
         <meta name="twitter:image" content={ogDefault} />
+
+                <script type="application/ld+json">{schema}</script>
+
       </Helmet>
       <InnerHero
         headingText="A Catalog of Our Work"
