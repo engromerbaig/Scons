@@ -2,22 +2,37 @@ import React from 'react';
 import moment from 'moment';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
+// Ensure moment uses Sunday as the start of the week
+moment.updateLocale('en', {
+  week: {
+    dow: 0, // Sunday as the first day of the week
+  },
+});
+
 const CalendarView = ({ currentMonth, setCurrentMonth, selectedDate, events, handleDateClick }) => {
   const generateCalendarDates = () => {
     const startOfMonth = moment(currentMonth).startOf('month');
     const endOfMonth = moment(currentMonth).endOf('month');
-    const startOfCalendar = moment(startOfMonth).startOf('week');
+    const startOfCalendar = moment(startOfMonth); // Start from first of the month
     const endOfCalendar = moment(endOfMonth).endOf('week');
-    
+
     const dates = [];
     const current = moment(startOfCalendar);
-    
+
     while (current.isSameOrBefore(endOfCalendar)) {
-      dates.push(moment(current).toDate());
+      if (current.isSame(currentMonth, 'month')) {
+        dates.push(moment(current).toDate());
+      }
       current.add(1, 'day');
     }
-    
-    return dates;
+
+    // Pad with empty cells to align with the start of the week (Sunday)
+    const firstDayOfMonth = moment(startOfMonth).day(); // 0 = Sunday, 1 = Monday, etc.
+    const paddedDates = [];
+    for (let i = 0; i < firstDayOfMonth; i++) {
+      paddedDates.push(null); // Add null for empty cells
+    }
+    return [...paddedDates, ...dates];
   };
 
   const isDateInCurrentMonth = (date) => {
@@ -37,7 +52,15 @@ const CalendarView = ({ currentMonth, setCurrentMonth, selectedDate, events, han
     return day === 0 || day === 6;
   };
 
+  const isCurrentMonthInPast = () => {
+    const endOfMonth = moment(currentMonth).endOf('month');
+    return endOfMonth.isBefore(moment(), 'day');
+  };
+
   const navigateMonth = (direction) => {
+    if (direction === 'prev' && isCurrentMonthInPast()) {
+      return; // Prevent navigating to previous month if current month is in the past
+    }
     if (direction === 'prev') {
       setCurrentMonth(moment(currentMonth).subtract(1, 'month').toDate());
     } else {
@@ -46,20 +69,21 @@ const CalendarView = ({ currentMonth, setCurrentMonth, selectedDate, events, han
   };
 
   const calendarDates = generateCalendarDates();
-  const dayNames = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
+  const dayNames = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
 
   return (
     <div className="col-span-12 lg:col-span-6">
       <div className="bg-white rounded-lg shadow-sm border p-6">
-        <h2 className="text-xl font-semibold text-gray-900 mb-6">
-          Select a Date
-        </h2>
-        
+        <h2 className="text-xl font-semibold text-gray-900 mb-6">Select a Date</h2>
+
         {/* Calendar Header */}
         <div className="flex items-center justify-between mb-6">
           <button
             onClick={() => navigateMonth('prev')}
-            className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+            className={`p-2 hover:bg-gray-100 rounded-full transition-colors ${
+              isCurrentMonthInPast() ? 'opacity-50 cursor-not-allowed' : ''
+            }`}
+            disabled={isCurrentMonthInPast()}
           >
             <ChevronLeft size={20} className="text-gray-600" />
           </button>
@@ -86,40 +110,41 @@ const CalendarView = ({ currentMonth, setCurrentMonth, selectedDate, events, han
           </div>
 
           {/* Calendar Dates */}
-          <div className="grid grid-cols-7 gap-0 border border-gray-200 rounded-lg overflow-hidden">
+          <div className="grid grid-cols-7 gap-0 rounded-lg overflow-hidden">
             {calendarDates.map((date, index) => {
+              if (!date) {
+                return <div key={index} className="h-16" />; // Empty cell for padding
+              }
               const inCurrentMonth = isDateInCurrentMonth(date);
               const todayDate = isToday(date);
               const pastDate = isPastDate(date);
               const weekend = isWeekend(date);
               const unavailable = pastDate || weekend;
-              
+
               return (
                 <div
                   key={index}
                   onClick={() => !unavailable && handleDateClick(date)}
                   className={`
-                    relative h-16 border-r border-b border-gray-200 flex items-center justify-center cursor-pointer transition-colors
-                    ${index % 7 === 6 ? 'border-r-0' : ''}
-                    ${index >= calendarDates.length - 7 ? 'border-b-0' : ''}
-                    ${!inCurrentMonth ? 'bg-gray-50 text-gray-300' : ''}
-                    ${todayDate && inCurrentMonth ? 'bg-blue-100' : ''}
-                    ${weekend || pastDate ? 'bg-gray-50 text-gray-400 cursor-not-allowed' : 'hover:bg-blue-50'}
-                    ${selectedDate && moment(date).isSame(selectedDate, 'day') ? 'bg-blue-500 text-white' : ''}
+                    relative h-16 flex items-center justify-center 
+                    ${unavailable ? 'cursor-not-allowed' : 'cursor-pointer'}
                   `}
                 >
-                  <span className={`
-                    text-sm font-medium
-                    ${todayDate && inCurrentMonth && (!selectedDate || !moment(date).isSame(selectedDate, 'day')) ? 'text-neon' : ''}
-                    ${selectedDate && moment(date).isSame(selectedDate, 'day') ? 'text-white' : ''}
-                  `}>
+                  <span
+                    className={`
+                      w-12 h-12 p-2 flex items-center justify-center rounded-full text-sm xl:text-base font-black relative
+                      ${unavailable ? 'text-gray-400' : 'text-neon bg-neon/10 hover:bg-neon/20'}
+                      ${selectedDate && moment(date).isSame(selectedDate, 'day') ? 'bg-neon text-white' : ''}
+                    `}
+                  >
                     {moment(date).format('D')}
+                    {/* Today dot */}
+                    {todayDate && !pastDate && (
+                      <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-neon rounded-full"></div>
+                    )}
                   </span>
-                  
-                  {/* Show dot if date has events */}
-                  {events.some(event => moment(event.start).isSame(date, 'day')) && (
-                    <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-red-500 rounded-full"></div>
-                  )}
+
+              
                 </div>
               );
             })}
