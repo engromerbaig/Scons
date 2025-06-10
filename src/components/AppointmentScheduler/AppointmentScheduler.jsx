@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import moment from 'moment';
 import { Clock, User, Video, MapPin, ArrowLeft, CalendarDays, ChevronLeft, ChevronRight } from 'lucide-react';
+import { theme } from '../../theme';
 
 const AppointmentScheduler = () => {
   const [events, setEvents] = useState([
@@ -128,7 +129,7 @@ const AppointmentScheduler = () => {
   const dayNames = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className={`min-h-screen bg-gray-50 ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal}`}>
       <div className="max-w-7xl mx-auto p-6">
         <div className="grid grid-cols-12 gap-8 h-full">
           
