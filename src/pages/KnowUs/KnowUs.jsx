@@ -1,6 +1,8 @@
 import React, { useRef, useEffect, useState, lazy } from 'react';
 import { Helmet } from 'react-helmet-async'; // Import Helmet
 import ogDefault from '../../assets/images/og-default.jpg'; // Default OG image
+import schema from '../../utilities/schema';
+
 
 // Lazy load all components
 const Heading = lazy(() => import('../../components/Heading/Heading'));
@@ -64,17 +66,17 @@ const KnowUs = () => {
         <title>About Us | Scons Tech</title>
         <meta
           name="description"
-          content="Learn about Scons Tech, a UK-based software innovator delivering cutting-edge solutions for global startups and enterprises."
+          content="Learn about Scons Tech, a Pakistan-based software innovator delivering cutting-edge solutions for global startups and enterprises."
         />
         <meta
           name="keywords"
-          content="Scons Tech, about us, software company, UK tech, mission, vision, technology solutions"
+          content="Scons Tech, about us, software company, Pakistan tech, mission, vision, technology solutions"
         />
         <link rel="canonical" href="https://sconstech.com/about" />
         <meta property="og:title" content="About Us | Scons Tech" />
         <meta
           property="og:description"
-          content="Learn about Scons Tech, a UK-based software innovator delivering cutting-edge solutions for global startups and enterprises."
+          content="Learn about Scons Tech, a Pakistan-based software innovator delivering cutting-edge solutions for global startups and enterprises."
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://sconstech.com/about" />
@@ -83,9 +85,11 @@ const KnowUs = () => {
         <meta name="twitter:title" content="About Us | Scons Tech" />
         <meta
           name="twitter:description"
-          content="Learn about Scons Tech, a UK-based software innovator delivering cutting-edge solutions for global startups and enterprises."
+          content="Learn about Scons Tech, a Pakistan-based software innovator delivering cutting-edge solutions for global startups and enterprises."
         />
         <meta name="twitter:image" content={ogDefault} />
+          <script type="application/ld+json">{schema}</script>
+
       </Helmet>
       <FadeInSection>
         <InnerHero
