@@ -8,7 +8,7 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
     const isWeekend = day === 0 || day === 6;
     if (isWeekend) return [];
     
-    return availableTimeSlots.filter(slot => {
+    return availableTimeSlots.map(slot => {
       const [hour] = slot.value.split(':');
       const slotStart = moment(date).set({
         hour: parseInt(hour),
@@ -16,10 +16,11 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
       }).toDate();
       const slotEnd = moment(slotStart).add(1, 'hour').toDate();
       
-      return !events.some(event => 
+      const isBooked = events.some(event => 
         moment(slotStart).isBetween(event.start, event.end, null, '[)') || 
         moment(event.start).isBetween(slotStart, slotEnd, null, '[)')
       );
+      return { ...slot, isBooked };
     });
   };
 
@@ -39,20 +40,24 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
               Back
             </button>
           </div>
-          
           <div className="mb-4">
             <p className="text-gray-600 font-medium">
               {moment(selectedDate).format('dddd, MMMM D')}
             </p>
           </div>
-
           <div className="space-y-3 max-h-96 overflow-y-auto">
             {getAvailableSlots(selectedDate).length > 0 ? (
               getAvailableSlots(selectedDate).map((slot, index) => (
                 <button
                   key={index}
-                  onClick={() => handleBookSlot(slot)}
-                  className="w-full px-4 py-3 text-sm border-2 border-neon text-center text-neon rounded-lg hover:bg-neon hover:text-white transition-colors duration-200 font-bold"
+                  onClick={() => !slot.isBooked && handleBookSlot(slot)}
+                  className={`
+                    w-full px-4 py-3 text-sm border-2 rounded-lg text-center font-bold
+                    ${slot.isBooked 
+                      ? 'border-gray-300 text-gray-400 line-through cursor-not-allowed bg-gray-100' 
+                      : 'border-neon text-neon hover:bg-neon hover:text-white transition-colors duration-200'}
+                  `}
+                  disabled={slot.isBooked}
                 >
                   {slot.time}
                 </button>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import MeetingInfo from './MeetingInfo';
 import CalendarView from './CalendarView';
@@ -6,13 +6,7 @@ import TimeSlots from './TimeSlots';
 import { theme } from '../../theme';
 
 const AppointmentScheduler = () => {
-  const [events, setEvents] = useState([
-    {
-      title: 'Booked Meeting',
-      start: new Date(2025, 5, 15, 14, 0), // June 15, 2025, 2:00 PM
-      end: new Date(2025, 5, 15, 15, 0), // June 15, 2025, 3:00 PM
-    },
-  ]);
+  const [events, setEvents] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
   const [currentMonth, setCurrentMonth] = useState(new Date());
 
@@ -33,6 +27,25 @@ const AppointmentScheduler = () => {
     { time: '8:00 PM - 9:00 PM', value: '20:00' }
   ];
 
+  // Fetch events from backend
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const response = await fetch('/.netlify/functions/getAppointments');
+        if (!response.ok) throw new Error('Failed to fetch appointments');
+        const data = await response.json();
+        setEvents(data.map(event => ({
+          title: event.title,
+          start: new Date(event.start),
+          end: new Date(event.end),
+        })));
+      } catch (error) {
+        console.error('Error fetching appointments:', error);
+      }
+    };
+    fetchEvents();
+  }, []);
+
   const handleDateClick = (date) => {
     const day = date.getDay();
     const today = moment().startOf('day');
@@ -44,7 +57,7 @@ const AppointmentScheduler = () => {
     setSelectedDate(date);
   };
 
-  const handleBookSlot = (timeSlot) => {
+  const handleBookSlot = async (timeSlot) => {
     const [hour] = timeSlot.value.split(':');
     const start = moment(selectedDate).set({
       hour: parseInt(hour),
@@ -54,13 +67,34 @@ const AppointmentScheduler = () => {
     
     const title = window.prompt('Enter your name for the appointment:');
     if (title) {
-      setEvents((prev) => [...prev, { 
+      const newEvent = { 
         title: `Meeting with ${title}`, 
-        start, 
-        end 
-      }]);
-      setSelectedDate(null);
-      alert(`Appointment booked for ${moment(start).format('MMMM D, YYYY [at] h:mm A')}`);
+        start: start.toISOString(), 
+        end: end.toISOString() 
+      };
+      console.log('Booked Appointment:', newEvent); // Console log as requested
+      
+      try {
+        const response = await fetch('/.netlify/functions/bookAppointment', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(newEvent),
+        });
+        if (response.ok) {
+          setEvents((prev) => [...prev, {
+            title: newEvent.title,
+            start: new Date(newEvent.start),
+            end: new Date(newEvent.end),
+          }]);
+          setSelectedDate(null);
+          alert(`Appointment booked for ${moment(start).format('MMMM D, YYYY [at] h:mm A')}`);
+        } else {
+          alert('Failed to book appointment. Please try again.');
+        }
+      } catch (error) {
+        console.error('Error booking appointment:', error);
+        alert('An error occurred. Please try again.');
+      }
     }
   };
 

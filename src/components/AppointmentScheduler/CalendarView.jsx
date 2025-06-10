@@ -13,7 +13,7 @@ const CalendarView = ({ currentMonth, setCurrentMonth, selectedDate, events, han
   const generateCalendarDates = () => {
     const startOfMonth = moment(currentMonth).startOf('month');
     const endOfMonth = moment(currentMonth).endOf('month');
-    const startOfCalendar = moment(startOfMonth); // Start from first of the month
+    const startOfCalendar = moment(startOfMonth);
     const endOfCalendar = moment(endOfMonth).endOf('week');
 
     const dates = [];
@@ -26,11 +26,10 @@ const CalendarView = ({ currentMonth, setCurrentMonth, selectedDate, events, han
       current.add(1, 'day');
     }
 
-    // Pad with empty cells to align with the start of the week (Sunday)
-    const firstDayOfMonth = moment(startOfMonth).day(); // 0 = Sunday, 1 = Monday, etc.
+    const firstDayOfMonth = moment(startOfMonth).day();
     const paddedDates = [];
     for (let i = 0; i < firstDayOfMonth; i++) {
-      paddedDates.push(null); // Add null for empty cells
+      paddedDates.push(null);
     }
     return [...paddedDates, ...dates];
   };
@@ -59,7 +58,7 @@ const CalendarView = ({ currentMonth, setCurrentMonth, selectedDate, events, han
 
   const navigateMonth = (direction) => {
     if (direction === 'prev' && isCurrentMonthInPast()) {
-      return; // Prevent navigating to previous month if current month is in the past
+      return;
     }
     if (direction === 'prev') {
       setCurrentMonth(moment(currentMonth).subtract(1, 'month').toDate());
@@ -75,14 +74,10 @@ const CalendarView = ({ currentMonth, setCurrentMonth, selectedDate, events, han
     <div className="col-span-12 lg:col-span-6">
       <div className="bg-white rounded-lg shadow-sm border p-6">
         <h2 className="text-xl font-semibold text-gray-900 mb-6">Select a Date</h2>
-
-        {/* Calendar Header */}
         <div className="flex items-center justify-between mb-6">
           <button
             onClick={() => navigateMonth('prev')}
-            className={`p-2 hover:bg-gray-100 rounded-full transition-colors ${
-              isCurrentMonthInPast() ? 'opacity-50 cursor-not-allowed' : ''
-            }`}
+            className={`p-2 hover:bg-gray-100 rounded-full transition-colors ${isCurrentMonthInPast() ? 'opacity-50 cursor-not-allowed' : ''}`}
             disabled={isCurrentMonthInPast()}
           >
             <ChevronLeft size={20} className="text-gray-600" />
@@ -97,10 +92,7 @@ const CalendarView = ({ currentMonth, setCurrentMonth, selectedDate, events, han
             <ChevronRight size={20} className="text-gray-600" />
           </button>
         </div>
-
-        {/* Calendar Grid */}
         <div className="calendar-grid">
-          {/* Day Headers */}
           <div className="grid grid-cols-7 gap-2 mb-2">
             {dayNames.map((day) => (
               <div key={day} className="text-center py-2 text-sm font-medium text-gray-500">
@@ -108,12 +100,10 @@ const CalendarView = ({ currentMonth, setCurrentMonth, selectedDate, events, han
               </div>
             ))}
           </div>
-
-          {/* Calendar Dates */}
           <div className="grid grid-cols-7 gap-2 rounded-lg overflow-hidden">
             {calendarDates.map((date, index) => {
               if (!date) {
-                return <div key={index} className="h-16" />; // Empty cell for padding
+                return <div key={index} className="h-16" />;
               }
               const inCurrentMonth = isDateInCurrentMonth(date);
               const todayDate = isToday(date);
@@ -138,13 +128,10 @@ const CalendarView = ({ currentMonth, setCurrentMonth, selectedDate, events, han
                     `}
                   >
                     {moment(date).format('D')}
-                    {/* Today dot */}
                     {todayDate && !pastDate && (
                       <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-neon rounded-full"></div>
                     )}
                   </span>
-
-              
                 </div>
               );
             })}

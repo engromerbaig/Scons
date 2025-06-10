@@ -1,7 +1,6 @@
 import React from 'react';
 import { Clock, User, Video, MapPin } from 'lucide-react';
 import moment from 'moment';
-import { theme } from '../../theme';
 
 const MeetingInfo = ({ meetingInfo, selectedDate }) => {
   return (
@@ -23,7 +22,6 @@ const MeetingInfo = ({ meetingInfo, selectedDate }) => {
             {meetingInfo.description}
           </p>
         </div>
-
         <div className="space-y-4">
           <div className="flex items-center gap-3 text-gray-700">
             <Clock size={18} className="text-gray-500" />
@@ -38,7 +36,6 @@ const MeetingInfo = ({ meetingInfo, selectedDate }) => {
             <span className="text-sm">Web conferencing details provided upon confirmation</span>
           </div>
         </div>
-
         {selectedDate && (
           <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
             <p className="text-sm font-medium text-black">
