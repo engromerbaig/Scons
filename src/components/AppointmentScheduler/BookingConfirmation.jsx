@@ -44,7 +44,7 @@ const BookingConfirmation = ({ slot, bookingResult, onClose }) => {
         </>
       ) : (
         <>
-          <XCircle size={64} className="text-neon mx-auto" />
+          <XCircle size={64} className="text-red-500 mx-auto" />
           <Heading
             text="Booking Failed"
             color="text-black"
@@ -65,7 +65,7 @@ const BookingConfirmation = ({ slot, bookingResult, onClose }) => {
           />
         </>
       )}
-      <div className="flex flex-col xl:flex-row gap-4 w-full max-w-sm">
+      <div className="flex flex-col xl:flex-row gap-4 w-full justify-center items-center max-w-sm">
         <Button
           name="Return Home"
           bgColor="bg-black"
