@@ -5,8 +5,8 @@ import FormField from '../FormSteps/modules/FormField';
 import Heading from '../Heading/Heading';
 import BodyText from '../BodyText/BodyText';
 import { Link } from 'react-router-dom';
-import { CiTimer } from "react-icons/ci";
-
+import { CiTimer } from 'react-icons/ci';
+import Button from '../Button/Button'; // Import the Button component
 
 const BookingForm = ({ slot, onSubmit, onClose, isOpen }) => {
   const [formData, setFormData] = useState({ name: '', email: '' });
@@ -42,7 +42,7 @@ const BookingForm = ({ slot, onSubmit, onClose, isOpen }) => {
     setFormData({ ...formData, [field]: e.target.value });
   };
 
-  const inputStyles = "m-1 py-2 px-6 text-sm rounded-full text-white placeholder-bodyText bg-charcoal w-full focus:outline-none";
+  const inputStyles = 'm-1 py-2 px-6 text-sm rounded-full text-white placeholder-bodyText bg-charcoal w-full focus:outline-none';
 
   return (
     <ModalWrapper isOpen={isOpen} onClose={onClose}>
@@ -58,18 +58,16 @@ const BookingForm = ({ slot, onSubmit, onClose, isOpen }) => {
       </div>
 
       <div className="flex items-center mb-4">
- <CiTimer className="text-white font-bold text-2xl mr-2" />
-      <BodyText
-        text={`${moment(slot.start).format('dddd, MMMM D, h:mm A')}`}
-        centered={false}
-        color="text-white"
-        size="text-xl"
-        fontWeight='font-semibold'
-      />
-
+        <CiTimer className="text-white font-bold text-2xl mr-2" />
+        <BodyText
+          text={`${moment(slot.start).format('dddd, MMMM D, h:mm A')}`}
+          centered={false}
+          color="text-white"
+          size="text-xl"
+          fontWeight="font-semibold"
+        />
       </div>
 
-     
       <form onSubmit={handleSubmit} className="space-y-4 my-6">
         <FormField
           type="text"
@@ -89,20 +87,28 @@ const BookingForm = ({ slot, onSubmit, onClose, isOpen }) => {
           hideErrorMessages={true}
           required
         />
-        <button
+        <Button
+          name={isSubmitting ? 'Booking...' : 'Book Slot'}
           type="submit"
-          className="w-full px-4 py-2 bg-neon text-charcoal font-bold rounded-full hover:bg-neon-dark transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+          bgColor="bg-neon"
+          textColor="text-charcoal"
+          hoverBgColor="bg-neon-dark"
+          hoverTextColor="text-charcoal"
+          fontWeight="font-bold"
+          className="w-full"
+          textAlign='justify-center'
+          isLoading={isSubmitting}
           disabled={!formData.name.trim() || !formData.email.trim() || isSubmitting}
-        >
-          {isSubmitting ? 'Booking...' : 'Book Slot'}
-        </button>
+        />
       </form>
       <BodyText
         text={
           <>
             We will store your responses in our secure database. Please consult our{' '}
             <span className="text-neon">
-              <Link to="/privacy-policy" onClick={onClose}>Privacy Policy</Link>
+              <Link to="/privacy-policy" onClick={onClose}>
+                Privacy Policy
+              </Link>
             </span>.
           </>
         }
