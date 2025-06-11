@@ -3,8 +3,8 @@ import moment from 'moment';
 import Heading from '../Heading/Heading';
 import BodyText from '../BodyText/BodyText';
 import Button from '../Button/Button';
-
-const BookingConfirmation = ({ slot, onClose, onBookAnother }) => {
+import { theme } from '../../theme';
+const BookingConfirmation = ({ slot }) => {
   const [timeRemaining, setTimeRemaining] = useState('');
 
   useEffect(() => {
@@ -29,59 +29,58 @@ const BookingConfirmation = ({ slot, onClose, onBookAnother }) => {
   }, [slot.start]);
 
   return (
-    <div className="fixed inset-0 bg-black flex flex-col items-center justify-center z-[9999] p-8">
-      <div className="w-full max-w-2xl space-y-6 text-center">
-        <Heading
-          text="Booking"
-          spanText="Confirmed"
-          spanColor="text-neon"
-          color="text-white"
-          size="text-50px"
-          centered={true}
+    <div className={`flex flex-col ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal} h-screen justify-center items-center gap-4 text-center bg-white`}>
+      <Heading
+        text="Booking Confirmed!"
+        color="text-black"
+        centered={true}
+        className="leading-none"
+        size="text-50px"
+      />
+      <BodyText
+        text="We've confirmed your booking! You'll receive a confirmation email shortly. Below is your meeting time and the time remaining until your meeting."
+        centered={true}
+        color="text-black"
+        className="max-w-xl"
+        size="text-20px"
+      />
+      <BodyText
+        text={timeRemaining}
+        centered={true}
+        color="text-black"
+        className="max-w-xl font-semibold"
+        size="text-20px"
+      />
+      <BodyText
+        text={`Meeting Time: ${moment(slot.start).format('dddd, MMMM D, h:mm A')}`}
+        centered={true}
+        color="text-black"
+        className="max-w-xl"
+        size="text-20px"
+      />
+      <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <Button
+          name="Back to Home"
+          bgColor="bg-black"
+          textColor="text-black"
+          hoverBgColor="bg-black/90"
+          hoverTextColor="text-black"
+          fontSize="text-sm"
+          fontWeight="font-bold"
+          className="px-6 py-2 rounded-full"
+          onClick={() => (window.location.href = '/')}
         />
-        <BodyText
-          text="Your meeting is scheduled. Time remaining until your meeting:"
-          centered={true}
-          color="text-white"
-          size="text-20px"
+        <Button
+          name="Book Another Slot"
+          bgColor="bg-black"
+          textColor="text-black"
+          hoverBgColor="bg-black/90"
+          hoverTextColor="text-black"
+          fontSize="text-sm"
+          fontWeight="font-bold"
+          className="px-6 py-2 rounded-full"
+          onClick={() => (window.location.href = '/schedule')}
         />
-        <BodyText
-          text={timeRemaining}
-          centered={true}
-          color="text-white"
-          size="text-20px"
-          className="font-semibold"
-        />
-        <BodyText
-          text={`Meeting Time: ${moment(slot.start).format('dddd, MMMM D, h:mm A')}`}
-          centered={true}
-          color="text-white"
-          size="text-20px"
-        />
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button
-            name="Return Home"
-            link="/"
-            bgColor="bg-neon"
-            textColor="text-charcoal"
-            hoverBgColor="bg-neon-dark"
-            hoverTextColor="text-charcoal"
-            fontSize="text-sm"
-            fontWeight="font-bold"
-            className="px-6 py-2 rounded-full"
-          />
-          <Button
-            name="Book Another Slot"
-            onClick={onBookAnother}
-            bgColor="bg-neon"
-            textColor="text-charcoal"
-            hoverBgColor="bg-neon-dark"
-            hoverTextColor="text-charcoal"
-            fontSize="text-sm"
-            fontWeight="font-bold"
-            className="px-6 py-2 rounded-full"
-          />
-        </div>
       </div>
     </div>
   );
