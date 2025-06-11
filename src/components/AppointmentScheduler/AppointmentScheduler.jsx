@@ -5,7 +5,7 @@ import CalendarView from './CalendarView';
 import TimeSlots from './TimeSlots';
 import BookingConfirmation from './BookingConfirmation';
 import { theme } from '../../theme';
-import { getHolidays } from './holidays'; // Import getHolidays from CalendarView's utilities
+import { getHolidays } from './holidays';
 
 const AppointmentScheduler = () => {
   const [events, setEvents] = useState([]);
@@ -16,7 +16,7 @@ const AppointmentScheduler = () => {
   // Initialize selectedDate with the first valid weekday (non-holiday, non-past)
   function getDefaultDate() {
     let date = moment().startOf('day');
-    const holidays = getHolidays(moment().year()); // Get holidays for the current year
+    const holidays = getHolidays(moment().year());
     while (
       date.day() === 0 ||
       date.day() === 6 ||
@@ -104,7 +104,9 @@ const AppointmentScheduler = () => {
         body: JSON.stringify(newEvent),
       });
       
+      const result = await response.json();
       if (response.ok) {
+        // Fetch updated appointments
         const fetchResponse = await fetch('/.netlify/functions/getAppointments');
         if (!fetchResponse.ok) {
           console.error('Failed to fetch appointments:', await fetchResponse.text());
@@ -120,8 +122,8 @@ const AppointmentScheduler = () => {
         setSelectedDate(null);
         return { success: true, appointment: newEvent };
       } else {
-        console.error('Failed to book appointment:', await response.text());
-        return { success: false, error: 'Failed to book appointment. Please try again.' };
+        console.error('Failed to book appointment:', result.error);
+        return { success: false, error: result.error || 'Failed to book appointment. Please try again.' };
       }
     } catch (error) {
       console.error('Error booking appointment:', error);
