@@ -1,6 +1,6 @@
 import moment from 'moment';
 import { CalendarDays } from 'lucide-react';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react'; // Add useEffect
 import { gsap } from 'gsap';
 import BookingForm from './BookingForm';
 
@@ -34,9 +34,9 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
     });
   };
 
-  const handleSlotClick = (index) => {
-    if (activeSlotIndex === index) {
-      gsap.to(slotRefs.current[index].querySelector('.slot-time'), {
+  const resetActiveSlot = () => {
+    if (activeSlotIndex !== null) {
+      gsap.to(slotRefs.current[activeSlotIndex].querySelector('.slot-time'), {
         x: 0,
         duration: 0.3,
         ease: 'power2.out',
@@ -47,6 +47,12 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
         ease: 'power2.out',
       });
       setActiveSlotIndex(null);
+    }
+  };
+
+  const handleSlotClick = (index) => {
+    if (activeSlotIndex === index) {
+      // Do nothing; toggle off only happens via outside click
     } else {
       if (activeSlotIndex !== null) {
         gsap.to(slotRefs.current[activeSlotIndex].querySelector('.slot-time'), {
@@ -84,33 +90,47 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
   const closeBookingForm = () => {
     console.log('Closing booking form');
     setShowBookingForm(false);
-    setActiveSlotIndex(null);
-    if (activeSlotIndex !== null && slotRefs.current[activeSlotIndex]) {
-      gsap.to(slotRefs.current[activeSlotIndex].querySelector('.slot-time'), {
-        x: 0,
-        duration: 0.3,
-        ease: 'power2.out',
-      });
-      gsap.to(slotRefs.current[activeSlotIndex].querySelector('.book-it-btn'), {
-        x: '100%',
-        duration: 0.3,
-        ease: 'power2.out',
-      });
-    }
+    resetActiveSlot();
   };
 
   const handleBookingSubmit = async (formData) => {
     console.log('Submitting booking with data:', formData);
     try {
       const result = await handleBookSlot(selectedSlot, formData);
-      setShowBookingForm(false); // Hide form
-      onShowConfirmation(selectedSlot, result); // Trigger confirmation in parent
+      setShowBookingForm(false);
+      onShowConfirmation(selectedSlot, result);
     } catch (error) {
       console.error('Booking submission failed:', error);
-      setShowBookingForm(false); // Hide form
+      setShowBookingForm(false);
       onShowConfirmation(selectedSlot, { success: false, error: 'An error occurred during booking.' });
     }
   };
+
+  // Add click outside handler
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (activeSlotIndex === null || showBookingForm) return;
+
+      const currentSlot = slotRefs.current[activeSlotIndex];
+      if (!currentSlot) return;
+
+      const slotButton = currentSlot.querySelector('button');
+      const reserveButton = currentSlot.querySelector('.book-it-btn');
+
+      // Check if the click is outside the slot button and not on the reserve button
+      if (
+        !slotButton.contains(event.target) &&
+        (!reserveButton || !reserveButton.contains(event.target))
+      ) {
+        resetActiveSlot();
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [activeSlotIndex, showBookingForm]);
 
   return (
     <>
@@ -132,7 +152,7 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
                       className={`
                         w-full px-4 py-3 text-sm border-2 rounded-lg text-center font-bold relative
                         ${slot.isBooked
-                          ? 'border-gray-300 text-gray-500 line-through cursor-not-allowed bg-gray-50'
+                          ? 'border-gray-600 text-gray-500 line-through cursor-not-allowed bg-gray-50'
                           : 'border-neon text-neon hover:bg-neon hover:text-charcoal transition-colors duration-200'}
                       `}
                       disabled={slot.isBooked}
@@ -168,14 +188,13 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
           </div>
         )}
       </div>
-      
-      {/* Render BookingForm outside of conditional rendering to preserve animations */}
+
       {selectedSlot && (
-        <BookingForm 
-          slot={selectedSlot} 
-          onSubmit={handleBookingSubmit} 
-          onClose={closeBookingForm} 
-          isOpen={showBookingForm} 
+        <BookingForm
+          slot={selectedSlot}
+          onSubmit={handleBookingSubmit}
+          onClose={closeBookingForm}
+          isOpen={showBookingForm}
         />
       )}
     </>
