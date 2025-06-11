@@ -108,7 +108,7 @@ const BookingConfirmation = ({ slot, bookingResult, onClose }) => {
         <XCircle size={64} className="text-neon mx-auto" />
         <Heading
           text="Booking Failed"
-          color="text-red-600"
+          color="text-black"
           centered={true}
           className="leading-none"
           size="text-2xl"
