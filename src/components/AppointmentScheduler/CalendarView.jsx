@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { getHolidays, getFlagGradient } from './holidays';
 
 // Ensure moment uses Sunday as the start of the week
 moment.updateLocale('en', {
@@ -10,31 +11,31 @@ moment.updateLocale('en', {
 });
 
 const CalendarView = ({ currentMonth, setCurrentMonth, selectedDate, events, handleDateClick }) => {
-  const holidays = [
-    // USA
-    '2025-01-01', // New Year's Day
-    '2025-01-20', // MLK Day
-    '2025-02-17', // Presidents' Day
-    '2025-05-26', // Memorial Day
-    '2025-06-19', // Juneteenth
-    '2025-07-04', // Independence Day
-    '2025-09-01', // Labor Day
-    '2025-10-13', // Columbus Day
-    '2025-11-11', // Veterans Day
-    '2025-11-27', // Thanksgiving
-    '2025-12-25', // Christmas
-    // UK
-    '2025-04-18', // Good Friday
-    '2025-04-21', // Easter Monday
-    '2025-05-05', // Early May Bank Holiday
-    '2025-08-25', // Summer Bank Holiday
-    '2025-12-26', // Boxing Day
-    // Germany
-    '2025-05-01', // Labour Day
-    '2025-05-29', // Ascension Day
-    '2025-06-09', // Whit Monday
-    '2025-10-03', // German Unity Day
-  ];
+  const holidays = getHolidays(moment(currentMonth).year());
+
+  const getPriorityHoliday = (date) => {
+    const dateStr = moment(date).format('YYYY-MM-DD');
+    const matchingHolidays = holidays.filter((h) => h.date === dateStr);
+
+    if (matchingHolidays.length === 0) return null;
+
+    // Priority 1: Independence Day
+    const independenceDay = matchingHolidays.find((h) => h.isIndependence);
+    if (independenceDay) return independenceDay;
+
+    // Priority 2: Islamic Holidays (Pakistan)
+    const islamicHoliday = matchingHolidays.find((h) => h.isIslamic && h.country === 'Pakistan');
+    if (islamicHoliday) return islamicHoliday;
+
+    // Priority 3: Country-based priority (USA > UK > Australia > Germany > Pakistan)
+    const priorityOrder = ['USA', 'UK', 'Australia', 'Germany', 'Pakistan'];
+    for (const country of priorityOrder) {
+      const holiday = matchingHolidays.find((h) => h.country === country);
+      if (holiday) return holiday;
+    }
+
+    return matchingHolidays[0]; // Fallback
+  };
 
   const generateCalendarDates = () => {
     const startOfMonth = moment(currentMonth).startOf('month');
@@ -78,7 +79,8 @@ const CalendarView = ({ currentMonth, setCurrentMonth, selectedDate, events, han
   };
 
   const isHoliday = (date) => {
-    return holidays.includes(moment(date).format('YYYY-MM-DD'));
+    const dateStr = moment(date).format('YYYY-MM-DD');
+    return holidays.some((h) => h.date === dateStr);
   };
 
   const isCurrentMonthInPast = () => {
@@ -143,6 +145,7 @@ const CalendarView = ({ currentMonth, setCurrentMonth, selectedDate, events, han
               const holiday = isHoliday(date);
               const unavailable = pastDate || weekend || holiday;
               const isSelected = selectedDate && moment(date).isSame(selectedDate, 'day');
+              const priorityHoliday = getPriorityHoliday(date);
 
               return (
                 <div
@@ -158,6 +161,16 @@ const CalendarView = ({ currentMonth, setCurrentMonth, selectedDate, events, han
                       w-10 h-10 xl:w-12 xl:h-12 p-4 flex items-center justify-center rounded-full text-sm xl:text-base font-black relative
                       ${isSelected ? 'bg-black text-white' : unavailable ? 'text-gray-300' : 'text-neon bg-neon/10 hover:bg-neon/20 hover:text-neon'}
                     `}
+                    style={{
+                      ...(holiday && priorityHoliday && !isSelected && !unavailable
+                        ? {
+                            background: getFlagGradient(priorityHoliday.country),
+                            backgroundClip: 'text',
+                            WebkitBackgroundClip: 'text',
+                            color: 'transparent',
+                          }
+                        : {}),
+                    }}
                   >
                     {moment(date).format('D')}
                     {todayDate && !pastDate && (
