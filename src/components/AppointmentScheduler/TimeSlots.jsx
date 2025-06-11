@@ -2,9 +2,12 @@ import moment from 'moment';
 import { CalendarDays } from 'lucide-react';
 import { useRef, useState } from 'react';
 import { gsap } from 'gsap';
+import BookingPopUp from './BookingPopUp';
 
 const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, handleBookSlot }) => {
   const [activeSlotIndex, setActiveSlotIndex] = useState(null);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [selectedSlot, setSelectedSlot] = useState(null);
   const slotRefs = useRef([]);
 
   const getAvailableSlots = (date) => {
@@ -24,13 +27,12 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
         moment(slotStart).isBetween(event.start, event.end, null, '[)') || 
         moment(event.start).isBetween(slotStart, slotEnd, null, '[)')
       );
-      return { ...slot, isBooked };
+      return { ...slot, isBooked, start: slotStart };
     });
   };
 
   const handleSlotClick = (index) => {
     if (activeSlotIndex === index) {
-      // Toggle off: slide "Reserve It" out and reset time text
       gsap.to(slotRefs.current[index].querySelector('.slot-time'), {
         x: 0,
         duration: 0.3,
@@ -43,7 +45,6 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
       });
       setActiveSlotIndex(null);
     } else {
-      // Reset previous active slot if exists
       if (activeSlotIndex !== null) {
         gsap.to(slotRefs.current[activeSlotIndex].querySelector('.slot-time'), {
           x: 0,
@@ -57,7 +58,6 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
         });
       }
 
-      // Animate new slot
       setActiveSlotIndex(index);
       gsap.to(slotRefs.current[index].querySelector('.slot-time'), {
         x: '-60%',
@@ -66,6 +66,29 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
       });
       gsap.to(slotRefs.current[index].querySelector('.book-it-btn'), {
         x: '0%',
+        duration: 0.3,
+        ease: 'power2.out',
+      });
+    }
+  };
+
+  const openPopup = (slot) => {
+    setSelectedSlot(slot);
+    setIsPopupOpen(true);
+  };
+
+  const closePopup = () => {
+    setIsPopupOpen(false);
+    setSelectedSlot(null);
+    setActiveSlotIndex(null); // Reset active slot on popup close
+    if (activeSlotIndex !== null) {
+      gsap.to(slotRefs.current[activeSlotIndex].querySelector('.slot-time'), {
+        x: 0,
+        duration: 0.3,
+        ease: 'power2.out',
+      });
+      gsap.to(slotRefs.current[activeSlotIndex].querySelector('.book-it-btn'), {
+        x: '100%',
         duration: 0.3,
         ease: 'power2.out',
       });
@@ -113,7 +136,7 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
                   </button>
                   {!slot.isBooked && (
                     <button
-                      onClick={() => handleBookSlot(slot)}
+                      onClick={() => openPopup(slot)}
                       className="book-it-btn absolute top-0 right-0 h-full px-4 py-3 text-sm bg-black text-white font-bold rounded-r-lg transform translate-x-full"
                     >
                       Reserve It
@@ -140,6 +163,13 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
             </p>
           </div>
         </div>
+      )}
+      {isPopupOpen && (
+        <BookingPopUp
+          slot={selectedSlot}
+          onClose={closePopup}
+          onSubmit={handleBookSlot}
+        />
       )}
     </div>
   );
