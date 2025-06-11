@@ -146,7 +146,7 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
                     className={`
                       w-full px-4 py-3 text-sm border-2 rounded-lg text-center font-bold relative
                       ${slot.isBooked 
-                        ? 'border-gray-700 text-gray-500 line-through cursor-not-allowed bg-gray-800' 
+                        ? 'border-gray-300 text-gray-500 line-through cursor-not-allowed bg-gray-50' 
                         : 'border-neon text-neon hover:bg-neon hover:text-charcoal transition-colors duration-200'}
                     `}
                     disabled={slot.isBooked}
