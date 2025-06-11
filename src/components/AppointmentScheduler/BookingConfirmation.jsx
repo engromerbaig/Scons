@@ -65,7 +65,7 @@ const BookingConfirmation = ({ slot, bookingResult, onClose }) => {
           />
         </>
       )}
-      <div className="flex flex-col xl:flex-row gap-4 w-full justify-center items-center max-w-sm">
+      <div className="flex flex-row xl:flex-row gap-2 xl:gap-4 w-full justify-center items-center max-w-xs">
         <Button
           name="Return Home"
           bgColor="bg-black"
