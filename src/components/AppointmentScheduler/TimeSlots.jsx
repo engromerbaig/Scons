@@ -192,6 +192,8 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
             </div>
           </div>
         ) : (
+
+          // initial state when no date is selected
           <div className="bg-white rounded-lg shadow-sm border p-6 h-full flex flex-col justify-center">
             <div className="text-center py-12">
               <CalendarDays size={48} className="text-black mx-auto mb-4" />

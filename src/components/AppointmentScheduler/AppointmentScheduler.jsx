@@ -8,8 +8,9 @@ import { theme } from '../../theme';
 
 const AppointmentScheduler = () => {
   const [events, setEvents] = useState([]);
-  const [selectedDate, setSelectedDate] = useState(getDefaultDate());
+  const [selectedDate, setSelectedDate] = useState(null);
   const [currentMonth, setCurrentMonth] = useState(new Date());
+  
   const [confirmationData, setConfirmationData] = useState(null); // { slot, bookingResult }
 
   // Initialize selectedDate with the first valid weekday (non-holiday, non-past)
