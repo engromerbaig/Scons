@@ -58,10 +58,10 @@ const AppointmentScheduler = () => {
 
   // Available time slots for each day
   const availableTimeSlots = [
-    { time: '11:00 AM - 12:00 PM', value: '11:00' },
-    { time: '2:00 PM - 3:00 PM', value: '14:00' },
-    { time: '5:00 PM - 6:00 PM', value: '17:00' },
-    { time: '8:00 PM - 9:00 PM', value: '20:00' }
+    { time: '11:00 AM', value: '11:00' },
+    { time: '2:00 PM', value: '14:00' },
+    { time: '4:00 PM', value: '16:00' },
+    { time: '6:00 PM', value: '18:00' }
   ];
 
   // Fetch events from backend
