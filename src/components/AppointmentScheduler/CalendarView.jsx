@@ -6,7 +6,7 @@ import { getHolidays, getFlagGradient } from './holidays';
 // Ensure moment uses Sunday as the start of the week
 moment.updateLocale('en', {
   week: {
-    dow: 0, // Sunday as the first day of the week
+    dow: 1, // Sunday as the first day of the week
   },
 });
 
@@ -37,29 +37,36 @@ const CalendarView = ({ currentMonth, setCurrentMonth, selectedDate, events, han
     return matchingHolidays[0]; // Fallback
   };
 
-  const generateCalendarDates = () => {
-    const startOfMonth = moment(currentMonth).startOf('month');
-    const endOfMonth = moment(currentMonth).endOf('month');
-    const startOfCalendar = moment(startOfMonth);
-    const endOfCalendar = moment(endOfMonth).endOf('week');
+const generateCalendarDates = () => {
+  const startOfMonth = moment(currentMonth).startOf('month');
+  const endOfMonth = moment(currentMonth).endOf('month');
 
-    const dates = [];
-    const current = moment(startOfCalendar);
+  const dates = [];
 
-    while (current.isSameOrBefore(endOfCalendar)) {
-      if (current.isSame(currentMonth, 'month')) {
-        dates.push(moment(current).toDate());
-      }
-      current.add(1, 'day');
-    }
+  // Add leading nulls for padding
+  const leadingNulls = (startOfMonth.day() + 6) % 7; // Adjust for Monday start
+  for (let i = 0; i < leadingNulls; i++) {
+    dates.push(null);
+  }
 
-    const firstDayOfMonth = moment(startOfMonth).day();
-    const paddedDates = [];
-    for (let i = 0; i < firstDayOfMonth; i++) {
-      paddedDates.push(null);
-    }
-    return [...paddedDates, ...dates];
-  };
+  // Add actual dates
+  const current = moment(startOfMonth);
+  while (current.isSameOrBefore(endOfMonth)) {
+    dates.push(current.toDate());
+    current.add(1, 'day');
+  }
+
+  // Add trailing nulls for spacing
+  const trailingNulls = (7 - (dates.length % 7)) % 7;
+  for (let i = 0; i < trailingNulls; i++) {
+    dates.push(null);
+  }
+
+  return dates;
+};
+
+
+
 
   const isDateInCurrentMonth = (date) => {
     return moment(date).isSame(currentMonth, 'month');
@@ -101,7 +108,7 @@ const CalendarView = ({ currentMonth, setCurrentMonth, selectedDate, events, han
   };
 
   const calendarDates = generateCalendarDates();
-  const dayNames = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+const dayNames = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 
   return (
     <div className="col-span-12 lg:col-span-6 h-full">
