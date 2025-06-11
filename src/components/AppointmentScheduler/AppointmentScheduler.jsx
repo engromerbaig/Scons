@@ -5,49 +5,33 @@ import CalendarView from './CalendarView';
 import TimeSlots from './TimeSlots';
 import BookingConfirmation from './BookingConfirmation';
 import { theme } from '../../theme';
+import { getHolidays } from './holidays'; // Import getHolidays from CalendarView's utilities
 
 const AppointmentScheduler = () => {
   const [events, setEvents] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
   const [currentMonth, setCurrentMonth] = useState(new Date());
-  
   const [confirmationData, setConfirmationData] = useState(null); // { slot, bookingResult }
 
   // Initialize selectedDate with the first valid weekday (non-holiday, non-past)
   function getDefaultDate() {
     let date = moment().startOf('day');
-    const holidays = [
-      '2025-01-01', // New Year's Day
-      '2025-01-20', // MLK Day
-      '2025-02-17', // Presidents' Day
-      '2025-05-26', // Memorial Day
-      '2025-06-19', // Juneteenth
-      '2025-07-04', // Independence Day
-      '2025-09-01', // Labor Day
-      '2025-10-13', // Columbus Day
-      '2025-11-11', // Veterans Day
-      '2025-11-27', // Thanksgiving
-      '2025-12-25', // Christmas
-      '2025-04-18', // Good Friday
-      '2025-04-21', // Easter Monday
-      '2025-05-05', // Early May Bank Holiday
-      '2025-08-25', // Summer Bank Holiday
-      '2025-12-26', // Boxing Day
-      '2025-05-01', // Labour Day
-      '2025-05-29', // Ascension Day
-      '2025-06-09', // Whit Monday
-      '2025-10-03', // German Unity Day
-    ];
+    const holidays = getHolidays(moment().year()); // Get holidays for the current year
     while (
       date.day() === 0 ||
       date.day() === 6 ||
       date.isBefore(moment(), 'day') ||
-      holidays.includes(date.format('YYYY-MM-DD'))
+      holidays.some((h) => h.date === date.format('YYYY-MM-DD'))
     ) {
       date = date.add(1, 'day');
     }
     return date.toDate();
   }
+
+  // Set default date on component mount
+  useEffect(() => {
+    setSelectedDate(getDefaultDate());
+  }, []);
 
   // Meeting configuration
   const meetingInfo = {
@@ -88,36 +72,10 @@ const AppointmentScheduler = () => {
     const day = date.getDay();
     const today = moment().startOf('day');
     const selectedDay = moment(date).startOf('day');
-    const holidays = [
-      '2025-01-01',
-      '2025-01-20',
-      '2025-02-17',
-      '2025-05-26',
-      '2025-06-19',
-      '2025-07-04',
-      '2025-09-01',
-      '2025-10-13',
-      '2025-11-11',
-      '2025-11-27',
-      '2025-12-25',
-      '2025-04-18',
-      '2025-04-21',
-      '2025-05-05',
-      '2025-08-25',
-      '2025-12-26',
-      '2025-05-01',
-      '2025-05-29',
-      '2025-06-09',
-      '2025-10-03',
-    ];
-    
-    if (
-      day === 0 ||
-      day === 6 ||
-      selectedDay.isBefore(today) ||
-      holidays.includes(selectedDay.format('YYYY-MM-DD'))
-    ) {
-      return; // Don't select weekends, past dates, or holidays
+
+    // Only check for weekends and past dates, as CalendarView already handles holidays
+    if (day === 0 || day === 6 || selectedDay.isBefore(today)) {
+      return; // Don't select weekends or past dates
     }
     setSelectedDate(date);
     setConfirmationData(null); // Reset confirmation when selecting a new date
