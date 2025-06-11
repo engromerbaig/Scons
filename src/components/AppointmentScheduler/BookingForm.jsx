@@ -43,7 +43,7 @@ const BookingForm = ({ slot, onSubmit, onClose, isOpen }) => {
   const inputStyles = "m-1 py-2 px-6 text-sm rounded-full text-white placeholder-bodyText bg-charcoal w-full focus:outline-none";
 
   return (
-    <ModalWrapper isOpen={!!isOpen} onClose={onClose}>
+    <ModalWrapper isOpen={isOpen} onClose={onClose}>
       <div className="flex items-center mb-4">
         <Heading
           text="Book Your"

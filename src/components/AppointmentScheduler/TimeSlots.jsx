@@ -85,7 +85,7 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
     console.log('Closing booking form');
     setShowBookingForm(false);
     setActiveSlotIndex(null);
-    if (activeSlotIndex !== null) {
+    if (activeSlotIndex !== null && slotRefs.current[activeSlotIndex]) {
       gsap.to(slotRefs.current[activeSlotIndex].querySelector('.slot-time'), {
         x: 0,
         duration: 0.3,
@@ -113,62 +113,72 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
   };
 
   return (
-    <div className="col-span-12 lg:col-span-3 h-full">
-      {selectedDate && !showBookingForm ? (
-        <div className="rounded-lg shadow-sm border p-6 h-full flex flex-col">
-          <div className="flex items-center justify-between mb-6">
-            <h3 className="text-xl font-semibold">Available Slots</h3>
-          </div>
-          <div className="mb-4">
-            <p className="text-gray-400 font-medium">{moment(selectedDate).format('dddd, MMMM D')}</p>
-          </div>
-          <div className="space-y-4 overflow-y-auto flex-1">
-            {getAvailableSlots(selectedDate).length > 0 ? (
-              getAvailableSlots(selectedDate).map((slot, index) => (
-                <div key={index} ref={(el) => (slotRefs.current[index] = el)} className="relative w-full overflow-hidden">
-                  <button
-                    onClick={() => !slot.isBooked && handleSlotClick(index)}
-                    className={`
-                      w-full px-4 py-3 text-sm border-2 rounded-lg text-center font-bold relative
-                      ${slot.isBooked
-                        ? 'border-gray-300 text-gray-500 line-through cursor-not-allowed bg-gray-50'
-                        : 'border-neon text-neon hover:bg-neon hover:text-charcoal transition-colors duration-200'}
-                    `}
-                    disabled={slot.isBooked}
-                  >
-                    <span className="slot-time inline-block transform-origin-center" style={{ transformOrigin: 'center' }}>
-                      {slot.time}
-                    </span>
-                  </button>
-                  {!slot.isBooked && (
+    <>
+      <div className="col-span-12 lg:col-span-3 h-full">
+        {selectedDate ? (
+          <div className="rounded-lg shadow-sm border p-6 h-full flex flex-col">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-xl font-semibold">Available Slots</h3>
+            </div>
+            <div className="mb-4">
+              <p className="text-gray-400 font-medium">{moment(selectedDate).format('dddd, MMMM D')}</p>
+            </div>
+            <div className="space-y-4 overflow-y-auto flex-1">
+              {getAvailableSlots(selectedDate).length > 0 ? (
+                getAvailableSlots(selectedDate).map((slot, index) => (
+                  <div key={index} ref={(el) => (slotRefs.current[index] = el)} className="relative w-full overflow-hidden">
                     <button
-                      onClick={() => openBookingForm(slot)}
-                      className="book-it-btn absolute top-0 right-0 h-full px-4 py-3 text-sm bg-black text-white font-bold rounded-r-lg transform translate-x-full"
+                      onClick={() => !slot.isBooked && handleSlotClick(index)}
+                      className={`
+                        w-full px-4 py-3 text-sm border-2 rounded-lg text-center font-bold relative
+                        ${slot.isBooked
+                          ? 'border-gray-300 text-gray-500 line-through cursor-not-allowed bg-gray-50'
+                          : 'border-neon text-neon hover:bg-neon hover:text-charcoal transition-colors duration-200'}
+                      `}
+                      disabled={slot.isBooked}
                     >
-                      Reserve It
+                      <span className="slot-time inline-block transform-origin-center" style={{ transformOrigin: 'center' }}>
+                        {slot.time}
+                      </span>
                     </button>
-                  )}
+                    {!slot.isBooked && (
+                      <button
+                        onClick={() => openBookingForm(slot)}
+                        className="book-it-btn absolute top-0 right-0 h-full px-4 py-3 text-sm bg-black text-white font-bold rounded-r-lg transform translate-x-full"
+                      >
+                        Reserve It
+                      </button>
+                    )}
+                  </div>
+                ))
+              ) : (
+                <div className="text-center py-12">
+                  <p className="text-gray-400">No available times for this date</p>
                 </div>
-              ))
-            ) : (
-              <div className="text-center py-12">
-                <p className="text-gray-400">No available times for this date</p>
-              </div>
-            )}
+              )}
+            </div>
           </div>
-        </div>
-      ) : selectedDate && showBookingForm ? (
-        <BookingForm slot={selectedSlot} onSubmit={handleBookingSubmit} onClose={closeBookingForm} isOpen={showBookingForm} />
-      ) : (
-        <div className="bg-charcoal rounded-lg shadow-sm border border-gray-700 p-6 h-full flex flex-col justify-center">
-          <div className="text-center py-12">
-            <CalendarDays size={48} className="text-gray-400 mx-auto mb-4" />
-            <h3 className="text-lg font-medium text-white mb-2">Select a date</h3>
-            <p className="text-gray-400">Please select a date from the calendar to view available time slots</p>
+        ) : (
+          <div className="bg-charcoal rounded-lg shadow-sm border border-gray-700 p-6 h-full flex flex-col justify-center">
+            <div className="text-center py-12">
+              <CalendarDays size={48} className="text-gray-400 mx-auto mb-4" />
+              <h3 className="text-lg font-medium text-white mb-2">Select a date</h3>
+              <p className="text-gray-400">Please select a date from the calendar to view available time slots</p>
+            </div>
           </div>
-        </div>
+        )}
+      </div>
+      
+      {/* Render BookingForm outside of conditional rendering to preserve animations */}
+      {selectedSlot && (
+        <BookingForm 
+          slot={selectedSlot} 
+          onSubmit={handleBookingSubmit} 
+          onClose={closeBookingForm} 
+          isOpen={showBookingForm} 
+        />
       )}
-    </div>
+    </>
   );
 };
 

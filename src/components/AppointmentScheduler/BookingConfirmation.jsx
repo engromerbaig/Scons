@@ -1,12 +1,15 @@
 import React from 'react';
 import moment from 'moment';
+import { useNavigate } from 'react-router-dom';
 import Heading from '../../components/Heading/Heading';
 import BodyText from '../../components/BodyText/BodyText';
 import Button from '../../components/Button/Button';
 import { CheckCircle, XCircle } from 'lucide-react';
 import { theme } from '../../theme';
 
-const BookingConfirmation = ({ slot, bookingResult, onClose }) => {
+const BookingConfirmation = ({ slot, bookingResult, onClose, onBookAnother }) => {
+  const navigate = useNavigate();
+
   // Return null if slot is invalid
   if (!slot || !slot.start) {
     return null;
@@ -14,7 +17,26 @@ const BookingConfirmation = ({ slot, bookingResult, onClose }) => {
 
   const isSuccess = bookingResult && bookingResult.success;
   const secondButtonText = isSuccess ? 'Book Another' : 'Try Again';
-  const secondButtonRoute = '/schedule';
+
+  const handleReturnHome = () => {
+    onClose(); // Close any modals/overlays first
+    navigate('/', { replace: true }); // Use replace to avoid back button issues
+  };
+
+  const handleSecondAction = () => {
+    if (isSuccess) {
+      // For successful booking, if onBookAnother is provided, use it
+      // Otherwise, just reset the booking flow without navigation
+      if (onBookAnother) {
+        onBookAnother();
+      } else {
+        onClose(); // This should reset the booking state in the parent
+      }
+    } else {
+      // For failed booking, close and let user try again
+      onClose();
+    }
+  };
 
   return (
     <div
@@ -71,31 +93,24 @@ const BookingConfirmation = ({ slot, bookingResult, onClose }) => {
           bgColor="bg-black"
           textColor="white"
           hoverBgColor="bg-black/90"
-          hovertextColor="white"
+          hoverTextColor="white"
           fontSize="text-sm"
-                    textAlign="justify-center"
-
+          textAlign="justify-center"
           fontWeight="font-bold"
           className="px-4 py-2 rounded-full w-full max-w-xs text-center"
-          onClick={() => {
-            onClose();
-            window.location.href = '/';
-          }}
+          onClick={handleReturnHome}
         />
         <Button
           name={secondButtonText}
           bgColor="bg-black"
           textColor="white"
           hoverBgColor="bg-black/90"
-          hovertextColor="white"
+          hoverTextColor="white"
           fontSize="text-sm"
           fontWeight="font-bold"
           textAlign="justify-center"
           className="px-4 py-2 rounded-full w-full max-w-xs text-center"
-          onClick={() => {
-            onClose();
-            window.location.href = secondButtonRoute;
-          }}
+          onClick={handleSecondAction}
         />
       </div>
     </div>
