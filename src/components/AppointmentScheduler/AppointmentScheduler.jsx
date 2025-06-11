@@ -31,7 +31,7 @@ const AppointmentScheduler = () => {
     if (day === 1 || day === 4) {
       // Monday or Thursday: 10 AM, 12 PM, 2 PM, 4 PM PKT
       return [
-        { time: '10:00 AM', value: '10:00', pktTime: '10:00' },
+        { time: '2:00 AM', value: '2:00', pktTime: '2:00' },
         { time: '12:00 PM', value: '12:00', pktTime: '12:00' },
         { time: '2:00 PM', value: '14:00', pktTime: '14:00' },
         { time: '4:00 PM', value: '16:00', pktTime: '16:00' },
