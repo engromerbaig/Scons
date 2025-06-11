@@ -32,11 +32,11 @@ const MeetingInfo = ({ meetingInfo, selectedDate }) => {
     
         </div>
         {selectedDate && (
-          <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+          <div className="mt-6 p-4 bg-neon/5 rounded-lg border border-neon">
             <p className="text-sm font-medium text-black">
               Selected Date
             </p>
-            <p className="text-sm text-blue-700">
+            <p className="text-sm text-neon font-medium">
               {moment(selectedDate).format('dddd, MMMM D, YYYY')}
             </p>
           </div>
