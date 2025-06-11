@@ -76,11 +76,13 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
   };
 
   const openBookingForm = (slot) => {
+    console.log('Opening booking form for slot:', slot);
     setSelectedSlot(slot);
     setShowBookingForm(true);
   };
 
   const closeBookingForm = () => {
+    console.log('Closing booking form');
     setShowBookingForm(false);
     setActiveSlotIndex(null);
     if (activeSlotIndex !== null) {
@@ -98,13 +100,19 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
   };
 
   const handleBookingSubmit = async (formData) => {
-    const result = await handleBookSlot(selectedSlot, formData);
-    setBookingResult(result);
-    setShowBookingForm(false);
-    setIsConfirmationVisible(true);
+    console.log('Submitting booking with data:', formData);
+    try {
+      const result = await handleBookSlot(selectedSlot, formData);
+      setBookingResult(result);
+      setShowBookingForm(false);
+      setIsConfirmationVisible(true);
+    } catch (error) {
+      console.error('Booking submission failed:', error);
+    }
   };
 
   const closeConfirmation = () => {
+    console.log('Closing confirmation');
     setIsConfirmationVisible(false);
     setSelectedSlot(null);
     setBookingResult(null);
@@ -114,14 +122,14 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
   return (
     <div className="col-span-12 lg:col-span-3 h-full">
       {selectedDate && !showBookingForm && !isConfirmationVisible ? (
-        <div className="bg-white rounded-lg shadow-sm border p-6 h-full flex flex-col">
+        <div className=" rounded-lg shadow-sm border p-6 h-full flex flex-col">
           <div className="flex items-center justify-between mb-6">
-            <h3 className="text-xl font-semibold text-gray-900">
+            <h3 className="text-xl font-semibold ">
               Available Slots
             </h3>
           </div>
           <div className="mb-4">
-            <p className="text-gray-600 font-medium">
+            <p className="text-gray-400 font-medium">
               {moment(selectedDate).format('dddd, MMMM D')}
             </p>
           </div>
@@ -138,8 +146,8 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
                     className={`
                       w-full px-4 py-3 text-sm border-2 rounded-lg text-center font-bold relative
                       ${slot.isBooked 
-                        ? 'border-gray-300 text-gray-400 line-through cursor-not-allowed bg-gray-100' 
-                        : 'border-neon text-neon hover:bg-neon hover:text-white transition-colors duration-200'}
+                        ? 'border-gray-700 text-gray-500 line-through cursor-not-allowed bg-gray-800' 
+                        : 'border-neon text-neon hover:bg-neon hover:text-charcoal transition-colors duration-200'}
                     `}
                     disabled={slot.isBooked}
                   >
@@ -162,7 +170,7 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
               ))
             ) : (
               <div className="text-center py-12">
-                <p className="text-gray-500">No available times for this date</p>
+                <p className="text-gray-400">No available times for this date</p>
               </div>
             )}
           </div>
@@ -172,6 +180,7 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
           slot={selectedSlot}
           onSubmit={handleBookingSubmit}
           onClose={closeBookingForm}
+          isOpen={showBookingForm}
         />
       ) : isConfirmationVisible ? (
         <BookingConfirmation 
@@ -180,13 +189,13 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
           onClose={closeConfirmation}
         />
       ) : (
-        <div className="bg-white rounded-lg shadow-sm border p-6 h-full flex flex-col justify-center">
+        <div className="bg-charcoal rounded-lg shadow-sm border border-gray-700 p-6 h-full flex flex-col justify-center">
           <div className="text-center py-12">
-            <CalendarDays size={48} className="text-gray-300 mx-auto mb-4" />
-            <h3 className="text-lg font-medium text-gray-900 mb-2">
+            <CalendarDays size={48} className="text-gray-400 mx-auto mb-4" />
+            <h3 className="text-lg font-medium text-white mb-2">
               Select a date
             </h3>
-            <p className="text-gray-500">
+            <p className="text-gray-400">
               Please select a date from the calendar to view available time slots
             </p>
           </div>
