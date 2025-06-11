@@ -1,6 +1,5 @@
-import React from 'react';
 import moment from 'moment';
-import { ArrowLeft, CalendarDays } from 'lucide-react';
+import { CalendarDays } from 'lucide-react';
 
 const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, handleBookSlot }) => {
   const getAvailableSlots = (date) => {
