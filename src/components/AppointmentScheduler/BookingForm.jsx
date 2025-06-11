@@ -87,19 +87,20 @@ const BookingForm = ({ slot, onSubmit, onClose, isOpen }) => {
           hideErrorMessages={true}
           required
         />
-        <Button
-          name={isSubmitting ? 'Booking...' : 'Book Slot'}
-          type="submit"
-          bgColor="bg-neon"
-          textColor="text-charcoal"
-          hoverBgColor="bg-neon-dark"
-          hoverTextColor="text-charcoal"
-          fontWeight="font-bold"
-          className="w-full"
-          textAlign='justify-center'
-          isLoading={isSubmitting}
-          disabled={!formData.name.trim() || !formData.email.trim() || isSubmitting}
-        />
+     <Button
+  name="Book Slot"
+  type="submit"
+  bgColor="bg-neon"
+  textColor="text-charcoal"
+  hoverBgColor="bg-neon-dark"
+  hoverTextColor="text-charcoal"
+  fontWeight="font-bold"
+  className="w-full"
+  textAlign="justify-center"
+  isLoading={isSubmitting}
+  buttonLoadingText="Booking..." // Override default "Submitting" text
+  disabled={!formData.name.trim() || !formData.email.trim() || isSubmitting}
+/>
       </form>
       <BodyText
         text={

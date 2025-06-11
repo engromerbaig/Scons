@@ -23,8 +23,9 @@ const Button = ({
   link = null,
   openModal = false,
   openPackageModal = false,
-  packageInfo = null, // New prop for package information
+  packageInfo = null,
   isLoading = false,
+  buttonLoadingText = 'Submitting', // New prop with default value
 }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isActive, setIsActive] = useState(false);
@@ -70,14 +71,13 @@ const Button = ({
     >
       <div style={iconContainerStyle}>
         {isLoading ? (
-       <svg
-  className={`h-5 w-5 ${isInteracted && !disabled ? 'text-white' : 'text-neon'}`}
-  style={{ animation: 'spin 1s linear infinite' }}
-  xmlns="http://www.w3.org/2000/svg"
-  fill="none"
-  viewBox="0 0 24 24"
->
-
+          <svg
+            className={`h-5 w-5 ${isInteracted && !disabled ? 'text-white' : 'text-neon'}`}
+            style={{ animation: 'spin 1s linear infinite' }}
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="black" strokeWidth="4" />
             <path
               className="opacity-75"
@@ -112,7 +112,7 @@ const Button = ({
             color: isInteracted && !disabled ? hoverTextColor : textColor,
           }}
         >
-          {isLoading && type === 'submit' ? 'Submitting' : name}
+          {isLoading && type === 'submit' ? buttonLoadingText : name}
         </p>
         <p
           className={`${fontSize} ${fontWeight} absolute top-0 left-0 transition-transform duration-300 whitespace-nowrap`}
@@ -121,7 +121,7 @@ const Button = ({
             color: textColor,
           }}
         >
-          {isLoading && type === 'submit' ? 'Submitting' : name}
+          {isLoading && type === 'submit' ? buttonLoadingText : name}
         </p>
       </div>
     </button>
@@ -148,10 +148,10 @@ const Button = ({
       )}
 
       {openPackageModal && (
-        <PackageModal 
-          isOpen={isPackageModalOpen} 
+        <PackageModal
+          isOpen={isPackageModalOpen}
           onClose={() => setIsPackageModalOpen(false)}
-          packageInfo={packageInfo} // Pass package info to modal
+          packageInfo={packageInfo}
         />
       )}
     </>
