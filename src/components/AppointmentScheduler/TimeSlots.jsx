@@ -1,6 +1,6 @@
 import moment from 'moment';
 import { CalendarDays } from 'lucide-react';
-import { useRef, useState, useEffect } from 'react'; // Add useEffect
+import { useRef, useState, useEffect } from 'react';
 import { gsap } from 'gsap';
 import BookingForm from './BookingForm';
 
@@ -8,6 +8,7 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
   const [activeSlotIndex, setActiveSlotIndex] = useState(null);
   const [showBookingForm, setShowBookingForm] = useState(false);
   const [selectedSlot, setSelectedSlot] = useState(null);
+  const [isFormVisible, setIsFormVisible] = useState(false); // New state for animation control
   const slotRefs = useRef([]);
 
   const getAvailableSlots = (date) => {
@@ -85,28 +86,41 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
     console.log('Opening booking form for slot:', slot);
     setSelectedSlot(slot);
     setShowBookingForm(true);
+    // Delay setting isFormVisible to ensure animation triggers
+    setTimeout(() => {
+      setIsFormVisible(true);
+    }, 10); // Small delay to allow DOM update
   };
 
   const closeBookingForm = () => {
     console.log('Closing booking form');
-    setShowBookingForm(false);
-    resetActiveSlot();
+    setIsFormVisible(false);
+    // Delay hiding the form to allow exit animation
+    setTimeout(() => {
+      setShowBookingForm(false);
+      resetActiveSlot();
+    }, 300); // Match your ModalWrapper's animation duration
   };
 
   const handleBookingSubmit = async (formData) => {
     console.log('Submitting booking with data:', formData);
     try {
       const result = await handleBookSlot(selectedSlot, formData);
-      setShowBookingForm(false);
+      setIsFormVisible(false);
+      setTimeout(() => {
+        setShowBookingForm(false);
+      }, 300); // Allow animation to complete
       onShowConfirmation(selectedSlot, result);
     } catch (error) {
       console.error('Booking submission failed:', error);
-      setShowBookingForm(false);
+      setIsFormVisible(false);
+      setTimeout(() => {
+        setShowBookingForm(false);
+      }, 300); // Allow animation to complete
       onShowConfirmation(selectedSlot, { success: false, error: 'An error occurred during booking.' });
     }
   };
 
-  // Add click outside handler
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (activeSlotIndex === null || showBookingForm) return;
@@ -117,7 +131,6 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
       const slotButton = currentSlot.querySelector('button');
       const reserveButton = currentSlot.querySelector('.book-it-btn');
 
-      // Check if the click is outside the slot button and not on the reserve button
       if (
         !slotButton.contains(event.target) &&
         (!reserveButton || !reserveButton.contains(event.target))
@@ -179,7 +192,7 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
             </div>
           </div>
         ) : (
-          <div className="bg-white rounded-lg shadow-sm border  p-6 h-full flex flex-col justify-center">
+          <div className="bg-white rounded-lg shadow-sm border p-6 h-full flex flex-col justify-center">
             <div className="text-center py-12">
               <CalendarDays size={48} className="text-black mx-auto mb-4" />
               <h3 className="text-lg font-medium text-black mb-2">Select a date</h3>
@@ -189,12 +202,12 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
         )}
       </div>
 
-      {selectedSlot && (
+      {selectedSlot && showBookingForm && (
         <BookingForm
           slot={selectedSlot}
           onSubmit={handleBookingSubmit}
           onClose={closeBookingForm}
-          isOpen={showBookingForm}
+          isOpen={isFormVisible} // Use isFormVisible for animation control
         />
       )}
     </>
