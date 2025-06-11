@@ -121,7 +121,7 @@ const AppointmentScheduler = () => {
     setSelectedDate(date);
   };
 
-  const handleBookSlot = async (timeSlot) => {
+  const handleBookSlot = async (timeSlot, formData) => {
     const [hour] = timeSlot.value.split(':');
     const start = moment(selectedDate).set({
       hour: parseInt(hour),
@@ -129,44 +129,43 @@ const AppointmentScheduler = () => {
     }).toDate();
     const end = moment(start).add(1, 'hour').toDate();
     
-    const title = window.prompt('Enter your name for the appointment:');
-    if (title) {
-      const newEvent = { 
-        title: `Meeting with ${title}`, 
-        start: start.toISOString(), 
-        end: end.toISOString() 
-      };
-      console.log('Booked Appointment:', newEvent);
+    const newEvent = { 
+      title: `Meeting with ${formData.name}`, 
+      start: start.toISOString(), 
+      end: end.toISOString(),
+      email: formData.email
+    };
+    console.log('Booked Appointment:', newEvent);
+    
+    try {
+      const response = await fetch('/.netlify/functions/bookAppointment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newEvent),
+      });
       
-      try {
-        const response = await fetch('/.netlify/functions/bookAppointment', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(newEvent),
-        });
-        if (response.ok) {
-          const fetchResponse = await fetch('/.netlify/functions/getAppointments');
-          if (!fetchResponse.ok) {
-            console.error('Failed to fetch appointments:', await fetchResponse.text());
-            throw new Error('Failed to fetch appointments');
-          }
-          const updatedEvents = await fetchResponse.json();
-          console.log('Updated Appointments:', updatedEvents);
-          setEvents(updatedEvents.map(event => ({
-            title: event.title,
-            start: new Date(event.start),
-            end: new Date(event.end),
-          })));
-          setSelectedDate(null);
-          alert(`Appointment booked for ${moment(start).format('MMMM D, YYYY [at] h:mm A')}`);
-        } else {
-          console.error('Failed to book appointment:', await response.text());
-          alert('Failed to book appointment. Please try again.');
+      if (response.ok) {
+        const fetchResponse = await fetch('/.netlify/functions/getAppointments');
+        if (!fetchResponse.ok) {
+          console.error('Failed to fetch appointments:', await fetchResponse.text());
+          throw new Error('Failed to fetch appointments');
         }
-      } catch (error) {
-        console.error('Error booking appointment:', error);
-        alert('An error occurred. Please try again.');
+        const updatedEvents = await fetchResponse.json();
+        console.log('Updated Appointments:', updatedEvents);
+        setEvents(updatedEvents.map(event => ({
+          title: event.title,
+          start: new Date(event.start),
+          end: new Date(event.end),
+        })));
+        setSelectedDate(null);
+        return { success: true, appointment: newEvent };
+      } else {
+        console.error('Failed to book appointment:', await response.text());
+        return { success: false, error: 'Failed to book appointment. Please try again.' };
       }
+    } catch (error) {
+      console.error('Error booking appointment:', error);
+      return { success: false, error: 'An error occurred. Please try again.' };
     }
   };
 

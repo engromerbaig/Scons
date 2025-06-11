@@ -2,14 +2,15 @@ import moment from 'moment';
 import { CalendarDays } from 'lucide-react';
 import { useRef, useState } from 'react';
 import { gsap } from 'gsap';
-import BookingPopUp from './BookingPopUp';
+import BookingForm from './BookingForm';
 import BookingConfirmation from './BookingConfirmation';
 
 const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, handleBookSlot }) => {
   const [activeSlotIndex, setActiveSlotIndex] = useState(null);
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [showBookingForm, setShowBookingForm] = useState(false);
   const [isConfirmationVisible, setIsConfirmationVisible] = useState(false);
   const [selectedSlot, setSelectedSlot] = useState(null);
+  const [bookingResult, setBookingResult] = useState(null);
   const slotRefs = useRef([]);
 
   const getAvailableSlots = (date) => {
@@ -74,13 +75,13 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
     }
   };
 
-  const openPopup = (slot) => {
+  const openBookingForm = (slot) => {
     setSelectedSlot(slot);
-    setIsPopupOpen(true);
+    setShowBookingForm(true);
   };
 
-  const closePopup = () => {
-    setIsPopupOpen(false);
+  const closeBookingForm = () => {
+    setShowBookingForm(false);
     setActiveSlotIndex(null);
     if (activeSlotIndex !== null) {
       gsap.to(slotRefs.current[activeSlotIndex].querySelector('.slot-time'), {
@@ -96,20 +97,23 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
     }
   };
 
-  const openConfirmation = () => {
-    setIsPopupOpen(false);
+  const handleBookingSubmit = async (formData) => {
+    const result = await handleBookSlot(selectedSlot, formData);
+    setBookingResult(result);
+    setShowBookingForm(false);
     setIsConfirmationVisible(true);
   };
 
   const closeConfirmation = () => {
     setIsConfirmationVisible(false);
     setSelectedSlot(null);
+    setBookingResult(null);
     setActiveSlotIndex(null);
   };
 
   return (
     <div className="col-span-12 lg:col-span-3 h-full">
-      {selectedDate ? (
+      {selectedDate && !showBookingForm && !isConfirmationVisible ? (
         <div className="bg-white rounded-lg shadow-sm border p-6 h-full flex flex-col">
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-xl font-semibold text-gray-900">
@@ -148,7 +152,7 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
                   </button>
                   {!slot.isBooked && (
                     <button
-                      onClick={() => openPopup(slot)}
+                      onClick={() => openBookingForm(slot)}
                       className="book-it-btn absolute top-0 right-0 h-full px-4 py-3 text-sm bg-black text-white font-bold rounded-r-lg transform translate-x-full"
                     >
                       Reserve It
@@ -163,6 +167,18 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
             )}
           </div>
         </div>
+      ) : selectedDate && showBookingForm ? (
+        <BookingForm
+          slot={selectedSlot}
+          onSubmit={handleBookingSubmit}
+          onClose={closeBookingForm}
+        />
+      ) : isConfirmationVisible ? (
+        <BookingConfirmation 
+          slot={selectedSlot} 
+          bookingResult={bookingResult}
+          onClose={closeConfirmation}
+        />
       ) : (
         <div className="bg-white rounded-lg shadow-sm border p-6 h-full flex flex-col justify-center">
           <div className="text-center py-12">
@@ -175,20 +191,6 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
             </p>
           </div>
         </div>
-      )}
-      {isPopupOpen && (
-        <BookingPopUp
-          slot={selectedSlot}
-          isOpen={isPopupOpen}
-          onClose={closePopup}
-          onSubmit={(slot) => {
-            handleBookSlot(slot);
-            openConfirmation();
-          }}
-        />
-      )}
-      {isConfirmationVisible && selectedSlot && (
-        <BookingConfirmation slot={selectedSlot} />
       )}
     </div>
   );

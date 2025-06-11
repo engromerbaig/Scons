@@ -13,20 +13,33 @@ exports.handler = async (event, context) => {
   }
 
   try {
-    const { title, start, end } = JSON.parse(event.body);
-    if (!title || !start || !end) {
+    const { title, start, end, email } = JSON.parse(event.body);
+    if (!title || !start || !end || !email) {
       return {
         statusCode: 400,
         headers: {
           'Access-Control-Allow-Origin': '*',
           'Access-Control-Allow-Headers': 'Content-Type',
         },
-        body: JSON.stringify({ error: 'Missing required fields' }),
+        body: JSON.stringify({ error: 'Missing required fields (title, start, end, email)' }),
       };
     }
 
-    // Log the booked appointment
-    console.log('Booked Appointment:', { title, start, end });
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return {
+        statusCode: 400,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Headers': 'Content-Type',
+        },
+        body: JSON.stringify({ error: 'Invalid email format' }),
+      };
+    }
+
+    // Log the booking attempt
+    console.log('Booking attempt:', { title, start, end, email });
 
     // Fetch current appointments from JSONBin.io
     const binResponse = await fetch('https://api.jsonbin.io/v3/b/684839328a456b7966abcf8f', {
@@ -34,12 +47,50 @@ exports.handler = async (event, context) => {
         'X-Master-Key': process.env.JSONBIN_API_KEY,
       },
     });
-    if (!binResponse.ok) throw new Error('Failed to fetch bin');
+    
+    if (!binResponse.ok) {
+      console.error('Failed to fetch bin:', await binResponse.text());
+      throw new Error('Failed to fetch current appointments');
+    }
+    
     const binData = await binResponse.json();
     const appointments = binData.record.appointments || [];
 
-    // Add new appointment
-    appointments.push({ title, start, end });
+    // Check for conflicts
+    const newStart = new Date(start);
+    const newEnd = new Date(end);
+    const hasConflict = appointments.some(appointment => {
+      const existingStart = new Date(appointment.start);
+      const existingEnd = new Date(appointment.end);
+      return (
+        (newStart >= existingStart && newStart < existingEnd) ||
+        (newEnd > existingStart && newEnd <= existingEnd) ||
+        (newStart <= existingStart && newEnd >= existingEnd)
+      );
+    });
+
+    if (hasConflict) {
+      return {
+        statusCode: 409,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Headers': 'Content-Type',
+        },
+        body: JSON.stringify({ error: 'Time slot is no longer available' }),
+      };
+    }
+
+    // Add new appointment with additional metadata
+    const newAppointment = {
+      title,
+      start,
+      end,
+      email,
+      bookedAt: new Date().toISOString(),
+      status: 'confirmed'
+    };
+    
+    appointments.push(newAppointment);
 
     // Update JSONBin.io
     const updateResponse = await fetch('https://api.jsonbin.io/v3/b/684839328a456b7966abcf8f', {
@@ -50,7 +101,13 @@ exports.handler = async (event, context) => {
       },
       body: JSON.stringify({ appointments }),
     });
-    if (!updateResponse.ok) throw new Error('Failed to update bin');
+    
+    if (!updateResponse.ok) {
+      console.error('Failed to update bin:', await updateResponse.text());
+      throw new Error('Failed to save appointment');
+    }
+
+    console.log('Appointment booked successfully:', newAppointment);
 
     return {
       statusCode: 200,
@@ -58,7 +115,10 @@ exports.handler = async (event, context) => {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers': 'Content-Type',
       },
-      body: JSON.stringify({ message: 'Appointment booked successfully' }),
+      body: JSON.stringify({ 
+        message: 'Appointment booked successfully',
+        appointment: newAppointment
+      }),
     };
   } catch (error) {
     console.error('Error booking appointment:', error);
@@ -68,7 +128,10 @@ exports.handler = async (event, context) => {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers': 'Content-Type',
       },
-      body: JSON.stringify({ error: 'Internal server error' }),
+      body: JSON.stringify({ 
+        error: 'Internal server error. Please try again later.',
+        details: error.message
+      }),
     };
   }
 };
