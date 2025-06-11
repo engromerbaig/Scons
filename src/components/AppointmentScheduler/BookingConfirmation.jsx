@@ -73,6 +73,8 @@ const BookingConfirmation = ({ slot, bookingResult, onClose }) => {
           hoverBgColor="bg-black/90"
           hovertextColor="white"
           fontSize="text-sm"
+                    textAlign="justify-center"
+
           fontWeight="font-bold"
           className="px-4 py-2 rounded-full w-full max-w-xs text-center"
           onClick={() => {
@@ -88,6 +90,7 @@ const BookingConfirmation = ({ slot, bookingResult, onClose }) => {
           hovertextColor="white"
           fontSize="text-sm"
           fontWeight="font-bold"
+          textAlign="justify-center"
           className="px-4 py-2 rounded-full w-full max-w-xs text-center"
           onClick={() => {
             onClose();
