@@ -8,7 +8,7 @@ import BookingConfirmation from './BookingConfirmation';
 const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, handleBookSlot }) => {
   const [activeSlotIndex, setActiveSlotIndex] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
+  const [isConfirmationVisible, setIsConfirmationVisible] = useState(false);
   const [selectedSlot, setSelectedSlot] = useState(null);
   const slotRefs = useRef([]);
 
@@ -81,7 +81,6 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
 
   const closePopup = () => {
     setIsPopupOpen(false);
-    setSelectedSlot(null);
     setActiveSlotIndex(null);
     if (activeSlotIndex !== null) {
       gsap.to(slotRefs.current[activeSlotIndex].querySelector('.slot-time'), {
@@ -99,11 +98,11 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
 
   const openConfirmation = () => {
     setIsPopupOpen(false);
-    setIsConfirmationOpen(true);
+    setIsConfirmationVisible(true);
   };
 
   const closeConfirmation = () => {
-    setIsConfirmationOpen(false);
+    setIsConfirmationVisible(false);
     setSelectedSlot(null);
     setActiveSlotIndex(null);
   };
@@ -133,7 +132,7 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
                   <button
                     onClick={() => !slot.isBooked && handleSlotClick(index)}
                     className={`
-                      w-full px-4 py-2 text-sm border-2 rounded-lg text-center font-bold relative
+                      w-full px-4 py-3 text-sm border-2 rounded-lg text-center font-bold relative
                       ${slot.isBooked 
                         ? 'border-gray-300 text-gray-400 line-through cursor-not-allowed bg-gray-100' 
                         : 'border-neon text-neon hover:bg-neon hover:text-white transition-colors duration-200'}
@@ -150,7 +149,7 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
                   {!slot.isBooked && (
                     <button
                       onClick={() => openPopup(slot)}
-                      className="book-it-btn absolute top-0 right-0 h-full px-4 py-2 text-sm bg-black text-white font-bold rounded-r-lg transform translate-x-full"
+                      className="book-it-btn absolute top-0 right-0 h-full px-4 py-3 text-sm bg-black text-white font-bold rounded-r-lg transform translate-x-full"
                     >
                       Reserve It
                     </button>
@@ -188,11 +187,8 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
           }}
         />
       )}
-      {isConfirmationOpen && (
-        <BookingConfirmation
-          slot={selectedSlot}
-          onClose={closeConfirmation}
-        />
+      {isConfirmationVisible && selectedSlot && (
+        <BookingConfirmation slot={selectedSlot} />
       )}
     </div>
   );

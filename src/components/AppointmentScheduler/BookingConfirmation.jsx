@@ -4,8 +4,14 @@ import Heading from '../Heading/Heading';
 import BodyText from '../BodyText/BodyText';
 import Button from '../Button/Button';
 import { theme } from '../../theme';
+
 const BookingConfirmation = ({ slot }) => {
   const [timeRemaining, setTimeRemaining] = useState('');
+
+  // Return null if slot is invalid
+  if (!slot || !slot.start) {
+    return null;
+  }
 
   useEffect(() => {
     const updateCountdown = () => {
@@ -52,7 +58,7 @@ const BookingConfirmation = ({ slot }) => {
         size="text-20px"
       />
       <BodyText
-        text={`Meeting Time: ${moment(slot.start).format('dddd, MMMM D, h:mm A')}`}
+        text={`Meeting Time: ${moment(slot.start).tz('Asia/Karachi').format('dddd, MMMM D, h:mm A')}`}
         centered={true}
         color="text-black"
         className="max-w-xl"
@@ -62,9 +68,9 @@ const BookingConfirmation = ({ slot }) => {
         <Button
           name="Back to Home"
           bgColor="bg-black"
-          textColor="text-black"
+          textColor="text-white" // Improved contrast
           hoverBgColor="bg-black/90"
-          hoverTextColor="text-black"
+          hoverTextColor="text-white"
           fontSize="text-sm"
           fontWeight="font-bold"
           className="px-6 py-2 rounded-full"
@@ -73,9 +79,9 @@ const BookingConfirmation = ({ slot }) => {
         <Button
           name="Book Another Slot"
           bgColor="bg-black"
-          textColor="text-black"
+          textColor="text-white" // Improved contrast
           hoverBgColor="bg-black/90"
-          hoverTextColor="text-black"
+          hoverTextColor="text-white"
           fontSize="text-sm"
           fontWeight="font-bold"
           className="px-6 py-2 rounded-full"
