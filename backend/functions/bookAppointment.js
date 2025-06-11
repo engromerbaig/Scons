@@ -1,5 +1,7 @@
 const fetch = require('node-fetch');
 const nodemailer = require('nodemailer');
+const moment = require('moment');
+require('moment-timezone');
 const dotenv = require('dotenv');
 
 dotenv.config();
@@ -92,9 +94,9 @@ const userEmailTemplate = `
         <tr>
             <td>
                 <div class="header">
-                    <div style="text-align: left;">
+                    <div style="table-responsive">
                         <a href="https://sconstech.com/" class="logo">
-                            <img src="https://lustrous-sundae-be0a50.netlify.app/logo.png/" alt="Scons Logo" style="width: 150px;">
+                            <img src="https://lustrous-sundae-be0a50.netlify.app/logo.png" alt="Scons Logo" style="width: 150px;">
                         </a>
                     </div>
                     <div style="margin-top: 40px; margin-bottom: 40px; padding: 40px 0;">
@@ -107,7 +109,7 @@ const userEmailTemplate = `
         <tr>
             <td>
                 <div class="main-content">
-                    <p style="font-size: 14px; color: #000; font-weight: 600; line-height: 1.8;">
+                    <p style="font-size: 14px; color: #000; font-weight: bold; line-height: 1.8;">
                         Your meeting details:<br>
                         {{meetingDetails}}
                         <br>
@@ -115,7 +117,7 @@ const userEmailTemplate = `
                         <a href="https://meet.google.com/ygz-ypbt-dja" style="color: #00c5ff; text-decoration: underline;">Google Meet Link</a>
                     </p>
                     <a href="https://sconstech.com/">
-                        <img src="https://lustrous-sundae-be0a50.netlify.app/logo.png/" alt="Scons Logo" style="width: 150px;">
+                        <img src="https://lustrous-sundae-be0a50.netlify.app/logo.png" alt="Scons Logo" style="width: 150px;">
                     </a>
                 </div>
             </td>
@@ -245,7 +247,7 @@ const companyEmailTemplate = `
                         A new meeting has been scheduled. Please review the details above and prepare for the meeting.
                     </p>
                     <a href="https://sconstech.com/">
-                        <img src="https://lustrous-sundae-be0a50.netlify.app/logo.png/" alt="Scons Logo" style="width: 150px;">
+                        <img src="https://lustrous-sundae-be0a50.netlify.app/logo.png" alt="Scons Logo" style="width: 150px;">
                     </a>
                 </div>
             </td>
@@ -291,26 +293,21 @@ const companyEmailTemplate = `
 </html>
 `;
 
-function formatDate() {
-  const now = new Date();
-  const options = { day: '2-digit', month: 'short', year: 'numeric' };
-  const date = now.toLocaleDateString('en-US', options);
-  const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: true };
-  const time = now.toLocaleTimeString('en-US', timeOptions);
-  return `${date} - ${time}`;
+function formatDate(userTimeZone) {
+  const timeZone = userTimeZone || 'Asia/Karachi'; // Fallback to PKT
+  return moment()
+    .tz(timeZone)
+    .format('DD MMM YYYY - h:mm A [ZZ]');
 }
 
-function formatMeetingDateTime(start) {
-  const date = new Date(start);
-  return date.toLocaleString('en-US', {
-    weekday: 'long',
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric',
-    hour: 'numeric',
-    minute: '2-digit',
-    hour12: true,
-  });
+function formatMeetingDateTime(start, userTimeZone) {
+  const startMoment = moment(start).tz('Asia/Karachi'); // Booking time in PKT
+  const pktTime = startMoment.format('dddd, MMMM D, YYYY, h:mm A [PKT]');
+  const localTime = startMoment
+    .clone()
+    .tz(userTimeZone || 'Asia/Karachi')
+    .format('dddd, MMMM D, YYYY, h:mm A [ZZ]');
+  return `${pktTime}<br>(${localTime})`;
 }
 
 function generateFieldHtml(label, value) {
@@ -331,7 +328,7 @@ exports.handler = async (event, context) => {
   }
 
   try {
-    const { title, start, end, email } = JSON.parse(event.body);
+    const { title, start, end, email, userTimeZone } = JSON.parse(event.body);
     if (!title || !start || !end || !email) {
       return {
         statusCode: 400,
@@ -357,7 +354,7 @@ exports.handler = async (event, context) => {
     }
 
     // Log the booking attempt
-    console.log('Booking attempt:', { title, start, end, email });
+    console.log('Booking attempt:', { title, start, end, email, userTimeZone });
 
     // Fetch current appointments from JSONBin.io
     const binResponse = await fetch('https://api.jsonbin.io/v3/b/684839328a456b7966abcf8f', {
@@ -365,19 +362,19 @@ exports.handler = async (event, context) => {
         'X-Master-Key': process.env.JSONBIN_API_KEY,
       },
     });
-    
+
     if (!binResponse.ok) {
       console.error('Failed to fetch bin:', await binResponse.text());
       throw new Error('Failed to fetch current appointments');
     }
-    
+
     const binData = await binResponse.json();
     const appointments = binData.record.appointments || [];
 
     // Check for conflicts
     const newStart = new Date(start);
     const newEnd = new Date(end);
-    const hasConflict = appointments.some(appointment => {
+    const hasConflict = appointments.some((appointment) => {
       const existingStart = new Date(appointment.start);
       const existingEnd = new Date(appointment.end);
       return (
@@ -404,10 +401,11 @@ exports.handler = async (event, context) => {
       start,
       end,
       email,
+      userTimeZone: userTimeZone || 'Asia/Karachi',
       bookedAt: new Date().toISOString(),
-      status: 'confirmed'
+      status: 'confirmed',
     };
-    
+
     appointments.push(newAppointment);
 
     // Update JSONBin.io
@@ -419,16 +417,16 @@ exports.handler = async (event, context) => {
       },
       body: JSON.stringify({ appointments }),
     });
-    
+
     if (!updateResponse.ok) {
       console.error('Failed to update bin:', await updateResponse.text());
       throw new Error('Failed to save appointment');
     }
 
-    // Extract name from title (assumes format: "Meeting with {name}")
+    // Extract name from title
     const name = title.replace('Meeting with ', '').trim();
-    const dateTime = formatDate();
-    const meetingTime = formatMeetingDateTime(start);
+    const dateTime = formatDate(userTimeZone);
+    const meetingTime = formatMeetingDateTime(start, userTimeZone);
 
     // Generate meeting details for emails
     const meetingDetails = `
@@ -465,7 +463,7 @@ exports.handler = async (event, context) => {
     // Send both emails concurrently with a delay
     await Promise.all([
       transporter.sendMail(mailToCompany),
-      new Promise((resolve) => setTimeout(resolve, 1000)), // 1-second delay
+      new Promise((resolve) => setTimeout(resolve, 1000)),
       transporter.sendMail(mailToUser),
     ]);
 
@@ -477,9 +475,9 @@ exports.handler = async (event, context) => {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers': 'Content-Type',
       },
-      body: JSON.stringify({ 
+      body: JSON.stringify({
         message: 'Appointment booked successfully and emails sent',
-        appointment: newAppointment
+        appointment: newAppointment,
       }),
     };
   } catch (error) {
@@ -490,9 +488,9 @@ exports.handler = async (event, context) => {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers': 'Content-Type',
       },
-      body: JSON.stringify({ 
+      body: JSON.stringify({
         error: 'Internal server error. Please try again later.',
-        details: error.message
+        details: error.message,
       }),
     };
   }
