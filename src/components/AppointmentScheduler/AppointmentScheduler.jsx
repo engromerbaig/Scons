@@ -3,15 +3,19 @@ import moment from 'moment';
 import MeetingInfo from './MeetingInfo';
 import CalendarView from './CalendarView';
 import TimeSlots from './TimeSlots';
+import BookingConfirmation from './BookingConfirmation';
 import { theme } from '../../theme';
 
 const AppointmentScheduler = () => {
   const [events, setEvents] = useState([]);
+  const [selectedDate, setSelectedDate] = useState(getDefaultDate());
+  const [currentMonth, setCurrentMonth] = useState(new Date());
+  const [confirmationData, setConfirmationData] = useState(null); // { slot, bookingResult }
+
   // Initialize selectedDate with the first valid weekday (non-holiday, non-past)
-  const getDefaultDate = () => {
+  function getDefaultDate() {
     let date = moment().startOf('day');
     const holidays = [
-      // USA
       '2025-01-01', // New Year's Day
       '2025-01-20', // MLK Day
       '2025-02-17', // Presidents' Day
@@ -23,13 +27,11 @@ const AppointmentScheduler = () => {
       '2025-11-11', // Veterans Day
       '2025-11-27', // Thanksgiving
       '2025-12-25', // Christmas
-      // UK
       '2025-04-18', // Good Friday
       '2025-04-21', // Easter Monday
       '2025-05-05', // Early May Bank Holiday
       '2025-08-25', // Summer Bank Holiday
       '2025-12-26', // Boxing Day
-      // Germany
       '2025-05-01', // Labour Day
       '2025-05-29', // Ascension Day
       '2025-06-09', // Whit Monday
@@ -44,9 +46,7 @@ const AppointmentScheduler = () => {
       date = date.add(1, 'day');
     }
     return date.toDate();
-  };
-  const [selectedDate, setSelectedDate] = useState(getDefaultDate());
-  const [currentMonth, setCurrentMonth] = useState(new Date());
+  }
 
   // Meeting configuration
   const meetingInfo = {
@@ -119,6 +119,7 @@ const AppointmentScheduler = () => {
       return; // Don't select weekends, past dates, or holidays
     }
     setSelectedDate(date);
+    setConfirmationData(null); // Reset confirmation when selecting a new date
   };
 
   const handleBookSlot = async (timeSlot, formData) => {
@@ -169,6 +170,25 @@ const AppointmentScheduler = () => {
     }
   };
 
+  const handleShowConfirmation = (slot, bookingResult) => {
+    setConfirmationData({ slot, bookingResult });
+  };
+
+  const handleCloseConfirmation = () => {
+    setConfirmationData(null);
+  };
+
+  // Render BookingConfirmation at the top level, outside the grid
+  if (confirmationData) {
+    return (
+      <BookingConfirmation
+        slot={confirmationData.slot}
+        bookingResult={confirmationData.bookingResult}
+        onClose={handleCloseConfirmation}
+      />
+    );
+  }
+
   return (
     <div className={`min-h-screen ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal}`}>
       <div className="p-0">
@@ -192,6 +212,7 @@ const AppointmentScheduler = () => {
               availableTimeSlots={availableTimeSlots}
               events={events}
               handleBookSlot={handleBookSlot}
+              onShowConfirmation={handleShowConfirmation}
             />
           </div>
         </div>

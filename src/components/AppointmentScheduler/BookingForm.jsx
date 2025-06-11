@@ -4,7 +4,6 @@ import ModalWrapper from '../ChatModal/ModalWrapper';
 import FormField from '../FormSteps/modules/FormField';
 import Heading from '../Heading/Heading';
 import BodyText from '../BodyText/BodyText';
-import { ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const BookingForm = ({ slot, onSubmit, onClose, isOpen }) => {
@@ -26,11 +25,12 @@ const BookingForm = ({ slot, onSubmit, onClose, isOpen }) => {
 
     try {
       setIsSubmitting(true);
-      await onSubmit(formData);
+      const result = await onSubmit(formData); // Pass formData to parent for booking
       setFormData({ name: '', email: '' }); // Reset form after submission
-      onClose(); // Close modal on success
+      return result; // Return result to parent for further handling
     } catch (error) {
       console.error('BookingForm: Submission failed', error);
+      return { success: false, error: 'An error occurred during submission.' };
     } finally {
       setIsSubmitting(false);
     }
@@ -40,21 +40,17 @@ const BookingForm = ({ slot, onSubmit, onClose, isOpen }) => {
     setFormData({ ...formData, [field]: e.target.value });
   };
 
-
-  
-
-  const inputStyles = "m-1 py-2 px-6 text-sm rounded-full text-white placeholder-bodyText bg-charcoal w-full focus:outline-none ";
+  const inputStyles = "m-1 py-2 px-6 text-sm rounded-full text-white placeholder-bodyText bg-charcoal w-full focus:outline-none";
 
   return (
     <ModalWrapper isOpen={!!isOpen} onClose={onClose}>
       <div className="flex items-center mb-4">
-     
         <Heading
           text="Book Your"
           spanText="Slot"
           spanColor="text-neon"
           color="text-white"
-        size="text-70px xl:text-50px"
+          size="text-70px xl:text-50px"
           centered={false}
         />
       </div>
