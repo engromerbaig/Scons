@@ -179,10 +179,10 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
             </div>
           </div>
         ) : (
-          <div className="bg-charcoal rounded-lg shadow-sm border border-gray-700 p-6 h-full flex flex-col justify-center">
+          <div className="bg-white rounded-lg shadow-sm border  p-6 h-full flex flex-col justify-center">
             <div className="text-center py-12">
-              <CalendarDays size={48} className="text-gray-400 mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-white mb-2">Select a date</h3>
+              <CalendarDays size={48} className="text-black mx-auto mb-4" />
+              <h3 className="text-lg font-medium text-black mb-2">Select a date</h3>
               <p className="text-gray-400">Please select a date from the calendar to view available time slots</p>
             </div>
           </div>
