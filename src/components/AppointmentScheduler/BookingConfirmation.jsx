@@ -36,7 +36,7 @@ const BookingConfirmation = ({ slot, bookingResult, onClose }) => {
             className="max-w-xl"
           />
           <BodyText
-            text={`Meeting Time: ${moment(slot.start).tz('Asia/Karachi').format('dddd, MMMM D, h:mm A')}`}
+            text={`Meeting Time: ${moment(slot.start).format('dddd, MMMM D, h:mm A')}`}
             centered={true}
             color="text-black"
             className="max-w-xl font-medium"
@@ -74,8 +74,6 @@ const BookingConfirmation = ({ slot, bookingResult, onClose }) => {
           hovertextColor="white"
           fontSize="text-sm"
           fontWeight="font-bold"
-                    textAlign='justify-center'
-
           className="px-4 py-2 rounded-full w-full max-w-xs text-center"
           onClick={() => {
             onClose();
@@ -90,7 +88,6 @@ const BookingConfirmation = ({ slot, bookingResult, onClose }) => {
           hovertextColor="white"
           fontSize="text-sm"
           fontWeight="font-bold"
-          textAlign='justify-center'
           className="px-4 py-2 rounded-full w-full max-w-xs text-center"
           onClick={() => {
             onClose();
