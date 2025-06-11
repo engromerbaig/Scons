@@ -90,11 +90,9 @@ const generateCalendarDates = () => {
     return holidays.some((h) => h.date === dateStr);
   };
 
-  const isCurrentMonthInPast = () => {
-    const currentDate = moment();
-    const currentMonthStart = moment(currentMonth).startOf('month');
-    return currentMonthStart.isBefore(currentDate, 'month');
-  };
+const isCurrentMonthInPast = () => {
+  return moment(currentMonth).isSame(moment(), 'month');
+};
 
   const navigateMonth = (direction) => {
     if (direction === 'prev' && isCurrentMonthInPast()) {
@@ -117,7 +115,7 @@ const dayNames = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
         <div className="flex items-center justify-between mb-6">
           <button
             onClick={() => navigateMonth('prev')}
-            className={`p-2 hover:bg-gray-100 rounded-full transition-colors ${isCurrentMonthInPast() ? 'opacity-50 cursor-not-allowed' : ''}`}
+            className={`p-2 hover:bg-neon/20 rounded-full transition-colors ${isCurrentMonthInPast() ? 'opacity-50 cursor-not-allowed' : ''}`}
             disabled={isCurrentMonthInPast()}
           >
             <ChevronLeft size={20} className="text-gray-600" />
@@ -127,7 +125,7 @@ const dayNames = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
           </h3>
           <button
             onClick={() => navigateMonth('next')}
-            className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+            className="p-2  hover:bg-neon/20 rounded-full transition-colors"
           >
             <ChevronRight size={20} className="text-gray-600" />
           </button>
