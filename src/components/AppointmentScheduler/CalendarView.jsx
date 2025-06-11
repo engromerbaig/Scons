@@ -1,16 +1,17 @@
 import React from 'react';
 import moment from 'moment';
+import 'moment-timezone';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { getHolidays, getFlagGradient } from './holidays';
 
-// Ensure moment uses Sunday as the start of the week
+// Ensure moment uses Monday as the start of the week
 moment.updateLocale('en', {
   week: {
-    dow: 1, // Sunday as the first day of the week
+    dow: 1, // Monday as the first day of the week
   },
 });
 
-const CalendarView = ({ currentMonth, setCurrentMonth, selectedDate, events, handleDateClick }) => {
+const CalendarView = ({ currentMonth, setCurrentMonth, selectedDate, events, handleDateClick, getBaseTimeSlots }) => {
   const holidays = getHolidays(moment(currentMonth).year());
 
   const getPriorityHoliday = (date) => {
@@ -37,36 +38,33 @@ const CalendarView = ({ currentMonth, setCurrentMonth, selectedDate, events, han
     return matchingHolidays[0]; // Fallback
   };
 
-const generateCalendarDates = () => {
-  const startOfMonth = moment(currentMonth).startOf('month');
-  const endOfMonth = moment(currentMonth).endOf('month');
+  const generateCalendarDates = () => {
+    const startOfMonth = moment(currentMonth).startOf('month');
+    const endOfMonth = moment(currentMonth).endOf('month');
 
-  const dates = [];
+    const dates = [];
 
-  // Add leading nulls for padding
-  const leadingNulls = (startOfMonth.day() + 6) % 7; // Adjust for Monday start
-  for (let i = 0; i < leadingNulls; i++) {
-    dates.push(null);
-  }
+    // Add leading nulls for padding
+    const leadingNulls = (startOfMonth.day() + 6) % 7; // Adjust for Monday start
+    for (let i = 0; i < leadingNulls; i++) {
+      dates.push(null);
+    }
 
-  // Add actual dates
-  const current = moment(startOfMonth);
-  while (current.isSameOrBefore(endOfMonth)) {
-    dates.push(current.toDate());
-    current.add(1, 'day');
-  }
+    // Add actual dates
+    const current = moment(startOfMonth);
+    while (current.isSameOrBefore(endOfMonth)) {
+      dates.push(current.toDate());
+      current.add(1, 'day');
+    }
 
-  // Add trailing nulls for spacing
-  const trailingNulls = (7 - (dates.length % 7)) % 7;
-  for (let i = 0; i < trailingNulls; i++) {
-    dates.push(null);
-  }
+    // Add trailing nulls for spacing
+    const trailingNulls = (7 - (dates.length % 7)) % 7;
+    for (let i = 0; i < trailingNulls; i++) {
+      dates.push(null);
+    }
 
-  return dates;
-};
-
-
-
+    return dates;
+  };
 
   const isDateInCurrentMonth = (date) => {
     return moment(date).isSame(currentMonth, 'month');
@@ -90,9 +88,27 @@ const generateCalendarDates = () => {
     return holidays.some((h) => h.date === dateStr);
   };
 
-const isCurrentMonthInPast = () => {
-  return moment(currentMonth).isSame(moment(), 'month');
-};
+  const isFullyBooked = (date) => {
+    const daySlots = getBaseTimeSlots(date);
+    if (!daySlots.length) return false; // No slots (e.g., weekends)
+    return daySlots.every((slot) => {
+      const [hour] = slot.pstTime.split(':');
+      const slotStart = moment(date)
+        .tz('America/Los_Angeles')
+        .set({ hour: parseInt(hour), minute: 0 })
+        .toDate();
+      const slotEnd = moment(slotStart).add(1, 'hour').toDate();
+      return events.some(
+        (event) =>
+          moment(slotStart).isBetween(event.start, event.end, null, '[)') ||
+          moment(event.start).isBetween(slotStart, slotEnd, null, '[)')
+      );
+    });
+  };
+
+  const isCurrentMonthInPast = () => {
+    return moment(currentMonth).isBefore(moment(), 'month');
+  };
 
   const navigateMonth = (direction) => {
     if (direction === 'prev' && isCurrentMonthInPast()) {
@@ -106,7 +122,7 @@ const isCurrentMonthInPast = () => {
   };
 
   const calendarDates = generateCalendarDates();
-const dayNames = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
+  const dayNames = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 
   return (
     <div className="col-span-12 lg:col-span-6 h-full">
@@ -125,7 +141,7 @@ const dayNames = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
           </h3>
           <button
             onClick={() => navigateMonth('next')}
-            className="p-2  hover:bg-neon/20 rounded-full transition-colors"
+            className="p-2 hover:bg-neon/20 rounded-full transition-colors"
           >
             <ChevronRight size={20} className="text-gray-600" />
           </button>
@@ -148,7 +164,8 @@ const dayNames = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
               const pastDate = isPastDate(date);
               const weekend = isWeekend(date);
               const holiday = isHoliday(date);
-              const unavailable = pastDate || weekend || holiday;
+              const fullyBooked = isFullyBooked(date);
+              const unavailable = pastDate || weekend || holiday || fullyBooked;
               const isSelected = selectedDate && moment(date).isSame(selectedDate, 'day');
               const priorityHoliday = getPriorityHoliday(date);
 

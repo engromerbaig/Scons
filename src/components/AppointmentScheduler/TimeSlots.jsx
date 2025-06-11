@@ -1,4 +1,5 @@
 import moment from 'moment';
+import 'moment-timezone';
 import { CalendarDays } from 'lucide-react';
 import { useRef, useState, useEffect } from 'react';
 import { gsap } from 'gsap';
@@ -8,7 +9,7 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
   const [activeSlotIndex, setActiveSlotIndex] = useState(null);
   const [showBookingForm, setShowBookingForm] = useState(false);
   const [selectedSlot, setSelectedSlot] = useState(null);
-  const [isFormVisible, setIsFormVisible] = useState(false); // New state for animation control
+  const [isFormVisible, setIsFormVisible] = useState(false);
   const slotRefs = useRef([]);
 
   const getAvailableSlots = (date) => {
@@ -17,8 +18,9 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
     if (isWeekend) return [];
 
     return availableTimeSlots.map((slot) => {
-      const [hour] = slot.value.split(':');
+      const [hour] = slot.pstTime.split(':'); // Use PST time for consistency
       const slotStart = moment(date)
+        .tz('America/Los_Angeles')
         .set({
           hour: parseInt(hour),
           minute: 0,
@@ -31,7 +33,13 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
           moment(slotStart).isBetween(event.start, event.end, null, '[)') ||
           moment(event.start).isBetween(slotStart, slotEnd, null, '[)')
       );
-      return { ...slot, isBooked, start: slotStart };
+
+      // Check if slot is within 1 hour of current time in PST
+      const now = moment().tz('America/Los_Angeles');
+      const slotMoment = moment(slotStart).tz('America/Los_Angeles');
+      const isTooClose = slotMoment.diff(now, 'hours', true) < 1;
+
+      return { ...slot, isBooked, isTooClose, start: slotStart };
     });
   };
 
@@ -53,7 +61,7 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
 
   const handleSlotClick = (index) => {
     if (activeSlotIndex === index) {
-      // Do nothing; toggle off only happens via outside click
+      // Do nothing
     } else {
       if (activeSlotIndex !== null) {
         gsap.to(slotRefs.current[activeSlotIndex].querySelector('.slot-time'), {
@@ -70,7 +78,7 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
 
       setActiveSlotIndex(index);
       gsap.to(slotRefs.current[index].querySelector('.slot-time'), {
-        x: '-60%',
+        x: '-50%',
         duration: 0.3,
         ease: 'power2.out',
       });
@@ -86,20 +94,18 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
     console.log('Opening booking form for slot:', slot);
     setSelectedSlot(slot);
     setShowBookingForm(true);
-    // Delay setting isFormVisible to ensure animation triggers
     setTimeout(() => {
       setIsFormVisible(true);
-    }, 10); // Small delay to allow DOM update
+    }, 10);
   };
 
   const closeBookingForm = () => {
     console.log('Closing booking form');
     setIsFormVisible(false);
-    // Delay hiding the form to allow exit animation
     setTimeout(() => {
       setShowBookingForm(false);
       resetActiveSlot();
-    }, 300); // Match your ModalWrapper's animation duration
+    }, 300);
   };
 
   const handleBookingSubmit = async (formData) => {
@@ -109,14 +115,14 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
       setIsFormVisible(false);
       setTimeout(() => {
         setShowBookingForm(false);
-      }, 300); // Allow animation to complete
+      }, 300);
       onShowConfirmation(selectedSlot, result);
     } catch (error) {
       console.error('Booking submission failed:', error);
       setIsFormVisible(false);
       setTimeout(() => {
         setShowBookingForm(false);
-      }, 300); // Allow animation to complete
+      }, 300);
       onShowConfirmation(selectedSlot, { success: false, error: 'An error occurred during booking.' });
     }
   };
@@ -161,25 +167,27 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
                 getAvailableSlots(selectedDate).map((slot, index) => (
                   <div key={index} ref={(el) => (slotRefs.current[index] = el)} className="relative w-full overflow-hidden">
                     <button
-                      onClick={() => !slot.isBooked && handleSlotClick(index)}
+                      onClick={() => !slot.isBooked && !slot.isTooClose && handleSlotClick(index)}
                       className={`
                         w-full px-4 py-3 text-sm border-2 rounded-lg text-center font-bold relative
-                        ${slot.isBooked
-                          ? 'border-gray-600 text-gray-500 line-through cursor-not-allowed bg-gray-50'
-                          : 'border-neon text-neon hover:bg-neon hover:text-charcoal transition-colors duration-200'}
+                        ${
+                          slot.isBooked || slot.isTooClose
+                            ? 'border-gray-600 text-gray-500 line-through cursor-not-allowed bg-gray-50 opacity-50'
+                            : 'border-neon text-neon hover:bg-neon hover:text-white hover:border-neon transition-colors duration-200'
+                        }
                       `}
-                      disabled={slot.isBooked}
+                      disabled={slot.isBooked || slot.isTooClose}
                     >
                       <span className="slot-time inline-block transform-origin-center" style={{ transformOrigin: 'center' }}>
-                        {slot.time}
+                        {slot.time} {slot.timeZone}
                       </span>
                     </button>
-                    {!slot.isBooked && (
+                    {!slot.isBooked && !slot.isTooClose && (
                       <button
                         onClick={() => openBookingForm(slot)}
                         className="book-it-btn absolute top-0 right-0 h-full px-4 py-3 text-sm bg-black text-white font-bold rounded-r-lg transform translate-x-full"
                       >
-                        Reserve It
+                        Reserve
                       </button>
                     )}
                   </div>
@@ -192,12 +200,10 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
             </div>
           </div>
         ) : (
-
-          // initial state when no date is selected
           <div className="bg-white rounded-lg shadow-sm border p-6 h-full flex flex-col justify-center">
             <div className="text-center py-12">
-              <CalendarDays size={48} className="text-black mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-black mb-2">Select a date</h3>
+              <CalendarDays size={24} className="text-black mx-auto mb-4" />
+              <h3 className="text-lg font-semibold text-black mb-2">Select a Date</h3>
               <p className="text-gray-400">Please select a date from the calendar to view available time slots</p>
             </div>
           </div>
@@ -209,7 +215,7 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
           slot={selectedSlot}
           onSubmit={handleBookingSubmit}
           onClose={closeBookingForm}
-          isOpen={isFormVisible} // Use isFormVisible for animation control
+          isOpen={isFormVisible}
         />
       )}
     </>
