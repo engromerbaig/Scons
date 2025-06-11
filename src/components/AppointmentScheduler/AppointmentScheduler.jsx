@@ -13,34 +13,34 @@ const AppointmentScheduler = () => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [confirmationData, setConfirmationData] = useState(null);
-  const [userTimeZone, setUserTimeZone] = useState('America/Los_Angeles'); // Default PST
+  const [userTimeZone, setUserTimeZone] = useState('Asia/Karachi'); // Default PKT
   const [baseTimeSlots, setBaseTimeSlots] = useState([]);
 
-
-    // Meeting configuration
+  // Meeting configuration
   const meetingInfo = {
     title: 'Free Meeting',
     duration: '30 mins - 1 hour',
     type: 'Google Meet',
     description: 'A brief meeting to discuss your needs and how we can help.',
+    timeZone: userTimeZone,
   };
 
-  // Define time slots based on day of week (PST)
+  // Define time slots in PKT
   const getBaseTimeSlots = (date) => {
     const day = moment(date).day();
     if (day === 1 || day === 4) {
-      // Monday or Thursday: 10 AM, 12 PM, 2 PM, 4 PM PST
+      // Monday or Thursday: 10 AM, 12 PM, 2 PM, 4 PM PKT
       return [
-        { time: '10:00 AM', value: '10:00', pstTime: '10:00' },
-        { time: '12:00 PM', value: '12:00', pstTime: '12:00' },
-        { time: '2:00 PM', value: '14:00', pstTime: '14:00' },
-        { time: '4:00 PM', value: '16:00', pstTime: '16:00' },
+        { time: '10:00 AM', value: '10:00', pktTime: '10:00' },
+        { time: '12:00 PM', value: '12:00', pktTime: '12:00' },
+        { time: '2:00 PM', value: '14:00', pktTime: '14:00' },
+        { time: '4:00 PM', value: '16:00', pktTime: '16:00' },
       ];
     } else if (day === 2 || day === 3 || day === 5) {
-      // Tuesday, Wednesday, Friday: 11 AM, 1 PM PST
+      // Tuesday, Wednesday, Friday: 11 AM, 1 PM PKT
       return [
-        { time: '11:00 AM', value: '11:00', pstTime: '11:00' },
-        { time: '1:00 PM', value: '13:00', pstTime: '13:00' },
+        { time: '11:00 AM', value: '11:00', pktTime: '11:00' },
+        { time: '1:00 PM', value: '13:00', pktTime: '13:00' },
       ];
     }
     return []; // No slots for weekends
@@ -61,7 +61,18 @@ const AppointmentScheduler = () => {
     return date.toDate();
   }
 
-  // Fetch user's time zone from ipgeolocation.io
+  // Manual GMT-based time zone detection
+  const getLocalTimeZone = () => {
+    try {
+      return Intl.DateTimeFormat().resolvedOptions().timeZone;
+    } catch {
+      // Fallback to GMT offset
+      const offset = new Date().getTimezoneOffset();
+      return `GMT${offset <= 0 ? '+' : '-'}${Math.abs(offset / 60).toString().padStart(2, '0')}:00`;
+    }
+  };
+
+  // Fetch user's time zone with fallback to GMT
   useEffect(() => {
     const fetchTimeZone = async () => {
       try {
@@ -70,10 +81,10 @@ const AppointmentScheduler = () => {
         );
         if (!response.ok) throw new Error('Failed to fetch time zone');
         const data = await response.json();
-        setUserTimeZone(data.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone);
+        setUserTimeZone(data.timezone || getLocalTimeZone());
       } catch (error) {
         console.error('Error fetching time zone:', error);
-        setUserTimeZone(Intl.DateTimeFormat().resolvedOptions().timeZone); // Fallback
+        setUserTimeZone(getLocalTimeZone());
       }
     };
     fetchTimeZone();
@@ -127,9 +138,9 @@ const AppointmentScheduler = () => {
   };
 
   const handleBookSlot = async (timeSlot, formData) => {
-    const [hour] = timeSlot.pstTime.split(':'); // Use PST time for booking
+    const [hour] = timeSlot.pktTime.split(':'); // Use PKT time for booking
     const start = moment(selectedDate)
-      .tz('America/Los_Angeles')
+      .tz('Asia/Karachi')
       .set({
         hour: parseInt(hour),
         minute: 0,
@@ -142,7 +153,7 @@ const AppointmentScheduler = () => {
       start: start.toISOString(),
       end: end.toISOString(),
       email: formData.email,
-      userTimeZone, // Include for email updates later
+      userTimeZone,
     };
     console.log('Booked Appointment:', newEvent);
 
@@ -189,16 +200,33 @@ const AppointmentScheduler = () => {
     setConfirmationData(null);
   };
 
-  // Convert time slots to user's time zone
+  // Convert time slots to user's time zone with manual GMT fallback
   const convertedTimeSlots = baseTimeSlots.map((slot) => {
-    const today = moment(selectedDate || new Date()).format('YYYY-MM-DD');
-    const pstTime = moment.tz(`${today} ${slot.pstTime}`, 'YYYY-MM-DD HH:mm', 'America/Los_Angeles');
-    const localTime = pstTime.clone().tz(userTimeZone);
+    const selectedDateStr = moment(selectedDate || new Date()).format('YYYY-MM-DD');
+    let localTime, localDate;
+
+    try {
+      // Primary conversion using moment-timezone
+      const pktTime = moment.tz(`${selectedDateStr} ${slot.pktTime}`, 'YYYY-MM-DD HH:mm', 'Asia/Karachi');
+      localTime = pktTime.clone().tz(userTimeZone);
+      localDate = localTime.format('YYYY-MM-DD');
+    } catch (error) {
+      // Manual GMT-based fallback
+      console.warn('Falling back to GMT conversion:', error);
+      const pktDateTime = new Date(`${selectedDateStr}T${slot.pktTime}:00+05:00`); // PKT is UTC+5
+      const gmtDateTime = new Date(pktDateTime.getTime() - (5 * 60 * 60 * 1000)); // Convert to GMT
+      const localOffset = new Date().getTimezoneOffset() * 60 * 1000; // Local offset in ms
+      const localDateTime = new Date(gmtDateTime.getTime() - localOffset);
+      localTime = moment(localDateTime);
+      localDate = localTime.format('YYYY-MM-DD');
+    }
+
     return {
       ...slot,
       time: localTime.format('h:mm A'), // e.g., "10:00 AM"
       value: localTime.format('HH:mm'), // e.g., "10:00"
-      timeZone: localTime.zoneAbbr(), // e.g., "EDT"
+      timeZone: localTime.zoneAbbr() || 'GMT', // e.g., "PKT"
+      localDate, // Track date for midnight crossing
     };
   });
 
@@ -217,7 +245,7 @@ const AppointmentScheduler = () => {
       <div className="p-0">
         <div className="grid grid-cols-12 gap-8 min-h-full items-stretch">
           <div className="col-span-12 lg:col-span-3 h-full">
-            <MeetingInfo meetingInfo={{ ...meetingInfo, timeZone: userTimeZone }} selectedDate={selectedDate} />
+            <MeetingInfo meetingInfo={meetingInfo} selectedDate={selectedDate} />
           </div>
           <div className="col-span-12 lg:col-span-6 h-full">
             <CalendarView
@@ -226,7 +254,7 @@ const AppointmentScheduler = () => {
               selectedDate={selectedDate}
               events={events}
               handleDateClick={handleDateClick}
-              getBaseTimeSlots={getBaseTimeSlots} // Pass for fully booked check
+              getBaseTimeSlots={getBaseTimeSlots}
             />
           </div>
           <div className="col-span-12 lg:col-span-3 h-full">

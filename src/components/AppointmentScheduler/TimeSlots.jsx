@@ -18,9 +18,9 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
     if (isWeekend) return [];
 
     return availableTimeSlots.map((slot) => {
-      const [hour] = slot.pstTime.split(':'); // Use PST time for consistency
+      const [hour] = slot.pktTime.split(':'); // Use pkt time for consistency
       const slotStart = moment(date)
-        .tz('America/Los_Angeles')
+        .tz('Pakistan/Karachi')
         .set({
           hour: parseInt(hour),
           minute: 0,
@@ -34,7 +34,7 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
           moment(event.start).isBetween(slotStart, slotEnd, null, '[)')
       );
 
-      // Check if slot is within 1 hour of current time in PST
+      // Check if slot is within 1 hour of current time in pkt
       const now = moment().tz('America/Los_Angeles');
       const slotMoment = moment(slotStart).tz('America/Los_Angeles');
       const isTooClose = slotMoment.diff(now, 'hours', true) < 1;

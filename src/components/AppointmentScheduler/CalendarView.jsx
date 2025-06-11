@@ -7,12 +7,19 @@ import { getHolidays, getFlagGradient } from './holidays';
 // Ensure moment uses Monday as the start of the week
 moment.updateLocale('en', {
   week: {
-    dow: 1, // Monday as the first day of the week
+    dow: 1, // Monday as the first day
   },
 });
 
-const CalendarView = ({ currentMonth, setCurrentMonth, selectedDate, events, handleDateClick, getBaseTimeSlots }) => {
-  const holidays = getHolidays(moment(currentMonth).year());
+const CalendarView = ({
+  currentMonth,
+  setCurrentMonth,
+  selectedDate,
+  events,
+  handleDateClick,
+  getBaseTimeSlots,
+}) => {
+  const holidays = getHolidays(moment().year());
 
   const getPriorityHoliday = (date) => {
     const dateStr = moment(date).format('YYYY-MM-DD');
@@ -88,21 +95,24 @@ const CalendarView = ({ currentMonth, setCurrentMonth, selectedDate, events, han
     return holidays.some((h) => h.date === dateStr);
   };
 
-  const isFullyBooked = (date) => {
+  const isFullyUnavailable = (date) => {
     const daySlots = getBaseTimeSlots(date);
     if (!daySlots.length) return false; // No slots (e.g., weekends)
+    const now = moment().tz('Asia/Karachi'); // Current time in PKT
     return daySlots.every((slot) => {
-      const [hour] = slot.pstTime.split(':');
+      const [hour] = slot.pktTime.split(':');
       const slotStart = moment(date)
-        .tz('America/Los_Angeles')
+        .tz('Asia/Karachi')
         .set({ hour: parseInt(hour), minute: 0 })
         .toDate();
       const slotEnd = moment(slotStart).add(1, 'hour').toDate();
-      return events.some(
+      const isBooked = events.some(
         (event) =>
           moment(slotStart).isBetween(event.start, event.end, null, '[)') ||
           moment(event.start).isBetween(slotStart, slotEnd, null, '[)')
       );
+      const isTooClose = moment(slotStart).tz('Asia/Karachi').diff(now, 'hours', true) < 1;
+      return isBooked || isTooClose;
     });
   };
 
@@ -164,8 +174,8 @@ const CalendarView = ({ currentMonth, setCurrentMonth, selectedDate, events, han
               const pastDate = isPastDate(date);
               const weekend = isWeekend(date);
               const holiday = isHoliday(date);
-              const fullyBooked = isFullyBooked(date);
-              const unavailable = pastDate || weekend || holiday || fullyBooked;
+              const fullyUnavailable = isFullyUnavailable(date);
+              const unavailable = pastDate || weekend || holiday || fullyUnavailable;
               const isSelected = selectedDate && moment(date).isSame(selectedDate, 'day');
               const priorityHoliday = getPriorityHoliday(date);
 
