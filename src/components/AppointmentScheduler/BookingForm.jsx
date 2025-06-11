@@ -5,6 +5,8 @@ import FormField from '../FormSteps/modules/FormField';
 import Heading from '../Heading/Heading';
 import BodyText from '../BodyText/BodyText';
 import { Link } from 'react-router-dom';
+import { CiTimer } from "react-icons/ci";
+
 
 const BookingForm = ({ slot, onSubmit, onClose, isOpen }) => {
   const [formData, setFormData] = useState({ name: '', email: '' });
@@ -54,12 +56,20 @@ const BookingForm = ({ slot, onSubmit, onClose, isOpen }) => {
           centered={false}
         />
       </div>
+
+      <div className="flex items-center mb-4">
+ <CiTimer className="text-white font-bold text-2xl mr-2" />
       <BodyText
-        text={`Meeting Time: ${moment(slot.start).format('dddd, MMMM D, h:mm A')}`}
+        text={`${moment(slot.start).format('dddd, MMMM D, h:mm A')}`}
         centered={false}
         color="text-white"
-        size="text-20px"
+        size="text-xl"
+        fontWeight='font-semibold'
       />
+
+      </div>
+
+     
       <form onSubmit={handleSubmit} className="space-y-4 my-6">
         <FormField
           type="text"
