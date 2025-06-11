@@ -1,8 +1,9 @@
 import React from 'react';
 import moment from 'moment';
+import 'moment-timezone';
 import { useNavigate } from 'react-router-dom';
 import Heading from '../../components/Heading/Heading';
-import BodyText from '../../components/BodyText/BodyText';
+import BodyText from '../BodyText/BodyText';
 import Button from '../../components/Button/Button';
 import { CheckCircle, XCircle } from 'lucide-react';
 import { theme } from '../../theme';
@@ -19,24 +20,28 @@ const BookingConfirmation = ({ slot, bookingResult, onClose, onBookAnother }) =>
   const secondButtonText = isSuccess ? 'Book Another' : 'Try Again';
 
   const handleReturnHome = () => {
-    onClose(); // Close any modals/overlays first
-    navigate('/', { replace: true }); // Use replace to avoid back button issues
+    onClose();
+    navigate('/', { replace: true });
   };
 
   const handleSecondAction = () => {
     if (isSuccess) {
-      // For successful booking, if onBookAnother is provided, use it
-      // Otherwise, just reset the booking flow without navigation
       if (onBookAnother) {
         onBookAnother();
       } else {
-        onClose(); // This should reset the booking state in the parent
+        onClose();
       }
     } else {
-      // For failed booking, close and let user try again
       onClose();
     }
   };
+
+  // Format slot time with time zone and handle localDate
+  const slotDate = slot.localDate || moment(slot.start).format('YYYY-MM-DD');
+  const displayDateTime = moment(`${slotDate} ${slot.time}`, 'YYYY-MM-DD h:mm A')
+    .tz(slot.timeZone || 'Asia/Karachi')
+    .format('dddd, MMMM D, h:mm A');
+  const displayTimeZone = slot.timeZone || 'PKT';
 
   return (
     <div
@@ -58,7 +63,7 @@ const BookingConfirmation = ({ slot, bookingResult, onClose, onBookAnother }) =>
             className="max-w-xl"
           />
           <BodyText
-            text={`Meeting Time: ${moment(slot.start).format('dddd, MMMM D, h:mm A')}`}
+            text={`Meeting Time: ${displayDateTime} ${displayTimeZone}`}
             centered={true}
             color="text-black"
             className="max-w-xl font-medium"
@@ -80,7 +85,7 @@ const BookingConfirmation = ({ slot, bookingResult, onClose, onBookAnother }) =>
             className="max-w-xl"
           />
           <BodyText
-            text={`Attempted Time: ${moment(slot.start).format('dddd, MMMM D, h:mm A')}`}
+            text={`Attempted Time: ${displayDateTime} ${displayTimeZone}`}
             centered={true}
             color="text-black"
             className="max-w-xl font-medium"

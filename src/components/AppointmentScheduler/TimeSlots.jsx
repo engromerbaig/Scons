@@ -20,7 +20,7 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
     return availableTimeSlots.map((slot) => {
       const [hour] = slot.pktTime.split(':'); // Use pkt time for consistency
       const slotStart = moment(date)
-        .tz('Pakistan/Karachi')
+        .tz('Asia/Karachi')
         .set({
           hour: parseInt(hour),
           minute: 0,

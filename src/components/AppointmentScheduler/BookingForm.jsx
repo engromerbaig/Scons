@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import moment from 'moment';
+import 'moment-timezone';
 import ModalWrapper from '../ChatModal/ModalWrapper';
 import FormField from '../FormSteps/modules/FormField';
 import Heading from '../Heading/Heading';
 import BodyText from '../BodyText/BodyText';
 import { Link } from 'react-router-dom';
 import { CiTimer } from 'react-icons/ci';
-import Button from '../Button/Button'; // Import the Button component
+import Button from '../Button/Button';
 
 const BookingForm = ({ slot, onSubmit, onClose, isOpen }) => {
   const [formData, setFormData] = useState({ name: '', email: '' });
@@ -27,9 +28,9 @@ const BookingForm = ({ slot, onSubmit, onClose, isOpen }) => {
 
     try {
       setIsSubmitting(true);
-      const result = await onSubmit(formData); // Pass formData to parent for booking
-      setFormData({ name: '', email: '' }); // Reset form after submission
-      return result; // Return result to parent for further handling
+      const result = await onSubmit(formData);
+      setFormData({ name: '', email: '' });
+      return result;
     } catch (error) {
       console.error('BookingForm: Submission failed', error);
       return { success: false, error: 'An error occurred during submission.' };
@@ -43,6 +44,13 @@ const BookingForm = ({ slot, onSubmit, onClose, isOpen }) => {
   };
 
   const inputStyles = 'm-1 py-2 px-6 text-sm rounded-full text-white placeholder-bodyText bg-charcoal w-full focus:outline-none';
+
+  // Format slot time with time zone and handle localDate
+  const slotDate = slot.localDate || moment(slot.start).format('YYYY-MM-DD');
+  const displayDateTime = moment(`${slotDate} ${slot.time}`, 'YYYY-MM-DD h:mm A')
+    .tz(slot.timeZone || 'Asia/Karachi')
+    .format('dddd, MMMM D, h:mm A');
+  const displayTimeZone = slot.timeZone || 'PKT';
 
   return (
     <ModalWrapper isOpen={isOpen} onClose={onClose}>
@@ -60,7 +68,7 @@ const BookingForm = ({ slot, onSubmit, onClose, isOpen }) => {
       <div className="flex items-center mb-4">
         <CiTimer className="text-white font-bold text-2xl mr-2" />
         <BodyText
-          text={`${moment(slot.start).format('dddd, MMMM D, h:mm A')}`}
+          text={`${displayDateTime} ${displayTimeZone}`}
           centered={false}
           color="text-white"
           size="text-xl"
@@ -87,20 +95,20 @@ const BookingForm = ({ slot, onSubmit, onClose, isOpen }) => {
           hideErrorMessages={true}
           required
         />
-     <Button
-  name="Book Slot"
-  type="submit"
-  bgColor="bg-neon"
-  textColor="text-charcoal"
-  hoverBgColor="bg-neon-dark"
-  hoverTextColor="text-charcoal"
-  fontWeight="font-bold"
-  className="w-full"
-  textAlign="justify-center"
-  isLoading={isSubmitting}
-  buttonLoadingText="Booking..." // Override default "Submitting" text
-  disabled={!formData.name.trim() || !formData.email.trim() || isSubmitting}
-/>
+        <Button
+          name="Book Slot"
+          type="submit"
+          bgColor="bg-neon"
+          textColor="text-charcoal"
+          hoverBgColor="bg-neon-dark"
+          hoverTextColor="text-charcoal"
+          fontWeight="font-bold"
+          className="w-full"
+          textAlign="justify-center"
+          isLoading={isSubmitting}
+          buttonLoadingText="Booking..."
+          disabled={!formData.name.trim() || !formData.email.trim() || isSubmitting}
+        />
       </form>
       <BodyText
         text={
