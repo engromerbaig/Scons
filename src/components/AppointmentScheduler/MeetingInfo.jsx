@@ -22,8 +22,10 @@ const MeetingInfo = ({ meetingInfo, selectedDate, onNext }) => {
       <div className="bg-white rounded-lg lg:shadow-sm lg:border p-6 h-full">
         <div className="mb-6">
           <div className="flex items-center gap-3 mb-3">
-            <div className="flex items-center justify-center">
+            <div className="flex items-center justify-start">
               <img src="./favicon.svg" alt="Host Avatar" className="w-6 h-6 lg:w-8 lg:h-8" />
+                            {/* <img src="./z.svg" alt="Host Avatar" className="w-1/2" /> */}
+
             </div>
           </div>
           <Heading text={meetingInfo.title} className="text-xl font-bold text-gray-900 mb-2" centered={false} />
