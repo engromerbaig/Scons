@@ -3,6 +3,9 @@ import { Clock, Video, MapPin } from 'lucide-react';
 import moment from 'moment';
 import 'moment-timezone';
 
+import { RiTimeZoneLine } from "react-icons/ri";
+
+
 const MeetingInfo = ({ meetingInfo, selectedDate }) => {
   // Get the time zone abbreviation (e.g., "EDT", "PDT")
   const timeZoneAbbr = meetingInfo.timeZone
@@ -27,17 +30,17 @@ const MeetingInfo = ({ meetingInfo, selectedDate }) => {
         </div>
         <div className="space-y-4">
           <div className="flex items-center gap-3 text-gray-700">
-            <Clock size={18} className="text-gray-500" />
+            <Clock size={18} className="text-neon" />
             <span className="text-sm">{meetingInfo.duration}</span>
           </div>
           <div className="flex items-center gap-3 text-gray-700">
-            <Video size={18} className="text-gray-500" />
+            <Video size={18} className="text-neon" />
             <span className="text-sm">{meetingInfo.type}</span>
           </div>
           <div className="flex items-center gap-3 text-gray-700">
-            <MapPin size={18} className="text-gray-500" />
+            <RiTimeZoneLine size={18} className="text-neon" />
             <span className="text-sm">
-              Time Zone: {timeZoneAbbr} (Times shown in your local time zone. Meetings scheduled in PST.)
+              Time Zone: {timeZoneAbbr} 
             </span>
           </div>
         </div>
