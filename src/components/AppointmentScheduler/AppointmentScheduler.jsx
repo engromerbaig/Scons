@@ -13,7 +13,7 @@ const AppointmentScheduler = () => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [confirmationData, setConfirmationData] = useState(null);
-  const [userTimeZone, setUserTimeZone] = useState('GMT');
+  const [userTimeZone, setUserTimeZone] = useState(null);
   const [baseTimeSlots, setBaseTimeSlots] = useState([]);
   const [groupedTimeSlots, setGroupedTimeSlots] = useState({});
   const [step, setStep] = useState(1); // 1: MeetingInfo, 2: CalendarView, 3: TimeSlots

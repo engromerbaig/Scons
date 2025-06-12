@@ -8,15 +8,14 @@ import BodyText from '../BodyText/BodyText';
 import Heading from '../Heading/Heading';
 
 const MeetingInfo = ({ meetingInfo, selectedDate, onNext }) => {
-  let timeZoneAbbr = 'PKT';
-  let timeZoneFullName = 'Pakistan Standard Time';
+  let timeZoneAbbr = '';
+  let timeZoneFullName = '';
 
+  // Only set time zone values if meetingInfo.timeZone is available and valid
   if (meetingInfo.timeZone && moment.tz.zone(meetingInfo.timeZone)) {
     timeZoneAbbr = moment.tz(meetingInfo.timeZone).zoneAbbr();
-    timeZoneFullName = moment.tz.zone(meetingInfo.timeZone).name;
+    timeZoneFullName = meetingInfo.timeZone; // Use API-provided name directly
   }
-
-  const timeZoneDisplay = `${timeZoneAbbr} (${timeZoneFullName})`;
 
   return (
     <div className="col-span-12 lg:col-span-3 h-full">
@@ -27,22 +26,33 @@ const MeetingInfo = ({ meetingInfo, selectedDate, onNext }) => {
               <img src="./favicon.svg" alt="Host Avatar" className="w-6 h-6" />
             </div>
           </div>
-          <Heading  text={meetingInfo.title} className="text-xl font-bold text-gray-900 mb-2" centered={false} />
-          <BodyText text={meetingInfo.description} className="text-gray-600 text-sm mb-4" centered={false}  />
+          <Heading text={meetingInfo.title} className="text-xl font-bold text-gray-900 mb-2" centered={false} />
+          <BodyText text={meetingInfo.description} className="text-gray-600 text-sm mb-4" centered={false} />
         </div>
         <div className="space-y-4">
           <div className="flex items-start gap-3 text-gray-700">
             <Clock size={18} className="text-neon" />
-            <BodyText text={meetingInfo.duration} className="text-sm" centered={false}  />
+            <BodyText text={meetingInfo.duration} className="text-sm" centered={false} />
           </div>
           <div className="flex items-start gap-3 text-gray-700">
             <Video size={18} className="text-neon" />
-            <BodyText text={meetingInfo.type} className="text-sm" centered={false}  />
+            <BodyText text={meetingInfo.type} className="text-sm" centered={false} />
           </div>
-          <div className="flex items-start gap-3 text-gray-700">
-            <RiTimeZoneLine size={18} className="text-neon" />
-            <BodyText text={`Time Zone: ${timeZoneDisplay}`} className="text-sm" centered={false}  />
-          </div>
+       <div className="flex items-start gap-3 text-gray-700 min-h-[24px]">
+  <RiTimeZoneLine size={18} className="text-neon mt-[2px]" />
+  <div className="flex flex-col">
+    {meetingInfo.timeZone && moment.tz.zone(meetingInfo.timeZone) ? (
+      <BodyText
+        text={`${timeZoneAbbr} (${timeZoneFullName})`}
+        className="text-sm transition-opacity duration-300 opacity-100"
+        centered={false}
+      />
+    ) : (
+      <div className="w-32 h-4 bg-gray-200 rounded animate-pulse" />
+    )}
+  </div>
+</div>
+
         </div>
 
         {/* Selected Date (lg and above) */}
@@ -64,7 +74,7 @@ const MeetingInfo = ({ meetingInfo, selectedDate, onNext }) => {
           <Button
             name="Schedule Meeting"
             fontSize="text-xs"
-            onClick={onNext} // Trigger step change
+            onClick={onNext}
           />
         </div>
       </div>
