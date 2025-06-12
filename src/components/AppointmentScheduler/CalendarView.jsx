@@ -157,7 +157,12 @@ const CalendarView = ({
 
   return (
     <div className="col-span-12 lg:col-span-6 h-full">
-      <div className="bg-white rounded-lg lg:shadow-sm lg:border p-6 h-full">
+      <div className="bg-white rounded-lg lg:shadow-sm lg:border p-6 h-full relative overflow-hidden">
+        {/* Ribbon for lg and above */}
+<div className="hidden lg:flex absolute top-0 right-0 w-[145px] rotate-45 translate-x-[30px] translate-y-[30px] bg-neon text-black text-center text-10px font-semibold py-1  shadow-md z-10 items-center justify-center">
+  Powered by Scons Tech
+</div>
+
         {/* Header with Back Arrow and Title */}
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-1">
@@ -168,7 +173,7 @@ const CalendarView = ({
             >
               <CgArrowLongLeft size={20} className="text-neon" />
             </button>
-            <h2 className="text-lg xl:text-xl  font-semibold text-gray-900">
+            <h2 className="text-lg xl:text-xl font-semibold text-gray-900">
               Select a Date
             </h2>
           </div>
