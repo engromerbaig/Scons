@@ -13,7 +13,7 @@ const AppointmentScheduler = () => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [confirmationData, setConfirmationData] = useState(null);
-  const [userTimeZone, setUserTimeZone] = useState('Asia/Karachi'); // Default PKT
+  const [userTimeZone, setUserTimeZone] = useState('GMT'); // Default to GMT
   const [baseTimeSlots, setBaseTimeSlots] = useState([]);
 
   // Meeting configuration
@@ -46,7 +46,15 @@ const AppointmentScheduler = () => {
     return []; // No slots for weekends
   };
 
-  // Initialize selectedDate with the first valid weekday (non-holiday, non-past)
+  // Check if a date is within the next 90 days
+  const isWithinNext90Days = (date) => {
+    const today = moment().startOf('day');
+    const targetDate = moment(date).startOf('day');
+    const daysDiff = targetDate.diff(today, 'days');
+    return daysDiff >= 0 && daysDiff <= 90;
+  };
+
+  // Initialize selectedDate with the first valid weekday (non-holiday, non-past, within 90 days)
   function getDefaultDate() {
     let date = moment().startOf('day');
     const holidays = getHolidays(moment().year());
@@ -54,22 +62,40 @@ const AppointmentScheduler = () => {
       date.day() === 0 ||
       date.day() === 6 ||
       date.isBefore(moment(), 'day') ||
+      !isWithinNext90Days(date.toDate()) ||
       holidays.some((h) => h.date === date.format('YYYY-MM-DD'))
     ) {
       date = date.add(1, 'day');
+      // Prevent infinite loop
+      if (date.diff(moment(), 'days') > 100) break;
     }
     return date.toDate();
   }
 
-  // Manual GMT-based time zone detection
+  // Enhanced GMT-based time zone detection with PKT to GMT conversion
   const getLocalTimeZone = () => {
     try {
       return Intl.DateTimeFormat().resolvedOptions().timeZone;
     } catch {
-      // Fallback to GMT offset
+      // Fallback to GMT offset calculation
       const offset = new Date().getTimezoneOffset();
-      return `GMT${offset <= 0 ? '+' : '-'}${Math.abs(offset / 60).toString().padStart(2, '0')}:00`;
+      const hours = Math.abs(Math.floor(offset / 60));
+      const minutes = Math.abs(offset % 60);
+      const sign = offset <= 0 ? '+' : '-';
+      return `GMT${sign}${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
     }
+  };
+
+  // Convert PKT to GMT manually (PKT is UTC+5)
+  const convertPKTToGMT = (pktDateTimeString) => {
+    const pktDateTime = new Date(pktDateTimeString + '+05:00'); // PKT is UTC+5
+    return new Date(pktDateTime.getTime() - (5 * 60 * 60 * 1000)); // Convert to GMT
+  };
+
+  // Convert GMT to local timezone
+  const convertGMTToLocal = (gmtDateTime) => {
+    const localOffset = new Date().getTimezoneOffset() * 60 * 1000; // Local offset in ms
+    return new Date(gmtDateTime.getTime() - localOffset);
   };
 
   // Fetch user's time zone with fallback to GMT
@@ -130,7 +156,7 @@ const AppointmentScheduler = () => {
     const today = moment().startOf('day');
     const selectedDay = moment(date).startOf('day');
 
-    if (day === 0 || day === 6 || selectedDay.isBefore(today)) {
+    if (day === 0 || day === 6 || selectedDay.isBefore(today) || !isWithinNext90Days(date)) {
       return;
     }
     setSelectedDate(date);
@@ -200,33 +226,43 @@ const AppointmentScheduler = () => {
     setConfirmationData(null);
   };
 
-  // Convert time slots to user's time zone with manual GMT fallback
+  // Convert time slots to user's time zone with proper date handling
   const convertedTimeSlots = baseTimeSlots.map((slot) => {
     const selectedDateStr = moment(selectedDate || new Date()).format('YYYY-MM-DD');
-    let localTime, localDate;
+    let localTime, localDate, timeZoneAbbr;
 
     try {
       // Primary conversion using moment-timezone
       const pktTime = moment.tz(`${selectedDateStr} ${slot.pktTime}`, 'YYYY-MM-DD HH:mm', 'Asia/Karachi');
       localTime = pktTime.clone().tz(userTimeZone);
       localDate = localTime.format('YYYY-MM-DD');
+      timeZoneAbbr = localTime.zoneAbbr() || userTimeZone;
     } catch (error) {
       // Manual GMT-based fallback
       console.warn('Falling back to GMT conversion:', error);
-      const pktDateTime = new Date(`${selectedDateStr}T${slot.pktTime}:00+05:00`); // PKT is UTC+5
-      const gmtDateTime = new Date(pktDateTime.getTime() - (5 * 60 * 60 * 1000)); // Convert to GMT
-      const localOffset = new Date().getTimezoneOffset() * 60 * 1000; // Local offset in ms
-      const localDateTime = new Date(gmtDateTime.getTime() - localOffset);
-      localTime = moment(localDateTime);
-      localDate = localTime.format('YYYY-MM-DD');
+      try {
+        const pktDateTime = convertPKTToGMT(`${selectedDateStr}T${slot.pktTime}:00`);
+        const localDateTime = convertGMTToLocal(pktDateTime);
+        localTime = moment(localDateTime);
+        localDate = localTime.format('YYYY-MM-DD');
+        timeZoneAbbr = 'GMT';
+      } catch (fallbackError) {
+        console.error('GMT fallback failed:', fallbackError);
+        // Final fallback - use selected date
+        localTime = moment(`${selectedDateStr} ${slot.pktTime}`, 'YYYY-MM-DD HH:mm');
+        localDate = selectedDateStr;
+        timeZoneAbbr = 'GMT';
+      }
     }
 
     return {
       ...slot,
       time: localTime.format('h:mm A'), // e.g., "10:00 AM"
       value: localTime.format('HH:mm'), // e.g., "10:00"
-      timeZone: localTime.zoneAbbr() || 'GMT', // e.g., "PKT"
+      timeZone: timeZoneAbbr, // e.g., "PKT", "EDT", "GMT"
       localDate, // Track date for midnight crossing
+      originalDate: selectedDateStr, // Keep track of original date
+      dateCrossed: localDate !== selectedDateStr, // Flag if date changed
     };
   });
 
@@ -255,6 +291,7 @@ const AppointmentScheduler = () => {
               events={events}
               handleDateClick={handleDateClick}
               getBaseTimeSlots={getBaseTimeSlots}
+              isWithinNext90Days={isWithinNext90Days}
             />
           </div>
           <div className="col-span-12 lg:col-span-3 h-full">

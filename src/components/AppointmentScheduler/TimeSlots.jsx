@@ -18,7 +18,7 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
     if (isWeekend) return [];
 
     return availableTimeSlots.map((slot) => {
-      const [hour] = slot.pktTime.split(':'); // Use pkt time for consistency
+      const [hour] = slot.pktTime.split(':'); // Use PKT time for consistency
       const slotStart = moment(date)
         .tz('Asia/Karachi')
         .set({
@@ -34,9 +34,9 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
           moment(event.start).isBetween(slotStart, slotEnd, null, '[)')
       );
 
-      // Check if slot is within 1 hour of current time in pkt
-      const now = moment().tz('America/Los_Angeles');
-      const slotMoment = moment(slotStart).tz('America/Los_Angeles');
+      // Check if slot is within 1 hour of current time in PKT
+      const now = moment().tz('Asia/Karachi');
+      const slotMoment = moment(slotStart).tz('Asia/Karachi');
       const isTooClose = slotMoment.diff(now, 'hours', true) < 1;
 
       return { ...slot, isBooked, isTooClose, start: slotStart };
@@ -180,6 +180,11 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
                     >
                       <span className="slot-time inline-block transform-origin-center" style={{ transformOrigin: 'center' }}>
                         {slot.time} {slot.timeZone}
+                        {slot.dateCrossed && (
+                          <span className="block text-xs opacity-75">
+                            {slot.localDate}
+                          </span>
+                        )}
                       </span>
                     </button>
                     {!slot.isBooked && !slot.isTooClose && (

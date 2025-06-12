@@ -18,6 +18,7 @@ const CalendarView = ({
   events,
   handleDateClick,
   getBaseTimeSlots,
+  isWithinNext90Days,
 }) => {
   const holidays = getHolidays(moment().year());
 
@@ -116,19 +117,64 @@ const CalendarView = ({
     });
   };
 
+  // Check if current month is in the past
   const isCurrentMonthInPast = () => {
     return moment(currentMonth).isBefore(moment(), 'month');
   };
 
+  // Check if a month has any available days (within 90 days, not weekend, not holiday, not past)
+  const hasAvailableDays = (monthDate) => {
+    const startOfMonth = moment(monthDate).startOf('month');
+    const endOfMonth = moment(monthDate).endOf('month');
+    const today = moment().startOf('day');
+    
+    let current = moment.max(startOfMonth, today); // Start from today or beginning of month
+    
+    while (current.isSameOrBefore(endOfMonth)) {
+      const currentDate = current.toDate();
+      const day = current.day();
+      const isWeekendDay = day === 0 || day === 6;
+      const isHolidayDate = isHoliday(currentDate);
+      const withinRange = isWithinNext90Days(currentDate);
+      
+      if (!isWeekendDay && !isHolidayDate && withinRange) {
+        return true; // Found at least one available day
+      }
+      current.add(1, 'day');
+    }
+    return false; // No available days in this month
+  };
+
+  // Navigation with availability check
   const navigateMonth = (direction) => {
-    if (direction === 'prev' && isCurrentMonthInPast()) {
-      return;
-    }
     if (direction === 'prev') {
-      setCurrentMonth(moment(currentMonth).subtract(1, 'month').toDate());
+      if (isCurrentMonthInPast()) {
+        return; // Can't go to past months
+      }
+      const prevMonth = moment(currentMonth).subtract(1, 'month').toDate();
+      if (!hasAvailableDays(prevMonth)) {
+        return; // Don't navigate to months with no available days
+      }
+      setCurrentMonth(prevMonth);
     } else {
-      setCurrentMonth(moment(currentMonth).add(1, 'month').toDate());
+      const nextMonth = moment(currentMonth).add(1, 'month').toDate();
+      if (!hasAvailableDays(nextMonth)) {
+        return; // Don't navigate to months with no available days
+      }
+      setCurrentMonth(nextMonth);
     }
+  };
+
+  // Check if navigation buttons should be disabled
+  const isPrevDisabled = () => {
+    if (isCurrentMonthInPast()) return true;
+    const prevMonth = moment(currentMonth).subtract(1, 'month').toDate();
+    return !hasAvailableDays(prevMonth);
+  };
+
+  const isNextDisabled = () => {
+    const nextMonth = moment(currentMonth).add(1, 'month').toDate();
+    return !hasAvailableDays(nextMonth);
   };
 
   const calendarDates = generateCalendarDates();
@@ -141,8 +187,10 @@ const CalendarView = ({
         <div className="flex items-center justify-between mb-6">
           <button
             onClick={() => navigateMonth('prev')}
-            className={`p-2 hover:bg-neon/20 rounded-full transition-colors ${isCurrentMonthInPast() ? 'opacity-50 cursor-not-allowed' : ''}`}
-            disabled={isCurrentMonthInPast()}
+            className={`p-2 hover:bg-neon/20 rounded-full transition-colors ${
+              isPrevDisabled() ? 'opacity-50 cursor-not-allowed' : ''
+            }`}
+            disabled={isPrevDisabled()}
           >
             <ChevronLeft size={20} className="text-gray-600" />
           </button>
@@ -151,7 +199,10 @@ const CalendarView = ({
           </h3>
           <button
             onClick={() => navigateMonth('next')}
-            className="p-2 hover:bg-neon/20 rounded-full transition-colors"
+            className={`p-2 hover:bg-neon/20 rounded-full transition-colors ${
+              isNextDisabled() ? 'opacity-50 cursor-not-allowed' : ''
+            }`}
+            disabled={isNextDisabled()}
           >
             <ChevronRight size={20} className="text-gray-600" />
           </button>
@@ -175,7 +226,8 @@ const CalendarView = ({
               const weekend = isWeekend(date);
               const holiday = isHoliday(date);
               const fullyUnavailable = isFullyUnavailable(date);
-              const unavailable = pastDate || weekend || holiday || fullyUnavailable;
+              const outside90Days = !isWithinNext90Days(date);
+              const unavailable = pastDate || weekend || holiday || fullyUnavailable || outside90Days;
               const isSelected = selectedDate && moment(date).isSame(selectedDate, 'day');
               const priorityHoliday = getPriorityHoliday(date);
 
@@ -191,7 +243,15 @@ const CalendarView = ({
                   <span
                     className={`
                       w-10 h-10 xl:w-12 xl:h-12 p-4 flex items-center justify-center rounded-full text-sm xl:text-base font-black relative
-                      ${isSelected ? 'bg-black text-white' : unavailable ? 'text-gray-300' : 'text-neon bg-neon/10 hover:bg-neon/20 hover:text-neon'}
+                      ${
+                        isSelected 
+                          ? 'bg-black text-white' 
+                          : unavailable 
+                          ? 'text-gray-300' 
+                          : outside90Days
+                          ? 'text-gray-400 opacity-50'
+                          : 'text-neon bg-neon/10 hover:bg-neon/20 hover:text-neon'
+                      }
                     `}
                     style={{
                       ...(holiday && priorityHoliday && !isSelected && !unavailable
@@ -213,6 +273,9 @@ const CalendarView = ({
               );
             })}
           </div>
+        </div>
+        <div className="mt-4 text-xs text-gray-500 text-center">
+          <p>Available for next 90 days • Holidays and weekends excluded</p>
         </div>
       </div>
     </div>
