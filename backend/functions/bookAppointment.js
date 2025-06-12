@@ -94,9 +94,9 @@ const userEmailTemplate = `
         <tr>
             <td>
                 <div class="header">
-                    <div style="table-responsive">
+                  <div style="text-align: left;">
                         <a href="https://sconstech.com/" class="logo">
-                            <img src="https://lustrous-sundae-be0a50.netlify.app/logo.png" alt="Scons Logo" style="width: 150px;">
+                            <img src="https://lustrous-sundae-be0a50.netlify.app/logo.png/" alt="Scons Logo" style="width: 150px;">
                         </a>
                     </div>
                     <div style="margin-top: 40px; margin-bottom: 40px; padding: 40px 0;">

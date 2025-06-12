@@ -481,3 +481,8 @@ html {
     transform: rotate(360deg);
   }
 }
+
+
+.strikethrough {
+  text-decoration: line-through;
+}
