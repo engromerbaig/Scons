@@ -72,7 +72,7 @@ const Locations = () => {
                 textColor="black"
                 hoverBgColor="bg-neon"
                 hoverTextColor="black"
-                link="https://calendly.com/sconstech-official"
+                link="/schedule-a-meeting"
               />
             </FadeWrapper>
           ) : (
