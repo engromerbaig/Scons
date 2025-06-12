@@ -19,10 +19,10 @@ const AppointmentScheduler = () => {
 
   // Meeting configuration
   const meetingInfo = {
-    title: 'Free Meeting',
+    title: 'Free Consultation',
     duration: '30 mins - 1 hour',
     type: 'Google Meet',
-    description: 'A brief meeting to discuss your needs and how we can help.',
+  description: 'Schedule a free consultation to discuss your website, app, or digital project. We’ll explore your goals and offer expert solutions tailored to your business needs.',
     timeZone: userTimeZone,
   };
 

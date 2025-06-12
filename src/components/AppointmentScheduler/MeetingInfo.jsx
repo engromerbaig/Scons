@@ -2,15 +2,20 @@ import React from 'react';
 import { Clock, Video, MapPin } from 'lucide-react';
 import moment from 'moment';
 import 'moment-timezone';
-
 import { RiTimeZoneLine } from "react-icons/ri";
 
-
 const MeetingInfo = ({ meetingInfo, selectedDate }) => {
-  // Get the time zone abbreviation (e.g., "EDT", "PDT")
-  const timeZoneAbbr = meetingInfo.timeZone
-    ? moment.tz(meetingInfo.timeZone).zoneAbbr()
-    : 'PST'; // Fallback to PST if timeZone is undefined
+  // Get the time zone abbreviation and full name
+  let timeZoneAbbr = 'PKT';
+  let timeZoneFullName = 'Pakistan Standard Time';
+  
+  if (meetingInfo.timeZone && moment.tz.zone(meetingInfo.timeZone)) {
+    timeZoneAbbr = moment.tz(meetingInfo.timeZone).zoneAbbr();
+    timeZoneFullName = moment.tz.zone(meetingInfo.timeZone).name;
+  }
+
+  // Format time zone display as "Abbr (Full Name)"
+  const timeZoneDisplay = `${timeZoneAbbr} (${timeZoneFullName})`;
 
   return (
     <div className="col-span-12 lg:col-span-3 h-full">
@@ -40,7 +45,7 @@ const MeetingInfo = ({ meetingInfo, selectedDate }) => {
           <div className="flex items-center gap-3 text-gray-700">
             <RiTimeZoneLine size={18} className="text-neon" />
             <span className="text-sm">
-              Time Zone: {timeZoneAbbr} 
+              Time Zone: {timeZoneDisplay}
             </span>
           </div>
         </div>
@@ -48,7 +53,7 @@ const MeetingInfo = ({ meetingInfo, selectedDate }) => {
           <div className="mt-6 p-4 bg-neon/5 rounded-lg border border-neon">
             <p className="text-sm font-medium text-black">Selected Date</p>
             <p className="text-sm text-neon font-medium">
-              {moment(selectedDate).tz(meetingInfo.timeZone).format('dddd, MMMM D, YYYY')}
+              {moment(selectedDate).tz(meetingInfo.timeZone || 'Asia/Karachi').format('dddd, MMMM D, YYYY')}
             </p>
           </div>
         )}
