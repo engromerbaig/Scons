@@ -6,6 +6,8 @@ export const theme = {
 
         // navbar horizontal this
       paddingHorizontal: 'px-4 md:px-10 lg:px-40 2xl:px-60',
+            paddingHorizontalCalendar: 'px-0 md:px-0 lg:px-40 2xl:px-60',
+
       paddingMenu: 'pl-6 md:pl-10 lg:pl-40',
       paddingMenuVertical:'py-8 lg:py-8',
 
