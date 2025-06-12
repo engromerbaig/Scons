@@ -13,8 +13,9 @@ const AppointmentScheduler = () => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [confirmationData, setConfirmationData] = useState(null);
-  const [userTimeZone, setUserTimeZone] = useState('GMT'); // Default to GMT
+  const [userTimeZone, setUserTimeZone] = useState('GMT');
   const [baseTimeSlots, setBaseTimeSlots] = useState([]);
+  const [groupedTimeSlots, setGroupedTimeSlots] = useState({});
 
   // Meeting configuration
   const meetingInfo = {
@@ -43,7 +44,7 @@ const AppointmentScheduler = () => {
         { time: '1:00 PM', value: '13:00', pktTime: '13:00' },
       ];
     }
-    return []; // No slots for weekends
+    return [];
   };
 
   // Check if a date is within the next 90 days
@@ -54,7 +55,7 @@ const AppointmentScheduler = () => {
     return daysDiff >= 0 && daysDiff <= 90;
   };
 
-  // Initialize selectedDate with the first valid weekday (non-holiday, non-past, within 90 days)
+  // Initialize selectedDate with the first valid weekday
   function getDefaultDate() {
     let date = moment().startOf('day');
     const holidays = getHolidays(moment().year());
@@ -66,18 +67,16 @@ const AppointmentScheduler = () => {
       holidays.some((h) => h.date === date.format('YYYY-MM-DD'))
     ) {
       date = date.add(1, 'day');
-      // Prevent infinite loop
       if (date.diff(moment(), 'days') > 100) break;
     }
     return date.toDate();
   }
 
-  // Enhanced GMT-based time zone detection with PKT to GMT conversion
+  // Enhanced GMT-based time zone detection
   const getLocalTimeZone = () => {
     try {
       return Intl.DateTimeFormat().resolvedOptions().timeZone;
     } catch {
-      // Fallback to GMT offset calculation
       const offset = new Date().getTimezoneOffset();
       const hours = Math.abs(Math.floor(offset / 60));
       const minutes = Math.abs(offset % 60);
@@ -88,17 +87,17 @@ const AppointmentScheduler = () => {
 
   // Convert PKT to GMT manually (PKT is UTC+5)
   const convertPKTToGMT = (pktDateTimeString) => {
-    const pktDateTime = new Date(pktDateTimeString + '+05:00'); // PKT is UTC+5
-    return new Date(pktDateTime.getTime() - (5 * 60 * 60 * 1000)); // Convert to GMT
+    const pktDateTime = new Date(pktDateTimeString + '+05:00');
+    return new Date(pktDateTime.getTime() - (5 * 60 * 60 * 1000));
   };
 
   // Convert GMT to local timezone
   const convertGMTToLocal = (gmtDateTime) => {
-    const localOffset = new Date().getTimezoneOffset() * 60 * 1000; // Local offset in ms
+    const localOffset = new Date().getTimezoneOffset() * 60 * 1000;
     return new Date(gmtDateTime.getTime() - localOffset);
   };
 
-  // Fetch user's time zone with fallback to GMT
+  // Fetch user's time zone
   useEffect(() => {
     const fetchTimeZone = async () => {
       try {
@@ -123,12 +122,77 @@ const AppointmentScheduler = () => {
     setBaseTimeSlots(getBaseTimeSlots(defaultDate));
   }, []);
 
-  // Update time slots when selectedDate changes
+  // Generate grouped time slots for multiple days when date crossing occurs
+ // Generate time slots only for the selected date
+const generateGroupedTimeSlots = (centerDate) => {
+  if (!centerDate) return {};
+
+  const grouped = {};
+  const selectedDateStr = moment(centerDate).format('YYYY-MM-DD');
+  const daySlots = getBaseTimeSlots(centerDate);
+
+  // Process slots for the selected date only
+  if (daySlots.length > 0) {
+    daySlots.forEach((slot) => {
+      let localTime, localDate, timeZoneAbbr;
+
+      try {
+        // Primary conversion using moment-timezone
+        const pktTime = moment.tz(`${selectedDateStr} ${slot.pktTime}`, 'YYYY-MM-DD HH:mm', 'Asia/Karachi');
+        localTime = pktTime.clone().tz(userTimeZone);
+        localDate = localTime.format('YYYY-MM-DD');
+        timeZoneAbbr = localTime.zoneAbbr() || userTimeZone;
+      } catch (error) {
+        // Manual GMT-based fallback
+        console.warn('Falling back to GMT conversion:', error);
+        try {
+          const pktDateTime = convertPKTToGMT(`${selectedDateStr}T${slot.pktTime}:00`);
+          const localDateTime = convertGMTToLocal(pktDateTime);
+          localTime = moment(localDateTime);
+          localDate = localTime.format('YYYY-MM-DD');
+          timeZoneAbbr = 'GMT';
+        } catch (fallbackError) {
+          console.error('GMT fallback failed:', fallbackError);
+          localTime = moment(`${selectedDateStr} ${slot.pktTime}`, 'YYYY-MM-DD HH:mm');
+          localDate = selectedDateStr;
+          timeZoneAbbr = 'GMT';
+        }
+      }
+
+      const convertedSlot = {
+        ...slot,
+        time: localTime.format('h:mm A'),
+        value: localTime.format('HH:mm'),
+        timeZone: timeZoneAbbr,
+        localDate,
+        originalDate: selectedDateStr,
+        originalDateObj: centerDate, // Keep original date object for booking
+        dateCrossed: localDate !== selectedDateStr,
+      };
+
+      // Group by local date
+      if (!grouped[localDate]) {
+        grouped[localDate] = [];
+      }
+      grouped[localDate].push(convertedSlot);
+    });
+  }
+
+  // Sort slots within the date group
+  Object.keys(grouped).forEach(date => {
+    grouped[date].sort((a, b) => moment(a.value, 'HH:mm').diff(moment(b.value, 'HH:mm')));
+  });
+
+  return grouped;
+};
+
+  // Update grouped time slots when selectedDate or userTimeZone changes
   useEffect(() => {
     if (selectedDate) {
-      setBaseTimeSlots(getBaseTimeSlots(selectedDate));
+      const grouped = generateGroupedTimeSlots(selectedDate);
+      setGroupedTimeSlots(grouped);
     }
-  }, [selectedDate]);
+  }, [selectedDate, userTimeZone]);
 
   // Fetch events from backend
   useEffect(() => {
@@ -164,8 +228,9 @@ const AppointmentScheduler = () => {
   };
 
   const handleBookSlot = async (timeSlot, formData) => {
-    const [hour] = timeSlot.pktTime.split(':'); // Use PKT time for booking
-    const start = moment(selectedDate)
+    // Use the original date and PKT time for booking
+    const [hour] = timeSlot.pktTime.split(':');
+    const start = moment(timeSlot.originalDateObj)
       .tz('Asia/Karachi')
       .set({
         hour: parseInt(hour),
@@ -181,7 +246,6 @@ const AppointmentScheduler = () => {
       email: formData.email,
       userTimeZone,
     };
-    console.log('Booked Appointment:', newEvent);
 
     try {
       const response = await fetch('/.netlify/functions/bookAppointment', {
@@ -198,7 +262,6 @@ const AppointmentScheduler = () => {
           throw new Error('Failed to fetch appointments');
         }
         const updatedEvents = await fetchResponse.json();
-        console.log('Updated Appointments:', updatedEvents);
         setEvents(
           updatedEvents.map((event) => ({
             title: event.title,
@@ -225,46 +288,6 @@ const AppointmentScheduler = () => {
   const handleCloseConfirmation = () => {
     setConfirmationData(null);
   };
-
-  // Convert time slots to user's time zone with proper date handling
-  const convertedTimeSlots = baseTimeSlots.map((slot) => {
-    const selectedDateStr = moment(selectedDate || new Date()).format('YYYY-MM-DD');
-    let localTime, localDate, timeZoneAbbr;
-
-    try {
-      // Primary conversion using moment-timezone
-      const pktTime = moment.tz(`${selectedDateStr} ${slot.pktTime}`, 'YYYY-MM-DD HH:mm', 'Asia/Karachi');
-      localTime = pktTime.clone().tz(userTimeZone);
-      localDate = localTime.format('YYYY-MM-DD');
-      timeZoneAbbr = localTime.zoneAbbr() || userTimeZone;
-    } catch (error) {
-      // Manual GMT-based fallback
-      console.warn('Falling back to GMT conversion:', error);
-      try {
-        const pktDateTime = convertPKTToGMT(`${selectedDateStr}T${slot.pktTime}:00`);
-        const localDateTime = convertGMTToLocal(pktDateTime);
-        localTime = moment(localDateTime);
-        localDate = localTime.format('YYYY-MM-DD');
-        timeZoneAbbr = 'GMT';
-      } catch (fallbackError) {
-        console.error('GMT fallback failed:', fallbackError);
-        // Final fallback - use selected date
-        localTime = moment(`${selectedDateStr} ${slot.pktTime}`, 'YYYY-MM-DD HH:mm');
-        localDate = selectedDateStr;
-        timeZoneAbbr = 'GMT';
-      }
-    }
-
-    return {
-      ...slot,
-      time: localTime.format('h:mm A'), // e.g., "10:00 AM"
-      value: localTime.format('HH:mm'), // e.g., "10:00"
-      timeZone: timeZoneAbbr, // e.g., "PKT", "EDT", "GMT"
-      localDate, // Track date for midnight crossing
-      originalDate: selectedDateStr, // Keep track of original date
-      dateCrossed: localDate !== selectedDateStr, // Flag if date changed
-    };
-  });
 
   if (confirmationData) {
     return (
@@ -298,7 +321,7 @@ const AppointmentScheduler = () => {
             <TimeSlots
               selectedDate={selectedDate}
               setSelectedDate={setSelectedDate}
-              availableTimeSlots={convertedTimeSlots}
+              groupedTimeSlots={groupedTimeSlots}
               events={events}
               handleBookSlot={handleBookSlot}
               onShowConfirmation={handleShowConfirmation}

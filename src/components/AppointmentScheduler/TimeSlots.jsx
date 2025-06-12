@@ -5,88 +5,105 @@ import { useRef, useState, useEffect } from 'react';
 import { gsap } from 'gsap';
 import BookingForm from './BookingForm';
 
-const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, handleBookSlot, onShowConfirmation }) => {
+const TimeSlots = ({ 
+  selectedDate, 
+  setSelectedDate, 
+  groupedTimeSlots, 
+  events, 
+  handleBookSlot, 
+  onShowConfirmation 
+}) => {
   const [activeSlotIndex, setActiveSlotIndex] = useState(null);
+  const [activeSlotGroup, setActiveSlotGroup] = useState(null);
   const [showBookingForm, setShowBookingForm] = useState(false);
   const [selectedSlot, setSelectedSlot] = useState(null);
   const [isFormVisible, setIsFormVisible] = useState(false);
-  const slotRefs = useRef([]);
+  const slotRefs = useRef({});
 
-  const getAvailableSlots = (date) => {
-    const day = date.getDay();
-    const isWeekend = day === 0 || day === 6;
-    if (isWeekend) return [];
+  const checkSlotAvailability = (slot) => {
+    // Use original date for checking availability
+    const [hour] = slot.pktTime.split(':');
+    const slotStart = moment(slot.originalDateObj)
+      .tz('Asia/Karachi')
+      .set({
+        hour: parseInt(hour),
+        minute: 0,
+      })
+      .toDate();
+    const slotEnd = moment(slotStart).add(1, 'hour').toDate();
 
-    return availableTimeSlots.map((slot) => {
-      const [hour] = slot.pktTime.split(':'); // Use PKT time for consistency
-      const slotStart = moment(date)
-        .tz('Asia/Karachi')
-        .set({
-          hour: parseInt(hour),
-          minute: 0,
-        })
-        .toDate();
-      const slotEnd = moment(slotStart).add(1, 'hour').toDate();
+    const isBooked = events.some(
+      (event) =>
+        moment(slotStart).isBetween(event.start, event.end, null, '[)') ||
+        moment(event.start).isBetween(slotStart, slotEnd, null, '[)')
+    );
 
-      const isBooked = events.some(
-        (event) =>
-          moment(slotStart).isBetween(event.start, event.end, null, '[)') ||
-          moment(event.start).isBetween(slotStart, slotEnd, null, '[)')
-      );
+    // Check if slot is within 1 hour of current time in PKT
+    const now = moment().tz('Asia/Karachi');
+    const slotMoment = moment(slotStart).tz('Asia/Karachi');
+    const isTooClose = slotMoment.diff(now, 'hours', true) < 1;
 
-      // Check if slot is within 1 hour of current time in PKT
-      const now = moment().tz('Asia/Karachi');
-      const slotMoment = moment(slotStart).tz('Asia/Karachi');
-      const isTooClose = slotMoment.diff(now, 'hours', true) < 1;
-
-      return { ...slot, isBooked, isTooClose, start: slotStart };
-    });
+    return { ...slot, isBooked, isTooClose, start: slotStart };
   };
 
   const resetActiveSlot = () => {
-    if (activeSlotIndex !== null) {
-      gsap.to(slotRefs.current[activeSlotIndex].querySelector('.slot-time'), {
-        x: 0,
-        duration: 0.3,
-        ease: 'power2.out',
-      });
-      gsap.to(slotRefs.current[activeSlotIndex].querySelector('.book-it-btn'), {
-        x: '100%',
-        duration: 0.3,
-        ease: 'power2.out',
-      });
-      setActiveSlotIndex(null);
-    }
-  };
-
-  const handleSlotClick = (index) => {
-    if (activeSlotIndex === index) {
-      // Do nothing
-    } else {
-      if (activeSlotIndex !== null) {
-        gsap.to(slotRefs.current[activeSlotIndex].querySelector('.slot-time'), {
+    if (activeSlotIndex !== null && activeSlotGroup !== null) {
+      const slotRef = slotRefs.current[`${activeSlotGroup}-${activeSlotIndex}`];
+      if (slotRef) {
+        gsap.to(slotRef.querySelector('.slot-time'), {
           x: 0,
           duration: 0.3,
           ease: 'power2.out',
         });
-        gsap.to(slotRefs.current[activeSlotIndex].querySelector('.book-it-btn'), {
+        gsap.to(slotRef.querySelector('.book-it-btn'), {
+          x: '100%',
+          duration: 0.3,
+          ease: 'power2.out',
+        });
+      }
+      setActiveSlotIndex(null);
+      setActiveSlotGroup(null);
+    }
+  };
+
+  const handleSlotClick = (groupDate, index) => {
+    const currentKey = `${groupDate}-${index}`;
+    const activeKey = activeSlotGroup && activeSlotIndex !== null ? `${activeSlotGroup}-${activeSlotIndex}` : null;
+
+    if (activeKey === currentKey) {
+      // Do nothing if clicking the same slot
+    } else {
+      // Reset previous active slot
+      if (activeKey && slotRefs.current[activeKey]) {
+        gsap.to(slotRefs.current[activeKey].querySelector('.slot-time'), {
+          x: 0,
+          duration: 0.3,
+          ease: 'power2.out',
+        });
+        gsap.to(slotRefs.current[activeKey].querySelector('.book-it-btn'), {
           x: '100%',
           duration: 0.3,
           ease: 'power2.out',
         });
       }
 
+      // Activate new slot
       setActiveSlotIndex(index);
-      gsap.to(slotRefs.current[index].querySelector('.slot-time'), {
-        x: '-50%',
-        duration: 0.3,
-        ease: 'power2.out',
-      });
-      gsap.to(slotRefs.current[index].querySelector('.book-it-btn'), {
-        x: '0%',
-        duration: 0.3,
-        ease: 'power2.out',
-      });
+      setActiveSlotGroup(groupDate);
+      
+      const newSlotRef = slotRefs.current[currentKey];
+      if (newSlotRef) {
+        gsap.to(newSlotRef.querySelector('.slot-time'), {
+          x: '-50%',
+          duration: 0.3,
+          ease: 'power2.out',
+        });
+        gsap.to(newSlotRef.querySelector('.book-it-btn'), {
+          x: '0%',
+          duration: 0.3,
+          ease: 'power2.out',
+        });
+      }
     }
   };
 
@@ -129,9 +146,10 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (activeSlotIndex === null || showBookingForm) return;
+      if (activeSlotIndex === null || activeSlotGroup === null || showBookingForm) return;
 
-      const currentSlot = slotRefs.current[activeSlotIndex];
+      const currentKey = `${activeSlotGroup}-${activeSlotIndex}`;
+      const currentSlot = slotRefs.current[currentKey];
       if (!currentSlot) return;
 
       const slotButton = currentSlot.querySelector('button');
@@ -149,7 +167,32 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
     return () => {
       document.removeEventListener('click', handleClickOutside);
     };
-  }, [activeSlotIndex, showBookingForm]);
+  }, [activeSlotIndex, activeSlotGroup, showBookingForm]);
+
+  // Get formatted date for display
+  const getDateDisplay = (dateStr) => {
+    const date = moment(dateStr);
+    const today = moment().startOf('day');
+    const tomorrow = moment().add(1, 'day').startOf('day');
+    const yesterday = moment().subtract(1, 'day').startOf('day');
+
+    if (date.isSame(today, 'day')) {
+      return 'Today';
+    } else if (date.isSame(tomorrow, 'day')) {
+      return 'Tomorrow';
+    } else if (date.isSame(yesterday, 'day')) {
+      return 'Yesterday';
+    } else {
+      return date.format('dddd, MMMM D');
+    }
+  };
+
+  // Sort grouped dates chronologically
+  const sortedGroupDates = Object.keys(groupedTimeSlots).sort((a, b) => 
+    moment(a).diff(moment(b))
+  );
+
+  const hasAnySlots = sortedGroupDates.length > 0;
 
   return (
     <>
@@ -159,44 +202,75 @@ const TimeSlots = ({ selectedDate, setSelectedDate, availableTimeSlots, events, 
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-xl font-semibold">Available Slots</h3>
             </div>
-            <div className="mb-4">
-              <p className="text-gray-400 font-medium">{moment(selectedDate).format('dddd, MMMM D')}</p>
-            </div>
-            <div className="space-y-4 overflow-y-auto flex-1">
-              {getAvailableSlots(selectedDate).length > 0 ? (
-                getAvailableSlots(selectedDate).map((slot, index) => (
-                  <div key={index} ref={(el) => (slotRefs.current[index] = el)} className="relative w-full overflow-hidden">
-                    <button
-                      onClick={() => !slot.isBooked && !slot.isTooClose && handleSlotClick(index)}
-                      className={`
-                        w-full px-4 py-3 text-sm border-2 rounded-lg text-center font-bold relative
-                        ${
-                          slot.isBooked || slot.isTooClose
-                            ? 'border-gray-600 text-gray-500 line-through cursor-not-allowed bg-gray-50 opacity-50'
-                            : 'border-neon text-neon hover:bg-neon hover:text-white hover:border-neon transition-colors duration-200'
-                        }
-                      `}
-                      disabled={slot.isBooked || slot.isTooClose}
-                    >
-                      <span className="slot-time inline-block transform-origin-center" style={{ transformOrigin: 'center' }}>
-                        {slot.time} {slot.timeZone}
-                        {slot.dateCrossed && (
-                          <span className="block text-xs opacity-75">
-                            {slot.localDate}
-                          </span>
-                        )}
-                      </span>
-                    </button>
-                    {!slot.isBooked && !slot.isTooClose && (
-                      <button
-                        onClick={() => openBookingForm(slot)}
-                        className="book-it-btn absolute top-0 right-0 h-full px-4 py-3 text-sm bg-black text-white font-bold rounded-r-lg transform translate-x-full"
-                      >
-                        Reserve
-                      </button>
-                    )}
-                  </div>
-                ))
+            
+            <div className="space-y-6 overflow-y-auto flex-1">
+              {hasAnySlots ? (
+                sortedGroupDates.map((groupDate) => {
+                  const slots = groupedTimeSlots[groupDate];
+                  const hasAvailableSlots = slots.some(slot => {
+                    const checkedSlot = checkSlotAvailability(slot);
+                    return !checkedSlot.isBooked && !checkedSlot.isTooClose;
+                  });
+
+                  return (
+                    <div key={groupDate} className="space-y-3">
+                      <div className="flex items-center justify-between">
+                        <h4 className="text-sm font-medium text-gray-700">
+                          {getDateDisplay(groupDate)}
+                        </h4>
+                        <span className="text-xs text-gray-400">
+                          {moment(groupDate).format('MMM D')}
+                        </span>
+                      </div>
+                      
+                      <div className="space-y-2">
+                        {slots.map((slot, index) => {
+                          const checkedSlot = checkSlotAvailability(slot);
+                          const slotKey = `${groupDate}-${index}`;
+                          
+                          return (
+                            <div 
+                              key={index} 
+                              ref={(el) => (slotRefs.current[slotKey] = el)} 
+                              className="relative w-full overflow-hidden"
+                            >
+                              <button
+                                onClick={() => !checkedSlot.isBooked && !checkedSlot.isTooClose && handleSlotClick(groupDate, index)}
+                                className={`
+                                  w-full px-4 py-3 text-sm border-2 rounded-lg text-center font-bold relative
+                                  ${
+                                    checkedSlot.isBooked || checkedSlot.isTooClose
+                                      ? 'border-gray-600 text-gray-500 line-through cursor-not-allowed bg-gray-50 opacity-50'
+                                      : 'border-neon text-neon hover:bg-neon hover:text-white hover:border-neon transition-colors duration-200'
+                                  }
+                                `}
+                                disabled={checkedSlot.isBooked || checkedSlot.isTooClose}
+                              >
+                                <span className="slot-time inline-block transform-origin-center">
+                                  {checkedSlot.time} {checkedSlot.timeZone}
+                                </span>
+                              </button>
+                              {!checkedSlot.isBooked && !checkedSlot.isTooClose && (
+                                <button
+                                  onClick={() => openBookingForm(checkedSlot)}
+                                  className="book-it-btn absolute top-0 right-0 h-full px-4 py-3 text-sm bg-black text-white font-bold rounded-r-lg transform translate-x-full"
+                                >
+                                  Reserve
+                                </button>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
+                      
+                      {!hasAvailableSlots && (
+                        <p className="text-xs text-gray-400 italic text-center py-2">
+                          No available slots for this date
+                        </p>
+                      )}
+                    </div>
+                  );
+                })
               ) : (
                 <div className="text-center py-12">
                   <p className="text-gray-400">No available times for this date</p>
