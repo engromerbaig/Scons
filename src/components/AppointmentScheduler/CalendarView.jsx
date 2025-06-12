@@ -159,7 +159,7 @@ const CalendarView = ({
     <div className="col-span-12 lg:col-span-6 h-full">
       <div className="bg-white rounded-lg lg:shadow-sm lg:border p-6 h-full">
         {/* Header with Back Arrow and Title */}
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-1">
             <button
               onClick={onBack}

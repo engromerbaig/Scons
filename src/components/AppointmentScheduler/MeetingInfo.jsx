@@ -1,9 +1,11 @@
 import React from 'react';
-import { Clock, Video, MapPin } from 'lucide-react';
+import { Clock, Video } from 'lucide-react';
 import moment from 'moment';
 import 'moment-timezone';
 import { RiTimeZoneLine } from 'react-icons/ri';
 import Button from '../Button/Button';
+import BodyText from '../BodyText/BodyText';
+import Heading from '../Heading/Heading';
 
 const MeetingInfo = ({ meetingInfo, selectedDate, onNext }) => {
   let timeZoneAbbr = 'PKT';
@@ -25,37 +27,35 @@ const MeetingInfo = ({ meetingInfo, selectedDate, onNext }) => {
               <img src="./favicon.svg" alt="Host Avatar" className="w-6 h-6" />
             </div>
           </div>
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">
-            {meetingInfo.title}
-          </h1>
-          <p className="text-gray-600 text-sm mb-4">
-            {meetingInfo.description}
-          </p>
+          <Heading  text={meetingInfo.title} className="text-xl font-bold text-gray-900 mb-2" centered={false} />
+          <BodyText text={meetingInfo.description} className="text-gray-600 text-sm mb-4" centered={false}  />
         </div>
         <div className="space-y-4">
           <div className="flex items-start gap-3 text-gray-700">
             <Clock size={18} className="text-neon" />
-            <span className="text-sm">{meetingInfo.duration}</span>
+            <BodyText text={meetingInfo.duration} className="text-sm" centered={false}  />
           </div>
           <div className="flex items-start gap-3 text-gray-700">
             <Video size={18} className="text-neon" />
-            <span className="text-sm">{meetingInfo.type}</span>
+            <BodyText text={meetingInfo.type} className="text-sm" centered={false}  />
           </div>
           <div className="flex items-start gap-3 text-gray-700">
             <RiTimeZoneLine size={18} className="text-neon" />
-            <span className="text-sm">Time Zone: {timeZoneDisplay}</span>
+            <BodyText text={`Time Zone: ${timeZoneDisplay}`} className="text-sm" centered={false}  />
           </div>
         </div>
 
         {/* Selected Date (lg and above) */}
         {selectedDate && (
           <div className="hidden lg:block mt-6 p-4 bg-neon/5 rounded-lg border border-neon">
-            <p className="text-sm font-medium text-black">Selected Date</p>
-            <p className="text-sm text-neon font-medium">
-              {moment(selectedDate)
+            <BodyText text="Selected Date" className="text-sm font-medium text-black" centered={false} />
+            <BodyText
+              text={moment(selectedDate)
                 .tz(meetingInfo.timeZone || 'Asia/Karachi')
                 .format('dddd, MMMM D, YYYY')}
-            </p>
+              className="text-sm text-neon font-semibold"
+              centered={false}
+            />
           </div>
         )}
 
