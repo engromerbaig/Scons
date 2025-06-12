@@ -7,6 +7,9 @@ import TimeSlots from './TimeSlots';
 import BookingConfirmation from './BookingConfirmation';
 import { theme } from '../../theme';
 import { getHolidays } from './holidays';
+import ogLogo from '../../assets/images/og-default.jpg'; // Same OG image as packages
+import schema from '../../utilities/schema'; // Use same schema or create a new one if needed
+import { Helmet } from 'react-helmet-async'; // Import Helmet for SEO
 
 const AppointmentScheduler = () => {
   const [events, setEvents] = useState([]);
@@ -32,6 +35,20 @@ const AppointmentScheduler = () => {
       'Schedule a free consultation to discuss your website, app, or digital project. We’ll explore your goals and offer expert solutions tailored to your business needs.',
     timeZone: userTimeZone,
   };
+
+//   meta text
+const metaDescription =
+    'Book a free consultation with Scons Tech to discuss your web, app, or digital project goals. We provide tailored expert advice to help your business grow.';
+  const keywords = [
+    'Scons Tech',
+    'schedule a meeting',
+    'free consultation',
+    'web development meeting',
+    'book appointment',
+    'digital consultation',
+    'UK software services'
+  ].join(', ');
+
 
   // Define time slots in PKT
   const getBaseTimeSlots = (date) => {
@@ -338,6 +355,35 @@ const AppointmentScheduler = () => {
     <div
       className={`min-h-screen ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontalCalendar}`}
     >
+
+        <Helmet>
+  <title>Schedule a Meeting | Scons Tech</title>
+  <meta name="description" content={metaDescription} />
+  <meta name="keywords" content={keywords} />
+  <link rel="canonical" href="https://sconstech.com/schedule-a-meeting" />
+
+  {/* Open Graph */}
+  <meta property="og:title" content="Schedule a Meeting | Scons Tech" />
+  <meta property="og:description" content={metaDescription} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sconstech.com/schedule-a-meeting" />
+  <meta property="og:image" content={ogLogo} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Scons logo" />
+
+  {/* Twitter Card */}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Schedule a Meeting | Scons Tech" />
+  <meta name="twitter:description" content={metaDescription} />
+  <meta name="twitter:image" content={ogLogo} />
+
+  {/* Structured Data */}
+           <script type="application/ld+json">{schema}</script>
+
+</Helmet>
+
+
       {/* Large screens (lg and above): Side-by-side grid */}
       <div className="hidden lg:grid grid-cols-12 gap-x-8 gap-y-6 min-h-full items-stretch">
         <div className="col-span-12 lg:col-span-3 h-full">
