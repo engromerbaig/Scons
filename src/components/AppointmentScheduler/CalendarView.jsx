@@ -2,12 +2,12 @@ import React from 'react';
 import moment from 'moment';
 import 'moment-timezone';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { CgArrowLongLeft } from 'react-icons/cg';
 import { getHolidays, getFlagGradient } from './holidays';
 
-// Ensure moment uses Monday as the start of the week
 moment.updateLocale('en', {
   week: {
-    dow: 1, // Monday as the first day
+    dow: 1,
   },
 });
 
@@ -19,6 +19,7 @@ const CalendarView = ({
   handleDateClick,
   getBaseTimeSlots,
   isWithinNext90Days,
+  onBack,
 }) => {
   const holidays = getHolidays(moment().year());
 
@@ -27,50 +28,37 @@ const CalendarView = ({
     const matchingHolidays = holidays.filter((h) => h.date === dateStr);
 
     if (matchingHolidays.length === 0) return null;
-
-    // Priority 1: Independence Day
     const independenceDay = matchingHolidays.find((h) => h.isIndependence);
     if (independenceDay) return independenceDay;
-
-    // Priority 2: Islamic Holidays (Pakistan)
-    const islamicHoliday = matchingHolidays.find((h) => h.isIslamic && h.country === 'Pakistan');
+    const islamicHoliday = matchingHolidays.find(
+      (h) => h.isIslamic && h.country === 'Pakistan'
+    );
     if (islamicHoliday) return islamicHoliday;
-
-    // Priority 3: Country-based priority (USA > UK > Australia > Germany > Pakistan)
     const priorityOrder = ['USA', 'UK', 'Australia', 'Germany', 'Pakistan'];
     for (const country of priorityOrder) {
       const holiday = matchingHolidays.find((h) => h.country === country);
       if (holiday) return holiday;
     }
-
-    return matchingHolidays[0]; // Fallback
+    return matchingHolidays[0];
   };
 
   const generateCalendarDates = () => {
     const startOfMonth = moment(currentMonth).startOf('month');
     const endOfMonth = moment(currentMonth).endOf('month');
-
     const dates = [];
-
-    // Add leading nulls for padding
-    const leadingNulls = (startOfMonth.day() + 6) % 7; // Adjust for Monday start
+    const leadingNulls = (startOfMonth.day() + 6) % 7;
     for (let i = 0; i < leadingNulls; i++) {
       dates.push(null);
     }
-
-    // Add actual dates
     const current = moment(startOfMonth);
     while (current.isSameOrBefore(endOfMonth)) {
       dates.push(current.toDate());
       current.add(1, 'day');
     }
-
-    // Add trailing nulls for spacing
     const trailingNulls = (7 - (dates.length % 7)) % 7;
     for (let i = 0; i < trailingNulls; i++) {
       dates.push(null);
     }
-
     return dates;
   };
 
@@ -98,8 +86,8 @@ const CalendarView = ({
 
   const isFullyUnavailable = (date) => {
     const daySlots = getBaseTimeSlots(date);
-    if (!daySlots.length) return false; // No slots (e.g., weekends)
-    const now = moment().tz('Asia/Karachi'); // Current time in PKT
+    if (!daySlots.length) return false;
+    const now = moment().tz('Asia/Karachi');
     return daySlots.every((slot) => {
       const [hour] = slot.pktTime.split(':');
       const slotStart = moment(date)
@@ -117,55 +105,42 @@ const CalendarView = ({
     });
   };
 
-  // Check if current month is in the past
   const isCurrentMonthInPast = () => {
     return moment(currentMonth).isBefore(moment(), 'month');
   };
 
-  // Check if a month has any available days (within 90 days, not weekend, not holiday, not past)
   const hasAvailableDays = (monthDate) => {
     const startOfMonth = moment(monthDate).startOf('month');
     const endOfMonth = moment(monthDate).endOf('month');
     const today = moment().startOf('day');
-    
-    let current = moment.max(startOfMonth, today); // Start from today or beginning of month
-    
+    let current = moment.max(startOfMonth, today);
     while (current.isSameOrBefore(endOfMonth)) {
       const currentDate = current.toDate();
       const day = current.day();
       const isWeekendDay = day === 0 || day === 6;
       const isHolidayDate = isHoliday(currentDate);
       const withinRange = isWithinNext90Days(currentDate);
-      
       if (!isWeekendDay && !isHolidayDate && withinRange) {
-        return true; // Found at least one available day
+        return true;
       }
       current.add(1, 'day');
     }
-    return false; // No available days in this month
+    return false;
   };
 
-  // Navigation with availability check
   const navigateMonth = (direction) => {
     if (direction === 'prev') {
-      if (isCurrentMonthInPast()) {
-        return; // Can't go to past months
-      }
+      if (isCurrentMonthInPast()) return;
       const prevMonth = moment(currentMonth).subtract(1, 'month').toDate();
-      if (!hasAvailableDays(prevMonth)) {
-        return; // Don't navigate to months with no available days
-      }
+      if (!hasAvailableDays(prevMonth)) return;
       setCurrentMonth(prevMonth);
     } else {
       const nextMonth = moment(currentMonth).add(1, 'month').toDate();
-      if (!hasAvailableDays(nextMonth)) {
-        return; // Don't navigate to months with no available days
-      }
+      if (!hasAvailableDays(nextMonth)) return;
       setCurrentMonth(nextMonth);
     }
   };
 
-  // Check if navigation buttons should be disabled
   const isPrevDisabled = () => {
     if (isCurrentMonthInPast()) return true;
     const prevMonth = moment(currentMonth).subtract(1, 'month').toDate();
@@ -182,9 +157,23 @@ const CalendarView = ({
 
   return (
     <div className="col-span-12 lg:col-span-6 h-full">
-      <div className="bg-white rounded-lg shadow-md border p-6 h-full">
-        <h2 className="text-xl font-semibold text-gray-900 mb-2">Select a Date</h2>
-          <div className="mb-4 text-xs text-gray-500 text-start">
+      <div className="bg-white rounded-lg lg:shadow-sm lg:border p-6 h-full">
+        {/* Header with Back Arrow and Title */}
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-1">
+            <button
+              onClick={onBack}
+              className="lg:hidden p-2 hover:bg-neon/20 rounded-full transition-colors"
+              aria-label="Go back"
+            >
+              <CgArrowLongLeft size={20} className="text-neon" />
+            </button>
+            <h2 className="text-lg xl:text-xl  font-semibold text-gray-900">
+              Select a Date
+            </h2>
+          </div>
+        </div>
+        <div className="mb-4 text-xs text-gray-500 text-start">
           <p>Available for next 90 days • Holidays and weekends excluded</p>
         </div>
         <div className="flex items-center justify-between mb-6">
@@ -213,7 +202,10 @@ const CalendarView = ({
         <div className="calendar-grid">
           <div className="grid grid-cols-7 gap-2 mb-2">
             {dayNames.map((day) => (
-              <div key={day} className="text-center py-2 text-sm font-medium text-gray-500">
+              <div
+                key={day}
+                className="text-center py-2 text-sm font-medium text-gray-500"
+              >
                 {day}
               </div>
             ))}
@@ -230,8 +222,10 @@ const CalendarView = ({
               const holiday = isHoliday(date);
               const fullyUnavailable = isFullyUnavailable(date);
               const outside90Days = !isWithinNext90Days(date);
-              const unavailable = pastDate || weekend || holiday || fullyUnavailable || outside90Days;
-              const isSelected = selectedDate && moment(date).isSame(selectedDate, 'day');
+              const unavailable =
+                pastDate || weekend || holiday || fullyUnavailable || outside90Days;
+              const isSelected =
+                selectedDate && moment(date).isSame(selectedDate, 'day');
               const priorityHoliday = getPriorityHoliday(date);
 
               return (
@@ -247,17 +241,20 @@ const CalendarView = ({
                     className={`
                       w-10 h-10 xl:w-12 xl:h-12 p-4 flex items-center justify-center rounded-full text-sm xl:text-base font-black relative
                       ${
-                        isSelected 
-                          ? 'bg-black text-white' 
-                          : unavailable 
-                          ? 'text-gray-300' 
+                        isSelected
+                          ? 'bg-black text-white'
+                          : unavailable
+                          ? 'text-gray-300'
                           : outside90Days
                           ? 'text-gray-400 opacity-50'
                           : 'text-neon bg-neon/10 hover:bg-neon/20 hover:text-neon'
                       }
                     `}
                     style={{
-                      ...(holiday && priorityHoliday && !isSelected && !unavailable
+                      ...(holiday &&
+                      priorityHoliday &&
+                      !isSelected &&
+                      !unavailable
                         ? {
                             background: getFlagGradient(priorityHoliday.country),
                             backgroundClip: 'text',
@@ -277,9 +274,6 @@ const CalendarView = ({
             })}
           </div>
         </div>
-        {/* <div className="mt-4 text-xs text-gray-500 text-center">
-          <p>Available for next 90 days • Holidays and weekends excluded</p>
-        </div> */}
       </div>
     </div>
   );

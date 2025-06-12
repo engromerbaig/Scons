@@ -2,25 +2,23 @@ import React from 'react';
 import { Clock, Video, MapPin } from 'lucide-react';
 import moment from 'moment';
 import 'moment-timezone';
-import { RiTimeZoneLine } from "react-icons/ri";
+import { RiTimeZoneLine } from 'react-icons/ri';
 import Button from '../Button/Button';
 
-const MeetingInfo = ({ meetingInfo, selectedDate }) => {
-  // Get the time zone abbreviation and full name
+const MeetingInfo = ({ meetingInfo, selectedDate, onNext }) => {
   let timeZoneAbbr = 'PKT';
   let timeZoneFullName = 'Pakistan Standard Time';
-  
+
   if (meetingInfo.timeZone && moment.tz.zone(meetingInfo.timeZone)) {
     timeZoneAbbr = moment.tz(meetingInfo.timeZone).zoneAbbr();
     timeZoneFullName = moment.tz.zone(meetingInfo.timeZone).name;
   }
 
-  // Format time zone display as "Abbr (Full Name)"
   const timeZoneDisplay = `${timeZoneAbbr} (${timeZoneFullName})`;
 
   return (
     <div className="col-span-12 lg:col-span-3 h-full">
-      <div className="bg-white rounded-lg shadow-md border p-6 h-full">
+      <div className="bg-white rounded-lg lg:shadow-sm lg:border p-6 h-full">
         <div className="mb-6">
           <div className="flex items-center gap-3 mb-3">
             <div className="flex items-center justify-center">
@@ -45,34 +43,30 @@ const MeetingInfo = ({ meetingInfo, selectedDate }) => {
           </div>
           <div className="flex items-center gap-3 text-gray-700">
             <RiTimeZoneLine size={18} className="text-neon" />
-            <span className="text-sm">
-              Time Zone: {timeZoneDisplay}
-            </span>
+            <span className="text-sm">Time Zone: {timeZoneDisplay}</span>
           </div>
         </div>
 
-        {/* only shown above lg */}
-
+        {/* Selected Date (lg and above) */}
         {selectedDate && (
           <div className="hidden lg:block mt-6 p-4 bg-neon/5 rounded-lg border border-neon">
             <p className="text-sm font-medium text-black">Selected Date</p>
             <p className="text-sm text-neon font-medium">
-              {moment(selectedDate).tz(meetingInfo.timeZone || 'Asia/Karachi').format('dddd, MMMM D, YYYY')}
+              {moment(selectedDate)
+                .tz(meetingInfo.timeZone || 'Asia/Karachi')
+                .format('dddd, MMMM D, YYYY')}
             </p>
           </div>
         )}
 
-
-{/* only shown below lg */}
-          <div className="block lg:hidden mt-4  ">
-        <Button
-        name="Schedule Meeting"
-        fontSize='text-xs'
-        />
-
-          </div>
-
-       
+        {/* Schedule Meeting Button (below lg) */}
+        <div className="block lg:hidden mt-4">
+          <Button
+            name="Schedule Meeting"
+            fontSize="text-xs"
+            onClick={onNext} // Trigger step change
+          />
+        </div>
       </div>
     </div>
   );

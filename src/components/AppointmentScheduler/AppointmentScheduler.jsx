@@ -16,13 +16,16 @@ const AppointmentScheduler = () => {
   const [userTimeZone, setUserTimeZone] = useState('GMT');
   const [baseTimeSlots, setBaseTimeSlots] = useState([]);
   const [groupedTimeSlots, setGroupedTimeSlots] = useState({});
+  // New state for step tracking
+  const [step, setStep] = useState(1); // 1: MeetingInfo, 2: CalendarView, 3: TimeSlots
 
   // Meeting configuration
   const meetingInfo = {
     title: 'Free Consultation',
     duration: '30 mins - 1 hour',
     type: 'Google Meet',
-  description: 'Schedule a free consultation to discuss your website, app, or digital project. We’ll explore your goals and offer expert solutions tailored to your business needs.',
+    description:
+      'Schedule a free consultation to discuss your website, app, or digital project. We’ll explore your goals and offer expert solutions tailored to your business needs.',
     timeZone: userTimeZone,
   };
 
@@ -30,7 +33,6 @@ const AppointmentScheduler = () => {
   const getBaseTimeSlots = (date) => {
     const day = moment(date).day();
     if (day === 1 || day === 4) {
-      // Monday or Thursday: 10 AM, 12 PM, 2 PM, 4 PM PKT
       return [
         { time: '2:00 AM', value: '2:00', pktTime: '2:00' },
         { time: '12:00 PM', value: '12:00', pktTime: '12:00' },
@@ -38,7 +40,6 @@ const AppointmentScheduler = () => {
         { time: '4:00 PM', value: '16:00', pktTime: '16:00' },
       ];
     } else if (day === 2 || day === 3 || day === 5) {
-      // Tuesday, Wednesday, Friday: 11 AM, 1 PM PKT
       return [
         { time: '11:00 AM', value: '11:00', pktTime: '11:00' },
         { time: '1:00 PM', value: '13:00', pktTime: '13:00' },
@@ -88,7 +89,7 @@ const AppointmentScheduler = () => {
   // Convert PKT to GMT manually (PKT is UTC+5)
   const convertPKTToGMT = (pktDateTimeString) => {
     const pktDateTime = new Date(pktDateTimeString + '+05:00');
-    return new Date(pktDateTime.getTime() - (5 * 60 * 60 * 1000));
+    return new Date(pktDateTime.getTime() - 5 * 60 * 60 * 1000);
   };
 
   // Convert GMT to local timezone
@@ -118,73 +119,73 @@ const AppointmentScheduler = () => {
   // Set default date and initial time slots
   useEffect(() => {
     const defaultDate = getDefaultDate();
-    // setSelectedDate(defaultDate);
+    setSelectedDate(defaultDate);
     setBaseTimeSlots(getBaseTimeSlots(defaultDate));
   }, []);
 
-  // Generate grouped time slots for multiple days when date crossing occurs
- // Generate time slots only for the selected date
-const generateGroupedTimeSlots = (centerDate) => {
-  if (!centerDate) return {};
+  // Generate time slots only for the selected date
+  const generateGroupedTimeSlots = (centerDate) => {
+    if (!centerDate) return {};
 
-  const grouped = {};
-  const selectedDateStr = moment(centerDate).format('YYYY-MM-DD');
-  const daySlots = getBaseTimeSlots(centerDate);
+    const grouped = {};
+    const selectedDateStr = moment(centerDate).format('YYYY-MM-DD');
+    const daySlots = getBaseTimeSlots(centerDate);
 
-  // Process slots for the selected date only
-  if (daySlots.length > 0) {
-    daySlots.forEach((slot) => {
-      let localTime, localDate, timeZoneAbbr;
+    if (daySlots.length > 0) {
+      daySlots.forEach((slot) => {
+        let localTime, localDate, timeZoneAbbr;
 
-      try {
-        // Primary conversion using moment-timezone
-        const pktTime = moment.tz(`${selectedDateStr} ${slot.pktTime}`, 'YYYY-MM-DD HH:mm', 'Asia/Karachi');
-        localTime = pktTime.clone().tz(userTimeZone);
-        localDate = localTime.format('YYYY-MM-DD');
-        timeZoneAbbr = localTime.zoneAbbr() || userTimeZone;
-      } catch (error) {
-        // Manual GMT-based fallback
-        console.warn('Falling back to GMT conversion:', error);
         try {
-          const pktDateTime = convertPKTToGMT(`${selectedDateStr}T${slot.pktTime}:00`);
-          const localDateTime = convertGMTToLocal(pktDateTime);
-          localTime = moment(localDateTime);
+          const pktTime = moment.tz(
+            `${selectedDateStr} ${slot.pktTime}`,
+            'YYYY-MM-DD HH:mm',
+            'Asia/Karachi'
+          );
+          localTime = pktTime.clone().tz(userTimeZone);
           localDate = localTime.format('YYYY-MM-DD');
-          timeZoneAbbr = 'GMT';
-        } catch (fallbackError) {
-          console.error('GMT fallback failed:', fallbackError);
-          localTime = moment(`${selectedDateStr} ${slot.pktTime}`, 'YYYY-MM-DD HH:mm');
-          localDate = selectedDateStr;
-          timeZoneAbbr = 'GMT';
+          timeZoneAbbr = localTime.zoneAbbr() || userTimeZone;
+        } catch (error) {
+          console.warn('Falling back to GMT conversion:', error);
+          try {
+            const pktDateTime = convertPKTToGMT(
+              `${selectedDateStr}T${slot.pktTime}:00`
+            );
+            const localDateTime = convertGMTToLocal(pktDateTime);
+            localTime = moment(localDateTime);
+            localDate = localTime.format('YYYY-MM-DD');
+            timeZoneAbbr = 'GMT';
+          } catch (fallbackError) {
+            console.error('GMT fallback failed:', fallbackError);
+            localTime = moment(`${selectedDateStr} ${slot.pktTime}`, 'YYYY-MM-DD HH:mm');
+            localDate = selectedDateStr;
+            timeZoneAbbr = 'GMT';
+          }
         }
-      }
 
-      const convertedSlot = {
-        ...slot,
-        time: localTime.format('h:mm A'),
-        value: localTime.format('HH:mm'),
-        timeZone: timeZoneAbbr,
-        localDate,
-        originalDate: selectedDateStr,
-        originalDateObj: centerDate, // Keep original date object for booking
-        dateCrossed: localDate !== selectedDateStr,
-      };
+        const convertedSlot = {
+          ...slot,
+          time: localTime.format('h:mm A'),
+          value: localTime.format('HH:mm'),
+          timeZone: timeZoneAbbr,
+          localDate,
+          originalDate: selectedDateStr,
+          originalDateObj: centerDate,
+          dateCrossed: localDate !== selectedDateStr,
+        };
 
-      // Group by local date
-      if (!grouped[localDate]) {
-        grouped[localDate] = [];
-      }
-      grouped[localDate].push(convertedSlot);
+        if (!grouped[localDate]) {
+          grouped[localDate] = [];
+        }
+        grouped[localDate].push(convertedSlot);
+      });
+    }
+
+    Object.keys(grouped).forEach((date) => {
+      grouped[date].sort((a, b) => moment(a.value, 'HH:mm').diff(moment(b.value, 'HH:mm')));
     });
-  }
 
-  // Sort slots within the date group
-  Object.keys(grouped).forEach(date => {
-    grouped[date].sort((a, b) => moment(a.value, 'HH:mm').diff(moment(b.value, 'HH:mm')));
-  });
-
-  return grouped;
-};
+    return grouped;
+  };
 
   // Update grouped time slots when selectedDate or userTimeZone changes
   useEffect(() => {
@@ -198,19 +199,19 @@ const generateGroupedTimeSlots = (centerDate) => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await fetch('/.netlify/functions/getAppointments');
-        if (!response.ok) throw new Error('Failed to fetch appointments');
-        const data = await response.json();
-        setEvents(
-          data.map((event) => ({
-            title: event.title,
-            start: new Date(event.start),
-            end: new Date(event.end),
-          }))
-        );
-      } catch (error) {
-        console.error('Error fetching appointments:', error);
-      }
+      const response = await fetch('/.netlify/functions/getAppointments');
+      if (!response.ok) throw new Error('Failed to fetch appointments');
+      const data = await response.json();
+      setEvents(
+        data.map((event) => ({
+          title: event.title,
+          start: new Date(event.start),
+          end: new Date(event.end),
+        }))
+      );
+    } catch (error) {
+      console.error('Error fetching appointments:', error);
+    }
     };
     fetchEvents();
   }, []);
@@ -220,15 +221,20 @@ const generateGroupedTimeSlots = (centerDate) => {
     const today = moment().startOf('day');
     const selectedDay = moment(date).startOf('day');
 
-    if (day === 0 || day === 6 || selectedDay.isBefore(today) || !isWithinNext90Days(date)) {
+    if (
+      day === 0 ||
+      day === 6 ||
+      selectedDay.isBefore(today) ||
+      !isWithinNext90Days(date)
+    ) {
       return;
     }
     setSelectedDate(date);
+    setStep(3); // Move to TimeSlots step
     setConfirmationData(null);
   };
 
   const handleBookSlot = async (timeSlot, formData) => {
-    // Use the original date and PKT time for booking
     const [hour] = timeSlot.pktTime.split(':');
     const start = moment(timeSlot.originalDateObj)
       .tz('Asia/Karachi')
@@ -270,10 +276,14 @@ const generateGroupedTimeSlots = (centerDate) => {
           }))
         );
         setSelectedDate(null);
+        setStep(1); // Reset to MeetingInfo after booking
         return { success: true, appointment: newEvent };
       } else {
         console.error('Failed to book appointment:', result.error);
-        return { success: false, error: result.error || 'Failed to book appointment. Please try again.' };
+        return {
+          success: false,
+          error: result.error || 'Failed to book appointment. Please try again.',
+        };
       }
     } catch (error) {
       console.error('Error booking appointment:', error);
@@ -287,6 +297,21 @@ const generateGroupedTimeSlots = (centerDate) => {
 
   const handleCloseConfirmation = () => {
     setConfirmationData(null);
+    setStep(1); // Return to MeetingInfo after closing confirmation
+  };
+
+  // Handler for "Schedule Meeting" button
+  const handleNextStep = () => {
+    setStep(2); // Move to CalendarView
+  };
+
+  // Handler for back navigation
+  const handleBack = () => {
+    if (step === 3) {
+      setStep(2); // Back to CalendarView
+    } else if (step === 2) {
+      setStep(1); // Back to MeetingInfo
+    }
   };
 
   if (confirmationData) {
@@ -300,33 +325,70 @@ const generateGroupedTimeSlots = (centerDate) => {
   }
 
   return (
-    <div className={`min-h-screen ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontalCalendar}`}>
-        <div className="grid grid-cols-12 gap-x-8 gap-y-6 min-h-full items-stretch ">
-          <div className="col-span-12 lg:col-span-3 h-full">
-            <MeetingInfo meetingInfo={meetingInfo} selectedDate={selectedDate} />
-          </div>
-          <div className="col-span-12 lg:col-span-6 h-full">
-            <CalendarView
-              currentMonth={currentMonth}
-              setCurrentMonth={setCurrentMonth}
-              selectedDate={selectedDate}
-              events={events}
-              handleDateClick={handleDateClick}
-              getBaseTimeSlots={getBaseTimeSlots}
-              isWithinNext90Days={isWithinNext90Days}
-            />
-          </div>
-          <div className="col-span-12 lg:col-span-3 h-full">
-            <TimeSlots
-              selectedDate={selectedDate}
-              setSelectedDate={setSelectedDate}
-              groupedTimeSlots={groupedTimeSlots}
-              events={events}
-              handleBookSlot={handleBookSlot}
-              onShowConfirmation={handleShowConfirmation}
-            />
-          </div>
+    <div
+      className={`min-h-screen ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontalCalendar}`}
+    >
+      {/* Large screens (lg and above): Side-by-side grid */}
+      <div className="hidden lg:grid grid-cols-12 gap-x-8 gap-y-6 min-h-full items-stretch">
+        <div className="col-span-12 lg:col-span-3 h-full">
+          <MeetingInfo meetingInfo={meetingInfo} selectedDate={selectedDate} />
         </div>
+        <div className="col-span-12 lg:col-span-6 h-full">
+          <CalendarView
+            currentMonth={currentMonth}
+            setCurrentMonth={setCurrentMonth}
+            selectedDate={selectedDate}
+            events={events}
+            handleDateClick={handleDateClick}
+            getBaseTimeSlots={getBaseTimeSlots}
+            isWithinNext90Days={isWithinNext90Days}
+          />
+        </div>
+        <div className="col-span-12 lg:col-span-3 h-full">
+          <TimeSlots
+            selectedDate={selectedDate}
+            setSelectedDate={setSelectedDate}
+            groupedTimeSlots={groupedTimeSlots}
+            events={events}
+            handleBookSlot={handleBookSlot}
+            onShowConfirmation={handleShowConfirmation}
+          />
+        </div>
+      </div>
+
+      {/* Small screens (below lg): Step-by-step flow */}
+      <div className="lg:hidden">
+        {step === 1 && (
+          <MeetingInfo
+            meetingInfo={meetingInfo}
+            selectedDate={selectedDate}
+            onNext={handleNextStep}
+          />
+        )}
+        {step === 2 && (
+          <CalendarView
+            currentMonth={currentMonth}
+            setCurrentMonth={setCurrentMonth}
+            selectedDate={selectedDate}
+            events={events}
+            handleDateClick={handleDateClick}
+            getBaseTimeSlots={getBaseTimeSlots}
+            isWithinNext90Days={isWithinNext90Days}
+            onBack={handleBack}
+          />
+        )}
+        {step === 3 && (
+          <TimeSlots
+            selectedDate={selectedDate}
+            setSelectedDate={setSelectedDate}
+            groupedTimeSlots={groupedTimeSlots}
+            events={events}
+            handleBookSlot={handleBookSlot}
+            onShowConfirmation={handleShowConfirmation}
+            onBack={handleBack}
+          />
+        )}
+      </div>
     </div>
   );
 };

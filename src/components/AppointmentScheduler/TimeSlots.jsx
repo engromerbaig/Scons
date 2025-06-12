@@ -4,14 +4,16 @@ import { CalendarDays } from 'lucide-react';
 import { useRef, useState, useEffect } from 'react';
 import { gsap } from 'gsap';
 import BookingForm from './BookingForm';
+import { CgArrowLongLeft } from 'react-icons/cg';
 
-const TimeSlots = ({ 
-  selectedDate, 
-  setSelectedDate, 
-  groupedTimeSlots, 
-  events, 
-  handleBookSlot, 
-  onShowConfirmation 
+const TimeSlots = ({
+  selectedDate,
+  setSelectedDate,
+  groupedTimeSlots,
+  events,
+  handleBookSlot,
+  onShowConfirmation,
+  onBack,
 }) => {
   const [activeSlotIndex, setActiveSlotIndex] = useState(null);
   const [activeSlotGroup, setActiveSlotGroup] = useState(null);
@@ -21,7 +23,6 @@ const TimeSlots = ({
   const slotRefs = useRef({});
 
   const checkSlotAvailability = (slot) => {
-    // Use original date for checking availability
     const [hour] = slot.pktTime.split(':');
     const slotStart = moment(slot.originalDateObj)
       .tz('Asia/Karachi')
@@ -38,7 +39,6 @@ const TimeSlots = ({
         moment(event.start).isBetween(slotStart, slotEnd, null, '[)')
     );
 
-    // Check if slot is within 1 hour of current time in PKT
     const now = moment().tz('Asia/Karachi');
     const slotMoment = moment(slotStart).tz('Asia/Karachi');
     const isTooClose = slotMoment.diff(now, 'hours', true) < 1;
@@ -68,12 +68,14 @@ const TimeSlots = ({
 
   const handleSlotClick = (groupDate, index) => {
     const currentKey = `${groupDate}-${index}`;
-    const activeKey = activeSlotGroup && activeSlotIndex !== null ? `${activeSlotGroup}-${activeSlotIndex}` : null;
+    const activeKey =
+      activeSlotGroup && activeSlotIndex !== null
+        ? `${activeSlotGroup}-${activeSlotIndex}`
+        : null;
 
     if (activeKey === currentKey) {
       // Do nothing if clicking the same slot
     } else {
-      // Reset previous active slot
       if (activeKey && slotRefs.current[activeKey]) {
         gsap.to(slotRefs.current[activeKey].querySelector('.slot-time'), {
           x: 0,
@@ -87,10 +89,9 @@ const TimeSlots = ({
         });
       }
 
-      // Activate new slot
       setActiveSlotIndex(index);
       setActiveSlotGroup(groupDate);
-      
+
       const newSlotRef = slotRefs.current[currentKey];
       if (newSlotRef) {
         gsap.to(newSlotRef.querySelector('.slot-time'), {
@@ -140,13 +141,17 @@ const TimeSlots = ({
       setTimeout(() => {
         setShowBookingForm(false);
       }, 300);
-      onShowConfirmation(selectedSlot, { success: false, error: 'An error occurred during booking.' });
+      onShowConfirmation(selectedSlot, {
+        success: false,
+        error: 'An error occurred during booking.',
+      });
     }
   };
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (activeSlotIndex === null || activeSlotGroup === null || showBookingForm) return;
+      if (activeSlotIndex === null || activeSlotGroup === null || showBookingForm)
+        return;
 
       const currentKey = `${activeSlotGroup}-${activeSlotIndex}`;
       const currentSlot = slotRefs.current[currentKey];
@@ -169,7 +174,6 @@ const TimeSlots = ({
     };
   }, [activeSlotIndex, activeSlotGroup, showBookingForm]);
 
-  // Get formatted date for display
   const getDateDisplay = (dateStr) => {
     const date = moment(dateStr);
     const today = moment().startOf('day');
@@ -187,8 +191,7 @@ const TimeSlots = ({
     }
   };
 
-  // Sort grouped dates chronologically
-  const sortedGroupDates = Object.keys(groupedTimeSlots).sort((a, b) => 
+  const sortedGroupDates = Object.keys(groupedTimeSlots).sort((a, b) =>
     moment(a).diff(moment(b))
   );
 
@@ -198,16 +201,27 @@ const TimeSlots = ({
     <>
       <div className="col-span-12 lg:col-span-3 h-full">
         {selectedDate ? (
-          <div className="rounded-lg shadow-md border p-6 h-full flex flex-col">
+          <div className="rounded-lg lg:shadow-sm lg:border p-6 h-full flex flex-col">
+            {/* Header with Back Arrow and Title (below lg) */}
             <div className="flex items-center justify-between mb-6">
-              <h3 className="text-xl font-semibold">Available Slots</h3>
+              <div className="flex items-center gap-1">
+                <button
+                  onClick={onBack}
+                  className="lg:hidden p-2 hover:bg-neon/20 rounded-full transition-colors"
+                  aria-label="Go back"
+                >
+                  <CgArrowLongLeft size={20} className="text-neon" />
+                </button>
+                <h3 className="text-lg xl:text-xl font-semibold text-gray-900">
+                  Available Slots
+                </h3>
+              </div>
             </div>
-            
             <div className="space-y-6 overflow-y-auto flex-1">
               {hasAnySlots ? (
                 sortedGroupDates.map((groupDate) => {
                   const slots = groupedTimeSlots[groupDate];
-                  const hasAvailableSlots = slots.some(slot => {
+                  const hasAvailableSlots = slots.some((slot) => {
                     const checkedSlot = checkSlotAvailability(slot);
                     return !checkedSlot.isBooked && !checkedSlot.isTooClose;
                   });
@@ -222,44 +236,46 @@ const TimeSlots = ({
                           {moment(groupDate).format('MMM D')}
                         </span>
                       </div>
-                      
                       <div className="space-y-2">
                         {slots.map((slot, index) => {
                           const checkedSlot = checkSlotAvailability(slot);
                           const slotKey = `${groupDate}-${index}`;
-                          
+
                           return (
-                            <div 
-                              key={index} 
-                              ref={(el) => (slotRefs.current[slotKey] = el)} 
+                            <div
+                              key={index}
+                              ref={(el) => (slotRefs.current[slotKey] = el)}
                               className="relative w-full overflow-hidden"
                             >
-                        <button
-  onClick={() =>
-    !checkedSlot.isBooked &&
-    !checkedSlot.isTooClose &&
-    handleSlotClick(groupDate, index)
-  }
-  className={`
-    w-full px-4 py-3 text-sm border-2 rounded-lg text-center font-bold relative
-    ${
-      checkedSlot.isBooked || checkedSlot.isTooClose
-        ? 'border-gray-600 text-gray-500 cursor-not-allowed bg-gray-50 opacity-50'
-        : 'border-neon text-neon hover:bg-neon hover:text-white hover:border-neon transition-colors duration-200'
-    }
-  `}
-  disabled={checkedSlot.isBooked || checkedSlot.isTooClose}
->
-  <span
-    className={`
-      slot-time inline-block transform-origin-center
-      ${checkedSlot.isBooked || checkedSlot.isTooClose ? 'line-through' : ''}
-    `}
-  >
-    {checkedSlot.time} {checkedSlot.timeZone}
-  </span>
-</button>
-
+                              <button
+                                onClick={() =>
+                                  !checkedSlot.isBooked &&
+                                  !checkedSlot.isTooClose &&
+                                  handleSlotClick(groupDate, index)
+                                }
+                                className={`
+                                  w-full px-4 py-3 text-sm border-2 rounded-lg text-center font-bold relative
+                                  ${
+                                    checkedSlot.isBooked || checkedSlot.isTooClose
+                                      ? 'border-gray-600 text-gray-500 cursor-not-allowed bg-gray-50 opacity-50'
+                                      : 'border-neon text-neon hover:bg-neon hover:text-white hover:border-neon transition-colors duration-200'
+                                  }
+                                `}
+                                disabled={checkedSlot.isBooked || checkedSlot.isTooClose}
+                              >
+                                <span
+                                  className={`
+                                    slot-time inline-block transform-origin-center
+                                    ${
+                                      checkedSlot.isBooked || checkedSlot.isTooClose
+                                        ? 'line-through'
+                                        : ''
+                                    }
+                                  `}
+                                >
+                                  {checkedSlot.time} {checkedSlot.timeZone}
+                                </span>
+                              </button>
                               {!checkedSlot.isBooked && !checkedSlot.isTooClose && (
                                 <button
                                   onClick={() => openBookingForm(checkedSlot)}
@@ -272,7 +288,6 @@ const TimeSlots = ({
                           );
                         })}
                       </div>
-                      
                       {!hasAvailableSlots && (
                         <p className="text-xs text-gray-400 italic text-center py-2">
                           No available slots for this date
@@ -289,11 +304,15 @@ const TimeSlots = ({
             </div>
           </div>
         ) : (
-          <div className="bg-white rounded-lg shadow-md border p-6 h-full flex flex-col justify-center">
+          <div className="bg-white rounded-lg lg:shadow-sm border p-6 h-full flex flex-col justify-center">
             <div className="text-center py-12">
               <CalendarDays size={24} className="text-black mx-auto mb-4" />
-              <h3 className="text-lg font-semibold text-black mb-2">Select a Date</h3>
-              <p className="text-gray-400">Please select a date from the calendar to view available time slots</p>
+              <h3 className="text-lg font-semibold text-black mb-2">
+                Select a Date
+              </h3>
+              <p className="text-gray-400">
+                Please select a date from the calendar to view available time slots
+              </p>
             </div>
           </div>
         )}
