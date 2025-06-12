@@ -294,20 +294,22 @@ const companyEmailTemplate = `
 `;
 
 function formatDate(userTimeZone) {
-  const timeZone = userTimeZone || 'Asia/Karachi'; // Fallback to PKT
+  // Fallback to GMT if userTimeZone is invalid, then to PKT if GMT fails
+  let timeZone = 'Asia/Karachi'; // Default to PKT
+  if (userTimeZone && moment.tz.zone(userTimeZone)) {
+    timeZone = userTimeZone; // Use provided userTimeZone if valid
+  } else if (moment.tz.zone('GMT')) {
+    timeZone = 'GMT'; // Fallback to GMT
+  }
   return moment()
     .tz(timeZone)
-    .format('DD MMM YYYY - h:mm A [ZZ]');
+    .format('DD MMM YYYY [at] h:mm A z');
 }
 
 function formatMeetingDateTime(start, userTimeZone) {
-  const startMoment = moment(start).tz('Asia/Karachi'); // Booking time in PKT
-  const pktTime = startMoment.format('dddd, MMMM D, YYYY, h:mm A [PKT]');
-  const localTime = startMoment
-    .clone()
-    .tz(userTimeZone || 'Asia/Karachi')
-    .format('dddd, MMMM D, YYYY, h:mm A [ZZ]');
-  return `${pktTime}<br>(${localTime})`;
+  // Always format in PKT (Asia/Karachi) as per requirement
+  const startMoment = moment(start).tz('Asia/Karachi');
+  return startMoment.format('dddd, MMMM D, YYYY [at] h:mm A [PKT]');
 }
 
 function generateFieldHtml(label, value) {
