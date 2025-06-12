@@ -1,7 +1,7 @@
 import React, { useEffect, useState, lazy } from "react";
 import { useParams } from "react-router-dom";
-import { Helmet } from "react-helmet-async"; // Import Helmet
-import ogLogo from "../../assets/images/og-default.jpg"; // Logo-based OG image
+import { Helmet } from "react-helmet-async";
+import ogLogo from "../../assets/images/og-default.jpg";
 
 // Lazy load all components
 const Heading = lazy(() => import("../../components/Heading/Heading"));
@@ -17,25 +17,30 @@ const Deliverables = lazy(() => import("./Deliverables"));
 const FadeWrapper = lazy(() => import("../../utilities/Animations/FadeWrapper"));
 const FadeInSection = lazy(() => import("../../utilities/Animations/FadeInSection"));
 
-// Static imports for non-component data
+// Static imports
 import { theme } from "../../theme";
 import projects from "./projectDetails";
 import { technologiesData } from "../../components/Technologies/technologiesData";
 import { IoIosCheckmarkCircle } from "react-icons/io";
 import { useLayoutEffect } from "react";
 
+// Debug: Verify projects is an array
+console.log("Projects:", projects);
+
 const ProjectDetail = () => {
   const { slug } = useParams();
   const project = projects.find((p) => p.slug === slug);
 
-  // State to track image loading
+  // State to track image and video loading
   const [coverImageLoaded, setCoverImageLoaded] = useState(false);
   const [additionalImageLoaded, setAdditionalImageLoaded] = useState(false);
+  const [videoLoaded, setVideoLoaded] = useState(false);
 
   useLayoutEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
     setCoverImageLoaded(false);
     setAdditionalImageLoaded(false);
+    setVideoLoaded(false);
   }, [slug]);
 
   const findTechnologyIcon = (techName) => {
@@ -54,7 +59,7 @@ const ProjectDetail = () => {
     return <div className="text-center py-20">Project not found</div>;
   }
 
-  // Generate meta description (trim to 160 characters)
+  // Generate meta description
   const metaDescription =
     project.bodyText?.length > 160
       ? `${project.bodyText.substring(0, 157)}...`
@@ -64,7 +69,7 @@ const ProjectDetail = () => {
   const keywords = [
     "Scons Tech",
     project.heading.toLowerCase(),
-    ...(Array.isArray(project.service) ? project.service : [project.service]).map(s => s.toLowerCase()),
+    ...(Array.isArray(project.service) ? project.service : [project.service]).map((s) => s.toLowerCase()),
     "software development",
     "UK tech",
     "portfolio",
@@ -197,7 +202,6 @@ const ProjectDetail = () => {
         <div
           className={`flex flex-col xl:flex-row justify-between items-end gap-8 ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal}`}
         >
-          {/* Left: Description */}
           <div className="flex flex-col gap-4 xl:w-3/5 w-full">
             <Heading
               text={project.headline}
@@ -208,7 +212,6 @@ const ProjectDetail = () => {
             <BodyText text={project.details} centered={false} color="text-black" />
           </div>
 
-          {/* Right: Tech Stack (bottom aligned) */}
           <div className="flex flex-col justify-start items-start gap-2 xl:w-2/5 w-full">
             <BodyText
               text="Stack Used:"
@@ -218,7 +221,7 @@ const ProjectDetail = () => {
             />
             <div className="grid grid-cols-2 gap-2 mt-2">
               {project.technologies
-                .filter((tech) => findTechnologyIcon(tech)) // Only include tech with valid icons
+                .filter((tech) => findTechnologyIcon(tech))
                 .map((tech, index) => {
                   const icon = findTechnologyIcon(tech);
                   return (
@@ -270,7 +273,39 @@ const ProjectDetail = () => {
         </div>
       </FadeWrapper>
 
-      {/* Deliverables & Outcomes */}
+      <FadeWrapper>
+
+        <Heading
+          text="Watch a Live Demo"
+          spanText="Demo"
+          spanColor="text-neon"
+          className="mb-4"
+          />
+        {/* Optional Video Section */}
+        {project.video && (
+          <div
+            className={`relative w-full xl:max-w-[1000px] mx-auto ${theme.layoutPages.paddingVertical}`}
+          >
+            {!videoLoaded && (
+              <SkeletonLoader className="absolute top-0 left-0 w-full h-[350px] xl:h-[550px] rounded-3xl border-4 xl:border-8 border-neon" />
+            )}
+            <video
+              src={project.video}
+              controls
+              playsInline
+              muted
+              className={`w-full h-[350px] xl:h-[550px] object-contain rounded-3xl border-4 xl:border-8 border-neon transition-opacity duration-500 ease-in-out ${
+                videoLoaded ? "opacity-100" : "opacity-0"
+              }`}
+              loading="lazy"
+              onLoadedData={() => setVideoLoaded(true)}
+            >
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        )}
+      </FadeWrapper>
+
       <Deliverables deliverables={project.deliverables} heading={project.heading} />
 
       <HorizontalScroller
@@ -279,7 +314,6 @@ const ProjectDetail = () => {
         bodyText="Scons Tech brings projects to life with a clear and proven process—starting from strategic planning and architecture design, followed by precise development focused on performance and scalability. Each project is thoroughly tested and refined through client feedback to ensure a smooth, successful launch."
       />
 
-      {/* Impact section */}
       <ImpactSection heading={project.heading} introText={project.impactIntro} impacts={project.impacts} />
 
       <Vision />
