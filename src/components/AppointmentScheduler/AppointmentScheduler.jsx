@@ -123,7 +123,7 @@ const AppointmentScheduler = () => {
   // Set default date and initial time slots
   useEffect(() => {
     const defaultDate = getDefaultDate();
-    setSelectedDate(defaultDate);
+    // setSelectedDate(defaultDate);
     setBaseTimeSlots(getBaseTimeSlots(defaultDate));
   }, []);
 
