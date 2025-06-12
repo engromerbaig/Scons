@@ -3,6 +3,7 @@ import { Clock, Video, MapPin } from 'lucide-react';
 import moment from 'moment';
 import 'moment-timezone';
 import { RiTimeZoneLine } from "react-icons/ri";
+import Button from '../Button/Button';
 
 const MeetingInfo = ({ meetingInfo, selectedDate }) => {
   // Get the time zone abbreviation and full name
@@ -49,14 +50,29 @@ const MeetingInfo = ({ meetingInfo, selectedDate }) => {
             </span>
           </div>
         </div>
+
+        {/* only shown above lg */}
+
         {selectedDate && (
-          <div className="mt-6 p-4 bg-neon/5 rounded-lg border border-neon">
+          <div className="hidden lg:block mt-6 p-4 bg-neon/5 rounded-lg border border-neon">
             <p className="text-sm font-medium text-black">Selected Date</p>
             <p className="text-sm text-neon font-medium">
               {moment(selectedDate).tz(meetingInfo.timeZone || 'Asia/Karachi').format('dddd, MMMM D, YYYY')}
             </p>
           </div>
         )}
+
+
+{/* only shown below lg */}
+          <div className="block lg:hidden mt-4  ">
+        <Button
+        name="Schedule Meeting"
+        fontSize='text-xs'
+        />
+
+          </div>
+
+       
       </div>
     </div>
   );
