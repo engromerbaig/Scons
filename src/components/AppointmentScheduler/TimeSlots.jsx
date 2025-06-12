@@ -236,7 +236,7 @@ const TimeSlots = ({
                           {moment(groupDate).format('MMM D')}
                         </span>
                       </div>
-                      <div className="space-y-2">
+                      <div className="space-y-4">
                         {slots.map((slot, index) => {
                           const checkedSlot = checkSlotAvailability(slot);
                           const slotKey = `${groupDate}-${index}`;
@@ -254,7 +254,7 @@ const TimeSlots = ({
                                   handleSlotClick(groupDate, index)
                                 }
                                 className={`
-                                  w-full px-4 py-3 text-sm border-2 rounded-lg text-center font-bold relative
+                                  w-full px-4 py-3  text-sm border-2 rounded-lg text-center font-bold relative
                                   ${
                                     checkedSlot.isBooked || checkedSlot.isTooClose
                                       ? 'border-gray-600 text-gray-500 cursor-not-allowed bg-gray-50 opacity-50'

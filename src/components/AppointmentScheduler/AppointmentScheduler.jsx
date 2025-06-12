@@ -53,17 +53,18 @@ const metaDescription =
   // Define time slots in PKT
   const getBaseTimeSlots = (date) => {
     const day = moment(date).day();
-    if (day === 1 || day === 4) {
+    if (day === 1 || day === 3 || day === 4) {
       return [
-        { time: '2:00 AM', value: '2:00', pktTime: '2:00' },
-        { time: '12:00 PM', value: '12:00', pktTime: '12:00' },
-        { time: '2:00 PM', value: '14:00', pktTime: '14:00' },
-        { time: '4:00 PM', value: '16:00', pktTime: '16:00' },
-      ];
-    } else if (day === 2 || day === 3 || day === 5) {
+  { time: '7:00 AM', value: '07:00', pktTime: '7:00' },     // Australia
+  { time: '2:00 PM', value: '14:00', pktTime: '14:00' },    // UK
+  { time: '8:00 PM', value: '20:00', pktTime: '20:00' },    // USA East
+  { time: '11:00 PM', value: '23:00', pktTime: '23:00' }    // USA West
+];
+    } else if (day === 2 || day === 5) {
       return [
-        { time: '11:00 AM', value: '11:00', pktTime: '11:00' },
-        { time: '1:00 PM', value: '13:00', pktTime: '13:00' },
+       { time: '11:00 AM', value: '11:00', pktTime: '11:00' }, // 🌏 Australia/New Zealand
+{ time: '1:00 PM', value: '13:00', pktTime: '13:00' }  // 🌍 UK / Europe / UAE (not USA)
+
       ];
     }
     return [];
