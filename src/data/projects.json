@@ -251,38 +251,40 @@
 {
   "id": 10,
   "heading": "Zeitly",
-  "headline": "Precision Appointment Scheduling Built for Modern Teams and Freelancers",
-  "location": "Hamburg, Germany",
-  "bodyText": "Zeitly is a modern, sleek SaaS product crafted by Scons Tech to streamline appointment scheduling for teams, freelancers, and service-based businesses. It emphasizes time efficiency, intuitive design, and global usability, with a powerful backend and elegant UI built on cutting-edge technologies.",
-  "details": "Zeitly was envisioned as a response to outdated, bloated scheduling tools that failed to meet the expectations of fast-moving, digitally native professionals. The platform enables users to create customizable booking links, sync calendars, automate reminders, and accept international payments — all within a minimalist and mobile-friendly interface. Inspired by German precision and powered by a React-based architecture, Zeitly is designed for scalability, seamless performance, and brand integration. It’s ideal for consultants, agencies, clinics, and solo professionals looking to automate their bookings while delivering a smooth experience to clients.",
-  "service": ["SaaS Product Development", "UI/UX Design", "Calendar & Email Integration", "Payment Integration"],
-  "technologies": ["React", "Tailwind CSS", "Node.js", "MongoDB", "Google Calendar API", "Wise API", "Figma"],
+"headline": "Zeitly – A Timely Scheduling SaaS by Scons Tech for Agile Teams, Freelancers, and Global Clients",
+  "location": "Karachi, Pakistan",
+  "bodyText": "Zeitly is a lightweight, efficient SaaS platform developed by Scons Tech to modernize the way teams and individuals manage appointments. The product combines fast performance, intuitive UX, and seamless integration capabilities — built entirely from Karachi, with global usability in mind.",
+  "details": "Zeitly was born from real-world insights gained while working with German clients who emphasized punctuality, structure, and streamlined workflows. Inspired by the German word *‘Zeit’* (meaning *‘time’*), Zeitly was designed to bring precision scheduling to freelancers, consultants, and service providers globally. Built using a React-based front end, it leverages Firebase and MongoDB for a flexible, cloud-native backend. Email notifications are fired instantly, calendar syncing is seamless, and users benefit from a clean dashboard experience. Continuous user feedback fuels feature enhancements, ensuring Zeitly remains simple, relevant, and effective in an ever-changing SaaS landscape.",
+  "service": ["SaaS Product Development", "UI/UX Design", "Calendar & Email Integration", "Realtime Notifications"],
+  "technologies": ["React", "Tailwind CSS", "Node.js", "Firebase", "MongoDB", "Google Calendar API", "Figma"],
   "year": "2024",
-  "clientDetails": "Zeitly is a flagship SaaS product developed in-house by Scons Tech, a Hamburg-based software consultancy. It’s positioned as a lean, modern alternative to legacy scheduling platforms, tailored for freelancers, startups, and professional service providers who prioritize efficiency, reliability, and great UX. Zeitly combines strong engineering with European design sensibility to make time management effortless.",
+  "clientDetails": "Zeitly is an in-house SaaS product developed by Scons Tech, a Karachi-based software consultancy. It emerged from deep collaboration with European clients, combining global best practices with lean product development. Zeitly’s architecture supports rapid deployment, strong UX, and scalable backend logic — making it the ideal choice for productivity-focused users worldwide.",
   "deliverables": [
     "Product Naming & Branding",
     "Custom Dashboard Design",
-    "Responsive Booking UI",
+    "Firebase Auth & DB Integration",
+    "MongoDB for Structured Storage",
     "Google Calendar Integration",
-    "Email & SMS Reminder System",
-    "International Payment Support (via Wise)"
+    "Email Notification Engine",
+    "Continuous Feature Updates"
   ],
-  "impactIntro": "Zeitly has quickly gained traction among productivity-focused professionals for its ease of use, fast interface, and seamless booking flow.",
+  "impactIntro": "Zeitly is empowering professionals with fast, stress-free scheduling workflows that respect time, enhance credibility, and reduce client drop-offs.",
   "impacts": [
     {
-      "heading": "Increased Conversion Rates",
-      "text": "Early users reported a 40% increase in booking completions thanks to the simplified, no-login flow."
+      "heading": "Inspired by German Precision",
+      "text": "Built with a mindset shaped by working with German clients who value timeliness, structure, and UX clarity."
     },
     {
-      "heading": "Efficient Time Management",
-      "text": "Automated reminders and calendar sync reduced missed appointments by 70% among beta users."
+      "heading": "Real-Time Booking Flow",
+      "text": "Email notifications and real-time calendar updates improved scheduling reliability by over 60% during beta testing."
     },
     {
-      "heading": "International Reach",
-      "text": "Built-in Wise payments enabled global freelancers to accept bookings from clients in 20+ countries with minimal fees."
+      "heading": "Agile Development Model",
+      "text": "Frequent user feedback cycles enabled rapid iteration and continuous improvement of features."
     }
   ]
 }
+
 
 
 
