@@ -182,7 +182,7 @@ const CalendarView = ({
 
   return (
     <div className="col-span-12 lg:col-span-6 h-full">
-      <div className="bg-white rounded-lg shadow-sm border p-6 h-full">
+      <div className="bg-white rounded-lg shadow-md border p-6 h-full">
         <h2 className="text-xl font-semibold text-gray-900 mb-2">Select a Date</h2>
           <div className="mb-4 text-xs text-gray-500 text-start">
           <p>Available for next 90 days • Holidays and weekends excluded</p>

@@ -301,8 +301,7 @@ const generateGroupedTimeSlots = (centerDate) => {
 
   return (
     <div className={`min-h-screen ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal}`}>
-      <div className="p-0">
-        <div className="grid grid-cols-12 gap-8 min-h-full items-stretch">
+        <div className="grid grid-cols-12 gap-x-8 gap-y-6 min-h-full items-stretch ">
           <div className="col-span-12 lg:col-span-3 h-full">
             <MeetingInfo meetingInfo={meetingInfo} selectedDate={selectedDate} />
           </div>
@@ -328,7 +327,6 @@ const generateGroupedTimeSlots = (centerDate) => {
             />
           </div>
         </div>
-      </div>
     </div>
   );
 };

@@ -198,7 +198,7 @@ const TimeSlots = ({
     <>
       <div className="col-span-12 lg:col-span-3 h-full">
         {selectedDate ? (
-          <div className="rounded-lg shadow-sm border p-6 h-full flex flex-col">
+          <div className="rounded-lg shadow-md border p-6 h-full flex flex-col">
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-xl font-semibold">Available Slots</h3>
             </div>
@@ -289,7 +289,7 @@ const TimeSlots = ({
             </div>
           </div>
         ) : (
-          <div className="bg-white rounded-lg shadow-sm border p-6 h-full flex flex-col justify-center">
+          <div className="bg-white rounded-lg shadow-md border p-6 h-full flex flex-col justify-center">
             <div className="text-center py-12">
               <CalendarDays size={24} className="text-black mx-auto mb-4" />
               <h3 className="text-lg font-semibold text-black mb-2">Select a Date</h3>
