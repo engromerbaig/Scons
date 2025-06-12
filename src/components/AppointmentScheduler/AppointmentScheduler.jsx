@@ -16,8 +16,12 @@ const AppointmentScheduler = () => {
   const [userTimeZone, setUserTimeZone] = useState('GMT');
   const [baseTimeSlots, setBaseTimeSlots] = useState([]);
   const [groupedTimeSlots, setGroupedTimeSlots] = useState({});
-  // New state for step tracking
   const [step, setStep] = useState(1); // 1: MeetingInfo, 2: CalendarView, 3: TimeSlots
+
+  // Scroll to top when step or confirmationData changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [step, confirmationData]); // Trigger on step or confirmationData change
 
   // Meeting configuration
   const meetingInfo = {
@@ -199,19 +203,19 @@ const AppointmentScheduler = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-      const response = await fetch('/.netlify/functions/getAppointments');
-      if (!response.ok) throw new Error('Failed to fetch appointments');
-      const data = await response.json();
-      setEvents(
-        data.map((event) => ({
-          title: event.title,
-          start: new Date(event.start),
-          end: new Date(event.end),
-        }))
-      );
-    } catch (error) {
-      console.error('Error fetching appointments:', error);
-    }
+        const response = await fetch('/.netlify/functions/getAppointments');
+        if (!response.ok) throw new Error('Failed to fetch appointments');
+        const data = await response.json();
+        setEvents(
+          data.map((event) => ({
+            title: event.title,
+            start: new Date(event.start),
+            end: new Date(event.end),
+          }))
+        );
+      } catch (error) {
+        console.error('Error fetching appointments:', error);
+      }
     };
     fetchEvents();
   }, []);
@@ -297,7 +301,12 @@ const AppointmentScheduler = () => {
 
   const handleCloseConfirmation = () => {
     setConfirmationData(null);
-    setStep(1); // Return to MeetingInfo after closing confirmation
+    setStep(1); // Return to MeetingInfo
+  };
+
+  const handleBookAnother = () => {
+    setConfirmationData(null);
+    setStep(1); // Reset to MeetingInfo for booking another appointment
   };
 
   // Handler for "Schedule Meeting" button
@@ -320,6 +329,7 @@ const AppointmentScheduler = () => {
         slot={confirmationData.slot}
         bookingResult={confirmationData.bookingResult}
         onClose={handleCloseConfirmation}
+        onBookAnother={handleBookAnother}
       />
     );
   }
