@@ -10,5 +10,7 @@ export const navLinks = [
         { to: "/packages", label: "Packages" },
 
     { to: "/contact-us", label: "Contact Us" },
+        { to: "/schedule-a-meeting", label: "Schedule a Meeting" },
+
     // { to: "/lets-innovate", label: "Let's Innovate" },
 ];

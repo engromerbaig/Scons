@@ -84,7 +84,7 @@ function AppContent() {
         <Routes>
 
           <Route path="/" element={<Home />} />
-<Route path="/schedule" element={<AppointmentScheduler />} />        
+<Route path="/schedule-a-meeting" element={<AppointmentScheduler />} />        
   <Route path="/about" element={<KnowUs />} />
           <Route path="/portfolio" element={<OurWork />} />
           <Route path="/portfolio/:slug" element={<ProjectDetail />} />

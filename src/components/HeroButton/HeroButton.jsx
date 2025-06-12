@@ -23,7 +23,7 @@ const HeroButton = ({ onClick }) => {
       aria-label="Chat Now"
     >
       <span className="rotate-180">
-        Chat Now
+        Contact Us
       </span>
     </button>
   );

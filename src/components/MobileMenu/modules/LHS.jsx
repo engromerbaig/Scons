@@ -1,4 +1,3 @@
-// LHS.jsx
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -16,54 +15,67 @@ const LHS = ({ containerVariants, textVariants, handleClose }) => (
     className={`${theme.layoutPages.paddingMenu} ${theme.layoutPages.paddingMenuVertical} lhs w-full md:w-1/2 h-1/2 md:h-full bg-white flex flex-col `}
     style={{
       backgroundImage: `url('/sconsVertical.svg')`,
-  backgroundPosition: 'right bottom',
-  backgroundSize: '50% auto',
+      backgroundPosition: 'right bottom',
+      backgroundSize: '50% auto',
       backgroundRepeat: 'no-repeat',
     }}
   >
     {/* Top Section (2/12) */}
     <div className="h-[16.67%]">
       <Link to="/" className="cursor-pointer block" onClick={handleClose}>
-          <img src="/logo.svg" alt="Logo" className="lg:w-32 w-24 aspect-rectangle" loading="lazy" />
+        <img src="/logo.svg" alt="Logo" className="lg:w-32 w-24 aspect-rectangle" loading="lazy" />
       </Link>
     </div>
 
     {/* Middle Section (8/12) */}
     <div className="h-[66.66%] flex flex-col justify-between my-4 md:my-10 lg:my-20">
-      {navLinks.map((link, index) => (
-        <motion.div
-          key={link.to}
-          initial="hidden"
-          animate="visible"
-          exit="exit"
-          variants={textVariants}
-          transition={{ duration: 0.3, delay: index * 0.1 }}
-        >
-          <Link
-            to={link.to}
-            className="text-xl lg:text-45px font-semibold text-black font-manrope hover:text-neon active:text-neon transition-colors duration-300"
-            onClick={handleClose}
+      {navLinks.map((link, index) => {
+        const isScheduleLink = link.label === 'Schedule xa Meeting';
+        const isPackagesLink = link.label === 'Packages';
+
+        return (
+          <motion.div
+            key={link.to}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            variants={textVariants}
+            transition={{ duration: 0.3, delay: index * 0.1 }}
+            className="flex items-center gap-2"
           >
-            {link.label}
-          </Link>
-        </motion.div>
-      ))}
+            <Link
+              to={link.to}
+              className={`
+                ${isScheduleLink
+                  ? 'text-sm lg:text-xl bg-black text-white rounded-full px-3  py-1 xl:py-2 font-semibold font-manrope'
+                  : 'text-xl lg:text-45px font-semibold text-black font-manrope hover:text-neon active:text-neon transition-colors duration-300'}
+              `}
+              onClick={handleClose}
+            >
+              {link.label}
+            </Link>
+            {isPackagesLink && (
+              <span className="bg-black text-white text-10px font-semibold px-2 py-[3px] rounded-full">
+                Buy Now
+              </span>
+            )}
+          </motion.div>
+        );
+      })}
     </div>
 
     {/* Bottom Section (2/12) */}
     <div className="h-[16.67%] flex flex-col space-y-0 md:space-y-6">
-      {contactDetails.map((contact) => {
-        return (
-          <div key={contact.type} className="flex ">
-            <a
-              href={contact.link}
-              className="text-black text-xl lg:text-40px  font-semibold hover:text-neon transition-colors duration-300"
-            >
-              {contact.detail}
-            </a>
-          </div>
-        );
-      })}
+      {contactDetails.map((contact) => (
+        <div key={contact.type} className="flex">
+          <a
+            href={contact.link}
+            className="text-black text-xl lg:text-40px font-semibold hover:text-neon transition-colors duration-300"
+          >
+            {contact.detail}
+          </a>
+        </div>
+      ))}
     </div>
   </motion.div>
 );

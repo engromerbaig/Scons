@@ -77,18 +77,19 @@ const Hero = () => {
             </div>
 
             <FadeWrapper order={2}>
-              <div className="flex items-center gap-x-4 xl:gap-x-6 mt-4 relative z-40">
+              <div className="flex items-center gap-x-2 xl:gap-x-6 mt-4 relative z-40">
                 <Button
-                  name="Contact Us"
+                  name="Free Consultation"
+                  fontSize="text-sm xl:text-base"
                   textColor="black"
                   bgColor="bg-neon"
                   className="mt-4"
-                  openModal={true}
+                  link="/schedule-a-meeting"
                 />
 
                 <Button
                   name="Our Projects"
-                  size="text-sm"
+                  fontSize="text-sm xl:text-base"
                   textColor="black"
                   fontWeight="font-black"
                   bgColor="bg-transparent"

@@ -59,7 +59,7 @@ function Home() {
           headingText="Schedule a Virtual Meeting"
           text="Meeting"
           buttonText="Schedule Now"
-          link="/schedule"
+          link="/schedule-a-meeting"
         />
       </FadeInSection>
       <FadeInSection disabled>
