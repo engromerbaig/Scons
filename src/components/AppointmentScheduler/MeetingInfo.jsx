@@ -23,7 +23,7 @@ const MeetingInfo = ({ meetingInfo, selectedDate, onNext }) => {
         <div className="mb-6">
           <div className="flex items-center gap-3 mb-3">
             <div className="flex items-center justify-center">
-              <img src="./favicon.svg" alt="Host Avatar" className="w-6 h-6" />
+              <img src="./favicon.svg" alt="Host Avatar" className="w-6 h-6 lg:w-8 lg:h-8" />
             </div>
           </div>
           <Heading text={meetingInfo.title} className="text-xl font-bold text-gray-900 mb-2" centered={false} />
