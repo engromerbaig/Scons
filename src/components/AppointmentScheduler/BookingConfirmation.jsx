@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import moment from 'moment';
 import 'moment-timezone';
 import { useNavigate } from 'react-router-dom';
@@ -10,6 +10,11 @@ import { theme } from '../../theme';
 
 const BookingConfirmation = ({ slot, bookingResult, onClose, onBookAnother }) => {
   const navigate = useNavigate();
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []); // Empty dependency array ensures this runs only on mount
 
   // Return null if slot is invalid
   if (!slot || !slot.start) {

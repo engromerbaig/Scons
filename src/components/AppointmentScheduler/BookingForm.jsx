@@ -65,8 +65,8 @@ const BookingForm = ({ slot, onSubmit, onClose, isOpen }) => {
         />
       </div>
 
-      <div className="flex items-center mb-4">
-        <CiTimer className="text-white font-bold text-2xl mr-2" />
+      <div className="flex items-center mb-2">
+        <CiTimer size={20} className="text-white   mr-2" />
         <BodyText
           text={`${displayDateTime} ${displayTimeZone}`}
           centered={false}
@@ -96,7 +96,7 @@ const BookingForm = ({ slot, onSubmit, onClose, isOpen }) => {
           required
         />
         <Button
-          name="Book Slot"
+          name="Book Now"
           type="submit"
           bgColor="bg-neon"
           textColor="text-charcoal"

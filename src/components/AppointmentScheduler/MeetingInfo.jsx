@@ -33,15 +33,15 @@ const MeetingInfo = ({ meetingInfo, selectedDate, onNext }) => {
           </p>
         </div>
         <div className="space-y-4">
-          <div className="flex items-center gap-3 text-gray-700">
+          <div className="flex items-start gap-3 text-gray-700">
             <Clock size={18} className="text-neon" />
             <span className="text-sm">{meetingInfo.duration}</span>
           </div>
-          <div className="flex items-center gap-3 text-gray-700">
+          <div className="flex items-start gap-3 text-gray-700">
             <Video size={18} className="text-neon" />
             <span className="text-sm">{meetingInfo.type}</span>
           </div>
-          <div className="flex items-center gap-3 text-gray-700">
+          <div className="flex items-start gap-3 text-gray-700">
             <RiTimeZoneLine size={18} className="text-neon" />
             <span className="text-sm">Time Zone: {timeZoneDisplay}</span>
           </div>
