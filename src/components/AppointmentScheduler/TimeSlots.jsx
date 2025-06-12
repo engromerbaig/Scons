@@ -234,22 +234,32 @@ const TimeSlots = ({
                               ref={(el) => (slotRefs.current[slotKey] = el)} 
                               className="relative w-full overflow-hidden"
                             >
-                              <button
-                                onClick={() => !checkedSlot.isBooked && !checkedSlot.isTooClose && handleSlotClick(groupDate, index)}
-                                className={`
-                                  w-full px-4 py-3 text-sm border-2 rounded-lg text-center font-bold relative
-                                  ${
-                                    checkedSlot.isBooked || checkedSlot.isTooClose
-                                      ? 'border-gray-600 text-gray-500 line-through cursor-not-allowed bg-gray-50 opacity-50'
-                                      : 'border-neon text-neon hover:bg-neon hover:text-white hover:border-neon transition-colors duration-200'
-                                  }
-                                `}
-                                disabled={checkedSlot.isBooked || checkedSlot.isTooClose}
-                              >
-                                <span className="slot-time inline-block transform-origin-center">
-                                  {checkedSlot.time} {checkedSlot.timeZone}
-                                </span>
-                              </button>
+                        <button
+  onClick={() =>
+    !checkedSlot.isBooked &&
+    !checkedSlot.isTooClose &&
+    handleSlotClick(groupDate, index)
+  }
+  className={`
+    w-full px-4 py-3 text-sm border-2 rounded-lg text-center font-bold relative
+    ${
+      checkedSlot.isBooked || checkedSlot.isTooClose
+        ? 'border-gray-600 text-gray-500 cursor-not-allowed bg-gray-50 opacity-50'
+        : 'border-neon text-neon hover:bg-neon hover:text-white hover:border-neon transition-colors duration-200'
+    }
+  `}
+  disabled={checkedSlot.isBooked || checkedSlot.isTooClose}
+>
+  <span
+    className={`
+      slot-time inline-block transform-origin-center
+      ${checkedSlot.isBooked || checkedSlot.isTooClose ? 'line-through' : ''}
+    `}
+  >
+    {checkedSlot.time} {checkedSlot.timeZone}
+  </span>
+</button>
+
                               {!checkedSlot.isBooked && !checkedSlot.isTooClose && (
                                 <button
                                   onClick={() => openBookingForm(checkedSlot)}

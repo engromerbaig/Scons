@@ -183,7 +183,10 @@ const CalendarView = ({
   return (
     <div className="col-span-12 lg:col-span-6 h-full">
       <div className="bg-white rounded-lg shadow-sm border p-6 h-full">
-        <h2 className="text-xl font-semibold text-gray-900 mb-6">Select a Date</h2>
+        <h2 className="text-xl font-semibold text-gray-900 mb-2">Select a Date</h2>
+          <div className="mb-4 text-xs text-gray-500 text-start">
+          <p>Available for next 90 days • Holidays and weekends excluded</p>
+        </div>
         <div className="flex items-center justify-between mb-6">
           <button
             onClick={() => navigateMonth('prev')}
@@ -274,9 +277,9 @@ const CalendarView = ({
             })}
           </div>
         </div>
-        <div className="mt-4 text-xs text-gray-500 text-center">
+        {/* <div className="mt-4 text-xs text-gray-500 text-center">
           <p>Available for next 90 days • Holidays and weekends excluded</p>
-        </div>
+        </div> */}
       </div>
     </div>
   );
