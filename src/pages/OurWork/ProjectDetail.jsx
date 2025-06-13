@@ -213,10 +213,11 @@ const ProjectDetail = () => {
             <Heading
               text={project.headline}
               centered={false}
-              lineHeight="leading-none"
+              lineHeight="leading-tight"
               color="text-black"
             />
             <BodyText text={project.details} centered={false} color="text-black" />
+
             <div className="flex items-center gap-1">
               <BodyText
                 text="Project Status:"
@@ -224,6 +225,10 @@ const ProjectDetail = () => {
                 />
 
               <BodyText text={project.status}  />
+
+                {project.year && (
+    <BodyText text={`${project.status === "Completed" ? "in" : "since"} ${project.year}`} />
+  )}
               </div>
 
           </div>

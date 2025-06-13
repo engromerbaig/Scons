@@ -235,7 +235,7 @@
   "details": "Global Nation™ is the successor to PatroNet, an early-2000s creator-support platform founded by Todd Rundgren. The new platform aimed to empower creators worldwide by offering a space to connect, collaborate, and monetize their work. The project involved multiple phases: initial deployment on Wix, migration to WordPress for enhanced control, and final transition to a robust, React-based architecture to support scalability and custom features. Wise payment integration was implemented for seamless international transactions.",
   "service": ["Web Development", "Platform Migration", "UI/UX Design", "Payment Integration"],
   "technologies": ["Wix", "WordPress", "React", "Wise API", "JavaScript", "Figma"],
-  "year": "2023",
+  "year": "2024",
   "clientDetails": "Global Nation™, based in California, is a visionary platform reimagining the creator economy. It provides artists, musicians, and creative professionals a dedicated space to showcase their work, connect with supporters, and monetize directly via peer-driven engagement. With a focus on decentralization, community building, and sustainability, the platform is attracting a diverse global user base.",
   "deliverables": [
     "Initial Wix Setup",
@@ -272,7 +272,7 @@
   "details": "Zeitly was born from real-world insights gained while working with German clients who emphasized punctuality, structure, and streamlined workflows. Inspired by the German word *‘Zeit’* (meaning *‘time’*), Zeitly was designed to bring precision scheduling to freelancers, consultants, and service providers globally. Built using a React-based front end, it leverages Firebase and MongoDB for a flexible, cloud-native backend. Email notifications are fired instantly, calendar syncing is seamless, and users benefit from a clean dashboard experience. Continuous user feedback fuels feature enhancements, ensuring Zeitly remains simple, relevant, and effective in an ever-changing SaaS landscape.",
   "service": ["SaaS Product Development", "UI/UX Design", "Calendar & Email Integration", "Realtime Notifications"],
   "technologies": ["React", "Tailwind CSS", "Node.js", "Firebase", "MongoDB", "Google Calendar API", "Figma"],
-  "year": "2024",
+  "year": "2025",
   "clientDetails": "Zeitly is an in-house SaaS product developed by Scons Tech, a Karachi-based software consultancy. It emerged from deep collaboration with European clients, combining global best practices with lean product development. Zeitly’s architecture supports rapid deployment, strong UX, and scalable backend logic — making it the ideal choice for productivity-focused users worldwide.",
   "deliverables": [
     "Product Naming & Branding",
