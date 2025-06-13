@@ -10,7 +10,7 @@ const StepFive = () => {
         <FormWindow
             question="Thank you for your application!"
             spanQuestion="your application!"
-            bodyQuestion='We appreciate your interest in joining our team. Our hiring team will review your application and get back to you soon.'
+            bodyQuestion='We appreciate your interest in joining Scons Tech. Our hiring team will review your application and get back to you soon.'
             showNext={false}
             showBack={false}
             alignRHS="end"
@@ -19,7 +19,7 @@ const StepFive = () => {
             <div className="flex flex-col space-y-4 md:space-y-10 px-10">
                 {/* Back to Website Button */}
                 <CustomButton
-                    option="Back to Website"
+                    option="Return to Website"
                     isSelected={false}
                     onClick={() => navigate('/')}
                 />

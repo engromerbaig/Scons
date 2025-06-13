@@ -68,8 +68,8 @@ const StepTwo = ({ formData, setFormData, handleNext, handleBack, currentStep, t
 
     return (
         <FormWindow
-            question="Ok, now give us more details about yourself."
-            spanQuestion="details about yourself."
+            question="Great, now tell us a bit more about who you are?"
+            spanQuestion="who you are?"
             currentStep={currentStep}
             totalSteps={totalSteps}
             handleNext={handleNextStep}

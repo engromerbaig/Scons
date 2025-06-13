@@ -5,7 +5,7 @@ import FileUpload from './modules/FileUpload';
 const StepFour = ({ formData, setFormData, handleBack, handleSubmit, currentStep, totalSteps }) => {
     const isNextDisabled =
         (!formData.coverLetterFile && !formData.coverLetterUrl) ||
-        (formData.coverLetterUrl && formData.coverLetterUrl.length < 10);
+        (formData.coverLetterUrl && formData.coverLetterUrl.length < 1);
 
     const handleNextStep = () => {
         if (!isNextDisabled) {
@@ -24,7 +24,7 @@ const StepFour = ({ formData, setFormData, handleBack, handleSubmit, currentStep
             question="Upload a Cover Letter"
             spanQuestion='Cover Letter'
             breakSpan={false}
-            bodyQuestion="We’ll store your cover letter to enable you to instantly apply to jobs that match what you’re looking for!"
+            bodyQuestion="We’ll securely store your cover letter to make it easier for you to apply to suitable positions!"
             currentStep={currentStep}
             totalSteps={totalSteps}
             handleNext={handleNextStep}
