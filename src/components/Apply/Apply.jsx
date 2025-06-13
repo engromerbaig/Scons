@@ -9,6 +9,10 @@ import { theme } from '../../theme';
 import Button from '../Button/Button';
 import FormField from '../FormSteps/modules/FormField';
 
+// Hardcoded Cloudinary configuration for testing
+const CLOUDINARY_CLOUD_NAME = 'dnagiscbn';
+const CLOUDINARY_UPLOAD_PRESET = 'career_uploads';
+
 const Apply = () => {
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
@@ -87,10 +91,12 @@ const Apply = () => {
     ];
     if (!validTypes.includes(file.type)) {
       setErrors({ ...errors, [`${type}Url`]: true });
+      alert('Invalid file type. Only DOC, DOCX, PDF, RTF, and TXT are allowed.');
       return;
     }
     if (file.size > 5 * 1024 * 1024) { // 5MB limit
       setErrors({ ...errors, [`${type}Url`]: true });
+      alert('File size exceeds 5MB.');
       return;
     }
 
@@ -98,10 +104,10 @@ const Apply = () => {
       setIsLoading(true);
       const formDataToUpload = new FormData();
       formDataToUpload.append('file', file);
-      formDataToUpload.append('upload_preset', process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET);
+      formDataToUpload.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
 
       const response = await fetch(
-        `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/auto/upload`,
+        `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/auto/upload`,
         {
           method: 'POST',
           body: formDataToUpload,
@@ -109,7 +115,8 @@ const Apply = () => {
       );
 
       if (!response.ok) {
-        throw new Error(`Failed to upload ${type}`);
+        const errorData = await response.json();
+        throw new Error(`Failed to upload ${type}: ${errorData.error.message || response.statusText}`);
       }
 
       const data = await response.json();
@@ -124,6 +131,7 @@ const Apply = () => {
     } catch (error) {
       console.error(`Error uploading ${type}:`, error);
       setErrors({ ...errors, [`${type}Url`]: true });
+      alert(`Error uploading ${type}: ${error.message}. Please try again or provide a URL/text.`);
     } finally {
       setIsLoading(false);
     }
@@ -179,6 +187,7 @@ const Apply = () => {
       });
     } catch (error) {
       console.error('Error submitting form:', error);
+      alert('Error submitting form. Please try again.');
     } finally {
       setIsLoading(false);
     }
