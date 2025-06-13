@@ -34,50 +34,46 @@
     <link rel="preload" href="/hamburger.svg" as="image" />
     <link rel="preload" href="/sconsVertical.svg" as="image" />
 
-    <!-- google tracker -->
-     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-SXGYEZCZ3V"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-SXGYEZCZ3V');
-</script>
-
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SXGYEZCZ3V"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-SXGYEZCZ3V');
+    </script>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
     <!-- Netlify form for contact -->
-   <form name="contact" netlify netlify-honeypot="bot-field" hidden>
-  <input type="text" name="name" />
-  <input type="email" name="email" />
-  <input type="text" name="phone" />
-  <input type="text" name="topics" /> <!-- Changed from 'topic' to 'topics' to match multi-select -->
-  <input type="url" name="url" /> <!-- Added for the new URL field -->
-  <textarea name="description"></textarea>
-</form>
+    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="text" name="phone" />
+      <input type="text" name="topics" />
+      <input type="url" name="url" />
+      <textarea name="description"></textarea>
+    </form>
     <!-- Netlify form for package-inquiry -->
-  <form name="package-inquiry" netlify netlify-honeypot="bot-field" hidden>
-  <input type="text" name="name" />
-  <input type="email" name="email" />
-  <input type="text" name="phone" />
-  <input type="text" name="packageName" />
-  <input type="text" name="packagePrice" />
-</form>
-
-<!-- New career form -->
-<form name="career" netlify netlify-honeypot="bot-field" hidden>
-  <input type="text" name="firstName" />
-  <input type="text" name="lastName" />
-  <input type="email" name="email" />
-  <input type="text" name="phone" />
-  <input type="text" name="linkedin" />
-  <input type="text" name="role" />
-  <input type="text" name="source" />
-  <input type="url" name="resumeUrl" />
-  <input type="url" name="coverLetterUrl" />
-</form>
-
+    <form name="package-inquiry" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="text" name="phone" />
+      <input type="text" name="packageName" />
+      <input type="text" name="packagePrice" />
+    </form>
+    <!-- Netlify form for career -->
+    <form name="career" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="firstName" />
+      <input type="text" name="lastName" />
+      <input type="email" name="email" />
+      <input type="text" name="phone" />
+      <input type="text" name="linkedin" />
+      <input type="text" name="role" />
+      <input type="text" name="source" />
+      <input type="url" name="resumeUrl" />
+      <input type="url" name="coverLetterUrl" />
+    </form>
   </body>
 </html>

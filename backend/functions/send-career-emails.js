@@ -23,9 +23,8 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-// Reuse email templates from send-contact-emails.js
-const thankYouEmailTemplate = `
-<!DOCTYPE html>
+// Email templates
+const thankYouEmailTemplate = `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -108,7 +107,7 @@ const thankYouEmailTemplate = `
             <td>
                 <div class="main-content">
                     <p style="font-size: 14px; color: #000; font-weight: 600; line-height: 1.8;">
-                        Your inquiry details:<br>
+                        Your application details:<br>
                         {{inquiryDetails}}
                     </p>
                     <a href="https://sconstech.com/">
@@ -155,19 +154,9 @@ const thankYouEmailTemplate = `
         </tr>
     </table>
 </body>
-</html>
-`;
+</html>`;
 
-
-
-
-
-
-
-
-
-const companyEmailTemplate = `
-<!DOCTYPE html>
+const companyEmailTemplate = `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -234,7 +223,7 @@ const companyEmailTemplate = `
     <table class="email-container" cellpadding="0" cellspacing="0" border="0" align="center" width="100%">
         <tr>
             <td class="header">
-                <h1 style="font-size: 24px; background: #00c5ff; padding: 15px 0; margin: 0 0 10px 0;">New {{formName}} Submission</h1>
+                <h1 style="font-size: 24px; background: #00c5ff; padding: 15px 0; margin: 0 0 10px 0;">New Career Application</h1>
                 <p style="font-size: 14px; font-weight: bold; color: #555; margin-top: 30px;">{{dateTime}}</p>
             </td>
         </tr>
@@ -247,7 +236,7 @@ const companyEmailTemplate = `
             <td>
                 <div class="main-content">
                     <p style="font-size: 14px; color: #000; font-weight: 600; line-height: 1.8;">
-                        A new submission has been received. Please review the details above and follow up as needed.
+                        A new career application has been received. Please review the details above and follow up as needed.
                     </p>
                     <a href="https://sconstech.com/">
                         <img src="https://lustrous-sundae-be0a50.netlify.app/logo.png/" alt="Scons Logo" style="width: 150px;">
@@ -293,9 +282,7 @@ const companyEmailTemplate = `
         </tr>
     </table>
 </body>
-</html>
-`;
-
+</html>`;
 
 function formatDate() {
   const now = new Date();
@@ -309,6 +296,13 @@ function formatDate() {
 function generateFieldHtml(label, value) {
   if (!value || (Array.isArray(value) && value.length === 0)) return '';
   const formattedValue = Array.isArray(value) ? value.join(', ') : value;
+  if (label.includes('URL')) {
+    // For URLs, create clickable links; for cover letter text, display as-is
+    const isUrl = formattedValue.startsWith('http://') || formattedValue.startsWith('https://');
+    if (isUrl) {
+      return `<div style="margin-bottom: 20px; font-size: 20px;"><strong style="color: #333;">${label}:</strong> <a href="${formattedValue}" target="_blank">${formattedValue}</a></div>`;
+    }
+  }
   return `<div style="margin-bottom: 20px; font-size: 20px;"><strong style="color: #333;">${label}:</strong> ${formattedValue}</div>`;
 }
 
@@ -328,10 +322,31 @@ exports.handler = async function (event, context) {
     const dateTime = formatDate();
 
     // Validate required fields
-    if (!firstName || !lastName || !email || !role || !resumeUrl) {
+    const missingFields = ['firstName', 'lastName', 'email', 'phone', 'role', 'source', 'resumeUrl'].filter(
+      (field) => !data[field]
+    );
+    if (missingFields.length > 0) {
       return {
         statusCode: 400,
-        body: JSON.stringify({ message: 'Missing required fields' }),
+        body: JSON.stringify({ message: `Missing required fields: ${missingFields.join(', ')}` }),
+      };
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ message: 'Invalid email format' }),
+      };
+    }
+
+    // Validate resumeUrl if it's a URL (not required for coverLetterUrl since it may be text)
+    const urlRegex = /^https?:\/\/[^\s/$.?#].[^\s]*$/;
+    if (resumeUrl && (resumeUrl.startsWith('http://') || resumeUrl.startsWith('https://')) && !urlRegex.test(resumeUrl)) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ message: 'Invalid resume URL format' }),
       };
     }
 
@@ -376,7 +391,7 @@ exports.handler = async function (event, context) {
 
     // Send both emails concurrently
     await transporter.sendMail(mailToCompany);
-    await new Promise((resolve) => setTimeout(resolve, 1000)); // 1-second delay
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     await transporter.sendMail(mailToUser);
 
     return {

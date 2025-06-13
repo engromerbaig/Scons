@@ -6,8 +6,8 @@ import StepThree from '../FormSteps/StepThree';
 import StepFour from '../FormSteps/StepFour';
 import StepFive from '../FormSteps/StepFive';
 import { theme } from '../../theme';
-import Button from '../Button/Button'; // Assuming you have a Button component
-import FormField from '../FormSteps/modules/FormField'; // Assuming you have a FormField component
+import Button from '../Button/Button';
+import FormField from '../FormSteps/modules/FormField';
 
 const Apply = () => {
   const navigate = useNavigate();
@@ -36,6 +36,7 @@ const Apply = () => {
     email: false,
     role: false,
     resumeUrl: false,
+    coverLetterUrl: false,
   });
 
   // Validate form data
@@ -46,12 +47,9 @@ const Apply = () => {
   }, [formData]);
 
   const handleNext = () => {
-    // Validate current step before proceeding
     let newErrors = {};
     if (step === 1) {
-      newErrors = {
-        source: !formData.source,
-      };
+      newErrors = { source: !formData.source };
     } else if (step === 2) {
       newErrors = {
         firstName: !formData.firstName,
@@ -61,9 +59,7 @@ const Apply = () => {
         role: !formData.role,
       };
     } else if (step === 3) {
-      newErrors = {
-        resumeUrl: !formData.resumeUrl,
-      };
+      newErrors = { resumeUrl: !formData.resumeUrl };
     }
     setErrors({ ...errors, ...newErrors });
 
@@ -78,8 +74,62 @@ const Apply = () => {
 
   const handleBack = () => setStep((prev) => Math.max(prev - 1, 1));
 
+  const handleFileUpload = async (file, type) => {
+    if (!file) return;
+
+    // Validate file type and size
+    const validTypes = [
+      'application/pdf',
+      'application/msword',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      'application/rtf',
+      'text/plain',
+    ];
+    if (!validTypes.includes(file.type)) {
+      setErrors({ ...errors, [`${type}Url`]: true });
+      return;
+    }
+    if (file.size > 5 * 1024 * 1024) { // 5MB limit
+      setErrors({ ...errors, [`${type}Url`]: true });
+      return;
+    }
+
+    try {
+      setIsLoading(true);
+      const formDataToUpload = new FormData();
+      formDataToUpload.append('file', file);
+      formDataToUpload.append('upload_preset', process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET);
+
+      const response = await fetch(
+        `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/auto/upload`,
+        {
+          method: 'POST',
+          body: formDataToUpload,
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`Failed to upload ${type}`);
+      }
+
+      const data = await response.json();
+      const fileUrl = data.secure_url;
+
+      setFormData({
+        ...formData,
+        [`${type}File`]: file,
+        [`${type}Url`]: fileUrl,
+      });
+      setErrors({ ...errors, [`${type}Url`]: false });
+    } catch (error) {
+      console.error(`Error uploading ${type}:`, error);
+      setErrors({ ...errors, [`${type}Url`]: true });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const handleSubmit = async () => {
-    // Final validation
     const newErrors = {
       source: !formData.source,
       firstName: !formData.firstName,
@@ -122,26 +172,16 @@ const Apply = () => {
 
       const result = await response.json();
       console.log('Submission result:', result);
-      setStep(totalSteps); // Move to StepFive (thank you page)
-      // Optionally navigate to a thank-you page
-      // navigate('/thank-you-career');
+      setStep(totalSteps); // Move to StepFive
+      window.gtag('event', 'career_submission', {
+        event_category: 'Form',
+        event_label: 'Career Application',
+      });
     } catch (error) {
       console.error('Error submitting form:', error);
     } finally {
       setIsLoading(false);
     }
-  };
-
-  // Placeholder for file upload handler (assuming files are uploaded to a third-party service)
-  const handleFileUpload = async (file, type) => {
-    // Simulate uploading to a third-party service like Cloudinary or S3
-    // Replace with actual upload logic
-    const fakeUrl = `https://example.com/uploads/${file.name}`;
-    setFormData({
-      ...formData,
-      [`${type}File`]: file,
-      [`${type}Url`]: fakeUrl,
-    });
   };
 
   return (
@@ -151,7 +191,7 @@ const Apply = () => {
         method="POST"
         data-netlify="true"
         data-netlify-honeypot="bot-field"
-        onSubmit={(e) => e.preventDefault()} // Prevent default submission
+        onSubmit={(e) => e.preventDefault()}
         className="w-full h-full flex"
       >
         <input type="hidden" name="form-name" value="career" />
@@ -186,6 +226,7 @@ const Apply = () => {
             totalSteps={totalSteps - 1}
             errors={errors}
             handleFileUpload={(file) => handleFileUpload(file, 'resume')}
+            isLoading={isLoading}
           />
         )}
         {step === 4 && (
@@ -198,6 +239,7 @@ const Apply = () => {
             totalSteps={totalSteps - 1}
             errors={errors}
             handleFileUpload={(file) => handleFileUpload(file, 'coverLetter')}
+            isLoading={isLoading}
           />
         )}
         {step === 5 && <StepFive />}
