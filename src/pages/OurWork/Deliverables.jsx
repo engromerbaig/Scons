@@ -7,20 +7,20 @@ import BodyText from "../../components/BodyText/BodyText";
 // Register Chart.js components
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const Deliverables = ({ deliverables, heading }) => {
+const Deliverables = ({ deliverables, heading, status }) => {
   // Generate equal percentages for each deliverable
   const dataCount = deliverables.length;
   const percentage = dataCount > 0 ? 100 / dataCount : 0;
 
   // Define colors for each segment
-const colors = [
-  "#00C5FF", // bright cyan/blue (main theme)
-  "#28ed70", // neon green
-  "#000000", // black
-  "#FF6F61", // coral red
-  "#FFD700", // gold/yellow
-  "#6A5ACD", // slate blue
-];
+  const colors = [
+    "#00C5FF", // bright cyan/blue (main theme)
+    "#28ed70", // neon green
+    "#000000", // black
+    "#FF6F61", // coral red
+    "#FFD700", // gold/yellow
+    "#6A5ACD", // slate blue
+  ];
 
   // Chart data
   const chartData = {
@@ -29,10 +29,10 @@ const colors = [
       {
         data: deliverables.map(() => percentage),
         backgroundColor: deliverables.map((_, index) => colors[index % colors.length]),
-        borderWidth: 2,        // creates visible gap
-        borderColor: "#fff",   // white gaps between segments
-        cutout: "60%",         // donut hole size
-        spacing: 20,            // gap between arcs (works in Chart.js 4+)
+        borderWidth: 2,
+        borderColor: "#fff",
+        cutout: "60%",
+        spacing: 20,
       },
     ],
   };
@@ -96,7 +96,9 @@ const colors = [
           lineHeight="leading-none"
         />
         <BodyText
-          text={`Throughout the ${heading}'s project, our team successfully achieved the following key deliverables and impactful outcomes:`}
+          text={`Throughout the ${heading} project, our team ${
+            status === "Completed" ? "successfully achieved" : "targets to successfully achieve"
+          } the following key deliverables and impactful outcomes:`}
           className="max-w-3xl"
           centered={false}
         />

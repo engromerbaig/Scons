@@ -333,7 +333,7 @@ const ProjectDetail = () => {
 )}
 
 
-      <Deliverables deliverables={project.deliverables} heading={project.heading} />
+      <Deliverables deliverables={project.deliverables} heading={project.heading} status={project.status}  />
 
       <HorizontalScroller
         heading={`How ${project.heading} came to life`}
