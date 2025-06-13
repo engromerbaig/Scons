@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import Heading from '../../components/Heading/Heading';
@@ -15,11 +14,10 @@ import { FaCheckCircle } from "react-icons/fa";
 import { theme } from '../../theme';
 
 const JobDetails = () => {
-    const { heading, jobType } = useParams();
+    const { jobType } = useParams(); // Get the jobType slug from the URL
 
-    // Find the main job and specific child job
-    const job = jobListings.find(job => slugify(job.heading) === heading);
-    const childJob = job?.childItems.find(item => slugify(item.jobType) === jobType);
+    // Find the job by matching the slugified jobType
+    const job = jobListings.find(job => slugify(job.jobType) === jobType);
 
     // Dynamically generate spanText (last word of jobType)
     const getSpanText = (jobType) => {
@@ -28,10 +26,10 @@ const JobDetails = () => {
     };
 
     // Dynamically load the image or fallback to placeholder
-    const jobImage = childJob ? importJobImages(slugify(childJob.jobType)) : null;
+    const jobImage = job ? importJobImages(slugify(job.jobType)) : null;
 
-    // Error handling if job or childJob not found
-    if (!job || !childJob) {
+    // Error handling if job not found
+    if (!job) {
         return (
             <div className="text-white text-center py-20">
                 Job details not found. Please check the URL or return to the careers page.
@@ -44,8 +42,8 @@ const JobDetails = () => {
             {/* InnerHero Section */}
             <InnerHero
                 isCareer={true}
-                headingText={childJob.jobType}
-                spanText={getSpanText(childJob.jobType)}
+                headingText={job.jobType}
+                spanText={getSpanText(job.jobType)}
                 breakSpan1={true}
                 bodyText={`${job.workLocation} - ${job.city} - ${job.employmentType}`}
                 centeredHeading1={false}
@@ -54,7 +52,7 @@ const JobDetails = () => {
                 height='h-[70vh]'
             >
                 <BodyText
-                    text={childJob.jobDescription}
+                    text={job.jobDescription}
                     color="text-black"
                     centered={false}
                 />
@@ -66,7 +64,7 @@ const JobDetails = () => {
                 <div>
                     <Heading text="Role:" color="text-black" size='text-50px' fontWeight='font-semibold' centered={false} />
                     <BodyText
-                        text={childJob.roleDescription}
+                        text={job.roleDescription}
                         centered={false}
                     />
                 </div>
@@ -75,7 +73,7 @@ const JobDetails = () => {
                 <div>
                     <Heading text="Experience:" color="text-black" size='text-50px' fontWeight='font-semibold' centered={false} />
                     <ul className="space-y-2 mt-4">
-                        {childJob.experience.map((exp, index) => (
+                        {job.experience.map((exp, index) => (
                             <li key={index} className="flex items-center space-x-4">
                                 <FaCheckCircle className="w-4 h-4 text-neon" />
                                 <BodyText text={exp} centered={false} />
@@ -88,7 +86,7 @@ const JobDetails = () => {
                 <div>
                     <Heading text="Skillsets:" color="text-black" size='text-50px' fontWeight='font-semibold' centered={false} />
                     <ul className="space-y-2 mt-4">
-                        {childJob.skills.map((skill, index) => (
+                        {job.skills.map((skill, index) => (
                             <li key={index} className="flex items-center space-x-4">
                                 <FaCheckCircle className="w-4 h-4 text-neon" />
                                 <BodyText text={skill} centered={false} />
@@ -101,7 +99,7 @@ const JobDetails = () => {
                 <div className="flex justify-start">
                     <Button
                         name="Apply Now"
-                        link={`/careers/apply`}
+                        link={`/careers/apply?jobType=${slugify(job.jobType)}`}
                         className='py-2 px-4'
                     />
                 </div>

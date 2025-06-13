@@ -1,82 +1,74 @@
 [
     {
-        "heading": "Software Engineer",
+        "jobType": "Frontend Development",
         "workLocation": "Remote",
         "city": "Dubai/Karachi",
         "employmentType": "Full Time",
-        "childItems": [
-            {
-                "jobType": "Frontend Development",
-                "buttonText": "Learn More",
-                "jobDescription": "Work on responsive and dynamic front-end applications.",
-                "roleDescription": "Collaborate with designers to create interactive user interfaces.",
-                "experience": [
-                    "2+ years of experience in frontend development.",
-                    "Strong knowledge of HTML, CSS, and JavaScript.",
-                    "Experience with responsive design frameworks."
-                ],
-                "skills": [
-                    "React.js",
-                    "TailwindCSS",
-                    "RESTful APIs"
-                ]
-            },
-            {
-                "jobType": "Backend Development",
-                "buttonText": "Learn More",
-                "jobDescription": "Develop and maintain server-side applications.",
-                "roleDescription": "Implement RESTful APIs and ensure database integration.",
-                "experience": [
-                    "3+ years working with server-side languages.",
-                    "Experience with databases like MongoDB or PostgreSQL.",
-                    "Knowledge of cloud services like AWS or Azure."
-                ],
-                "skills": [
-                    "Node.js",
-                    "Express.js",
-                    "Database Management"
-                ]
-            }
+        "jobDescription": "Work on responsive and dynamic front-end applications.",
+        "roleDescription": "Collaborate with designers to create interactive user interfaces.",
+        "experience": [
+            "2+ years of experience in frontend development.",
+            "Strong knowledge of HTML, CSS, and JavaScript.",
+            "Experience with responsive design frameworks."
+        ],
+        "skills": [
+            "React.js",
+            "TailwindCSS",
+            "RESTful APIs"
         ]
     },
     {
-        "heading": "Digital Marketer",
+        "jobType": "Backend Development",
+        "workLocation": "Remote",
+        "city": "Dubai/Karachi",
+        "employmentType": "Full Time",
+        "jobDescription": "Develop and maintain server-side applications.",
+        "roleDescription": "Implement RESTful APIs and ensure database integration.",
+        "experience": [
+            "3+ years working with server-side languages.",
+            "Experience with databases like MongoDB or PostgreSQL.",
+            "Knowledge of cloud services like AWS or Azure."
+        ],
+        "skills": [
+            "Node.js",
+            "Express.js",
+            "Database Management"
+        ]
+    },
+    {
+        "jobType": "Social Media Management",
         "workLocation": "In-house",
         "city": "Lahore",
         "employmentType": "Part Time",
-        "childItems": [
-            {
-                "jobType": "Social Media Management",
-                "buttonText": "Learn More",
-                "jobDescription": "Manage and grow social media accounts across platforms.",
-                "roleDescription": "Engage with followers and produce social media content.",
-                "experience": [
-                    "Experience in social media marketing and content creation.",
-                    "Knowledge of social media analytics and scheduling tools.",
-                    "Creativity in curating engaging content."
-                ],
-                "skills": [
-                    "Content Creation",
-                    "SEO Basics",
-                    "Analytics Tools"
-                ]
-            },
-            {
-                "jobType": "Content Strategy",
-                "buttonText": "Learn More",
-                "jobDescription": "Plan and execute content marketing strategies.",
-                "roleDescription": "Create content calendars and monitor audience engagement.",
-                "experience": [
-                    "2+ years in digital content strategy.",
-                    "Understanding of target audience segmentation.",
-                    "Experience with content management systems."
-                ],
-                "skills": [
-                    "Content Planning",
-                    "CMS Management",
-                    "Data Analysis"
-                ]
-            }
+        "jobDescription": "Manage and grow social media accounts across platforms.",
+        "roleDescription": "Engage with followers and produce social media content.",
+        "experience": [
+            "Experience in social media marketing and content creation.",
+            "Knowledge of social media analytics and scheduling tools.",
+            "Creativity in curating engaging content."
+        ],
+        "skills": [
+            "Content Creation",
+            "SEO Basics",
+            "Analytics Tools"
+        ]
+    },
+    {
+        "jobType": "Content Strategy",
+        "workLocation": "In-house",
+        "city": "Lahore",
+        "employmentType": "Part Time",
+        "jobDescription": "Plan and execute content marketing strategies.",
+        "roleDescription": "Create content calendars and monitor audience engagement.",
+        "experience": [
+            "2+ years in digital content strategy.",
+            "Understanding of target audience segmentation.",
+            "Experience with content management systems."
+        ],
+        "skills": [
+            "Content Planning",
+            "CMS Management",
+            "Data Analysis"
         ]
     }
 ]

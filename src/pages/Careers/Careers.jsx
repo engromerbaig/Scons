@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, lazy } from "react";
+import React, { lazy } from "react";
 import { Helmet } from 'react-helmet-async';
 import ogDefault from '../../assets/images/og-default.jpg';
 
@@ -6,7 +6,6 @@ import ogDefault from '../../assets/images/og-default.jpg';
 const InnerHero = lazy(() => import("../../components/InnerHero/InnerHero"));
 const CollapsibleContainer = lazy(() => import("../../components/CollapsibleContainer/CollapsibleContainer"));
 const FAQ = lazy(() => import("../../components/FAQ/FAQ"));
-const GreenBelt = lazy(() => import("../../components/GreenBelt/GreenBelt"));
 const Heading = lazy(() => import("../../components/Heading/Heading"));
 
 import schema from '../../utilities/schema';
@@ -49,7 +48,7 @@ const Careers = () => {
                 <script type="application/ld+json">{schema}</script>
             </Helmet>
 
-            {/* Inner Hero Section */} 
+            {/* Inner Hero Section */}
             <InnerHero
                 headingText="Begin Your Career With Us"
                 spanText="Career"
@@ -63,11 +62,10 @@ const Careers = () => {
                     jobListings.map((job, index) => (
                         <CollapsibleContainer
                             key={index}
-                            heading={job.heading}
+                            jobType={job.jobType}
                             workLocation={job.workLocation}
                             city={job.city}
                             employmentType={job.employmentType}
-                            childItems={job.childItems}
                             borderColor={index % 2 === 0 ? 'border-black' : 'border-neon'}
                         />
                     ))
