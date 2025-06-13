@@ -21,8 +21,8 @@ const StepOne = ({ formData, setFormData, handleNext, currentStep, totalSteps })
 
     return (
         <FormWindow
-            question="Did the news circulate…who let you know we're the top choice?"
-            spanQuestion="who let you know we're the top choice?"
+            question="Word got around! But who told you we're the number one pick?"
+            spanQuestion="But who told you we're the number one pick?"
             currentStep={currentStep}
             totalSteps={totalSteps}
             handleNext={handleNext}
@@ -35,7 +35,7 @@ const StepOne = ({ formData, setFormData, handleNext, currentStep, totalSteps })
         >
             {/* RHS Content */}
             <div className={`  space-y-4 md:space-y-10 `}>
-                {['Social Media', 'A Project We Did', 'A Friend', 'Word on Street'].map((option, index) => (
+                {['Social Media', 'A Project We Did', 'Our Website', 'Referral'].map((option, index) => (
                     <CustomButton
                         key={index}
                         option={option}
