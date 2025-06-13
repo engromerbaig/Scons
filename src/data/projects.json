@@ -251,7 +251,7 @@
 {
   "id": 10,
   "heading": "Zeitly",
-"headline": "Zeitly – A Timely Scheduling SaaS by Scons Tech for Agile Teams, Freelancers, and Global Clients",
+"headline": "Zeitly – A Timely Scheduling SaaS by Scons Tech.",
   "location": "Karachi, Pakistan",
   "bodyText": "Zeitly is a lightweight, efficient SaaS platform developed by Scons Tech to modernize the way teams and individuals manage appointments. The product combines fast performance, intuitive UX, and seamless integration capabilities — built entirely from Karachi, with global usability in mind.",
   "details": "Zeitly was born from real-world insights gained while working with German clients who emphasized punctuality, structure, and streamlined workflows. Inspired by the German word *‘Zeit’* (meaning *‘time’*), Zeitly was designed to bring precision scheduling to freelancers, consultants, and service providers globally. Built using a React-based front end, it leverages Firebase and MongoDB for a flexible, cloud-native backend. Email notifications are fired instantly, calendar syncing is seamless, and users benefit from a clean dashboard experience. Continuous user feedback fuels feature enhancements, ensuring Zeitly remains simple, relevant, and effective in an ever-changing SaaS landscape.",
