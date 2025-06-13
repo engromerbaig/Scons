@@ -4,7 +4,7 @@ const placeholderQuote = "https://cdn-icons-png.flaticon.com/512/25/25426.png";
 import tillImage from "../../assets/images/testimonials/till.webp"
 import ingeborgImage from "../../assets/images/testimonials/ingeborg.png"
 import upworkImage from "../../assets/images/testimonials/3.svg"
-import annaImage from "../../assets/images/testimonials/anne.jpg"
+import annaImage from "../../assets/images/testimonials/habib.webp"
 
 
 import quoteIcon from "../../assets/images/testimonials/quote.svg"
@@ -36,10 +36,10 @@ const testimonials = [
     clientImg: upworkImage,
   },
   {
-    quote: "Scons transformed the digital presence of Anne Symon Interiors with a beautifully crafted marketing website that truly reflects our brand. Their team was attentive, creative, and efficient throughout the process. We’re now excited to continue working with them on our upcoming mobile apps!",
-    name: "Anne Symon",
-    position: "Principal Designer",
-    company: "Anne Symon Interiors",
+    quote: "I hired Scons Tech in 2023 to support marketing for my brand QuantumLearn, an online platform focused on physics education in Germany. I was genuinely impressed by Mr. Faraz’s marketing skills — his strategy led to substantial growth across Europe. Their team was professional, proactive, and results-focused. Highly recommended!",
+    name: "Mr. Habib Ali",
+    position: "CEO",
+    company: "QuantumLearn",
     rating: 5,
     clientImg: annaImage,
   },
