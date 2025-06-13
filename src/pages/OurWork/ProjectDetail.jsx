@@ -217,6 +217,15 @@ const ProjectDetail = () => {
               color="text-black"
             />
             <BodyText text={project.details} centered={false} color="text-black" />
+            <div className="flex items-center gap-1">
+              <BodyText
+                text="Project Status:"
+                fontWeight="font-semibold"
+                />
+
+              <BodyText text={project.status}  />
+              </div>
+
           </div>
 
           <div className="flex flex-col justify-start items-start gap-2 xl:w-2/5 w-full">
