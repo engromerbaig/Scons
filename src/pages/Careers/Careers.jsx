@@ -63,7 +63,7 @@ const Careers = () => {
 
             {/* Job Listings */}
             <div className={` ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal} space-y-6 border-b `}>
-                {/* {jobListings.map((job, index) => (
+                {jobListings.map((job, index) => (
                     <CollapsibleContainer
                         key={index}
                         heading={job.heading}
@@ -73,7 +73,7 @@ const Careers = () => {
                         childItems={job.childItems}
                         borderColor={index % 2 === 0 ? 'border-bodyText' : 'border-neon'}
                     />
-                ))} */}
+                ))}
 
                 <Heading
                     text="No Current Openings"

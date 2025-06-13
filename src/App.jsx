@@ -92,6 +92,8 @@ function AppContent() {
           <Route path="/careers" element={<Careers />} />
           <Route path="/service/:serviceSlug" element={<ServiceDetailsWrapper />} />
           <Route path="/blogs" element={<Blogs />} />
+    <Route path="/careers/:heading/:jobType" element={<JobDetails />} />
+          <Route path="/careers/apply" element={<Apply />} />
           <Route path="/blogs/:blogSlug" element={<BlogDetails />} />
           <Route path="/packages" element={<Packages />} />
           <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
