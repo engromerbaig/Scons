@@ -263,6 +263,55 @@
     }
   ]
 }
+,
+{
+  "id": 11,
+  "heading": "RecoTrack",
+  "headline": "RecoTrack – Smart Receipt & Expense Tracking by Scons Tech.",
+  "status": "Planned",
+  "location": "Karachi, Pakistan",
+  "bodyText": "RecoTrack is a modern mobile-first expense and receipt tracking application designed for freelancers, small business owners, and digital nomads. Developed as an in-house concept by Scons Tech, the app helps users scan, store, categorize, and analyze receipts on the go with a user-friendly interface and powerful backend intelligence.",
+  "details": "RecoTrack aims to eliminate the chaos of manual expense tracking by digitizing receipts in real time using mobile OCR technology. Designed with a clean, intuitive interface in Figma, and planned to be built using React Native for cross-platform compatibility, RecoTrack leverages local storage for offline capability and cloud sync via Firebase. Users can scan paper receipts, automatically extract details like date and amount, tag expenses under custom categories, and generate downloadable reports. The product will use on-device encryption to ensure privacy and security, while offering features like multi-client tagging, intelligent sorting, and monthly financial insights for professionals always on the move.",
+  "service": ["Mobile App Design", "Cross-Platform App Development", "OCR Integration", "Expense Intelligence System"],
+  "technologies": [
+    "React Native",
+    "Figma",
+    "Firebase",
+    "Redux",
+    "AsyncStorage",
+    "TensorFlow Lite (for OCR)",
+    "Expo",
+    "Cloud Firestore",
+    "SecureStore"
+  ],
+  "year": "2025",
+  "clientDetails": "RecoTrack is a proprietary mobile app project developed by Scons Tech to showcase its capabilities in intuitive, mobile-first financial tools. Though currently in the planning phase, its value proposition has already sparked interest from solo entrepreneurs and boutique accounting firms in need of custom digital solutions.",
+  "deliverables": [
+    "Branding & Naming Strategy",
+    "User Journey Mapping in Figma",
+    "Custom React Native UI Components",
+    "Mobile Receipt OCR Integration",
+    "Firebase Cloud Syncing",
+    "Offline Storage via AsyncStorage",
+    "Data Privacy with Device Encryption",
+    "PDF Export & Monthly Reports Module"
+  ],
+  "impactIntro": "RecoTrack is transforming the way modern professionals manage receipts and expenses — reducing paperwork, improving accuracy, and saving valuable time.",
+  "impacts": [
+    {
+      "heading": "Paperless Efficiency",
+      "text": "RecoTrack’s OCR engine allows users to digitize and categorize receipts in seconds, minimizing the hassle of manual data entry."
+    },
+    {
+      "heading": "Secure & Offline Ready",
+      "text": "With on-device encryption and offline storage, users can trust their data is accessible and secure — even without internet."
+    },
+    {
+      "heading": "Designed for Real Workflows",
+      "text": "Built with insights from freelancers and small businesses, RecoTrack features multi-client tagging and customizable categories to match real-world needs."
+    }
+  ]
+}
 
 
 
