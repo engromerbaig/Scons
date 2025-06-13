@@ -63,9 +63,9 @@ const FileUpload = ({
                         </>
                     ) : (
                         <>
-                            <img src={fileIcon} className="w-10 lg:w-20" alt="File Icon" />
+                            <img src={fileIcon} className="w-10 lg:w-20 svg-neon" alt="File Icon" />
                             <span className="font-manrope text-sm lg:text-20px text-bodyText lg:mt-4">
-                                BROWSE | DROPBOX
+                                BROWSE 
                             </span>
                         </>
                     )}
