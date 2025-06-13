@@ -55,7 +55,7 @@ const FileUpload = ({
 
 
                             <div
-                                className="absolute top-2 right-2 text-bodyText cursor-pointer hover:text-black transition"
+                                className="absolute top-2 right-2 text-black cursor-pointer hover:text-black transition"
                                 onClick={handleFileDelete}
                             >
                                 <FiTrash size={20} />
@@ -64,7 +64,7 @@ const FileUpload = ({
                     ) : (
                         <>
                             <img src={fileIcon} className="w-10 lg:w-20 svg-neon" alt="File Icon" />
-                            <span className="font-manrope text-sm lg:text-20px text-bodyText lg:mt-4">
+                            <span className="font-manrope text-sm lg:text-20px text-black lg:mt-4">
                                 BROWSE 
                             </span>
                         </>
@@ -101,7 +101,7 @@ const FileUpload = ({
                 </label>
 
                 {/* OR Separator */}
-                <div className="text-bodyText font-bold text-xl mx-4">OR</div>
+                <div className="text-black font-bold text-xl mx-4">OR</div>
 
                 {/* URL Input Box */}
                 <div className="flex flex-col justify-start w-full lg:w-1/2 h-20 lg:h-40 border-2 border-neon rounded-lg p-4 transition">
@@ -113,7 +113,7 @@ const FileUpload = ({
                             onChange={(e) => onUrlChange(e.target.value)}
                             onFocus={() => setPlaceholderVisible(false)}
                             onBlur={() => setPlaceholderVisible(true)}
-                            className="bg-transparent w-full outline-none text-bodyText placeholder:text-bodyText"
+                            className="bg-transparent w-full outline-none text-black placeholder:text-black"
                         />
                     ) : (
                         <textarea
@@ -122,7 +122,7 @@ const FileUpload = ({
                             onChange={(e) => onUrlChange(e.target.value)}
                             onFocus={() => setPlaceholderVisible(false)}
                             onBlur={() => setPlaceholderVisible(true)}
-                            className="bg-transparent w-full outline-none resize-none h-full text-bodyText placeholder:text-bodyText"
+                            className="bg-transparent w-full outline-none resize-none h-full text-black placeholder:text-black"
                         />
                     )}
                 </div>
