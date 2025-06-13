@@ -280,41 +280,44 @@ const ProjectDetail = () => {
         </div>
       </FadeWrapper>
 
-      <FadeWrapper>
-        <Heading
-          text="Watch a Live Demo"
-          spanText="Demo"
-          spanColor="text-neon"
-          className="mb-4"
+
+{/* add the project.video && on the main wrapper here */}
+   {project.video && (
+  <FadeWrapper>
+    <Heading
+      text="Watch a Live Demo"
+      spanText="Demo"
+      spanColor="text-neon"
+      className="mb-2"
+    />
+    {/* Optional Video Section */}
+    <div
+      className={`relative w-full max-w-[1000px] mx-auto ${theme.layoutPages.paddingVertical}`}
+    >
+      {!videoLoaded && (
+        <SkeletonLoader
+          className="absolute top-0 left-0 w-full h-[300px] sm:h-[300px] xl:h-[550px] rounded-3xl border-4 xl:border-8 border-neon"
         />
-        {/* Optional Video Section */}
-        {project.video && (
-          <div
-            className={`relative w-full max-w-[1000px] mx-auto ${theme.layoutPages.paddingVertical}`}
-          >
-            {!videoLoaded && (
-              <SkeletonLoader
-                className="absolute top-0 left-0 w-full h-[300px] sm:h-[300px] xl:h-[550px] rounded-3xl border-4 xl:border-8 border-neon"
-              />
-            )}
-            <video
-              src={project.video}
-              controls
-              playsInline
-              muted
-              preload="metadata"
-              poster={project.coverImage || ogLogo} // Fallback to coverImage or ogLogo
-              className={`w-full h-[300px] sm:h-[300px] xl:h-[550px] object-contain rounded-3xl border-4 xl:border-8 border-neon transition-opacity duration-500 ease-in-out ${
-                videoLoaded ? "opacity-100" : "opacity-0"
-              }`}
-              loading="lazy"
-              onCanPlay={() => setVideoLoaded(true)}
-            >
-              Your browser does not support the video tag.
-            </video>
-          </div>
-        )}
-      </FadeWrapper>
+      )}
+      <video
+        src={project.video}
+        controls
+        playsInline
+        muted
+        preload="metadata"
+        poster={project.coverImage || ogLogo} // Fallback to coverImage or ogLogo
+        className={`w-full h-[300px] sm:h-[300px] xl:h-[550px] object-contain rounded-3xl border-4 xl:border-8 border-neon transition-opacity duration-500 ease-in-out ${
+          videoLoaded ? "opacity-100" : "opacity-0"
+        }`}
+        loading="lazy"
+        onCanPlay={() => setVideoLoaded(true)}
+      >
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </FadeWrapper>
+)}
+
 
       <Deliverables deliverables={project.deliverables} heading={project.heading} />
 

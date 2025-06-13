@@ -60,15 +60,15 @@ const ProjectCard = ({ project, onMysteryClick }) => {
       className="group"
       onClick={project.isMystery ? handleClick : undefined}
     >
-      <div className="flex flex-col items-start  w-full">
+      <div className="flex flex-col items-start w-full">
         {/* Cover Image */}
         <div className="relative w-full h-[500px] xl:h-[600px] 2xl:h-[700px] overflow-hidden rounded-3xl mb-2 group">
           {/* Status Badge */}
-{project.status && (
-  <div className="absolute top-4 right-4  text-neon text-xs font-semibold px-2 py-0 rounded-full z-20 border border-neon backdrop-blur-sm shadow-md">
-    {project.status}
-  </div>
-)}
+          {project.status && (
+            <div className="absolute top-4 right-4 text-neon text-xs font-semibold px-2 py-0 rounded-full z-20 border border-neon backdrop-blur-sm shadow-md">
+              {project.status}
+            </div>
+          )}
           {!imageLoaded && (
             <SkeletonLoader
               className="w-full h-full absolute top-0 left-0"
@@ -85,10 +85,10 @@ const ProjectCard = ({ project, onMysteryClick }) => {
             loading="lazy"
             onLoad={() => setImageLoaded(true)}
           />
-
-          {/* Sliding Overlay */}
-          <div className="absolute inset-0 bg-black/60 -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-in-out rounded-3xl z-10" />
-
+          {/* Default Overlay */}
+          <div className="absolute inset-0 bg-black/25 rounded-3xl z-10" />
+          {/* Sliding Overlay for Hover */}
+          <div className="absolute inset-0 bg-black/60 -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-in-out rounded-3xl z-15" />
           {/* Sliding Text Bottom-Right */}
           <div className="absolute bottom-4 right-2 translate-y-full group-hover:translate-y-0 transition-all duration-500 ease-out delay-200 opacity-0 group-hover:opacity-100 z-20">
             <div className="flex gap-2">
