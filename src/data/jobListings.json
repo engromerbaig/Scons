@@ -34,41 +34,5 @@
             "Express.js",
             "Database Management"
         ]
-    },
-    {
-        "jobType": "Social Media Management",
-        "workLocation": "In-house",
-        "city": "Lahore",
-        "employmentType": "Part Time",
-        "jobDescription": "Manage and grow social media accounts across platforms.",
-        "roleDescription": "Engage with followers and produce social media content.",
-        "experience": [
-            "Experience in social media marketing and content creation.",
-            "Knowledge of social media analytics and scheduling tools.",
-            "Creativity in curating engaging content."
-        ],
-        "skills": [
-            "Content Creation",
-            "SEO Basics",
-            "Analytics Tools"
-        ]
-    },
-    {
-        "jobType": "Content Strategy",
-        "workLocation": "In-house",
-        "city": "Lahore",
-        "employmentType": "Part Time",
-        "jobDescription": "Plan and execute content marketing strategies.",
-        "roleDescription": "Create content calendars and monitor audience engagement.",
-        "experience": [
-            "2+ years in digital content strategy.",
-            "Understanding of target audience segmentation.",
-            "Experience with content management systems."
-        ],
-        "skills": [
-            "Content Planning",
-            "CMS Management",
-            "Data Analysis"
-        ]
     }
 ]
