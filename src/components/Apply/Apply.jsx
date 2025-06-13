@@ -5,7 +5,6 @@ import StepThree from '../FormSteps/StepThree';
 import StepFour from '../FormSteps/StepFour';
 import StepFive from '../FormSteps/StepFive';
 import { theme } from '../../theme';
-import AnimatedBackground from '../../utilities/AnimatedBackground/AnimatedBackground';
 import { apiUrl } from '../../utilities/apiUrl';
 
 const Apply = () => {
