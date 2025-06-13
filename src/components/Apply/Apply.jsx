@@ -105,9 +105,11 @@ const Apply = () => {
       const formDataToUpload = new FormData();
       formDataToUpload.append('file', file);
       formDataToUpload.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+      // Optionally specify folder to organize files
+      formDataToUpload.append('folder', 'career_uploads');
 
       const response = await fetch(
-        `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/auto/upload`,
+        `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/raw/upload`,
         {
           method: 'POST',
           body: formDataToUpload,
@@ -121,6 +123,7 @@ const Apply = () => {
 
       const data = await response.json();
       const fileUrl = data.secure_url;
+      console.log(`Uploaded ${type} URL:`, fileUrl); // Debug log
 
       setFormData({
         ...formData,
