@@ -60,10 +60,10 @@ const FormWindow = ({
                     />
                     <BodyText 
                         text={bodyQuestion} 
-                        size="text-28px" 
                         centered={false} 
                         isAnimate={false} 
                         lineHeight="leading-loose" 
+                        className='max-w-sm'
                     />
                 </div>
             </div>
