@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState, lazy } from "react";
-import { Helmet } from 'react-helmet-async'; // Import Helmet
-import ogDefault from '../../assets/images/og-default.jpg'; // Default OG image
+import { Helmet } from 'react-helmet-async';
+import ogDefault from '../../assets/images/og-default.jpg';
 
 // Lazy load all components
 const InnerHero = lazy(() => import("../../components/InnerHero/InnerHero"));
@@ -10,8 +10,6 @@ const GreenBelt = lazy(() => import("../../components/GreenBelt/GreenBelt"));
 const Heading = lazy(() => import("../../components/Heading/Heading"));
 
 import schema from '../../utilities/schema';
-
-
 import BodyText from "../../components/BodyText/BodyText";
 
 // Static imports for non-component data
@@ -48,9 +46,7 @@ const Careers = () => {
                     content="Join Scons Tech and be part of a dynamic team transforming businesses worldwide. Explore career opportunities and grow with us."
                 />
                 <meta name="twitter:image" content={ogDefault} />
-
-                        <script type="application/ld+json">{schema}</script>
-
+                <script type="application/ld+json">{schema}</script>
             </Helmet>
 
             {/* Inner Hero Section */} 
@@ -63,28 +59,32 @@ const Careers = () => {
 
             {/* Job Listings */}
             <div className={` ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal} space-y-6 border-b `}>
-                {jobListings.map((job, index) => (
-                    <CollapsibleContainer
-                        key={index}
-                        heading={job.heading}
-                        workLocation={job.workLocation}
-                        city={job.city}
-                        employmentType={job.employmentType}
-                        childItems={job.childItems}
-                        borderColor={index % 2 === 0 ? 'border-bodyText' : 'border-neon'}
-                    />
-                ))}
-
-                <Heading
-                    text="No Current Openings"
-                    size="text-50px"
-                    color="text-black"
-                    centered={false}
-                />
-                <BodyText
-                    text="Please check back later for updates."
-                    centered={false}
-                />
+                {jobListings.length > 0 ? (
+                    jobListings.map((job, index) => (
+                        <CollapsibleContainer
+                            key={index}
+                            heading={job.heading}
+                            workLocation={job.workLocation}
+                            city={job.city}
+                            employmentType={job.employmentType}
+                            childItems={job.childItems}
+                            borderColor={index % 2 === 0 ? 'border-black' : 'border-neon'}
+                        />
+                    ))
+                ) : (
+                    <>
+                        <Heading
+                            text="No Current Openings"
+                            size="text-50px"
+                            color="text-black"
+                            centered={false}
+                        />
+                        <BodyText
+                            text="Please check back later for updates."
+                            centered={false}
+                        />
+                    </>
+                )}
             </div>
 
             {/* FAQ Section */}
