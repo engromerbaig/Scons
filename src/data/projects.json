@@ -3,6 +3,8 @@
   "id": 1,
   "heading": "SN Hydraulik Service",
   "headline": "Website for Hydraulic Repair & Maintenance Services",
+    "status": "Completed",
+
   "location": "Welzheim, Germany",
   "bodyText": "Crafted a professional WordPress website for a German hydraulic service company, enhancing their digital presence and service outreach.",
   "details": "SN Hydraulik Service required a reliable and visually appealing website to highlight their expertise in hydraulic repair and maintenance. We utilized WordPress with Elementor for rapid development, and incorporated brand-aligned graphics designed in Canva and Adobe Photoshop to ensure a consistent, high-impact visual identity.",
@@ -39,6 +41,8 @@
   "id": 2,
   "heading": "Dr. Thomas Tresper",
   "headline": "Bilingual Website for German IP Attorney",
+    "status": "Completed",
+
   "location": "Frankfurt am Main, Germany",
   "bodyText": "Developed a bilingual website for a German attorney specializing in intellectual property law, ensuring accessibility for both German and international clients.",
   "details": "Dr. Thomas Tresper, a seasoned German attorney at law (Rechtsanwalt) with a specialization in IP and unfair competition, needed a professional online presence to represent his legal services. We designed a clean and trustworthy layout in Figma, and developed the website using WordPress and Elementor. The site supports both German and English content, allowing seamless communication with a broader clientele.",
@@ -74,6 +78,8 @@
   "id": 3,
   "heading": "Landes & Kollegen",
   "headline": "Website for Oral & Maxillofacial Surgery Specialists",
+    "status": "Completed",
+
   "location": "Offenbach, Germany",
   "bodyText": "Developed a modern, interactive website for a team of oral and maxillofacial surgeons affiliated with Sana Klinikum Offenbach, improving patient communication and emergency awareness.",
   "details": "Landes & Kollegen, specialists in oral and maxillofacial surgery, needed a professional digital platform to reflect their emergency readiness and surgical expertise. We built a dynamic, visually engaging WordPress site using custom animations with GSAP and interactive UI elements powered by jQuery, ensuring responsiveness and user engagement.",
@@ -109,6 +115,8 @@
   "id": 5,
   "heading": "Visa Hub International",
   "headline": "Visa Consultation Website for Global Non-Immigrant Services",
+    "status": "Completed",
+
   "location": "Dubai, UAE",
   "bodyText": "Developed a comprehensive web portal for a visa consultancy firm, streamlining client onboarding and showcasing their global visa services through a modern digital platform.",
   "details": "Visa Hub International needed a professional, scalable website to support their expanding non-immigrant visa services. We developed the site in WordPress using Elementor for rapid design deployment and customized integrations. Additionally, we integrated Magento components and SQL-based tools for managing application data and service workflows efficiently.",
@@ -145,6 +153,8 @@
   "id": 7,
   "heading": "Elegant Esthetics",
   "headline": "Luxury Beauty & Wellness Website for an Aesthetic Studio",
+    "status": "Completed",
+
   "location": "California, USA",
   "bodyText": "Designed and developed a visually elegant website for a beauty and skincare brand, enhancing their digital presence and promoting a client-first self-care philosophy.",
   "details": "Elegant Esthetics needed a refined and welcoming website to represent their luxury skincare and wellness services. We used Adobe XD to prototype a soft, calming UI/UX design, developed the site with WordPress, and utilized Elementor for custom styling and modularity. The final result reflected the brand’s dedication to personalized care and sophistication.",
@@ -180,6 +190,8 @@
         "id": 8,
         "heading": "Matuszak Hygiene",
         "headline": "Pest Management Website for Industrial Hygiene",
+          "status": "Completed",
+
         "location": "Sprendlingen, Germany",
         "bodyText": "Developed a tailored CMS website for a German pest control company, streamlining content management and enhancing user experience.",
         "details": "Matuszak Hygiene required a professional and responsive website to showcase their pest management services for industrial and production environments. We designed a user-friendly interface using Figma, developed the site in WordPress, and utilized Elementor for rapid deployment and design customization.",
@@ -216,6 +228,8 @@
   "id": 9,
   "heading": "Global Nation",
   "headline": "Creator-Focused Platform Empowering Global Artistic Connections",
+  "status": "Completed",
+
   "location": "California, USA",
   "bodyText": "Built a dynamic and scalable platform for a U.S.-based creator community, evolving from Wix to WordPress and ultimately to a modern React-based web application to support global collaboration and monetization.",
   "details": "Global Nation™ is the successor to PatroNet, an early-2000s creator-support platform founded by Todd Rundgren. The new platform aimed to empower creators worldwide by offering a space to connect, collaborate, and monetize their work. The project involved multiple phases: initial deployment on Wix, migration to WordPress for enhanced control, and final transition to a robust, React-based architecture to support scalability and custom features. Wise payment integration was implemented for seamless international transactions.",
@@ -252,6 +266,7 @@
   "id": 10,
   "heading": "Zeitly",
 "headline": "Zeitly – A Timely Scheduling SaaS by Scons Tech.",
+"status": "In-Development",
   "location": "Karachi, Pakistan",
   "bodyText": "Zeitly is a lightweight, efficient SaaS platform developed by Scons Tech to modernize the way teams and individuals manage appointments. The product combines fast performance, intuitive UX, and seamless integration capabilities — built entirely from Karachi, with global usability in mind.",
   "details": "Zeitly was born from real-world insights gained while working with German clients who emphasized punctuality, structure, and streamlined workflows. Inspired by the German word *‘Zeit’* (meaning *‘time’*), Zeitly was designed to bring precision scheduling to freelancers, consultants, and service providers globally. Built using a React-based front end, it leverages Firebase and MongoDB for a flexible, cloud-native backend. Email notifications are fired instantly, calendar syncing is seamless, and users benefit from a clean dashboard experience. Continuous user feedback fuels feature enhancements, ensuring Zeitly remains simple, relevant, and effective in an ever-changing SaaS landscape.",

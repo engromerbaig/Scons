@@ -63,6 +63,12 @@ const ProjectCard = ({ project, onMysteryClick }) => {
       <div className="flex flex-col items-start  w-full">
         {/* Cover Image */}
         <div className="relative w-full h-[500px] xl:h-[600px] 2xl:h-[700px] overflow-hidden rounded-3xl mb-2 group">
+          {/* Status Badge */}
+{project.status && (
+  <div className="absolute top-4 right-4  text-neon text-xs font-semibold px-2 py-0 rounded-full z-20 border border-neon backdrop-blur-sm shadow-md">
+    {project.status}
+  </div>
+)}
           {!imageLoaded && (
             <SkeletonLoader
               className="w-full h-full absolute top-0 left-0"
