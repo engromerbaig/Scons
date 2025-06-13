@@ -97,9 +97,9 @@ const thankYouEmailTemplate = `
                         </a>
                     </div>
                     <div style="margin-top: 40px; margin-bottom: 40px; padding: 40px 0;">
-                        <h1 style="font-family: 'manrope', Arial, sans-serif; font-size: 24px; color: #333; margin: 0;">Thank you for contacting us!</h1>
+                        <h1 style="font-family: 'manrope', Arial, sans-serif; font-size: 24px; color: #333; margin: 0;">Thank you for Applying at Scons Tech.</h1>
                         <p style="font-size: 16px; color: #333; font-weight: 600; margin: 10px 0;">We appreciate your interest, {{name}}.</p>
-                        <p style="font-size: 16px; color: #333; font-weight: 600; margin: 10px 0;">Our team will review your inquiry and get back to you soon.</p>
+                        <p style="font-size: 16px; color: #333; font-weight: 600; margin: 10px 0;">Our team will review your application and get back to you soon.</p>
                     </div>
                 </div>
             </td>
