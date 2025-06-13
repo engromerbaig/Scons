@@ -13,14 +13,19 @@ const Deliverables = ({ deliverables, heading, status }) => {
   const percentage = dataCount > 0 ? 100 / dataCount : 0;
 
   // Define colors for each segment
-  const colors = [
-    "#00C5FF", // bright cyan/blue (main theme)
-    "#28ed70", // neon green
-    "#000000", // black
-    "#FF6F61", // coral red
-    "#FFD700", // gold/yellow
-    "#6A5ACD", // slate blue
-  ];
+const colors = [
+  "#00C5FF", // bright cyan/blue (main theme)
+  "#28ed70", // neon green
+  "#000000", // black
+  "#FF6F61", // coral red
+  "#FFD700", // gold/yellow
+  "#6A5ACD", // slate blue
+  "#FF00FF", // magenta (high contrast with green/blue)
+  "#00FFAA", // aqua green (pops against red/yellow/black)
+  "#FF4500", // orange-red (deep, contrasts with blue/green)
+  "#8A2BE2", // blue violet (bold, contrasts well with yellow/coral)
+];
+
 
   // Chart data
   const chartData = {
