@@ -1,0 +1,38 @@
+[
+    {
+        "jobType": "Frontend Development",
+        "workLocation": "Remote",
+        "city": "Dubai/Karachi",
+        "employmentType": "Full Time",
+        "jobDescription": "Work on responsive and dynamic front-end applications.",
+        "roleDescription": "Collaborate with designers to create interactive user interfaces.",
+        "experience": [
+            "2+ years of experience in frontend development.",
+            "Strong knowledge of HTML, CSS, and JavaScript.",
+            "Experience with responsive design frameworks."
+        ],
+        "skills": [
+            "React.js",
+            "TailwindCSS",
+            "RESTful APIs"
+        ]
+    },
+    {
+        "jobType": "Backend Development",
+        "workLocation": "Remote",
+        "city": "Dubai/Karachi",
+        "employmentType": "Full Time",
+        "jobDescription": "Develop and maintain server-side applications.",
+        "roleDescription": "Implement RESTful APIs and ensure database integration.",
+        "experience": [
+            "3+ years working with server-side languages.",
+            "Experience with databases like MongoDB or PostgreSQL.",
+            "Knowledge of cloud services like AWS or Azure."
+        ],
+        "skills": [
+            "Node.js",
+            "Express.js",
+            "Database Management"
+        ]
+    }
+]
