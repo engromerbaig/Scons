@@ -9,8 +9,11 @@ const StepTwo = ({ formData, setFormData, handleNext, handleBack, currentStep, t
     const [errors, setErrors] = useState({});
     const location = useLocation();
 
-    // Extract job types from jobListings
-    const jobOptions = jobListings.map((job) => job.jobType);
+    // Extract job types from jobListings and format for FormField
+    const jobOptions = jobListings.map((job) => ({
+        label: job.jobType,
+        value: job.jobType
+    }));
 
     // Pre-fill role from query parameter
     useEffect(() => {

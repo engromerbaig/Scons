@@ -91,7 +91,7 @@ const FormField = ({
               {options.map((option) => (
                 <li
                   key={option.value}
-                  className="px-4 py-2  text-grayText hover:bg-gray-100 cursor-pointer"
+                  className="px-4 py-2  text-sm text-grayText hover:bg-gray-100 cursor-pointer"
                   onClick={() => handleOptionClick(option)}
                 >
                   {option.label}
