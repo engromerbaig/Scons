@@ -49,15 +49,16 @@ const Careers = () => {
             </Helmet>
 
             {/* Inner Hero Section */}
-            <InnerHero
-                headingText="Begin Your Career With Us"
-                spanText="Career"
-                bodyText="Join Scons Tech and be part of a dynamic team transforming businesses worldwide. Innovate, grow, and excel with us."
-                height="h-[70vh]"
-            />
+          <InnerHero
+    headingText="Kickstart Your Career With Us"
+    spanText="Career"
+    bodyText="Become a part of Scons Tech’s vibrant team driving innovation across the globe. Build, evolve, and thrive with us."
+    height="h-[70vh]"
+/>
+
 
             {/* Job Listings */}
-            <div className={` ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal} space-y-6 border-b `}>
+            <div className={` ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal} space-y-6 xl:space-y-12  `}>
                 {jobListings.length > 0 ? (
                     jobListings.map((job, index) => (
                         <CollapsibleContainer

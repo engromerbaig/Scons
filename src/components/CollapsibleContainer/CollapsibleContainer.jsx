@@ -3,6 +3,7 @@ import Heading from "../Heading/Heading";
 import BodyText from "../BodyText/BodyText";
 import { theme } from '../../theme';
 import { slugify } from '../../utilities/slugify';
+import Button from '../Button/Button';
 
 const CollapsibleContainer = ({ jobType, workLocation, city, employmentType, borderColor }) => {
     // Generate the job details link using slugified jobType
@@ -16,23 +17,28 @@ const CollapsibleContainer = ({ jobType, workLocation, city, employmentType, bor
                 <div>
                     <Heading
                         text={jobType}
-                        fontWeight="font-medium"
+                        fontWeight="font-semibold"
                         size="text-50px"
                         centered={false}
                     />
                     <BodyText
                         text={`${workLocation} - ${city} - ${employmentType}`}
-                        size="text-30px"
                         centered={false}
                     />
                 </div>
                 {/* Right Section: Apply Button */}
-                <Link
+
+                <Button
+                    name="View Details"
+                    link={jobDetailsLink}
+                    className="py-2 px-4 "
+                    />
+                {/* <Link
                     to={jobDetailsLink}
                     className="text-neon font-semibold text-10px md:text-25px border-b-2 border-neon"
                 >
                     Apply
-                </Link>
+                </Link> */}
             </div>
         </div>
     );
