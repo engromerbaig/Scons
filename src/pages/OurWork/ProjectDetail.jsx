@@ -335,11 +335,11 @@ const ProjectDetail = () => {
 
       <Deliverables deliverables={project.deliverables} heading={project.heading} status={project.status}  />
 
-      <HorizontalScroller
-        heading={`How ${project.heading} came to life`}
-        spanHeading={project.heading}
-        bodyText="Scons Tech brings projects to life with a clear and proven process—starting from strategic planning and architecture design, followed by precise development focused on performance and scalability. Each project is thoroughly tested and refined through client feedback to ensure a smooth, successful launch."
-      />
+   <HorizontalScroller
+  heading={`How ${project.heading} ${project.status === "Completed" ? "came to life" : "will come to life"}`}
+  spanHeading={project.heading}
+bodyText="Scons Tech delivers projects through strategic planning, precise development, and rigorous testing, ensuring a successful launch."
+/>
 
       <ImpactSection heading={project.heading} introText={project.impactIntro} impacts={project.impacts} />
 

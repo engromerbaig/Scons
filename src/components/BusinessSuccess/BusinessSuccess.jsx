@@ -16,6 +16,7 @@ const BusinessSuccess = ({heading, spanHeading, bodyText}) => {
         color="text-white"
         spanColor="text-neon"
         centered={false}
+        className="leading-tight mb-4"
       />
       <BodyText
         text={bodyText}
