@@ -1,8 +1,9 @@
+
 import React from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Heading from '../../components/Heading/Heading';
 import BodyText from '../../components/BodyText/BodyText';
-import jobListings from '../../data/jobListings.json'; // Updated import
+import jobListings from '../../data/jobListings.json';
 import ScrollToTopLink from '../../utilities/ScrollToTopLink';
 import AnimatedBackground from '../../utilities/AnimatedBackground/AnimatedBackground';
 import GreenBelt from '../../components/GreenBelt/GreenBelt';
@@ -39,12 +40,12 @@ const JobDetails = () => {
     }
 
     return (
-        <div className="flex flex-col items-center ">
+        <>
             {/* InnerHero Section */}
             <InnerHero
                 isCareer={true}
                 headingText={childJob.jobType}
-                spanText={getSpanText(childJob.jobType)} // Dynamically generated spanText
+                spanText={getSpanText(childJob.jobType)}
                 breakSpan1={true}
                 bodyText={`${job.workLocation} - ${job.city} - ${job.employmentType}`}
                 centeredHeading1={false}
@@ -59,52 +60,53 @@ const JobDetails = () => {
                 />
             </InnerHero>
 
-          
+            {/* Nested Parent Div with Flex and Consistent Gaps */}
+            <div className={`flex flex-col gap-8 ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal}`}>
+                {/* Role Description */}
+                <div>
+                    <Heading text="Role:" color="text-black" size='text-50px' fontWeight='font-semibold' centered={false} />
+                    <BodyText
+                        text={childJob.roleDescription}
+                        centered={false}
+                    />
+                </div>
 
-            {/* Role Description */}
-            <div className="mt-12 w-4/5">
-                <Heading text="Role:" color="text-black" size='text-50px' fontWeight='font-semibold' centered={false} />
-                <BodyText
-                    text={childJob.roleDescription}
-                    centered={false}
-                />
-            </div>
+                {/* Experience Section */}
+                <div>
+                    <Heading text="Experience:" color="text-black" size='text-50px' fontWeight='font-semibold' centered={false} />
+                    <ul className="space-y-2 mt-4">
+                        {childJob.experience.map((exp, index) => (
+                            <li key={index} className="flex items-center space-x-4">
+                                <FaCheckCircle className="w-4 h-4 text-neon" />
+                                <BodyText text={exp} centered={false} />
+                            </li>
+                        ))}
+                    </ul>
+                </div>
 
-            {/* Experience Section */}
-            <div className="mt-8 w-4/5">
-                <Heading text="Experience:" color="text-black" size='text-50px' fontWeight='font-semibold' centered={false} />
-                <ul className="space-y-2 mt-4">
-                    {childJob.experience.map((exp, index) => (
-                        <li key={index} className="flex items-center space-x-4">
-                            <FaCheckCircle className="w-4 h-4 text-neon" />
-                            <BodyText text={exp} centered={false} />
-                        </li>
-                    ))}
-                </ul>
-            </div>
+                {/* Skills Section */}
+                <div>
+                    <Heading text="Skillsets:" color="text-black" size='text-50px' fontWeight='font-semibold' centered={false} />
+                    <ul className="space-y-2 mt-4">
+                        {childJob.skills.map((skill, index) => (
+                            <li key={index} className="flex items-center space-x-4">
+                                <FaCheckCircle className="w-4 h-4 text-neon" />
+                                <BodyText text={skill} centered={false} />
+                            </li>
+                        ))}
+                    </ul>
+                </div>
 
-            {/* Skills Section */}
-            <div className="mt-8 w-4/5">
-                <Heading text="Skillsets:" color="text-black" size='text-50px' fontWeight='font-semibold' centered={false} />
-                <ul className="space-y-2 mt-4">
-                    {childJob.skills.map((skill, index) => (
-                        <li key={index} className="flex items-center space-x-4">
-                            <FaCheckCircle className="w-4 h-4 text-neon" />
-                            <BodyText text={skill} centered={false} />
-                        </li>
-                    ))}
-                </ul>
+                {/* Apply Now Button */}
+                <div className="flex justify-start">
+                    <Button
+                        name="Apply Now"
+                        link={`/careers/apply`}
+                        className='py-2 px-4'
+                    />
+                </div>
             </div>
-
-            {/* Apply Now Button */}
-            <div className="mt-8 w-4/5 flex justify-start">
-                <Button
-                    name="Apply Now"
-                    link={`/careers/apply`}
-                    className='py-2 px-4'
-                />
-            </div>
-        </div>
+        </>
     );
 };
 
