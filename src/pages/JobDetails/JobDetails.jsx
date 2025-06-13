@@ -11,6 +11,7 @@ import { slugify } from '../../utilities/slugify';
 import importJobImages from '../../utilities/importJobImages';
 import Button from '../../components/Button/Button';
 import { FaCheckCircle } from "react-icons/fa";
+import { theme } from '../../theme';
 
 const JobDetails = () => {
     const { heading, jobType } = useParams();
@@ -58,15 +59,7 @@ const JobDetails = () => {
                 />
             </InnerHero>
 
-            {/* Job Description */}
-            <div className="mt-8 w-4/5">
-                <BodyText
-                    text={childJob.jobDescription}
-                    size="text-25px"
-                    lineHeight="leading-loose"
-                    centered={false}
-                />
-            </div>
+          
 
             {/* Role Description */}
             <div className="mt-12 w-4/5">
