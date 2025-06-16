@@ -15,6 +15,7 @@ const FormWindow = ({
     handleNext, 
     isLastStep, 
     handleBack, 
+    isSubmitting,
     alignRHS = 'end', 
     alignRHSBelowMd = 'center', 
     disableNext, 
@@ -94,6 +95,8 @@ const FormWindow = ({
                     isLastStep={isLastStep}
                     disableNext={disableNext}
                     currentStep={currentStep}
+                      isSubmitting={isSubmitting}
+
                     buttonClass="w-full" // Ensures buttons occupy full width below md
                 />
             </div>
