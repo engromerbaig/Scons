@@ -67,6 +67,13 @@ const Careers = () => {
                             workLocation={job.workLocation}
                             city={job.city}
                             employmentType={job.employmentType}
+                            jobDescription={job.jobDescription}
+                            roleDescription={job.roleDescription}
+                            experience={job.experience}
+                            skills={job.skills}
+                            postedOn={job.postedOn}
+                            closedOn={job.closedOn}
+                            isOpen={job.isOpen}
                             borderColor={index % 2 === 0 ? 'border-black' : 'border-neon'}
                         />
                     ))

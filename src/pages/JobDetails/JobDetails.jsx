@@ -12,6 +12,7 @@ import importJobImages from '../../utilities/importJobImages';
 import Button from '../../components/Button/Button';
 import { FaCheckCircle } from "react-icons/fa";
 import { theme } from '../../theme';
+import { formatDate } from '../../components/CollapsibleContainer/formatDate';
 
 const JobDetails = () => {
     const { jobType } = useParams(); // Get the jobType slug from the URL
@@ -60,6 +61,15 @@ const JobDetails = () => {
 
             {/* Nested Parent Div with Flex and Consistent Gaps */}
             <div className={`flex flex-col gap-8 ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal}`}>
+                {/* Posted */}
+                 <div className='flex flex-wrap gap-x-2'>
+                    <Heading text="Job Posted On:" color="text-black" size='text-25px' fontWeight='font-semibold' centered={false} />
+                    <BodyText
+                        text={`${formatDate(job.postedOn)}`}
+                        centered={false}
+                        size='text-25px'
+                    />
+                </div>
                 {/* Role Description */}
                 <div>
                     <Heading text="Role:" color="text-black" size='text-50px' fontWeight='font-semibold' centered={false} />
