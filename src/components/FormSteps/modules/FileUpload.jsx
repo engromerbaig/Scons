@@ -45,7 +45,7 @@ const FileUpload = ({
               style={{ animation: 'spin 1s linear infinite' }}
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
-              viewBox="0 24"
+              viewBox="0 0 24 24" // Fixed viewBox
             >
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
               <path
@@ -105,7 +105,7 @@ const FileUpload = ({
                   return;
                 }
                 onFileChange(file);
-                onUrlChange('');
+                onUrlChange(''); // Clear URL when file is selected
               }
             }}
             className="hidden"

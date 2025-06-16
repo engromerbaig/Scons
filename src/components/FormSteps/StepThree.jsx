@@ -1,9 +1,9 @@
-// StepThree.jsx
-import React from 'react';
+import React, { useState } from 'react';
 import FormWindow from '../FormWindow/FormWindow';
 import FileUpload from './modules/FileUpload';
 
 const StepThree = ({ formData, setFormData, handleBack, handleSubmit, currentStep, totalSteps, errors, handleFileUpload, isLoading, handleUrlChange }) => {
+  const [inputUrl, setInputUrl] = useState(''); // Local state for URL input
   const isNextDisabled = !formData.resumeUrl || isLoading;
 
   const handleNextStep = () => {
@@ -32,18 +32,22 @@ const StepThree = ({ formData, setFormData, handleBack, handleSubmit, currentSte
       <div className="flex flex-col w-full items-center gap-4 px-10">
         <FileUpload
           file={formData.resumeFile}
-          url={formData.resumeUrl}
+          url={inputUrl} // Use local state for URL input
           onFileChange={(file) => {
-            setFormData({ ...formData, resumeFile: file, resumeUrl: file ? formData.resumeUrl : '' });
+            setFormData({ ...formData, resumeFile: file });
+            setInputUrl(''); // Clear URL input when file is selected
             if (file) handleFileUpload(file, 'resume');
           }}
-          onUrlChange={handleUrlChange} // Updated to use handleUrlChange
+          onUrlChange={(url) => {
+            setInputUrl(url); // Update local URL state
+            handleUrlChange('resume', url); // Update formData.resumeUrl
+          }}
           placeholderText="Paste URL Here"
           infoText="We accept DOC, DOCX, PDF, RTF & TXT, up to 5MB"
           isLoading={isLoading}
           error={errors.resumeUrl ? 'Error uploading resume. Please try a valid file (DOC, DOCX, PDF, RTF, TXT, max 5MB) or provide a URL.' : null}
           successMessage={
-            formData.resumeUrl && !isLoading && !formData.resumeFile
+            formData.resumeUrl && !isLoading && !formData.resumeFile && inputUrl
               ? 'Resume URL provided successfully!'
               : formData.resumeUrl && !isLoading && formData.resumeFile
               ? 'Resume uploaded successfully!'

@@ -127,9 +127,9 @@ const Apply = () => {
       setFormData({
         ...formData,
         [`${type}File`]: file,
-        [`${type}Url`]: fileUrl,
+        [`${type}Url`]: fileUrl, // Update URL for submission
       });
-      setErrors({ ...errors, [`${type}Url`]: false }); // Clear error on success
+      setErrors({ ...errors, [`${type}Url`]: false });
     } catch (error) {
       console.error(`Error uploading ${type}:`, error);
       setErrors({ ...errors, [`${type}Url`]: true });
@@ -139,17 +139,14 @@ const Apply = () => {
     }
   };
 
-  // New function to handle URL changes and clear errors
   const handleUrlChange = (type, url) => {
     setFormData({
       ...formData,
-      [`${type}Url`]: url,
-      [`${type}File`]: null,
+      [`${type}Url`]: url, // Update URL for submission
+      [`${type}File`]: url ? null : formData[`${type}File`], // Clear file if URL is provided
     });
-    // Clear error when a valid URL is provided
-    if (url) {
-      setErrors({ ...errors, [`${type}Url`]: false });
-    }
+    // Clear error when a valid URL is provided or cleared
+    setErrors({ ...errors, [`${type}Url`]: false });
   };
 
   const handleSubmit = async () => {
@@ -251,7 +248,7 @@ const Apply = () => {
             errors={errors}
             handleFileUpload={(file) => handleFileUpload(file, 'resume')}
             isLoading={isLoading}
-            handleUrlChange={(url) => handleUrlChange('resume', url)} // New prop
+            handleUrlChange={(type, url) => handleUrlChange('resume', url)}
           />
         )}
         {step === 4 && (
@@ -265,7 +262,7 @@ const Apply = () => {
             errors={errors}
             handleFileUpload={(file) => handleFileUpload(file, 'coverLetter')}
             isLoading={isLoading}
-            handleUrlChange={(url) => handleUrlChange('coverLetter', url)} // New prop
+            handleUrlChange={(type, url) => handleUrlChange('coverLetter', url)}
           />
         )}
         {step === 5 && <StepFive />}
