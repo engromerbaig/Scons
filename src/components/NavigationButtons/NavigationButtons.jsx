@@ -58,7 +58,7 @@ const NavigationButtons = ({
                     )}
                     
                     {/* Button text with color change during submission */}
-                    <span className={isSubmitting && isLastStep ? 'text-black' : ''}>
+                    <span className={isSubmitting && isLastStep ? 'text-neon' : ''}>
                         {isSubmitting && isLastStep 
                             ? 'Applying...' 
                             : isLastStep 
