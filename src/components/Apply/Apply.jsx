@@ -31,11 +31,8 @@ const Apply = () => {
     coverLetterUrl: '',
   });
   const [isFormValid, setIsFormValid] = useState(false);
-  
-  // Separate loading states
   const [isFileUploading, setIsFileUploading] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  
   const [errors, setErrors] = useState({
     source: false,
     firstName: false,
@@ -47,7 +44,6 @@ const Apply = () => {
     coverLetterUrl: false,
   });
 
-  // Validate form data
   useEffect(() => {
     const { firstName, lastName, email, phone, role, resumeUrl, source } = formData;
     const isRequiredFieldsFilled = firstName && lastName && email && phone && role && resumeUrl && source;
@@ -85,7 +81,6 @@ const Apply = () => {
   const handleFileUpload = async (file, type) => {
     if (!file) return;
 
-    // Validate file type and size
     const validTypes = [
       'application/pdf',
       'application/msword',
@@ -105,7 +100,7 @@ const Apply = () => {
     }
 
     try {
-      setIsFileUploading(true); // Use file upload loading state
+      setIsFileUploading(true);
       const formDataToUpload = new FormData();
       formDataToUpload.append('file', file);
       formDataToUpload.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
@@ -131,7 +126,7 @@ const Apply = () => {
       setFormData({
         ...formData,
         [`${type}File`]: file,
-        [`${type}Url`]: fileUrl, // Update URL for submission
+        [`${type}Url`]: fileUrl,
       });
       setErrors({ ...errors, [`${type}Url`]: false });
     } catch (error) {
@@ -139,17 +134,16 @@ const Apply = () => {
       setErrors({ ...errors, [`${type}Url`]: true });
       alert(`Error uploading ${type}: ${error.message}. Please try again or provide a URL/text.`);
     } finally {
-      setIsFileUploading(false); // Reset file upload loading state
+      setIsFileUploading(false);
     }
   };
 
   const handleUrlChange = (type, url) => {
     setFormData({
       ...formData,
-      [`${type}Url`]: url, // Update URL for submission
-      [`${type}File`]: url ? null : formData[`${type}File`], // Clear file if URL is provided
+      [`${type}Url`]: url,
+      [`${type}File`]: url ? null : formData[`${type}File`],
     });
-    // Clear error when a valid URL is provided or cleared
     setErrors({ ...errors, [`${type}Url`]: false });
   };
 
@@ -170,7 +164,7 @@ const Apply = () => {
     }
 
     try {
-      setIsSubmitting(true); // Use submission loading state
+      setIsSubmitting(true);
       const submitData = {
         'form-name': 'career',
         firstName: formData.firstName,
@@ -205,37 +199,12 @@ const Apply = () => {
       console.error('Error submitting form:', error);
       alert('Error submitting form. Please try again.');
     } finally {
-      setIsSubmitting(false); // Reset submission loading state
+      setIsSubmitting(false);
     }
   };
 
-  // Prevent UI interactions during submission
-  const isFormDisabled = isSubmitting;
-
   return (
-    <div className={`h-screen ${theme.layoutPages.paddingHorizontal} overflow-hidden ${isFormDisabled ? 'pointer-events-none' : ''}`}>
-      {/* Loading overlay during submission */}
-      {/* {isSubmitting && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-          <div className="bg-white p-6 rounded-lg flex items-center gap-3">
-            <svg
-              className="h-6 w-6 text-neon animate-spin"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
-              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-              <path
-                className="opacity-75"
-                fill="currentColor"
-                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-              />
-            </svg>
-            <span className="text-black font-medium">Submitting your application...</span>
-          </div>
-        </div>
-      )}
-       */}
+    <div className={`h-screen ${theme.layoutPages.paddingHorizontal} overflow-hidden ${isSubmitting ? 'pointer-events-none' : ''}`}>
       <form
         name="career"
         method="POST"
@@ -276,7 +245,7 @@ const Apply = () => {
             totalSteps={totalSteps - 1}
             errors={errors}
             handleFileUpload={(file) => handleFileUpload(file, 'resume')}
-            isLoading={isFileUploading} // Pass file upload loading state
+            isLoading={isFileUploading}
             handleUrlChange={(type, url) => handleUrlChange('resume', url)}
           />
         )}
@@ -290,8 +259,8 @@ const Apply = () => {
             totalSteps={totalSteps - 1}
             errors={errors}
             handleFileUpload={(file) => handleFileUpload(file, 'coverLetter')}
-            isLoading={isFileUploading} // Pass file upload loading state
-            isSubmitting={isSubmitting} // Pass submission loading state
+            isLoading={isFileUploading}
+            isSubmitting={isSubmitting} // Pass isSubmitting to StepFour
             handleUrlChange={(type, url) => handleUrlChange('coverLetter', url)}
           />
         )}

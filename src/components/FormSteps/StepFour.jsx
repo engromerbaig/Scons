@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import FormWindow from '../FormWindow/FormWindow';
 import FileUpload from './modules/FileUpload';
 
-const StepFour = ({ formData, setFormData, handleBack, handleSubmit, currentStep, totalSteps, errors, handleFileUpload, isLoading, handleUrlChange }) => {
+const StepFour = ({ formData, setFormData, handleBack, handleSubmit, currentStep, totalSteps, errors, handleFileUpload, isLoading, isSubmitting, handleUrlChange }) => {
   const [inputUrl, setInputUrl] = useState('');
 
   const handleNextStep = () => {
@@ -23,6 +23,7 @@ const StepFour = ({ formData, setFormData, handleBack, handleSubmit, currentStep
       alignRHS="center"
       disableNext={isLoading}
       showProgressBar={true}
+      isSubmitting={isSubmitting} // Pass isSubmitting to FormWindow
     >
       <div className="flex flex-col w-full items-center gap-4 px-10">
         <FileUpload
@@ -39,7 +40,6 @@ const StepFour = ({ formData, setFormData, handleBack, handleSubmit, currentStep
               setFormData({ ...formData, coverLetterUrl: url, coverLetterFile: null });
               handleUrlChange('coverLetter', url);
             } else {
-              // Clear both when URL is empty (like when delete is clicked)
               setFormData({ ...formData, coverLetterUrl: '', coverLetterFile: null });
             }
           }}
@@ -62,3 +62,4 @@ const StepFour = ({ formData, setFormData, handleBack, handleSubmit, currentStep
 };
 
 export default StepFour;
+
