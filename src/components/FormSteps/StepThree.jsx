@@ -1,8 +1,9 @@
+// StepThree.jsx
 import React from 'react';
 import FormWindow from '../FormWindow/FormWindow';
 import FileUpload from './modules/FileUpload';
 
-const StepThree = ({ formData, setFormData, handleBack, handleSubmit, currentStep, totalSteps, errors, handleFileUpload, isLoading }) => {
+const StepThree = ({ formData, setFormData, handleBack, handleSubmit, currentStep, totalSteps, errors, handleFileUpload, isLoading, handleUrlChange }) => {
   const isNextDisabled = !formData.resumeUrl || isLoading;
 
   const handleNextStep = () => {
@@ -36,20 +37,19 @@ const StepThree = ({ formData, setFormData, handleBack, handleSubmit, currentSte
             setFormData({ ...formData, resumeFile: file, resumeUrl: file ? formData.resumeUrl : '' });
             if (file) handleFileUpload(file, 'resume');
           }}
-          onUrlChange={(url) => setFormData({ ...formData, resumeUrl: url, resumeFile: null })}
+          onUrlChange={handleUrlChange} // Updated to use handleUrlChange
           placeholderText="Paste URL Here"
           infoText="We accept DOC, DOCX, PDF, RTF & TXT, up to 5MB"
+          isLoading={isLoading}
+          error={errors.resumeUrl ? 'Error uploading resume. Please try a valid file (DOC, DOCX, PDF, RTF, TXT, max 5MB) or provide a URL.' : null}
+          successMessage={
+            formData.resumeUrl && !isLoading && !formData.resumeFile
+              ? 'Resume URL provided successfully!'
+              : formData.resumeUrl && !isLoading && formData.resumeFile
+              ? 'Resume uploaded successfully!'
+              : null
+          }
         />
-        {errors.resumeUrl && (
-          <p className="text-red-500 text-sm">Error uploading resume. Please try a valid file (DOC, DOCX, PDF, RTF, TXT, max 5MB) or provide a URL.</p>
-        )}
-        {formData.resumeUrl && !isLoading && !formData.resumeFile && (
-          <p className="text-green-500 text-sm">Resume URL provided successfully!</p>
-        )}
-        {formData.resumeUrl && !isLoading && formData.resumeFile && (
-          <p className="text-green-500 text-sm">Resume uploaded successfully!</p>
-        )}
-        {isLoading && <p className="text-gray-500 text-sm">Uploading...</p>}
       </div>
     </FormWindow>
   );

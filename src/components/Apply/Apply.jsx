@@ -94,7 +94,7 @@ const Apply = () => {
       alert('Invalid file type. Only DOC, DOCX, PDF, RTF, and TXT are allowed.');
       return;
     }
-    if (file.size > 5 * 1024 * 1024) { // 5MB limit
+    if (file.size > 5 * 1024 * 1024) {
       setErrors({ ...errors, [`${type}Url`]: true });
       alert('File size exceeds 5MB.');
       return;
@@ -105,7 +105,6 @@ const Apply = () => {
       const formDataToUpload = new FormData();
       formDataToUpload.append('file', file);
       formDataToUpload.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
-      // Optionally specify folder to organize files
       formDataToUpload.append('folder', 'career_uploads');
 
       const response = await fetch(
@@ -123,20 +122,33 @@ const Apply = () => {
 
       const data = await response.json();
       const fileUrl = data.secure_url;
-      console.log(`Uploaded ${type} URL:`, fileUrl); // Debug log
+      console.log(`Uploaded ${type} URL:`, fileUrl);
 
       setFormData({
         ...formData,
         [`${type}File`]: file,
         [`${type}Url`]: fileUrl,
       });
-      setErrors({ ...errors, [`${type}Url`]: false });
+      setErrors({ ...errors, [`${type}Url`]: false }); // Clear error on success
     } catch (error) {
       console.error(`Error uploading ${type}:`, error);
       setErrors({ ...errors, [`${type}Url`]: true });
       alert(`Error uploading ${type}: ${error.message}. Please try again or provide a URL/text.`);
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  // New function to handle URL changes and clear errors
+  const handleUrlChange = (type, url) => {
+    setFormData({
+      ...formData,
+      [`${type}Url`]: url,
+      [`${type}File`]: null,
+    });
+    // Clear error when a valid URL is provided
+    if (url) {
+      setErrors({ ...errors, [`${type}Url`]: false });
     }
   };
 
@@ -183,7 +195,7 @@ const Apply = () => {
 
       const result = await response.json();
       console.log('Submission result:', result);
-      setStep(totalSteps); // Move to StepFive
+      setStep(totalSteps);
       window.gtag('event', 'career_submission', {
         event_category: 'Form',
         event_label: 'Career Application',
@@ -239,6 +251,7 @@ const Apply = () => {
             errors={errors}
             handleFileUpload={(file) => handleFileUpload(file, 'resume')}
             isLoading={isLoading}
+            handleUrlChange={(url) => handleUrlChange('resume', url)} // New prop
           />
         )}
         {step === 4 && (
@@ -252,6 +265,7 @@ const Apply = () => {
             errors={errors}
             handleFileUpload={(file) => handleFileUpload(file, 'coverLetter')}
             isLoading={isLoading}
+            handleUrlChange={(url) => handleUrlChange('coverLetter', url)} // New prop
           />
         )}
         {step === 5 && <StepFive />}

@@ -1,10 +1,11 @@
+// StepFour.jsx
 import React from 'react';
 import FormWindow from '../FormWindow/FormWindow';
 import FileUpload from './modules/FileUpload';
 
-const StepFour = ({ formData, setFormData, handleBack, handleSubmit, currentStep, totalSteps, errors, handleFileUpload, isLoading }) => {
+const StepFour = ({ formData, setFormData, handleBack, handleSubmit, currentStep, totalSteps, errors, handleFileUpload, isLoading, handleUrlChange }) => {
   const handleNextStep = () => {
-    handleSubmit(); // Cover letter is optional
+    handleSubmit();
   };
 
   return (
@@ -30,21 +31,20 @@ const StepFour = ({ formData, setFormData, handleBack, handleSubmit, currentStep
             setFormData({ ...formData, coverLetterFile: file, coverLetterUrl: file ? formData.coverLetterUrl : '' });
             if (file) handleFileUpload(file, 'coverLetter');
           }}
-          onUrlChange={(url) => setFormData({ ...formData, coverLetterUrl: url, coverLetterFile: null })}
+          onUrlChange={handleUrlChange} // Updated to use handleUrlChange
           placeholderText="Type here..."
           infoText="We accept DOC, DOCX, PDF, RTF & TXT, up to 5MB"
           inputType="textarea"
+          isLoading={isLoading}
+          error={errors.coverLetterUrl ? 'Error uploading cover letter. Please try a valid file (DOC, DOCX, PDF, RTF, TXT, max 5MB).' : null}
+          successMessage={
+            formData.coverLetterUrl && !isLoading && !formData.coverLetterFile
+              ? 'Cover letter text provided successfully!'
+              : formData.coverLetterUrl && !isLoading && formData.coverLetterFile
+              ? 'Cover letter uploaded successfully!'
+              : null
+          }
         />
-        {errors.coverLetterUrl && (
-          <p className="text-red-500 text-sm">Error uploading cover letter. Please try a valid file (DOC, DOCX, PDF, RTF, TXT, max 5MB).</p>
-        )}
-        {formData.coverLetterUrl && !isLoading && !formData.coverLetterFile && (
-          <p className="text-green-500 text-sm">Cover letter text provided successfully!</p>
-        )}
-        {formData.coverLetterUrl && !isLoading && formData.coverLetterFile && (
-          <p className="text-green-500 text-sm">Cover letter uploaded successfully!</p>
-        )}
-        {isLoading && <p className="text-gray-500 text-sm">Uploading...</p>}
       </div>
     </FormWindow>
   );

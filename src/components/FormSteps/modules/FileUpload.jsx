@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { FiTrash } from 'react-icons/fi';
+import { CheckCircle, XCircle } from 'lucide-react';
 import fileIcon from '../../../assets/icons/file.svg';
 import BodyText from '../../BodyText/BodyText';
 
@@ -12,6 +13,9 @@ const FileUpload = ({
   placeholderText = "Paste URL Here",
   infoText = "We accept DOC, DOCX, PDF, RTF & TXT, up to 5MB",
   inputType = "input",
+  isLoading = false,
+  error = null,
+  successMessage = null,
 }) => {
   const [placeholderVisible, setPlaceholderVisible] = useState(true);
 
@@ -35,7 +39,22 @@ const FileUpload = ({
       <div className="flex flex-col lg:flex-row w-full items-center justify-center gap-4">
         {/* File Upload Box */}
         <label className="flex flex-row lg:flex-col gap-4 lg:gap-0 items-center justify-center w-full lg:w-1/2 h-20 lg:h-40 border-2 border-neon rounded-lg relative transition px-4 cursor-pointer hover:bg-neon/20">
-          {file ? (
+          {isLoading ? (
+            <svg
+              className="h-5 w-5 text-neon"
+              style={{ animation: 'spin 1s linear infinite' }}
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 24"
+            >
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              />
+            </svg>
+          ) : file ? (
             <>
               <span
                 className="text-center px-4 font-manrope text-neon w-full break-words overflow-hidden"
@@ -74,7 +93,7 @@ const FileUpload = ({
                 'application/rtf',
                 'text/plain',
               ];
-              const maxSizeMB = 5; // Updated to 5MB
+              const maxSizeMB = 5;
 
               if (file) {
                 if (!allowedTypes.includes(file.type)) {
@@ -86,10 +105,11 @@ const FileUpload = ({
                   return;
                 }
                 onFileChange(file);
-                onUrlChange(''); // Clear URL when file is selected
+                onUrlChange('');
               }
             }}
             className="hidden"
+            disabled={isLoading}
           />
         </label>
 
@@ -107,6 +127,7 @@ const FileUpload = ({
               onFocus={() => setPlaceholderVisible(false)}
               onBlur={() => setPlaceholderVisible(true)}
               className="bg-transparent w-full outline-none text-black placeholder:text-black"
+              disabled={isLoading}
             />
           ) : (
             <textarea
@@ -116,14 +137,31 @@ const FileUpload = ({
               onFocus={() => setPlaceholderVisible(false)}
               onBlur={() => setPlaceholderVisible(true)}
               className="bg-transparent w-full outline-none resize-none h-full text-black placeholder:text-black"
+              disabled={isLoading}
             />
           )}
         </div>
       </div>
 
+      {/* Message Container - Fixed Height to Prevent Layout Shift */}
+      <div className="w-full h-6 flex items-center justify-start mt-2">
+        {error && (
+          <div className="flex items-center gap-2 text-red-500 text-sm">
+            <XCircle size={16} />
+            <span>{error}</span>
+          </div>
+        )}
+        {successMessage && !error && (
+          <div className="flex items-center gap-2 text-green-500 text-sm">
+            <CheckCircle size={16} />
+            <span>{successMessage}</span>
+          </div>
+        )}
+      </div>
+
       {/* Info Text */}
       {infoText && (
-        <div className="w-full flex items-start justify-start mt-2">
+        <div className="w-full flex items-start justify-start">
           <BodyText
             text={infoText}
             size="text-17px"
@@ -145,6 +183,9 @@ FileUpload.propTypes = {
   placeholderText: PropTypes.string,
   infoText: PropTypes.string,
   inputType: PropTypes.oneOf(['input', 'textarea']),
+  isLoading: PropTypes.bool,
+  error: PropTypes.string,
+  successMessage: PropTypes.string,
 };
 
 export default FileUpload;
