@@ -1,1 +1,38 @@
-[]
+[
+  {
+    "jobType": "Upwork Bidder",
+    "workLocation": "Remote",
+    "city": "Karachi",
+    "employmentType": "Freelance",
+    "jobDescription": "Identify, bid, and secure projects on platforms like Upwork and Fiverr.",
+    "roleDescription": "Communicate with potential clients, understand project requirements, and craft compelling proposals.",
+    "experience": [
+      "1+ year experience in freelance bidding on platforms like Upwork/Fiverr.",
+      "Strong understanding of web development and design terminology.",
+      "Proven track record of winning freelance projects."
+    ],
+    "skills": [
+      "Proposal Writing",
+      "Client Communication",
+      "Project Scoping"
+    ]
+  },
+  {
+    "jobType": "Illustration Designer",
+    "workLocation": "Remote",
+    "city": "Karachi",
+    "employmentType": "Freelance",
+    "jobDescription": "Create custom illustrations and digital artwork based on client briefs.",
+    "roleDescription": "Collaborate with clients and the creative team to deliver high-quality illustration assets.",
+    "experience": [
+      "2+ years of experience in digital illustration.",
+      "Portfolio showcasing a variety of styles and projects.",
+      "Comfortable using tools like Adobe Illustrator, Photoshop, or Procreate."
+    ],
+    "skills": [
+      "Digital Illustration",
+      "Adobe Illustrator",
+      "Creative Concepting"
+    ]
+  }
+]
