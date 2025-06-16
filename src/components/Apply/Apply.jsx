@@ -31,7 +31,11 @@ const Apply = () => {
     coverLetterUrl: '',
   });
   const [isFormValid, setIsFormValid] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  
+  // Separate loading states
+  const [isFileUploading, setIsFileUploading] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  
   const [errors, setErrors] = useState({
     source: false,
     firstName: false,
@@ -101,7 +105,7 @@ const Apply = () => {
     }
 
     try {
-      setIsLoading(true);
+      setIsFileUploading(true); // Use file upload loading state
       const formDataToUpload = new FormData();
       formDataToUpload.append('file', file);
       formDataToUpload.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
@@ -135,7 +139,7 @@ const Apply = () => {
       setErrors({ ...errors, [`${type}Url`]: true });
       alert(`Error uploading ${type}: ${error.message}. Please try again or provide a URL/text.`);
     } finally {
-      setIsLoading(false);
+      setIsFileUploading(false); // Reset file upload loading state
     }
   };
 
@@ -166,7 +170,7 @@ const Apply = () => {
     }
 
     try {
-      setIsLoading(true);
+      setIsSubmitting(true); // Use submission loading state
       const submitData = {
         'form-name': 'career',
         firstName: formData.firstName,
@@ -201,12 +205,37 @@ const Apply = () => {
       console.error('Error submitting form:', error);
       alert('Error submitting form. Please try again.');
     } finally {
-      setIsLoading(false);
+      setIsSubmitting(false); // Reset submission loading state
     }
   };
 
+  // Prevent UI interactions during submission
+  const isFormDisabled = isSubmitting;
+
   return (
-    <div className={`h-screen ${theme.layoutPages.paddingHorizontal} overflow-hidden`}>
+    <div className={`h-screen ${theme.layoutPages.paddingHorizontal} overflow-hidden ${isFormDisabled ? 'pointer-events-none' : ''}`}>
+      {/* Loading overlay during submission */}
+      {/* {isSubmitting && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+          <div className="bg-white p-6 rounded-lg flex items-center gap-3">
+            <svg
+              className="h-6 w-6 text-neon animate-spin"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              />
+            </svg>
+            <span className="text-black font-medium">Submitting your application...</span>
+          </div>
+        </div>
+      )}
+       */}
       <form
         name="career"
         method="POST"
@@ -247,7 +276,7 @@ const Apply = () => {
             totalSteps={totalSteps - 1}
             errors={errors}
             handleFileUpload={(file) => handleFileUpload(file, 'resume')}
-            isLoading={isLoading}
+            isLoading={isFileUploading} // Pass file upload loading state
             handleUrlChange={(type, url) => handleUrlChange('resume', url)}
           />
         )}
@@ -261,7 +290,8 @@ const Apply = () => {
             totalSteps={totalSteps - 1}
             errors={errors}
             handleFileUpload={(file) => handleFileUpload(file, 'coverLetter')}
-            isLoading={isLoading}
+            isLoading={isFileUploading} // Pass file upload loading state
+            isSubmitting={isSubmitting} // Pass submission loading state
             handleUrlChange={(type, url) => handleUrlChange('coverLetter', url)}
           />
         )}
