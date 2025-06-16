@@ -20,9 +20,10 @@ const FileUpload = ({
   const [placeholderVisible, setPlaceholderVisible] = useState(true);
 
   const handleFileDelete = (e) => {
-    e.stopPropagation();
-    onFileChange(null);
-    onUrlChange('');
+    e.preventDefault(); // Prevent default behavior
+    e.stopPropagation(); // Prevent triggering the file input
+    onFileChange(null); // Clear file
+    onUrlChange(''); // Clear URL to re-enable both inputs
   };
 
   const truncateFileName = (name, maxLength = 20) => {
@@ -35,8 +36,8 @@ const FileUpload = ({
   };
 
   // Determine if file upload or URL input should be disabled
-  const isFileUploadDisabled = isLoading || !!url;
-  const isUrlInputDisabled = isLoading || !!file;
+  const isFileUploadDisabled = !!url && !isLoading;
+  const isUrlInputDisabled = !!file && !isLoading;
 
   return (
     <div className="flex flex-col w-full items-center gap-4">
@@ -45,7 +46,7 @@ const FileUpload = ({
         <label
           className={`flex flex-row lg:flex-col gap-4 lg:gap-0 items-center justify-center w-full lg:w-1/2 h-20 lg:h-40 border-2 rounded-lg relative transition px-4 ${
             isFileUploadDisabled
-              ? 'border-gray-500 text-gray-500 pointer-events-none'
+              ? 'border-gray-200 text-gray-500 pointer-events-none'
               : 'border-neon text-neon cursor-pointer hover:bg-neon/20'
           }`}
         >
@@ -79,12 +80,13 @@ const FileUpload = ({
               >
                 {truncateFileName(file.name)}
               </span>
-              <div
+              <button
+                type="button"
                 className="absolute top-2 right-2 cursor-pointer hover:text-black transition"
                 onClick={handleFileDelete}
               >
                 <FiTrash size={20} className={isFileUploadDisabled ? 'text-gray-500' : 'text-black'} />
-              </div>
+              </button>
             </>
           ) : (
             <>
@@ -125,7 +127,7 @@ const FileUpload = ({
               }
             }}
             className="hidden"
-            disabled={isFileUploadDisabled}
+            disabled={isFileUploadDisabled || isLoading}
           />
         </label>
 
@@ -135,7 +137,7 @@ const FileUpload = ({
         {/* URL Input Box */}
         <div
           className={`flex flex-col justify-start w-full lg:w-1/2 h-20 lg:h-40 border-2 rounded-lg p-4 transition ${
-            isUrlInputDisabled ? 'border-gray-500 text-gray-500' : 'border-neon text-black'
+            isUrlInputDisabled ? 'border-gray-200 text-gray-500' : 'border-neon text-black'
           }`}
         >
           {inputType === 'input' ? (
@@ -146,10 +148,8 @@ const FileUpload = ({
               onChange={(e) => onUrlChange(e.target.value)}
               onFocus={() => setPlaceholderVisible(false)}
               onBlur={() => setPlaceholderVisible(true)}
-              className={`bg-transparent w-full outline-none ${
-                isUrlInputDisabled ? 'placeholder:text-gray-500' : 'placeholder:text-gray-500'
-              }`}
-              disabled={isUrlInputDisabled}
+              className="bg-transparent w-full outline-none placeholder:text-gray-500"
+              disabled={isUrlInputDisabled || isLoading}
             />
           ) : (
             <textarea
@@ -158,10 +158,8 @@ const FileUpload = ({
               onChange={(e) => onUrlChange(e.target.value)}
               onFocus={() => setPlaceholderVisible(false)}
               onBlur={() => setPlaceholderVisible(true)}
-              className={`bg-transparent w-full outline-none resize-none h-full ${
-                isUrlInputDisabled ? 'placeholder:text-gray-500' : 'placeholder:text-gray-500'
-              }`}
-              disabled={isUrlInputDisabled}
+              className="bg-transparent w-full outline-none resize-none h-full placeholder:text-gray-500"
+              disabled={isUrlInputDisabled || isLoading}
             />
           )}
         </div>

@@ -4,7 +4,7 @@ import FileUpload from './modules/FileUpload';
 
 const StepThree = ({ formData, setFormData, handleBack, handleSubmit, currentStep, totalSteps, errors, handleFileUpload, isLoading, handleUrlChange }) => {
   const [inputUrl, setInputUrl] = useState('');
-  const isNextDisabled = !formData.resumeUrl || isLoading;
+  const isNextDisabled = !formData.resumeUrl && !formData.resumeFile;
 
   const handleNextStep = () => {
     if (!isNextDisabled) {
