@@ -3,7 +3,7 @@ import FormWindow from '../FormWindow/FormWindow';
 import FileUpload from './modules/FileUpload';
 
 const StepFour = ({ formData, setFormData, handleBack, handleSubmit, currentStep, totalSteps, errors, handleFileUpload, isLoading, handleUrlChange }) => {
-  const [inputUrl, setInputUrl] = useState(''); // Local state for URL input
+  const [inputUrl, setInputUrl] = useState('');
   const handleNextStep = () => {
     handleSubmit();
   };
@@ -26,15 +26,16 @@ const StepFour = ({ formData, setFormData, handleBack, handleSubmit, currentStep
       <div className="flex flex-col w-full items-center gap-4 px-10">
         <FileUpload
           file={formData.coverLetterFile}
-          url={inputUrl} // Use local state for URL input
+          url={inputUrl}
           onFileChange={(file) => {
-            setFormData({ ...formData, coverLetterFile: file });
-            setInputUrl(''); // Clear URL input when file is selected
+            setFormData({ ...formData, coverLetterFile: file, coverLetterUrl: '' }); // Clear coverLetterUrl
+            setInputUrl(''); // Clear URL input
             if (file) handleFileUpload(file, 'coverLetter');
           }}
           onUrlChange={(url) => {
-            setInputUrl(url); // Update local URL state
-            handleUrlChange('coverLetter', url); // Update formData.coverLetterUrl
+            setInputUrl(url);
+            setFormData({ ...formData, coverLetterUrl: url, coverLetterFile: null }); // Clear coverLetterFile
+            handleUrlChange('coverLetter', url);
           }}
           placeholderText="Type here..."
           infoText="We accept DOC, DOCX, PDF, RTF & TXT, up to 5MB"
