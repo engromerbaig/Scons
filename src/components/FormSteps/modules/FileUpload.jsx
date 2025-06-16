@@ -20,8 +20,8 @@ const FileUpload = ({
   const [placeholderVisible, setPlaceholderVisible] = useState(true);
 
   const handleFileDelete = (e) => {
-    e.preventDefault(); // Prevent default behavior
-    e.stopPropagation(); // Prevent triggering the file input
+    e.preventDefault();
+    e.stopPropagation();
     onFileChange(null); // Clear file
     onUrlChange(''); // Clear URL to re-enable both inputs
   };
@@ -82,8 +82,9 @@ const FileUpload = ({
               </span>
               <button
                 type="button"
-                className="absolute top-2 right-2 cursor-pointer hover:text-black transition"
+                className="absolute top-2 right-2 cursor-pointer hover:text-neon transition"
                 onClick={handleFileDelete}
+                aria-label="Delete file"
               >
                 <FiTrash size={20} className={isFileUploadDisabled ? 'text-gray-500' : 'text-black'} />
               </button>

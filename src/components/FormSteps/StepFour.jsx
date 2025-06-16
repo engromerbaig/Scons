@@ -4,6 +4,7 @@ import FileUpload from './modules/FileUpload';
 
 const StepFour = ({ formData, setFormData, handleBack, handleSubmit, currentStep, totalSteps, errors, handleFileUpload, isLoading, handleUrlChange }) => {
   const [inputUrl, setInputUrl] = useState('');
+
   const handleNextStep = () => {
     handleSubmit();
   };
@@ -28,14 +29,19 @@ const StepFour = ({ formData, setFormData, handleBack, handleSubmit, currentStep
           file={formData.coverLetterFile}
           url={inputUrl}
           onFileChange={(file) => {
-            setFormData({ ...formData, coverLetterFile: file, coverLetterUrl: '' }); // Clear coverLetterUrl
+            setFormData({ ...formData, coverLetterFile: file, coverLetterUrl: '' });
             setInputUrl(''); // Clear URL input
             if (file) handleFileUpload(file, 'coverLetter');
           }}
           onUrlChange={(url) => {
             setInputUrl(url);
-            setFormData({ ...formData, coverLetterUrl: url, coverLetterFile: null }); // Clear coverLetterFile
-            handleUrlChange('coverLetter', url);
+            if (url) {
+              setFormData({ ...formData, coverLetterUrl: url, coverLetterFile: null });
+              handleUrlChange('coverLetter', url);
+            } else {
+              // Clear both when URL is empty (like when delete is clicked)
+              setFormData({ ...formData, coverLetterUrl: '', coverLetterFile: null });
+            }
           }}
           placeholderText="Type here..."
           infoText="We accept DOC, DOCX, PDF, RTF & TXT, up to 5MB"
@@ -45,7 +51,7 @@ const StepFour = ({ formData, setFormData, handleBack, handleSubmit, currentStep
           successMessage={
             formData.coverLetterUrl && !isLoading && !formData.coverLetterFile && inputUrl
               ? 'Cover letter text provided successfully!'
-              : formData.coverLetterUrl && !isLoading && formData.coverLetterFile
+              : formData.coverLetterFile && !isLoading
               ? 'Cover letter uploaded successfully!'
               : null
           }

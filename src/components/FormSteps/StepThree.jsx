@@ -19,7 +19,7 @@ const StepThree = ({ formData, setFormData, handleBack, handleSubmit, currentSte
       question="Upload a Resume"
       spanQuestion="Resume"
       breakSpan={false}
-      bodyQuestion="We’ll securely store your resume to make it easier for you to apply to suitable positions!"
+      bodyQuestion="We'll securely store your resume to make it easier for you to apply to suitable positions!"
       currentStep={currentStep}
       totalSteps={totalSteps}
       handleNext={handleNextStep}
@@ -34,14 +34,19 @@ const StepThree = ({ formData, setFormData, handleBack, handleSubmit, currentSte
           file={formData.resumeFile}
           url={inputUrl}
           onFileChange={(file) => {
-            setFormData({ ...formData, resumeFile: file, resumeUrl: '' }); // Clear resumeUrl
+            setFormData({ ...formData, resumeFile: file, resumeUrl: '' });
             setInputUrl(''); // Clear URL input
             if (file) handleFileUpload(file, 'resume');
           }}
           onUrlChange={(url) => {
             setInputUrl(url);
-            setFormData({ ...formData, resumeUrl: url, resumeFile: null }); // Clear resumeFile
-            handleUrlChange('resume', url);
+            if (url) {
+              setFormData({ ...formData, resumeUrl: url, resumeFile: null });
+              handleUrlChange('resume', url);
+            } else {
+              // Clear both when URL is empty (like when delete is clicked)
+              setFormData({ ...formData, resumeUrl: '', resumeFile: null });
+            }
           }}
           placeholderText="Paste URL Here"
           infoText="We accept DOC, DOCX, PDF, RTF & TXT, up to 5MB"
@@ -50,7 +55,7 @@ const StepThree = ({ formData, setFormData, handleBack, handleSubmit, currentSte
           successMessage={
             formData.resumeUrl && !isLoading && !formData.resumeFile && inputUrl
               ? 'Resume URL provided successfully!'
-              : formData.resumeUrl && !isLoading && formData.resumeFile
+              : formData.resumeFile && !isLoading
               ? 'Resume uploaded successfully!'
               : null
           }

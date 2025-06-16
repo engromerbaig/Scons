@@ -1,3 +1,5 @@
+// This is a Netlify Function to handle form submissions and send emails using Nodemailer.
+// send-contact-emails.js
 const dotenv = require('dotenv');
 const nodemailer = require('nodemailer');
 
