@@ -4,7 +4,7 @@ const nodemailer = require('nodemailer');
 dotenv.config();
 
 // Validate environment variables
-const requiredEnvVars = ['REACT_APP_EMAIL_USER', 'REACT_APP_EMAIL_PASS', 'REACT_APP_COMPANY_EMAIL'];
+const requiredEnvVars = ['REACT_APP_EMAIL_USER_HR', 'REACT_APP_EMAIL_PASS_HR', 'REACT_APP_COMPANY_EMAIL_HR'];
 const missingEnvVars = requiredEnvVars.filter((varName) => !process.env[varName]);
 
 if (missingEnvVars.length > 0) {
@@ -18,8 +18,8 @@ const transporter = nodemailer.createTransport({
   port: 465,
   secure: true,
   auth: {
-    user: process.env.REACT_APP_EMAIL_USER,
-    pass: process.env.REACT_APP_EMAIL_PASS,
+    user: process.env.REACT_APP_EMAIL_USER_HR,
+    pass: process.env.REACT_APP_EMAIL_PASS_HR,
   },
 });
 
@@ -375,15 +375,15 @@ exports.handler = async function (event, context) {
 
     // Email to the company
     const mailToCompany = {
-      from: process.env.REACT_APP_EMAIL_USER,
-      to: process.env.REACT_APP_COMPANY_EMAIL,
+      from: process.env.REACT_APP_EMAIL_USER_HR,
+      to: process.env.REACT_APP_COMPANY_EMAIL_HR,
       subject: `New Career Application from ${firstName} ${lastName} for ${role}`,
       html: companyEmailHtml,
     };
 
     // Email to the user
     const mailToUser = {
-      from: process.env.REACT_APP_EMAIL_USER,
+      from: process.env.REACT_APP_EMAIL_USER_HR,
       to: email,
       subject: 'Thank You for Applying to Scons!',
       html: thankYouEmailHtml,
