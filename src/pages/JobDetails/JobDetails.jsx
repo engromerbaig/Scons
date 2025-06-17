@@ -3,16 +3,14 @@ import { useParams } from 'react-router-dom';
 import Heading from '../../components/Heading/Heading';
 import BodyText from '../../components/BodyText/BodyText';
 import jobListings from '../../data/jobListings.json';
-import ScrollToTopLink from '../../utilities/ScrollToTopLink';
-import AnimatedBackground from '../../utilities/AnimatedBackground/AnimatedBackground';
-import GreenBelt from '../../components/GreenBelt/GreenBelt';
-import InnerHero from '../../components/InnerHero/InnerHero';
-import { slugify } from '../../utilities/slugify';
-import importJobImages from '../../utilities/importJobImages';
 import Button from '../../components/Button/Button';
 import { FaCheckCircle } from "react-icons/fa";
 import { theme } from '../../theme';
+import { slugify } from '../../utilities/slugify';
+import importJobImages from '../../utilities/importJobImages';
+import InnerHero from '../../components/InnerHero/InnerHero';
 import { formatDate } from '../../components/CollapsibleContainer/formatDate';
+import { technologiesData } from '../../components/Technologies/technologiesData'; // Import technologiesData
 
 const JobDetails = () => {
     const { jobType } = useParams(); // Get the jobType slug from the URL
@@ -28,6 +26,19 @@ const JobDetails = () => {
 
     // Dynamically load the image or fallback to placeholder
     const jobImage = job ? importJobImages(slugify(job.jobType)) : null;
+
+    // Function to find technology icon
+    const findTechnologyIcon = (techName) => {
+        for (const category in technologiesData) {
+            for (const platform in technologiesData[category]) {
+                const tech = technologiesData[category][platform].find(
+                    (t) => t.name.toLowerCase() === techName.toLowerCase()
+                );
+                if (tech) return tech.icon;
+            }
+        }
+        return null;
+    };
 
     // Error handling if job not found
     if (!job) {
@@ -62,7 +73,7 @@ const JobDetails = () => {
             {/* Nested Parent Div with Flex and Consistent Gaps */}
             <div className={`flex flex-col gap-8 ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal}`}>
                 {/* Posted */}
-                 <div className='flex flex-wrap gap-x-2'>
+                <div className='flex flex-wrap gap-x-2'>
                     <Heading text="Job Posted On:" color="text-black" size='text-25px' fontWeight='font-semibold' centered={false} />
                     <BodyText
                         text={`${formatDate(job.postedOn)}`}
@@ -104,6 +115,35 @@ const JobDetails = () => {
                         ))}
                     </ul>
                 </div>
+
+                {/* Tech Stack Section */}
+                {job.techStack && job.techStack.length > 0 && (
+                    <div>
+                        <Heading text="Required Technologies:" color="text-black" size='text-50px' fontWeight='font-semibold' centered={false} />
+                        <div className="grid grid-cols-2 xl:grid-cols-4 max-w-3xl gap-2 xl:gap-4 mt-4">
+                            {job.techStack
+                                .filter((tech) => findTechnologyIcon(tech))
+                                .map((tech, index) => {
+                                    const icon = findTechnologyIcon(tech);
+                                    return (
+                                        <Button
+                                            key={index}
+                                            name={tech}
+                                            icon={icon}
+                                            hoverBgColor="bg-neon"
+                                            hoverTextColor="text-black"
+                                            noIconChange={true}
+                                            bgColor="bg-gray-100"
+                                            textColor="black"
+                                            fontWeight="font-semibold"
+                                            className="py-3"
+                                            fontSize="text-xs xl:text-sm"
+                                        />
+                                    );
+                                })}
+                        </div>
+                    </div>
+                )}
 
                 {/* Apply Now Button */}
                 <div className="flex justify-start">

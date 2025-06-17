@@ -16,6 +16,13 @@
       "Client Communication",
       "Project Scoping"
     ],
+    "techStack": [
+      "React",
+      "Tailwind CSS",
+      "WordPress",
+      "Node.js",
+      "Figma"
+    ],
     "postedOn": "2025-03-01",
     "closedOn": null,
     "isOpen": true
@@ -38,7 +45,7 @@
       "Creative Concepting"
     ],
     "postedOn": "2025-05-15",
-     "closedOn": null,
+    "closedOn": null,
     "isOpen": true
   }
 ]
