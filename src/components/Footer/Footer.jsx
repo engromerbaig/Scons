@@ -11,6 +11,7 @@ import ScrollToTopLink from "../../utilities/ScrollToTopLink";
 import { theme } from "../../theme";
 import Button from "../Button/Button";
 import LegalPages from "./LegalPages";
+import NewsLetterButton from "./NewsLetterButton";
 
 const Footer = () => {
   return (
@@ -131,10 +132,12 @@ const Footer = () => {
       </div>
 
       {/* ROW 3: Copyright */}
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center pt-6 text-grayText text-sm text-left">
+      <div className="max-w-7xl mx-auto flex flex-col gap-y-4 md:flex-row justify-between items-center pt-6 text-grayText text-sm text-left">
         <div>
           &copy; {new Date().getFullYear()} <span className="  text-grayText neon-hover"><ScrollToTopLink to="/">Scons Tech.</ScrollToTopLink></span> All Rights Reserved
         </div>
+
+        <NewsLetterButton/>
       <LegalPages/>
       </div>
     </footer>
