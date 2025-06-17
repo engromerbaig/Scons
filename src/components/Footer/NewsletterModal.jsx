@@ -57,10 +57,20 @@ const NewsletterModal = ({ isOpen, onClose }) => {
     }
   };
 
+  const handleBackdropClick = (e) => {
+    // Only close if the click is on the backdrop itself, not on modal content
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+    <div 
+      className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center"
+      onClick={handleBackdropClick}
+    >
       <div className="bg-white p-6 rounded-xl w-full max-w-md shadow-2xl relative min-h-[200px] flex flex-col justify-center">
         <button
           onClick={onClose}
@@ -70,7 +80,7 @@ const NewsletterModal = ({ isOpen, onClose }) => {
         </button>
 
         {status !== 'success' && status !== 'error' && (
-          <Heading text="Subscribe to Our Newsletter" size='text-30px' centered={false} lineHeight="leading-loose" />
+          <Heading text="Subscribe to Our Newsletter" spanText='Newsletter' spanFontWeight='font-black' fontWeight='font-semibold' size='text-30px' centered={false} lineHeight="leading-loose" />
         )}
 
         {/* Hidden Netlify form trigger */}
