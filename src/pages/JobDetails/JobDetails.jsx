@@ -10,7 +10,7 @@ import { slugify } from '../../utilities/slugify';
 import importJobImages from '../../utilities/importJobImages';
 import InnerHero from '../../components/InnerHero/InnerHero';
 import { formatDate } from '../../components/CollapsibleContainer/formatDate';
-import { technologiesData } from '../../components/Technologies/technologiesData'; // Import technologiesData
+import { technologiesData } from '../../components/Technologies/technologiesData';
 
 const JobDetails = () => {
     const { jobType } = useParams(); // Get the jobType slug from the URL
@@ -73,7 +73,7 @@ const JobDetails = () => {
             {/* Nested Parent Div with Flex and Consistent Gaps */}
             <div className={`flex flex-col gap-8 ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal}`}>
                 {/* Posted */}
-                <div className='flex flex-wrap gap-x-2'>
+                <div className='flex flex-wrap gap-x-3'>
                     <Heading text="Job Posted On:" color="text-black" size='text-25px' fontWeight='font-semibold' centered={false} />
                     <BodyText
                         text={`${formatDate(job.postedOn)}`}
@@ -144,15 +144,17 @@ const JobDetails = () => {
                         </div>
                     </div>
                 )}
+            </div>
 
-                {/* Apply Now Button */}
-                <div className="flex justify-start">
-                    <Button
-                        name="Apply Now"
-                        link={`/careers/apply?jobType=${slugify(job.jobType)}`}
-                        className='py-2 px-4'
-                    />
-                </div>
+            {/* Floating Apply Now Button */}
+            <div className="fixed bottom-6 right-6 z-50">
+                <Button
+                    name="Apply Now"
+                    link={`/careers/apply?jobType=${slugify(job.jobType)}`}
+                    className="rounded-full py-2 px-6 shadow-lg bg-black text-black hover:bg-black hover:text-neon transition-all duration-300"
+                    fontSize="text-base"
+                    fontWeight="font-semibold"
+                />
             </div>
         </>
     );

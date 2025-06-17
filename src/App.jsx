@@ -12,7 +12,6 @@ import ReturnButton from './utilities/ReturnButton';
 import ThankYou from './pages/ThankYou/ThankYou';
 import GAListener from './ga/GAListener';
 import { initGA } from './ga/ga';
-
 import AppointmentScheduler from './components/AppointmentScheduler/AppointmentScheduler';
 
 const Home = lazy(() => import('./pages/Home/Home'));
@@ -43,11 +42,12 @@ function AppContent() {
   const location = useLocation();
   const hideFooterRoutes = ['/careers/apply', '/lets-innovate'];
   const hideHeroButtonRoutes = ['/contact-us', '/thank-you'];
+  const hideScrollToTopRoutes = [/^\/careers\/[^/]+$/]; // Regex to match /careers/:jobType but not /careers or /careers/apply
   const shouldShowFooter = !hideFooterRoutes.includes(location.pathname);
   const shouldShowHeroButton = !hideHeroButtonRoutes.includes(location.pathname);
   const isPortfolioDetail = location.pathname.startsWith('/portfolio/');
-
   const isBlogDetail = location.pathname.startsWith('/blogs/');
+  const shouldShowScrollToTop = !hideScrollToTopRoutes.some((regex) => regex.test(location.pathname));
 
   const [isModalOpen, setModalOpen] = useState(false);
 
@@ -79,22 +79,19 @@ function AppContent() {
       <ChatModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} />
 
       <Suspense fallback={<Loader />}>
-                      <GAListener />
-
+        <GAListener />
         <Routes>
-
           <Route path="/" element={<Home />} />
-<Route path="/schedule-a-meeting" element={<AppointmentScheduler />} />        
-  <Route path="/about" element={<KnowUs />} />
+          <Route path="/schedule-a-meeting" element={<AppointmentScheduler />} />
+          <Route path="/about" element={<KnowUs />} />
           <Route path="/portfolio" element={<OurWork />} />
           <Route path="/portfolio/:slug" element={<ProjectDetail />} />
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/careers" element={<Careers />} />
           <Route path="/service/:serviceSlug" element={<ServiceDetailsWrapper />} />
           <Route path="/blogs" element={<Blogs />} />
-          {/* job slugs */}
- <Route path="/careers/:jobType" element={<JobDetails />} />
-<Route path="/careers/apply" element={<Apply />} />
+          <Route path="/careers/:jobType" element={<JobDetails />} />
+          <Route path="/careers/apply" element={<Apply />} />
           <Route path="/blogs/:blogSlug" element={<BlogDetails />} />
           <Route path="/packages" element={<Packages />} />
           <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
@@ -105,7 +102,7 @@ function AppContent() {
       </Suspense>
 
       {shouldShowFooter && <FooterWrapper />}
-      <ScrollToTop />
+      {shouldShowScrollToTop && <ScrollToTop />}
       {isPortfolioDetail && <ReturnButton />}
       {isBlogDetail && <ReturnButton text="Blogs" link="/blogs" />}
     </div>
