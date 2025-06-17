@@ -133,7 +133,7 @@ const Footer = () => {
       {/* ROW 3: Copyright */}
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center pt-6 text-grayText text-sm text-left">
         <div>
-          &copy; {new Date().getFullYear()} <span className="  text-grayText">Scons.</span> All Rights Reserved
+          &copy; {new Date().getFullYear()} <span className="  text-grayText neon-hover"><ScrollToTopLink to="/">Scons Tech.</ScrollToTopLink></span> All Rights Reserved
         </div>
       <LegalPages/>
       </div>
