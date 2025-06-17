@@ -12,6 +12,8 @@ import InnerHero from '../../components/InnerHero/InnerHero';
 import { formatDate } from '../../components/CollapsibleContainer/formatDate';
 import { technologiesData } from '../../components/Technologies/technologiesData';
 
+import { Link } from 'react-router-dom';
+
 const JobDetails = () => {
     const { jobType } = useParams(); // Get the jobType slug from the URL
 
@@ -83,15 +85,25 @@ const JobDetails = () => {
                 </div>
 
                 {/* Company Overview */}
-                {job.companyOverview && (
+              
                     <div>
                         <Heading text="About Scons Tech:" color="text-black" size='text-50px' fontWeight='font-semibold' centered={false} />
                         <BodyText
-                            text={job.companyOverview}
+                            text={
+            <>
+                Scons Tech is a growing software development company in Pakistan, focused on delivering innovative solutions for startups and enterprises worldwide.{' '}
+                <Link to="/about" className="text-neon hover:text-black font-bold transition-colors">
+                    Learn more
+                </Link>
+            </>
+        }
                             centered={false}
                         />
+
+
+
                     </div>
-                )}
+               
 
                 {/* Role Description */}
                 <div>
@@ -214,15 +226,22 @@ const JobDetails = () => {
                 )}
 
                 {/* Application Instructions */}
-                {job.applicationInstructions && (
                     <div>
                         <Heading text="How to Apply:" color="text-black" size='text-50px' fontWeight='font-semibold' centered={false} />
-                        <BodyText
-                            text={job.applicationInstructions}
-                            centered={false}
-                        />
+                         <BodyText
+        text={
+            <>
+                Submit your resume, optionally a cover letter, and a portfolio showcasing your skills via the <Link to={`/careers/apply?jobType=${slugify(job.jobType)}`}className="text-neon hover:text-black font-bold transition-colors">
+Application Form                </Link> or email us at{' '}
+                <a href="mailto:hr@sconstech.com" className="text-neon hover:text-black font-bold transition-colors">
+                    hr@sconstech.com
+                </a>
+            </>
+        }
+        centered={false}
+    />
                     </div>
-                )}
+                
             </div>
 
             {/* Floating Apply Now Button */}
