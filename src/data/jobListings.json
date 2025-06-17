@@ -4,17 +4,31 @@
     "workLocation": "Remote",
     "city": "Pakistan",
     "employmentType": "Freelance",
-    "jobDescription": "Identify, bid, and secure projects on platforms like Upwork and Fiverr.",
-    "roleDescription": "Communicate with potential clients, understand project requirements, and craft compelling proposals.",
+    "jobDescription": "Drive the growth of Scons Tech’s Upwork account by identifying, bidding, and securing projects on platforms like Upwork and Fiverr.",
+    "roleDescription": "Manage and grow Scons Tech’s Upwork account by crafting compelling proposals, communicating with clients, and securing high-value projects. Earn a competitive commission for each project won.",
+    "experienceLevel": "Mid-level",
     "experience": [
       "1+ year experience in freelance bidding on platforms like Upwork/Fiverr.",
       "Strong understanding of web development and design terminology.",
       "Proven track record of winning freelance projects."
     ],
+    "responsibilities": [
+      "Manage Scons Tech’s Upwork account, including profile optimization and bid submissions.",
+      "Identify and evaluate project opportunities on Upwork and Fiverr.",
+      "Craft tailored, compelling proposals to secure client projects.",
+      "Communicate with clients to understand requirements and negotiate terms.",
+      "Track bidding performance and report on project acquisition metrics."
+    ],
     "skills": [
       "Proposal Writing",
       "Client Communication",
-      "Project Scoping"
+      "Project Scoping",
+      "Negotiation",
+      "Upwork Platform Expertise"
+    ],
+    "prioritySkills": [
+      "Proposal Writing",
+      "Client Communication"
     ],
     "techStack": [
       "React",
@@ -23,6 +37,15 @@
       "Node.js",
       "Figma"
     ],
+    "compensationType": "Commission-based",
+    "compensationDetails": "Earn a competitive commission for each project secured, with potential for high earnings based on project value and volume.",
+    "benefits": [
+      "Flexible working hours",
+      "Remote work",
+      "Opportunity to grow with a dynamic tech company"
+    ],
+    "applicationInstructions": "Submit your resume, a cover letter, and a summary of your Upwork bidding history via the application form.",
+    "companyOverview": "Scons Tech is a leading software development company in Pakistan, focused on delivering innovative solutions for startups and enterprises worldwide. Join us to expand our presence on Upwork.",
     "postedOn": "2025-03-01",
     "closedOn": null,
     "isOpen": true
@@ -32,18 +55,45 @@
     "workLocation": "Remote",
     "city": "Pakistan",
     "employmentType": "Freelance",
-    "jobDescription": "Create custom illustrations and digital artwork based on client briefs.",
-    "roleDescription": "Collaborate with clients and the creative team to deliver high-quality illustration assets.",
+    "jobDescription": "Create custom illustrations and digital artwork based on client briefs to enhance Scons Tech’s creative projects.",
+    "roleDescription": "Collaborate with clients and the Scons Tech creative team to deliver high-quality, visually stunning illustration assets for various projects.",
+    "experienceLevel": "Mid-level",
     "experience": [
       "2+ years of experience in digital illustration.",
       "Portfolio showcasing a variety of styles and projects.",
       "Comfortable using tools like Adobe Illustrator, Photoshop, or Procreate."
     ],
+    "responsibilities": [
+      "Create custom illustrations based on client briefs and project requirements.",
+      "Collaborate with the creative team to ensure artwork aligns with brand guidelines.",
+      "Revise designs based on client and team feedback.",
+      "Deliver high-quality digital assets in a timely manner."
+    ],
     "skills": [
       "Digital Illustration",
       "Adobe Illustrator",
-      "Creative Concepting"
+      "Creative Concepting",
+      "Adobe Photoshop",
+      "Procreate"
     ],
+    "prioritySkills": [
+      "Digital Illustration",
+      "Adobe Illustrator"
+    ],
+    "techStack": [
+      "Illustrator",
+      "Adobe XD",
+      "Canva"
+    ],
+    "compensationType": "Project-based",
+    "compensationDetails": "Competitive rates per project, with potential for recurring work based on client satisfaction.",
+    "benefits": [
+      "Flexible working hours",
+      "Remote work",
+      "Showcase your work in Scons Tech’s portfolio"
+    ],
+    "applicationInstructions": "Submit your resume, a cover letter, and a portfolio showcasing your illustration work via the application form.",
+    "companyOverview": "Scons Tech is a leading software development company in Pakistan, delivering innovative solutions with a focus on creativity and quality.",
     "postedOn": "2025-05-15",
     "closedOn": null,
     "isOpen": true

@@ -71,7 +71,7 @@ const JobDetails = () => {
             </InnerHero>
 
             {/* Nested Parent Div with Flex and Consistent Gaps */}
-            <div className={`flex flex-col gap-8 ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal}`}>
+            <div className={`flex flex-col max-w-7xl gap-8 ${theme.layoutPages.paddingVertical} ${theme.layoutPages.paddingHorizontal}`}>
                 {/* Posted */}
                 <div className='flex flex-wrap gap-x-3'>
                     <Heading text="Job Posted On:" color="text-black" size='text-25px' fontWeight='font-semibold' centered={false} />
@@ -81,6 +81,18 @@ const JobDetails = () => {
                         size='text-25px'
                     />
                 </div>
+
+                {/* Company Overview */}
+                {job.companyOverview && (
+                    <div>
+                        <Heading text="About Scons Tech:" color="text-black" size='text-50px' fontWeight='font-semibold' centered={false} />
+                        <BodyText
+                            text={job.companyOverview}
+                            centered={false}
+                        />
+                    </div>
+                )}
+
                 {/* Role Description */}
                 <div>
                     <Heading text="Role:" color="text-black" size='text-50px' fontWeight='font-semibold' centered={false} />
@@ -90,9 +102,24 @@ const JobDetails = () => {
                     />
                 </div>
 
+                {/* Responsibilities */}
+                {job.responsibilities && job.responsibilities.length > 0 && (
+                    <div>
+                        <Heading text="Responsibilities:" color="text-black" size='text-50px' fontWeight='font-semibold' centered={false} />
+                        <ul className="space-y-2 mt-4">
+                            {job.responsibilities.map((resp, index) => (
+                                <li key={index} className="flex items-center space-x-4">
+                                    <FaCheckCircle className="w-4 h-4 text-neon" />
+                                    <BodyText text={resp} centered={false} />
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
+
                 {/* Experience Section */}
                 <div>
-                    <Heading text="Experience:" color="text-black" size='text-50px' fontWeight='font-semibold' centered={false} />
+                    <Heading text={`Experience (${job.experienceLevel}):`} color="text-black" size='text-50px' fontWeight='font-semibold' centered={false} />
                     <ul className="space-y-2 mt-4">
                         {job.experience.map((exp, index) => (
                             <li key={index} className="flex items-center space-x-4">
@@ -103,9 +130,24 @@ const JobDetails = () => {
                     </ul>
                 </div>
 
+                {/* Priority Skills Section */}
+                {job.prioritySkills && job.prioritySkills.length > 0 && (
+                    <div>
+                        <Heading text="Priority Skillsets:" color="text-black" size='text-50px' fontWeight='font-semibold' centered={false} />
+                        <ul className="space-y-2 mt-4">
+                            {job.prioritySkills.map((skill, index) => (
+                                <li key={index} className="flex items-center space-x-4">
+                                    <FaCheckCircle className="w-4 h-4 text-neon" />
+                                    <BodyText text={skill} centered={false} />
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
+
                 {/* Skills Section */}
                 <div>
-                    <Heading text="Skillsets:" color="text-black" size='text-50px' fontWeight='font-semibold' centered={false} />
+                    <Heading text="Additional Skillsets:" color="text-black" size='text-50px' fontWeight='font-semibold' centered={false} />
                     <ul className="space-y-2 mt-4">
                         {job.skills.map((skill, index) => (
                             <li key={index} className="flex items-center space-x-4">
@@ -144,6 +186,43 @@ const JobDetails = () => {
                         </div>
                     </div>
                 )}
+
+                {/* Compensation */}
+                {job.compensationType && (
+                    <div>
+                        <Heading text="Compensation:" color="text-black" size='text-50px' fontWeight='font-semibold' centered={false} />
+                        <BodyText
+                            text={`${job.compensationType}${job.compensationDetails ? `: ${job.compensationDetails}` : ''}`}
+                            centered={false}
+                        />
+                    </div>
+                )}
+
+                {/* Benefits */}
+                {job.benefits && job.benefits.length > 0 && (
+                    <div>
+                        <Heading text="Benefits:" color="text-black" size='text-50px' fontWeight='font-semibold' centered={false} />
+                        <ul className="space-y-2 mt-4">
+                            {job.benefits.map((benefit, index) => (
+                                <li key={index} className="flex items-center space-x-4">
+                                    <FaCheckCircle className="w-4 h-4 text-neon" />
+                                    <BodyText text={benefit} centered={false} />
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
+
+                {/* Application Instructions */}
+                {job.applicationInstructions && (
+                    <div>
+                        <Heading text="How to Apply:" color="text-black" size='text-50px' fontWeight='font-semibold' centered={false} />
+                        <BodyText
+                            text={job.applicationInstructions}
+                            centered={false}
+                        />
+                    </div>
+                )}
             </div>
 
             {/* Floating Apply Now Button */}
@@ -151,7 +230,7 @@ const JobDetails = () => {
                 <Button
                     name="Apply Now"
                     link={`/careers/apply?jobType=${slugify(job.jobType)}`}
-                    className="rounded-full py-2 px-6 shadow-lg bg-black text-black hover:bg-black hover:text-neon transition-all duration-300"
+                    className="rounded-full py-2 px-4 shadow-lg bg-black text-black hover:bg-black hover:text-black transition-all duration-300"
                     fontSize="text-base"
                     fontWeight="font-semibold"
                 />
