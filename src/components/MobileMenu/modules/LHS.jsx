@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { navLinks } from '../../Navbar/navLinks';
 import { contactDetails } from './contactDetails';
 import { theme } from '../../../theme';
+import jobListings from '../../../data/jobListings.json';
 
 const LHS = ({ containerVariants, textVariants, handleClose }) => (
   <motion.div
@@ -32,6 +33,8 @@ const LHS = ({ containerVariants, textVariants, handleClose }) => (
       {navLinks.map((link, index) => {
         const isScheduleLink = link.label === 'Schedule xa Meeting';
         const isPackagesLink = link.label === 'Packages';
+        const isCareersLink = link.label === 'Careers';
+        const hasJobListings = jobListings && jobListings.length > 0;
 
         return (
           <motion.div
@@ -57,6 +60,11 @@ const LHS = ({ containerVariants, textVariants, handleClose }) => (
             {isPackagesLink && (
               <span className="bg-black text-white text-10px font-semibold px-2 py-[3px] rounded-full">
                 Buy Now
+              </span>
+            )}
+            {isCareersLink && hasJobListings && (
+              <span className="bg-neon text-white text-10px font-semibold px-2 py-[3px] rounded-full">
+                Hiring Now
               </span>
             )}
           </motion.div>
