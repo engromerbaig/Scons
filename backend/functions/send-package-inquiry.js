@@ -93,7 +93,7 @@ const thankYouEmailTemplate = `
                 <div class="header">
                     <div style="text-align: left;">
                         <a href="https://sconstech.com/" class="logo">
-                            <img src="https://lustrous-sundae-be0a50.netlify.app/logo.png/" alt="Scons Logo" style="width: 150px;">
+                            <img src="https://lustrous-sundae-be0a50.netlify.app/logo.png/" alt="Scons Tech Logo" style="width: 150px;">
                         </a>
                     </div>
                     <div style="margin-top: 40px; margin-bottom: 40px; padding: 40px 0;">
@@ -147,7 +147,7 @@ const thankYouEmailTemplate = `
 </div>
 
                     <a href="https://sconstech.com/">
-                        <img src="https://lustrous-sundae-be0a50.netlify.app/logo.png/" alt="Scons Logo" style="width: 150px;">
+                        <img src="https://lustrous-sundae-be0a50.netlify.app/logo.png/" alt="Scons Tech Logo" style="width: 150px;">
                     </a>
                 </div>
             </td>
@@ -176,7 +176,7 @@ const thankYouEmailTemplate = `
                     <table width="100%" cellpadding="0" cellspacing="0" border="0">
                         <tr>
                             <td style="text-align: left; vertical-align: middle;">
-                                <span>Copyright © 2025 <strong>Scons.</strong> All rights reserved.</span>
+                                <span>Copyright © 2025 <strong>Scons Tech.</strong> All rights reserved.</span>
                             </td>
                             <td style="text-align: right; vertical-align: middle;">
                                 <a href="https://sconstech.com/terms-and-conditions/" style="color: #888; text-decoration: none; font-weight: 600;">
@@ -281,7 +281,7 @@ const companyEmailTemplate = `
                         A new package inquiry has been received. Please review the details above and follow up as needed.
                     </p>
                     <a href="https://sconstech.com/">
-                        <img src="https://lustrous-sundae-be0a50.netlify.app/logo.png/" alt="Scons Logo" style="width: 150px;">
+                        <img src="https://lustrous-sundae-be0a50.netlify.app/logo.png/" alt="Scons Tech Logo" style="width: 150px;">
                     </a>
                 </div>
             </td>
@@ -310,7 +310,7 @@ const companyEmailTemplate = `
                     <table width="100%" cellpadding="0" cellspacing="0" border="0">
                         <tr>
                             <td style="text-align: left; vertical-align: middle;">
-                                <span>Copyright © 2025 <strong>Scons.</strong> All rights reserved.</span>
+                                <span>Copyright © 2025 <strong>Scons Tech.</strong> All rights reserved.</span>
                             </td>
                             <td style="text-align: right; vertical-align: middle;">
                                 <a href="https://sconstech.com/terms-and-conditions/" style="color: #888; text-decoration: none; font-weight: 600;">
