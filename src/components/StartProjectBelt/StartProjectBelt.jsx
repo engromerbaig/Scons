@@ -1,9 +1,7 @@
 import Heading from "../Heading/Heading";
-import BodyText from "../BodyText/BodyText"; // Note: This is imported but not used; consider removing if unnecessary
-import { theme } from "../../theme";
 import Button from "../Button/Button";
-import { Link } from "react-router-dom";
 import { MessageBoxLayout } from "../MessageBox/MessageBox";
+import NewsletterButton from "../Footer/NewsLetterButton";
 
 const StartProjectBelt = ({
   text = "Project",
@@ -12,6 +10,7 @@ const StartProjectBelt = ({
   headingText = "Ready to Start Your",
   openModal = true,
   link, // Optional link
+  isNews = false, // New prop to toggle NewsletterButton
 }) => {
   return (
     <MessageBoxLayout bgColor={bgColor} CIRCLE_COUNT={3}>
@@ -24,20 +23,22 @@ const StartProjectBelt = ({
           color="text-white"
           centered={true}
         />
-        <Button
-          name={buttonText}
-          openModal={openModal && !link} // Only true if no link
-          link={link} // link overrides openModal
-          bgColor="bg-neon"
-          hoverBgColor="bg-neon/90"
-          textColor="black"
-          hoverTextColor="black"
-        />
+        {isNews ? (
+          <NewsletterButton />
+        ) : (
+          <Button
+            name={buttonText}
+            openModal={openModal && !link} // Only true if no link
+            link={link} // link overrides openModal
+            bgColor="bg-neon"
+            hoverBgColor="bg-neon/90"
+            textColor="black"
+            hoverTextColor="black"
+          />
+        )}
       </div>
     </MessageBoxLayout>
   );
 };
 
 export default StartProjectBelt;
-
-

@@ -16,6 +16,7 @@ import InnerHero from "../../components/InnerHero/InnerHero";
 import SkeletonLoader from "../../utilities/SkeletonLoader";
 import ogLogo from "../../assets/images/og-default.jpg"; // Logo-based OG image
 import schema from '../../utilities/schema';
+import StartProjectBelt from "../../components/StartProjectBelt/StartProjectBelt";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -389,6 +390,13 @@ export default function Blogs() {
           </div>
         </div>
       </div>
+
+
+         <StartProjectBelt
+                headingText="Enjoy Reading Our Blogs?"
+                text="Blogs"
+           isNews={true}
+              />
     </div>
   );
 }
