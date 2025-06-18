@@ -4,6 +4,7 @@ import { MdOutlineKeyboardArrowUp } from "react-icons/md";
 const ScrollToTop = () => {
     const [isVisible, setIsVisible] = useState(false);
 
+    // edited
     const toggleVisibility = () => {
         if (window.scrollY > 300) {
             setIsVisible(true);
