@@ -382,12 +382,13 @@ exports.handler = async function (event, context) {
     };
 
     // Email to the user
-    const mailToUser = {
-      from: process.env.REACT_APP_EMAIL_USER_HR,
-      to: email,
-      subject: 'Thank You for Applying to Scons Tech!',
-      html: thankYouEmailHtml,
-    };
+   // Email to the user
+const mailToUser = {
+  from: '"HR Scons Tech" <' + process.env.REACT_APP_EMAIL_USER_HR + '>',
+  to: email,
+  subject: 'Thank You for Applying to Scons Tech!',
+  html: thankYouEmailHtml,
+};
 
     // Send both emails concurrently
     await transporter.sendMail(mailToCompany);
