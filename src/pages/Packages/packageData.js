@@ -27,32 +27,38 @@ export const packageData = [
       ]
     }
   },
-  {
-    id: 2,
-    title: "Standard Website Package",
-    description: "Custom or WordPress website with essential features for businesses.",
-    price: 50,
-    category: "Web Development",
-    features: {
-      "Website": [
-        "Up to 7-page custom or WordPress website",
-        "Responsive & mobile-first design",
-        "CMS access",
-        "Basic animations & transitions",
-        "FREE Domain & Hosting (first year)"
-      ],
-      "Support": [
-        "Unlimited revisions",
-        "Email support",
-        "Launch assistance"
-      ]
-    }
-  },
+{
+  id: 2,
+  title: "WordPress Website Package",
+  description: "A professionally built WordPress website with essential features, plugins, and setup support.",
+  price: 100,
+  category: "Web Development",
+  features: {
+    "Website": [
+      "Up to 7-page WordPress website",
+      "Responsive & mobile-first design",
+      "Elementor or similar page builder",
+      "CMS admin access",
+      "Basic animations & transitions",
+      "FREE Domain & Hosting (first year)",
+      "Essential plugin setup (SEO, cache, security)",
+      "Contact form with email notifications"
+    ],
+    "Setup & Support": [
+      "Professional email setup (up to 2 accounts)",
+      "Plugin configuration & testing",
+      "Launch assistance",
+      "Email support",
+      "Unlimited revisions during build"
+    ]
+  }
+}
+,
   {
     id: 3,
     title: "E-commerce Package",
     description: "Full-featured e-commerce store setup using WooCommerce or Shopify.",
-    price: 80,
+    price: 120,
     category: "Web Development",
     features: {
       "E-commerce": [
@@ -77,7 +83,7 @@ export const packageData = [
     id: 10,
     title: "One Pager Website Package",
     description: "Sleek single-page site built with React, Next.js, or plain HTML/CSS – perfect for startups or personal brands.",
-    price: 70,
+    price: 150,
     category: "Web Development",
     features: {
       "Website": [
