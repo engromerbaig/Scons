@@ -14,15 +14,25 @@ const HeroButton = ({ onClick }) => {
         px-1 py-4
         rounded-r-2xl
         shadow-md
-        transition
-         items-center justify-center
+        transition-all duration-200
+        items-center justify-center
         text-sm
         font-black
-        [writing-mode:vertical-rl]
       "
+      style={{
+        writingMode: 'vertical-rl',
+        textOrientation: 'mixed'
+      }}
       aria-label="Chat Now"
     >
-      <span className="rotate-180">
+      <span 
+        className="inline-block"
+        style={{
+          transform: 'rotate(180deg)',
+          transformOrigin: 'center',
+          display: 'inline-block'
+        }}
+      >
         Contact Us
       </span>
     </button>
