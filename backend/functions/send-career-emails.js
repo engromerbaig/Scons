@@ -286,9 +286,9 @@ const companyEmailTemplate = `<!DOCTYPE html>
 
 function formatDate() {
   const now = new Date();
-  const options = { day: '2-digit', month: 'short', year: 'numeric' };
+  const options = { day: '2-digit', month: 'short', year: 'numeric', timeZone: 'Asia/Karachi' };
   const date = now.toLocaleDateString('en-US', options);
-  const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: true };
+  const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: true, timeZone: 'Asia/Karachi' };
   const time = now.toLocaleTimeString('en-US', timeOptions);
   return `${date} - ${time}`;
 }
@@ -374,21 +374,20 @@ exports.handler = async function (event, context) {
       .replace('{{inquiryDetails}}', inquiryDetails);
 
     // Email to the company
-  const mailToCompany = {
-  from: '"HR Scons Tech" <' + process.env.REACT_APP_EMAIL_USER_HR + '>',
-  to: process.env.REACT_APP_COMPANY_EMAIL_HR,
-  subject: `New Career Application from ${firstName} ${lastName} for ${role}`,
-  html: companyEmailHtml,
-};
+    const mailToCompany = {
+      from: '"HR Scons Tech" <' + process.env.REACT_APP_EMAIL_USER_HR + '>',
+      to: process.env.REACT_APP_COMPANY_EMAIL_HR,
+      subject: `New Career Application from ${firstName} ${lastName} for ${role}`,
+      html: companyEmailHtml,
+    };
 
     // Email to the user
-   // Email to the user
-const mailToUser = {
-  from: '"HR Scons Tech" <' + process.env.REACT_APP_EMAIL_USER_HR + '>',
-  to: email,
-  subject: 'Thank You for Applying to Scons Tech!',
-  html: thankYouEmailHtml,
-};
+    const mailToUser = {
+      from: '"HR Scons Tech" <' + process.env.REACT_APP_EMAIL_USER_HR + '>',
+      to: email,
+      subject: 'Thank You for Applying to Scons Tech!',
+      html: thankYouEmailHtml,
+    };
 
     // Send both emails concurrently
     await transporter.sendMail(mailToCompany);
