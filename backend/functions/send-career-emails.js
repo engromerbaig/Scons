@@ -374,12 +374,12 @@ exports.handler = async function (event, context) {
       .replace('{{inquiryDetails}}', inquiryDetails);
 
     // Email to the company
-    const mailToCompany = {
-      from: process.env.REACT_APP_EMAIL_USER_HR,
-      to: process.env.REACT_APP_COMPANY_EMAIL_HR,
-      subject: `New Career Application from ${firstName} ${lastName} for ${role}`,
-      html: companyEmailHtml,
-    };
+  const mailToCompany = {
+  from: '"HR Scons Tech" <' + process.env.REACT_APP_EMAIL_USER_HR + '>',
+  to: process.env.REACT_APP_COMPANY_EMAIL_HR,
+  subject: `New Career Application from ${firstName} ${lastName} for ${role}`,
+  html: companyEmailHtml,
+};
 
     // Email to the user
    // Email to the user
