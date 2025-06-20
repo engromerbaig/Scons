@@ -143,7 +143,7 @@ const thankYouEmailTemplate = `
     Revolut Bank UAB, Vilnius, Lithuania<br>
     Correspondent BIC: CHASGB2L</p>
 
-    <p style="margin-top: 20px; color: #000;"><strong>Note:</strong> Once you make the payment, please email the receipt to <a href="mailto:sales@sconstech.com" style="color: #00c5ff;">sales@sconstech.com</a>. For any issues, contact <a href="mailto:help@sconstech.com" style="color: #00c5ff;">help@sconstech.com</a>.</p>
+    <p style="margin-top: 20px; color: #000;"><strong>Note:</strong> Once you make the payment, please email the receipt to <a href="mailto:sales@sconstech.com" style="color: #00c5ff;">sales@sconstech.com</a>. For any issues, contact <a href="mailto:contact@sconstech.com" style="color: #00c5ff;">contact@sconstech.com</a>.</p>
 </div>
 
                     <a href="https://sconstech.com/">
