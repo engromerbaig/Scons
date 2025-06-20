@@ -292,9 +292,9 @@ const companyEmailTemplate = `
 
 function formatDate() {
   const now = new Date();
-  const options = { day: '2-digit', month: 'short', year: 'numeric' };
+  const options = { day: '2-digit', month: 'short', year: 'numeric', timeZone: 'Asia/Karachi' };
   const date = now.toLocaleDateString('en-US', options);
-  const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: true };
+  const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: true, timeZone: 'Asia/Karachi' };
   const time = now.toLocaleTimeString('en-US', timeOptions);
   return `${date} - ${time}`;
 }
