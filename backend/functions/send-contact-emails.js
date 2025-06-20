@@ -6,7 +6,7 @@ const nodemailer = require('nodemailer');
 dotenv.config(); // Loads .env from same directory
 
 // Validate environment variables
-const requiredEnvVars = ['REACT_APP_EMAIL_USER', 'REACT_APP_EMAIL_PASS', 'REACT_APP_COMPANY_EMAIL'];
+const requiredEnvVars = ['REACT_APP_EMAIL_USER_CONTACT', 'REACT_APP_EMAIL_PASS_CONTACT', 'REACT_APP_COMPANY_EMAIL_CONTACT'];
 const missingEnvVars = requiredEnvVars.filter((varName) => !process.env[varName]);
 
 if (missingEnvVars.length > 0) {
@@ -20,8 +20,8 @@ const transporter = nodemailer.createTransport({
   port: 465,
   secure: true, // true for port 465, false for port 587
   auth: {
-    user: process.env.REACT_APP_EMAIL_USER, // e.g., 'sales@sconstech.com'
-    pass: process.env.REACT_APP_EMAIL_PASS, // App Password from Zoho
+    user: process.env.REACT_APP_EMAIL_USER_CONTACT, // e.g., 'sales@sconstech.com'
+    pass: process.env.REACT_APP_EMAIL_PASS_CONTACT, // App Password from Zoho
   },
 });
 
@@ -309,9 +309,9 @@ function generateFieldHtml(label, value) {
 exports.handler = async function (event, context) {
   // Log environment variables for debugging
   console.log('Environment Variables:', {
-    REACT_APP_EMAIL_USER: process.env.REACT_APP_EMAIL_USER,
-    REACT_APP_EMAIL_PASS: process.env.REACT_APP_EMAIL_PASS ? '[REDACTED]' : 'undefined',
-    REACT_APP_COMPANY_EMAIL: process.env.REACT_APP_COMPANY_EMAIL,
+    REACT_APP_EMAIL_USER_CONTACT: process.env.REACT_APP_EMAIL_USER_CONTACT,
+    REACT_APP_EMAIL_PASS_CONTACT: process.env.REACT_APP_EMAIL_PASS_CONTACT ? '[REDACTED]' : 'undefined',
+    REACT_APP_COMPANY_EMAIL_CONTACT: process.env.REACT_APP_COMPANY_EMAIL_CONTACT,
   });
 
   // Only allow POST requests
@@ -372,15 +372,15 @@ exports.handler = async function (event, context) {
 
     // Email to the company
 const mailToCompany = {
-  from: '"Contact Scons Tech" <' + process.env.REACT_APP_EMAIL_USER + '>',
-  to: process.env.REACT_APP_COMPANY_EMAIL,
+  from: '"Contact Scons Tech" <' + process.env.REACT_APP_EMAIL_USER_CONTACT + '>',
+  to: process.env.REACT_APP_COMPANY_EMAIL_CONTACT,
   subject: `New ${formName.charAt(0).toUpperCase() + formName.slice(1)} Submission from ${name}`,
   html: companyEmailHtml,
 };
 
 // Email to the user
 const mailToUser = {
-  from: '"Contact Scons Tech" <' + process.env.REACT_APP_EMAIL_USER + '>',
+  from: '"Contact Scons Tech" <' + process.env.REACT_APP_EMAIL_USER_CONTACT + '>',
   to: email,
   subject: 'Thank You for Contacting Scons Tech!',
   html: thankYouEmailHtml,
