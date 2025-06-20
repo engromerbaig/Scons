@@ -10,7 +10,7 @@ const Technologies = () => {
       <div className="max-w-7xl ">
          <Heading text="Our Core Technologies" showUnderline className="pb-10" centered={false} />
           <BodyText
-            text="Leverage our expertise in modern web design and development, mobile app solutions, SEO, digital marketing, and AI integration. We work with the latest technologies and frameworks to build fast, scalable, and intelligent digital experiences."
+            text="We specialize in modern web development, mobile apps, SEO, digital marketing, and early-stage AI integration. Using up-to-date frameworks and tools, we build fast, scalable, and user-focused digital solutions for startups and growing businesses."
             centered={false}
             className="max-w-3xl"
           />

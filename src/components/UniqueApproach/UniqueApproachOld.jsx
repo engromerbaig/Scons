@@ -6,17 +6,18 @@ import { theme } from "../../theme";
 import Highlights from "./modules/Highlights";
 
 const itTopics = [
-  "Web Design",
-  "Custom Website Development",
-  "Logo & Brand Identity",
-  "UI/UX Design",
-  "AI Chatbots",
-  "Digital Marketing",
-  "Search Engine Optimization (SEO)",
-  "E-commerce Solutions",
-  "Landing Pages",
-  "Conversion Rate Optimization"
+  "Custom Web Development",         // React, Next.js, SPAs
+  "WordPress & CMS Solutions",      // Elementor, etc.
+  "Mobile App Development",         // Flutter, React Native
+  "UI/UX Design",                   // For apps/web
+  "Logo & Brand Identity",          // Visual branding
+  "Landing Page Optimization",      // Speed + CRO
+  "Performance Debug & SEO",        // Site audits, speed, basic SEO
+  "AI Chatbots & Integrations",     // LLMs, GPTs
+  "Digital Marketing & SEM",        // Google Ads, social
+  "E-commerce Solutions"            // Shopify, Woo, custom
 ];
+
 
 
 const UniqueApproach = () => {

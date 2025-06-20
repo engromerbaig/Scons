@@ -96,7 +96,7 @@ const KnowUs = () => {
           logoImages={[logoImage]}
           headingText="About Scons Tech & The Journey So Far"
           spanText="Scons Tech"
-  bodyText="Scons Tech is a forward-thinking software development company based in Pakistan & the UK, committed to delivering cutting-edge digital solutions to clients worldwide."
+  bodyText="Scons Tech is a modern software company from Pakistan, evolved from Econs. We build custom websites, web apps, and digital solutions for startups and growing teams."
           showBottomShadow={true}
           illustrationImage={aboutUsImage}
           illustrationImageWidth="w-3/4"
@@ -133,18 +133,44 @@ const KnowUs = () => {
             />
           </div>
           <div className="flex flex-col items-start gap-y-6 pt-10">
-           <HeadingWithText
+ <HeadingWithText
   heading="Your All-In-One Digital Growth Partner"
-  body="Welcome to Scons Tech — your partner in innovation and digital growth. We're a passionate team of developers and consultants dedicated to building modern, user-focused software for startups, small businesses, and global brands. From custom websites and mobile apps to scalable digital solutions, we combine creativity and code to help your ideas thrive. At Scons Tech, we don’t just build software — we build your vision."
+  body={
+    <>
+      Welcome to <strong>Scons Tech</strong> — a modern software company born from the engineering legacy of{' '}
+      <a
+        href="https://www.econs.com.pk/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="font-semibold text-black no-underline hover:no-underline"
+      >
+        Econs
+      </a>
+      . We’re a small but dedicated team of developers and creatives committed to building impactful digital products.
+
+      <br />
+
+      From <strong>custom websites</strong> and <strong>mobile apps</strong> to <strong>SEO-ready landing pages</strong> and <strong>AI-integrated features</strong>, we bring together clean design, smart code, and real business understanding.
+
+      <br />
+
+      Our focus is on <strong>startups</strong> and <strong>growing businesses</strong> that want to stand out, scale fast, and stay future-ready.
+
+      <br />
+
+      At Scons Tech, we don’t just build software — <strong>we help shape your digital vision</strong>, one product at a time.
+    </>
+  }
 />
+
 
             <Highlights />
           </div>
         </div>
       </FadeInSection>
       <MessageBox
-        Message="We are a team of passionate individuals who believe in the power of technology to transform lives. Our transition from the electrical to the IT domain has been nothing short of sensational, fueled by our rapidly growing client base."
-        Name="Mr. Omer"
+        Message="Scons Tech is our fresh start — built on the foundation of Econs, but driven by a new mindset. We’re here to create clean, modern software that helps businesses grow."
+        Name="Mr. Faraz Ahmed"
         Designation="Co-Founder, Scons Tech"
         ProfileDisplay={ceoImage}
       />

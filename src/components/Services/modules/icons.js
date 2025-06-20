@@ -72,6 +72,7 @@ import jsFrontend from '../../../assets/icons/services/Web Platforms/frontend/js
 import tsFrontend from '../../../assets/icons/services/Web Platforms/frontend/ts.svg';
 import twFrontend from '../../../assets/icons/services/Web Platforms/frontend/tw.svg';
 import svelteFrontend from '../../../assets/icons/services/Web Platforms/frontend/svelte.svg';
+import nuxtFrontend from '../../../assets/icons/services/Web Platforms/frontend/nuxt.svg';
 
 
 //backend
@@ -200,8 +201,7 @@ import data5 from '../../../assets/icons/services/Devops/data/5.svg';
 import ai1 from '../../../assets/icons/services/AIML/ai/1.svg';
 import ai2 from '../../../assets/icons/services/AIML/ai/2.svg';
 import ai3 from '../../../assets/icons/services/AIML/ai/3.svg';
-import ai4 from '../../../assets/icons/services/AIML/ai/4.svg';
-import ai5 from '../../../assets/icons/services/AIML/ai/5.svg';
+
 
 //ml
 import ml1 from '../../../assets/icons/services/AIML/ml/1.svg';
@@ -322,6 +322,7 @@ consultationFAQ5: consultationFAQ5,
       TSFrontend: tsFrontend,
       TWFrontend: twFrontend,
       SvelteFrontend: svelteFrontend,
+      NuxtFrontend: nuxtFrontend,
       
 
       // backend
@@ -459,8 +460,7 @@ consultationFAQ5: consultationFAQ5,
         ai1: ai1,
         ai2: ai2,
         ai3: ai3,
-        ai4: ai4,
-        ai5: ai5,
+      
         //ml
         ml1: ml1,
         ml2: ml2,

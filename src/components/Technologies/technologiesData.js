@@ -1,24 +1,7 @@
 import icons from "../Services/modules/icons";
 
 export const technologiesData = {
-  "Mobile Apps": {
-    iOS: [
-      { name: "Swift", icon: icons.mobile.SwiftIOS },
-      { name: "UI Kit", icon: icons.mobile.UIKit },
-      { name: "Core Data", icon: icons.mobile.CoreData },
-    ],
-    Android: [
-      { name: "Java", icon: icons.mobile.Java },
-      { name: "Kotlin", icon: icons.mobile.Kotlin },
-      { name: "Rust", icon: icons.mobile.Retrofit },
-    ],
-    Hybrid: [
-      { name: "React Native", icon: icons.mobile.ReactNative },
-      { name: "Flutter", icon: icons.mobile.FlutterHybrid },
-    ],
-  },
-
-  "Web Development": {
+    "Web Development": {
     Frontend: [
       { name: "JavaScript", icon: icons.web.JSFrontend },
       { name: "TypeScript", icon: icons.web.TSFrontend },
@@ -30,6 +13,7 @@ export const technologiesData = {
       { name: "Vue.js", icon: icons.web.VueFrontend },
       { name: "Svelte", icon: icons.web.SvelteFrontend },
       {name:"Angular", icon: icons.web.AngularFrontend},
+      {name:"Nuxt.js", icon: icons.web.NuxtFrontend},
    
 
     ],
@@ -51,6 +35,24 @@ export const technologiesData = {
 
     ],
   },
+  "Mobile Apps": {
+    iOS: [
+      { name: "Swift", icon: icons.mobile.SwiftIOS },
+      { name: "UI Kit", icon: icons.mobile.UIKit },
+      { name: "Core Data", icon: icons.mobile.CoreData },
+    ],
+    Android: [
+      { name: "Java", icon: icons.mobile.Java },
+      { name: "Kotlin", icon: icons.mobile.Kotlin },
+      { name: "Rust", icon: icons.mobile.Retrofit },
+    ],
+    Hybrid: [
+      { name: "React Native", icon: icons.mobile.ReactNative },
+      { name: "Flutter", icon: icons.mobile.FlutterHybrid },
+    ],
+  },
+
+
 
   "UI/UX Design": {
     Tools: [
@@ -68,6 +70,23 @@ export const technologiesData = {
  
     ],
 
+  },
+
+     "Digital Marketing": {
+    Tools: [
+            { name: "SEO", icon: icons.blockchain.seo2 },
+
+      { name: "Ahrefs", icon: icons.blockchain.seo1 },
+         { name: "Digital Marketing", icon: icons.blockchain.ppc1 },
+      { name: "PPC", icon: icons.blockchain.ppc2 },
+      { name: "HubSpot", icon: icons.blockchain.marketing1 },
+      { name: "Meta Ads", icon: icons.blockchain.marketing2 },
+            { name: "Branding", icon: icons.blockchain.marketing3 },
+
+
+    ],
+ 
+    
   },
 
   // "Blockchain": {
@@ -116,44 +135,25 @@ export const technologiesData = {
   },
 
   "AI Integration": {
+    Chatbot: [
+      { name: "Open AI", icon: icons.aiml.ai1 },
+      { name: "Tidio", icon: icons.aiml.ai2 },
+      { name: "ManyChat", icon: icons.aiml.ai3 },
+  
+    ],
     AI: [
-      { name: "Python", icon: icons.aiml.ai1 },
-      { name: "Rails", icon: icons.aiml.ai2 },
-      { name: "Java", icon: icons.aiml.ai3 },
-      { name: "C++", icon: icons.aiml.ai4 },
-      { name: "Julia", icon: icons.aiml.ai5 },
+      { name: "Zapier", icon: icons.aiml.ml2 }, // ML 2 (PyTorch logo)
+      { name: "Vapi AI", icon: icons.aiml.ml3 },
+
     ],
     ML: [
-      { name: "TensorFlow", icon: icons.aiml.ml1 },      // TensorFlow
-      { name: "PyTorch", icon: icons.aiml.ml2 }, // ML 2 (PyTorch logo)
-      { name: "Keras", icon: icons.aiml.ml3 },
-      { name: "SKL", icon: icons.aiml.ml4 },     // Scikit-learn
-      { name: "Spark", icon: icons.aiml.ml5 },
-    ],
-    Processes: [
-      { name: "PubNub", icon: icons.aiml.bp1 },
-      { name: "Airflow", icon: icons.aiml.bp2 },
-      { name: "Bizagi", icon: icons.aiml.bp3 },
-      { name: "Wrike", icon: icons.aiml.bp4 },
-      { name: "Asana", icon: icons.aiml.bp5 },
+      { name: "Python", icon: icons.aiml.bp1 },
+      { name: "TensorFlow", icon: icons.aiml.bp2 },
+
+    
     ],
     
   },
 
-   "Digital Marketing": {
-    Tools: [
-            { name: "SEO", icon: icons.blockchain.seo2 },
 
-      { name: "Ahrefs", icon: icons.blockchain.seo1 },
-         { name: "Digital Marketing", icon: icons.blockchain.ppc1 },
-      { name: "PPC", icon: icons.blockchain.ppc2 },
-      { name: "HubSpot", icon: icons.blockchain.marketing1 },
-      { name: "Meta Ads", icon: icons.blockchain.marketing2 },
-            { name: "Branding", icon: icons.blockchain.marketing3 },
-
-
-    ],
- 
-    
-  },
 };

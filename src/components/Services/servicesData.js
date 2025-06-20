@@ -44,7 +44,7 @@ export const servicesHeading = {
 };
 
 export const descriptorText =
-  "Comprehensive services covering software development, enterprise solutions, app/web development, digital marketing, AI integration, and strategic consulting tailored to meet diverse business needs.";
+  "At Scons Tech, we provide end-to-end digital solutions — including custom software development, mobile and web apps, UI/UX design, branding, AI integration, and digital marketing. Each service is tailored to help startups and growing businesses thrive in the digital space.";
 
 export const services = [
 
@@ -666,46 +666,46 @@ export const services = [
         answer: "Yes, regular updates and retraining ensure ongoing accuracy and performance.",
       },
     ],
-    services: ["AI Applications", "Machine Learning Algorithms", "Business Process Automation"],
+    services: ["Chatbot Integration", "AI Workflows", "ML Exploration"],
     iconRows: [
       {
-        service: "AI Applications",
-        serviceHeading: "AI-Powered Applications",
+        service: "Chatbot Integration",
+        serviceHeading: "Chatbot Integration",
         faqIcon: [icons.faq.aiFAQ1],
         details: [
           {
             heading: "Natural Language Processing",
             description:
-              "We develop AI applications like chatbots and recommendation systems to enhance user experiences and automate tasks.",
+              "We develop AI-powered chatbots using GPT and no-code platforms to automate conversations and support.",
           },
         ],
-        icons: [icons.aiml.ai1, icons.aiml.ai2, icons.aiml.ai3, icons.aiml.ai4, icons.aiml.ai5],
+        icons: [icons.aiml.ai1, icons.aiml.ai2, icons.aiml.ai3],
       },
       {
-        service: "Machine Learning Algorithms",
-        serviceHeading: "Custom Machine Learning Models",
+        service: "AI Workflows & Automation",
+        serviceHeading: "AI Workflows & Automation",
         faqIcon: [icons.faq.aiFAQ2],
         details: [
           {
             heading: "Supervised Learning",
             description:
-              "Our machine learning models deliver insights and automation, learning and improving over time for competitive advantage.",
+              "We build smart automations using OpenAI, Zapier, Vapi AI and Make.com to streamline repetitive business tasks.",
           },
         ],
-        icons: [icons.aiml.ml1, icons.aiml.ml2, icons.aiml.ml3, icons.aiml.ml4, icons.aiml.ml5],
+        icons: [icons.aiml.ml2, icons.aiml.ml3],
       },
       {
-        service: "Business Process Automation",
-        serviceHeading: "Process Automation",
+        service: "ML Exploration",
+        serviceHeading: "ML Exploration",
         faqIcon: [icons.faq.aiFAQ3],
         details: [
           {
             heading: "Automated Workflow Management",
             description:
-              "We implement AI-driven automation to streamline operations, reduce errors, and boost productivity.",
+              "We experiment with Python-based ML tools to explore data insights and simple predictive models.",
           },
         ],
-        icons: [icons.aiml.bp1, icons.aiml.bp2, icons.aiml.bp3, icons.aiml.bp4, icons.aiml.bp5],
+        icons: [icons.aiml.bp1, icons.aiml.bp2],
       },
     ],
   },

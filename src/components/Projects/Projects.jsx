@@ -31,8 +31,8 @@ const getRandomProjects = (projects, count = 4, showMystery = false) => {
 };
 
 const Projects = ({
-  heading = "A Portfolio of Our Success",
-  spanText = "Success",
+  heading = "Real Projects, Real Impact",
+  spanText = "Projects",
   spanColor = "text-neon",
   centered = false,
   showUnderline = true,
