@@ -57,7 +57,7 @@ const Hero = () => {
                   <AnimatedHeading
                     prefixText="We are"
                     animatedWords={["Software", "Web", "App", "IT", "AI"]}
-                    suffixText="Development Company"
+                    suffixText="Development Experts"
                     color="text-black"
                     fontWeight="font-black"
                     className="leading-none"
@@ -69,7 +69,7 @@ const Hero = () => {
 
             <div>
               <BodyText
-                text="We are your trusted development partner with just one goal in focus - to build products that generate a lasting, profitable impact."
+                text="Scons Tech is a modern software company, built on over a decade of engineering experience at Econs. We craft scalable websites, web apps, and digital platforms for startups and growing businesses."
                 centered={false}
                 color="text-black"
                 className="max-w-2xl"

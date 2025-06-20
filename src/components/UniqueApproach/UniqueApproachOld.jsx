@@ -27,31 +27,36 @@ const UniqueApproach = () => {
       <div className={`${theme.layoutPages.paddingHorizontal} `}>
         <div className="relative w-full">
           <Heading
-            text="Our Incredible Journey"
+            text="Rooted in Econs, Evolved as Scons Tech"
             color="text-black"
             spanColor="text-black"
-            spanText="Journey"
             centered={false}
-            showUnderline
             className="pb-10"
           />
         </div>
         <div className="relative w-full">
         <BodyText
-  text={
-    <>
-      At <strong>Software CONSultants Technologies (Scons Tech)</strong>, innovation meets precision. Our client-centric approach ensures we understand your vision, ideate effectively, and deliver solutions that exceed expectations. From concept to deployment, we bring expertise and passion to every project. Our journey goes back to 2011, when we started as MEP & IT Services at{' '}
-      <a
-        href="https://www.econs.com.pk/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="font-semibold text-black no-underline hover:no-underline"
-      >
-        Econs
-      </a>
-      , and through incredible leadership, the growth expanded our domain.
-    </>
-  }
+text={
+  <>
+    <strong>Software Consultants Technologies (Scons Tech)</strong> is a modern software company evolved from{' '}
+    <a
+      href="https://www.econs.com.pk/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="font-semibold text-black no-underline hover:no-underline"
+    >
+      Econs
+    </a>
+    , an engineering consultancy established in 2011. What began as MEP and IT services has grown into a dedicated software team.
+
+    <br />
+
+    At Scons Tech, we build scalable websites, web apps, and digital platforms for startups and growing businesses — with a focus on performance, design, and real-world impact.
+  </>
+}
+
+className="max-w-5xl"
+
   color="text-black"
   centered={false}
 />

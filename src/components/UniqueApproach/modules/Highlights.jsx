@@ -11,9 +11,11 @@ import officeIcon from "../../../assets/icons/unique/4.svg";
 const Highlights = () => {
   // Define the stats directly in the Highlights component
 const stats = [
-  { title: "Project Delivered", value: "100+", icon: projectIcon, link: "/portfolio" },
-  { title: "Diverse Clients", value: "20+", icon: clientIcon, link: "/portfolio" },
+  { title: "Project Delivered", value: "20+", icon: projectIcon, link: "/portfolio" },
+  { title: "Diverse Clients", value: "10+", icon: clientIcon, link: "/portfolio" },
   { title: "Global Offices", value: "2", icon: officeIcon, link: "#locations" },
+    // { title: "Powered by", value: "Econs", icon: officeIcon, link: "#locations" },
+
 ];
 
 
