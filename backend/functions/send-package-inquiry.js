@@ -329,9 +329,9 @@ const companyEmailTemplate = `
 
 function formatDate() {
   const now = new Date();
-  const options = { day: '2-digit', month: 'short', year: 'numeric' };
+  const options = { day: '2-digit', month: 'short', year: 'numeric', timeZone: 'Asia/Karachi' };
   const date = now.toLocaleDateString('en-US', options);
-  const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: true };
+  const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: true, timeZone: 'Asia/Karachi' };
   const time = now.toLocaleTimeString('en-US', timeOptions);
   return `${date} - ${time}`;
 }
@@ -389,14 +389,14 @@ exports.handler = async function (event, context) {
       .replace('{{packagePrice}}', packagePrice);
 
     const mailToCompany = {
-      from: process.env.REACT_APP_EMAIL_USER,
+  from: '"Sales Scons Tech" <' + process.env.REACT_APP_EMAIL_USER + '>',
       to: process.env.REACT_APP_COMPANY_EMAIL,
       subject: `New ${formName.charAt(0).toUpperCase() + formName.slice(1)} Submission from ${name}`,
       html: companyEmailHtml,
     };
 
     const mailToUser = {
-      from: process.env.REACT_APP_EMAIL_USER,
+    from: '"Sales Scons Tech" <' + process.env.REACT_APP_EMAIL_USER + '>',
       to: email,
       subject: 'Thank You for Your Package Inquiry!',
       html: thankYouEmailHtml,
