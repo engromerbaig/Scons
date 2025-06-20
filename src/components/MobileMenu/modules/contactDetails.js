@@ -20,7 +20,11 @@ export const contactDetails = [
   {
     type: 'Phone',
     icon: FaPhoneAlt,
-    detail: '+44 (7546) 296 810',
-    link: 'tel:+44 (7546) 296 810',
+    // detail: '+44 (7546) 296 810',
+    // link: 'tel:+44 (7546) 296 810',
+
+     detail: '+92 311 21 36 495',
+     link: 'tel:+92 311 2136495',
   },
+  
 ];

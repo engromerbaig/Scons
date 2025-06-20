@@ -230,9 +230,10 @@ const PackageCard = ({ packageInfo }) => {
           return (
             <div key={idx} className="flex items-center gap-2">
               <Icon className="text-neon" />
-              <a href={contact.link} className="hover:underline transition-colors duration-300 group-hover:text-white">
-                {contact.detail}
-              </a>
+            <a href="mailto:sales@sconstech.com" className="hover:underline transition-colors duration-300 group-hover:text-white">
+  sales@sconstech.com
+</a>
+
             </div>
           );
         })}
