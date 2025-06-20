@@ -371,20 +371,20 @@ exports.handler = async function (event, context) {
       .replace('{{inquiryDetails}}', inquiryDetails);
 
     // Email to the company
-    const mailToCompany = {
-      from: process.env.REACT_APP_EMAIL_USER,
-      to: process.env.REACT_APP_COMPANY_EMAIL,
-      subject: `New ${formName.charAt(0).toUpperCase() + formName.slice(1)} Submission from ${name}`,
-      html: companyEmailHtml,
-    };
+const mailToCompany = {
+  from: '"Contact Scons Tech" <' + process.env.REACT_APP_EMAIL_USER + '>',
+  to: process.env.REACT_APP_COMPANY_EMAIL,
+  subject: `New ${formName.charAt(0).toUpperCase() + formName.slice(1)} Submission from ${name}`,
+  html: companyEmailHtml,
+};
 
-    // Email to the user
-    const mailToUser = {
-      from: process.env.REACT_APP_EMAIL_USER,
-      to: email,
-      subject: 'Thank You for Contacting Scons Tech!',
-      html: thankYouEmailHtml,
-    };
+// Email to the user
+const mailToUser = {
+  from: '"Contact Scons Tech" <' + process.env.REACT_APP_EMAIL_USER + '>',
+  to: email,
+  subject: 'Thank You for Contacting Scons Tech!',
+  html: thankYouEmailHtml,
+};
 
     // Send both emails concurrently
     await transporter.sendMail(mailToCompany);
